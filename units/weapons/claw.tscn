@@ -1242,6 +1242,7 @@ tracks/17/keys = {
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_w0d4k"]
+resource_local_to_scene = true
 _data = {
 "RESET": SubResource("Animation_kenkg"),
 "attack": SubResource("Animation_ewgo2"),
@@ -1261,12 +1262,13 @@ animation_tree = NodePath("AnimationTree")
 collision_areas = [NodePath("Hurtboxes/Area3D")]
 
 [node name="claws" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.141766, 0)
 
 [node name="goblin_weapon_l" parent="claws" instance=ExtResource("1_g4m7c")]
-transform = Transform3D(-0.183914, -0.982941, -2.22686e-06, -0.8634, 0.161546, 0.477955, -0.469802, 0.0879048, -0.878383, -1.1, -0.1, 5.05119e-15)
+transform = Transform3D(-0.175731, -0.984363, 0.0120624, -0.808443, 0.151295, 0.568794, -0.561726, 0.0902029, -0.82239, -1.1, -0.1, 5.05119e-15)
 
 [node name="goblin_weapon_r" parent="claws" instance=ExtResource("1_g4m7c")]
-transform = Transform3D(0.183953, 0.982935, -4.16111e-11, -0.863394, 0.161581, -0.477955, -0.4698, 0.0879213, 0.878383, 1.1, -0.1, -5.05119e-15)
+transform = Transform3D(0.237356, 0.970967, 0.029761, -0.834366, 0.219462, -0.505637, -0.497489, 0.0951846, 0.862231, 1.1, -0.1, -5.05119e-15)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -1276,6 +1278,7 @@ libraries = {
 [node name="AnimationTree" type="AnimationTree" parent="."]
 tree_root = ExtResource("2_rewrc")
 anim_player = NodePath("../AnimationPlayer")
+active = true
 parameters/conditions/in_combat = false
 parameters/conditions/not_in_combat = false
 script = ExtResource("4_4f64f")

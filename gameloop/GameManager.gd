@@ -8,7 +8,7 @@ class_name GameManager
 @export var linear_offset: float = 2
 @export var linear_scale: float = 2
 
-@export var ogre_cost: float = 1
+@export var ogre_cost: float = 15
 @export var imp_cost: float = 2
 @export var goblin_cost: float = 2
 
@@ -42,7 +42,7 @@ func _spawn_wave(number: float):
 	var goblin_count: int = 0
 	var imp_count: int = 0
 	
-	if number > 1:
+	if number > 15:
 		var max_ogre = (spawn_power/ogre_cost) as int
 		var min_ogre = clampi((max_ogre / 2) as int, 1, max_ogre)
 		ogre_count = randi_range(min_ogre, max_ogre)

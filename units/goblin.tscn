@@ -50,7 +50,7 @@ unit = NodePath("..")
 
 [node name="BountyComponent" type="Node" parent="."]
 script = ExtResource("7_bwuvv")
-worth_base = 20
+worth_base = 30
 worth_varience = 5
 
 [connection signal="died" from="HealthComponent" to="." method="_on_died"]
