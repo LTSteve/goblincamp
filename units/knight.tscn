@@ -28,6 +28,9 @@ transform = Transform3D(-2.30258e-08, 0, 0.526768, 0, 0.526768, 0, -0.526768, 0,
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
 path_height_offset = 0.5
+navigation_layers = 3
+avoidance_enabled = true
+radius = 2.0
 
 [node name="HealthComponent" type="Node" parent="."]
 script = ExtResource("2_u35x7")

@@ -9,7 +9,7 @@ class_name GameManager
 @export var linear_scale: float = 2
 
 @export var ogre_cost: float = 15
-@export var imp_cost: float = 2
+@export var imp_cost: float = 3
 @export var goblin_cost: float = 2
 
 signal on_spawn_enemy(unit_type: UnitSpawner.UnitType)

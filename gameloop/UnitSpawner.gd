@@ -5,8 +5,10 @@ class_name UnitSpawner
 enum UnitType {Knight=0, Witch, Huntsman, Goblin, Imp, Ogre}
 
 @onready var knight_scene = preload("res://units/knight.tscn")
+
 @onready var goblin_scene = preload("res://units/goblin.tscn")
 @onready var ogre_scene = preload("res://units/ogre.tscn")
+@onready var imp_scene = preload("res://units/imp.tscn")
 
 @export var units_folder: Node
 
@@ -28,10 +30,13 @@ func spawn_hostile(unit_type: UnitType):
 	_spawn(unit_type, enemy_spawn_center + Quaternion.from_euler(Vector3(0,angle,0)) * Vector3.BACK * distance)
 
 func _spawn(unit_type: UnitType, position: Vector3):
-	var instance: Unit = _get_unit_scene(unit_type).instantiate()
-	units_folder.add_child(instance)
-	
-	instance.position = position
+	var iterations = 3 if unit_type == UnitType.Imp else 1
+	for i in iterations:
+		var instance: Unit = _get_unit_scene(unit_type).instantiate()
+		units_folder.add_child(instance)
+		
+		instance.position = position
+		position += Vector3((randf()-0.5)*2, 0, (randf()-0.5)*2)
 
 func _get_unit_scene(unit_type: UnitType) -> PackedScene:
 	match unit_type:
@@ -44,7 +49,7 @@ func _get_unit_scene(unit_type: UnitType) -> PackedScene:
 		UnitType.Goblin:
 			return goblin_scene
 		UnitType.Imp:
-			return goblin_scene
+			return imp_scene
 		UnitType.Ogre:
 			return ogre_scene
 	

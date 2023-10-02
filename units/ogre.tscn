@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://5kxgrj763bh2" path="res://units/weapons/hammer.tscn" id="3_mcr6p"]
 [ext_resource type="Script" path="res://units/components/HealthComponent.gd" id="4_8csbd"]
 [ext_resource type="Script" path="res://units/components/VelocityComponent.gd" id="5_bgrw1"]
-[ext_resource type="Script" path="res://units/components/GoblinBrain.gd" id="6_7oa26"]
+[ext_resource type="Script" path="res://units/components/OgreBrain.gd" id="6_dxi7i"]
 [ext_resource type="Script" path="res://units/components/BountyComponent.gd" id="7_m1y06"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_4afdt"]
@@ -32,6 +32,11 @@ transform = Transform3D(-2.46772e-08, 0, 0.564549, 0, 0.564549, 0, -0.564549, 0,
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
 path_height_offset = 0.5
+navigation_layers = 3
+avoidance_enabled = true
+radius = 3.0
+avoidance_layers = 2
+avoidance_mask = 2
 
 [node name="HealthComponent" type="Node" parent="."]
 script = ExtResource("4_8csbd")
@@ -39,11 +44,11 @@ max_health = 500.0
 
 [node name="VelocityComponent" type="Node" parent="."]
 script = ExtResource("5_bgrw1")
-max_speed = 4.0
+max_speed = 5.0
 acceleration = 0.01
 
-[node name="GoblinBrain" type="Node" parent="." node_paths=PackedStringArray("unit")]
-script = ExtResource("6_7oa26")
+[node name="OgreBrain" type="Node" parent="." node_paths=PackedStringArray("unit")]
+script = ExtResource("6_dxi7i")
 unit = NodePath("..")
 
 [node name="BountyComponent" type="Node" parent="."]
@@ -53,6 +58,6 @@ worth_varience = 40
 
 [connection signal="died" from="HealthComponent" to="." method="_on_died"]
 [connection signal="died" from="HealthComponent" to="BountyComponent" method="_on_health_component_died"]
-[connection signal="enter_combat" from="GoblinBrain" to="ogre/Hammer" method="_on_enter_combat"]
-[connection signal="exit_combat" from="GoblinBrain" to="ogre/Hammer" method="_on_exit_combat"]
-[connection signal="request_attack" from="GoblinBrain" to="ogre/Hammer" method="_on_request_attack"]
+[connection signal="enter_combat" from="OgreBrain" to="ogre/Hammer" method="_on_enter_combat"]
+[connection signal="exit_combat" from="OgreBrain" to="ogre/Hammer" method="_on_exit_combat"]
+[connection signal="request_attack" from="OgreBrain" to="ogre/Hammer" method="_on_request_attack"]

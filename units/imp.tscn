@@ -1,0 +1,64 @@
+[gd_scene load_steps=9 format=3 uid="uid://dc2xntf220y7"]
+
+[ext_resource type="Script" path="res://units/Unit.gd" id="1_7xoce"]
+[ext_resource type="PackedScene" uid="uid://citvivc546i87" path="res://models/imp/imp.glb" id="2_tftnr"]
+[ext_resource type="PackedScene" uid="uid://bafd3cjhvdg42" path="res://units/weapons/imp_claw.tscn" id="3_5sjsv"]
+[ext_resource type="Script" path="res://units/components/HealthComponent.gd" id="4_h581y"]
+[ext_resource type="Script" path="res://units/components/VelocityComponent.gd" id="5_3np35"]
+[ext_resource type="Script" path="res://units/components/BountyComponent.gd" id="7_mr5cy"]
+[ext_resource type="Script" path="res://units/components/ImpBrain.gd" id="9_siltb"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_4afdt"]
+radius = 0.25
+height = 1.0
+
+[node name="Imp" type="CharacterBody3D"]
+collision_layer = 2
+collision_mask = 3
+axis_lock_linear_y = true
+axis_lock_angular_x = true
+axis_lock_angular_z = true
+script = ExtResource("1_7xoce")
+is_enemy = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("CapsuleShape3D_4afdt")
+
+[node name="imp" parent="." instance=ExtResource("2_tftnr")]
+transform = Transform3D(-2.46772e-08, 0, 0.564549, 0, 0.564549, 0, -0.564549, 0, -2.46772e-08, 0, 0, 0)
+
+[node name="ImpClaw" parent="imp" instance=ExtResource("3_5sjsv")]
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+path_height_offset = 0.5
+navigation_layers = 3
+avoidance_enabled = true
+radius = 1.0
+neighbor_distance = 40.0
+avoidance_layers = 2
+avoidance_mask = 2
+
+[node name="HealthComponent" type="Node" parent="."]
+script = ExtResource("4_h581y")
+max_health = 25.0
+
+[node name="VelocityComponent" type="Node" parent="."]
+script = ExtResource("5_3np35")
+max_speed = 6.0
+acceleration = 0.01
+
+[node name="BountyComponent" type="Node" parent="."]
+script = ExtResource("7_mr5cy")
+worth_base = 15
+worth_varience = 5
+
+[node name="ImpBrain" type="Node" parent="." node_paths=PackedStringArray("unit")]
+script = ExtResource("9_siltb")
+unit = NodePath("..")
+
+[connection signal="died" from="HealthComponent" to="." method="_on_died"]
+[connection signal="died" from="HealthComponent" to="BountyComponent" method="_on_health_component_died"]
+[connection signal="enter_combat" from="ImpBrain" to="imp/ImpClaw" method="_on_enter_combat"]
+[connection signal="exit_combat" from="ImpBrain" to="imp/ImpClaw" method="_on_exit_combat"]
+[connection signal="request_attack" from="ImpBrain" to="imp/ImpClaw" method="_on_request_attack"]
