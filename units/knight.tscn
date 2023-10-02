@@ -1,0 +1,51 @@
+[gd_scene load_steps=8 format=3 uid="uid://blqqvg7tmek8o"]
+
+[ext_resource type="Script" path="res://units/Unit.gd" id="1_ubipr"]
+[ext_resource type="PackedScene" uid="uid://bjni3yp3c1c0c" path="res://models/knight/knight.glb" id="2_71j88"]
+[ext_resource type="Script" path="res://units/components/HealthComponent.gd" id="2_u35x7"]
+[ext_resource type="Script" path="res://units/components/VelocityComponent.gd" id="3_gto3h"]
+[ext_resource type="PackedScene" uid="uid://cd6tt0y0m03yw" path="res://units/weapons/sword.tscn" id="3_qgv83"]
+[ext_resource type="Script" path="res://units/components/KnightBrain.gd" id="4_kcgtp"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_nhjdq"]
+radius = 0.7
+
+[node name="Knight" type="CharacterBody3D"]
+collision_mask = 3
+axis_lock_linear_y = true
+axis_lock_angular_x = true
+axis_lock_angular_z = true
+script = ExtResource("1_ubipr")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CapsuleShape3D_nhjdq")
+
+[node name="knight" parent="." instance=ExtResource("2_71j88")]
+transform = Transform3D(-2.30258e-08, 0, 0.526768, 0, 0.526768, 0, -0.526768, 0, -2.30258e-08, 0, 0, 0)
+
+[node name="Sword" parent="knight" instance=ExtResource("3_qgv83")]
+range = 3.5
+cooldown = 1.0
+pushback = 4.0
+multi_target = true
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+path_height_offset = 0.5
+
+[node name="HealthComponent" type="Node" parent="."]
+script = ExtResource("2_u35x7")
+
+[node name="VelocityComponent" type="Node" parent="."]
+script = ExtResource("3_gto3h")
+max_speed = 4.0
+acceleration = 0.01
+
+[node name="KnightBrain" type="Node" parent="." node_paths=PackedStringArray("unit")]
+script = ExtResource("4_kcgtp")
+unit = NodePath("..")
+
+[connection signal="died" from="HealthComponent" to="." method="_on_died"]
+[connection signal="enter_combat" from="KnightBrain" to="knight/Sword" method="_on_enter_combat"]
+[connection signal="exit_combat" from="KnightBrain" to="knight/Sword" method="_on_exit_combat"]
+[connection signal="request_attack" from="KnightBrain" to="knight/Sword" method="_on_request_attack"]

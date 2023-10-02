@@ -1,0 +1,115 @@
+[gd_scene load_steps=9 format=3 uid="uid://duwsqv7i6jgca"]
+
+[ext_resource type="Script" path="res://units/Unit.gd" id="1_avfjk"]
+[ext_resource type="Script" path="res://units/components/HealthComponent.gd" id="2_8blxg"]
+[ext_resource type="PackedScene" uid="uid://cw68w0g0xv1j6" path="res://models/goblin/goblin.glb" id="2_k8e14"]
+[ext_resource type="PackedScene" uid="uid://byiw0i7pdnhqs" path="res://units/weapons/claw.tscn" id="3_10fnw"]
+[ext_resource type="Script" path="res://units/components/VelocityComponent.gd" id="3_ayc47"]
+[ext_resource type="Script" path="res://units/components/GoblinBrain.gd" id="4_2lhla"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_4afdt"]
+radius = 0.55
+
+[sub_resource type="GDScript" id="GDScript_lurws"]
+script/source = "extends Node3D
+
+@export var animation_tree: AnimationTree
+
+@export var collision_areas: Array[Area3D]
+
+@export var range: float = 3.0
+@export var cooldown: float = 0.75
+@export var damage: float = 10.0
+@export var pushback: float = 5.0
+
+var _current_cooldown:float = 0.0
+var _current_animation:String = \"idle\"
+var _already_hit:Array[Unit] = []
+
+func _ready():
+	animation_tree.animation_started.connect(_on_animation_changed)
+	for area in collision_areas:
+		area.body_entered.connect(_on_area_3d_body_entered)
+
+func _process(delta):
+	_current_cooldown -= delta
+
+func _on_animation_changed(next_animation: String):
+	_current_animation = next_animation
+
+func _on_enter_combat():
+	animation_tree.set(\"parameters/conditions/in_combat\", true)
+
+func _on_exit_combat():
+	animation_tree.set(\"parameters/conditions/in_combat\", false)
+
+func _on_request_attack(target:Unit, me:Unit):
+	#in range?
+	if(_current_cooldown > 0 
+	|| (target.global_position - me.global_position).length() > range 
+	|| _current_animation != \"idle_combat\"): return
+	
+	#reset already hit tracker
+	_already_hit = []
+	
+	#assign collision mask of hitboxes
+	for area in collision_areas:
+		area.mask = target.collision_layer
+	
+	#trigger animation
+	animation_tree.set(\"parameters/conditions/attack\", true)
+	
+	#reset cooldown
+	_current_cooldown = cooldown
+
+# weapon hit enemy
+func _on_area_3d_body_entered(unit:Unit):
+	#track already hit
+	if _already_hit.has(unit): return
+	_already_hit.append(unit);
+	
+	unit.take_hit(
+		Math.unit(Math.v3_to_v2(unit.global_position-global_position)),
+		damage, pushback)
+"
+
+[node name="Goblin" type="CharacterBody3D"]
+collision_layer = 2
+collision_mask = 3
+axis_lock_linear_y = true
+axis_lock_angular_x = true
+axis_lock_angular_z = true
+script = ExtResource("1_avfjk")
+is_enemy = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1.00364, 0, 0, 0, 1.00364, 0, 0, 0, 1.00364, 0, 1, 0)
+shape = SubResource("CapsuleShape3D_4afdt")
+
+[node name="goblin" parent="." instance=ExtResource("2_k8e14")]
+transform = Transform3D(-2.46772e-08, 0, 0.564549, 0, 0.564549, 0, -0.564549, 0, -2.46772e-08, 0.0104129, 1.19209e-07, 0.00498915)
+
+[node name="Claw" parent="goblin" instance=ExtResource("3_10fnw")]
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+path_height_offset = 0.5
+
+[node name="HealthComponent" type="Node" parent="."]
+script = ExtResource("2_8blxg")
+
+[node name="VelocityComponent" type="Node" parent="."]
+script = ExtResource("3_ayc47")
+max_speed = 6.0
+acceleration = 0.01
+
+[node name="GoblinBrain" type="Node" parent="." node_paths=PackedStringArray("unit")]
+script = ExtResource("4_2lhla")
+unit = NodePath("..")
+
+[node name="MeleeWeapon" type="Node" parent="."]
+script = SubResource("GDScript_lurws")
+range = 2.0
+cooldown = 0.5
+
+[connection signal="died" from="HealthComponent" to="." method="_on_died"]
+[connection signal="request_attack" from="GoblinBrain" to="MeleeWeapon" method="_on_request_attack"]

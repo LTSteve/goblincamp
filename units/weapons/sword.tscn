@@ -1,0 +1,190 @@
+[gd_scene load_steps=13 format=3 uid="uid://cd6tt0y0m03yw"]
+
+[ext_resource type="Script" path="res://units/components/MeleeWeapon.gd" id="1_ievjt"]
+[ext_resource type="PackedScene" uid="uid://ccbj6hhusyqky" path="res://models/knight/knight_weapon.glb" id="1_yltu8"]
+[ext_resource type="AnimationNodeStateMachine" uid="uid://dawvd5u6rapgb" path="res://units/weapons/weapon_animation_state_machine.tres" id="2_cs7hr"]
+[ext_resource type="Script" path="res://util/AnimationTreeExpressionExtension.gd" id="4_7404g"]
+
+[sub_resource type="Animation" id="Animation_u37c2"]
+length = 0.001
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("knight_weapon:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(-0.394594, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("knight_weapon:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(2.23556, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("knight_weapon:position:z")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(1.47275, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("knight_weapon:rotation:y")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(1.30945, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+
+[sub_resource type="Animation" id="Animation_ane43"]
+resource_name = "attack"
+length = 1.2
+step = 0.005
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("knight_weapon:position:y")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0, 1, 1),
+"points": PackedFloat32Array(0.181937, -0.25, 0, 0.25, 0, 0.181937, 0, 0, 0, 0, 0.181937, -0.25, 0, 0.25, 0, 3.89706, 0, 0, 0, 0, 0.181937, 0, 0, 0, 0),
+"times": PackedFloat32Array(0, 0.25, 0.7, 1, 1.2)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("knight_weapon:rotation:x")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0, 1, 1),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 0, 0, 0, 0, 0, 0, -0.25, 0, 0.25, 0, -3.14159, 0, 0, 0, 0, -6.28319, 0, 0, 0, 0),
+"times": PackedFloat32Array(0, 0.25, 0.7, 1, 1.2)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("knight_weapon:rotation:z")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0, 1, 1),
+"points": PackedFloat32Array(-3.14159, -0.25, 0, 0.25, 0, -3.14159, 0, 0, 0, 0, -3.14159, -0.25, 0, 0.25, 0, -3.14159, 0, 0, 0, 0, -3.14159, 0, 0, 0, 0),
+"times": PackedFloat32Array(0, 0.25, 0.7, 1, 1.2)
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Hitboxes/Area3D2:monitoring")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.235, 0.255),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, true, false]
+}
+
+[sub_resource type="Animation" id="Animation_kgtvx"]
+resource_name = "draw"
+
+[sub_resource type="Animation" id="Animation_byhao"]
+resource_name = "idle"
+loop_mode = 1
+
+[sub_resource type="Animation" id="Animation_pjnnc"]
+resource_name = "idle_combat"
+loop_mode = 1
+
+[sub_resource type="Animation" id="Animation_6ul2q"]
+resource_name = "stow"
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_rxudu"]
+_data = {
+"RESET": SubResource("Animation_u37c2"),
+"attack": SubResource("Animation_ane43"),
+"draw": SubResource("Animation_kgtvx"),
+"idle": SubResource("Animation_byhao"),
+"idle_combat": SubResource("Animation_pjnnc"),
+"stow": SubResource("Animation_6ul2q")
+}
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_pxgbv"]
+radius = 2.0
+
+[node name="Sword" type="Node3D" node_paths=PackedStringArray("animation_tree", "collision_areas")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 1, 0)
+script = ExtResource("1_ievjt")
+animation_tree = NodePath("AnimationTree")
+collision_areas = [NodePath("Hitboxes/Area3D"), NodePath("Hitboxes/Area3D2"), NodePath("Hitboxes/Area3D3"), NodePath("Hitboxes/Area3D4")]
+
+[node name="knight_weapon" parent="." instance=ExtResource("1_yltu8")]
+transform = Transform3D(0.483021, 0.258383, 0.836617, -0.866025, -3.135e-06, 0.5, 0.129194, -0.966043, 0.223765, -0.394594, 2.23556, 1.47275)
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+tree_root = ExtResource("2_cs7hr")
+anim_player = NodePath("../AnimationPlayer")
+active = true
+parameters/conditions/in_combat = false
+parameters/conditions/not_in_combat = false
+script = ExtResource("4_7404g")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_rxudu")
+}
+
+[node name="Hitboxes" type="Node3D" parent="."]
+
+[node name="Area3D" type="Area3D" parent="Hitboxes"]
+collision_layer = 0
+collision_mask = 0
+monitoring = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Hitboxes/Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.56331, 2.12786, -2.23572)
+shape = SubResource("SphereShape3D_pxgbv")
+
+[node name="Area3D2" type="Area3D" parent="Hitboxes"]
+collision_layer = 0
+collision_mask = 0
+monitoring = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Hitboxes/Area3D2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.06248, 2.12786, -4.17823)
+shape = SubResource("SphereShape3D_pxgbv")
+
+[node name="Area3D3" type="Area3D" parent="Hitboxes"]
+collision_layer = 0
+collision_mask = 0
+monitoring = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Hitboxes/Area3D3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.20438, 2.12786, -4.45369)
+shape = SubResource("SphereShape3D_pxgbv")
+
+[node name="Area3D4" type="Area3D" parent="Hitboxes"]
+collision_layer = 0
+collision_mask = 0
+monitoring = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Hitboxes/Area3D4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.86705, 2.12786, -2.48111)
+shape = SubResource("SphereShape3D_pxgbv")

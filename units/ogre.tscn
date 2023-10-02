@@ -1,0 +1,58 @@
+[gd_scene load_steps=9 format=3 uid="uid://dlpkm7cy8xudv"]
+
+[ext_resource type="Script" path="res://units/Unit.gd" id="1_4y35d"]
+[ext_resource type="PackedScene" uid="uid://bgfg403d28nmj" path="res://models/ogre/ogre.glb" id="2_q77xx"]
+[ext_resource type="PackedScene" uid="uid://5kxgrj763bh2" path="res://units/weapons/hammer.tscn" id="3_mcr6p"]
+[ext_resource type="Script" path="res://units/components/HealthComponent.gd" id="4_8csbd"]
+[ext_resource type="Script" path="res://units/components/VelocityComponent.gd" id="5_bgrw1"]
+[ext_resource type="Script" path="res://units/components/GoblinBrain.gd" id="6_7oa26"]
+[ext_resource type="Script" path="res://units/components/BountyComponent.gd" id="7_m1y06"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_4afdt"]
+radius = 3.0
+height = 9.0
+
+[node name="Ogre" type="CharacterBody3D"]
+collision_layer = 2
+collision_mask = 3
+axis_lock_linear_y = true
+axis_lock_angular_x = true
+axis_lock_angular_z = true
+script = ExtResource("1_4y35d")
+is_enemy = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1.00364, 0, 0, 0, 1.00364, 0, 0, 0, 1.00364, 0, 4.5, 0)
+shape = SubResource("CapsuleShape3D_4afdt")
+
+[node name="ogre" parent="." instance=ExtResource("2_q77xx")]
+transform = Transform3D(-2.46772e-08, 0, 0.564549, 0, 0.564549, 0, -0.564549, 0, -2.46772e-08, 0, 0, 0)
+
+[node name="Hammer" parent="ogre" instance=ExtResource("3_mcr6p")]
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+path_height_offset = 0.5
+
+[node name="HealthComponent" type="Node" parent="."]
+script = ExtResource("4_8csbd")
+max_health = 500.0
+
+[node name="VelocityComponent" type="Node" parent="."]
+script = ExtResource("5_bgrw1")
+max_speed = 4.0
+acceleration = 0.01
+
+[node name="GoblinBrain" type="Node" parent="." node_paths=PackedStringArray("unit")]
+script = ExtResource("6_7oa26")
+unit = NodePath("..")
+
+[node name="BountyComponent" type="Node" parent="."]
+script = ExtResource("7_m1y06")
+worth_base = 180
+worth_varience = 40
+
+[connection signal="died" from="HealthComponent" to="." method="_on_died"]
+[connection signal="died" from="HealthComponent" to="BountyComponent" method="_on_health_component_died"]
+[connection signal="enter_combat" from="GoblinBrain" to="ogre/Hammer" method="_on_enter_combat"]
+[connection signal="exit_combat" from="GoblinBrain" to="ogre/Hammer" method="_on_exit_combat"]
+[connection signal="request_attack" from="GoblinBrain" to="ogre/Hammer" method="_on_request_attack"]
