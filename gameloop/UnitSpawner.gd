@@ -5,6 +5,7 @@ class_name UnitSpawner
 enum UnitType {Knight=0, Witch, Huntsman, Goblin, Imp, Ogre}
 
 @onready var knight_scene = preload("res://units/knight.tscn")
+@onready var witch_scene = preload("res://units/witch.tscn")
 
 @onready var goblin_scene = preload("res://units/goblin.tscn")
 @onready var ogre_scene = preload("res://units/ogre.tscn")
@@ -43,7 +44,7 @@ func _get_unit_scene(unit_type: UnitType) -> PackedScene:
 		UnitType.Knight:
 			return knight_scene
 		UnitType.Witch:
-			return knight_scene
+			return witch_scene
 		UnitType.Huntsman:
 			return knight_scene
 		UnitType.Goblin:

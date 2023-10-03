@@ -1,0 +1,478 @@
+[gd_scene load_steps=13 format=3 uid="uid://yqmlu4dtpagw"]
+
+[ext_resource type="Script" path="res://units/components/RangedWeapon.gd" id="1_c3soh"]
+[ext_resource type="PackedScene" uid="uid://fphb7wictjtw" path="res://units/weapons/projectiles/fireball.tscn" id="2_brohl"]
+[ext_resource type="PackedScene" uid="uid://dr03pl5h8j0jd" path="res://models/witch/witch_weapon.glb" id="3_52u0o"]
+[ext_resource type="AnimationNodeStateMachine" uid="uid://dawvd5u6rapgb" path="res://units/weapons/weapon_animation_state_machine.tres" id="4_tr10y"]
+[ext_resource type="Script" path="res://util/AnimationTreeExpressionExtension.gd" id="5_thgkt"]
+
+[sub_resource type="Animation" id="Animation_i777o"]
+length = 0.001
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("witch_weapon:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0.664789, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("witch_weapon:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(1.13067, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("witch_weapon:position:z")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(1.02012, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("witch_weapon:rotation:x")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(-1.4081, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/4/type = "bezier"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("witch_weapon:rotation:y")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0.939852, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/5/type = "bezier"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("witch_weapon:rotation:z")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(-0.946171, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+
+[sub_resource type="Animation" id="Animation_7nrcm"]
+resource_name = "attack"
+length = 2.0
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("witch_weapon:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0, 0, 0),
+"points": PackedFloat32Array(0.664789, -0.25, 0, 0.25, 0, 0.664789, -0.25, 0, 0.25, 0, 0.664789, -0.25, 0, 0.25, 0, 1.33681, -0.25, 0, 0.25, 0, 0.664789, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.4, 1, 1.3, 2)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("witch_weapon:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0, 0, 0),
+"points": PackedFloat32Array(1.13067, -0.25, 0, 0.25, 0, 1.51527, -0.25, 0, 0.25, 0, 2.17686, -0.25, 0, 0.25, 0, 0.759656, -0.25, 0, 0.25, 0, 1.13067, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.4, 1, 1.3, 2)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("witch_weapon:position:z")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0, 0, 0),
+"points": PackedFloat32Array(1.02012, -0.25, 0, 0.25, 0, 1.02012, -0.25, 0, 0.25, 0, 1.02012, -0.25, 0, 0.25, 0, 1.02012, -0.25, 0, 0.25, 0, 1.02012, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.4, 1, 1.3, 2)
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("witch_weapon:rotation:x")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(0, 0, 1, 1, 0, 1, 0, 0),
+"points": PackedFloat32Array(-1.4081, -0.25, 0, 0.25, 0, -1.3438, -0.123611, -0.0880936, 0.25, 0, -1.34493, 0, 0, 0, 0, -1.17442, 0, 0, 0, 0, -1.34216, -0.046894, 0.0628225, 0.25, 0, -1.23317, 0, 0, 0, 0, 0.0237905, -0.25, 0, 0.25, 0, -1.4081, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.4, 0.6, 0.8, 0.9, 1, 1.3, 2)
+}
+tracks/4/type = "bezier"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("witch_weapon:rotation:y")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"handle_modes": PackedInt32Array(0, 1, 1, 1, 0, 0, 0, 0),
+"points": PackedFloat32Array(0.939852, -0.25, 0, 0.25, 0, 1.72282, 0, 0, 0, 0, 1.63753, 0, 0, 0, 0, 2.6058, 0, 0, 0, 0, 3.44004, -0.0730095, 0.086108, 0.0336288, -1.51572, 3.06972, -0.0380794, -1.14539, 0.168668, -0.153785, 2.35777, -0.187915, -0.204612, 0.25, 0, 0.939852, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.4, 0.6, 0.8, 0.9, 1, 1.3, 2)
+}
+tracks/5/type = "bezier"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("witch_weapon:rotation:z")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"handle_modes": PackedInt32Array(0, 1, 1, 1, 0, 1, 0, 0),
+"points": PackedFloat32Array(-0.946171, -0.25, 0, 0.25, 0, -1.74688, 0, 0, 0, 0, -1.65735, 0, 0, 0, 0, -2.65762, 0, 0, 0, 0, -3.50462, -0.0664806, 0.242068, 0.057568, 0.0132353, -3.12429, 0, 0, 0, 0, -1.62133, -0.25, 0, 0.25, 0, -0.946171, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.4, 0.6, 0.8, 0.9, 1, 1.3, 2)
+}
+tracks/6/type = "method"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath(".")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(1.3),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"_on_spawn_projectile"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_2glrl"]
+resource_name = "draw"
+length = 0.4
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("witch_weapon:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(0.664789, -0.25, 0, 0.25, 0, 0.664789, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.4)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("witch_weapon:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(1.13067, -0.25, 0, 0.25, 0, 1.13067, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.4)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("witch_weapon:position:z")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(1.02012, -0.25, 0, 0.25, 0, 1.02012, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.4)
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("witch_weapon:rotation:x")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(-1.4081, -0.25, 0, 0.25, 0, -1.40848, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.4)
+}
+tracks/4/type = "bezier"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("witch_weapon:rotation:y")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(0.939852, -0.25, 0, 0.25, 0, 7.22217, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.4)
+}
+tracks/5/type = "bezier"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("witch_weapon:rotation:z")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(-0.946171, -0.25, 0, 0.25, 0, -0.945968, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.4)
+}
+
+[sub_resource type="Animation" id="Animation_2mwdg"]
+resource_name = "idle"
+length = 2.2
+loop_mode = 1
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("witch_weapon:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(0.664789, -0.25, 0, 0.25, 0, 0.664789, -0.25, 0, 0.25, 0, 0.664789, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 1.8, 2.2)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("witch_weapon:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(1.13067, -0.25, 0, 0.25, 0, 1.63471, -0.25, 0, 0.25, 0, 1.13067, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 1.8, 2.2)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("witch_weapon:position:z")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(1.02012, -0.25, 0, 0.25, 0, 1.02012, -0.25, 0, 0.25, 0, 1.02012, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 1.8, 2.2)
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("witch_weapon:rotation:x")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(-1.4081, -0.25, 0, 0.25, 0, -1.49749, -0.25, 0, 0.25, 0, -1.4081, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 1.8, 2.2)
+}
+tracks/4/type = "bezier"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("witch_weapon:rotation:y")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(0.939852, -0.25, 0, 0.25, 0, 0.421368, -0.25, 0, 0.25, 0, 0.939852, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 1.8, 2.2)
+}
+tracks/5/type = "bezier"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("witch_weapon:rotation:z")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(-0.946171, -0.25, 0, 0.25, 0, -0.418456, -0.25, 0, 0.25, 0, -0.946171, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 1.8, 2.2)
+}
+
+[sub_resource type="Animation" id="Animation_pa7b6"]
+resource_name = "idle_combat"
+loop_mode = 1
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("witch_weapon:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(0.664789, -0.25, 0, 0.25, 0, 0.664789, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 1)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("witch_weapon:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(1.13067, -0.25, 0, 0.25, 0, 1.13067, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 1)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("witch_weapon:position:z")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(1.02012, -0.25, 0, 0.25, 0, 1.02012, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 1)
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("witch_weapon:rotation:x")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(-1.4081, -0.25, 0, 0.25, 0, -1.35352, -0.25, 0, 0.25, 0, -1.4081, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.4, 1)
+}
+tracks/4/type = "bezier"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("witch_weapon:rotation:y")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(0.939852, -0.25, 0, 0.25, 0, 1.28415, -0.25, 0, 0.25, 0, 0.939852, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.4, 1)
+}
+tracks/5/type = "bezier"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("witch_weapon:rotation:z")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(-0.946171, -0.25, 0, 0.25, 0, -1.12098, -0.25, 0, 0.25, 0, -0.946171, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.4, 1)
+}
+
+[sub_resource type="Animation" id="Animation_fy7ry"]
+resource_name = "stow"
+length = 0.4
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("witch_weapon:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(0.664789, -0.25, 0, 0.25, 0, 0.664789, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.4)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("witch_weapon:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(1.13067, -0.25, 0, 0.25, 0, 1.13067, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.4)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("witch_weapon:position:z")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(1.02012, -0.25, 0, 0.25, 0, 1.02012, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.4)
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("witch_weapon:rotation:x")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(-1.4081, -0.25, 0, 0.25, 0, -1.40848, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.4)
+}
+tracks/4/type = "bezier"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("witch_weapon:rotation:y")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(0.939852, -0.25, 0, 0.25, 0, 7.22217, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.4)
+}
+tracks/5/type = "bezier"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("witch_weapon:rotation:z")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(-0.946171, -0.25, 0, 0.25, 0, -0.945968, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.4)
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ujegx"]
+_data = {
+"RESET": SubResource("Animation_i777o"),
+"attack": SubResource("Animation_7nrcm"),
+"draw": SubResource("Animation_2glrl"),
+"idle": SubResource("Animation_2mwdg"),
+"idle_combat": SubResource("Animation_pa7b6"),
+"stow": SubResource("Animation_fy7ry")
+}
+
+[node name="Staff" type="Node3D" node_paths=PackedStringArray("animation_tree", "projectile_spawn_point")]
+transform = Transform3D(1, 0, 3.19744e-14, 0, 1, 0, -3.19744e-14, 0, 1, 0, 2.26303e-07, 0)
+script = ExtResource("1_c3soh")
+animation_tree = NodePath("AnimationTree")
+projectile_scene = ExtResource("2_brohl")
+projectile_spawn_point = NodePath("projectile_spawn")
+range = 200.0
+
+[node name="witch_weapon" parent="." instance=ExtResource("3_52u0o")]
+transform = Transform3D(0.999412, -0.00117245, 0.0341732, -0.0340052, 0.0706079, 0.99692, -0.00358175, -0.9975, 0.0705267, 0.664789, 1.6057, 1.02012)
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+tree_root = ExtResource("4_tr10y")
+anim_player = NodePath("../AnimationPlayer")
+active = true
+parameters/conditions/in_combat = false
+parameters/conditions/not_in_combat = false
+script = ExtResource("5_thgkt")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_ujegx")
+}
+
+[node name="projectile_spawn" type="Node3D" parent="."]
+transform = Transform3D(0.999999, 0, 7.10543e-15, 0, 0.999999, 0, -7.10543e-15, 0, 0.999999, 2.56513, 1.36873, 1.12126e-07)

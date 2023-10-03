@@ -94,7 +94,6 @@ grow_vertical = 0
 layout_mode = 2
 text = "Buy Knight"
 script = ExtResource("7_uqj5s")
-cost = 80
 
 [node name="BuyWitchButton" type="Button" parent="CanvasLayer/HBoxContainer"]
 layout_mode = 2

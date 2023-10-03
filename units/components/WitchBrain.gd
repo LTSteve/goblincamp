@@ -1,6 +1,6 @@
 extends Node
 
-class_name KnightBrain
+class_name WitchBrain
 
 @export var unit:Unit
 

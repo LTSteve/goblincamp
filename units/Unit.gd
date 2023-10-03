@@ -57,4 +57,3 @@ func _physics_process(delta):
 func take_hit(direction:Vector2, damage:float, pushback:float, hit_stun:float):
 	on_recieved_hit.emit(direction, damage, pushback, hit_stun)
 	_stunned = hit_stun
-	collision_shape.disabled = true
