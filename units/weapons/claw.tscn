@@ -1262,13 +1262,12 @@ animation_tree = NodePath("AnimationTree")
 collision_areas = [NodePath("Hurtboxes/Area3D")]
 
 [node name="claws" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0345413, 0)
 
 [node name="goblin_weapon_l" parent="claws" instance=ExtResource("1_g4m7c")]
-transform = Transform3D(-0.182471, -0.983206, 0.00257387, -0.853053, 0.159617, 0.49681, -0.488879, 0.0884582, -0.867854, -1.1, -0.1, 5.05119e-15)
+transform = Transform3D(-0.183914, -0.98294, -2.22686e-06, -0.8634, 0.161546, 0.477955, -0.469802, 0.0879048, -0.878383, -1.1, -0.1, 5.05119e-15)
 
 [node name="goblin_weapon_r" parent="claws" instance=ExtResource("1_g4m7c")]
-transform = Transform3D(0.237869, 0.970832, 0.0300486, -0.834056, 0.220015, -0.505908, -0.497763, 0.0952775, 0.862063, 1.1, -0.1, -5.05119e-15)
+transform = Transform3D(0.183953, 0.982935, -4.16111e-11, -0.863394, 0.161581, -0.477955, -0.469799, 0.0879213, 0.878383, 1.1, -0.1, -5.05119e-15)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

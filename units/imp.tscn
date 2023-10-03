@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://dc2xntf220y7"]
+[gd_scene load_steps=10 format=3 uid="uid://dc2xntf220y7"]
 
 [ext_resource type="Script" path="res://units/Unit.gd" id="1_7xoce"]
 [ext_resource type="PackedScene" uid="uid://citvivc546i87" path="res://models/imp/imp.glb" id="2_tftnr"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" path="res://units/components/HealthComponent.gd" id="4_h581y"]
 [ext_resource type="Script" path="res://units/components/VelocityComponent.gd" id="5_3np35"]
 [ext_resource type="Script" path="res://units/components/BountyComponent.gd" id="7_mr5cy"]
+[ext_resource type="Script" path="res://units/components/RotationComponent.gd" id="8_ak8ed"]
 [ext_resource type="Script" path="res://units/components/ImpBrain.gd" id="9_siltb"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_4afdt"]
@@ -56,6 +57,9 @@ worth_varience = 5
 [node name="ImpBrain" type="Node" parent="." node_paths=PackedStringArray("unit")]
 script = ExtResource("9_siltb")
 unit = NodePath("..")
+
+[node name="RotationComponent" type="Node" parent="."]
+script = ExtResource("8_ak8ed")
 
 [connection signal="died" from="HealthComponent" to="." method="_on_died"]
 [connection signal="died" from="HealthComponent" to="BountyComponent" method="_on_health_component_died"]

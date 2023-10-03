@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://dlpkm7cy8xudv"]
+[gd_scene load_steps=10 format=3 uid="uid://dlpkm7cy8xudv"]
 
 [ext_resource type="Script" path="res://units/Unit.gd" id="1_4y35d"]
 [ext_resource type="PackedScene" uid="uid://bgfg403d28nmj" path="res://models/ogre/ogre.glb" id="2_q77xx"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" path="res://units/components/VelocityComponent.gd" id="5_bgrw1"]
 [ext_resource type="Script" path="res://units/components/OgreBrain.gd" id="6_dxi7i"]
 [ext_resource type="Script" path="res://units/components/BountyComponent.gd" id="7_m1y06"]
+[ext_resource type="Script" path="res://units/components/RotationComponent.gd" id="8_jblmi"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_4afdt"]
 radius = 3.0
@@ -55,6 +56,11 @@ unit = NodePath("..")
 script = ExtResource("7_m1y06")
 worth_base = 180
 worth_varience = 40
+
+[node name="RotationComponent" type="Node" parent="."]
+script = ExtResource("8_jblmi")
+fast_rotation_speed = 180.0
+slow_rotation_speed = 150.0
 
 [connection signal="died" from="HealthComponent" to="." method="_on_died"]
 [connection signal="died" from="HealthComponent" to="BountyComponent" method="_on_health_component_died"]

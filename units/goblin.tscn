@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://duwsqv7i6jgca"]
+[gd_scene load_steps=10 format=3 uid="uid://duwsqv7i6jgca"]
 
 [ext_resource type="Script" path="res://units/Unit.gd" id="1_avfjk"]
 [ext_resource type="Script" path="res://units/components/HealthComponent.gd" id="2_8blxg"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" path="res://units/components/VelocityComponent.gd" id="3_ayc47"]
 [ext_resource type="Script" path="res://units/components/GoblinBrain.gd" id="4_2lhla"]
 [ext_resource type="Script" path="res://units/components/BountyComponent.gd" id="7_bwuvv"]
+[ext_resource type="Script" path="res://units/components/RotationComponent.gd" id="8_sd4bo"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_4afdt"]
 radius = 0.55
@@ -57,6 +58,9 @@ unit = NodePath("..")
 script = ExtResource("7_bwuvv")
 worth_base = 35
 worth_varience = 5
+
+[node name="RotationComponent" type="Node" parent="."]
+script = ExtResource("8_sd4bo")
 
 [connection signal="died" from="HealthComponent" to="." method="_on_died"]
 [connection signal="died" from="HealthComponent" to="BountyComponent" method="_on_health_component_died"]

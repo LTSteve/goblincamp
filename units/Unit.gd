@@ -6,17 +6,26 @@ class_name Unit
 
 @onready var velocity_component: VelocityComponent = $VelocityComponent
 
+@onready var rotation_component: RotationComponent = $RotationComponent
+
 @onready var navigation_agent: NavigationAgent3D = $NavigationAgent3D
 
 @export var is_enemy: bool = false
 
 const MOVEMENT_SPEED: float = 5.0
 
+static var only_created = false
+static var only_is_me = false
+
 func _ready():
 	# These values need to be adjusted for the actor's speed
 	# and the navigation layout.
 	navigation_agent.path_desired_distance = 0.5
 	navigation_agent.target_desired_distance = 0.5
+	
+	if !only_created:
+		only_created = true
+		only_is_me = true
 	
 	if is_enemy: Global.enemies.append(self)
 	else: Global.players.append(self)
@@ -43,7 +52,8 @@ func _physics_process(delta):
 	velocity_component.accelerate_in_direction(unit_direction)
 	velocity_component.move(self)
 	
-	look_at(Math.v2_to_v3(next_path_position, global_position.y))
+	rotation_component.turn_to_direction(unit_direction, delta)
+	rotation_component.apply_rotation(self)
 
 func take_hit(direction:Vector2, damage:float, pushback:float):
 	velocity_component.set_velocity(direction * pushback)

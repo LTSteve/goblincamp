@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://blqqvg7tmek8o"]
+[gd_scene load_steps=9 format=3 uid="uid://blqqvg7tmek8o"]
 
 [ext_resource type="Script" path="res://units/Unit.gd" id="1_ubipr"]
 [ext_resource type="PackedScene" uid="uid://bjni3yp3c1c0c" path="res://models/knight/knight.glb" id="2_71j88"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" path="res://units/components/VelocityComponent.gd" id="3_gto3h"]
 [ext_resource type="PackedScene" uid="uid://p0owu7fjhs2u" path="res://units/weapons/sword.tscn" id="3_qgv83"]
 [ext_resource type="Script" path="res://units/components/KnightBrain.gd" id="4_kcgtp"]
+[ext_resource type="Script" path="res://units/components/RotationComponent.gd" id="7_w68d6"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_nhjdq"]
 radius = 0.7
@@ -43,6 +44,9 @@ acceleration = 0.01
 [node name="KnightBrain" type="Node" parent="." node_paths=PackedStringArray("unit")]
 script = ExtResource("4_kcgtp")
 unit = NodePath("..")
+
+[node name="RotationComponent" type="Node" parent="."]
+script = ExtResource("7_w68d6")
 
 [connection signal="died" from="HealthComponent" to="." method="_on_died"]
 [connection signal="enter_combat" from="KnightBrain" to="knight/Sword" method="_on_enter_combat"]

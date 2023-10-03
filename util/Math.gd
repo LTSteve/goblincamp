@@ -31,6 +31,8 @@ static func direction_to_local(global_direction: Vector3, local_space: Node3D) -
 	var global_to_local: Transform3D = local_space.global_transform.affine_inverse()
 	return global_to_local * global_direction - global_to_local * Vector3.ZERO
 
-static func sigmoid(x: float):
+static func sigmoid(x: float) -> float:
 	return 1.0 / (1.0 + pow(E, -x))
-	
+
+static func crosses_zero(val1: float, val2:float) -> bool:
+	return (val1 > 0 && val2 < 0) || (val1 < 0 && val2 > 0)

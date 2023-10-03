@@ -531,7 +531,7 @@ _data = {
 }
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_pxgbv"]
-radius = 2.0
+radius = 2.2
 
 [node name="Sword" type="Node3D" node_paths=PackedStringArray("animation_tree", "collision_areas")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 1, 0)
@@ -544,7 +544,7 @@ pushback = 4.0
 multi_target = true
 
 [node name="knight_weapon" parent="." instance=ExtResource("1_yltu8")]
-transform = Transform3D(0.242288, 0.266047, 0.933007, -0.965503, -0.0283738, 0.258817, 0.0953309, -0.963539, 0.249995, -1.12335, 2.71311, 1.26868)
+transform = Transform3D(0.235709, 0.286574, -0.928603, -0.0935456, 0.957783, 0.271833, 0.967304, 0.0227935, 0.252567, 1.25084, -0.18948, -1.28402)
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
 tree_root = ExtResource("2_cs7hr")
@@ -567,7 +567,7 @@ collision_mask = 0
 monitoring = false
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Hitboxes/Area3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.70306, 2.12786, -2.23572)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.70306, 1.51939, -2.23572)
 shape = SubResource("SphereShape3D_pxgbv")
 
 [node name="Area3D2" type="Area3D" parent="Hitboxes"]
@@ -576,7 +576,7 @@ collision_mask = 0
 monitoring = false
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Hitboxes/Area3D2"]
-transform = Transform3D(1, 0, 1.35525e-20, 0, 1, 0, -1.35525e-20, 0, 1, 1.02445, 2.12786, -4.69074)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.02445, 1.51939, -4.69074)
 shape = SubResource("SphereShape3D_pxgbv")
 
 [node name="Area3D3" type="Area3D" parent="Hitboxes"]
@@ -585,7 +585,7 @@ collision_mask = 0
 monitoring = false
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Hitboxes/Area3D3"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.32759, 2.12786, -4.45369)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.32759, 1.51939, -4.45369)
 shape = SubResource("SphereShape3D_pxgbv")
 
 [node name="Area3D4" type="Area3D" parent="Hitboxes"]
@@ -594,5 +594,5 @@ collision_mask = 0
 monitoring = false
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Hitboxes/Area3D4"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.68794, 2.12786, -2.48111)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.68794, 1.51939, -2.48111)
 shape = SubResource("SphereShape3D_pxgbv")
