@@ -2,20 +2,19 @@ extends CharacterBody3D
 
 class_name Unit
 
-@onready var health_component: HealthComponent = $HealthComponent
-
 @onready var velocity_component: VelocityComponent = $VelocityComponent
-
 @onready var rotation_component: RotationComponent = $RotationComponent
-
 @onready var navigation_agent: NavigationAgent3D = $NavigationAgent3D
+@onready var collision_shape: CollisionShape3D = $CollisionShape3D
 
 @export var is_enemy: bool = false
 
 const MOVEMENT_SPEED: float = 5.0
 
-static var only_created = false
-static var only_is_me = false
+signal on_recieved_hit(direction:Vector2, damage:float, pushback:float, hit_stun:float)
+
+var _stunned: float = 0
+var _regular_collision: int = 0
 
 func _ready():
 	# These values need to be adjusted for the actor's speed
@@ -23,9 +22,7 @@ func _ready():
 	navigation_agent.path_desired_distance = 0.5
 	navigation_agent.target_desired_distance = 0.5
 	
-	if !only_created:
-		only_created = true
-		only_is_me = true
+	_regular_collision = collision_layer
 	
 	if is_enemy: Global.enemies.append(self)
 	else: Global.players.append(self)
@@ -39,22 +36,25 @@ func _on_died():
 	queue_free()
 
 func _physics_process(delta):
-	if navigation_agent.is_navigation_finished():
-		return
-
-	var current_agent_position: Vector2 = Math.v3_to_v2(global_position)
-	var next_path_position: Vector2 = Math.v3_to_v2(navigation_agent.get_next_path_position())
+	_stunned -= delta
 	
-	var unit_direction = Math.unit(next_path_position - current_agent_position)
+	collision_shape.disabled = _stunned > 0
 	
-	if unit_direction == Vector2.ZERO: return
+	if _stunned <= 0 && !navigation_agent.is_navigation_finished():
+		var current_agent_position: Vector2 = Math.v3_to_v2(global_position)
+		var next_path_position: Vector2 = Math.v3_to_v2(navigation_agent.get_next_path_position())
+		
+		var unit_direction = Math.unit(next_path_position - current_agent_position)
+		
+		if unit_direction == Vector2.ZERO: return
+		
+		velocity_component.accelerate_in_direction(unit_direction, delta)
+		rotation_component.turn_to_direction(unit_direction, delta)
 	
-	velocity_component.accelerate_in_direction(unit_direction)
 	velocity_component.move(self)
-	
-	rotation_component.turn_to_direction(unit_direction, delta)
 	rotation_component.apply_rotation(self)
 
-func take_hit(direction:Vector2, damage:float, pushback:float):
-	velocity_component.set_velocity(direction * pushback)
-	health_component.damage(damage)
+func take_hit(direction:Vector2, damage:float, pushback:float, hit_stun:float):
+	on_recieved_hit.emit(direction, damage, pushback, hit_stun)
+	_stunned = hit_stun
+	collision_shape.disabled = true

@@ -7,17 +7,17 @@ class_name VelocityComponent
 
 var _velocity: Vector2 = Vector2.ZERO
 
-func accelerate_to_velocity(velocity:Vector2):
-	_velocity = (_velocity + velocity * acceleration) / (acceleration + 1)
+func accelerate_to_velocity(velocity:Vector2, delta: float):
+	_velocity = (_velocity + velocity * acceleration * delta) / (acceleration * delta + 1)
 
-func accelerate_in_direction(direction:Vector2):
-	accelerate_to_velocity(max_speed * direction)
+func accelerate_in_direction(direction:Vector2, delta: float):
+	accelerate_to_velocity(max_speed * direction, delta)
 
 func set_velocity(velocity:Vector2):
 	_velocity = velocity
 
-func decelerate():
-	accelerate_to_velocity(Vector2.ZERO)
+func decelerate(delta: float):
+	accelerate_to_velocity(Vector2.ZERO, delta)
 
 func move(character_body:CharacterBody3D):
 	character_body.velocity = Math.v2_to_v3(_velocity, character_body.global_position.y)
@@ -25,3 +25,6 @@ func move(character_body:CharacterBody3D):
 
 func apply_delta(delta):
 	return _velocity * delta
+
+func _on_recieved_hit(direction:Vector2, damage:float, pushback:float, hit_stun:float):
+	set_velocity(direction * pushback)

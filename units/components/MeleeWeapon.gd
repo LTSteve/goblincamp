@@ -11,6 +11,7 @@ class_name MeleeWeapon
 @export var cooldown: float = 0.75
 @export var damage: float = 10.0
 @export var pushback: float = 5.0
+@export var hit_stun: float = 0.5
 
 @export var multi_target: bool = false
 
@@ -68,4 +69,4 @@ func _on_area_3d_body_entered(unit:Unit):
 	
 	unit.take_hit(
 		Math.unit(Math.v3_to_v2(unit.global_position-global_position)),
-		damage, pushback)
+		damage, pushback, hit_stun)

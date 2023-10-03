@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://duwsqv7i6jgca"]
+[gd_scene load_steps=11 format=3 uid="uid://duwsqv7i6jgca"]
 
 [ext_resource type="Script" path="res://units/Unit.gd" id="1_avfjk"]
 [ext_resource type="Script" path="res://units/components/HealthComponent.gd" id="2_8blxg"]
@@ -8,6 +8,7 @@
 [ext_resource type="Script" path="res://units/components/GoblinBrain.gd" id="4_2lhla"]
 [ext_resource type="Script" path="res://units/components/BountyComponent.gd" id="7_bwuvv"]
 [ext_resource type="Script" path="res://units/components/RotationComponent.gd" id="8_sd4bo"]
+[ext_resource type="Script" path="res://units/components/HitblinkComponent.gd" id="9_ihg7o"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_4afdt"]
 radius = 0.55
@@ -29,11 +30,6 @@ shape = SubResource("CapsuleShape3D_4afdt")
 transform = Transform3D(-2.46772e-08, 0, 0.564549, 0, 0.564549, 0, -0.564549, 0, -2.46772e-08, 0.0104129, 1.19209e-07, 0.00498915)
 
 [node name="Claw" parent="goblin2" instance=ExtResource("3_10fnw")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 1.02529, 0)
-range = 2.5
-cooldown = 0.8
-damage = 6.0
-pushback = 3.0
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
 path_height_offset = 0.5
@@ -49,7 +45,7 @@ script = ExtResource("2_8blxg")
 [node name="VelocityComponent" type="Node" parent="."]
 script = ExtResource("3_ayc47")
 max_speed = 6.0
-acceleration = 0.01
+acceleration = 1.0
 
 [node name="GoblinBrain" type="Node" parent="." node_paths=PackedStringArray("unit")]
 script = ExtResource("4_2lhla")
@@ -63,8 +59,17 @@ worth_varience = 5
 [node name="RotationComponent" type="Node" parent="."]
 script = ExtResource("8_sd4bo")
 
+[node name="HitblinkComponent" type="Node" parent="." node_paths=PackedStringArray("model")]
+script = ExtResource("9_ihg7o")
+model = NodePath("../goblin2/goblin2")
+
+[connection signal="on_recieved_hit" from="." to="HealthComponent" method="_on_recieved_hit"]
+[connection signal="on_recieved_hit" from="." to="VelocityComponent" method="_on_recieved_hit"]
+[connection signal="on_recieved_hit" from="." to="HitblinkComponent" method="_on_recieved_hit"]
 [connection signal="died" from="HealthComponent" to="." method="_on_died"]
 [connection signal="died" from="HealthComponent" to="BountyComponent" method="_on_health_component_died"]
 [connection signal="enter_combat" from="GoblinBrain" to="goblin2/Claw" method="_on_enter_combat"]
 [connection signal="exit_combat" from="GoblinBrain" to="goblin2/Claw" method="_on_exit_combat"]
 [connection signal="request_attack" from="GoblinBrain" to="goblin2/Claw" method="_on_request_attack"]
+
+[editable path="goblin2"]

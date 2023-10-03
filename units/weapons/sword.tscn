@@ -539,12 +539,12 @@ script = ExtResource("1_ievjt")
 animation_tree = NodePath("AnimationTree")
 collision_areas = [NodePath("Hitboxes/Area3D"), NodePath("Hitboxes/Area3D2"), NodePath("Hitboxes/Area3D3"), NodePath("Hitboxes/Area3D4")]
 range = 3.5
-cooldown = 1.0
-pushback = 4.0
+cooldown = 0.9
+pushback = 50.0
 multi_target = true
 
 [node name="knight_weapon" parent="." instance=ExtResource("1_yltu8")]
-transform = Transform3D(0.235709, 0.286574, -0.928603, -0.0935456, 0.957783, 0.271833, 0.967304, 0.0227935, 0.252567, 1.25084, -0.18948, -1.28402)
+transform = Transform3D(0.250027, 0.258381, 0.933119, -0.96592, -3.49663e-06, 0.258817, 0.066877, -0.96604, 0.249575, -0.394594, 2.23556, 1.47275)
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
 tree_root = ExtResource("2_cs7hr")

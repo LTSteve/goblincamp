@@ -44,7 +44,6 @@ transform = Transform3D(0.795807, 0.415936, -0.4401, 0.0132379, 0.714654, 0.6993
 
 [node name="CameraRig" type="Node3D" parent="."]
 script = ExtResource("4_6faan")
-camera_scroll_speed = 2.0
 
 [node name="CameraRotation" type="Node3D" parent="CameraRig"]
 transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 0, 0, 0)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://dlpkm7cy8xudv"]
+[gd_scene load_steps=11 format=3 uid="uid://dlpkm7cy8xudv"]
 
 [ext_resource type="Script" path="res://units/Unit.gd" id="1_4y35d"]
 [ext_resource type="PackedScene" uid="uid://bgfg403d28nmj" path="res://models/ogre/ogre.glb" id="2_q77xx"]
@@ -8,6 +8,7 @@
 [ext_resource type="Script" path="res://units/components/OgreBrain.gd" id="6_dxi7i"]
 [ext_resource type="Script" path="res://units/components/BountyComponent.gd" id="7_m1y06"]
 [ext_resource type="Script" path="res://units/components/RotationComponent.gd" id="8_jblmi"]
+[ext_resource type="Script" path="res://units/components/HitblinkComponent.gd" id="9_h0eyv"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_4afdt"]
 radius = 3.0
@@ -46,8 +47,8 @@ max_health = 500.0
 
 [node name="VelocityComponent" type="Node" parent="."]
 script = ExtResource("5_bgrw1")
-max_speed = 5.0
-acceleration = 0.01
+max_speed = 4.0
+acceleration = 0.5
 
 [node name="OgreBrain" type="Node" parent="." node_paths=PackedStringArray("unit")]
 script = ExtResource("6_dxi7i")
@@ -63,8 +64,17 @@ script = ExtResource("8_jblmi")
 fast_rotation_speed = 180.0
 slow_rotation_speed = 150.0
 
+[node name="HitblinkComponent" type="Node" parent="." node_paths=PackedStringArray("model")]
+script = ExtResource("9_h0eyv")
+model = NodePath("../ogre/ogre2")
+
+[connection signal="on_recieved_hit" from="." to="HealthComponent" method="_on_recieved_hit"]
+[connection signal="on_recieved_hit" from="." to="VelocityComponent" method="_on_recieved_hit"]
+[connection signal="on_recieved_hit" from="." to="HitblinkComponent" method="_on_recieved_hit"]
 [connection signal="died" from="HealthComponent" to="." method="_on_died"]
 [connection signal="died" from="HealthComponent" to="BountyComponent" method="_on_health_component_died"]
 [connection signal="enter_combat" from="OgreBrain" to="ogre/Hammer" method="_on_enter_combat"]
 [connection signal="exit_combat" from="OgreBrain" to="ogre/Hammer" method="_on_exit_combat"]
 [connection signal="request_attack" from="OgreBrain" to="ogre/Hammer" method="_on_request_attack"]
+
+[editable path="ogre"]
