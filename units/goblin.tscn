@@ -25,10 +25,11 @@ is_enemy = true
 transform = Transform3D(1.00364, 0, 0, 0, 1.00364, 0, 0, 0, 1.00364, 0, 1, 0)
 shape = SubResource("CapsuleShape3D_4afdt")
 
-[node name="goblin" parent="." instance=ExtResource("2_k8e14")]
+[node name="goblin2" parent="." instance=ExtResource("2_k8e14")]
 transform = Transform3D(-2.46772e-08, 0, 0.564549, 0, 0.564549, 0, -0.564549, 0, -2.46772e-08, 0.0104129, 1.19209e-07, 0.00498915)
 
-[node name="Claw" parent="goblin" instance=ExtResource("3_10fnw")]
+[node name="Claw" parent="goblin2" instance=ExtResource("3_10fnw")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 1.02529, 0)
 range = 2.5
 cooldown = 0.8
 damage = 6.0
@@ -64,6 +65,6 @@ script = ExtResource("8_sd4bo")
 
 [connection signal="died" from="HealthComponent" to="." method="_on_died"]
 [connection signal="died" from="HealthComponent" to="BountyComponent" method="_on_health_component_died"]
-[connection signal="enter_combat" from="GoblinBrain" to="goblin/Claw" method="_on_enter_combat"]
-[connection signal="exit_combat" from="GoblinBrain" to="goblin/Claw" method="_on_exit_combat"]
-[connection signal="request_attack" from="GoblinBrain" to="goblin/Claw" method="_on_request_attack"]
+[connection signal="enter_combat" from="GoblinBrain" to="goblin2/Claw" method="_on_enter_combat"]
+[connection signal="exit_combat" from="GoblinBrain" to="goblin2/Claw" method="_on_exit_combat"]
+[connection signal="request_attack" from="GoblinBrain" to="goblin2/Claw" method="_on_request_attack"]
