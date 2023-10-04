@@ -1,0 +1,85 @@
+[gd_scene load_steps=13 format=3 uid="uid://bklpnggu2tj0c"]
+
+[ext_resource type="Script" path="res://units/Unit.gd" id="1_co2hn"]
+[ext_resource type="PackedScene" uid="uid://7ompo5s8qd6p" path="res://models/woodsman/woodsman.glb" id="2_72bjw"]
+[ext_resource type="Script" path="res://units/components/BowAndDagger.gd" id="2_gqrex"]
+[ext_resource type="Script" path="res://units/components/HealthComponent.gd" id="2_jhhwx"]
+[ext_resource type="Script" path="res://units/components/VelocityComponent.gd" id="3_f0em5"]
+[ext_resource type="PackedScene" uid="uid://banvid5xf5lst" path="res://units/weapons/bow.tscn" id="3_gj0lf"]
+[ext_resource type="Script" path="res://units/components/WoodsmanBrain.gd" id="4_4mtgn"]
+[ext_resource type="PackedScene" uid="uid://dp4vd8emk3wx7" path="res://units/weapons/dagger.tscn" id="4_p6ex6"]
+[ext_resource type="Script" path="res://units/components/RotationComponent.gd" id="5_p0h6f"]
+[ext_resource type="Script" path="res://units/components/HitblinkComponent.gd" id="6_fqxow"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_mwxnr"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_jaud8"]
+radius = 7.0
+
+[node name="Woodsman" type="CharacterBody3D"]
+collision_mask = 3
+axis_lock_linear_y = true
+axis_lock_angular_x = true
+axis_lock_angular_z = true
+script = ExtResource("1_co2hn")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CapsuleShape3D_mwxnr")
+
+[node name="woodsman" parent="." instance=ExtResource("2_72bjw")]
+transform = Transform3D(-2.30258e-08, 0, 0.526768, 0, 0.526768, 0, -0.526768, 0, -2.30258e-08, 0, 0, 0)
+
+[node name="BowAndDagger" type="Node3D" parent="woodsman" node_paths=PackedStringArray("bow", "dagger")]
+script = ExtResource("2_gqrex")
+bow = NodePath("Bow")
+dagger = NodePath("Dagger")
+
+[node name="Bow" parent="woodsman/BowAndDagger" instance=ExtResource("3_gj0lf")]
+transform = Transform3D(1, 0, 3.55271e-15, 0, 1, 0, -3.55271e-15, 0, 1, 0, 0, 0)
+
+[node name="Dagger" parent="woodsman/BowAndDagger" instance=ExtResource("4_p6ex6")]
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+path_height_offset = 0.5
+navigation_layers = 3
+avoidance_enabled = true
+radius = 2.0
+
+[node name="HealthComponent" type="Node" parent="."]
+script = ExtResource("2_jhhwx")
+max_health = 80.0
+
+[node name="VelocityComponent" type="Node" parent="."]
+script = ExtResource("3_f0em5")
+max_speed = 7.0
+acceleration = 1.0
+
+[node name="WoodsmanBrain" type="Node" parent="." node_paths=PackedStringArray("unit", "melee_weapon", "ranged_weapon")]
+script = ExtResource("4_4mtgn")
+unit = NodePath("..")
+melee_weapon = NodePath("../woodsman/BowAndDagger/Dagger")
+ranged_weapon = NodePath("../woodsman/BowAndDagger/Bow")
+
+[node name="RotationComponent" type="Node" parent="."]
+script = ExtResource("5_p0h6f")
+
+[node name="HitblinkComponent" type="Node" parent="." node_paths=PackedStringArray("model")]
+script = ExtResource("6_fqxow")
+model = NodePath("../woodsman/woodsman2")
+
+[node name="FleeRange" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="FleeRange"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("SphereShape3D_jaud8")
+
+[connection signal="enter_combat" from="WoodsmanBrain" to="woodsman/BowAndDagger" method="_on_enter_combat"]
+[connection signal="exit_combat" from="WoodsmanBrain" to="woodsman/BowAndDagger" method="_on_exit_combat"]
+[connection signal="on_lock_target" from="WoodsmanBrain" to="RotationComponent" method="_on_lock_target"]
+[connection signal="request_attack" from="WoodsmanBrain" to="woodsman/BowAndDagger" method="_on_request_attack"]
+[connection signal="switch_melee" from="WoodsmanBrain" to="woodsman/BowAndDagger" method="_on_switch_melee"]
+[connection signal="body_entered" from="FleeRange" to="WoodsmanBrain" method="_on_body_entered_nearby_range"]
+[connection signal="body_exited" from="FleeRange" to="WoodsmanBrain" method="_on_body_exited_nearby_range"]
+
+[editable path="woodsman"]

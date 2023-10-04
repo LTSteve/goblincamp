@@ -11,21 +11,15 @@ class_name RangedWeapon
 @export var damage: float = 30.0
 @export var pushback: float = 7.0
 @export var hit_stun: float = 0.7
+@export var dumb_projectile: bool = false
 
 var _current_cooldown:float = 0.0
-var _current_animation:String = "idle"
 var _current_target:Unit
 
 var _target_collision_layer_hack
 
-func _ready():
-	animation_tree.animation_started.connect(_on_animation_changed)
-
 func _process(delta):
 	_current_cooldown -= delta
-
-func _on_animation_changed(next_animation: String):
-	_current_animation = next_animation
 
 func _on_enter_combat():
 	animation_tree.set("parameters/conditions/in_combat", true)
@@ -58,7 +52,10 @@ func _on_spawn_projectile():
 	projectile.global_position = projectile_spawn_point.global_position
 	
 	if _current_target && is_instance_valid(_current_target):
-		projectile.target = _current_target
+		if dumb_projectile:
+			projectile.direction = Math.v3_to_v2(Math.unit(_current_target.global_position - global_position))
+		else:
+			projectile.target = _current_target
 	else:
 		# forward i think?
 		projectile.direction = Math.v3_to_v2(global_transform.basis.x)
@@ -69,7 +66,8 @@ func _on_spawn_projectile():
 		area.body_entered.connect(_on_area_3d_body_entered)
 
 # weapon hit enemy
-func _on_area_3d_body_entered(unit:Unit):
+func _on_area_3d_body_entered(unit):
+	if !(unit is Unit): return
 	unit.take_hit(
 		Math.unit(Math.v3_to_v2(unit.global_position-global_position)),
 		damage, pushback, hit_stun)

@@ -111,6 +111,12 @@ script = ExtResource("7_uqj5s")
 unit_type = 1
 cost = 120
 
+[node name="BuyWoodsmanButton" type="Button" parent="CanvasLayer/HBoxContainer"]
+layout_mode = 2
+text = "Buy Woodsman"
+script = ExtResource("7_uqj5s")
+unit_type = 2
+
 [node name="NextDayButton" type="Button" parent="CanvasLayer"]
 anchors_preset = 1
 anchor_left = 1.0
@@ -142,4 +148,6 @@ horizontal_alignment = 1
 [connection signal="request_spawn" from="CanvasLayer/HBoxContainer/BuyKnightButton" to="UnitSpawner" method="spawn_friendly"]
 [connection signal="pressed" from="CanvasLayer/HBoxContainer/BuyWitchButton" to="CanvasLayer/HBoxContainer/BuyWitchButton" method="_on_pressed"]
 [connection signal="request_spawn" from="CanvasLayer/HBoxContainer/BuyWitchButton" to="UnitSpawner" method="spawn_friendly"]
+[connection signal="pressed" from="CanvasLayer/HBoxContainer/BuyWoodsmanButton" to="CanvasLayer/HBoxContainer/BuyWoodsmanButton" method="_on_pressed"]
+[connection signal="request_spawn" from="CanvasLayer/HBoxContainer/BuyWoodsmanButton" to="UnitSpawner" method="spawn_friendly"]
 [connection signal="pressed" from="CanvasLayer/NextDayButton" to="GameManager" method="_on_next_day_button_pressed"]

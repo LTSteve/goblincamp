@@ -70,6 +70,7 @@ shape = SubResource("SphereShape3D_a8j42")
 [connection signal="died" from="HealthComponent" to="." method="_on_died"]
 [connection signal="enter_combat" from="WitchBrain" to="witch/Staff" method="_on_enter_combat"]
 [connection signal="exit_combat" from="WitchBrain" to="witch/Staff" method="_on_exit_combat"]
+[connection signal="on_lock_target" from="WitchBrain" to="RotationComponent" method="_on_lock_target"]
 [connection signal="request_attack" from="WitchBrain" to="witch/Staff" method="_on_request_attack"]
 [connection signal="body_entered" from="FleeRange" to="WitchBrain" method="_on_body_entered_flee_range"]
 [connection signal="body_exited" from="FleeRange" to="WitchBrain" method="_on_body_exited_flee_range"]

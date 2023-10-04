@@ -44,7 +44,7 @@ advance_mode = 2
 
 [resource]
 states/attack/node = SubResource("AnimationNodeAnimation_xvtc5")
-states/attack/position = Vector2(709, 100)
+states/attack/position = Vector2(717, 100)
 states/draw/node = SubResource("AnimationNodeAnimation_7bppx")
 states/draw/position = Vector2(414, 32)
 states/idle/node = SubResource("AnimationNodeAnimation_276bp")

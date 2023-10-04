@@ -9,8 +9,6 @@ class_name Unit
 
 @export var is_enemy: bool = false
 
-const MOVEMENT_SPEED: float = 5.0
-
 signal on_recieved_hit(direction:Vector2, damage:float, pushback:float, hit_stun:float)
 
 var _stunned: float = 0
@@ -49,7 +47,7 @@ func _physics_process(delta):
 		if unit_direction == Vector2.ZERO: return
 		
 		velocity_component.accelerate_in_direction(unit_direction, delta)
-		rotation_component.turn_to_direction(unit_direction, delta)
+		rotation_component.turn(unit_direction, self, delta)
 	
 	velocity_component.move(self)
 	rotation_component.apply_rotation(self)

@@ -9,6 +9,7 @@ class_name BasicBrain
 signal request_attack(target:Unit,me:Unit)
 signal enter_combat()
 signal exit_combat()
+signal on_lock_target(target:Unit)
 
 var target:Unit
 
@@ -17,6 +18,8 @@ func _process(delta):
 	var had_no_target = !target
 	
 	target = Global.nearest_unit(Global.players, unit.global_position) if unit.is_enemy else Global.nearest_unit(Global.enemies, unit.global_position)
+	
+	on_lock_target.emit(target)
 	
 	if target && had_no_target:
 		enter_combat.emit()

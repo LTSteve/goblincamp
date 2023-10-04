@@ -10,6 +10,7 @@ class_name WitchBrain
 signal request_attack(target:Unit,me:Unit)
 signal enter_combat()
 signal exit_combat()
+signal on_lock_target(target:Unit)
 
 var target:Unit
 
@@ -20,6 +21,8 @@ func _process(delta):
 	var had_no_target = !target
 	
 	target = Global.nearest_unit(Global.enemies, unit.global_position)
+	
+	on_lock_target.emit(target)
 	
 	if target && had_no_target:
 		enter_combat.emit()
@@ -62,9 +65,11 @@ func _clean_fleeing_list():
 	for i in to_remove.size():
 		_fleeing.remove_at(to_remove[i])
 
-func _on_body_entered_flee_range(enemy:Unit):
+func _on_body_entered_flee_range(enemy):
+	if !(enemy is Unit): return
 	_fleeing.append(enemy)
 
-func _on_body_exited_flee_range(enemy:Unit):
+func _on_body_exited_flee_range(enemy):
+	if !(enemy is Unit): return
 	if !_fleeing.has(enemy): return
 	_fleeing.remove_at(_fleeing.find(enemy))

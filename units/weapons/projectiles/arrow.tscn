@@ -1,0 +1,38 @@
+[gd_scene load_steps=5 format=3 uid="uid://bjeqt2c2f47xf"]
+
+[ext_resource type="Script" path="res://units/weapons/projectiles/Projectile.gd" id="1_pjudo"]
+[ext_resource type="PackedScene" uid="uid://c5vxjgrcperkw" path="res://models/woodsman/woodsman_projectile.glb" id="2_c426c"]
+[ext_resource type="Script" path="res://units/components/VelocityComponent.gd" id="3_xoxxp"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_nqljr"]
+
+[node name="Arrow" type="RigidBody3D" node_paths=PackedStringArray("collision_areas")]
+collision_layer = 0
+collision_mask = 0
+axis_lock_linear_y = true
+axis_lock_angular_x = true
+axis_lock_angular_z = true
+gravity_scale = 0.0
+script = ExtResource("1_pjudo")
+collision_areas = [NodePath("woodsman_projectile/Hitboxes/Area3D")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(-2.30258e-08, 0, 0.526768, 0, 0.526768, 0, -0.526768, 0, -2.30258e-08, 0, 0, 0)
+shape = SubResource("SphereShape3D_nqljr")
+
+[node name="woodsman_projectile" parent="." instance=ExtResource("2_c426c")]
+transform = Transform3D(-2.30258e-08, 0, 0.526768, 0, 0.526768, 0, -0.526768, 0, -2.30258e-08, 0, 0, 0)
+
+[node name="Hitboxes" type="Node3D" parent="woodsman_projectile"]
+transform = Transform3D(1, 0, 7.4607e-14, 0, 1, 0, -7.4607e-14, 0, 1, 0, 0, 0)
+
+[node name="Area3D" type="Area3D" parent="woodsman_projectile/Hitboxes"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="woodsman_projectile/Hitboxes/Area3D"]
+shape = SubResource("SphereShape3D_nqljr")
+
+[node name="VelocityComponent" type="Node" parent="."]
+script = ExtResource("3_xoxxp")
+max_speed = 12.0
+
+[connection signal="body_entered" from="woodsman_projectile/Hitboxes/Area3D" to="." method="_on_area_3d_body_entered"]

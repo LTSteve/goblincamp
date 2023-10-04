@@ -6,7 +6,6 @@ class_name MeleeWeapon
 
 @export var collision_areas: Array[Area3D]
 
-
 @export var range: float = 3.0
 @export var cooldown: float = 0.75
 @export var damage: float = 10.0
@@ -16,19 +15,14 @@ class_name MeleeWeapon
 @export var multi_target: bool = false
 
 var _current_cooldown:float = 0.0
-var _current_animation:String = "idle"
 var _already_hit:Array[Unit] = []
 
 func _ready():
-	animation_tree.animation_started.connect(_on_animation_changed)
 	for area in collision_areas:
 		area.body_entered.connect(_on_area_3d_body_entered)
 
 func _process(delta):
 	_current_cooldown -= delta
-
-func _on_animation_changed(next_animation: String):
-	_current_animation = next_animation
 
 func _on_enter_combat():
 	animation_tree.set("parameters/conditions/in_combat", true)
@@ -58,7 +52,8 @@ func _on_request_attack(target:Unit, me:Unit):
 	_current_cooldown = cooldown
 
 # weapon hit enemy
-func _on_area_3d_body_entered(unit:Unit):
+func _on_area_3d_body_entered(unit):
+	if !(unit is Unit): return
 	#track already hit
 	if multi_target:
 		if _already_hit.has(unit): return
