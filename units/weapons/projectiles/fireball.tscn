@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://fphb7wictjtw"]
 
+[ext_resource type="Script" path="res://units/weapons/projectiles/Projectile.gd" id="1_3kikx"]
 [ext_resource type="PackedScene" uid="uid://cdqrlwohxtwd3" path="res://models/witch/witch_projectile.glb" id="1_nosqg"]
-[ext_resource type="Script" path="res://units/weapons/projectiles/projectile.gd" id="1_pk8wi"]
 [ext_resource type="Script" path="res://units/components/VelocityComponent.gd" id="3_rbsi1"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_nqljr"]
@@ -13,7 +13,7 @@ axis_lock_linear_y = true
 axis_lock_angular_x = true
 axis_lock_angular_z = true
 gravity_scale = 0.0
-script = ExtResource("1_pk8wi")
+script = ExtResource("1_3kikx")
 collision_areas = [NodePath("witch_projectile/Hitboxes/Area3D")]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]

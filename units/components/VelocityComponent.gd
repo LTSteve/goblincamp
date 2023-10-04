@@ -23,8 +23,7 @@ func decelerate(delta: float):
 	accelerate_to_velocity(Vector2.ZERO, delta)
 
 func move(character_body:CharacterBody3D):
-	#TODO: remove global_position.y
-	character_body.velocity = Math.v2_to_v3(_velocity, character_body.global_position.y)
+	character_body.velocity = Math.v2_to_v3(_velocity, 0)
 	character_body.move_and_slide()
 
 func move_physics(rigid_body:RigidBody3D, delta:float):

@@ -38,7 +38,15 @@ navigation_mesh = SubResource("NavigationMesh_64jkp")
 mesh = SubResource("BoxMesh_imxln")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(0.795807, 0.415936, -0.4401, 0.0132379, 0.714654, 0.699353, 0.605405, -0.562376, 0.563221, 0, 7.97649, 0)
+transform = Transform3D(0.795807, 0.46614, -0.386528, 0.0132379, 0.624765, 0.7807, 0.605405, -0.626404, 0.491022, 0, 7.97649, 0)
+light_color = Color(0.960784, 1, 1, 1)
+
+[node name="DirectionalLight3D2" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.882454, -0.46614, -0.0631602, -0.378886, -0.624766, -0.682725, 0.278785, 0.626404, -0.72794, 0, 7.97649, 0)
+light_color = Color(1, 0.952941, 0.964706, 1)
+light_energy = 0.5
+light_indirect_energy = 0.5
+light_volumetric_fog_energy = 0.5
 
 [node name="Units" type="Node" parent="."]
 
