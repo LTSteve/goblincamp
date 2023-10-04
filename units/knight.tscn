@@ -5,7 +5,7 @@
 [ext_resource type="Script" path="res://units/components/HealthComponent.gd" id="2_u35x7"]
 [ext_resource type="Script" path="res://units/components/VelocityComponent.gd" id="3_gto3h"]
 [ext_resource type="PackedScene" uid="uid://p0owu7fjhs2u" path="res://units/weapons/sword.tscn" id="3_qgv83"]
-[ext_resource type="Script" path="res://units/components/KnightBrain.gd" id="4_kcgtp"]
+[ext_resource type="Script" path="res://units/components/BasicBrain.gd" id="6_e63tc"]
 [ext_resource type="Script" path="res://units/components/RotationComponent.gd" id="7_w68d6"]
 [ext_resource type="Script" path="res://units/components/HitblinkComponent.gd" id="8_vpyio"]
 
@@ -43,9 +43,10 @@ script = ExtResource("3_gto3h")
 max_speed = 8.0
 acceleration = 1.0
 
-[node name="KnightBrain" type="Node" parent="." node_paths=PackedStringArray("unit")]
-script = ExtResource("4_kcgtp")
+[node name="BasicBrain" type="Node" parent="." node_paths=PackedStringArray("unit", "weapon")]
+script = ExtResource("6_e63tc")
 unit = NodePath("..")
+weapon = NodePath("../knight/Sword")
 
 [node name="RotationComponent" type="Node" parent="."]
 script = ExtResource("7_w68d6")
@@ -58,8 +59,8 @@ model = NodePath("../knight/knight2")
 [connection signal="on_recieved_hit" from="." to="VelocityComponent" method="_on_recieved_hit"]
 [connection signal="on_recieved_hit" from="." to="HitblinkComponent" method="_on_recieved_hit"]
 [connection signal="died" from="HealthComponent" to="." method="_on_died"]
-[connection signal="enter_combat" from="KnightBrain" to="knight/Sword" method="_on_enter_combat"]
-[connection signal="exit_combat" from="KnightBrain" to="knight/Sword" method="_on_exit_combat"]
-[connection signal="request_attack" from="KnightBrain" to="knight/Sword" method="_on_request_attack"]
+[connection signal="enter_combat" from="BasicBrain" to="knight/Sword" method="_on_enter_combat"]
+[connection signal="exit_combat" from="BasicBrain" to="knight/Sword" method="_on_exit_combat"]
+[connection signal="request_attack" from="BasicBrain" to="knight/Sword" method="_on_request_attack"]
 
 [editable path="knight"]

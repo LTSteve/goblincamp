@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://5kxgrj763bh2" path="res://units/weapons/hammer.tscn" id="3_mcr6p"]
 [ext_resource type="Script" path="res://units/components/HealthComponent.gd" id="4_8csbd"]
 [ext_resource type="Script" path="res://units/components/VelocityComponent.gd" id="5_bgrw1"]
-[ext_resource type="Script" path="res://units/components/OgreBrain.gd" id="6_dxi7i"]
+[ext_resource type="Script" path="res://units/components/BasicBrain.gd" id="6_3lbwv"]
 [ext_resource type="Script" path="res://units/components/BountyComponent.gd" id="7_m1y06"]
 [ext_resource type="Script" path="res://units/components/RotationComponent.gd" id="8_jblmi"]
 [ext_resource type="Script" path="res://units/components/HitblinkComponent.gd" id="9_h0eyv"]
@@ -50,9 +50,10 @@ script = ExtResource("5_bgrw1")
 max_speed = 4.0
 acceleration = 0.5
 
-[node name="OgreBrain" type="Node" parent="." node_paths=PackedStringArray("unit")]
-script = ExtResource("6_dxi7i")
+[node name="BasicBrain" type="Node" parent="." node_paths=PackedStringArray("unit", "weapon")]
+script = ExtResource("6_3lbwv")
 unit = NodePath("..")
+weapon = NodePath("../ogre/Hammer")
 
 [node name="BountyComponent" type="Node" parent="."]
 script = ExtResource("7_m1y06")
@@ -73,8 +74,8 @@ model = NodePath("../ogre/ogre2")
 [connection signal="on_recieved_hit" from="." to="HitblinkComponent" method="_on_recieved_hit"]
 [connection signal="died" from="HealthComponent" to="." method="_on_died"]
 [connection signal="died" from="HealthComponent" to="BountyComponent" method="_on_health_component_died"]
-[connection signal="enter_combat" from="OgreBrain" to="ogre/Hammer" method="_on_enter_combat"]
-[connection signal="exit_combat" from="OgreBrain" to="ogre/Hammer" method="_on_exit_combat"]
-[connection signal="request_attack" from="OgreBrain" to="ogre/Hammer" method="_on_request_attack"]
+[connection signal="enter_combat" from="BasicBrain" to="ogre/Hammer" method="_on_enter_combat"]
+[connection signal="exit_combat" from="BasicBrain" to="ogre/Hammer" method="_on_exit_combat"]
+[connection signal="request_attack" from="BasicBrain" to="ogre/Hammer" method="_on_request_attack"]
 
 [editable path="ogre"]

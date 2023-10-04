@@ -6,9 +6,9 @@
 [ext_resource type="Script" path="res://units/components/HealthComponent.gd" id="4_h581y"]
 [ext_resource type="Script" path="res://units/components/VelocityComponent.gd" id="5_3np35"]
 [ext_resource type="Script" path="res://units/components/BountyComponent.gd" id="7_mr5cy"]
+[ext_resource type="Script" path="res://units/components/BasicBrain.gd" id="7_xe7lp"]
 [ext_resource type="Script" path="res://units/components/RotationComponent.gd" id="8_ak8ed"]
 [ext_resource type="Script" path="res://units/components/HitblinkComponent.gd" id="9_4qvq2"]
-[ext_resource type="Script" path="res://units/components/ImpBrain.gd" id="9_siltb"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_4afdt"]
 radius = 0.25
@@ -55,9 +55,10 @@ script = ExtResource("7_mr5cy")
 worth_base = 15
 worth_varience = 5
 
-[node name="ImpBrain" type="Node" parent="." node_paths=PackedStringArray("unit")]
-script = ExtResource("9_siltb")
+[node name="BasicBrain" type="Node" parent="." node_paths=PackedStringArray("unit", "weapon")]
+script = ExtResource("7_xe7lp")
 unit = NodePath("..")
+weapon = NodePath("../imp/ImpClaw")
 
 [node name="RotationComponent" type="Node" parent="."]
 script = ExtResource("8_ak8ed")
@@ -71,8 +72,8 @@ model = NodePath("../imp/imp2")
 [connection signal="on_recieved_hit" from="." to="HitblinkComponent" method="_on_recieved_hit"]
 [connection signal="died" from="HealthComponent" to="." method="_on_died"]
 [connection signal="died" from="HealthComponent" to="BountyComponent" method="_on_health_component_died"]
-[connection signal="enter_combat" from="ImpBrain" to="imp/ImpClaw" method="_on_enter_combat"]
-[connection signal="exit_combat" from="ImpBrain" to="imp/ImpClaw" method="_on_exit_combat"]
-[connection signal="request_attack" from="ImpBrain" to="imp/ImpClaw" method="_on_request_attack"]
+[connection signal="enter_combat" from="BasicBrain" to="imp/ImpClaw" method="_on_enter_combat"]
+[connection signal="exit_combat" from="BasicBrain" to="imp/ImpClaw" method="_on_exit_combat"]
+[connection signal="request_attack" from="BasicBrain" to="imp/ImpClaw" method="_on_request_attack"]
 
 [editable path="imp"]

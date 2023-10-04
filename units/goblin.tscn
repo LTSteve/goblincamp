@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://cw68w0g0xv1j6" path="res://models/goblin/goblin.glb" id="2_k8e14"]
 [ext_resource type="PackedScene" uid="uid://byiw0i7pdnhqs" path="res://units/weapons/claw.tscn" id="3_10fnw"]
 [ext_resource type="Script" path="res://units/components/VelocityComponent.gd" id="3_ayc47"]
-[ext_resource type="Script" path="res://units/components/GoblinBrain.gd" id="4_2lhla"]
+[ext_resource type="Script" path="res://units/components/BasicBrain.gd" id="6_xchoh"]
 [ext_resource type="Script" path="res://units/components/BountyComponent.gd" id="7_bwuvv"]
 [ext_resource type="Script" path="res://units/components/RotationComponent.gd" id="8_sd4bo"]
 [ext_resource type="Script" path="res://units/components/HitblinkComponent.gd" id="9_ihg7o"]
@@ -47,9 +47,10 @@ script = ExtResource("3_ayc47")
 max_speed = 6.0
 acceleration = 1.0
 
-[node name="GoblinBrain" type="Node" parent="." node_paths=PackedStringArray("unit")]
-script = ExtResource("4_2lhla")
+[node name="BasicBrain" type="Node" parent="." node_paths=PackedStringArray("unit", "weapon")]
+script = ExtResource("6_xchoh")
 unit = NodePath("..")
+weapon = NodePath("../goblin2/Claw")
 
 [node name="BountyComponent" type="Node" parent="."]
 script = ExtResource("7_bwuvv")
@@ -68,8 +69,8 @@ model = NodePath("../goblin2/goblin2")
 [connection signal="on_recieved_hit" from="." to="HitblinkComponent" method="_on_recieved_hit"]
 [connection signal="died" from="HealthComponent" to="." method="_on_died"]
 [connection signal="died" from="HealthComponent" to="BountyComponent" method="_on_health_component_died"]
-[connection signal="enter_combat" from="GoblinBrain" to="goblin2/Claw" method="_on_enter_combat"]
-[connection signal="exit_combat" from="GoblinBrain" to="goblin2/Claw" method="_on_exit_combat"]
-[connection signal="request_attack" from="GoblinBrain" to="goblin2/Claw" method="_on_request_attack"]
+[connection signal="enter_combat" from="BasicBrain" to="goblin2/Claw" method="_on_enter_combat"]
+[connection signal="exit_combat" from="BasicBrain" to="goblin2/Claw" method="_on_exit_combat"]
+[connection signal="request_attack" from="BasicBrain" to="goblin2/Claw" method="_on_request_attack"]
 
 [editable path="goblin2"]
