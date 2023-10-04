@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://celifq1gdcq1s"]
+[gd_scene load_steps=12 format=3 uid="uid://celifq1gdcq1s"]
 
 [ext_resource type="Script" path="res://units/Unit.gd" id="1_2bruq"]
 [ext_resource type="PackedScene" uid="uid://c66o7ssgncoaa" path="res://models/witch/witch.glb" id="2_kevcb"]
@@ -8,6 +8,7 @@
 [ext_resource type="Script" path="res://units/components/VelocityComponent.gd" id="5_s5ou7"]
 [ext_resource type="Script" path="res://units/components/RotationComponent.gd" id="7_pgggu"]
 [ext_resource type="Script" path="res://units/components/HitblinkComponent.gd" id="8_rq33g"]
+[ext_resource type="PackedScene" uid="uid://bfg28nholuf7e" path="res://units/components/healthbar_component.tscn" id="9_c8jh5"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_nhjdq"]
 radius = 0.7
@@ -58,6 +59,8 @@ script = ExtResource("7_pgggu")
 script = ExtResource("8_rq33g")
 model = NodePath("../witch/witch2")
 
+[node name="HealthbarComponent" parent="." instance=ExtResource("9_c8jh5")]
+
 [node name="FleeRange" type="Area3D" parent="."]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="FleeRange"]
@@ -68,6 +71,7 @@ shape = SubResource("SphereShape3D_a8j42")
 [connection signal="on_recieved_hit" from="." to="VelocityComponent" method="_on_recieved_hit"]
 [connection signal="on_recieved_hit" from="." to="HitblinkComponent" method="_on_recieved_hit"]
 [connection signal="died" from="HealthComponent" to="." method="_on_died"]
+[connection signal="health_changed" from="HealthComponent" to="HealthbarComponent" method="_on_health_component_health_changed"]
 [connection signal="enter_combat" from="WitchBrain" to="witch/Staff" method="_on_enter_combat"]
 [connection signal="exit_combat" from="WitchBrain" to="witch/Staff" method="_on_exit_combat"]
 [connection signal="on_lock_target" from="WitchBrain" to="RotationComponent" method="_on_lock_target"]

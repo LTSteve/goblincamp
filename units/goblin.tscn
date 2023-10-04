@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://duwsqv7i6jgca"]
+[gd_scene load_steps=12 format=3 uid="uid://duwsqv7i6jgca"]
 
 [ext_resource type="Script" path="res://units/Unit.gd" id="1_avfjk"]
 [ext_resource type="Script" path="res://units/components/HealthComponent.gd" id="2_8blxg"]
@@ -9,6 +9,7 @@
 [ext_resource type="Script" path="res://units/components/BountyComponent.gd" id="7_bwuvv"]
 [ext_resource type="Script" path="res://units/components/RotationComponent.gd" id="8_sd4bo"]
 [ext_resource type="Script" path="res://units/components/HitblinkComponent.gd" id="9_ihg7o"]
+[ext_resource type="PackedScene" uid="uid://bfg28nholuf7e" path="res://units/components/healthbar_component.tscn" id="10_rj7ui"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_4afdt"]
 radius = 0.55
@@ -64,11 +65,14 @@ script = ExtResource("8_sd4bo")
 script = ExtResource("9_ihg7o")
 model = NodePath("../goblin2/goblin2")
 
+[node name="HealthbarComponent" parent="." instance=ExtResource("10_rj7ui")]
+
 [connection signal="on_recieved_hit" from="." to="HealthComponent" method="_on_recieved_hit"]
 [connection signal="on_recieved_hit" from="." to="VelocityComponent" method="_on_recieved_hit"]
 [connection signal="on_recieved_hit" from="." to="HitblinkComponent" method="_on_recieved_hit"]
 [connection signal="died" from="HealthComponent" to="." method="_on_died"]
 [connection signal="died" from="HealthComponent" to="BountyComponent" method="_on_health_component_died"]
+[connection signal="health_changed" from="HealthComponent" to="HealthbarComponent" method="_on_health_component_health_changed"]
 [connection signal="enter_combat" from="BasicBrain" to="goblin2/Claw" method="_on_enter_combat"]
 [connection signal="exit_combat" from="BasicBrain" to="goblin2/Claw" method="_on_exit_combat"]
 [connection signal="request_attack" from="BasicBrain" to="goblin2/Claw" method="_on_request_attack"]

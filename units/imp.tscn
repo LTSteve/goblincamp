@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://dc2xntf220y7"]
+[gd_scene load_steps=12 format=3 uid="uid://dc2xntf220y7"]
 
 [ext_resource type="Script" path="res://units/Unit.gd" id="1_7xoce"]
 [ext_resource type="PackedScene" uid="uid://citvivc546i87" path="res://models/imp/imp.glb" id="2_tftnr"]
@@ -9,6 +9,7 @@
 [ext_resource type="Script" path="res://units/components/BasicBrain.gd" id="7_xe7lp"]
 [ext_resource type="Script" path="res://units/components/RotationComponent.gd" id="8_ak8ed"]
 [ext_resource type="Script" path="res://units/components/HitblinkComponent.gd" id="9_4qvq2"]
+[ext_resource type="PackedScene" uid="uid://bfg28nholuf7e" path="res://units/components/healthbar_component.tscn" id="10_u0636"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_4afdt"]
 radius = 0.25
@@ -67,11 +68,18 @@ script = ExtResource("8_ak8ed")
 script = ExtResource("9_4qvq2")
 model = NodePath("../imp/imp2")
 
+[node name="Node3D" type="Node3D" parent="."]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
+
+[node name="HealthbarComponent" parent="Node3D" instance=ExtResource("10_u0636")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.504, 0)
+
 [connection signal="on_recieved_hit" from="." to="HealthComponent" method="_on_recieved_hit"]
 [connection signal="on_recieved_hit" from="." to="VelocityComponent" method="_on_recieved_hit"]
 [connection signal="on_recieved_hit" from="." to="HitblinkComponent" method="_on_recieved_hit"]
 [connection signal="died" from="HealthComponent" to="." method="_on_died"]
 [connection signal="died" from="HealthComponent" to="BountyComponent" method="_on_health_component_died"]
+[connection signal="health_changed" from="HealthComponent" to="Node3D/HealthbarComponent" method="_on_health_component_health_changed"]
 [connection signal="enter_combat" from="BasicBrain" to="imp/ImpClaw" method="_on_enter_combat"]
 [connection signal="exit_combat" from="BasicBrain" to="imp/ImpClaw" method="_on_exit_combat"]
 [connection signal="request_attack" from="BasicBrain" to="imp/ImpClaw" method="_on_request_attack"]

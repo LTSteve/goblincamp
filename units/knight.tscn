@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://blqqvg7tmek8o"]
+[gd_scene load_steps=11 format=3 uid="uid://blqqvg7tmek8o"]
 
 [ext_resource type="Script" path="res://units/Unit.gd" id="1_ubipr"]
 [ext_resource type="PackedScene" uid="uid://bjni3yp3c1c0c" path="res://models/knight/knight.glb" id="2_71j88"]
@@ -8,6 +8,7 @@
 [ext_resource type="Script" path="res://units/components/BasicBrain.gd" id="6_e63tc"]
 [ext_resource type="Script" path="res://units/components/RotationComponent.gd" id="7_w68d6"]
 [ext_resource type="Script" path="res://units/components/HitblinkComponent.gd" id="8_vpyio"]
+[ext_resource type="PackedScene" uid="uid://bfg28nholuf7e" path="res://units/components/healthbar_component.tscn" id="9_gsacq"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_nhjdq"]
 radius = 0.7
@@ -55,10 +56,13 @@ script = ExtResource("7_w68d6")
 script = ExtResource("8_vpyio")
 model = NodePath("../knight/knight2")
 
+[node name="HealthbarComponent" parent="." instance=ExtResource("9_gsacq")]
+
 [connection signal="on_recieved_hit" from="." to="HealthComponent" method="_on_recieved_hit"]
 [connection signal="on_recieved_hit" from="." to="VelocityComponent" method="_on_recieved_hit"]
 [connection signal="on_recieved_hit" from="." to="HitblinkComponent" method="_on_recieved_hit"]
 [connection signal="died" from="HealthComponent" to="." method="_on_died"]
+[connection signal="health_changed" from="HealthComponent" to="HealthbarComponent" method="_on_health_component_health_changed"]
 [connection signal="enter_combat" from="BasicBrain" to="knight/Sword" method="_on_enter_combat"]
 [connection signal="exit_combat" from="BasicBrain" to="knight/Sword" method="_on_exit_combat"]
 [connection signal="request_attack" from="BasicBrain" to="knight/Sword" method="_on_request_attack"]
