@@ -17,7 +17,7 @@ var target:Unit
 var _fleeing:Array[Unit] = []
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
 	var had_no_target = !target
 	
 	target = Global.nearest_unit(Global.enemies, unit.global_position)
@@ -38,7 +38,7 @@ func _process(delta):
 	
 	var desired_locations = []
 	
-	if distance_to_target > weapon.range * comfortable_range_modifier:
+	if distance_to_target > weapon.weapon_range * comfortable_range_modifier:
 		desired_locations.append(target.global_position)
 	else:
 		desired_locations.append(unit.global_position)

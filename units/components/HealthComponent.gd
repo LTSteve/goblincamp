@@ -21,7 +21,7 @@ var current_health: float:
 		return current_health
 	set(value):
 		var previous_health = current_health
-		current_health = Math.clamp(value, 0, max_health)
+		current_health = clampf(value, 0, max_health)
 		
 		var health_update = HealthUpdate.new()
 		health_update.previous_health = previous_health
@@ -39,13 +39,13 @@ func has_health_remaining() -> bool:
 	return current_health > 0
 
 func current_health_percent() -> float:
-	return 0 if max_health <= 0 || current_health <= 0 else current_health / max_health
+	return 0.0 if (max_health <= 0 || current_health <= 0) else (current_health / max_health)
 
-func damage(damage:float):
-	current_health -= damage
+func damage(hp:float):
+	current_health -= hp
 
-func heal(heal:float):
-	damage(-heal)
+func heal(hp:float):
+	damage(-hp)
 
 func set_max_health(health:float):
 	max_health = health
@@ -56,5 +56,5 @@ func _initialize_health():
 func _ready():
 	call_deferred("_initialize_health")
 
-func _on_recieved_hit(direction:Vector2, damage:float, pushback:float, hit_stun:float):
-	damage(damage)
+func _on_recieved_hit(_direction:Vector2, hit_damage:float, _pushback:float, _hit_stun:float):
+	damage(hit_damage)

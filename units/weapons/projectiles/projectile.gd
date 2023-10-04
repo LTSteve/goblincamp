@@ -29,5 +29,5 @@ func _physics_process(delta:float):
 	velocity_component.set_direction(direction)
 	velocity_component.move_physics(self, delta)
 
-func _on_area_3d_body_entered(body):
+func _on_area_3d_body_entered(_body):
 	self.queue_free()

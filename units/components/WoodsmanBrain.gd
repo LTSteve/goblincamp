@@ -56,7 +56,7 @@ func _process(delta):
 		_ranged_logic()
 
 func _melee_logic():
-	if unit.position.distance_to(target.global_position) > melee_weapon.range * comfortable_range_modifier:
+	if unit.position.distance_to(target.global_position) > melee_weapon.weapon_range * comfortable_range_modifier:
 		unit.set_movement_target(target.global_position)
 	else:
 		unit.set_movement_target(unit.global_position)
@@ -69,7 +69,7 @@ func _ranged_logic():
 	
 	var desired_locations = []
 	
-	if distance_to_target > ranged_weapon.range * comfortable_range_modifier:
+	if distance_to_target > ranged_weapon.weapon_range * comfortable_range_modifier:
 		desired_locations.append(target.global_position)
 	else:
 		desired_locations.append(unit.global_position)

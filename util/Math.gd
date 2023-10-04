@@ -2,11 +2,6 @@ class_name Math
 
 static var E: float = 0.57721566490153286060651209008240243
 
-static func clamp(value:float, min:float, max:float) -> float:
-	if(value < min): value = min
-	if(value > max): value = max
-	return value
-
 static func unit(vec):
 	if(vec.length() == 0): return vec
 	return vec / vec.length()
@@ -17,15 +12,13 @@ static func v3_to_v2(vec:Vector3) -> Vector2:
 static func v2_to_v3(vec:Vector2, y:float = 0) -> Vector3:
 	return Vector3(vec.x, y, vec.y)
 
-static func clamp_loop_i(value:int, min: int, size:int):
-	var shifted_value = (value - min) % size
+static func clamp_loop_i(value:int, min_v: int, size:int):
+	var shifted_value = (value - min_v) % size
 	
 	if shifted_value >= 0:
-		return shifted_value + min
+		return shifted_value + min_v
 	else:
-		return ((size + shifted_value) + min) % size
-	
-	return value
+		return ((size + shifted_value) + min_v) % size
 
 static func direction_to_local(global_direction: Vector3, local_space: Node3D) -> Vector3:
 	var global_to_local: Transform3D = local_space.global_transform.affine_inverse()

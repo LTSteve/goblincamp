@@ -6,7 +6,7 @@ class_name RangedWeapon
 @export var projectile_scene: PackedScene
 @export var projectile_spawn_point: Node3D
 
-@export var range: float = 20.0
+@export var weapon_range: float = 20.0
 @export var cooldown: float = 2
 @export var damage: float = 30.0
 @export var pushback: float = 7.0
@@ -32,7 +32,7 @@ func _on_exit_combat():
 func _on_request_attack(target:Unit, me:Unit):
 	#in range?
 	if(_current_cooldown > 0 
-	|| (target.global_position - me.global_position).length() > range
+	|| (target.global_position - me.global_position).length() > weapon_range
 	|| (animation_tree.get("parameters/playback").get_current_node() != "idle_combat")) : return
 	
 	#lock target

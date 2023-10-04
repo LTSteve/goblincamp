@@ -72,4 +72,4 @@ func _process(delta):
 	camera_distance.position = Vector3(0,0,-distance_value)
 
 func _combine_actions(positive_input:String, negative_input:String) -> int:
-	return Input.get_action_strength(positive_input) - Input.get_action_strength(negative_input)
+	return (Input.get_action_strength(positive_input) - Input.get_action_strength(negative_input)) as int

@@ -44,6 +44,7 @@ func _spawn_wave(number: float):
 	
 	if number > 15:
 		var max_ogre = (spawn_power/ogre_cost) as int
+		@warning_ignore("integer_division")
 		var min_ogre = clampi((max_ogre / 2) as int, 1, max_ogre)
 		ogre_count = randi_range(min_ogre, max_ogre)
 		spawn_power -= ogre_count * ogre_cost

@@ -6,7 +6,7 @@ class_name MeleeWeapon
 
 @export var collision_areas: Array[Area3D]
 
-@export var range: float = 3.0
+@export var weapon_range: float = 3.0
 @export var cooldown: float = 0.75
 @export var damage: float = 10.0
 @export var pushback: float = 5.0
@@ -35,7 +35,7 @@ func _on_exit_combat():
 func _on_request_attack(target:Unit, me:Unit):
 	#in range?
 	if(_current_cooldown > 0 
-	|| (target.global_position - me.global_position).length() > range
+	|| (target.global_position - me.global_position).length() > weapon_range
 	|| (animation_tree.get("parameters/playback").get_current_node() != "idle_combat")) : return
 	
 	#reset already hit tracker

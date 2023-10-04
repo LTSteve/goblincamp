@@ -33,5 +33,5 @@ func move_physics(rigid_body:RigidBody3D, delta:float):
 func apply_delta(delta):
 	return _velocity * delta
 
-func _on_recieved_hit(direction:Vector2, damage:float, pushback:float, hit_stun:float):
+func _on_recieved_hit(direction:Vector2, _damage:float, pushback:float, _hit_stun:float):
 	set_velocity(direction * pushback)
