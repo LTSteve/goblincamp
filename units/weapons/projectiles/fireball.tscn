@@ -1,8 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://fphb7wictjtw"]
+[gd_scene load_steps=7 format=3 uid="uid://fphb7wictjtw"]
 
 [ext_resource type="Script" path="res://units/weapons/projectiles/Projectile.gd" id="1_3kikx"]
 [ext_resource type="PackedScene" uid="uid://cdqrlwohxtwd3" path="res://models/witch/witch_projectile.glb" id="1_nosqg"]
+[ext_resource type="Script" path="res://units/components/HeightComponent.gd" id="3_1m5ag"]
 [ext_resource type="Script" path="res://units/components/VelocityComponent.gd" id="3_rbsi1"]
+[ext_resource type="Script" path="res://units/components/InverseHeightComponent.gd" id="3_us4bo"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_nqljr"]
 
@@ -22,8 +24,12 @@ shape = SubResource("SphereShape3D_nqljr")
 
 [node name="witch_projectile" parent="." instance=ExtResource("1_nosqg")]
 transform = Transform3D(-2.30258e-08, 0, 0.526768, 0, 0.526768, 0, -0.526768, 0, -2.30258e-08, 0, 0, 0)
+script = ExtResource("3_1m5ag")
+offset = 1.369
 
 [node name="Hitboxes" type="Node3D" parent="witch_projectile"]
+script = ExtResource("3_us4bo")
+offset = 1.369
 
 [node name="Area3D" type="Area3D" parent="witch_projectile/Hitboxes"]
 

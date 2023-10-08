@@ -1,10 +1,11 @@
-[gd_scene load_steps=12 format=3 uid="uid://duwsqv7i6jgca"]
+[gd_scene load_steps=13 format=3 uid="uid://duwsqv7i6jgca"]
 
 [ext_resource type="Script" path="res://units/Unit.gd" id="1_avfjk"]
 [ext_resource type="Script" path="res://units/components/HealthComponent.gd" id="2_8blxg"]
 [ext_resource type="PackedScene" uid="uid://cw68w0g0xv1j6" path="res://models/goblin/goblin.glb" id="2_k8e14"]
 [ext_resource type="PackedScene" uid="uid://byiw0i7pdnhqs" path="res://units/weapons/claw.tscn" id="3_10fnw"]
 [ext_resource type="Script" path="res://units/components/VelocityComponent.gd" id="3_ayc47"]
+[ext_resource type="Script" path="res://units/components/HeightComponent.gd" id="3_l85kw"]
 [ext_resource type="Script" path="res://units/components/BasicBrain.gd" id="6_xchoh"]
 [ext_resource type="Script" path="res://units/components/BountyComponent.gd" id="7_bwuvv"]
 [ext_resource type="Script" path="res://units/components/RotationComponent.gd" id="8_sd4bo"]
@@ -29,6 +30,7 @@ shape = SubResource("CapsuleShape3D_4afdt")
 
 [node name="goblin2" parent="." instance=ExtResource("2_k8e14")]
 transform = Transform3D(-2.46772e-08, 0, 0.564549, 0, 0.564549, 0, -0.564549, 0, -2.46772e-08, 0.0104129, 1.19209e-07, 0.00498915)
+script = ExtResource("3_l85kw")
 
 [node name="Claw" parent="goblin2" instance=ExtResource("3_10fnw")]
 

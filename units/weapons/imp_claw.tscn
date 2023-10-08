@@ -1,9 +1,10 @@
-[gd_scene load_steps=13 format=3 uid="uid://bafd3cjhvdg42"]
+[gd_scene load_steps=14 format=3 uid="uid://bafd3cjhvdg42"]
 
 [ext_resource type="Script" path="res://units/components/MeleeWeapon.gd" id="1_76c5o"]
 [ext_resource type="PackedScene" uid="uid://edpi0vppt0da" path="res://models/imp/imp_weapon.glb" id="2_u6gfe"]
 [ext_resource type="AnimationNodeStateMachine" uid="uid://dawvd5u6rapgb" path="res://units/weapons/weapon_animation_state_machine.tres" id="3_6kr8s"]
 [ext_resource type="Script" path="res://util/AnimationTreeExpressionExtension.gd" id="4_0ej1c"]
+[ext_resource type="Script" path="res://units/components/InverseHeightComponent.gd" id="5_ucjg7"]
 
 [sub_resource type="Animation" id="Animation_qpybl"]
 length = 0.001
@@ -1261,7 +1262,6 @@ transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 1.0
 script = ExtResource("1_76c5o")
 animation_tree = NodePath("AnimationTree")
 collision_areas = [NodePath("Hurtboxes/Area3D")]
-range = 1.5
 cooldown = 0.6
 damage = 4.0
 pushback = 1.0
@@ -1289,6 +1289,7 @@ parameters/conditions/not_in_combat = false
 script = ExtResource("4_0ej1c")
 
 [node name="Hurtboxes" type="Node3D" parent="."]
+script = ExtResource("5_ucjg7")
 
 [node name="Area3D" type="Area3D" parent="Hurtboxes"]
 transform = Transform3D(1, 0, -6.77626e-21, 0, 1, 0, 6.77626e-21, 0, 1, 0, 0, -1.98714)

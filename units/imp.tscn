@@ -1,8 +1,9 @@
-[gd_scene load_steps=12 format=3 uid="uid://dc2xntf220y7"]
+[gd_scene load_steps=13 format=3 uid="uid://dc2xntf220y7"]
 
 [ext_resource type="Script" path="res://units/Unit.gd" id="1_7xoce"]
 [ext_resource type="PackedScene" uid="uid://citvivc546i87" path="res://models/imp/imp.glb" id="2_tftnr"]
 [ext_resource type="PackedScene" uid="uid://bafd3cjhvdg42" path="res://units/weapons/imp_claw.tscn" id="3_5sjsv"]
+[ext_resource type="Script" path="res://units/components/HeightComponent.gd" id="3_vi2pd"]
 [ext_resource type="Script" path="res://units/components/HealthComponent.gd" id="4_h581y"]
 [ext_resource type="Script" path="res://units/components/VelocityComponent.gd" id="5_3np35"]
 [ext_resource type="Script" path="res://units/components/BountyComponent.gd" id="7_mr5cy"]
@@ -30,6 +31,7 @@ shape = SubResource("CapsuleShape3D_4afdt")
 
 [node name="imp" parent="." instance=ExtResource("2_tftnr")]
 transform = Transform3D(-2.46772e-08, 0, 0.564549, 0, 0.564549, 0, -0.564549, 0, -2.46772e-08, 0, 0, 0)
+script = ExtResource("3_vi2pd")
 
 [node name="ImpClaw" parent="imp" instance=ExtResource("3_5sjsv")]
 

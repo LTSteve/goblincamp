@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://c4d1d2j1uy0kb"]
+[gd_scene load_steps=13 format=3 uid="uid://c4d1d2j1uy0kb"]
 
 [ext_resource type="Texture2D" uid="uid://dw0ywnkwvs2f1" path="res://Dirt 00 seamless.jpg" id="1_g4ob6"]
 [ext_resource type="PackedScene" uid="uid://b43v6jawtpn5j" path="res://ground.tscn" id="2_oaunj"]
@@ -24,16 +24,6 @@ uv1_scale = Vector3(200, 200, 200)
 material = SubResource("StandardMaterial3D_e4vwh")
 size = Vector3(1000, 1, 1000)
 
-[sub_resource type="Environment" id="Environment_iy72c"]
-ambient_light_source = 2
-ambient_light_color = Color(1, 1, 1, 1)
-ambient_light_energy = 0.15
-fog_light_color = Color(0.780392, 0.827451, 0.909804, 1)
-fog_light_energy = 2.25
-fog_density = 0.001
-fog_height = 11.15
-fog_height_density = -0.3516
-
 [node name="World" type="Node3D"]
 
 [node name="Ground" type="StaticBody3D" parent="."]
@@ -55,6 +45,14 @@ mesh = SubResource("BoxMesh_imxln")
 transform = Transform3D(0.242451, 0.839992, -0.485419, 0.146926, 0.462785, 0.87421, 0.958974, -0.283274, -0.0112137, 0, 132.475, 0)
 light_color = Color(0.960784, 1, 1, 1)
 
+[node name="DirectionalLight3D2" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.882454, -0.46614, -0.0631603, -0.378886, -0.624766, -0.682725, 0.278785, 0.626404, -0.72794, 0, 7.97649, 0)
+light_color = Color(1, 0.952941, 0.964706, 1)
+light_energy = 0.5
+light_indirect_energy = 0.5
+light_volumetric_fog_energy = 0.5
+sky_mode = 1
+
 [node name="Units" type="Node" parent="."]
 
 [node name="CameraRig" type="Node3D" parent="."]
@@ -72,7 +70,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -15)
 
 [node name="Camera3D" type="Camera3D" parent="CameraRig/CameraRotation/CameraAngle/CameraDistance"]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
-environment = SubResource("Environment_iy72c")
 fov = 106.162
 
 [node name="VelocityComponent" type="Node" parent="CameraRig"]

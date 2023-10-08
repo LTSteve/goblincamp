@@ -456,7 +456,6 @@ script = ExtResource("1_c3soh")
 animation_tree = NodePath("AnimationTree")
 projectile_scene = ExtResource("2_brohl")
 projectile_spawn_point = NodePath("projectile_spawn")
-range = 150.0
 damage = 25.0
 pushback = 5.0
 

@@ -1,9 +1,10 @@
-[gd_scene load_steps=13 format=3 uid="uid://p0owu7fjhs2u"]
+[gd_scene load_steps=14 format=3 uid="uid://p0owu7fjhs2u"]
 
 [ext_resource type="Script" path="res://units/components/MeleeWeapon.gd" id="1_ievjt"]
 [ext_resource type="PackedScene" uid="uid://ccbj6hhusyqky" path="res://models/knight/knight_weapon.glb" id="1_yltu8"]
 [ext_resource type="AnimationNodeStateMachine" uid="uid://dawvd5u6rapgb" path="res://units/weapons/weapon_animation_state_machine.tres" id="2_cs7hr"]
 [ext_resource type="Script" path="res://util/AnimationTreeExpressionExtension.gd" id="4_7404g"]
+[ext_resource type="Script" path="res://units/components/InverseHeightComponent.gd" id="5_16kli"]
 
 [sub_resource type="Animation" id="Animation_u37c2"]
 length = 0.001
@@ -538,7 +539,6 @@ transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 1, 
 script = ExtResource("1_ievjt")
 animation_tree = NodePath("AnimationTree")
 collision_areas = [NodePath("Hitboxes/Area3D"), NodePath("Hitboxes/Area3D2"), NodePath("Hitboxes/Area3D3"), NodePath("Hitboxes/Area3D4")]
-range = 3.5
 cooldown = 0.9
 pushback = 50.0
 multi_target = true
@@ -560,6 +560,7 @@ libraries = {
 }
 
 [node name="Hitboxes" type="Node3D" parent="."]
+script = ExtResource("5_16kli")
 
 [node name="Area3D" type="Area3D" parent="Hitboxes"]
 collision_layer = 0

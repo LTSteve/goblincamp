@@ -1,7 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://bjeqt2c2f47xf"]
+[gd_scene load_steps=7 format=3 uid="uid://bjeqt2c2f47xf"]
 
 [ext_resource type="Script" path="res://units/weapons/projectiles/Projectile.gd" id="1_pjudo"]
 [ext_resource type="PackedScene" uid="uid://c5vxjgrcperkw" path="res://models/woodsman/woodsman_projectile.glb" id="2_c426c"]
+[ext_resource type="Script" path="res://units/components/HeightComponent.gd" id="3_f0vfv"]
+[ext_resource type="Script" path="res://units/components/InverseHeightComponent.gd" id="3_usi7e"]
 [ext_resource type="Script" path="res://units/components/VelocityComponent.gd" id="3_xoxxp"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_nqljr"]
@@ -22,9 +24,13 @@ shape = SubResource("SphereShape3D_nqljr")
 
 [node name="woodsman_projectile" parent="." instance=ExtResource("2_c426c")]
 transform = Transform3D(-2.30258e-08, 0, 0.526768, 0, 0.526768, 0, -0.526768, 0, -2.30258e-08, 0, 0, 0)
+script = ExtResource("3_f0vfv")
+offset = 0.962
 
 [node name="Hitboxes" type="Node3D" parent="woodsman_projectile"]
 transform = Transform3D(1, 0, 7.4607e-14, 0, 1, 0, -7.4607e-14, 0, 1, 0, 0, 0)
+script = ExtResource("3_usi7e")
+offset = 0.962
 
 [node name="Area3D" type="Area3D" parent="woodsman_projectile/Hitboxes"]
 

@@ -1,9 +1,10 @@
-[gd_scene load_steps=13 format=3 uid="uid://5kxgrj763bh2"]
+[gd_scene load_steps=14 format=3 uid="uid://5kxgrj763bh2"]
 
 [ext_resource type="Script" path="res://units/components/MeleeWeapon.gd" id="1_a4p5a"]
 [ext_resource type="PackedScene" uid="uid://di48j8kwxi5nu" path="res://models/ogre/ogre_weapon.glb" id="2_m1iyf"]
 [ext_resource type="AnimationNodeStateMachine" uid="uid://dawvd5u6rapgb" path="res://units/weapons/weapon_animation_state_machine.tres" id="3_s244m"]
 [ext_resource type="Script" path="res://util/AnimationTreeExpressionExtension.gd" id="4_2is1a"]
+[ext_resource type="Script" path="res://units/components/InverseHeightComponent.gd" id="5_ncg5g"]
 
 [sub_resource type="Animation" id="Animation_g0bsf"]
 length = 0.001
@@ -538,6 +539,7 @@ libraries = {
 }
 
 [node name="Hitboxes" type="Node3D" parent="."]
+script = ExtResource("5_ncg5g")
 
 [node name="Area3D" type="Area3D" parent="Hitboxes"]
 collision_layer = 0

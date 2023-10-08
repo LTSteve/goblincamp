@@ -58,6 +58,7 @@ func _process(delta):
 	
 	velocity_component.accelerate_in_direction(Math.v3_to_v2(desired_movement) * camera_scroll_speed, delta)
 	translate(camera_rotation.quaternion * Math.v2_to_v3(velocity_component.apply_delta(delta), global_position.y))
+	global_position.y = Ground.sample_height(camera.global_position.x, camera.global_position.z) + 0.1
 	
 	#rotation
 	rotation_value += rotate_input * camera_rotation_speed * delta
@@ -70,6 +71,8 @@ func _process(delta):
 	#distance
 	distance_value += distance_input * camera_distance_speed * delta
 	camera_distance.position = Vector3(0,0,-distance_value)
+	
+	
 
 func _combine_actions(positive_input:String, negative_input:String) -> int:
 	return (Input.get_action_strength(positive_input) - Input.get_action_strength(negative_input)) as int

@@ -1,8 +1,9 @@
-[gd_scene load_steps=12 format=3 uid="uid://dlpkm7cy8xudv"]
+[gd_scene load_steps=13 format=3 uid="uid://dlpkm7cy8xudv"]
 
 [ext_resource type="Script" path="res://units/Unit.gd" id="1_4y35d"]
 [ext_resource type="PackedScene" uid="uid://bgfg403d28nmj" path="res://models/ogre/ogre.glb" id="2_q77xx"]
 [ext_resource type="PackedScene" uid="uid://5kxgrj763bh2" path="res://units/weapons/hammer.tscn" id="3_mcr6p"]
+[ext_resource type="Script" path="res://units/components/HeightComponent.gd" id="3_myoxd"]
 [ext_resource type="Script" path="res://units/components/HealthComponent.gd" id="4_8csbd"]
 [ext_resource type="Script" path="res://units/components/VelocityComponent.gd" id="5_bgrw1"]
 [ext_resource type="Script" path="res://units/components/BasicBrain.gd" id="6_3lbwv"]
@@ -30,6 +31,7 @@ shape = SubResource("CapsuleShape3D_4afdt")
 
 [node name="ogre" parent="." instance=ExtResource("2_q77xx")]
 transform = Transform3D(-2.46772e-08, 0, 0.564549, 0, 0.564549, 0, -0.564549, 0, -2.46772e-08, 0, 0, 0)
+script = ExtResource("3_myoxd")
 
 [node name="Hammer" parent="ogre" instance=ExtResource("3_mcr6p")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0)

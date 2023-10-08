@@ -1,8 +1,9 @@
-[gd_scene load_steps=11 format=3 uid="uid://blqqvg7tmek8o"]
+[gd_scene load_steps=12 format=3 uid="uid://blqqvg7tmek8o"]
 
 [ext_resource type="Script" path="res://units/Unit.gd" id="1_ubipr"]
 [ext_resource type="PackedScene" uid="uid://bjni3yp3c1c0c" path="res://models/knight/knight.glb" id="2_71j88"]
 [ext_resource type="Script" path="res://units/components/HealthComponent.gd" id="2_u35x7"]
+[ext_resource type="Script" path="res://units/components/HeightComponent.gd" id="3_dp6gg"]
 [ext_resource type="Script" path="res://units/components/VelocityComponent.gd" id="3_gto3h"]
 [ext_resource type="PackedScene" uid="uid://p0owu7fjhs2u" path="res://units/weapons/sword.tscn" id="3_qgv83"]
 [ext_resource type="Script" path="res://units/components/BasicBrain.gd" id="6_e63tc"]
@@ -26,6 +27,7 @@ shape = SubResource("CapsuleShape3D_nhjdq")
 
 [node name="knight" parent="." instance=ExtResource("2_71j88")]
 transform = Transform3D(-2.30258e-08, 0, 0.526768, 0, 0.526768, 0, -0.526768, 0, -2.30258e-08, 0, 0, 0)
+script = ExtResource("3_dp6gg")
 
 [node name="Sword" parent="knight" instance=ExtResource("3_qgv83")]
 pushback = 5.0

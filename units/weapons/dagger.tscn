@@ -1,9 +1,10 @@
-[gd_scene load_steps=13 format=3 uid="uid://dp4vd8emk3wx7"]
+[gd_scene load_steps=14 format=3 uid="uid://dp4vd8emk3wx7"]
 
 [ext_resource type="Script" path="res://units/components/MeleeWeapon.gd" id="1_06qng"]
 [ext_resource type="PackedScene" uid="uid://cu6t1we7lck7e" path="res://models/woodsman/woodsman_weapon_melee.glb" id="2_3n6r0"]
 [ext_resource type="AnimationNodeStateMachine" uid="uid://dawvd5u6rapgb" path="res://units/weapons/weapon_animation_state_machine.tres" id="3_t0118"]
 [ext_resource type="Script" path="res://util/AnimationTreeExpressionExtension.gd" id="4_rsiru"]
+[ext_resource type="Script" path="res://units/components/InverseHeightComponent.gd" id="5_d77kg"]
 
 [sub_resource type="Animation" id="Animation_wpm72"]
 length = 0.001
@@ -461,13 +462,12 @@ _data = {
 }
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_qweot"]
-radius = 0.8
+radius = 1.0
 
 [node name="Dagger" type="Node3D" node_paths=PackedStringArray("animation_tree", "collision_areas")]
 script = ExtResource("1_06qng")
 animation_tree = NodePath("AnimationTree")
 collision_areas = [NodePath("Hitboxes/Area3D")]
-range = 1.5
 cooldown = 0.6
 damage = 9.0
 pushback = 2.0
@@ -490,6 +490,7 @@ parameters/conditions/not_in_combat = false
 script = ExtResource("4_rsiru")
 
 [node name="Hitboxes" type="Node3D" parent="."]
+script = ExtResource("5_d77kg")
 
 [node name="Area3D" type="Area3D" parent="Hitboxes"]
 collision_layer = 0
