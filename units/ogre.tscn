@@ -33,6 +33,12 @@ shape = SubResource("CapsuleShape3D_4afdt")
 transform = Transform3D(-2.46772e-08, 0, 0.564549, 0, 0.564549, 0, -0.564549, 0, -2.46772e-08, 0, 0, 0)
 script = ExtResource("3_myoxd")
 
+[node name="Node3D" type="Node3D" parent="ogre/ogre2" index="0"]
+transform = Transform3D(2.5809e-08, -1.02268, 0.590442, -4.47025e-08, -0.590442, -1.02268, 1.18088, 0, -5.1618e-08, 0, 0, 0)
+
+[node name="HealthbarComponent" parent="ogre/ogre2/Node3D" instance=ExtResource("10_73rfp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.81849, 0)
+
 [node name="Hammer" parent="ogre" instance=ExtResource("3_mcr6p")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0)
 
@@ -72,18 +78,12 @@ slow_rotation_speed = 150.0
 script = ExtResource("9_h0eyv")
 model = NodePath("../ogre/ogre2")
 
-[node name="Node3D" type="Node3D" parent="."]
-transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0, 0, 0)
-
-[node name="HealthbarComponent" parent="Node3D" instance=ExtResource("10_73rfp")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.81849, 0)
-
 [connection signal="on_recieved_hit" from="." to="HealthComponent" method="_on_recieved_hit"]
 [connection signal="on_recieved_hit" from="." to="VelocityComponent" method="_on_recieved_hit"]
 [connection signal="on_recieved_hit" from="." to="HitblinkComponent" method="_on_recieved_hit"]
 [connection signal="died" from="HealthComponent" to="." method="_on_died"]
 [connection signal="died" from="HealthComponent" to="BountyComponent" method="_on_health_component_died"]
-[connection signal="health_changed" from="HealthComponent" to="Node3D/HealthbarComponent" method="_on_health_component_health_changed"]
+[connection signal="health_changed" from="HealthComponent" to="ogre/ogre2/Node3D/HealthbarComponent" method="_on_health_component_health_changed"]
 [connection signal="enter_combat" from="BasicBrain" to="ogre/Hammer" method="_on_enter_combat"]
 [connection signal="exit_combat" from="BasicBrain" to="ogre/Hammer" method="_on_exit_combat"]
 [connection signal="request_attack" from="BasicBrain" to="ogre/Hammer" method="_on_request_attack"]

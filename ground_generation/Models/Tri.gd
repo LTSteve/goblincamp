@@ -1,8 +1,6 @@
 @tool
 class_name Tri
 
-var _index: int
-
 var _points: Array[Point] = []
 
 var _k: float

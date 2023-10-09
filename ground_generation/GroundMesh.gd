@@ -99,9 +99,9 @@ func _index(x: int, y:int, resolution:int) -> int:
 	return x + y * resolution
 
 func _point_on_unit_cube(x:int, y:int) -> Vector3:
-	var height_r = noise_array[x + y * _planet_data.resolution]
-	var height = normal * height_r * _planet_data.max_height
 	var percent: Vector2 = _index_to_percent(x, y)
+	var height_r = _planet_data.noise_layers.point_in_noise(percent)
+	var height = normal * height_r * _planet_data.max_height
 	return height + _percent_to_location(percent)
 
 func _index_to_percent(x:int, y:int) -> Vector2:

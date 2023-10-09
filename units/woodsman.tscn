@@ -33,6 +33,9 @@ shape = SubResource("CapsuleShape3D_mwxnr")
 transform = Transform3D(-2.30258e-08, 0, 0.526768, 0, 0.526768, 0, -0.526768, 0, -2.30258e-08, 0, 0, 0)
 script = ExtResource("3_n2gsh")
 
+[node name="HealthbarComponent" parent="woodsman/woodsman2" index="0" instance=ExtResource("11_ahflw")]
+transform = Transform3D(-8.29805e-08, 0, -1.89837, 0, 1.89837, 0, 1.89837, 0, -8.29805e-08, 0, 4.55067, 0)
+
 [node name="BowAndDagger" type="Node3D" parent="woodsman" node_paths=PackedStringArray("bow", "dagger")]
 script = ExtResource("2_gqrex")
 bow = NodePath("Bow")
@@ -71,8 +74,6 @@ script = ExtResource("5_p0h6f")
 script = ExtResource("6_fqxow")
 model = NodePath("../woodsman/woodsman2")
 
-[node name="HealthbarComponent" parent="." instance=ExtResource("11_ahflw")]
-
 [node name="FleeRange" type="Area3D" parent="."]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="FleeRange"]
@@ -83,7 +84,7 @@ shape = SubResource("SphereShape3D_jaud8")
 [connection signal="on_recieved_hit" from="." to="VelocityComponent" method="_on_recieved_hit"]
 [connection signal="on_recieved_hit" from="." to="HitblinkComponent" method="_on_recieved_hit"]
 [connection signal="died" from="HealthComponent" to="." method="_on_died"]
-[connection signal="health_changed" from="HealthComponent" to="HealthbarComponent" method="_on_health_component_health_changed"]
+[connection signal="health_changed" from="HealthComponent" to="woodsman/woodsman2/HealthbarComponent" method="_on_health_component_health_changed"]
 [connection signal="enter_combat" from="WoodsmanBrain" to="woodsman/BowAndDagger" method="_on_enter_combat"]
 [connection signal="exit_combat" from="WoodsmanBrain" to="woodsman/BowAndDagger" method="_on_exit_combat"]
 [connection signal="on_lock_target" from="WoodsmanBrain" to="RotationComponent" method="_on_lock_target"]

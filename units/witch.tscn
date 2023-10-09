@@ -32,6 +32,9 @@ shape = SubResource("CapsuleShape3D_nhjdq")
 transform = Transform3D(-2.30258e-08, 0, 0.526768, 0, 0.526768, 0, -0.526768, 0, -2.30258e-08, 0, 0, 0)
 script = ExtResource("3_vtnte")
 
+[node name="HealthbarComponent" parent="witch/witch2" index="0" instance=ExtResource("9_c8jh5")]
+transform = Transform3D(-8.29805e-08, 0, -1.89837, 0, 1.89837, 0, 1.89837, 0, -8.29805e-08, 0, 4.55067, 0)
+
 [node name="Staff" parent="witch" instance=ExtResource("3_sg8hd")]
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
@@ -61,8 +64,6 @@ script = ExtResource("7_pgggu")
 script = ExtResource("8_rq33g")
 model = NodePath("../witch/witch2")
 
-[node name="HealthbarComponent" parent="." instance=ExtResource("9_c8jh5")]
-
 [node name="FleeRange" type="Area3D" parent="."]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="FleeRange"]
@@ -73,7 +74,7 @@ shape = SubResource("SphereShape3D_a8j42")
 [connection signal="on_recieved_hit" from="." to="VelocityComponent" method="_on_recieved_hit"]
 [connection signal="on_recieved_hit" from="." to="HitblinkComponent" method="_on_recieved_hit"]
 [connection signal="died" from="HealthComponent" to="." method="_on_died"]
-[connection signal="health_changed" from="HealthComponent" to="HealthbarComponent" method="_on_health_component_health_changed"]
+[connection signal="health_changed" from="HealthComponent" to="witch/witch2/HealthbarComponent" method="_on_health_component_health_changed"]
 [connection signal="enter_combat" from="WitchBrain" to="witch/Staff" method="_on_enter_combat"]
 [connection signal="exit_combat" from="WitchBrain" to="witch/Staff" method="_on_exit_combat"]
 [connection signal="on_lock_target" from="WitchBrain" to="RotationComponent" method="_on_lock_target"]

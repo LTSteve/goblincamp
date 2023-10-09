@@ -33,6 +33,12 @@ shape = SubResource("CapsuleShape3D_4afdt")
 transform = Transform3D(-2.46772e-08, 0, 0.564549, 0, 0.564549, 0, -0.564549, 0, -2.46772e-08, 0, 0, 0)
 script = ExtResource("3_vi2pd")
 
+[node name="Node3D" type="Node3D" parent="imp/imp2" index="0"]
+transform = Transform3D(-3.87135e-08, 0, -0.885663, 0, 0.885663, 0, 0.885663, 0, -3.87135e-08, 0, 0, 0)
+
+[node name="HealthbarComponent" parent="imp/imp2/Node3D" instance=ExtResource("10_u0636")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.504, 0)
+
 [node name="ImpClaw" parent="imp" instance=ExtResource("3_5sjsv")]
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
@@ -70,18 +76,12 @@ script = ExtResource("8_ak8ed")
 script = ExtResource("9_4qvq2")
 model = NodePath("../imp/imp2")
 
-[node name="Node3D" type="Node3D" parent="."]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
-
-[node name="HealthbarComponent" parent="Node3D" instance=ExtResource("10_u0636")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.504, 0)
-
 [connection signal="on_recieved_hit" from="." to="HealthComponent" method="_on_recieved_hit"]
 [connection signal="on_recieved_hit" from="." to="VelocityComponent" method="_on_recieved_hit"]
 [connection signal="on_recieved_hit" from="." to="HitblinkComponent" method="_on_recieved_hit"]
 [connection signal="died" from="HealthComponent" to="." method="_on_died"]
 [connection signal="died" from="HealthComponent" to="BountyComponent" method="_on_health_component_died"]
-[connection signal="health_changed" from="HealthComponent" to="Node3D/HealthbarComponent" method="_on_health_component_health_changed"]
+[connection signal="health_changed" from="HealthComponent" to="imp/imp2/Node3D/HealthbarComponent" method="_on_health_component_health_changed"]
 [connection signal="enter_combat" from="BasicBrain" to="imp/ImpClaw" method="_on_enter_combat"]
 [connection signal="exit_combat" from="BasicBrain" to="imp/ImpClaw" method="_on_exit_combat"]
 [connection signal="request_attack" from="BasicBrain" to="imp/ImpClaw" method="_on_request_attack"]

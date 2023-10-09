@@ -1,0 +1,25 @@
+[gd_resource type="Resource" script_class="PlanetData" load_steps=6 format=3 uid="uid://c5petd4jea0b1"]
+
+[ext_resource type="Script" path="res://ground_generation/PlanetData.gd" id="1_0njb0"]
+[ext_resource type="Script" path="res://ground_generation/LayeredNoise.gd" id="2_rh8kf"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_wkpqs"]
+frequency = 0.1369
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_r0x5d"]
+noise_type = 5
+frequency = 0.443
+
+[sub_resource type="Resource" id="Resource_ybxcl"]
+script = ExtResource("2_rh8kf")
+noise_scales = Array[float]([0.8, 0.2])
+noise_layers = Array[FastNoiseLite]([SubResource("FastNoiseLite_wkpqs"), SubResource("FastNoiseLite_r0x5d")])
+middle_scale = 0.1
+
+[resource]
+script = ExtResource("1_0njb0")
+max_height = 60.0
+resolution = 20
+color_scale = 0.08
+colors = Array[Color]([Color(0.40625, 0.804688, 0.398438, 1), Color(0.199219, 0.558594, 0.140625, 1), Color(0.511719, 0.523438, 0.441406, 1)])
+noise_layers = SubResource("Resource_ybxcl")

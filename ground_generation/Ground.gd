@@ -7,7 +7,7 @@ class_name Ground
 static var I: Ground
 
 @export var re_render: bool:
-	set(value):
+	set(_value):
 		re_render = false
 		_on_data_changed()
 		if planet_data != null && !planet_data.is_connected("changed",_on_data_changed):

@@ -29,6 +29,9 @@ shape = SubResource("CapsuleShape3D_nhjdq")
 transform = Transform3D(-2.30258e-08, 0, 0.526768, 0, 0.526768, 0, -0.526768, 0, -2.30258e-08, 0, 0, 0)
 script = ExtResource("3_dp6gg")
 
+[node name="HealthbarComponent" parent="knight/knight2" index="0" instance=ExtResource("9_gsacq")]
+transform = Transform3D(5.53203e-08, -2.19205, 1.26558, -9.58176e-08, -1.26558, -2.19205, 2.53116, 0, -1.10641e-07, -5.25467, -3.03378, 0)
+
 [node name="Sword" parent="knight" instance=ExtResource("3_qgv83")]
 pushback = 5.0
 
@@ -58,13 +61,11 @@ script = ExtResource("7_w68d6")
 script = ExtResource("8_vpyio")
 model = NodePath("../knight/knight2")
 
-[node name="HealthbarComponent" parent="." instance=ExtResource("9_gsacq")]
-
 [connection signal="on_recieved_hit" from="." to="HealthComponent" method="_on_recieved_hit"]
 [connection signal="on_recieved_hit" from="." to="VelocityComponent" method="_on_recieved_hit"]
 [connection signal="on_recieved_hit" from="." to="HitblinkComponent" method="_on_recieved_hit"]
 [connection signal="died" from="HealthComponent" to="." method="_on_died"]
-[connection signal="health_changed" from="HealthComponent" to="HealthbarComponent" method="_on_health_component_health_changed"]
+[connection signal="health_changed" from="HealthComponent" to="knight/knight2/HealthbarComponent" method="_on_health_component_health_changed"]
 [connection signal="enter_combat" from="BasicBrain" to="knight/Sword" method="_on_enter_combat"]
 [connection signal="exit_combat" from="BasicBrain" to="knight/Sword" method="_on_exit_combat"]
 [connection signal="request_attack" from="BasicBrain" to="knight/Sword" method="_on_request_attack"]

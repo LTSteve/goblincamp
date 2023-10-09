@@ -9,3 +9,5 @@ class_name PlanetData
 @export var color_scale: float = 2
 
 @export var colors: Array[Color]
+
+@export var noise_layers: LayeredNoise
