@@ -16,8 +16,19 @@ class_name GameManager
 
 signal on_spawn_enemy(unit_type: UnitSpawner.UnitType)
 
+signal on_night()
+signal on_day()
+
 var _day:int = 0
 var _spawned_building:bool = false
+
+static var I: GameManager
+
+func cycle_to_day():
+	on_day.emit()
+
+func _ready():
+	I = self
 
 func _on_next_day_button_pressed():
 	if _spawned_building:
@@ -25,6 +36,7 @@ func _on_next_day_button_pressed():
 		_spawned_building = false
 	_day += 1
 	_spawn_wave(_day)
+	on_night.emit()
 
 func _spawn_wave(number: float):
 	

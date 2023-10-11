@@ -35,11 +35,8 @@ static func random_rotation() -> float:
 
 static func rangef(start:float, end:float, step:float, limit:int = 200) -> Array[float]:
 	if step <= 0 || start >= end: return [start]
-	var range = end - start
+	var r = end - start
 	var numbers:Array[float] = []
-	for i in min(ceil(range/step), limit):
+	for i in min(ceil(r/step), limit):
 		numbers.append(i * step + start)
 	return numbers
-
-
-

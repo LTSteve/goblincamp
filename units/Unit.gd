@@ -29,7 +29,10 @@ func set_movement_target(movement_target: Vector3):
 	navigation_agent.set_target_position(movement_target)
 
 func _on_died():
-	if is_enemy: Global.enemies = Global.enemies.filter(func(enemy): return enemy != self)
+	if is_enemy:
+		Global.enemies = Global.enemies.filter(func(enemy): return enemy != self)
+		if Global.enemies.size() == 0:
+			GameManager.I.cycle_to_day()
 	else: Global.players = Global.players.filter(func(player): return player != self)
 	queue_free()
 

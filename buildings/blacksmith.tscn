@@ -18,7 +18,6 @@ once = true
 transform = Transform3D(0.498252, 0, 0, 0, 0.602099, 0, 0, 0, 0.403297, 5.14145, 5.84516, -5.16964)
 
 [node name="GPUParticles3D2" parent="blacksmith/Fire" index="1"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.45065, 0)
 emitting = false
 
 [node name="StaticBody3D" type="StaticBody3D" parent="."]
