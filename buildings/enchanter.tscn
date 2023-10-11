@@ -1,7 +1,43 @@
-[gd_scene load_steps=4 format=3 uid="uid://c41e8jd2dpobk"]
+[gd_scene load_steps=9 format=3 uid="uid://c41e8jd2dpobk"]
 
 [ext_resource type="PackedScene" uid="uid://cvh4b4xoetdyu" path="res://models/buildings/enchanter.glb" id="1_v05e1"]
 [ext_resource type="Script" path="res://units/components/HeightComponent.gd" id="2_6ludl"]
+
+[sub_resource type="Curve" id="Curve_81h6e"]
+_data = [Vector2(0, 0.0842105), 0.0, 0.0, 0, 0, Vector2(0.31003, 0.631579), 0.0, 0.0, 0, 0, Vector2(0.680851, 0.421053), 0.0, 0.0, 0, 0, Vector2(0.869301, 0.915789), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 5
+
+[sub_resource type="CurveTexture" id="CurveTexture_f18rs"]
+curve = SubResource("Curve_81h6e")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_myj6j"]
+lifetime_randomness = 0.1
+emission_shape = 1
+emission_sphere_radius = 2.0
+particle_flag_rotate_y = true
+gravity = Vector3(0, 0.1, 0)
+angular_velocity_min = -57.27
+angular_velocity_max = 74.89
+linear_accel_min = -4.54
+linear_accel_max = 0.01
+tangential_accel_min = -1.13
+tangential_accel_max = 1.14
+angle_min = -32.7
+angle_max = 57.3
+scale_min = 0.4
+scale_curve = SubResource("CurveTexture_f18rs")
+color = Color(0.513726, 0.45098, 1, 0.423529)
+hue_variation_min = -0.12
+hue_variation_max = 0.18
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_grrbf"]
+transparency = 1
+shading_mode = 0
+vertex_color_use_as_albedo = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_53kn8"]
+material = SubResource("StandardMaterial3D_grrbf")
+size = Vector3(0.2, 0.2, 0.2)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_4kbs0"]
 size = Vector3(5.5, 20, 9.5)
@@ -12,6 +48,14 @@ transform = Transform3D(0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, 0, 0, 0)
 [node name="enchanter" parent="." instance=ExtResource("1_v05e1")]
 script = ExtResource("2_6ludl")
 once = true
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="enchanter"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.526, 1.70068, -2.35449)
+amount = 6
+lifetime = 5.0
+visibility_aabb = AABB(-0.829833, -2.28608, -0.989849, 1.65967, 4.57216, 1.9797)
+process_material = SubResource("ParticleProcessMaterial_myj6j")
+draw_pass_1 = SubResource("BoxMesh_53kn8")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="."]
 collision_layer = 4

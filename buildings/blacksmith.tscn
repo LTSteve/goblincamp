@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://eyfqrbpktd2k"]
+[gd_scene load_steps=5 format=3 uid="uid://eyfqrbpktd2k"]
 
 [ext_resource type="PackedScene" uid="uid://d0rhm8ip4c3ab" path="res://models/buildings/blacksmith.glb" id="1_1b0ay"]
+[ext_resource type="PackedScene" uid="uid://hyooxaspre1o" path="res://fx/fire.tscn" id="1_fsagv"]
 [ext_resource type="Script" path="res://units/components/HeightComponent.gd" id="2_qkb1v"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_4kbs0"]
@@ -13,9 +14,18 @@ transform = Transform3D(0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, 0, 0, 0)
 script = ExtResource("2_qkb1v")
 once = true
 
+[node name="Fire" parent="blacksmith" instance=ExtResource("1_fsagv")]
+transform = Transform3D(0.498252, 0, 0, 0, 0.602099, 0, 0, 0, 0.403297, 5.14145, 5.84516, -5.16964)
+
+[node name="GPUParticles3D2" parent="blacksmith/Fire" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.45065, 0)
+emitting = false
+
 [node name="StaticBody3D" type="StaticBody3D" parent="."]
 collision_layer = 4
 collision_mask = 0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
 shape = SubResource("BoxShape3D_4kbs0")
+
+[editable path="blacksmith/Fire"]
