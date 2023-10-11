@@ -1,0 +1,10 @@
+extends Button
+
+@export var building_type: UnitSpawner.BuildingType
+@export var cost: int = 100
+
+signal request_spawn(building_type: UnitSpawner.BuildingType)
+
+func _on_pressed():
+	if MoneyManager.I.try_spend(cost):
+		request_spawn.emit(building_type)

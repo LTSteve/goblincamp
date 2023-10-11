@@ -29,3 +29,17 @@ static func sigmoid(x: float) -> float:
 
 static func crosses_zero(val1: float, val2:float) -> bool:
 	return (val1 > 0 && val2 < 0) || (val1 < 0 && val2 > 0)
+
+static func random_rotation() -> float:
+	return deg_to_rad(randf()*359.99)
+
+static func rangef(start:float, end:float, step:float, limit:int = 200) -> Array[float]:
+	if step <= 0 || start >= end: return [start]
+	var range = end - start
+	var numbers:Array[float] = []
+	for i in min(ceil(range/step), limit):
+		numbers.append(i * step + start)
+	return numbers
+
+
+

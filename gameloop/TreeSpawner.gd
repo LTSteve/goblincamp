@@ -23,7 +23,10 @@ func _ready():
 
 func _on_data_changed():
 	for child in obsticle_folder.get_children():
-		child.queue_free()
+		if Engine.is_editor_hint():
+			child.free()
+		else:
+			child.queue_free()
 
 	for i in tree_count:
 		var rand_x = (1 if randf() > 0.5 else -1) * randf_range(tree_min, tree_max) * ground.scale.x

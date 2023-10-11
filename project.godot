@@ -73,6 +73,14 @@ camera_rotate_right={
 ]
 }
 
+[layer_names]
+
+3d_physics/layer_1="players"
+3d_physics/layer_2="enemies"
+3d_physics/layer_3="buildings"
+3d_physics/layer_4="trees"
+3d_physics/layer_5="ground"
+
 [rendering]
 
 textures/canvas_textures/default_texture_repeat=1

@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://bq8m8udsnmoau"]
+
+[ext_resource type="PackedScene" uid="uid://dnkem6mlvyast" path="res://models/buildings/leatherworker.glb" id="1_8lss5"]
+[ext_resource type="Script" path="res://units/components/HeightComponent.gd" id="2_01jm3"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_4kbs0"]
+size = Vector3(5, 20, 5)
+
+[node name="Leatherworker" type="Node3D"]
+transform = Transform3D(0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, 0, 0, 0)
+
+[node name="leatherworker" parent="." instance=ExtResource("1_8lss5")]
+script = ExtResource("2_01jm3")
+once = true
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+collision_layer = 4
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(0.986853, 0, -0.161621, 0, 1, 0, 0.161621, 0, 0.986853, -0.619434, 0, 3.68018)
+shape = SubResource("BoxShape3D_4kbs0")

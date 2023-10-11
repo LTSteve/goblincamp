@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://c41e8jd2dpobk"]
+
+[ext_resource type="PackedScene" uid="uid://cvh4b4xoetdyu" path="res://models/buildings/enchanter.glb" id="1_v05e1"]
+[ext_resource type="Script" path="res://units/components/HeightComponent.gd" id="2_6ludl"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_4kbs0"]
+size = Vector3(5.5, 20, 9.5)
+
+[node name="Enchanter" type="Node3D"]
+transform = Transform3D(0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, 0, 0, 0)
+
+[node name="enchanter" parent="." instance=ExtResource("1_v05e1")]
+script = ExtResource("2_6ludl")
+once = true
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+collision_layer = 4
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.61402, 0, -0.0421982)
+shape = SubResource("BoxShape3D_4kbs0")
