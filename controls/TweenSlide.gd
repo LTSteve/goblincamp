@@ -6,7 +6,7 @@ class_name TweenSlide
 @export var slide_in_value:Vector2
 @export var slide_out_value: Vector2
 @export var slide_time: float = 0.5
-@export var ease: Tween.EaseType
+@export var ease_type: Tween.EaseType
 
 var _tween: Tween
 var _starting_value: Vector2
@@ -27,5 +27,5 @@ func _reset_tween() -> Tween:
 		_tween.stop()
 		_tween = null
 	_tween = me.create_tween()
-	_tween.set_ease(ease)
+	_tween.set_ease(ease_type)
 	return _tween
