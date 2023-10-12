@@ -715,7 +715,6 @@ mesh = SubResource("ArrayMesh_t7jub")
 skeleton = NodePath("")
 
 [connection signal="on_spawn_building" from="UnitSpawner" to="GameManager" method="_on_unit_spawner_spawn_building"]
-[connection signal="on_spawn_building" from="UnitSpawner" to="CardModifiers" method="_on_spawn_building"]
 [connection signal="on_day" from="GameManager" to="CanvasLayer/Theme/Bottom/BuyPanel" method="slide_in"]
 [connection signal="on_night" from="GameManager" to="CanvasLayer/Theme/Bottom/BuyPanel" method="slide_out"]
 [connection signal="on_spawn_enemy" from="GameManager" to="UnitSpawner" method="spawn_hostile"]

@@ -9,14 +9,6 @@ static var _I: ModifierManager
 func _ready():
 	_I = self
 
-func _on_spawn_building(_building_type:UnitSpawner.BuildingType):
-	var instance = Node.new()
-	instance.set_script(test_card.card_script)
-	var card_modifier = (instance as CardModifier)
-	card_modifier.card_resource = test_card
-	card_modifier.rank_up()
-	add_child(card_modifier)
-
 static func apply_unit_modifiers(unit:Unit):
 	for modifier in _I.get_children():
 		(modifier as CardModifier).apply_to_unit(unit)
