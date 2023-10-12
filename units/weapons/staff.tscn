@@ -450,7 +450,7 @@ _data = {
 "stow": SubResource("Animation_fy7ry")
 }
 
-[node name="Staff" type="Node3D" node_paths=PackedStringArray("animation_tree", "projectile_spawn_point")]
+[node name="Staff" type="Node3D" node_paths=PackedStringArray("animation_tree", "projectile_spawn_point") groups=["Staff"]]
 transform = Transform3D(1, 0, 3.19744e-14, 0, 1, 0, -3.19744e-14, 0, 1, 0, 2.26303e-07, 0)
 script = ExtResource("1_c3soh")
 animation_tree = NodePath("AnimationTree")

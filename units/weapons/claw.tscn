@@ -1256,7 +1256,7 @@ _data = {
 [sub_resource type="BoxShape3D" id="BoxShape3D_6t8rt"]
 size = Vector3(1, 2, 1)
 
-[node name="Claw" type="Node3D" node_paths=PackedStringArray("animation_tree", "collision_areas")]
+[node name="Claw" type="Node3D" node_paths=PackedStringArray("animation_tree", "collision_areas") groups=["Claw"]]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 1.02529, 0)
 script = ExtResource("1_5m07s")
 animation_tree = NodePath("AnimationTree")

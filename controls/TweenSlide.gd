@@ -9,18 +9,14 @@ class_name TweenSlide
 @export var ease_type: Tween.EaseType
 
 var _tween: Tween
-var _starting_value: Vector2
-
-func _ready():
-	_starting_value = me.position
 
 func slide_in():
 	_tween = _reset_tween()
-	_tween.tween_property(me, "position", _starting_value + slide_in_value, slide_time)
+	_tween.tween_property(me, "position", slide_in_value, slide_time)
 
 func slide_out():
 	_tween = _reset_tween()
-	_tween.tween_property(me, "position", _starting_value + slide_out_value, slide_time)
+	_tween.tween_property(me, "position",  slide_out_value, slide_time)
 
 func _reset_tween() -> Tween:
 	if _tween:

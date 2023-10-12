@@ -1,14 +1,21 @@
-[gd_scene load_steps=5 format=3 uid="uid://eyfqrbpktd2k"]
+[gd_scene load_steps=8 format=3 uid="uid://eyfqrbpktd2k"]
 
 [ext_resource type="PackedScene" uid="uid://d0rhm8ip4c3ab" path="res://models/buildings/blacksmith.glb" id="1_1b0ay"]
+[ext_resource type="Script" path="res://buildings/building.gd" id="1_awju8"]
 [ext_resource type="PackedScene" uid="uid://hyooxaspre1o" path="res://fx/fire.tscn" id="1_fsagv"]
 [ext_resource type="Script" path="res://units/components/HeightComponent.gd" id="2_qkb1v"]
+[ext_resource type="Resource" uid="uid://cq2d2pq3c3xui" path="res://card_modifiers/blacksmith/hotter_forge.tres" id="2_t7w2y"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_4kbs0"]
 size = Vector3(13.5, 20, 13.5)
 
-[node name="Blacksmith" type="Node3D"]
+[sub_resource type="SphereShape3D" id="SphereShape3D_17v1k"]
+radius = 9.0
+
+[node name="Blacksmith" type="Node3D" groups=["Blacksmith"]]
 transform = Transform3D(0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, 0, 0, 0)
+script = ExtResource("1_awju8")
+temp_modifier = ExtResource("2_t7w2y")
 
 [node name="blacksmith" parent="." instance=ExtResource("1_1b0ay")]
 script = ExtResource("2_qkb1v")
@@ -23,8 +30,19 @@ emitting = false
 [node name="StaticBody3D" type="StaticBody3D" parent="."]
 collision_layer = 4
 collision_mask = 0
+input_ray_pickable = false
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
 shape = SubResource("BoxShape3D_4kbs0")
+
+[node name="ClickArea" type="Area3D" parent="."]
+collision_layer = 1073741824
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ClickArea"]
+shape = SubResource("SphereShape3D_17v1k")
+
+[connection signal="tree_exiting" from="." to="." method="_on_tree_exiting"]
+[connection signal="input_event" from="ClickArea" to="." method="_on_click_area_input_event"]
 
 [editable path="blacksmith/Fire"]

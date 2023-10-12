@@ -534,7 +534,7 @@ _data = {
 [sub_resource type="SphereShape3D" id="SphereShape3D_pxgbv"]
 radius = 2.2
 
-[node name="Sword" type="Node3D" node_paths=PackedStringArray("animation_tree", "collision_areas")]
+[node name="Sword" type="Node3D" node_paths=PackedStringArray("animation_tree", "collision_areas") groups=["Sword"]]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 1, 0)
 script = ExtResource("1_ievjt")
 animation_tree = NodePath("AnimationTree")

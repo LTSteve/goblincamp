@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="CardResource" load_steps=3 format=3 uid="uid://cq2d2pq3c3xui"]
+
+[ext_resource type="Script" path="res://card_modifiers/blacksmith/hotter_forge.gd" id="1_o6tti"]
+[ext_resource type="Script" path="res://card_modifiers/CardResource.gd" id="2_gcg8j"]
+
+[resource]
+script = ExtResource("2_gcg8j")
+title = "Hotter Forge"
+descriptions = Array[String](["Sword Damage +"])
+rarity = 0
+max_rank = 0
+card_script = ExtResource("1_o6tti")
+apply_to = Array[String](["MeleeWeapon"])
+group_filters = Array[String](["Sword"])
+include_enemies = false
+include_players = true

@@ -45,7 +45,7 @@ func spawn_hostile(unit_type: UnitType):
 	var distance = enemy_spawn_min_radius + (enemy_spawn_max_radius - enemy_spawn_min_radius) * randf()
 	_spawn(unit_type, enemy_spawn_center + Quaternion.from_euler(Vector3(0,angle,0)) * Vector3.BACK * distance)
 
-func spawn_building(building_type: BuildingType) -> bool:
+func spawn_building(building_type: BuildingType, value: int) -> bool:
 	
 	var space_state = world_root.get_world_3d().direct_space_state
 	var sphere:SphereShape3D = SphereShape3D.new()
@@ -66,6 +66,7 @@ func spawn_building(building_type: BuildingType) -> bool:
 				buildings_folder.add_child(instance)
 				instance.global_position = check_position
 				instance.rotate_y(Math.random_rotation())
+				instance.value = value
 				on_spawn_building.emit(building_type)
 				return true
 	

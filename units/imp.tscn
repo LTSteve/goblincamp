@@ -16,7 +16,7 @@
 radius = 0.25
 height = 1.0
 
-[node name="Imp" type="CharacterBody3D"]
+[node name="Imp" type="CharacterBody3D" groups=["Imp"]]
 collision_layer = 2
 collision_mask = 3
 axis_lock_linear_y = true

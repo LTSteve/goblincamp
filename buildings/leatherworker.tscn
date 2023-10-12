@@ -1,14 +1,22 @@
-[gd_scene load_steps=5 format=3 uid="uid://bq8m8udsnmoau"]
+[gd_scene load_steps=8 format=3 uid="uid://bq8m8udsnmoau"]
 
 [ext_resource type="PackedScene" uid="uid://dnkem6mlvyast" path="res://models/buildings/leatherworker.glb" id="1_8lss5"]
+[ext_resource type="Script" path="res://buildings/building.gd" id="1_w5fmk"]
 [ext_resource type="Script" path="res://units/components/HeightComponent.gd" id="2_01jm3"]
+[ext_resource type="Resource" uid="uid://bxc4xb3fdl6bp" path="res://card_modifiers/leatherworker/sharper_arrows.tres" id="2_x5pcj"]
 [ext_resource type="PackedScene" uid="uid://hyooxaspre1o" path="res://fx/fire.tscn" id="3_4jk3l"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_4kbs0"]
 size = Vector3(5, 20, 5)
 
-[node name="Leatherworker" type="Node3D"]
+[sub_resource type="SphereShape3D" id="SphereShape3D_ol15f"]
+radius = 8.0
+
+[node name="Leatherworker" type="Node3D" groups=["Leatherworker"]]
 transform = Transform3D(0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, 0, 0, 0)
+script = ExtResource("1_w5fmk")
+building_type = 1
+temp_modifier = ExtResource("2_x5pcj")
 
 [node name="leatherworker" parent="." instance=ExtResource("1_8lss5")]
 script = ExtResource("2_01jm3")
@@ -20,7 +28,18 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.216403, 0, -1.3487)
 [node name="StaticBody3D" type="StaticBody3D" parent="."]
 collision_layer = 4
 collision_mask = 0
+input_ray_pickable = false
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
 transform = Transform3D(0.986853, 0, -0.161621, 0, 1, 0, 0.161621, 0, 0.986853, -0.619434, 0, 3.68018)
 shape = SubResource("BoxShape3D_4kbs0")
+
+[node name="ClickArea" type="Area3D" parent="."]
+collision_layer = 1073741824
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ClickArea"]
+shape = SubResource("SphereShape3D_ol15f")
+
+[connection signal="tree_exiting" from="." to="." method="_on_tree_exiting"]
+[connection signal="input_event" from="ClickArea" to="." method="_on_click_area_input_event"]

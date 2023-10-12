@@ -8,7 +8,7 @@
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_nqljr"]
 
-[node name="Arrow" type="RigidBody3D" node_paths=PackedStringArray("collision_areas")]
+[node name="Arrow" type="RigidBody3D" node_paths=PackedStringArray("collision_areas") groups=["Arrow"]]
 collision_layer = 0
 collision_mask = 0
 axis_lock_linear_y = true

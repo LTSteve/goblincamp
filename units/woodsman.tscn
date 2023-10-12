@@ -18,7 +18,7 @@
 [sub_resource type="SphereShape3D" id="SphereShape3D_jaud8"]
 radius = 7.0
 
-[node name="Woodsman" type="CharacterBody3D"]
+[node name="Woodsman" type="CharacterBody3D" groups=["Woodsman"]]
 collision_mask = 3
 axis_lock_linear_y = true
 axis_lock_angular_x = true

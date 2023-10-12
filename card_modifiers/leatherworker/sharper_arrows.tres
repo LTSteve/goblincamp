@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="CardResource" load_steps=3 format=3 uid="uid://bxc4xb3fdl6bp"]
+
+[ext_resource type="Script" path="res://card_modifiers/leatherworker/sharper_arrows.gd" id="1_74pig"]
+[ext_resource type="Script" path="res://card_modifiers/CardResource.gd" id="2_h7hck"]
+
+[resource]
+script = ExtResource("2_h7hck")
+title = "Sharper Arrows"
+descriptions = Array[String](["Arrow Damage +"])
+rarity = 0
+max_rank = 0
+card_script = ExtResource("1_74pig")
+apply_to = Array[String](["RangedWeapon"])
+group_filters = Array[String](["Bow"])
+include_enemies = false
+include_players = true

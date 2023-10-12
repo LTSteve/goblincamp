@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="CardResource" load_steps=3 format=3 uid="uid://71awbwce6x1g"]
+
+[ext_resource type="Script" path="res://card_modifiers/enchanter/better_fire.gd" id="1_qhp4e"]
+[ext_resource type="Script" path="res://card_modifiers/CardResource.gd" id="1_qsl7b"]
+
+[resource]
+script = ExtResource("1_qsl7b")
+title = "Better Fire"
+descriptions = Array[String](["Fireball Damage +"])
+rarity = 0
+max_rank = 0
+card_script = ExtResource("1_qhp4e")
+apply_to = Array[String](["RangedWeapon"])
+group_filters = Array[String](["Staff"])
+include_enemies = false
+include_players = true

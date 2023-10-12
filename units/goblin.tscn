@@ -15,7 +15,7 @@
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_4afdt"]
 radius = 0.55
 
-[node name="Goblin" type="CharacterBody3D"]
+[node name="Goblin" type="CharacterBody3D" groups=["Goblin"]]
 collision_layer = 2
 collision_mask = 3
 axis_lock_linear_y = true

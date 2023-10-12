@@ -1,6 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://c41e8jd2dpobk"]
+[gd_scene load_steps=12 format=3 uid="uid://c41e8jd2dpobk"]
 
+[ext_resource type="Script" path="res://buildings/building.gd" id="1_f0u77"]
 [ext_resource type="PackedScene" uid="uid://cvh4b4xoetdyu" path="res://models/buildings/enchanter.glb" id="1_v05e1"]
+[ext_resource type="Resource" uid="uid://71awbwce6x1g" path="res://card_modifiers/enchanter/better_fire.tres" id="2_5kut0"]
 [ext_resource type="Script" path="res://units/components/HeightComponent.gd" id="2_6ludl"]
 
 [sub_resource type="Curve" id="Curve_81h6e"]
@@ -42,8 +44,14 @@ size = Vector3(0.2, 0.2, 0.2)
 [sub_resource type="BoxShape3D" id="BoxShape3D_4kbs0"]
 size = Vector3(5.5, 20, 9.5)
 
-[node name="Enchanter" type="Node3D"]
+[sub_resource type="SphereShape3D" id="SphereShape3D_w5r46"]
+radius = 9.0
+
+[node name="Enchanter" type="Node3D" groups=["Enchanter"]]
 transform = Transform3D(0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, 0, 0, 0)
+script = ExtResource("1_f0u77")
+building_type = 2
+temp_modifier = ExtResource("2_5kut0")
 
 [node name="enchanter" parent="." instance=ExtResource("1_v05e1")]
 script = ExtResource("2_6ludl")
@@ -60,7 +68,18 @@ draw_pass_1 = SubResource("BoxMesh_53kn8")
 [node name="StaticBody3D" type="StaticBody3D" parent="."]
 collision_layer = 4
 collision_mask = 0
+input_ray_pickable = false
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.61402, 0, -0.0421982)
 shape = SubResource("BoxShape3D_4kbs0")
+
+[node name="ClickArea" type="Area3D" parent="."]
+collision_layer = 1073741824
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ClickArea"]
+shape = SubResource("SphereShape3D_w5r46")
+
+[connection signal="tree_exiting" from="." to="." method="_on_tree_exiting"]
+[connection signal="input_event" from="ClickArea" to="." method="_on_click_area_input_event"]

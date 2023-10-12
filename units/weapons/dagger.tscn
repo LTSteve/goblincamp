@@ -464,7 +464,7 @@ _data = {
 [sub_resource type="SphereShape3D" id="SphereShape3D_qweot"]
 radius = 1.0
 
-[node name="Dagger" type="Node3D" node_paths=PackedStringArray("animation_tree", "collision_areas")]
+[node name="Dagger" type="Node3D" node_paths=PackedStringArray("animation_tree", "collision_areas") groups=["Dagger"]]
 script = ExtResource("1_06qng")
 animation_tree = NodePath("AnimationTree")
 collision_areas = [NodePath("Hitboxes/Area3D")]

@@ -1003,7 +1003,7 @@ _data = {
 "stow": SubResource("Animation_oa54r")
 }
 
-[node name="Bow" type="Node3D" node_paths=PackedStringArray("animation_tree", "projectile_spawn_point")]
+[node name="Bow" type="Node3D" node_paths=PackedStringArray("animation_tree", "projectile_spawn_point") groups=["Bow"]]
 script = ExtResource("1_ce8uo")
 animation_tree = NodePath("AnimationTree")
 projectile_scene = ExtResource("2_keqrn")
@@ -1022,7 +1022,7 @@ transform = Transform3D(-0.378149, 0.872912, 0.308259, -0.7988, -0.139377, -0.58
 visible = false
 
 [node name="arrows" type="Node3D" parent="."]
-transform = Transform3D(0.872914, 0.378146, 0.308259, -0.139375, 0.798801, -0.585226, -0.46754, 0.467889, 0.749989, -0.646295, 0.926228, 0.525613)
+transform = Transform3D(0.872914, 0.378147, 0.308259, -0.139375, 0.798801, -0.585226, -0.46754, 0.467889, 0.749989, -0.646295, 0.926228, 0.525613)
 
 [node name="woodsman_projectile" parent="arrows" instance=ExtResource("4_goncv")]
 transform = Transform3D(0, 1, 2.98023e-08, -1, -5.96046e-08, -6.70552e-08, -1.11759e-07, 2.98023e-08, 1, -0.0272858, 0.0854712, -2.98023e-08)
