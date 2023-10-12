@@ -16,9 +16,9 @@
 [ext_resource type="Script" path="res://controls/TweenSlide.gd" id="13_fc1pc"]
 [ext_resource type="Theme" uid="uid://cel1y6hrc8slp" path="res://theme/main_theme.tres" id="13_kl088"]
 [ext_resource type="Script" path="res://card_modifiers/ModifierManager.gd" id="13_mywmv"]
+[ext_resource type="Script" path="res://card_modifiers/CardModifier.gd" id="14_cejte"]
 [ext_resource type="Texture2D" uid="uid://dtei7gs5achfg" path="res://icons/camp_inset_panel.png" id="14_t3m3u"]
 [ext_resource type="Texture2D" uid="uid://cxquwwj5pp616" path="res://icons/camp_panel.png" id="15_4vvet"]
-[ext_resource type="Resource" uid="uid://cq2d2pq3c3xui" path="res://card_modifiers/blacksmith/test_card.tres" id="15_aec51"]
 [ext_resource type="PackedScene" uid="uid://cfbnbc7yyfs1f" path="res://units/unit_cams/knight_cam.tscn" id="17_6g1ds"]
 [ext_resource type="Script" path="res://controls/BuyBuildingButton.gd" id="17_aotie"]
 [ext_resource type="PackedScene" uid="uid://c2qe8ftqf2163" path="res://units/unit_cams/witch_cam.tscn" id="18_4ytrf"]
@@ -285,7 +285,9 @@ tree_min = 0.06
 
 [node name="CardModifiers" type="Node" parent="."]
 script = ExtResource("13_mywmv")
-test_card = ExtResource("15_aec51")
+
+[node name="TestModifier" type="Node" parent="CardModifiers"]
+script = ExtResource("14_cejte")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -697,7 +699,6 @@ mesh = SubResource("ArrayMesh_t7jub")
 skeleton = NodePath("")
 
 [connection signal="on_spawn_building" from="UnitSpawner" to="GameManager" method="_on_unit_spawner_spawn_building"]
-[connection signal="on_spawn_building" from="UnitSpawner" to="CardModifiers" method="_on_spawn_building"]
 [connection signal="on_day" from="GameManager" to="CanvasLayer/Theme/BuyPanel" method="slide_in"]
 [connection signal="on_night" from="GameManager" to="CanvasLayer/Theme/BuyPanel" method="slide_out"]
 [connection signal="on_spawn_enemy" from="GameManager" to="UnitSpawner" method="spawn_hostile"]

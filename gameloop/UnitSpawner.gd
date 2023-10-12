@@ -2,7 +2,7 @@ extends Node
 
 class_name UnitSpawner
 
-signal on_spawn_building()
+signal on_spawn_building(building_type:BuildingType)
 
 enum UnitType {Knight=0, Witch, Woodsman, Goblin, Imp, Ogre}
 enum BuildingType {Blacksmith=0, Leatherworker, Enchanter}
@@ -66,7 +66,7 @@ func spawn_building(building_type: BuildingType) -> bool:
 				buildings_folder.add_child(instance)
 				instance.global_position = check_position
 				instance.rotate_y(Math.random_rotation())
-				on_spawn_building.emit()
+				on_spawn_building.emit(building_type)
 				return true
 	
 	return false

@@ -87,5 +87,5 @@ func _spawn_wave(number: float):
 	for i in goblin_count:
 		on_spawn_enemy.emit(UnitSpawner.UnitType.Goblin)
 
-func _on_unit_spawner_spawn_building():
+func _on_unit_spawner_spawn_building(_building_type:UnitSpawner.BuildingType):
 	_spawned_building = true

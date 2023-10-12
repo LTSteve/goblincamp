@@ -24,6 +24,12 @@ func _ready():
 	
 	if is_enemy: Global.enemies.append(self)
 	else: Global.players.append(self)
+	
+	call_deferred("_apply_unit_modifiers")
+
+func _apply_unit_modifiers():
+	#apply modifiers
+	ModifierManager.apply_unit_modifiers(self)
 
 func set_movement_target(movement_target: Vector3):
 	navigation_agent.set_target_position(movement_target)

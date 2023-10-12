@@ -1,0 +1,11 @@
+[gd_resource type="Theme" load_steps=3 format=3 uid="uid://cel1y6hrc8slp"]
+
+[ext_resource type="FontFile" uid="uid://q8or8vsxpn3x" path="res://theme/Anton-Regular.ttf" id="1_s6hko"]
+
+[sub_resource type="FontVariation" id="FontVariation_ljr8r"]
+base_font = ExtResource("1_s6hko")
+spacing_glyph = 1
+
+[resource]
+default_font = SubResource("FontVariation_ljr8r")
+default_font_size = 16
