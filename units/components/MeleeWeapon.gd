@@ -11,6 +11,7 @@ class_name MeleeWeapon
 @export var damage: float = 10.0
 @export var pushback: float = 5.0
 @export var hit_stun: float = 0.5
+@export var damage_type: Damage.Type = Damage.Type.Basic
 
 var damage_scale: float = 1.0
 
@@ -66,4 +67,4 @@ func _on_area_3d_body_entered(unit):
 	
 	unit.take_hit(
 		Math.unit(Math.v3_to_v2(unit.global_position-global_position)),
-		damage * damage_scale, pushback, hit_stun)
+		damage * damage_scale, pushback, hit_stun, false, damage_type)

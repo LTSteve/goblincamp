@@ -56,5 +56,5 @@ func _initialize_health():
 func _ready():
 	call_deferred("_initialize_health")
 
-func _on_recieved_hit(_direction:Vector2, hit_damage:float, _pushback:float, _hit_stun:float):
+func _on_recieved_hit(_direction:Vector2, hit_damage:float, _pushback:float, _hit_stun:float, _crit: bool, _damage_type: Damage.Type):
 	damage(hit_damage)

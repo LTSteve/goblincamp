@@ -9,7 +9,7 @@ class_name Unit
 
 @export var is_enemy: bool = false
 
-signal on_recieved_hit(direction:Vector2, damage:float, pushback:float, hit_stun:float)
+signal on_recieved_hit(direction:Vector2, damage:float, pushback:float, hit_stun:float, crit: bool, damage_type: Damage.Type)
 
 var _stunned: float = 0
 var _regular_collision: int = 0
@@ -61,6 +61,6 @@ func _physics_process(delta):
 	velocity_component.move(self)
 	rotation_component.apply_rotation(self)
 
-func take_hit(direction:Vector2, damage:float, pushback:float, hit_stun:float):
-	on_recieved_hit.emit(direction, damage, pushback, hit_stun)
+func take_hit(direction:Vector2, damage:float, pushback:float, hit_stun:float, crit:bool = false, damage_type:Damage.Type = Damage.Type.Basic):
+	on_recieved_hit.emit(direction, damage, pushback, hit_stun, crit, damage_type)
 	_stunned = hit_stun

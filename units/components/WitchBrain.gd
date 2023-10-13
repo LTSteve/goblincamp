@@ -67,6 +67,7 @@ func _clean_fleeing_list():
 
 func _on_body_entered_flee_range(enemy):
 	if !(enemy is Unit): return
+	if !_fleeing.has(enemy): return
 	_fleeing.append(enemy)
 
 func _on_body_exited_flee_range(enemy):

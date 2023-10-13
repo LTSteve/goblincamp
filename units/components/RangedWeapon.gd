@@ -12,6 +12,7 @@ class_name RangedWeapon
 @export var pushback: float = 7.0
 @export var hit_stun: float = 0.7
 @export var dumb_projectile: bool = false
+@export var damage_type: Damage.Type = Damage.Type.Basic
 
 var damage_scale: float = 1
 
@@ -72,4 +73,4 @@ func _on_area_3d_body_entered(unit):
 	if !(unit is Unit): return
 	unit.take_hit(
 		Math.unit(Math.v3_to_v2(unit.global_position-global_position)),
-		damage*damage_scale, pushback, hit_stun)
+		damage*damage_scale, pushback, hit_stun, false, damage_type)

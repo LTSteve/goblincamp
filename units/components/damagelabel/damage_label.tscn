@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://dqqle5ukx4unc"]
+
+[ext_resource type="FontFile" uid="uid://d1jvqnhuvekma" path="res://theme/YoungSerif-Regular.ttf" id="1_rc6br"]
+[ext_resource type="Script" path="res://units/components/damagelabel/DamageLabel.gd" id="2_c0g5u"]
+[ext_resource type="Resource" uid="uid://dkt62dqb6nkio" path="res://units/components/damagelabel/damage_label_settings.tres" id="3_b7qeb"]
+
+[node name="DamageLabel" type="Label3D"]
+pixel_size = 0.0045
+billboard = 1
+double_sided = false
+fixed_size = true
+render_priority = 1
+outline_render_priority = 0
+text = "50"
+font = ExtResource("1_rc6br")
+script = ExtResource("2_c0g5u")
+settings = ExtResource("3_b7qeb")

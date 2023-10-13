@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://blqqvg7tmek8o"]
+[gd_scene load_steps=13 format=3 uid="uid://blqqvg7tmek8o"]
 
 [ext_resource type="Script" path="res://units/Unit.gd" id="1_ubipr"]
 [ext_resource type="PackedScene" uid="uid://bjni3yp3c1c0c" path="res://models/knight/knight.glb" id="2_71j88"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" path="res://units/components/HeightComponent.gd" id="3_dp6gg"]
 [ext_resource type="Script" path="res://units/components/VelocityComponent.gd" id="3_gto3h"]
 [ext_resource type="PackedScene" uid="uid://p0owu7fjhs2u" path="res://units/weapons/sword.tscn" id="3_qgv83"]
+[ext_resource type="PackedScene" uid="uid://bac8aofl217ri" path="res://units/components/damagelabel/damage_number_component.tscn" id="5_hsn0a"]
 [ext_resource type="Script" path="res://units/components/BasicBrain.gd" id="6_e63tc"]
 [ext_resource type="Script" path="res://units/components/RotationComponent.gd" id="7_w68d6"]
 [ext_resource type="Script" path="res://units/components/HitblinkComponent.gd" id="8_vpyio"]
@@ -34,6 +35,9 @@ transform = Transform3D(5.53203e-08, -2.19205, 1.26558, -9.58176e-08, -1.26558, 
 
 [node name="Sword" parent="knight" instance=ExtResource("3_qgv83")]
 pushback = 5.0
+
+[node name="DamageNumberComponent" parent="knight" instance=ExtResource("5_hsn0a")]
+is_ally = true
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
 path_height_offset = 0.5
@@ -64,6 +68,7 @@ model = NodePath("../knight/knight2")
 [connection signal="on_recieved_hit" from="." to="HealthComponent" method="_on_recieved_hit"]
 [connection signal="on_recieved_hit" from="." to="VelocityComponent" method="_on_recieved_hit"]
 [connection signal="on_recieved_hit" from="." to="HitblinkComponent" method="_on_recieved_hit"]
+[connection signal="on_recieved_hit" from="." to="knight/DamageNumberComponent" method="_on_damage_recieved"]
 [connection signal="died" from="HealthComponent" to="." method="_on_died"]
 [connection signal="health_changed" from="HealthComponent" to="knight/knight2/HealthbarComponent" method="_on_health_component_health_changed"]
 [connection signal="enter_combat" from="BasicBrain" to="knight/Sword" method="_on_enter_combat"]

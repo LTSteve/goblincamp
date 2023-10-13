@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="DamageLabelSettingsResource" load_steps=2 format=3 uid="uid://dkt62dqb6nkio"]
+
+[ext_resource type="Script" path="res://units/components/damagelabel/DamageLabelSettingsResource.gd" id="1_7hu07"]
+
+[resource]
+script = ExtResource("1_7hu07")
+damage_base_colors = Array[Color]([Color(1, 1, 1, 1), Color(0.701961, 1, 0.682353, 1), Color(1, 0.701961, 0.490196, 1), Color(1, 0.380392, 0.392157, 1)])
+ally_damage_color = Color(0.839216, 0.345098, 0.443137, 1)
+crit_color_multiplier = Color(0.901961, 0.921569, 0.501961, 1)
+crit_font_scale = 1.5
+label_lifespan = 1.0
+pixel_size = 0.003
+random_spawn_radius = 1.0
+ease = 1
+movement = 2.0

@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://duwsqv7i6jgca"]
+[gd_scene load_steps=14 format=3 uid="uid://duwsqv7i6jgca"]
 
 [ext_resource type="Script" path="res://units/Unit.gd" id="1_avfjk"]
 [ext_resource type="Script" path="res://units/components/HealthComponent.gd" id="2_8blxg"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://byiw0i7pdnhqs" path="res://units/weapons/claw.tscn" id="3_10fnw"]
 [ext_resource type="Script" path="res://units/components/VelocityComponent.gd" id="3_ayc47"]
 [ext_resource type="Script" path="res://units/components/HeightComponent.gd" id="3_l85kw"]
+[ext_resource type="PackedScene" uid="uid://bac8aofl217ri" path="res://units/components/damagelabel/damage_number_component.tscn" id="5_cwhfk"]
 [ext_resource type="Script" path="res://units/components/BasicBrain.gd" id="6_xchoh"]
 [ext_resource type="Script" path="res://units/components/BountyComponent.gd" id="7_bwuvv"]
 [ext_resource type="Script" path="res://units/components/RotationComponent.gd" id="8_sd4bo"]
@@ -34,6 +35,8 @@ script = ExtResource("3_l85kw")
 
 [node name="HealthbarComponent" parent="goblin2/goblin2" index="0" instance=ExtResource("10_rj7ui")]
 transform = Transform3D(-7.7427e-08, 0, -1.77133, 0, 1.77133, 0, 1.77133, 0, -7.7427e-08, 0.00883741, 4.24613, -0.0184446)
+
+[node name="DamageNumberComponent" parent="goblin2/goblin2" index="1" instance=ExtResource("5_cwhfk")]
 
 [node name="Claw" parent="goblin2" instance=ExtResource("3_10fnw")]
 
@@ -73,6 +76,7 @@ model = NodePath("../goblin2/goblin2")
 [connection signal="on_recieved_hit" from="." to="HealthComponent" method="_on_recieved_hit"]
 [connection signal="on_recieved_hit" from="." to="VelocityComponent" method="_on_recieved_hit"]
 [connection signal="on_recieved_hit" from="." to="HitblinkComponent" method="_on_recieved_hit"]
+[connection signal="on_recieved_hit" from="." to="goblin2/goblin2/DamageNumberComponent" method="_on_damage_recieved"]
 [connection signal="died" from="HealthComponent" to="." method="_on_died"]
 [connection signal="died" from="HealthComponent" to="BountyComponent" method="_on_health_component_died"]
 [connection signal="health_changed" from="HealthComponent" to="goblin2/goblin2/HealthbarComponent" method="_on_health_component_health_changed"]

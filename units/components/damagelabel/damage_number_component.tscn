@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://bac8aofl217ri"]
+
+[ext_resource type="Script" path="res://units/components/DamageNumberComponent.gd" id="1_oxi1q"]
+[ext_resource type="PackedScene" uid="uid://dqqle5ukx4unc" path="res://units/components/damagelabel/damage_label.tscn" id="2_nsa3p"]
+
+[node name="DamageNumberComponent" type="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.31398, 0)
+script = ExtResource("1_oxi1q")
+damage_label_scene = ExtResource("2_nsa3p")

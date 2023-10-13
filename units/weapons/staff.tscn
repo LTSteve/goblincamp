@@ -456,8 +456,10 @@ script = ExtResource("1_c3soh")
 animation_tree = NodePath("AnimationTree")
 projectile_scene = ExtResource("2_brohl")
 projectile_spawn_point = NodePath("projectile_spawn")
+weapon_range = 25.0
 damage = 25.0
 pushback = 5.0
+damage_type = 2
 
 [node name="witch_weapon" parent="." instance=ExtResource("3_52u0o")]
 transform = Transform3D(0.991327, 0.0125548, 0.130793, -0.131394, 0.0947242, 0.98679, -3.87429e-07, -0.995421, 0.0955525, 0.664789, 1.13067, 1.02012)
