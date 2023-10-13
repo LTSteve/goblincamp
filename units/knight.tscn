@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://blqqvg7tmek8o"]
+[gd_scene load_steps=14 format=3 uid="uid://blqqvg7tmek8o"]
 
 [ext_resource type="Script" path="res://units/Unit.gd" id="1_ubipr"]
 [ext_resource type="PackedScene" uid="uid://bjni3yp3c1c0c" path="res://models/knight/knight.glb" id="2_71j88"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" path="res://units/components/VelocityComponent.gd" id="3_gto3h"]
 [ext_resource type="PackedScene" uid="uid://p0owu7fjhs2u" path="res://units/weapons/sword.tscn" id="3_qgv83"]
 [ext_resource type="PackedScene" uid="uid://bac8aofl217ri" path="res://units/components/damagelabel/damage_number_component.tscn" id="5_hsn0a"]
+[ext_resource type="PackedScene" uid="uid://cp2wfftw1nmvr" path="res://units/components/rank_component.tscn" id="5_mi52n"]
 [ext_resource type="Script" path="res://units/components/BasicBrain.gd" id="6_e63tc"]
 [ext_resource type="Script" path="res://units/components/RotationComponent.gd" id="7_w68d6"]
 [ext_resource type="Script" path="res://units/components/HitblinkComponent.gd" id="8_vpyio"]
@@ -32,6 +33,9 @@ script = ExtResource("3_dp6gg")
 
 [node name="HealthbarComponent" parent="knight/knight2" index="0" instance=ExtResource("9_gsacq")]
 transform = Transform3D(5.53203e-08, -2.19205, 1.26558, -9.58176e-08, -1.26558, -2.19205, 2.53116, 0, -1.10641e-07, -5.25467, -3.03378, 0)
+
+[node name="RankComponent" parent="knight/knight2" index="1" instance=ExtResource("5_mi52n")]
+transform = Transform3D(-0.2, -2.14569e-08, -0.34641, 0.34641, -1.51421e-08, -0.2, -2.38498e-09, -0.4, 2.61532e-08, -3.60903, -2.56196, -1.37593)
 
 [node name="Sword" parent="knight" instance=ExtResource("3_qgv83")]
 pushback = 5.0
@@ -65,10 +69,11 @@ script = ExtResource("7_w68d6")
 script = ExtResource("8_vpyio")
 model = NodePath("../knight/knight2")
 
+[connection signal="on_recieved_hit" from="." to="knight/DamageNumberComponent" method="_on_damage_recieved"]
 [connection signal="on_recieved_hit" from="." to="HealthComponent" method="_on_recieved_hit"]
 [connection signal="on_recieved_hit" from="." to="VelocityComponent" method="_on_recieved_hit"]
 [connection signal="on_recieved_hit" from="." to="HitblinkComponent" method="_on_recieved_hit"]
-[connection signal="on_recieved_hit" from="." to="knight/DamageNumberComponent" method="_on_damage_recieved"]
+[connection signal="on_get_kill" from="knight/Sword" to="knight/knight2/RankComponent" method="_on_get_kill"]
 [connection signal="died" from="HealthComponent" to="." method="_on_died"]
 [connection signal="health_changed" from="HealthComponent" to="knight/knight2/HealthbarComponent" method="_on_health_component_health_changed"]
 [connection signal="enter_combat" from="BasicBrain" to="knight/Sword" method="_on_enter_combat"]
@@ -76,3 +81,8 @@ model = NodePath("../knight/knight2")
 [connection signal="request_attack" from="BasicBrain" to="knight/Sword" method="_on_request_attack"]
 
 [editable path="knight"]
+[editable path="knight/knight2/RankComponent"]
+[editable path="knight/knight2/RankComponent/rank_star"]
+[editable path="knight/knight2/RankComponent/rank_star2"]
+[editable path="knight/knight2/RankComponent/rank_star3"]
+[editable path="knight/knight2/RankComponent/rank_star4"]

@@ -1,0 +1,45 @@
+[gd_scene load_steps=5 format=3 uid="uid://cp2wfftw1nmvr"]
+
+[ext_resource type="PackedScene" uid="uid://c8xtbdo28t4e1" path="res://models/rank_star.glb" id="1_828rw"]
+[ext_resource type="Script" path="res://units/components/RankComponent.gd" id="1_vq3bw"]
+[ext_resource type="Material" uid="uid://m71b55ojgbu0" path="res://models/rank_material.tres" id="2_srnfr"]
+[ext_resource type="Material" uid="uid://6lwli6kimq7c" path="res://models/gold_rank_material.tres" id="3_fl711"]
+
+[node name="RankComponent" type="Node3D" node_paths=PackedStringArray("rank_stars")]
+transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0, 0, 0)
+script = ExtResource("1_vq3bw")
+rank_stars = [NodePath("rank_star"), NodePath("rank_star2"), NodePath("rank_star3"), NodePath("rank_star4")]
+
+[node name="rank_star" parent="." instance=ExtResource("1_828rw")]
+transform = Transform3D(1, 0, 0, -1.42109e-14, 1, 2.47758e-15, 0, -1.07514e-15, 1, 1, 0, 9.53674e-07)
+visible = false
+
+[node name="Cylinder" parent="rank_star" index="0"]
+surface_material_override/0 = ExtResource("2_srnfr")
+
+[node name="rank_star2" parent="." instance=ExtResource("1_828rw")]
+transform = Transform3D(1, 0, 0, -1.42109e-14, 1, 2.47758e-15, 0, -1.07514e-15, 1, 1, 2.38419e-07, -2)
+visible = false
+
+[node name="Cylinder" parent="rank_star2" index="0"]
+surface_material_override/0 = ExtResource("2_srnfr")
+
+[node name="rank_star3" parent="." instance=ExtResource("1_828rw")]
+transform = Transform3D(1, 0, 0, -1.42109e-14, 1, 2.47758e-15, 0, -1.07514e-15, 1, -1, 4.76837e-07, 2.86102e-06)
+visible = false
+
+[node name="Cylinder" parent="rank_star3" index="0"]
+surface_material_override/0 = ExtResource("2_srnfr")
+
+[node name="rank_star4" parent="." instance=ExtResource("1_828rw")]
+transform = Transform3D(1, 0, 0, -1.42109e-14, 1, 2.47758e-15, 0, -1.07514e-15, 1, -1, 2.38419e-07, -2)
+visible = false
+
+[node name="Cylinder" parent="rank_star4" index="0"]
+transform = Transform3D(1, 0, 0, 7.10543e-15, 1, 2.47759e-15, 0, -1.07514e-15, 1, 0, 0, 0)
+surface_material_override/0 = ExtResource("3_fl711")
+
+[editable path="rank_star"]
+[editable path="rank_star2"]
+[editable path="rank_star3"]
+[editable path="rank_star4"]

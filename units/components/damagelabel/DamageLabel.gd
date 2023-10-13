@@ -18,6 +18,6 @@ func _ready():
 	position = Vector3.RIGHT.rotated(Vector3.UP, randf_range(0,359.99)) * settings.random_spawn_radius
 	
 	var tween = create_tween()
-	tween.set_ease(settings.ease)
+	tween.set_ease(settings.ease_type)
 	tween.tween_property(self, "position", self.position + Vector3(0, settings.movement, 0), settings.label_lifespan)
 	tween.finished.connect(queue_free)

@@ -8,11 +8,14 @@ class_name Unit
 @onready var collision_shape: CollisionShape3D = $CollisionShape3D
 
 @export var is_enemy: bool = false
+@export var kill_value: float = 1
 
 signal on_recieved_hit(direction:Vector2, damage:float, pushback:float, hit_stun:float, crit: bool, damage_type: Damage.Type)
 
 var _stunned: float = 0
 var _regular_collision: int = 0
+
+var _last_hit_by
 
 func _ready():
 	# These values need to be adjusted for the actor's speed
@@ -40,6 +43,8 @@ func _on_died():
 		if Global.enemies.size() == 0:
 			GameManager.I.cycle_to_day()
 	else: Global.players = Global.players.filter(func(player): return player != self)
+	if _last_hit_by && is_instance_valid(_last_hit_by):
+		_last_hit_by.scored_kill(kill_value)
 	queue_free()
 
 func _physics_process(delta):
@@ -60,6 +65,9 @@ func _physics_process(delta):
 	
 	velocity_component.move(self)
 	rotation_component.apply_rotation(self)
+
+func set_last_hit_by(weapon):
+	_last_hit_by = weapon
 
 func take_hit(direction:Vector2, damage:float, pushback:float, hit_stun:float, crit:bool = false, damage_type:Damage.Type = Damage.Type.Basic):
 	on_recieved_hit.emit(direction, damage, pushback, hit_stun, crit, damage_type)

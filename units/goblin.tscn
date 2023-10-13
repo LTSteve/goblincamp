@@ -73,10 +73,10 @@ script = ExtResource("8_sd4bo")
 script = ExtResource("9_ihg7o")
 model = NodePath("../goblin2/goblin2")
 
+[connection signal="on_recieved_hit" from="." to="goblin2/goblin2/DamageNumberComponent" method="_on_damage_recieved"]
 [connection signal="on_recieved_hit" from="." to="HealthComponent" method="_on_recieved_hit"]
 [connection signal="on_recieved_hit" from="." to="VelocityComponent" method="_on_recieved_hit"]
 [connection signal="on_recieved_hit" from="." to="HitblinkComponent" method="_on_recieved_hit"]
-[connection signal="on_recieved_hit" from="." to="goblin2/goblin2/DamageNumberComponent" method="_on_damage_recieved"]
 [connection signal="died" from="HealthComponent" to="." method="_on_died"]
 [connection signal="died" from="HealthComponent" to="BountyComponent" method="_on_health_component_died"]
 [connection signal="health_changed" from="HealthComponent" to="goblin2/goblin2/HealthbarComponent" method="_on_health_component_health_changed"]

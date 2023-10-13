@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://bklpnggu2tj0c"]
+[gd_scene load_steps=17 format=3 uid="uid://bklpnggu2tj0c"]
 
 [ext_resource type="Script" path="res://units/Unit.gd" id="1_co2hn"]
 [ext_resource type="PackedScene" uid="uid://7ompo5s8qd6p" path="res://models/woodsman/woodsman.glb" id="2_72bjw"]
@@ -11,6 +11,7 @@
 [ext_resource type="Script" path="res://units/components/WoodsmanBrain.gd" id="4_4mtgn"]
 [ext_resource type="PackedScene" uid="uid://dp4vd8emk3wx7" path="res://units/weapons/dagger.tscn" id="4_p6ex6"]
 [ext_resource type="Script" path="res://units/components/RotationComponent.gd" id="5_p0h6f"]
+[ext_resource type="PackedScene" uid="uid://cp2wfftw1nmvr" path="res://units/components/rank_component.tscn" id="6_5hx1j"]
 [ext_resource type="Script" path="res://units/components/HitblinkComponent.gd" id="6_fqxow"]
 [ext_resource type="PackedScene" uid="uid://bfg28nholuf7e" path="res://units/components/healthbar_component.tscn" id="11_ahflw"]
 
@@ -34,11 +35,26 @@ shape = SubResource("CapsuleShape3D_mwxnr")
 transform = Transform3D(-2.30258e-08, 0, 0.526768, 0, 0.526768, 0, -0.526768, 0, -2.30258e-08, 0, 0, 0)
 script = ExtResource("3_n2gsh")
 
-[node name="DamageNumberComponent" parent="woodsman" instance=ExtResource("4_2r0ps")]
-is_ally = true
-
 [node name="HealthbarComponent" parent="woodsman/woodsman2" index="0" instance=ExtResource("11_ahflw")]
 transform = Transform3D(-8.29805e-08, 0, -1.89837, 0, 1.89837, 0, 1.89837, 0, -8.29805e-08, 0, 4.55067, 0)
+
+[node name="RankComponent" parent="woodsman/woodsman2" index="1" instance=ExtResource("6_5hx1j")]
+transform = Transform3D(-1.31134e-08, -0.3, -1.31134e-08, 0, -1.31134e-08, 0.3, -0.3, 1.31134e-08, 5.73206e-16, -0.924923, 2.05941, 3.78328e-08)
+
+[node name="rank_star" parent="woodsman/woodsman2/RankComponent" index="0"]
+transform = Transform3D(0.707107, 0.612372, -0.353553, -0.707107, 0.612372, -0.353553, -2.84217e-14, 0.5, 0.866025, 1.64645, -2.90747, 0.866027)
+
+[node name="rank_star2" parent="woodsman/woodsman2/RankComponent" index="1"]
+transform = Transform3D(0.707107, 0.612372, -0.353553, -0.707107, 0.612372, -0.353553, -4.13694e-14, 0.5, 0.866025, 1, -1.55392, 0)
+
+[node name="rank_star3" parent="woodsman/woodsman2/RankComponent" index="2"]
+transform = Transform3D(0.707107, -0.612372, 0.353553, 0.707107, 0.612372, -0.353553, -2.96848e-14, 0.5, 0.866025, -1, -1.55392, 2.86102e-06)
+
+[node name="rank_star4" parent="woodsman/woodsman2/RankComponent" index="3"]
+transform = Transform3D(0.707107, -0.612372, 0.353553, 0.707107, 0.612372, -0.353553, -5.32907e-14, 0.5, 0.866025, -1.64645, -2.90747, 0.866025)
+
+[node name="DamageNumberComponent" parent="woodsman" instance=ExtResource("4_2r0ps")]
+is_ally = true
 
 [node name="BowAndDagger" type="Node3D" parent="woodsman" node_paths=PackedStringArray("bow", "dagger")]
 script = ExtResource("2_gqrex")
@@ -84,10 +100,12 @@ model = NodePath("../woodsman/woodsman2")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 shape = SubResource("SphereShape3D_jaud8")
 
+[connection signal="on_recieved_hit" from="." to="woodsman/DamageNumberComponent" method="_on_damage_recieved"]
 [connection signal="on_recieved_hit" from="." to="HealthComponent" method="_on_recieved_hit"]
 [connection signal="on_recieved_hit" from="." to="VelocityComponent" method="_on_recieved_hit"]
 [connection signal="on_recieved_hit" from="." to="HitblinkComponent" method="_on_recieved_hit"]
-[connection signal="on_recieved_hit" from="." to="woodsman/DamageNumberComponent" method="_on_damage_recieved"]
+[connection signal="on_get_kill" from="woodsman/BowAndDagger/Bow" to="woodsman/woodsman2/RankComponent" method="_on_get_kill"]
+[connection signal="on_get_kill" from="woodsman/BowAndDagger/Dagger" to="woodsman/woodsman2/RankComponent" method="_on_get_kill"]
 [connection signal="died" from="HealthComponent" to="." method="_on_died"]
 [connection signal="health_changed" from="HealthComponent" to="woodsman/woodsman2/HealthbarComponent" method="_on_health_component_health_changed"]
 [connection signal="enter_combat" from="WoodsmanBrain" to="woodsman/BowAndDagger" method="_on_enter_combat"]
@@ -99,3 +117,8 @@ shape = SubResource("SphereShape3D_jaud8")
 [connection signal="body_exited" from="FleeRange" to="WoodsmanBrain" method="_on_body_exited_nearby_range"]
 
 [editable path="woodsman"]
+[editable path="woodsman/woodsman2/RankComponent"]
+[editable path="woodsman/woodsman2/RankComponent/rank_star"]
+[editable path="woodsman/woodsman2/RankComponent/rank_star2"]
+[editable path="woodsman/woodsman2/RankComponent/rank_star3"]
+[editable path="woodsman/woodsman2/RankComponent/rank_star4"]

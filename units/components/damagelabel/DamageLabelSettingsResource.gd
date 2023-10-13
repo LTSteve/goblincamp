@@ -9,5 +9,5 @@ class_name DamageLabelSettingsResource
 @export var label_lifespan: float = 1
 @export var pixel_size: float = 0.004
 @export var random_spawn_radius: float = 0.5
-@export var ease: Tween.EaseType
+@export var ease_type: Tween.EaseType
 @export var movement: float = 1
