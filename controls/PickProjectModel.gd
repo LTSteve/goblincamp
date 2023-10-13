@@ -11,6 +11,8 @@ var _value: int
 signal on_card_selected(building_type:UnitSpawner.BuildingType, value: int, resource:CardResource)
 
 func open(building_type:UnitSpawner.BuildingType, value: int):
+	if visible: return
+	
 	_building_type = building_type
 	_value = value
 	var cards = ModifierManager.generate_card_choices(building_type)
@@ -31,3 +33,10 @@ func close():
 func _on_card_selected(resource:CardResource):
 	on_card_selected.emit(_building_type, _value, resource)
 	close()
+
+# for click-outs
+func _on_gui_input(event):
+	if event is InputEventMouseButton && event.pressed && event.button_index == MOUSE_BUTTON_LEFT:
+		#refund
+		MoneyManager.I.add_money(_value)
+		close()

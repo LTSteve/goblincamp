@@ -20,7 +20,6 @@ image = SubResource("Image_1u0r5")
 [node name="CardDisplay" type="MarginContainer" node_paths=PackedStringArray("card_background", "card_title", "card_icon", "card_description")]
 offset_right = 184.0
 offset_bottom = 240.0
-mouse_default_cursor_shape = 2
 theme_override_constants/margin_left = 8
 theme_override_constants/margin_right = 8
 script = ExtResource("1_c3r0o")
@@ -32,6 +31,7 @@ card_description = NodePath("TextureRect/MarginContainer2/Panel/MarginContainer/
 
 [node name="TextureRect" type="TextureRect" parent="."]
 layout_mode = 2
+mouse_default_cursor_shape = 2
 texture = ExtResource("3_od4q4")
 expand_mode = 3
 stretch_mode = 4
@@ -48,6 +48,7 @@ theme_override_constants/margin_right = 8
 
 [node name="TitlePanel" type="Panel" parent="TextureRect/MarginContainer"]
 layout_mode = 2
+mouse_filter = 1
 
 [node name="Label" type="Label" parent="TextureRect/MarginContainer/TitlePanel"]
 layout_mode = 1
@@ -91,6 +92,7 @@ theme_override_constants/margin_bottom = 10
 
 [node name="Panel" type="Panel" parent="TextureRect/MarginContainer2"]
 layout_mode = 2
+mouse_filter = 1
 
 [node name="MarginContainer" type="MarginContainer" parent="TextureRect/MarginContainer2/Panel"]
 layout_mode = 1
