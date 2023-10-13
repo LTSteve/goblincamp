@@ -1,8 +1,7 @@
-[gd_scene load_steps=12 format=3 uid="uid://c41e8jd2dpobk"]
+[gd_scene load_steps=11 format=3 uid="uid://c41e8jd2dpobk"]
 
 [ext_resource type="Script" path="res://buildings/building.gd" id="1_f0u77"]
 [ext_resource type="PackedScene" uid="uid://cvh4b4xoetdyu" path="res://models/buildings/enchanter.glb" id="1_v05e1"]
-[ext_resource type="Resource" uid="uid://71awbwce6x1g" path="res://card_modifiers/enchanter/better_fire.tres" id="2_5kut0"]
 [ext_resource type="Script" path="res://units/components/HeightComponent.gd" id="2_6ludl"]
 
 [sub_resource type="Curve" id="Curve_81h6e"]
@@ -51,7 +50,6 @@ radius = 9.0
 transform = Transform3D(0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, 0, 0, 0)
 script = ExtResource("1_f0u77")
 building_type = 2
-temp_modifier = ExtResource("2_5kut0")
 
 [node name="enchanter" parent="." instance=ExtResource("1_v05e1")]
 script = ExtResource("2_6ludl")

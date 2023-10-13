@@ -1,0 +1,7 @@
+[gd_resource type="Resource" script_class="DeckResource" load_steps=2 format=3 uid="uid://c1aef24c088vl"]
+
+[ext_resource type="Script" path="res://card_modifiers/DeckResource.gd" id="1_g54nx"]
+
+[resource]
+script = ExtResource("1_g54nx")
+card_folder = "res://card_modifiers/enchanter"

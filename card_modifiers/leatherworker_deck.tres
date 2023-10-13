@@ -1,0 +1,7 @@
+[gd_resource type="Resource" script_class="DeckResource" load_steps=2 format=3 uid="uid://8f8nxudwpwie"]
+
+[ext_resource type="Script" path="res://card_modifiers/DeckResource.gd" id="1_3ugba"]
+
+[resource]
+script = ExtResource("1_3ugba")
+card_folder = "res://card_modifiers/leatherworker"

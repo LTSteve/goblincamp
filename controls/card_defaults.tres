@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="CardDefaults" load_steps=2 format=3 uid="uid://bx7huosi7j2ja"]
+
+[ext_resource type="Script" path="res://controls/CardDefaults.gd" id="1_22k44"]
+
+[resource]
+script = ExtResource("1_22k44")
+rarity_colors = Array[Color]([Color(0.827451, 0.827451, 0.827451, 1), Color(0.560784, 0.976471, 1, 1), Color(0.941176, 0.376471, 0.968627, 1)])
+card_selected_color = Color(1, 0.976471, 0.788235, 1)

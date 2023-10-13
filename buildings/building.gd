@@ -3,15 +3,14 @@ extends Node3D
 class_name Building
 
 @export var building_type: UnitSpawner.BuildingType
-@export var temp_modifier: CardResource
 
 var value: int
+var card_resource: CardResource
 
 var _held_modifier: CardModifier
 
 func _ready():
-	#todo popup for choosing card
-	_held_modifier = ModifierManager.apply_modifier(temp_modifier)
+	_held_modifier = ModifierManager.apply_modifier(card_resource)
 
 func _on_tree_exiting():
 	ModifierManager.un_apply_modifier(_held_modifier)
