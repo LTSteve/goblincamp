@@ -83,6 +83,7 @@ func _fall_through_find_and_remove(array: Array, matchers: Array[Callable], fall
 		if array.any(matcher):
 			return _I._find_and_remove(array, matcher)
 	if fallback is Array:
+		if fallback.size() == 0: return null
 		return fallback[0] if fallback.size() == 1 else fallback[randi_range(0,fallback.size()-1)]
 	else:
 		return fallback

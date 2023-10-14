@@ -17,7 +17,7 @@
 radius = 0.7
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_a8j42"]
-radius = 5.0
+radius = 8.0
 
 [node name="Witch" type="CharacterBody3D" groups=["Witch"]]
 collision_mask = 3
@@ -88,6 +88,8 @@ script = ExtResource("8_rq33g")
 model = NodePath("../witch/witch2")
 
 [node name="FleeRange" type="Area3D" parent="."]
+collision_layer = 0
+collision_mask = 2
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="FleeRange"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)

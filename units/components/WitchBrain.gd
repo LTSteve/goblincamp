@@ -44,7 +44,7 @@ func _process(_delta):
 		desired_locations.append(unit.global_position)
 	
 	for enemy in _fleeing:
-		desired_locations.append(Math.unit(2 * unit.global_position - enemy.global_position) * flee_distance)
+		desired_locations.append(enemy.global_position + Math.unit(unit.global_position - enemy.global_position) * flee_distance)
 	
 	var location_sum = Vector3.ZERO
 	for location in desired_locations:
@@ -67,7 +67,6 @@ func _clean_fleeing_list():
 
 func _on_body_entered_flee_range(enemy):
 	if !(enemy is Unit): return
-	if !_fleeing.has(enemy): return
 	_fleeing.append(enemy)
 
 func _on_body_exited_flee_range(enemy):

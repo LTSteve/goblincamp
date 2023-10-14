@@ -75,7 +75,7 @@ func _ranged_logic():
 		desired_locations.append(unit.global_position)
 	
 	for enemy in _nearby:
-		desired_locations.append(Math.unit(unit.global_position - target_separation) * flee_distance)
+		desired_locations.append(enemy.global_position + Math.unit(unit.global_position - enemy.global_position) * flee_distance)
 	
 	var location_sum = Vector3.ZERO
 	for location in desired_locations:
@@ -98,7 +98,6 @@ func _clean_nearby_list():
 
 func _on_body_entered_nearby_range(enemy):
 	if !(enemy is Unit): return
-	if !_nearby.has(enemy): return
 	_nearby.append(enemy)
 
 func _on_body_exited_nearby_range(enemy):

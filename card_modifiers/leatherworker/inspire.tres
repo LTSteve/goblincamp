@@ -17,7 +17,7 @@ image = SubResource("Image_fbagt")
 
 [resource]
 script = ExtResource("1_2po58")
-test_card = false
+test_card = true
 title = "Inspire"
 descriptions = Array[String](["Buff damage of allies on kill"])
 rarity = 1

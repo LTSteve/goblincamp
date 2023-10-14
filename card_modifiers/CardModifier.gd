@@ -5,9 +5,11 @@ class_name CardModifier
 @export var card_resource: CardResource
 @export var current_rank: int = 0
 
+var params
+
 func _ready():
-	var data = card_resource.card_script_params.data if card_resource && card_resource.card_script_params else {}
-	_initialize(data)
+	params = card_resource.card_script_params.data if card_resource && card_resource.card_script_params else {}
+	_initialize(params)
 
 func rank_up():
 	var active_units = (Global.enemies if card_resource.include_enemies else []) + (Global.players if card_resource.include_players else [])

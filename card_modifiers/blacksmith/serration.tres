@@ -17,7 +17,7 @@ image = SubResource("Image_hw7qm")
 
 [resource]
 script = ExtResource("1_82kv4")
-test_card = false
+test_card = true
 title = "Serration"
 descriptions = Array[String](["Swords and Daggers cause a bleed effect"])
 rarity = 1
