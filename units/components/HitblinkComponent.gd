@@ -14,6 +14,7 @@ func _ready():
 	model.set_surface_override_material(0, _material)
 
 func _on_recieved_hit(weapon_hit:Weapon.Hit):
+	if weapon_hit.hit_stun == 0: return
 	_max_hit_blink = weapon_hit.hit_stun
 	_hit_blink = 0
 

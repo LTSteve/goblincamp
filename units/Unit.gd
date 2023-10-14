@@ -14,6 +14,7 @@ signal on_recieved_hit(weapon_hit:Weapon.Hit)
 
 var _stunned: float = 0
 var _regular_collision: int = 0
+var _active_effects: Array[Effect] = []
 
 var _last_hit_by
 
@@ -45,11 +46,18 @@ func _on_died():
 	else: Global.players = Global.players.filter(func(player): return player != self)
 	if _last_hit_by && is_instance_valid(_last_hit_by):
 		_last_hit_by.scored_kill(kill_value)
+	for effect in _active_effects:
+		effect.on_remove()
 	queue_free()
 
-func _physics_process(delta):
+func _process(delta):
 	_stunned -= delta
-	
+	var effects_count = _active_effects.size()
+	for i in range(0,effects_count):
+		var effect = _active_effects[(effects_count - 1) - i]
+		effect.update(delta)
+
+func _physics_process(delta):
 	collision_shape.disabled = _stunned > 0
 	
 	if _stunned <= 0 && !navigation_agent.is_navigation_finished():
@@ -68,5 +76,13 @@ func _physics_process(delta):
 
 func take_hit(weapon_hit:Weapon.Hit):
 	_last_hit_by = weapon_hit.hit_by
-	_stunned = weapon_hit.hit_stun
+	_stunned = max(_stunned, weapon_hit.hit_stun)
 	on_recieved_hit.emit(weapon_hit)
+
+func remove_effect(effect:Effect):
+	_active_effects.remove_at(_active_effects.find(effect))
+	effect.on_remove()
+
+func add_effect(effect:Effect):
+	if !effect.try_replace_existing(_active_effects):
+		_active_effects.append(effect)

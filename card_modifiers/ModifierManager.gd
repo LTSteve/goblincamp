@@ -49,54 +49,69 @@ static func generate_card_choices(building_type: UnitSpawner.BuildingType) -> Ar
 	var cards = deck.get_cards().filter(_I._match_unfinished_cards)
 	cards.shuffle()
 	
-	var ultra_rare: CardResource
-	var rare: Array[CardResource] = []
-	var normal: Array[CardResource] = []
-	
-	if cards.any(_I._match_ultra_rare_card):
-		ultra_rare = _I._find_and_remove(cards, _I._match_ultra_rare_card)
-	else:
-		if cards.any(_I._match_rare_card):
-			ultra_rare = _I._find_and_remove(cards, _I._match_rare_card)
-		else:
-			ultra_rare = _I._find_and_remove(cards, _I._match_normal_card)
-	
-	for i in 2:
-		if cards.any(_I._match_rare_card):
-			rare.append(_I._find_and_remove(cards, _I._match_rare_card))
-		else:
-			rare.append(_I._find_and_remove(cards, _I._match_normal_card))
-	
-	for i in 3:
-		normal.append(_I._find_and_remove(cards, _I._match_normal_card))
+	var infinite_normal = _I._find_and_remove_all(cards, _I._match_infinite_normal)
 	
 	var r = randf()
 	
 	if r < 0.4:
 		#three basic cards
-		return normal
+		return [
+			_I._fall_through_find_and_remove(cards, [_I._match_normal_card, _I._match_rare_card, _I._match_ultra_rare_card], infinite_normal),
+			_I._fall_through_find_and_remove(cards, [_I._match_normal_card, _I._match_rare_card, _I._match_ultra_rare_card], infinite_normal),
+			_I._fall_through_find_and_remove(cards, [_I._match_normal_card, _I._match_rare_card, _I._match_ultra_rare_card], infinite_normal),
+		]
 	elif r < 0.8:
 		#two rare one basic
-		return rare + [normal[0]]
+		return [
+			_I._fall_through_find_and_remove(cards, [_I._match_rare_card, _I._match_normal_card, _I._match_ultra_rare_card], infinite_normal),
+			_I._fall_through_find_and_remove(cards, [_I._match_rare_card, _I._match_normal_card, _I._match_ultra_rare_card], infinite_normal),
+			_I._fall_through_find_and_remove(cards, [_I._match_normal_card, _I._match_rare_card, _I._match_ultra_rare_card], infinite_normal),
+		]
 	else:
 		#one ultra rare, two rare
-		return [ultra_rare] + rare
+		return [
+			_I._fall_through_find_and_remove(cards, [_I._match_ultra_rare_card, _I._match_rare_card, _I._match_normal_card], infinite_normal),
+			_I._fall_through_find_and_remove(cards, [_I._match_rare_card, _I._match_normal_card, _I._match_ultra_rare_card], infinite_normal),
+			_I._fall_through_find_and_remove(cards, [_I._match_rare_card, _I._match_normal_card, _I._match_ultra_rare_card], infinite_normal),
+		]
 	
 
 #cant make these static or they won't work as Callables
 
+func _fall_through_find_and_remove(array: Array, matchers: Array[Callable], fallback):
+	for matcher in matchers:
+		if array.any(matcher):
+			return _I._find_and_remove(array, matcher)
+	if fallback is Array:
+		return fallback[0] if fallback.size() == 1 else fallback[randi_range(0,fallback.size()-1)]
+	else:
+		return fallback
+
 func _find_and_remove(array:Array,matcher:Callable):
 	var found = null
-	var index = -1
+	var to_remove:int = -1
 	var i = 0
 	for element in array:
 		if matcher.call(element):
 			found = element
-			index = i
+			to_remove = i
 			break
 		i += 1
-	if index != -1:
-		pass #array.remove_at(index)
+	if found:
+		array.remove_at(to_remove)
+	return found
+
+func _find_and_remove_all(array:Array, matcher:Callable):
+	var found: Array = []
+	var to_remove:Array[int] = []
+	var i = 0
+	for element in array:
+		if matcher.call(element):
+			found.append(element)
+			to_remove.append(i)
+		i += 1
+	for index in to_remove:
+		array.remove_at(index)
 	return found
 
 func _get_first_or_null(array:Array, matcher:Callable):
@@ -105,6 +120,8 @@ func _get_first_or_null(array:Array, matcher:Callable):
 			return element
 	return null
 
+func _match_infinite_normal(card_resource:CardResource) -> bool:
+	return card_resource.rarity == CardResource.CardRarity.Normal && card_resource.max_rank == 0
 func _match_ultra_rare_card(card_resource:CardResource) -> bool:
 	return card_resource.rarity == CardResource.CardRarity.UltraRare
 func _match_rare_card(card_resource:CardResource) -> bool:

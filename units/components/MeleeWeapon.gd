@@ -3,6 +3,7 @@ extends Node3D
 class_name MeleeWeapon
 
 signal on_get_kill(value: float)
+signal on_hit_landed(weapon_hit:Weapon.Hit)
 
 @export var animation_tree: AnimationTreeExpressionExtension
 
@@ -21,7 +22,7 @@ var damage_scale: float = 1.0
 
 @export var multi_target: bool = false
 
-var _current_cooldown:float = 0.0
+var current_cooldown:float = 0.0
 var _already_hit:Array[Unit] = []
 
 func _ready():
@@ -58,7 +59,9 @@ func _on_area_3d_body_entered(unit):
 		if !_already_hit.is_empty(): return
 		_already_hit.append(unit);
 	
-	unit.take_hit(Weapon._create_hit(self, unit))
+	var hit_data = Weapon._create_hit(self, unit)
+	unit.take_hit(hit_data)
+	on_hit_landed.emit(hit_data)
 
 # called from Unit
 func scored_kill(value: float):

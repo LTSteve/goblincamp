@@ -3,6 +3,7 @@ extends Node3D
 class_name RangedWeapon
 
 signal on_get_kill(value: float)
+signal on_hit_landed(weapon_hit:Weapon.Hit)
 
 @export var animation_tree: AnimationTreeExpressionExtension
 @export var projectile_scene: PackedScene
@@ -20,7 +21,7 @@ signal on_get_kill(value: float)
 
 var damage_scale: float = 1
 
-var _current_cooldown:float = 0.0
+var current_cooldown:float = 0.0
 var _current_target:Unit
 
 var _target_collision_layer_hack
@@ -67,7 +68,9 @@ func _on_spawn_projectile():
 func _on_area_3d_body_entered(unit):
 	if !(unit is Unit): return
 	
-	unit.take_hit(Weapon._create_hit(self, unit))
+	var hit_data = Weapon._create_hit(self, unit)
+	unit.take_hit(hit_data)
+	on_hit_landed.emit(hit_data)
 
 # called from Unit
 func scored_kill(value: float):

@@ -15,7 +15,7 @@ func get_cards(cached_ok:bool = false) -> Array[CardResource]:
 	for file in files:
 		if !file.ends_with(".tres"): continue
 		var resource = load(card_folder + "/" + file)
-		if !(resource is CardResource): continue
+		if !(resource is CardResource) || resource.test_card: continue
 		to_return.append(resource)
 	_cached_cards = to_return
 	return to_return

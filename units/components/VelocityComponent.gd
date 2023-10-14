@@ -34,4 +34,5 @@ func apply_delta(delta):
 	return _velocity * delta
 
 func _on_recieved_hit(weapon_hit:Weapon.Hit):
+	if !weapon_hit.pushback || weapon_hit.direction == Vector2.ZERO: return
 	set_velocity(weapon_hit.direction * weapon_hit.pushback)
