@@ -13,8 +13,8 @@ func _ready():
 	_material = model.get_active_material(0).duplicate() as BaseMaterial3D
 	model.set_surface_override_material(0, _material)
 
-func _on_recieved_hit(_direction:Vector2, _damage:float, _pushback:float, hit_stun:float, _crit: bool, _damage_type: Damage.Type):
-	_max_hit_blink = hit_stun
+func _on_recieved_hit(weapon_hit:Weapon.Hit):
+	_max_hit_blink = weapon_hit.hit_stun
 	_hit_blink = 0
 
 func _process(delta):

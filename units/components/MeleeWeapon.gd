@@ -27,21 +27,16 @@ func _ready():
 		area.body_entered.connect(_on_area_3d_body_entered)
 
 func _process(delta):
-	_current_cooldown -= delta
+	Weapon._process(self, delta)
 
 func _on_enter_combat():
-	animation_tree.set("parameters/conditions/in_combat", true)
-	animation_tree.set("parameters/conditions/not_in_combat", false)
+	Weapon._on_enter_combat(self)
 
 func _on_exit_combat():
-	animation_tree.set("parameters/conditions/in_combat", false)
-	animation_tree.set("parameters/conditions/not_in_combat", true)
+	Weapon._on_exit_combat(self)
 
 func _on_request_attack(target:Unit, me:Unit):
-	#in range?
-	if(_current_cooldown > 0 
-	|| (target.global_position - me.global_position).length() > weapon_range
-	|| (animation_tree.get("parameters/playback").get_current_node() != "idle_combat")) : return
+	if ! Weapon._try_to_attack(self, target, me): return
 	
 	#reset already hit tracker
 	_already_hit = []
@@ -49,12 +44,6 @@ func _on_request_attack(target:Unit, me:Unit):
 	#assign collision mask of hitboxes
 	for area in collision_areas:
 		area.collision_mask = target.collision_layer
-	
-	#trigger animation
-	animation_tree.activate_trigger("attack")
-	
-	#reset cooldown
-	_current_cooldown = cooldown
 
 # weapon hit enemy
 func _on_area_3d_body_entered(unit):
@@ -67,10 +56,8 @@ func _on_area_3d_body_entered(unit):
 		if !_already_hit.is_empty(): return
 		_already_hit.append(unit);
 	
-	unit.set_last_hit_by(self)
-	unit.take_hit(
-		Math.unit(Math.v3_to_v2(unit.global_position-global_position)),
-		damage * damage_scale, pushback, hit_stun, false, damage_type)
+	unit.take_hit(Weapon._create_hit(self, unit))
 
+# called from Unit
 func scored_kill(value: float):
 	on_get_kill.emit(value)
