@@ -18,7 +18,7 @@ signal on_hit_landed(weapon_hit:Weapon.Hit)
 @export var crit_damage_multiplier: float = 1.5
 @export var damage_type: Damage.Type = Damage.Type.Basic
 
-var damage_scale: float = 1.0
+var damage_scale_x_100: int = 100
 
 @export var multi_target: bool = false
 

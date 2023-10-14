@@ -40,7 +40,7 @@ static func _create_hit(this, unit:Unit) -> Weapon.Hit:
 	var hit_data = Hit.new()
 	hit_data.direction = Math.unit(Math.v3_to_v2(unit.global_position-this.global_position))
 	hit_data.crit = randf() < this.crit_chance
-	hit_data.damage = this.damage*this.damage_scale * (this.crit_damage_multiplier if hit_data.crit else 1.0)
+	hit_data.damage = this.damage*(this.damage_scale_x_100 * 0.01) * (this.crit_damage_multiplier if hit_data.crit else 1.0)
 	hit_data.pushback = this.pushback
 	hit_data.hit_stun = this.hit_stun
 	hit_data.damage_type = this.damage_type

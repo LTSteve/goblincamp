@@ -86,3 +86,4 @@ func remove_effect(effect:Effect):
 func add_effect(effect:Effect):
 	if !effect.try_replace_existing(_active_effects):
 		_active_effects.append(effect)
+		effect.on_apply()

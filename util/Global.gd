@@ -14,3 +14,14 @@ static func nearest_unit(units: Array[Unit], position):
 			nearestUnit = unit
 	
 	return nearestUnit
+
+static func get_all_units_near_position(units: Array[Unit], position:Vector3, radius: float) -> Array[Unit]:
+	if(!units || units.size() == 0):
+		return []
+	
+	var all: Array[Unit] = []
+	for unit in units:
+		if((unit.global_position - position).length() <= radius):
+			all.append(unit)
+	
+	return all

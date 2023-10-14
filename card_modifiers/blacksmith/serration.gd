@@ -32,9 +32,7 @@ class BleedEffect extends Effect:
 		unit.take_hit(hit_data)
 
 func _apply(weapon:MeleeWeapon,_unit:Unit):
-	#only need to connect if this is the first rank
-	if current_rank == 1:
-		weapon.on_hit_landed.connect(_on_hit_landed)
+	weapon.on_hit_landed.connect(_on_hit_landed)
 
 func _un_apply(weapon:MeleeWeapon,_unit:Unit):
 	#only need to disconnect if this is the last rank

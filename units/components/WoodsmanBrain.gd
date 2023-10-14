@@ -98,6 +98,7 @@ func _clean_nearby_list():
 
 func _on_body_entered_nearby_range(enemy):
 	if !(enemy is Unit): return
+	if !_nearby.has(enemy): return
 	_nearby.append(enemy)
 
 func _on_body_exited_nearby_range(enemy):

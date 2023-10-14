@@ -19,7 +19,7 @@ signal on_hit_landed(weapon_hit:Weapon.Hit)
 @export var dumb_projectile: bool = false
 @export var damage_type: Damage.Type = Damage.Type.Basic
 
-var damage_scale: float = 1
+var damage_scale_x_100: int = 100
 
 var current_cooldown:float = 0.0
 var _current_target:Unit

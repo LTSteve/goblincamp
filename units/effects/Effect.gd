@@ -3,7 +3,6 @@ class_name Effect
 var buff: bool
 var duration: float = 1
 var unit: Unit
-var stack_limit: int = 1
 var id: String = ""
 
 func update_duration_and_return_is_finished(delta) -> bool:
@@ -21,6 +20,9 @@ func update_duration_and_return_is_finished(delta) -> bool:
 
 func update(delta):
 	update_duration_and_return_is_finished(delta)
+
+func on_apply():
+	pass
 
 func on_remove():
 	pass
