@@ -9,9 +9,9 @@
 script = ExtResource("1_x3vnc")
 test_card = false
 title = "Impact"
-descriptions = Array[String](["Increased fireball blowback", "Increased fireball blowback (more than last rank)"])
+descriptions = Array[String](["Increased fireball blowback", "Increased fireball blowback (more)", "Increased fireball blowback (much more)"])
 rarity = 0
-max_rank = 5
+max_rank = 3
 card_script = ExtResource("1_e0p26")
 card_script_params = ExtResource("2_6kc8c")
 apply_to = Array[String](["RangedWeapon"])
