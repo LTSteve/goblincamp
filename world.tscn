@@ -1,4 +1,4 @@
-[gd_scene load_steps=58 format=3 uid="uid://c4d1d2j1uy0kb"]
+[gd_scene load_steps=60 format=3 uid="uid://c4d1d2j1uy0kb"]
 
 [ext_resource type="PackedScene" uid="uid://b43v6jawtpn5j" path="res://ground.tscn" id="2_oaunj"]
 [ext_resource type="PackedScene" uid="uid://o2t0d4q03eun" path="res://buildings/campfire.tscn" id="3_8yp2w"]
@@ -26,6 +26,8 @@
 [ext_resource type="Resource" uid="uid://c1aef24c088vl" path="res://card_modifiers/enchanter_deck.tres" id="17_asfou"]
 [ext_resource type="PackedScene" uid="uid://c2qe8ftqf2163" path="res://units/unit_cams/witch_cam.tscn" id="18_4ytrf"]
 [ext_resource type="Script" path="res://controls/BuyPanelToggle.gd" id="18_ekxat"]
+[ext_resource type="Script" path="res://card_modifiers/enchanter/impact.gd" id="18_r8i8o"]
+[ext_resource type="Resource" uid="uid://dbwfj2txrd27p" path="res://card_modifiers/enchanter/impact.tres" id="19_dgjlw"]
 [ext_resource type="PackedScene" uid="uid://crl8047c1ire1" path="res://units/unit_cams/woodsman_cam.tscn" id="19_n5c1i"]
 [ext_resource type="Environment" uid="uid://b8hhv81bda8f4" path="res://units/unit_cams/unit_cam_env.tres" id="20_g2brn"]
 [ext_resource type="PackedScene" uid="uid://cl56424ctmbxa" path="res://controls/card_display.tscn" id="22_g0iv7"]
@@ -306,6 +308,9 @@ leatherworker_deck = ExtResource("16_jvfo2")
 enchanter_deck = ExtResource("17_asfou")
 
 [node name="Node" type="Node" parent="CardModifiers"]
+script = ExtResource("18_r8i8o")
+card_resource = ExtResource("19_dgjlw")
+current_rank = 5
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
