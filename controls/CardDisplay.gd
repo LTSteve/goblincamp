@@ -22,8 +22,13 @@ func _ready():
 	card_background.modulate = card_defaults.rarity_colors[card_resource.rarity]
 	card_title.text = card_resource.title
 	card_icon.texture = card_resource.icon_texture
-	#todo: check what rank the card already is
-	card_description.text = card_resource.descriptions[0]
+	var current_modifier = ModifierManager.get_modifier_by_resource(card_resource)
+	var current_rank = current_modifier.current_rank
+	var text = card_resource.descriptions[current_rank]
+	if current_rank >= (card_resource.descriptions.size() - 1):
+		card_description.text = ExpressionsParser.parse(text, current_modifier, current_modifier.params)
+	else:
+		card_description.text = text
 
 func _on_gui_input(event):
 	if event is InputEventMouseButton && event.button_index == MOUSE_BUTTON_LEFT && event.pressed:

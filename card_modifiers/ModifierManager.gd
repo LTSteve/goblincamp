@@ -13,17 +13,25 @@ static var _I: ModifierManager
 func _ready():
 	_I = self
 
+static func get_modifier_by_resource(card_resource: CardResource, generate_default: bool = true):
+	var active_modifiers = _I.get_children()
+	for mod in active_modifiers:
+		if mod.get_script() == card_resource.card_script:
+			return mod as CardModifier
+	if ! generate_default: return null
+	var dummy_card_modifier = { 
+		"current_rank": 0, 
+		"card_resource": card_resource, 
+		"params": card_resource.card_script_params.data
+	}
+	return dummy_card_modifier
+
 static func apply_unit_modifiers(unit:Unit):
 	for modifier in _I.get_children():
 		(modifier as CardModifier).apply_to_unit(unit)
 
 static func apply_modifier(resource:CardResource) -> CardModifier:
-	var active_modifiers = _I.get_children()
-	var current_modifier: CardModifier = null
-	for mod in active_modifiers:
-		if mod.get_script() == resource.card_script:
-			current_modifier = mod as CardModifier
-			break
+	var current_modifier = get_modifier_by_resource(resource, false)
 	if !current_modifier:
 		var instance = Node.new()
 		instance.set_script(resource.card_script)
@@ -133,7 +141,7 @@ func _match_normal_card(card_resource:CardResource) -> bool:
 func _match_unfinished_cards(card_resource:CardResource)->bool:
 	#always allow infinite cards
 	if card_resource.max_rank == 0: return true
-	var children = _I.get_children()
+	var children = _I.find_children("", "CardModifier", false)
 	var existing_card = _get_first_or_null(children, func(card_modifier:CardModifier): return card_modifier.card_resource == card_resource) as CardModifier
 	if existing_card && existing_card.current_rank >= card_resource.max_rank:
 		return false

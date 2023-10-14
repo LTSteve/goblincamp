@@ -6,6 +6,11 @@ enum CardRarity {Normal,Rare,UltraRare}
 
 @export var test_card: bool
 @export var title: String
+## can format with available data
+## ex: Increase ALL damage by {([current_rank]+1)*[.damage_increase_percent]}
+## {} = expression (will be evaluated)
+## [x] = property of current modifier
+## [.x] = property of current modifier json data
 @export var descriptions: Array[String]
 @export var rarity: CardRarity
 @export var max_rank: int
