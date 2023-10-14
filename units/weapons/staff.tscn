@@ -470,6 +470,7 @@ anim_player = NodePath("../AnimationPlayer")
 active = true
 parameters/conditions/in_combat = false
 parameters/conditions/not_in_combat = false
+parameters/Attack/conditions/use_attack_2 = false
 script = ExtResource("5_thgkt")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]

@@ -24,6 +24,7 @@ var create_hit = CallableStack.new(Weapon._create_hit)
 
 var current_cooldown:float = 0.0
 var _already_hit:Array[Unit] = []
+var _current_pushback_scale: float = 1.0
 
 func _ready():
 	for area in collision_areas:
@@ -42,11 +43,17 @@ func _on_request_attack(target:Unit, me:Unit):
 	if ! Weapon._try_to_attack(self, target, me): return
 	
 	#reset already hit tracker
-	_already_hit = []
+	_clear_already_hit()
 	
 	#assign collision mask of hitboxes
 	for area in collision_areas:
 		area.collision_mask = target.collision_layer
+
+func _set_pushback_scale(value: float):
+	_current_pushback_scale = value
+
+func _clear_already_hit():
+	_already_hit = []
 
 # weapon hit enemy
 func _on_area_3d_body_entered(unit):
@@ -60,6 +67,7 @@ func _on_area_3d_body_entered(unit):
 		_already_hit.append(unit);
 	
 	var hit_data = create_hit.execute([self, unit])
+	hit_data.pushback *= _current_pushback_scale
 	unit.take_hit(hit_data)
 	on_hit_landed.emit(hit_data)
 

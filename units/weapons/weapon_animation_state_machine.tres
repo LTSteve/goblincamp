@@ -1,7 +1,33 @@
-[gd_resource type="AnimationNodeStateMachine" load_steps=13 format=3 uid="uid://dawvd5u6rapgb"]
+[gd_resource type="AnimationNodeStateMachine" load_steps=19 format=3 uid="uid://dawvd5u6rapgb"]
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_xvtc5"]
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_2s11j"]
 animation = &"attack"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_fm011"]
+animation = &"attack_2"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_cyty1"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_wvl0d"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_j3v3m"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_agk3l"]
+priority = 0
+advance_mode = 2
+advance_condition = &"use_attack_2"
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_jwpus"]
+states/attack/node = SubResource("AnimationNodeAnimation_2s11j")
+states/attack/position = Vector2(411, 76)
+states/attack_2/node = SubResource("AnimationNodeAnimation_fm011")
+states/attack_2/position = Vector2(379, 130)
+transitions = ["Start", "attack", SubResource("AnimationNodeStateMachineTransition_cyty1"), "attack", "End", SubResource("AnimationNodeStateMachineTransition_wvl0d"), "attack_2", "End", SubResource("AnimationNodeStateMachineTransition_j3v3m"), "Start", "attack_2", SubResource("AnimationNodeStateMachineTransition_agk3l")]
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_7bppx"]
 animation = &"draw"
@@ -34,17 +60,17 @@ advance_condition = &"not_in_combat"
 switch_mode = 2
 advance_mode = 2
 
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_le8cs"]
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_7y4qh"]
 advance_mode = 2
 advance_expression = "use_trigger(\"attack\")"
 
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_jipi1"]
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_fabty"]
 switch_mode = 2
 advance_mode = 2
 
 [resource]
-states/attack/node = SubResource("AnimationNodeAnimation_xvtc5")
-states/attack/position = Vector2(717, 100)
+states/Attack/node = SubResource("AnimationNodeStateMachine_jwpus")
+states/Attack/position = Vector2(702, 100)
 states/draw/node = SubResource("AnimationNodeAnimation_7bppx")
 states/draw/position = Vector2(414, 32)
 states/idle/node = SubResource("AnimationNodeAnimation_276bp")
@@ -53,5 +79,5 @@ states/idle_combat/node = SubResource("AnimationNodeAnimation_j2yia")
 states/idle_combat/position = Vector2(526, 100)
 states/stow/node = SubResource("AnimationNodeAnimation_d07vd")
 states/stow/position = Vector2(414, 177)
-transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_1k68o"), "idle", "draw", SubResource("AnimationNodeStateMachineTransition_5slhg"), "draw", "idle_combat", SubResource("AnimationNodeStateMachineTransition_cvvyw"), "idle_combat", "stow", SubResource("AnimationNodeStateMachineTransition_x77s1"), "stow", "idle", SubResource("AnimationNodeStateMachineTransition_m3722"), "idle_combat", "attack", SubResource("AnimationNodeStateMachineTransition_le8cs"), "attack", "idle_combat", SubResource("AnimationNodeStateMachineTransition_jipi1")]
-graph_offset = Vector2(-126, -36)
+transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_1k68o"), "idle", "draw", SubResource("AnimationNodeStateMachineTransition_5slhg"), "draw", "idle_combat", SubResource("AnimationNodeStateMachineTransition_cvvyw"), "idle_combat", "stow", SubResource("AnimationNodeStateMachineTransition_x77s1"), "stow", "idle", SubResource("AnimationNodeStateMachineTransition_m3722"), "idle_combat", "Attack", SubResource("AnimationNodeStateMachineTransition_7y4qh"), "Attack", "idle_combat", SubResource("AnimationNodeStateMachineTransition_fabty")]
+graph_offset = Vector2(216, -81)
