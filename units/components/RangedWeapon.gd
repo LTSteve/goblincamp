@@ -19,7 +19,7 @@ signal on_hit_landed(weapon_hit:Weapon.Hit)
 @export var dumb_projectile: bool = false
 @export var damage_type: Damage.Type = Damage.Type.Basic
 
-var damage_scale_x_100: int = 100
+var create_hit = CallableStack.new(Weapon._create_hit)
 
 var current_cooldown:float = 0.0
 var _current_target:Unit
@@ -68,7 +68,7 @@ func _on_spawn_projectile():
 func _on_area_3d_body_entered(unit):
 	if !(unit is Unit): return
 	
-	var hit_data = Weapon._create_hit(self, unit)
+	var hit_data = create_hit.execute([self, unit])
 	unit.take_hit(hit_data)
 	on_hit_landed.emit(hit_data)
 

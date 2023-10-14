@@ -1,64 +1,46 @@
 extends CardModifier
 
+const INSPIRE_RADIUS: float = 20
+
 class InspireEffect extends Effect:
-	
 	var weapons_applied_to = []
 	
-	func _init(unit_effected: Unit, id_append: String):
+	var params
+	var current_rank
+	
+	func _init(unit_effected: Unit, id_append: String, parameters, rank):
 		id = "InspireEffect%s" % id_append
 		buff = true
 		duration = 10
 		unit = unit_effected
+		params = parameters
+		current_rank = rank
 	
 	func on_apply():
 		weapons_applied_to = unit.find_children("", "MeleeWeapon") + unit.find_children("","RangedWeapon")
 		for weapon in weapons_applied_to:
 			if !is_instance_valid(weapon): continue
-			weapon.damage_scale_x_100 += 40
+			UniqueMetaId.store([weapon, self, "_create_hit_override"], weapon.create_hit.add_override(_create_hit_override))
 	
 	func on_remove():
 		for weapon in weapons_applied_to:
 			if !is_instance_valid(weapon): continue
-			weapon.damage_scale_x_100 -= 40
+			weapon.create_hit.remove_override(UniqueMetaId.create([weapon, self, "_create_hit_override"]))
 		weapons_applied_to = []
 	
-	func replace_with(effect:Effect):
-		super.replace_with(effect)
-		var current_weapons = unit.find_children("", "MeleeWeapon") + unit.find_children("","RangedWeapon")
-		
-		var applied_exclusive = _get_all_exclusive_elements(weapons_applied_to, current_weapons)
-		for weapon in applied_exclusive:
-			if !is_instance_valid(weapon): continue
-			weapon.damage_scale -= 40
-		
-		var current_exclusive = _get_all_exclusive_elements(current_weapons, weapons_applied_to)
-		for weapon in current_exclusive:
-			if !is_instance_valid(weapon): continue
-			weapon.damage_scale += 40
-		
-		weapons_applied_to = current_weapons
-	
-	func _get_all_exclusive_elements(to:Array,vs:Array):
-		var exclusive = []
-		for el in to: if !vs.has(el): exclusive.append(el)
-		return exclusive
-	
-	func _get_all_shared_elements(a: Array, b:Array):
-		var shared = []
-		for el in a: if b.has(el): shared.append(el)
-		return shared
-
-const __inspire_on_get_kill: String = "__inspire_on_get_kill"
-const INSPIRE_RADIUS: float = 20
+	func _create_hit_override(base_value:Weapon.Hit, current_value:Weapon.Hit, _weapon, _target:Unit):
+		current_value.damage += base_value.damage * params.damage_increase_percent * current_rank
+		return current_value
 
 func _apply(weapon:Node,unit:Unit):
-	weapon.set_meta(__inspire_on_get_kill, func(_value): _on_get_kill(unit))
-	weapon.on_get_kill.connect(weapon.get_meta(__inspire_on_get_kill))
+	var _on_get_kill_override = func (_value): _on_get_kill(unit)
+	UniqueMetaId.store([weapon, self, "_on_get_kill_override"], _on_get_kill_override)
+	weapon.on_get_kill.connect(_on_get_kill_override)
 
 func _un_apply(weapon:Node,_unit:Unit):
 	#only need to disconnect if this is the last rank
 	if current_rank == 1:
-		weapon.on_get_kill.disconnect(weapon.get_meta(__inspire_on_get_kill))
+		weapon.on_get_kill.disconnect(UniqueMetaId.create([weapon, self, "_on_get_kill_override"]))
 
 func _on_get_kill(killer:Unit):
 	if !is_instance_valid(killer): return
@@ -66,5 +48,5 @@ func _on_get_kill(killer:Unit):
 	var nearby_units:Array[Unit] = Global.get_all_units_near_position(Global.players, killer.global_position, INSPIRE_RADIUS)
 	# apply an effect to all of them
 	for unit in nearby_units:
-		var effect = InspireEffect.new(unit, str(killer.get_instance_id()))
+		var effect = InspireEffect.new(unit, str(killer.get_instance_id()), params, current_rank)
 		unit.add_effect(effect)

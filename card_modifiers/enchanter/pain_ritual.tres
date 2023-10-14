@@ -9,7 +9,7 @@
 script = ExtResource("1_vt5fp")
 test_card = false
 title = "Pain Ritual"
-descriptions = Array[String](["Increase ALL damage by {([current_rank]+1)*[.damage_increase_percent]}%"])
+descriptions = Array[String](["Increase ALL damage by {([current_rank]+1)*[.damage_increase_percent]*100}%"])
 rarity = 0
 max_rank = 5
 card_script = ExtResource("1_7m4bj")

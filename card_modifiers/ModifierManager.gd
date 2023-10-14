@@ -28,6 +28,7 @@ static func get_modifier_by_resource(card_resource: CardResource, generate_defau
 
 static func apply_unit_modifiers(unit:Unit):
 	for modifier in _I.get_children():
+		if !(modifier is CardModifier): continue
 		(modifier as CardModifier).apply_to_unit(unit)
 
 static func apply_modifier(resource:CardResource) -> CardModifier:

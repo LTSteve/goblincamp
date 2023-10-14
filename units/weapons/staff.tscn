@@ -458,7 +458,7 @@ projectile_scene = ExtResource("2_brohl")
 projectile_spawn_point = NodePath("projectile_spawn")
 weapon_range = 25.0
 damage = 25.0
-pushback = 5.0
+pushback = 3.0
 damage_type = 2
 
 [node name="witch_weapon" parent="." instance=ExtResource("3_52u0o")]

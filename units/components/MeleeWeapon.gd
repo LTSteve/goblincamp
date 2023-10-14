@@ -18,7 +18,7 @@ signal on_hit_landed(weapon_hit:Weapon.Hit)
 @export var crit_damage_multiplier: float = 1.5
 @export var damage_type: Damage.Type = Damage.Type.Basic
 
-var damage_scale_x_100: int = 100
+var create_hit = CallableStack.new(Weapon._create_hit)
 
 @export var multi_target: bool = false
 
@@ -59,7 +59,7 @@ func _on_area_3d_body_entered(unit):
 		if !_already_hit.is_empty(): return
 		_already_hit.append(unit);
 	
-	var hit_data = Weapon._create_hit(self, unit)
+	var hit_data = create_hit.execute([self, unit])
 	unit.take_hit(hit_data)
 	on_hit_landed.emit(hit_data)
 

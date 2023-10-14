@@ -2,6 +2,7 @@ class_name Weapon
 
 class Hit:
 	var direction:Vector2
+	var crit_damage_multiplier: float
 	var damage:float
 	var pushback:float
 	var hit_stun:float
@@ -9,6 +10,10 @@ class Hit:
 	var damage_type: Damage.Type
 	var hit_by
 	var hit:Unit
+	
+	var post_crit_damage: float:
+		get:
+			return damage * (crit_damage_multiplier if crit else 1.0)
 
 static func _process(this, delta):
 	this.current_cooldown -= delta
@@ -40,7 +45,8 @@ static func _create_hit(this, unit:Unit) -> Weapon.Hit:
 	var hit_data = Hit.new()
 	hit_data.direction = Math.unit(Math.v3_to_v2(unit.global_position-this.global_position))
 	hit_data.crit = randf() < this.crit_chance
-	hit_data.damage = round(this.damage*(this.damage_scale_x_100 * 0.01) * (this.crit_damage_multiplier if hit_data.crit else 1.0))
+	hit_data.crit_damage_multiplier = this.crit_damage_multiplier
+	hit_data.damage = round(this.damage)
 	hit_data.pushback = this.pushback
 	hit_data.hit_stun = this.hit_stun
 	hit_data.damage_type = this.damage_type

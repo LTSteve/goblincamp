@@ -13,7 +13,7 @@ class BleedEffect extends Effect:
 		duration = 10
 		unit = weapon_hit.hit
 		original_hit = weapon_hit
-		tick_damage = ceil(weapon_hit.damage * damage_scale * tick_time / duration)
+		tick_damage = ceil(weapon_hit.post_crit_damage * damage_scale * tick_time / duration)
 		_current_tick_cooldown = tick_time
 	
 	func update(delta:float):

@@ -57,4 +57,4 @@ func _ready():
 	call_deferred("_initialize_health")
 
 func _on_recieved_hit(weapon_hit:Weapon.Hit):
-	damage(weapon_hit.damage)
+	damage(weapon_hit.post_crit_damage)
