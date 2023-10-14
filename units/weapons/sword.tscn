@@ -693,6 +693,8 @@ active = true
 parameters/conditions/in_combat = false
 parameters/conditions/not_in_combat = false
 parameters/Attack/conditions/use_attack_2 = false
+parameters/Draw/TimeScale/scale = 1.0
+parameters/Stow/TimeScale/scale = 1.0
 script = ExtResource("4_7404g")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]

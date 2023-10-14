@@ -19,6 +19,7 @@ func open(building_type:UnitSpawner.BuildingType, value: int):
 	for card in cards:
 		var new_card = card_scene.instantiate() as CardDisplay
 		new_card.card_resource = card
+		new_card.show_next_rank = true
 		new_card.card_selected.connect(_on_card_selected)
 		card_container.add_child(new_card)
 	

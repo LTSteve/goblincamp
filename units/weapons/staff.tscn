@@ -462,7 +462,7 @@ pushback = 3.0
 damage_type = 2
 
 [node name="witch_weapon" parent="." instance=ExtResource("3_52u0o")]
-transform = Transform3D(0.991327, 0.0125548, 0.130793, -0.131394, 0.0947242, 0.98679, -3.87429e-07, -0.995421, 0.0955525, 0.664789, 1.13067, 1.02012)
+transform = Transform3D(0.992417, 0.0115612, 0.122348, -0.122892, 0.0957204, 0.987789, -0.000291108, -0.995338, 0.0964155, 0.664789, 1.16612, 1.02012)
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
 tree_root = ExtResource("4_tr10y")
@@ -471,6 +471,8 @@ active = true
 parameters/conditions/in_combat = false
 parameters/conditions/not_in_combat = false
 parameters/Attack/conditions/use_attack_2 = false
+parameters/Draw/TimeScale/scale = 1.0
+parameters/Stow/TimeScale/scale = 1.0
 script = ExtResource("5_thgkt")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]

@@ -30,12 +30,10 @@ func _process(delta):
 	Weapon._process(self, delta)
 
 func _on_enter_combat():
-	animation_tree.set("parameters/conditions/in_combat", true)
-	animation_tree.set("parameters/conditions/not_in_combat", false)
+	Weapon._on_enter_combat(self)
 
 func _on_exit_combat():
-	animation_tree.set("parameters/conditions/in_combat", false)
-	animation_tree.set("parameters/conditions/not_in_combat", true)
+	Weapon._on_exit_combat(self)
 
 func _on_request_attack(target:Unit, me:Unit):
 	if ! Weapon._try_to_attack(self, target, me): return

@@ -11,6 +11,7 @@ class_name CardDisplay
 @export var card_description: Label
 
 var clickable: bool = true
+var show_next_rank: bool = false
 
 signal card_selected(resource:CardResource)
 
@@ -26,7 +27,7 @@ func _ready():
 	var current_rank = current_modifier.current_rank
 	var text = card_resource.descriptions[min(card_resource.descriptions.size() - 1, current_rank)]
 	if current_rank >= (card_resource.descriptions.size() - 1):
-		card_description.text = ExpressionsParser.parse(text, current_modifier, current_modifier.params)
+		card_description.text = ExpressionsParser.parse(text, { "current_rank": current_rank + (1 if show_next_rank else 0)}, current_modifier.params)
 	else:
 		card_description.text = text
 

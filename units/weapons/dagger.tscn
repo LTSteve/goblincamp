@@ -171,7 +171,7 @@ tracks/6/keys = {
 
 [sub_resource type="Animation" id="Animation_31k8u"]
 resource_name = "draw"
-length = 0.7
+length = 0.9
 tracks/0/type = "bezier"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -179,9 +179,9 @@ tracks/0/path = NodePath("woodsman_weapon_melee:position:x")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"handle_modes": PackedInt32Array(1, 1, 3, 3, 3),
+"handle_modes": PackedInt32Array(1, 1, 3, 0, 0),
 "points": PackedFloat32Array(0.131204, 0, 0, 0, 0, 0.717707, 0, 0, 0, 0, 0.93166, -0.025, 0, 0.025, 0, 1.23277, -0.05, 0, 0.05, 0, 0.116132, -0.075, 0, 0.075, 0),
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.4, 0.7)
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.5, 0.9)
 }
 tracks/1/type = "bezier"
 tracks/1/imported = false
@@ -190,9 +190,9 @@ tracks/1/path = NodePath("woodsman_weapon_melee:position:y")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"handle_modes": PackedInt32Array(1, 1, 3, 3, 3),
+"handle_modes": PackedInt32Array(1, 1, 3, 0, 0),
 "points": PackedFloat32Array(0.565012, 0, 0, 0, 0, 0.662917, 0, 0, 0, 0, 1.60694, -0.025, 0, 0.025, 0, 0.662917, -0.05, 0, 0.05, 0, 0.781428, -0.075, 0, 0.075, 0),
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.4, 0.7)
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.5, 0.9)
 }
 tracks/2/type = "bezier"
 tracks/2/imported = false
@@ -201,9 +201,9 @@ tracks/2/path = NodePath("woodsman_weapon_melee:position:z")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"handle_modes": PackedInt32Array(1, 1, 3, 3, 3),
+"handle_modes": PackedInt32Array(1, 1, 3, 0, 0),
 "points": PackedFloat32Array(0.947975, 0, 0, 0, 0, 0.947975, 0, 0, 0, 0, 0.820901, -0.025, 0, 0.025, 0, 0.642064, -0.05, 0, 0.05, 0, 1.19189, -0.075, 0, 0.075, 0),
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.4, 0.7)
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.5, 0.9)
 }
 tracks/3/type = "bezier"
 tracks/3/imported = false
@@ -212,9 +212,9 @@ tracks/3/path = NodePath("woodsman_weapon_melee:rotation:x")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"handle_modes": PackedInt32Array(1, 1, 3, 3),
+"handle_modes": PackedInt32Array(1, 1, 0, 0),
 "points": PackedFloat32Array(1.40539, 0, 0, 0, 0, 1.40539, 0, 0, 0, 0, -1.54879, -0.075, 0, 0.075, 0, -1.21658, -0.075, 0, 0.075, 0),
-"times": PackedFloat32Array(0, 0.1, 0.4, 0.7)
+"times": PackedFloat32Array(0, 0.1, 0.5, 0.9)
 }
 tracks/4/type = "bezier"
 tracks/4/imported = false
@@ -223,9 +223,9 @@ tracks/4/path = NodePath("woodsman_weapon_melee:rotation:y")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
-"handle_modes": PackedInt32Array(1, 1, 3, 3),
+"handle_modes": PackedInt32Array(1, 1, 0, 0),
 "points": PackedFloat32Array(1.5708, 0, 0, 0, 0, 1.5708, 0, 0, 0, 0, 1.9288, -0.075, 0, 0.075, 0, -2.0474, -0.075, 0, 0.075, 0),
-"times": PackedFloat32Array(0, 0.1, 0.4, 0.7)
+"times": PackedFloat32Array(0, 0.1, 0.5, 0.9)
 }
 tracks/5/type = "bezier"
 tracks/5/imported = false
@@ -234,9 +234,9 @@ tracks/5/path = NodePath("woodsman_weapon_melee:rotation:z")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
-"handle_modes": PackedInt32Array(1, 1, 3, 3),
+"handle_modes": PackedInt32Array(1, 1, 0, 0),
 "points": PackedFloat32Array(-1.5708, 0, 0, 0, 0, -1.5708, 0, 0, 0, 0, -1.5708, -0.075, 0, 0.075, 0, 2.44143, -0.075, 0, 0.075, 0),
-"times": PackedFloat32Array(0, 0.1, 0.4, 0.7)
+"times": PackedFloat32Array(0, 0.1, 0.5, 0.9)
 }
 
 [sub_resource type="Animation" id="Animation_eu020"]
@@ -383,7 +383,7 @@ tracks/5/keys = {
 
 [sub_resource type="Animation" id="Animation_jw0t3"]
 resource_name = "stow"
-length = 0.7
+length = 0.9
 tracks/0/type = "bezier"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -393,7 +393,7 @@ tracks/0/loop_wrap = true
 tracks/0/keys = {
 "handle_modes": PackedInt32Array(0, 0, 0, 0, 0),
 "points": PackedFloat32Array(0.116132, -0.075, 0, 0.075, 0, 1.23277, -0.05, 0, 0.05, 0, 0.93166, -0.025, 0, 0.025, 0, 0.717707, 0, 0, 0, 0, 0.131204, 0, 0, 0, 0),
-"times": PackedFloat32Array(0, 0.2, 0.5, 0.6, 0.7)
+"times": PackedFloat32Array(0, 0.4, 0.7, 0.8, 0.9)
 }
 tracks/1/type = "bezier"
 tracks/1/imported = false
@@ -404,7 +404,7 @@ tracks/1/loop_wrap = true
 tracks/1/keys = {
 "handle_modes": PackedInt32Array(0, 0, 0, 0, 0),
 "points": PackedFloat32Array(0.781428, -0.075, 0, 0.075, 0, 0.662917, -0.05, 0, 0.05, 0, 1.60694, -0.025, 0, 0.025, 0, 0.662917, 0, 0, 0, 0, 0.565012, 0, 0, 0, 0),
-"times": PackedFloat32Array(0, 0.2, 0.5, 0.6, 0.7)
+"times": PackedFloat32Array(0, 0.4, 0.7, 0.8, 0.9)
 }
 tracks/2/type = "bezier"
 tracks/2/imported = false
@@ -415,7 +415,7 @@ tracks/2/loop_wrap = true
 tracks/2/keys = {
 "handle_modes": PackedInt32Array(0, 0, 0, 0, 0),
 "points": PackedFloat32Array(1.19189, -0.075, 0, 0.075, 0, 0.642064, -0.05, 0, 0.05, 0, 0.820901, -0.025, 0, 0.025, 0, 0.947975, 0, 0, 0, 0, 0.947975, 0, 0, 0, 0),
-"times": PackedFloat32Array(0, 0.2, 0.5, 0.6, 0.7)
+"times": PackedFloat32Array(0, 0.4, 0.7, 0.8, 0.9)
 }
 tracks/3/type = "bezier"
 tracks/3/imported = false
@@ -426,7 +426,7 @@ tracks/3/loop_wrap = true
 tracks/3/keys = {
 "handle_modes": PackedInt32Array(0, 0, 0, 0),
 "points": PackedFloat32Array(-1.21658, -0.075, 0, 0.075, 0, -1.54879, -0.075, 0, 0.075, 0, 1.40539, 0, 0, 0, 0, 1.40539, 0, 0, 0, 0),
-"times": PackedFloat32Array(0, 0.2, 0.6, 0.7)
+"times": PackedFloat32Array(0, 0.4, 0.8, 0.9)
 }
 tracks/4/type = "bezier"
 tracks/4/imported = false
@@ -437,7 +437,7 @@ tracks/4/loop_wrap = true
 tracks/4/keys = {
 "handle_modes": PackedInt32Array(0, 0, 0, 0),
 "points": PackedFloat32Array(-2.0474, -0.075, 0, 0.075, 0, 1.9288, -0.075, 0, 0.075, 0, 1.5708, 0, 0, 0, 0, 1.5708, 0, 0, 0, 0),
-"times": PackedFloat32Array(0, 0.2, 0.6, 0.7)
+"times": PackedFloat32Array(0, 0.4, 0.8, 0.9)
 }
 tracks/5/type = "bezier"
 tracks/5/imported = false
@@ -448,7 +448,7 @@ tracks/5/loop_wrap = true
 tracks/5/keys = {
 "handle_modes": PackedInt32Array(0, 0, 0, 0),
 "points": PackedFloat32Array(2.44143, -0.075, 0, 0.075, 0, -1.5708, -0.075, 0, 0.075, 0, -1.5708, 0, 0, 0, 0, -1.5708, 0, 0, 0, 0),
-"times": PackedFloat32Array(0, 0.2, 0.6, 0.7)
+"times": PackedFloat32Array(0, 0.4, 0.8, 0.9)
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_7kp8n"]
@@ -487,6 +487,9 @@ anim_player = NodePath("../AnimationPlayer")
 active = true
 parameters/conditions/in_combat = false
 parameters/conditions/not_in_combat = false
+parameters/Attack/conditions/use_attack_2 = false
+parameters/Draw/TimeScale/scale = 1.0
+parameters/Stow/TimeScale/scale = 1.0
 script = ExtResource("4_rsiru")
 
 [node name="Hitboxes" type="Node3D" parent="."]
