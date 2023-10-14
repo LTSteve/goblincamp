@@ -13,6 +13,8 @@ signal on_get_kill(value: float)
 @export var damage: float = 30.0
 @export var pushback: float = 7.0
 @export var hit_stun: float = 0.7
+@export var crit_chance: float = 0.01
+@export var crit_damage_multiplier: float = 1.5
 @export var dumb_projectile: bool = false
 @export var damage_type: Damage.Type = Damage.Type.Basic
 

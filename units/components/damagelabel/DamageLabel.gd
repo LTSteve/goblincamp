@@ -11,10 +11,11 @@ var is_ally: bool
 
 func _ready():
 	text = str(damage)
-	var crit_multiplier = settings.crit_color_multiplier if is_crit else Color.BLACK
+	var crit_multiplier = settings.crit_color_multiplier if is_crit else Color.WHITE
 	var damage_color = settings.ally_damage_color if is_ally else settings.damage_base_colors[damage_type]
-	modulate = damage_color + crit_multiplier
+	modulate = damage_color * crit_multiplier
 	pixel_size = settings.pixel_size
+	if is_crit: pixel_size *= settings.crit_font_scale
 	position = Vector3.RIGHT.rotated(Vector3.UP, randf_range(0,359.99)) * settings.random_spawn_radius
 	
 	var tween = create_tween()
