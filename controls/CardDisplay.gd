@@ -24,7 +24,7 @@ func _ready():
 	card_icon.texture = card_resource.icon_texture
 	var current_modifier = ModifierManager.get_modifier_by_resource(card_resource)
 	var current_rank = current_modifier.current_rank
-	var text = card_resource.descriptions[current_rank]
+	var text = card_resource.descriptions[min(card_resource.descriptions.size() - 1, current_rank)]
 	if current_rank >= (card_resource.descriptions.size() - 1):
 		card_description.text = ExpressionsParser.parse(text, current_modifier, current_modifier.params)
 	else:

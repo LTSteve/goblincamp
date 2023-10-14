@@ -141,8 +141,10 @@ func _match_normal_card(card_resource:CardResource) -> bool:
 func _match_unfinished_cards(card_resource:CardResource)->bool:
 	#always allow infinite cards
 	if card_resource.max_rank == 0: return true
-	var children = _I.find_children("", "CardModifier", false)
-	var existing_card = _get_first_or_null(children, func(card_modifier:CardModifier): return card_modifier.card_resource == card_resource) as CardModifier
+	var children = _I.get_children()
+	var existing_card = _get_first_or_null(children, func(card_modifier): 
+		if !(card_modifier is CardModifier): return false
+		return card_modifier.card_resource == card_resource) as CardModifier
 	if existing_card && existing_card.current_rank >= card_resource.max_rank:
 		return false
 	return true
