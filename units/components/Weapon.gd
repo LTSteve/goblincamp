@@ -1,5 +1,14 @@
 class_name Weapon
 
+class HitCreationData:
+	var hit_point: Vector3 = Vector3.ZERO
+	var can_chain: bool = true
+	var base_damage_scale: float = 1.0
+	var base_pushback_scale: float = 1.0
+	
+	func _init(point:Vector3 = Vector3.ZERO):
+		hit_point = point
+
 class Hit:
 	var direction:Vector2
 	var crit_damage_multiplier: float
@@ -10,7 +19,7 @@ class Hit:
 	var damage_type: Damage.Type
 	var hit_by
 	var hit:Unit
-	var hit_point:Vector3
+	var hit_creation_data:HitCreationData
 	
 	var post_crit_damage: float:
 		get:
@@ -27,8 +36,9 @@ class Hit:
 		obj.damage_type = damage_type
 		obj.hit_by = hit_by
 		obj.hit = hit
-		obj.hit_point = hit_point
+		obj.hit_creation_data = hit_creation_data
 		return obj
+
 
 static func _process(this, delta):
 	this.current_cooldown -= delta
@@ -55,17 +65,17 @@ static func _try_to_attack(this, target:Unit, me:Unit) -> bool:
 	
 	return true
 
-static func _create_hit(this, unit:Unit, hit_point:Vector3 = Vector3.ZERO) -> Weapon.Hit:
+static func _create_hit(this, unit:Unit, hit_creation_data:HitCreationData = HitCreationData.new()) -> Weapon.Hit:
 	
 	var hit_data = Hit.new()
 	hit_data.direction = Math.unit(Math.v3_to_v2(unit.global_position-this.global_position))
 	hit_data.crit = randf() < this.crit_chance
 	hit_data.crit_damage_multiplier = this.crit_damage_multiplier
-	hit_data.damage = round(this.damage)
-	hit_data.pushback = this.pushback
+	hit_data.damage = round(this.damage * hit_creation_data.base_damage_scale)
+	hit_data.pushback = this.pushback * hit_creation_data.base_pushback_scale
 	hit_data.hit_stun = this.hit_stun
 	hit_data.damage_type = this.damage_type
 	hit_data.hit_by = this
 	hit_data.hit = unit
-	hit_data.hit_point = hit_point
+	hit_data.hit_creation_data = hit_creation_data
 	return hit_data

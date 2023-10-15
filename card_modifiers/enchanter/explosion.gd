@@ -18,7 +18,7 @@ func _create_hit_override(_base_value:Weapon.Hit, current_value:Weapon.Hit):
 	var cloned_value = current_value.duplicate()
 	aoe.callback = func(enemy, explosion): _on_hit_landed(enemy, explosion, cloned_value)
 	$"/root/World".add_child(aoe)
-	aoe.global_position = Vector3(current_value.hit_point.x,0.5,current_value.hit_point.z)
+	aoe.global_position = Vector3(current_value.hit_creation_data.hit_point.x,0.5,current_value.hit_creation_data.hit_point.z)
 	
 	# discard actual hit in favor of explosion hit
 	current_value.damage = 0
@@ -39,4 +39,5 @@ func _on_hit_landed(enemy:Unit, explosion:AreaOfEffect, original_hit: Weapon.Hit
 	explosion_hit.damage_type = original_hit.damage_type
 	explosion_hit.hit_by = original_hit.hit_by
 	explosion_hit.hit = enemy
+	explosion_hit.hit_creation_data = Weapon.HitCreationData.new(explosion.global_position)
 	enemy.take_hit(explosion_hit)

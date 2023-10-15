@@ -1,0 +1,6 @@
+{
+	"ember_damage_scale": 0.5,
+	"ember_pushback_scale": 0.5,
+	"ember_scene_reference": "res://units/weapons/projectiles/ember.tscn",
+	"ember_scan_radius": 20
+}

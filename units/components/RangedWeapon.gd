@@ -66,7 +66,7 @@ func _on_spawn_projectile():
 func _on_area_3d_body_entered(unit, projectile:Projectile):
 	if !(unit is Unit): return
 	
-	var hit_data = create_hit.execute([self, unit, projectile.hit_spot.global_position])
+	var hit_data = create_hit.execute([self, unit, Weapon.HitCreationData.new(projectile.hit_spot.global_position)])
 	unit.take_hit(hit_data)
 	on_hit_landed.emit(hit_data)
 
