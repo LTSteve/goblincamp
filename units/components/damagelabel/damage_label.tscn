@@ -4,7 +4,12 @@
 [ext_resource type="Script" path="res://units/components/damagelabel/DamageLabel.gd" id="2_c0g5u"]
 [ext_resource type="Resource" uid="uid://dkt62dqb6nkio" path="res://units/components/damagelabel/damage_label_settings.tres" id="3_b7qeb"]
 
-[node name="DamageLabel" type="Label3D"]
+[node name="DamageLabel" type="Node3D" node_paths=PackedStringArray("label")]
+script = ExtResource("2_c0g5u")
+settings = ExtResource("3_b7qeb")
+label = NodePath("DamageLabel")
+
+[node name="DamageLabel" type="Label3D" parent="."]
 sorting_offset = 10000.0
 pixel_size = 0.0045
 billboard = 1
@@ -14,5 +19,3 @@ render_priority = 100
 outline_render_priority = 99
 text = "50"
 font = ExtResource("1_rc6br")
-script = ExtResource("2_c0g5u")
-settings = ExtResource("3_b7qeb")

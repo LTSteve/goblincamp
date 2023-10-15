@@ -11,3 +11,6 @@ class_name DamageLabelSettingsResource
 @export var random_spawn_radius: float = 0.5
 @export var ease_type: Tween.EaseType
 @export var movement: float = 1
+@export var maximum_dist2: float = 1
+@export var push_factor: float = 0.5
+@export var push_max: float = 50
