@@ -8,7 +8,7 @@
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_nqljr"]
 
-[node name="Fireball" type="RigidBody3D" node_paths=PackedStringArray("collision_areas") groups=["Fireball"]]
+[node name="Fireball" type="RigidBody3D" node_paths=PackedStringArray("collision_areas", "hit_spot") groups=["Fireball"]]
 collision_layer = 0
 collision_mask = 0
 axis_lock_linear_y = true
@@ -17,6 +17,7 @@ axis_lock_angular_z = true
 gravity_scale = 0.0
 script = ExtResource("1_3kikx")
 collision_areas = [NodePath("witch_projectile/Hitboxes/Area3D")]
+hit_spot = NodePath("witch_projectile/HitSpot")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(-2.30258e-08, 0, 0.526768, 0, 0.526768, 0, -0.526768, 0, -2.30258e-08, 0, 0, 0)
@@ -35,6 +36,9 @@ offset = 1.369
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="witch_projectile/Hitboxes/Area3D"]
 shape = SubResource("SphereShape3D_nqljr")
+
+[node name="HitSpot" type="Node3D" parent="witch_projectile"]
+transform = Transform3D(1, 0, 1.06581e-14, 0, 1, 0, -1.06581e-14, 0, 1, 0.16942, 0, 7.40561e-09)
 
 [node name="VelocityComponent" type="Node" parent="."]
 script = ExtResource("3_rbsi1")

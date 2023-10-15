@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="CardResource" load_steps=5 format=3 uid="uid://bwceir5pdexfg"]
+
+[ext_resource type="Script" path="res://card_modifiers/CardResource.gd" id="1_or58i"]
+[ext_resource type="Script" path="res://card_modifiers/enchanter/explosion.gd" id="1_ytuoh"]
+[ext_resource type="JSON" path="res://card_modifiers/enchanter/explosion.json" id="2_evve6"]
+[ext_resource type="Texture2D" uid="uid://i5q8etvjuiom" path="res://card_modifiers/icons/gooey-impact.png" id="3_l1jrn"]
+
+[resource]
+script = ExtResource("1_or58i")
+test_card = false
+title = "Explosion!"
+descriptions = Array[String](["Fireballs now have an explosion radius"])
+rarity = 2
+max_rank = 1
+card_script = ExtResource("1_ytuoh")
+card_script_params = ExtResource("2_evve6")
+apply_to = Array[String](["RangedWeapon"])
+group_filters = Array[String](["Staff"])
+include_enemies = false
+include_players = true
+icon_texture = ExtResource("3_l1jrn")

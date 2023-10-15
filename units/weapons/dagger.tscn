@@ -464,24 +464,28 @@ _data = {
 [sub_resource type="SphereShape3D" id="SphereShape3D_qweot"]
 radius = 1.0
 
-[node name="Dagger" type="Node3D" node_paths=PackedStringArray("animation_tree", "collision_areas") groups=["Dagger"]]
+[node name="Dagger" type="Node3D" node_paths=PackedStringArray("animation_tree", "collision_areas", "hit_spot") groups=["Dagger"]]
 script = ExtResource("1_06qng")
 animation_tree = NodePath("AnimationTree")
 collision_areas = [NodePath("Hitboxes/Area3D")]
+hit_spot = NodePath("woodsman_weapon_melee/HitSpot")
 cooldown = 0.6
 damage = 9.0
 pushback = 2.0
 hit_stun = 0.2
 
 [node name="woodsman_weapon_melee" parent="." instance=ExtResource("2_3n6r0")]
-transform = Transform3D(-0.986349, -7.19055e-06, 0.164653, -0.164653, -5.96041e-07, -0.986349, 7.19055e-06, -0.999997, -5.96041e-07, 0.131204, 0.565012, 0.947975)
+transform = Transform3D(-0.986033, 0.00243791, 0.166514, -0.166514, 0.000144382, -0.986036, -0.00242791, -0.999994, 0.000263582, 0.131204, 0.563918, 0.947975)
+
+[node name="HitSpot" type="Node3D" parent="woodsman_weapon_melee"]
+transform = Transform3D(1, 0, -4.28589e-12, 9.09495e-13, 1, -1.13687e-13, -4.28589e-12, 1.13687e-13, 1, 0.99954, -1.19209e-07, 0)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_7kp8n")
 }
 
-[node name="AnimationTree" type="AnimationTree" parent="."]
+[node name="AnimationTree" type="AnimationTree" parent="." groups=["Dagger"]]
 tree_root = ExtResource("3_t0118")
 anim_player = NodePath("../AnimationPlayer")
 active = true

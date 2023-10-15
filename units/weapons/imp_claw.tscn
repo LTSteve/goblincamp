@@ -1257,11 +1257,12 @@ _data = {
 [sub_resource type="BoxShape3D" id="BoxShape3D_6t8rt"]
 size = Vector3(1, 2, 1)
 
-[node name="ImpClaw" type="Node3D" node_paths=PackedStringArray("animation_tree", "collision_areas") groups=["ImpClaw"]]
+[node name="ImpClaw" type="Node3D" node_paths=PackedStringArray("animation_tree", "collision_areas", "hit_spot") groups=["ImpClaw"]]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 1.02529, 0)
 script = ExtResource("1_76c5o")
 animation_tree = NodePath("AnimationTree")
 collision_areas = [NodePath("Hurtboxes/Area3D")]
+hit_spot = NodePath("claws/HitSpot")
 cooldown = 0.6
 damage = 4.0
 pushback = 1.0
@@ -1275,6 +1276,9 @@ transform = Transform3D(0.00949368, -0.788297, 0.283591, -0.723367, 0.135345, 0.
 [node name="imp_weapon_r" parent="claws" instance=ExtResource("2_u6gfe")]
 transform = Transform3D(-0.0105946, 0.787503, 0.285754, -0.72305, 0.135735, -0.400877, -0.423101, -0.251682, 0.677915, 0.453268, -0.505402, -0.29604)
 
+[node name="HitSpot" type="Node3D" parent="claws"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.01644e-08, 0, -1.3764)
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_50052")
@@ -1286,6 +1290,9 @@ anim_player = NodePath("../AnimationPlayer")
 active = true
 parameters/conditions/in_combat = false
 parameters/conditions/not_in_combat = false
+parameters/Attack/conditions/use_attack_2 = false
+parameters/Draw/TimeScale/scale = 1.0
+parameters/Stow/TimeScale/scale = 1.0
 script = ExtResource("4_0ej1c")
 
 [node name="Hurtboxes" type="Node3D" parent="."]

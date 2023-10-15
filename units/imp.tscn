@@ -14,8 +14,8 @@
 [ext_resource type="PackedScene" uid="uid://bfg28nholuf7e" path="res://units/components/healthbar_component.tscn" id="10_u0636"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_4afdt"]
-radius = 0.25
-height = 1.0
+radius = 0.35
+height = 4.0
 
 [node name="Imp" type="CharacterBody3D" groups=["Imp"]]
 collision_layer = 2

@@ -16,9 +16,11 @@ func _ready():
 	modulate = damage_color * crit_multiplier
 	pixel_size = settings.pixel_size
 	if is_crit: pixel_size *= settings.crit_font_scale
-	position = Vector3.RIGHT.rotated(Vector3.UP, randf_range(0,359.99)) * settings.random_spawn_radius
-	
+	call_deferred("_start_tween")
+
+func _start_tween():
+	global_position = global_position + Vector3.RIGHT.rotated(Vector3.UP, randf_range(0,359.99)) * settings.random_spawn_radius
 	var tween = create_tween()
 	tween.set_ease(settings.ease_type)
-	tween.tween_property(self, "position", self.position + Vector3(0, settings.movement, 0), settings.label_lifespan)
+	tween.tween_property(self, "global_position", self.global_position + Vector3(0, settings.movement, 0), settings.label_lifespan)
 	tween.finished.connect(queue_free)

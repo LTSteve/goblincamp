@@ -28,7 +28,7 @@ class InspireEffect extends Effect:
 			weapon.create_hit.remove_override(UniqueMetaId.create([weapon, self, "_create_hit_override"]))
 		weapons_applied_to = []
 	
-	func _create_hit_override(base_value:Weapon.Hit, current_value:Weapon.Hit, _weapon, _target:Unit):
+	func _create_hit_override(base_value:Weapon.Hit, current_value:Weapon.Hit):
 		current_value.damage += base_value.damage * params.damage_increase_percent * current_rank
 		return current_value
 

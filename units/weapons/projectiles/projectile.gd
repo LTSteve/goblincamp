@@ -3,6 +3,7 @@ extends RigidBody3D
 class_name Projectile
 
 @export var collision_areas: Array[Area3D]
+@export var hit_spot: Node3D
 
 @export var lifespan:float = 10
 
@@ -16,7 +17,9 @@ func _physics_process(delta:float):
 	
 	if target && is_instance_valid(target):
 		direction = Math.unit(Math.v3_to_v2(target.global_position - global_position))
-		look_at(Vector3(target.global_position.x,global_position.y,target.global_position.z))
+		var look = Vector3(target.global_position.x,global_position.y,target.global_position.z)
+		if look != global_position:
+			look_at(Vector3(target.global_position.x,global_position.y,target.global_position.z))
 	else:
 		look_at(global_position + Math.v2_to_v3(direction, global_position.y))
 	

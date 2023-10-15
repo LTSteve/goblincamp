@@ -8,6 +8,7 @@ signal on_hit_landed(weapon_hit:Weapon.Hit)
 @export var animation_tree: AnimationTreeExpressionExtension
 
 @export var collision_areas: Array[Area3D]
+@export var hit_spot: Node3D
 
 @export var weapon_range: float = 3.0
 @export var cooldown: float = 0.75
@@ -66,7 +67,7 @@ func _on_area_3d_body_entered(unit):
 		if !_already_hit.is_empty(): return
 		_already_hit.append(unit);
 	
-	var hit_data = create_hit.execute([self, unit])
+	var hit_data = create_hit.execute([self, unit, hit_spot.global_position])
 	hit_data.pushback *= _current_pushback_scale
 	unit.take_hit(hit_data)
 	on_hit_landed.emit(hit_data)

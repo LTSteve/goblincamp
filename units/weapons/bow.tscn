@@ -1040,7 +1040,7 @@ libraries = {
 "": SubResource("AnimationLibrary_1ksho")
 }
 
-[node name="AnimationTree" type="AnimationTree" parent="."]
+[node name="AnimationTree" type="AnimationTree" parent="." groups=["Bow"]]
 tree_root = ExtResource("5_0102g")
 anim_player = NodePath("../AnimationPlayer")
 active = true

@@ -18,7 +18,7 @@ func execute(params:Array):
 	var base_value = _base.callv(params)
 	var current_value = base_value
 	for override in override_stack:
-		current_value = override.callable.callv([base_value, current_value]+params)
+		current_value = override.callable.callv([base_value, current_value])
 	
 	return current_value
 
