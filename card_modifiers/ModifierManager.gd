@@ -10,6 +10,8 @@ static var _I: ModifierManager
 @export var leatherworker_deck: DeckResource
 @export var enchanter_deck: DeckResource
 
+@export var force_card: CardResource
+
 func _ready():
 	_I = self
 
@@ -57,6 +59,11 @@ static func generate_card_choices(building_type: UnitSpawner.BuildingType) -> Ar
 	
 	var cards = deck.get_cards().filter(_I._match_unfinished_cards)
 	cards.shuffle()
+	
+	if _I.force_card != null:
+		var card = _I._find_and_remove(cards, func(c): c == _I.force_card)
+		if card:
+			cards.push_front(card)
 	
 	var infinite_normal = _I._find_and_remove_all(cards, _I._match_infinite_normal)
 	

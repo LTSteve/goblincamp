@@ -45,6 +45,3 @@ func _apply_target_position(damage_label:DamageLabel):
 		nearby_count += 1
 	
 	damage_label.new_target_position /= nearby_count
-	
-	if(damage_label.new_target_position != Vector3.ZERO):
-		print(damage_label.new_target_position.length(), ", ", nearby_count)
