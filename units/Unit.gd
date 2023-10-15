@@ -58,7 +58,8 @@ func _process(delta):
 		effect.update(delta)
 
 func _physics_process(delta):
-	collision_shape.disabled = _stunned > 0
+	#TODO: consider this
+	#collision_shape.disabled = _stunned > 0
 	
 	if _stunned <= 0 && !navigation_agent.is_navigation_finished():
 		var current_agent_position: Vector2 = Math.v3_to_v2(global_position)

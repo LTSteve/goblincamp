@@ -9,12 +9,12 @@
 script = ExtResource("1_mid0l")
 test_card = false
 title = "Multi-Strung bows"
-descriptions = Array[String](["Bows fire 3 arrows per salvo, each additional arrow deals {[current_rank]*(1-[.damage_scale])*100}% less damage"])
+descriptions = Array[String](["Bows fire 3 arrows per salvo, each arrow deals {[current_rank]*[.damage_scale]*100}% damage"])
 rarity = 2
 max_rank = 3
 card_script = ExtResource("1_0nb8d")
 card_script_params = ExtResource("2_vf7y0")
-apply_to = Array[String](["AnimationTree"])
+apply_to = Array[String](["AnimationTree", "RangedWeapon"])
 group_filters = Array[String](["Bow"])
 include_enemies = false
 include_players = true
