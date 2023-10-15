@@ -39,12 +39,14 @@ func _create_hit_override(_base_value:Weapon.Hit, current_value:Weapon.Hit):
 		#assign collision mask of hitboxes
 		for area in projectile.collision_areas:
 			area.collision_mask = enemy.collision_layer
-			area.body_entered.connect(func(unit): _on_area_3d_body_entered(unit, projectile, enemy, current_value.hit_by))
+			area.body_entered.connect(func(unit): 
+				if !is_instance_valid(enemy) || !is_instance_valid(current_value.hit_by): return
+				_on_area_3d_body_entered(unit, projectile, enemy, current_value.hit_by))
 	
 	return current_value
 
 func _on_area_3d_body_entered(enemy:Unit, projectile:Projectile, target:Unit, weapon:RangedWeapon):
-	if !is_instance_valid(enemy) || enemy != target: return
+	if enemy == null || enemy != target: return
 	var hit_creation_data = Weapon.HitCreationData.new(projectile.hit_spot.global_position)
 	hit_creation_data.can_chain = false
 	hit_creation_data.base_damage_scale = params.ember_damage_scale

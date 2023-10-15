@@ -25,3 +25,8 @@ static func get_all_units_near_position(units: Array[Unit], position:Vector3, ra
 			all.append(unit)
 	
 	return all
+
+static func valid_instance_or_null(node:Node):
+	if is_instance_valid(node):
+		return node
+	return null
