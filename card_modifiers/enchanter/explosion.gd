@@ -31,7 +31,7 @@ func _create_hit_override(_base_value:Weapon.Hit, current_value:Weapon.Hit):
 func _on_hit_landed(enemy:Unit, explosion:AreaOfEffect, original_hit: Weapon.Hit):
 	var explosion_hit = Weapon.Hit.new()
 	explosion_hit.direction = Math.unit(Math.v3_to_v2(enemy.global_position-explosion.global_position))
-	explosion_hit.crit = original_hit.crit
+	explosion_hit.is_crit = original_hit.is_crit
 	explosion_hit.crit_damage_multiplier = original_hit.crit_damage_multiplier
 	explosion_hit.damage = original_hit.damage
 	explosion_hit.pushback = original_hit.pushback

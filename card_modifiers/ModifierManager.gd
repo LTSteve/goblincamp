@@ -61,7 +61,7 @@ static func generate_card_choices(building_type: UnitSpawner.BuildingType) -> Ar
 	cards.shuffle()
 	
 	if _I.force_card != null:
-		var card = _I._find_and_remove(cards, func(c): c == _I.force_card)
+		var card = _I._find_and_remove(cards, func(c): return c == _I.force_card)
 		if card:
 			cards.push_front(card)
 	

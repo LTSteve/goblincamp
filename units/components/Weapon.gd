@@ -5,6 +5,7 @@ class HitCreationData:
 	var can_chain: bool = true
 	var base_damage_scale: float = 1.0
 	var base_pushback_scale: float = 1.0
+	var can_crit: bool = true
 	
 	func _init(point:Vector3 = Vector3.ZERO):
 		hit_point = point
@@ -12,10 +13,11 @@ class HitCreationData:
 class Hit:
 	var direction:Vector2
 	var crit_damage_multiplier: float
+	var is_crit: bool
 	var damage:float
 	var pushback:float
 	var hit_stun:float
-	var crit: bool
+	var crit_chance: float
 	var damage_type: Damage.Type
 	var hit_by
 	var hit:Unit
@@ -23,16 +25,17 @@ class Hit:
 	
 	var post_crit_damage: float:
 		get:
-			return damage * (crit_damage_multiplier if crit else 1.0)
+			return (damage * crit_damage_multiplier) if is_crit else damage
 	
 	func duplicate():
 		var obj = Hit.new()
 		obj.direction = direction
 		obj.crit_damage_multiplier = crit_damage_multiplier
+		obj.is_crit = is_crit
 		obj.damage = damage
 		obj.pushback = pushback
 		obj.hit_stun = hit_stun
-		obj.crit = crit
+		obj.crit_chance = crit_chance
 		obj.damage_type = damage_type
 		obj.hit_by = hit_by
 		obj.hit = hit
@@ -69,7 +72,7 @@ static func _create_hit(this, unit:Unit, hit_creation_data:HitCreationData = Hit
 	
 	var hit_data = Hit.new()
 	hit_data.direction = Math.unit(Math.v3_to_v2(unit.global_position-this.global_position))
-	hit_data.crit = randf() < this.crit_chance
+	hit_data.crit_chance = this.crit_chance if hit_creation_data.can_crit else 0
 	hit_data.crit_damage_multiplier = this.crit_damage_multiplier
 	hit_data.damage = round(this.damage * hit_creation_data.base_damage_scale)
 	hit_data.pushback = this.pushback * hit_creation_data.base_pushback_scale

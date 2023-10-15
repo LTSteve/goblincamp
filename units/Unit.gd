@@ -76,6 +76,8 @@ func _physics_process(delta):
 	rotation_component.apply_rotation(self)
 
 func take_hit(weapon_hit:Weapon.Hit):
+	#calculate crits now after all other calculations
+	weapon_hit.is_crit = weapon_hit.is_crit || (randf_range(0,.999) < weapon_hit.crit_chance)
 	_last_hit_by = weapon_hit.hit_by
 	_stunned = max(_stunned, weapon_hit.hit_stun)
 	on_recieved_hit.emit(weapon_hit)

@@ -49,6 +49,7 @@ func _on_area_3d_body_entered(enemy:Unit, projectile:Projectile, target:Unit, we
 	hit_creation_data.can_chain = false
 	hit_creation_data.base_damage_scale = params.ember_damage_scale
 	hit_creation_data.base_pushback_scale = params.ember_pushback_scale
+	hit_creation_data.can_crit = false
 	var hit_data = weapon.create_hit.execute([weapon, enemy, hit_creation_data])
 	enemy.take_hit(hit_data)
 	projectile.queue_free()
