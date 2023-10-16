@@ -32,15 +32,13 @@ class InspireEffect extends Effect:
 		current_value.damage += base_value.damage * params.damage_increase_percent * current_rank
 		return current_value
 
-var dictionary = {}
-
 func _apply(weapon:Node,unit:Unit):
 	var _on_get_kill_override = func (_value): _on_get_kill(unit)
-	dictionary[UniqueMetaId.create([weapon, self, "_on_get_kill_override"])] = _on_get_kill_override
+	UniqueMetaId.store([weapon, self, "_on_get_kill_override"], _on_get_kill_override)
 	weapon.on_get_kill.connect(_on_get_kill_override)
 
 func _un_apply(weapon:Node,_unit:Unit):
-	weapon.on_get_kill.disconnect(dictionary[[weapon, self, "_on_get_kill_override"]])
+	weapon.on_get_kill.disconnect(UniqueMetaId.retrieve([weapon, self, "_on_get_kill_override"]))
 
 func _on_get_kill(killer:Unit):
 	if !is_instance_valid(killer): return
