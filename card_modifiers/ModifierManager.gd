@@ -138,11 +138,11 @@ func _get_first_or_null(array:Array, matcher:Callable):
 func _match_infinite_normal(card_resource:CardResource) -> bool:
 	return card_resource.rarity == CardResource.CardRarity.Normal && card_resource.max_rank == 0
 func _match_ultra_rare_card(card_resource:CardResource) -> bool:
-	return card_resource.rarity == CardResource.CardRarity.UltraRare
+	return card_resource == force_card || (card_resource.rarity == CardResource.CardRarity.UltraRare)
 func _match_rare_card(card_resource:CardResource) -> bool:
-	return card_resource.rarity == CardResource.CardRarity.Rare
+	return card_resource == force_card || (card_resource.rarity == CardResource.CardRarity.Rare)
 func _match_normal_card(card_resource:CardResource) -> bool:
-	return card_resource.rarity == CardResource.CardRarity.Normal
+	return card_resource == force_card || (card_resource.rarity == CardResource.CardRarity.Normal)
 
 func _match_unfinished_cards(card_resource:CardResource)->bool:
 	#always allow infinite cards

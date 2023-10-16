@@ -20,6 +20,8 @@ signal on_lock_target(target:Unit)
 
 var target:Unit
 
+@export var force_melee: bool = false
+
 var _nearby:Array[Unit] = []
 var _mode_switch_cooldown:float = 0
 var _melee:bool = false
@@ -44,7 +46,7 @@ func _process(delta):
 
 	# throttle mode switches so the unit doesn't get stuck swapping back and forth
 	if _mode_switch_cooldown <= 0:
-		var new_melee = _nearby.size() > min_nearby_melee_threshold && _nearby.size() <= max_nearby_melee_threshold
+		var new_melee = force_melee || _nearby.size() > min_nearby_melee_threshold && _nearby.size() <= max_nearby_melee_threshold
 		if new_melee != _melee:
 			_melee = new_melee
 			_mode_switch_cooldown = mode_switch_limit

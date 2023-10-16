@@ -19,6 +19,9 @@ signal on_hit_landed(weapon_hit:Weapon.Hit)
 @export var crit_damage_multiplier: float = 1.5
 @export var damage_type: Damage.Type = Damage.Type.Basic
 
+@export var animation_delay: float = 0
+@export var disabled = false
+
 var create_hit = CallableStack.new(Weapon._create_hit)
 
 @export var multi_target: bool = false

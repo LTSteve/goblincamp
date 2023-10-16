@@ -38,7 +38,12 @@ transform = Transform3D(5.53203e-08, -2.19205, 1.26558, -9.58176e-08, -1.26558, 
 transform = Transform3D(-0.2, -2.14569e-08, -0.34641, 0.34641, -1.51421e-08, -0.2, -2.38498e-09, -0.4, 2.61532e-08, -3.60903, -2.56196, -1.37593)
 
 [node name="Sword" parent="knight" instance=ExtResource("3_qgv83")]
-pushback = 5.0
+
+[node name="Sword2" parent="knight" instance=ExtResource("3_qgv83")]
+transform = Transform3D(4.37114e-08, 0, -1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 1, 0)
+visible = false
+animation_delay = 0.2
+disabled = true
 
 [node name="DamageNumberComponent" parent="knight" instance=ExtResource("5_hsn0a")]
 is_ally = true
@@ -54,7 +59,7 @@ script = ExtResource("2_u35x7")
 
 [node name="VelocityComponent" type="Node" parent="."]
 script = ExtResource("3_gto3h")
-max_speed = 8.0
+max_speed = 6.0
 acceleration = 1.0
 
 [node name="BasicBrain" type="Node" parent="." node_paths=PackedStringArray("unit", "weapon")]
@@ -74,11 +79,15 @@ model = NodePath("../knight/knight2")
 [connection signal="on_recieved_hit" from="." to="VelocityComponent" method="_on_recieved_hit"]
 [connection signal="on_recieved_hit" from="." to="HitblinkComponent" method="_on_recieved_hit"]
 [connection signal="on_get_kill" from="knight/Sword" to="knight/knight2/RankComponent" method="_on_get_kill"]
+[connection signal="on_get_kill" from="knight/Sword2" to="knight/knight2/RankComponent" method="_on_get_kill"]
 [connection signal="died" from="HealthComponent" to="." method="_on_died"]
 [connection signal="health_changed" from="HealthComponent" to="knight/knight2/HealthbarComponent" method="_on_health_component_health_changed"]
 [connection signal="enter_combat" from="BasicBrain" to="knight/Sword" method="_on_enter_combat"]
+[connection signal="enter_combat" from="BasicBrain" to="knight/Sword2" method="_on_enter_combat"]
 [connection signal="exit_combat" from="BasicBrain" to="knight/Sword" method="_on_exit_combat"]
+[connection signal="exit_combat" from="BasicBrain" to="knight/Sword2" method="_on_exit_combat"]
 [connection signal="request_attack" from="BasicBrain" to="knight/Sword" method="_on_request_attack"]
+[connection signal="request_attack" from="BasicBrain" to="knight/Sword2" method="_on_request_attack"]
 
 [editable path="knight"]
 [editable path="knight/knight2/RankComponent"]

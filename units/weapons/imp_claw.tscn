@@ -1265,7 +1265,7 @@ collision_areas = [NodePath("Hurtboxes/Area3D")]
 hit_spot = NodePath("claws/HitSpot")
 cooldown = 0.6
 damage = 4.0
-pushback = 1.0
+pushback = 0.5
 hit_stun = 0.1
 
 [node name="claws" type="Node3D" parent="."]

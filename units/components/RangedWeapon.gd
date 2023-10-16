@@ -19,6 +19,9 @@ signal on_hit_landed(weapon_hit:Weapon.Hit)
 @export var dumb_projectile: bool = false
 @export var damage_type: Damage.Type = Damage.Type.Basic
 
+@export var animation_delay: float = 0
+@export var disabled = false
+
 var create_hit = CallableStack.new(Weapon._create_hit)
 
 var current_cooldown:float = 0.0

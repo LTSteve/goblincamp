@@ -56,15 +56,21 @@ transform = Transform3D(0.707107, -0.612372, 0.353553, 0.707107, 0.612372, -0.35
 [node name="DamageNumberComponent" parent="woodsman" instance=ExtResource("4_2r0ps")]
 is_ally = true
 
-[node name="BowAndDagger" type="Node3D" parent="woodsman" node_paths=PackedStringArray("bow", "dagger")]
+[node name="BowAndDagger" type="Node3D" parent="woodsman" node_paths=PackedStringArray("bow", "daggers")]
 script = ExtResource("2_gqrex")
 bow = NodePath("Bow")
-dagger = NodePath("Dagger")
+daggers = [NodePath("Dagger"), NodePath("Dagger2")]
 
 [node name="Bow" parent="woodsman/BowAndDagger" instance=ExtResource("3_gj0lf")]
 transform = Transform3D(1, 0, 3.55271e-15, 0, 1, 0, -3.55271e-15, 0, 1, 0, 0, 0)
 
 [node name="Dagger" parent="woodsman/BowAndDagger" instance=ExtResource("4_p6ex6")]
+
+[node name="Dagger2" parent="woodsman/BowAndDagger" instance=ExtResource("4_p6ex6")]
+transform = Transform3D(1, 0, -3.55271e-15, 0, 1, 0, -3.55271e-15, 0, -1, 0, 0, 0)
+visible = false
+animation_delay = 0.1
+disabled = true
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
 path_height_offset = 0.5
@@ -79,7 +85,7 @@ max_health = 80.0
 [node name="VelocityComponent" type="Node" parent="."]
 script = ExtResource("3_f0em5")
 max_speed = 7.0
-acceleration = 1.0
+acceleration = 3.0
 
 [node name="WoodsmanBrain" type="Node" parent="." node_paths=PackedStringArray("unit", "melee_weapon", "ranged_weapon")]
 script = ExtResource("4_4mtgn")
@@ -87,6 +93,7 @@ unit = NodePath("..")
 melee_weapon = NodePath("../woodsman/BowAndDagger/Dagger")
 ranged_weapon = NodePath("../woodsman/BowAndDagger/Bow")
 max_nearby_melee_threshold = 5
+force_melee = true
 
 [node name="RotationComponent" type="Node" parent="."]
 script = ExtResource("5_p0h6f")
@@ -109,6 +116,7 @@ shape = SubResource("SphereShape3D_jaud8")
 [connection signal="on_recieved_hit" from="." to="HitblinkComponent" method="_on_recieved_hit"]
 [connection signal="on_get_kill" from="woodsman/BowAndDagger/Bow" to="woodsman/woodsman2/RankComponent" method="_on_get_kill"]
 [connection signal="on_get_kill" from="woodsman/BowAndDagger/Dagger" to="woodsman/woodsman2/RankComponent" method="_on_get_kill"]
+[connection signal="on_get_kill" from="woodsman/BowAndDagger/Dagger2" to="woodsman/woodsman2/RankComponent" method="_on_get_kill"]
 [connection signal="died" from="HealthComponent" to="." method="_on_died"]
 [connection signal="health_changed" from="HealthComponent" to="woodsman/woodsman2/HealthbarComponent" method="_on_health_component_health_changed"]
 [connection signal="enter_combat" from="WoodsmanBrain" to="woodsman/BowAndDagger" method="_on_enter_combat"]

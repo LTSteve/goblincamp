@@ -15,3 +15,7 @@ static func store(context:Array, data):
 static func retrieve(context:Array):
 	var id = create(context)
 	return dictionary[id]
+
+static func has(context:Array) -> bool:
+	var id = create(context)
+	return dictionary.has(id)

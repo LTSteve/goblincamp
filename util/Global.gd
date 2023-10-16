@@ -30,3 +30,14 @@ static func valid_instance_or_null(node:Node):
 	if is_instance_valid(node):
 		return node
 	return null
+
+static func execute_later(fn:Callable, node_ctx:Node, delay: float):
+	if delay == 0:
+		fn.call()
+	else:
+		var timer = Timer.new()
+		timer.connect("timeout", fn)
+		timer.connect("timeout", timer.queue_free)
+		timer.set_wait_time(delay)
+		node_ctx.add_child(timer)
+		timer.start()

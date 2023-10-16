@@ -40,4 +40,6 @@ func add_override(callable:Callable, priority: int = 0) -> Override:
 	return override
 
 func remove_override(override:Override):
-	override_stack.remove_at(override_stack.find(override))
+	var index = override_stack.find(override)
+	if index != -1:
+		override_stack.remove_at(index)

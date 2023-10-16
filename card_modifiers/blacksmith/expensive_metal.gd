@@ -13,6 +13,5 @@ func _un_apply(weapon,unit:Unit):
 	weapon.create_hit.remove_override(UniqueMetaId.retrieve([weapon, self, "_create_hit_override"]))
 
 func _create_hit_override(base_value:Weapon.Hit, current_value:Weapon.Hit,rank_component:RankComponent):
-	print("hit_overrideu")
 	current_value.damage += base_value.damage * rank_component.get_rank() * params.damage_per_rank * current_rank
 	return current_value

@@ -47,21 +47,24 @@ static func _process(this, delta):
 	this.current_cooldown -= delta
 
 static func _on_enter_combat(this):
-	this.animation_tree.set("parameters/conditions/in_combat", true)
-	this.animation_tree.set("parameters/conditions/not_in_combat", false)
+	Global.execute_later(func(): 
+		this.animation_tree.set("parameters/conditions/in_combat", true)
+		this.animation_tree.set("parameters/conditions/not_in_combat", false)
+		, this, this.animation_delay)
 
 static func _on_exit_combat(this):
-	this.animation_tree.set("parameters/conditions/in_combat", false)
-	this.animation_tree.set("parameters/conditions/not_in_combat", true)
+	Global.execute_later(func(): 
+		this.animation_tree.set("parameters/conditions/in_combat", false)
+		this.animation_tree.set("parameters/conditions/not_in_combat", true)
+		, this, this.animation_delay)
 
 static func _try_to_attack(this, target:Unit, me:Unit) -> bool:
 	#in range?
-	if(this.current_cooldown > 0 
-	|| (target.global_position - me.global_position).length() > this.weapon_range
-	|| (this.animation_tree.get("parameters/playback").get_current_node() != "idle_combat")) : return false
+	if(this.disabled || this.current_cooldown > 0 
+	|| (target.global_position - me.global_position).length() > this.weapon_range) : return false
 	
 	#trigger animation
-	this.animation_tree.activate_trigger("attack")
+	this.animation_tree.activate_trigger("attack", this.animation_delay)
 	
 	#reset cooldown
 	this.current_cooldown = this.cooldown
