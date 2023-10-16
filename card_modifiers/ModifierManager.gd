@@ -4,8 +4,6 @@ class_name ModifierManager
 
 static var _I: ModifierManager
 
-@export var test_card: CardResource
-
 @export var blacksmith_deck: DeckResource
 @export var leatherworker_deck: DeckResource
 @export var enchanter_deck: DeckResource
