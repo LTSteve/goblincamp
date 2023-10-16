@@ -14,6 +14,8 @@ class ColdSteelEffect extends Effect:
 		_velocity_component = unit.find_child("VelocityComponent") as VelocityComponent
 		if _velocity_component.get_max_speed.has_override([_velocity_component, id, "_get_max_speed_override"]): return
 		
+		unit.add_state(Unit.State.CHILLED)
+		
 		_velocity_component.get_max_speed.add_override([_velocity_component, id, "_get_max_speed_override"],_get_max_speed_override)
 		_slow = slow
 	
@@ -22,10 +24,14 @@ class ColdSteelEffect extends Effect:
 	
 	func on_remove():
 		if !is_instance_valid(_velocity_component): return
+		
+		unit.remove_state(Unit.State.CHILLED)
+		
 		_velocity_component.get_max_speed.remove_override([_velocity_component, id, "_get_max_speed_override"])
 
 func _apply(weapon:MeleeWeapon,_unit:Unit):
-	weapon.create_hit.add_override([weapon, self, "_create_hit_override"], _create_hit_override)
+	# just a little later so we can't shatter on the first hit
+	weapon.create_hit.add_override([weapon, self, "_create_hit_override"], _create_hit_override, 2)
 
 func _un_apply(weapon:MeleeWeapon,_unit:Unit):
 	weapon.create_hit.remove_override([weapon, self, "_create_hit_override"])

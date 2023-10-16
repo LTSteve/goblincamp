@@ -2,6 +2,10 @@ extends CharacterBody3D
 
 class_name Unit
 
+enum State { CHILLED, BLEEDING }
+
+var state_states = []
+
 @onready var velocity_component: VelocityComponent = $VelocityComponent
 @onready var rotation_component: RotationComponent = $RotationComponent
 @onready var navigation_agent: NavigationAgent3D = $NavigationAgent3D
@@ -90,3 +94,15 @@ func add_effect(effect:Effect):
 	if !effect.try_replace_existing(_active_effects):
 		_active_effects.append(effect)
 		effect.on_apply()
+
+func add_state(state:State):
+	var index = state_states.find(state)
+	if index == -1: state_states.append(state)
+
+func remove_state(state:State):
+	var index = state_states.find(state)
+	if index != -1: state_states.remove_at(index)
+
+func has_state(state:State):
+	var index = state_states.find(state)
+	return index != -1
