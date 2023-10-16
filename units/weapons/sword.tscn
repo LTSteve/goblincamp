@@ -685,7 +685,7 @@ pushback = 25.0
 multi_target = true
 
 [node name="knight_weapon" parent="." groups=["Sword_Model"] instance=ExtResource("1_yltu8")]
-transform = Transform3D(0.224404, 0.281296, 0.933007, -0.961592, -0.0913381, 0.258817, 0.158024, -0.955261, 0.249995, -1.12335, 2.58374, 1.26868)
+transform = Transform3D(0.244539, 0.26398, 0.933007, -0.965709, -0.0201726, 0.258817, 0.0871439, -0.964314, 0.249995, -1.12335, 2.72993, 1.26868)
 
 [node name="HitSpot" type="Node3D" parent="knight_weapon"]
 transform = Transform3D(1, 0, 2.98023e-08, -1.86265e-09, 1, 3.72529e-09, 0, 0, 1, 1.92335, 0, 2.38419e-07)
