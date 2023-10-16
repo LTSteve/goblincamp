@@ -93,7 +93,6 @@ unit = NodePath("..")
 melee_weapon = NodePath("../woodsman/BowAndDagger/Dagger")
 ranged_weapon = NodePath("../woodsman/BowAndDagger/Bow")
 max_nearby_melee_threshold = 5
-force_melee = true
 
 [node name="RotationComponent" type="Node" parent="."]
 script = ExtResource("5_p0h6f")

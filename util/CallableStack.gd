@@ -1,11 +1,13 @@
 class_name CallableStack
 
 class Override:
+	var id: String
 	var priority: int = 0
 	var callable: Callable
-	func _init(p:int,c:Callable):
+	func _init(p:int,c:Callable,i:String):
 		priority = p
 		callable = c
+		id = i
 
 var _base: Callable
 
@@ -23,8 +25,8 @@ func execute(params:Array = []):
 	return current_value
 
 ## priority high = later in order
-func add_override(callable:Callable, priority: int = 0) -> Override:
-	var override = Override.new(priority, callable)
+func add_override(id:Array, callable:Callable, priority: int = 0):
+	var override = Override.new(priority, callable, UniqueMetaId.create(id))
 	
 	var inserted = false
 	for i in override_stack.size():
@@ -36,10 +38,18 @@ func add_override(callable:Callable, priority: int = 0) -> Override:
 	
 	if !inserted:
 		override_stack.append(override)
-	
-	return override
 
-func remove_override(override:Override):
-	var index = override_stack.find(override)
+func remove_override(id: Array):
+	var index = _first(UniqueMetaId.create(id))
 	if index != -1:
 		override_stack.remove_at(index)
+
+func has_override(id:Array):
+	var index = _first(UniqueMetaId.create(id))
+	return index != -1
+
+func _first(id:String):
+	for i in override_stack.size():
+		if override_stack[i].id == id:
+			return i
+	return -1

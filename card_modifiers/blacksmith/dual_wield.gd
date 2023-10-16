@@ -1,5 +1,8 @@
 extends CardModifier
 
+#TODO make a generic way to do this
+var weapon_mainness_dictionary = {}
+
 func _apply(weapon:MeleeWeapon,_unit:Unit):
 	if current_rank == 0: return
 	var main_weapon = !weapon.disabled
@@ -10,20 +13,19 @@ func _apply(weapon:MeleeWeapon,_unit:Unit):
 		weapon.disabled = false
 	
 	#mark weapons
-	UniqueMetaId.store([weapon, self, "main_weapon"], main_weapon)
-	
-	UniqueMetaId.store([weapon, self, "_create_hit_override"], weapon.create_hit.add_override(_create_hit_override.bind(main_weapon), 50))
+	weapon_mainness_dictionary[UniqueMetaId.create([weapon, self, "main_weapon"])] = main_weapon
+	weapon.create_hit.add_override([weapon, self, "_create_hit_override"], _create_hit_override.bind(main_weapon), 50)
 
 func _un_apply(weapon,_unit:Unit):
 	if current_rank == 0: return
-	var main_weapon = UniqueMetaId.retrieve([weapon, self, "main_weapon"])
+	var main_weapon = weapon_mainness_dictionary[UniqueMetaId.create([weapon, self, "main_weapon"])]
 	
 	if !main_weapon:
 		#deactivate side weapon
 		weapon.visible = false
 		weapon.disabled = true
 	
-	weapon.create_hit.remove_override(UniqueMetaId.retrieve([weapon, self, "_create_hit_override"]))
+	weapon.create_hit.remove_override([weapon, self, "_create_hit_override"])
 
 func _create_hit_override(_base_value:Weapon.Hit, current_value:Weapon.Hit, main_weapon:bool):
 	if main_weapon:

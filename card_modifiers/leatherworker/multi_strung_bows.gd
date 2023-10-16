@@ -2,14 +2,14 @@ extends CardModifier
 
 func _apply(node,_unit):
 	if node is RangedWeapon:
-		UniqueMetaId.store([node, self, "_create_hit_override"], node.create_hit.add_override(_create_hit_override, 50))
+		node.create_hit.add_override([node, self, "_create_hit_override"], _create_hit_override, 50)
 	
 	if node is AnimationTree:
 		node.set("parameters/Attack/conditions/use_attack_2", true)
 
 func _un_apply(node,_unit):
 	if node is RangedWeapon:
-		node.create_hit.remove_override(UniqueMetaId.retrieve([node, self, "_create_hit_override"]))
+		node.create_hit.remove_override([node, self, "_create_hit_override"])
 	
 	if node is AnimationTree:
 		node.set("parameters/Attack/conditions/use_attack_2", false)

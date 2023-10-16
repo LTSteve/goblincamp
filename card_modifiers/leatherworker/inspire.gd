@@ -20,27 +20,27 @@ class InspireEffect extends Effect:
 		weapons_applied_to = unit.find_children("", "MeleeWeapon") + unit.find_children("","RangedWeapon")
 		for weapon in weapons_applied_to:
 			if !is_instance_valid(weapon): continue
-			UniqueMetaId.store([weapon, self, "_create_hit_override"], weapon.create_hit.add_override(_create_hit_override))
+			weapon.create_hit.add_override([weapon, self, "_create_hit_override"], _create_hit_override)
 	
 	func on_remove():
 		for weapon in weapons_applied_to:
 			if !is_instance_valid(weapon): continue
-			weapon.create_hit.remove_override(UniqueMetaId.create([weapon, self, "_create_hit_override"]))
+			weapon.create_hit.remove_override([weapon, self, "_create_hit_override"])
 		weapons_applied_to = []
 	
 	func _create_hit_override(base_value:Weapon.Hit, current_value:Weapon.Hit):
 		current_value.damage += base_value.damage * params.damage_increase_percent * current_rank
 		return current_value
 
+var dictionary = {}
+
 func _apply(weapon:Node,unit:Unit):
 	var _on_get_kill_override = func (_value): _on_get_kill(unit)
-	UniqueMetaId.store([weapon, self, "_on_get_kill_override"], _on_get_kill_override)
+	dictionary[UniqueMetaId.create([weapon, self, "_on_get_kill_override"])] = _on_get_kill_override
 	weapon.on_get_kill.connect(_on_get_kill_override)
 
 func _un_apply(weapon:Node,_unit:Unit):
-	#only need to disconnect if this is the last rank
-	if current_rank == 1:
-		weapon.on_get_kill.disconnect(UniqueMetaId.create([weapon, self, "_on_get_kill_override"]))
+	weapon.on_get_kill.disconnect(dictionary[[weapon, self, "_on_get_kill_override"]])
 
 func _on_get_kill(killer:Unit):
 	if !is_instance_valid(killer): return

@@ -8,10 +8,10 @@ func _initialize(_data):
 
 func _apply(weapon:RangedWeapon,_unit):
 	#add with high priority so all damage calculations take place first
-	UniqueMetaId.store([weapon, self, "_create_hit_override"], weapon.create_hit.add_override(_create_hit_override, 1000))
+	weapon.create_hit.add_override([weapon, self, "_create_hit_override"], _create_hit_override, 1000)
 
 func _un_apply(weapon:RangedWeapon,_unit):
-	weapon.create_hit.remove_override(UniqueMetaId.retrieve([weapon, self, "_create_hit_override"]))
+	weapon.create_hit.remove_override([weapon, self, "_create_hit_override"])
 
 func _create_hit_override(_base_value:Weapon.Hit, current_value:Weapon.Hit):
 	var aoe = (explosion_scene.instantiate() as AreaOfEffect)

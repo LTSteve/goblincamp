@@ -84,10 +84,10 @@ class BleedEffect extends Effect:
 
 func _apply(weapon:MeleeWeapon,_unit:Unit):
 	#make sure this override happens near the end to get full damage calculations
-	UniqueMetaId.store([weapon, self, "_create_hit_override"], weapon.create_hit.add_override(_create_hit_override, 1000))
+	weapon.create_hit.add_override([weapon, self, "_create_hit_override"], _create_hit_override, 1000)
 
 func _un_apply(weapon:MeleeWeapon,_unit:Unit):
-	weapon.create_hit.remove_override(UniqueMetaId.retrieve([weapon, self, "_create_hit_override"]))
+	weapon.create_hit.remove_override([weapon, self, "_create_hit_override"])
 
 func _create_hit_override(_base_value:Weapon.Hit, current_value:Weapon.Hit):
 	#apply effect to weapon_hit.unit
