@@ -14,7 +14,7 @@ var override_stack:Array[Override]
 func _init(base:Callable):
 	_base = base
 
-func execute(params:Array):
+func execute(params:Array = []):
 	var base_value = _base.callv(params)
 	var current_value = base_value
 	for override in override_stack:

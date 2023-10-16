@@ -681,7 +681,7 @@ animation_tree = NodePath("AnimationTree")
 collision_areas = [NodePath("Hitboxes/Area3D"), NodePath("Hitboxes/Area3D2"), NodePath("Hitboxes/Area3D3"), NodePath("Hitboxes/Area3D4")]
 hit_spot = NodePath("knight_weapon/HitSpot")
 cooldown = 0.9
-pushback = 3.0
+pushback = 4.0
 multi_target = true
 
 [node name="knight_weapon" parent="." groups=["Sword_Model"] instance=ExtResource("1_yltu8")]

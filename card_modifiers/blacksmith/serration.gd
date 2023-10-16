@@ -32,6 +32,7 @@ class BleedEffect extends Effect:
 	func _calculate_remaining_damage():
 		_remaining_damage = _total_damage
 		_remaining_ticks = floor(duration / _tick_time)
+		@warning_ignore("integer_division")
 		_base_tick_damage = floor(_total_damage / _remaining_ticks)
 	
 	func update(delta:float):
