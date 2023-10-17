@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://dc2xntf220y7"]
+[gd_scene load_steps=15 format=3 uid="uid://dc2xntf220y7"]
 
 [ext_resource type="Script" path="res://units/Unit.gd" id="1_7xoce"]
 [ext_resource type="PackedScene" uid="uid://citvivc546i87" path="res://models/imp/imp.glb" id="2_tftnr"]
@@ -12,6 +12,7 @@
 [ext_resource type="Script" path="res://units/components/RotationComponent.gd" id="8_ak8ed"]
 [ext_resource type="Script" path="res://units/components/HitblinkComponent.gd" id="9_4qvq2"]
 [ext_resource type="PackedScene" uid="uid://bfg28nholuf7e" path="res://units/components/healthbar_component.tscn" id="10_u0636"]
+[ext_resource type="Script" path="res://units/components/ArmorComponent.gd" id="13_8lrld"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_4afdt"]
 radius = 0.35
@@ -80,6 +81,9 @@ script = ExtResource("8_ak8ed")
 [node name="HitblinkComponent" type="Node" parent="." node_paths=PackedStringArray("model")]
 script = ExtResource("9_4qvq2")
 model = NodePath("../imp/imp2")
+
+[node name="ArmorComponent" type="Node" parent="."]
+script = ExtResource("13_8lrld")
 
 [connection signal="on_recieved_hit" from="." to="imp/imp2/Node3D/DamageNumberComponent" method="_on_damage_recieved"]
 [connection signal="on_recieved_hit" from="." to="HealthComponent" method="_on_recieved_hit"]
