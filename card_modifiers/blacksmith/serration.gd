@@ -52,6 +52,7 @@ class BleedEffect extends Effect:
 		hit_data.damage_type = Damage.Type.Bleed
 		hit_data.hit_by = _applier if is_instance_valid(_applier) else null 
 		hit_data.hit = unit
+		hit_data.hit_creation_data = Weapon.HitCreationData.new(Vector3(unit.global_position.x,0.5,unit.global_position.z))
 		unit.take_hit(hit_data)
 	
 	func replace_with(effect:Effect):

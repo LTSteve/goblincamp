@@ -74,12 +74,11 @@ material = SubResource("StandardMaterial3D_xh3a2")
 radial_segments = 6
 rings = 3
 
-[node name="explosion" type="Node3D" node_paths=PackedStringArray("particles", "particle_spawn_point")]
+[node name="explosion" type="Node3D" node_paths=PackedStringArray("particles")]
 script = ExtResource("1_gxu7o")
 enemies = true
 radius = 7.0
 particles = [NodePath("ParticleSpawnPoint/GPUParticles3D"), NodePath("ParticleSpawnPoint/GPUParticles3D2")]
-particle_spawn_point = NodePath("ParticleSpawnPoint")
 
 [node name="ParticleSpawnPoint" type="Node3D" parent="."]
 script = ExtResource("2_tyi5b")

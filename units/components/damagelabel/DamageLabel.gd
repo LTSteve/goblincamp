@@ -16,7 +16,7 @@ var new_target_position:Vector3 = Vector3.ZERO
 func _ready():
 	label.text = str(damage)
 	var crit_multiplier = settings.crit_color_multiplier if is_crit else Color.WHITE
-	var damage_color = settings.ally_damage_color if is_ally else settings.damage_base_colors[damage_type]
+	var damage_color = settings.ally_damage_color if (is_ally && damage_type != Damage.Type.Heal) else settings.damage_base_colors[damage_type]
 	label.modulate = damage_color * crit_multiplier
 	label.pixel_size = settings.pixel_size
 	if is_crit: label.pixel_size *= settings.crit_font_scale

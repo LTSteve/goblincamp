@@ -1,0 +1,5 @@
+{
+	"hp_for_damage": 1,
+	"hp_for_bleed": 2,
+	"nearby_radius": 9
+}

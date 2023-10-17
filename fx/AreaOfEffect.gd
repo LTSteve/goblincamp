@@ -12,13 +12,9 @@ class_name AreaOfEffect
 var callback: Callable
 
 @export var particles: Array[GPUParticles3D]
-@export var particle_spawn_point: Node3D
 
 func _process(delta):
 	lifespan -= delta
-	if lifespan <= 0:
-		queue_free()
-		return
 	
 	delay -= delta
 	if delay > 0: return
@@ -28,6 +24,10 @@ func _process(delta):
 	var units = Global.get_all_units_near_position((Global.enemies if enemies else ([] as Array[Unit])) + (Global.players if players else ([] as Array[Unit])), global_position, radius)
 	for unit in units:
 		callback.call(unit, self)
+	
+	if lifespan <= 0:
+		queue_free()
+		return
 	
 	times -= 1
 	if times > 0:
