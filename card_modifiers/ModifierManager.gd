@@ -22,7 +22,7 @@ static func get_modifier_by_resource(card_resource: CardResource, generate_defau
 	var dummy_card_modifier = { 
 		"current_rank": 0, 
 		"card_resource": card_resource, 
-		"params": card_resource.card_script_params.data
+		"params": card_resource.card_script_params.data if card_resource.card_script_params else {}
 	}
 	return dummy_card_modifier
 

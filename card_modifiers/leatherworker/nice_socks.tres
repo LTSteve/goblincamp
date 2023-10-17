@@ -9,7 +9,7 @@
 script = ExtResource("1_1e3i3")
 test_card = false
 title = "Nice Socks"
-descriptions = Array[String](["Movement speed +{[current_rank]*[.movement_speed_by_rank]*100}%"])
+descriptions = Array[String](["Movement +{[current_rank]*[.movement_speed_by_rank]*100}%"])
 rarity = 1
 max_rank = 3
 card_script = ExtResource("1_gyjy7")
