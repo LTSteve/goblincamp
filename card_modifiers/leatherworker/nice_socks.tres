@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="CardResource" load_steps=5 format=3 uid="uid://ibcfhu3w3ts2"]
+
+[ext_resource type="Script" path="res://card_modifiers/CardResource.gd" id="1_1e3i3"]
+[ext_resource type="Script" path="res://card_modifiers/leatherworker/nice_socks.gd" id="1_gyjy7"]
+[ext_resource type="JSON" path="res://card_modifiers/leatherworker/nice_socks.json" id="2_bwrls"]
+[ext_resource type="Texture2D" uid="uid://xufyl50mnlnh" path="res://card_modifiers/icons/socks.png" id="3_fsaa1"]
+
+[resource]
+script = ExtResource("1_1e3i3")
+test_card = false
+title = "Nice Socks"
+descriptions = Array[String](["Movement speed +{[current_rank]*[.movement_speed_by_rank]*100}%"])
+rarity = 1
+max_rank = 3
+card_script = ExtResource("1_gyjy7")
+card_script_params = ExtResource("2_bwrls")
+apply_to = Array[String](["VelocityComponent"])
+group_filters = Array[String]([])
+include_enemies = false
+include_players = true
+icon_texture = ExtResource("3_fsaa1")
