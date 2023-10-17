@@ -10,7 +10,6 @@ signal on_hit_landed(weapon_hit:Weapon.Hit)
 @export var projectile_spawn_point: Node3D
 
 @export var weapon_range: float = 20.0
-@export var cooldown: float = 2
 @export var damage: float = 30.0
 @export var pushback: float = 7.0
 @export var hit_stun: float = 0.7
@@ -24,13 +23,9 @@ signal on_hit_landed(weapon_hit:Weapon.Hit)
 
 var create_hit = CallableStack.new(Weapon._create_hit)
 
-var current_cooldown:float = 0.0
 var _current_target:Unit
 
 var _target_collision_layer_hack
-
-func _process(delta):
-	Weapon._process(self, delta)
 
 func _on_enter_combat():
 	Weapon._on_enter_combat(self)
