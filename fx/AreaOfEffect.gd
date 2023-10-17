@@ -9,6 +9,7 @@ class_name AreaOfEffect
 @export var times: int = 1
 @export var interval: float = 0.1
 @export var lifespan: float = 2.0
+@export var infinite: bool = false
 var callback: Callable
 
 @export var particles: Array[GPUParticles3D]
@@ -25,12 +26,12 @@ func _process(delta):
 	for unit in units:
 		callback.call(unit, self)
 	
-	if lifespan <= 0:
+	if !infinite && lifespan <= 0:
 		queue_free()
 		return
 	
 	times -= 1
-	if times > 0:
+	if infinite || times > 0:
 		delay += interval
 	else:
 		delay += lifespan * 2

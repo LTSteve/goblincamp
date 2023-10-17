@@ -5,6 +5,12 @@ var duration: float = 1
 var unit: Unit
 var id: String = ""
 
+func _init(effected_unit:Unit, effect_duration: float, is_buff:bool, effect_id: String):
+	id = effect_id
+	buff = is_buff
+	duration = effect_duration
+	unit = effected_unit
+
 func update_duration_and_return_is_finished(delta) -> bool:
 	if !is_instance_valid(unit):
 		print("Effect being called on invalid unit!")

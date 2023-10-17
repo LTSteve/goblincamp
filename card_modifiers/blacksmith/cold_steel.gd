@@ -6,18 +6,16 @@ class ColdSteelEffect extends Effect:
 	var _slow: float
 	
 	func _init(weapon_hit: Weapon.Hit, effect_duration: float, effect_id: String, slow: float):
-		id = effect_id
-		buff = false
-		duration = effect_duration
-		unit = weapon_hit.hit
+		super._init(weapon_hit.hit, effect_duration, false, effect_id)
 		
 		_velocity_component = unit.find_child("VelocityComponent") as VelocityComponent
 		if _velocity_component.get_max_speed.has_override([_velocity_component, id, "_get_max_speed_override"]): return
 		
-		unit.add_state(Unit.State.CHILLED)
-		
 		_velocity_component.get_max_speed.add_override([_velocity_component, id, "_get_max_speed_override"],_get_max_speed_override)
 		_slow = slow
+	
+	func on_apply():
+		unit.add_state(Unit.State.CHILLED)
 	
 	func _get_max_speed_override(_base_max_speed:float, current_max_speed:float):
 		return clampf(current_max_speed - _slow, 0.05, 1)

@@ -2,7 +2,7 @@ extends CharacterBody3D
 
 class_name Unit
 
-enum State { CHILLED, BLEEDING }
+enum State { CHILLED, BLEEDING, BURNING }
 
 var state_states = []
 
