@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://blqqvg7tmek8o"]
+[gd_scene load_steps=15 format=3 uid="uid://blqqvg7tmek8o"]
 
 [ext_resource type="Script" path="res://units/Unit.gd" id="1_ubipr"]
 [ext_resource type="PackedScene" uid="uid://bjni3yp3c1c0c" path="res://models/knight/knight.glb" id="2_71j88"]
@@ -12,6 +12,7 @@
 [ext_resource type="Script" path="res://units/components/RotationComponent.gd" id="7_w68d6"]
 [ext_resource type="Script" path="res://units/components/HitblinkComponent.gd" id="8_vpyio"]
 [ext_resource type="PackedScene" uid="uid://bfg28nholuf7e" path="res://units/components/healthbar_component.tscn" id="9_gsacq"]
+[ext_resource type="Script" path="res://units/components/ArmorComponent.gd" id="13_xk8ye"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_nhjdq"]
 radius = 0.7
@@ -73,6 +74,10 @@ script = ExtResource("7_w68d6")
 [node name="HitblinkComponent" type="Node" parent="." node_paths=PackedStringArray("model")]
 script = ExtResource("8_vpyio")
 model = NodePath("../knight/knight2")
+
+[node name="ArmorComponent" type="Node" parent="." groups=["Knight"]]
+script = ExtResource("13_xk8ye")
+armor = 1
 
 [connection signal="on_recieved_hit" from="." to="knight/DamageNumberComponent" method="_on_damage_recieved"]
 [connection signal="on_recieved_hit" from="." to="HealthComponent" method="_on_recieved_hit"]

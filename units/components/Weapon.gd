@@ -17,6 +17,7 @@ class Hit:
 	var damage:float
 	var pushback:float
 	var hit_stun:float
+	var flat_armor:int
 	var crit_chance: float
 	var damage_type: Damage.Type
 	var hit_by
@@ -25,7 +26,10 @@ class Hit:
 	
 	var post_crit_damage: float:
 		get:
-			return (damage * crit_damage_multiplier) if is_crit else damage
+			var dmg = (damage * crit_damage_multiplier) if is_crit else damage
+			if dmg > 1:
+				dmg = clampi(dmg - flat_armor, 1, dmg)
+			return dmg
 	
 	func duplicate():
 		var obj = Hit.new()
@@ -40,6 +44,7 @@ class Hit:
 		obj.hit_by = hit_by
 		obj.hit = hit
 		obj.hit_creation_data = hit_creation_data
+		obj.flat_armor = flat_armor
 		return obj
 
 

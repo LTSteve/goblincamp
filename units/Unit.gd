@@ -8,6 +8,7 @@ var state_states = []
 
 @onready var velocity_component: VelocityComponent = $VelocityComponent
 @onready var rotation_component: RotationComponent = $RotationComponent
+@onready var armor_componenet: ArmorComponent = get_node_or_null("ArmorComponent")
 @onready var navigation_agent: NavigationAgent3D = $NavigationAgent3D
 @onready var collision_shape: CollisionShape3D = $CollisionShape3D
 
@@ -80,8 +81,10 @@ func _physics_process(delta):
 	rotation_component.apply_rotation(self)
 
 func take_hit(weapon_hit:Weapon.Hit):
-	#calculate crits now after all other calculations
+	#calculate crits and armor now after all other calculations
 	weapon_hit.is_crit = weapon_hit.is_crit || (randf_range(0,.999) < weapon_hit.crit_chance)
+	if(armor_componenet):
+		weapon_hit = armor_componenet.apply_to_hit.execute([weapon_hit])
 	_last_hit_by = weapon_hit.hit_by
 	_stunned = max(_stunned, weapon_hit.hit_stun)
 	on_recieved_hit.emit(weapon_hit)
