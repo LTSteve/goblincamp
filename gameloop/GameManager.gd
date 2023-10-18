@@ -32,11 +32,17 @@ func _ready():
 
 func _on_next_day_button_pressed():
 	if _spawned_building:
-		navigation_region.bake_navigation_mesh(false)
-		_spawned_building = false
+		navigation_region.bake_navigation_mesh(true)
+		navigation_region.bake_finished.connect(_start_next_day)
+	else:
+		_start_next_day()
+
+func _start_next_day():
+	_spawned_building = false
 	_day += 1
 	_spawn_wave(_day)
 	on_night.emit()
+	navigation_region.bake_finished.disconnect(_start_next_day)
 
 func _spawn_wave(number: float):
 	

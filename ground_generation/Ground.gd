@@ -27,3 +27,4 @@ func _on_data_changed():
 static func sample_height(x:float,y:float) -> float:
 	var face: GroundMesh = I.get_children()[0] as GroundMesh
 	return face.sample_height((x - I.global_position.x) / I.scale.x,(y - I.global_position.z) / I.scale.z)
+
