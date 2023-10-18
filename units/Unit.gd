@@ -85,6 +85,10 @@ func take_hit(weapon_hit:Weapon.Hit):
 	weapon_hit.is_crit = weapon_hit.is_crit || (randf_range(0,.999) < weapon_hit.crit_chance)
 	if(armor_component):
 		weapon_hit = armor_component.apply_to_hit.execute([weapon_hit])
+	
+	for effect in weapon_hit.apply_effects:
+		add_effect(effect)
+	
 	_last_hit_by = weapon_hit.hit_by
 	_stunned = max(_stunned, weapon_hit.hit_stun)
 	on_recieved_hit.emit(weapon_hit)

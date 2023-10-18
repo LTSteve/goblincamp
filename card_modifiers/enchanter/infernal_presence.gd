@@ -24,7 +24,7 @@ func _on_hit_enemy(enemy:Unit, _aoe:AreaOfEffect, weapon):
 	1,
 	params.effect_duration,
 	params.effect_tick_time,
-	UniqueMetaId.create([self,"burn"]),
+	"burn", #all burn effects share the same slot
 	Damage.Type.Fire,
 	Unit.State.BURNING)
 	

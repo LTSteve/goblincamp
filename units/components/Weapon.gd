@@ -22,6 +22,7 @@ class Hit:
 	var damage_type: Damage.Type
 	var hit_by
 	var hit:Unit
+	var apply_effects:Array[Effect] = []
 	var hit_creation_data:HitCreationData
 	
 	var post_crit_damage: float:
@@ -45,6 +46,7 @@ class Hit:
 		obj.hit = hit
 		obj.hit_creation_data = hit_creation_data
 		obj.flat_armor = flat_armor
+		obj.apply_effects = apply_effects
 		return obj
 
 static func _on_enter_combat(this):
