@@ -18,14 +18,8 @@ func _un_apply(ranged_weapon:RangedWeapon,_unit:Unit):
 	aoe.queue_free()
 
 func _on_hit_enemy(enemy:Unit, _aoe:AreaOfEffect, weapon):
-	var effect = DamageOverTimeEffect.new(enemy,
+	var effect = BurnEffect.new(enemy,
 	weapon,
-	params.damage,
-	1,
-	params.effect_duration,
-	params.effect_tick_time,
-	"burn", #all burn effects share the same slot
-	Damage.Type.Fire,
-	Unit.State.BURNING)
+	params.damage)
 	
 	enemy.add_effect(effect)

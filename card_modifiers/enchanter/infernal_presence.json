@@ -1,7 +1,5 @@
 {
 	"radius_per_rank": 4,
 	"damage": 25,
-	"effect_duration": 10,
-	"effect_tick_time": 1.5,
 	"check_time": 0.5
 }

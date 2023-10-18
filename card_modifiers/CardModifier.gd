@@ -14,25 +14,33 @@ func _ready():
 func rank_up():
 	var active_units = (Global.enemies if card_resource.include_enemies else []) + (Global.players if card_resource.include_players else [])
 	if current_rank > 0:
-		for unit in active_units:
+		if card_resource.apply_to.size() == 0:
+			_un_apply(null,null)
+		else: for unit in active_units:
 			un_apply_to_unit(unit)
 	current_rank += 1
-	for unit in active_units:
+	if card_resource.apply_to.size() == 0:
+		_apply(null,null)
+	else: for unit in active_units:
 		apply_to_unit(unit)
 
 func derank():
 	var active_units = (Global.enemies if card_resource.include_enemies else []) + (Global.players if card_resource.include_players else [])
-	for unit in active_units:
+	if card_resource.apply_to.size() == 0:
+		_un_apply(null,null)
+	else: for unit in active_units:
 		un_apply_to_unit(unit)
 	current_rank -= 1
 	if current_rank == 0:
 		queue_free()
 	else:
-		for unit in active_units:
+		if card_resource.apply_to.size() == 0:
+			_apply(null,null)
+		else: for unit in active_units:
 			apply_to_unit(unit)
 
 func apply_to_unit(unit:Unit):
-	if (unit.is_enemy && !card_resource.include_enemies) || (!unit.is_enemy && !card_resource.include_players):
+	if card_resource.apply_to.size() == 0 || (unit.is_enemy && !card_resource.include_enemies) || (!unit.is_enemy && !card_resource.include_players):
 		return
 	for type in card_resource.apply_to:
 		var all_of_type = unit.find_children("", type)
@@ -41,7 +49,7 @@ func apply_to_unit(unit:Unit):
 				_apply(instance,unit)
 
 func un_apply_to_unit(unit:Unit):
-	if (unit.is_enemy && !card_resource.include_enemies) || (!unit.is_enemy && !card_resource.include_players):
+	if card_resource.apply_to.size() == 0 || (unit.is_enemy && !card_resource.include_enemies) || (!unit.is_enemy && !card_resource.include_players):
 		return
 	for type in card_resource.apply_to:
 		var all_of_type = unit.find_children("", type)

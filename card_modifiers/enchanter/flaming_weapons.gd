@@ -18,15 +18,9 @@ func _un_apply(weapon,_unit:Unit):
 	weapon.create_hit.remove_override([weapon,self,"_create_hit_override"])
 
 func _create_hit_override(_base_value:Weapon.Hit, current_value:Weapon.Hit):
-	var effect = DamageOverTimeEffect.new(current_value.hit,
+	var effect = BurnEffect.new(current_value.hit,
 	current_value.hit_by,
-	params.damage,
-	1,
-	params.effect_duration,
-	params.effect_tick_time,
-	"burn", #all burn effects share the same slot
-	Damage.Type.Fire,
-	Unit.State.BURNING)
+	params.damage)
 	
 	current_value.apply_effects.append(effect)
 	

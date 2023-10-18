@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="CardResource" load_steps=5 format=3 uid="uid://ddea3wrf63u36"]
+
+[ext_resource type="Script" path="res://card_modifiers/CardResource.gd" id="1_itcdp"]
+[ext_resource type="Script" path="res://card_modifiers/enchanter/lingering_flame.gd" id="1_mrb0s"]
+[ext_resource type="JSON" path="res://card_modifiers/enchanter/lingering_flame.json" id="2_j0ne1"]
+[ext_resource type="Texture2D" uid="uid://i85wqvlhjou3" path="res://card_modifiers/icons/wildfires.png" id="3_127nq"]
+
+[resource]
+script = ExtResource("1_itcdp")
+test_card = false
+title = "Lingering Flame"
+descriptions = Array[String](["Burn effects last {1+[current_rank]*[.add_scale_per_rank]}x longer"])
+rarity = 0
+max_rank = 3
+card_script = ExtResource("1_mrb0s")
+card_script_params = ExtResource("2_j0ne1")
+apply_to = Array[String]([])
+group_filters = Array[String]([])
+include_enemies = true
+include_players = false
+icon_texture = ExtResource("3_127nq")
