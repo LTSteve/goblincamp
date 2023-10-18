@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="CardResource" load_steps=5 format=3 uid="uid://bsx4d6fqv1gsh"]
+
+[ext_resource type="Script" path="res://card_modifiers/enchanter/deep_burns.gd" id="1_4w76y"]
+[ext_resource type="Script" path="res://card_modifiers/CardResource.gd" id="1_q8fug"]
+[ext_resource type="JSON" path="res://card_modifiers/enchanter/deep_burns.json" id="2_4qggr"]
+[ext_resource type="Texture2D" uid="uid://5y05kpymtcyj" path="res://card_modifiers/icons/burning-skull.png" id="3_jordu"]
+
+[resource]
+script = ExtResource("1_q8fug")
+test_card = false
+title = "Deep Burns"
+descriptions = Array[String](["Burn effects have a {[current_rank]*[.crit_chance_per_rank]*100}% chance to crit"])
+rarity = 1
+max_rank = 5
+card_script = ExtResource("1_4w76y")
+card_script_params = ExtResource("2_4qggr")
+apply_to = Array[String]([])
+group_filters = Array[String]([])
+include_enemies = true
+include_players = false
+icon_texture = ExtResource("3_jordu")

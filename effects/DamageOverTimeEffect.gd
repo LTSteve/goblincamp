@@ -12,11 +12,12 @@ var _remaining_ticks: int
 var _current_tick_cooldown: float
 var _damage_type: Damage.Type
 var _apply_state: Unit.State
+var _crit_chance: float
 
 var _stack_limit: int
 var stack = []
 
-func _init(effected_unit:Unit, applier, damage: float, stack_limit: int, effect_duration: float, effect_tick_time: float, effect_id: String, damage_type:Damage.Type, apply_state: Unit.State):
+func _init(effected_unit:Unit, applier, damage: float, stack_limit: int, effect_duration: float, effect_tick_time: float, effect_id: String, damage_type:Damage.Type, apply_state: Unit.State, crit_chance: float = 0):
 	super._init(effected_unit, effect_duration, damage <= 0, effect_id)
 	
 	_applier = applier
@@ -24,6 +25,7 @@ func _init(effected_unit:Unit, applier, damage: float, stack_limit: int, effect_
 	_current_tick_cooldown = _tick_time
 	_damage_type = damage_type
 	_apply_state = apply_state
+	_crit_chance = crit_chance
 	
 	stack.append(self)
 	
@@ -42,7 +44,7 @@ func on_remove():
 		unit.remove_state(_apply_state)
 
 func duplicate(new_unit:Unit) -> Effect:
-	return DamageOverTimeEffect.new(new_unit, _applier, _my_damage, _stack_limit, duration, _tick_time, id, _damage_type, _apply_state)
+	return DamageOverTimeEffect.new(new_unit, _applier, _my_damage, _stack_limit, duration, _tick_time, id, _damage_type, _apply_state, _crit_chance)
 
 func _calculate_remaining_damage():
 	_remaining_damage = _total_damage
@@ -67,6 +69,8 @@ func update(delta:float):
 	hit_data.damage_type = _damage_type
 	hit_data.hit_by = _applier if is_instance_valid(_applier) else null 
 	hit_data.hit = unit
+	hit_data.crit_chance = _crit_chance
+	hit_data.crit_damage_multiplier = 1.5
 	hit_data.hit_creation_data = Weapon.HitCreationData.new(Vector3(unit.global_position.x,0.5,unit.global_position.z))
 	unit.take_hit(hit_data)
 

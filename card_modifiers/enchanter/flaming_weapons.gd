@@ -12,7 +12,8 @@ func _apply(weapon,_unit:Unit):
 			_apply_to(weapon)
 
 func _apply_to(weapon):
-	weapon.create_hit.add_override([weapon,self,"_create_hit_override"], _create_hit_override)
+	#after crit_chance is applied
+	weapon.create_hit.add_override([weapon,self,"_create_hit_override"], _create_hit_override, 50)
 
 func _un_apply(weapon,_unit:Unit):
 	weapon.create_hit.remove_override([weapon,self,"_create_hit_override"])
