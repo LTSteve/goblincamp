@@ -1,6 +1,6 @@
 [gd_scene load_steps=11 format=3 uid="uid://c41e8jd2dpobk"]
 
-[ext_resource type="Script" path="res://buildings/building.gd" id="1_f0u77"]
+[ext_resource type="Script" path="res://buildings/building.gd" id="1_55b0b"]
 [ext_resource type="PackedScene" uid="uid://cvh4b4xoetdyu" path="res://models/buildings/enchanter.glb" id="1_v05e1"]
 [ext_resource type="Script" path="res://units/components/HeightComponent.gd" id="2_6ludl"]
 
@@ -48,7 +48,7 @@ radius = 9.0
 
 [node name="Enchanter" type="Node3D" groups=["Enchanter"]]
 transform = Transform3D(0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, 0, 0, 0)
-script = ExtResource("1_f0u77")
+script = ExtResource("1_55b0b")
 building_type = 2
 
 [node name="enchanter" parent="." instance=ExtResource("1_v05e1")]

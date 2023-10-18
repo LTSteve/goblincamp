@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://dc2xntf220y7"]
+[gd_scene load_steps=18 format=3 uid="uid://dc2xntf220y7"]
 
 [ext_resource type="Script" path="res://units/Unit.gd" id="1_7xoce"]
 [ext_resource type="PackedScene" uid="uid://citvivc546i87" path="res://models/imp/imp.glb" id="2_tftnr"]
@@ -13,6 +13,9 @@
 [ext_resource type="Script" path="res://units/components/HitblinkComponent.gd" id="9_4qvq2"]
 [ext_resource type="PackedScene" uid="uid://bfg28nholuf7e" path="res://units/components/healthbar_component.tscn" id="10_u0636"]
 [ext_resource type="Script" path="res://units/components/ArmorComponent.gd" id="13_8lrld"]
+[ext_resource type="Script" path="res://units/components/StatusComponent.gd" id="14_lbqq4"]
+[ext_resource type="Script" path="res://units/components/MaterialOverrideComponent.gd" id="15_s4xkc"]
+[ext_resource type="Resource" uid="uid://bqs3nawyqs8ov" path="res://units/components/status_component_resource.tres" id="15_utq3d"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_4afdt"]
 radius = 0.35
@@ -78,17 +81,27 @@ weapon = NodePath("../imp/ImpClaw")
 [node name="RotationComponent" type="Node" parent="."]
 script = ExtResource("8_ak8ed")
 
-[node name="HitblinkComponent" type="Node" parent="." node_paths=PackedStringArray("model")]
+[node name="HitblinkComponent" type="Node" parent="." node_paths=PackedStringArray("material_override")]
 script = ExtResource("9_4qvq2")
-model = NodePath("../imp/imp2")
+material_override = NodePath("../MaterialOverrideComponent")
 
 [node name="ArmorComponent" type="Node" parent="."]
 script = ExtResource("13_8lrld")
+
+[node name="StatusComponent" type="Node" parent="." node_paths=PackedStringArray("material_override")]
+script = ExtResource("14_lbqq4")
+status_component_resource = ExtResource("15_utq3d")
+material_override = NodePath("../MaterialOverrideComponent")
+
+[node name="MaterialOverrideComponent" type="Node" parent="." node_paths=PackedStringArray("mesh_instance")]
+script = ExtResource("15_s4xkc")
+mesh_instance = NodePath("../imp/imp2")
 
 [connection signal="on_recieved_hit" from="." to="imp/imp2/Node3D/DamageNumberComponent" method="_on_damage_recieved"]
 [connection signal="on_recieved_hit" from="." to="HealthComponent" method="_on_recieved_hit"]
 [connection signal="on_recieved_hit" from="." to="VelocityComponent" method="_on_recieved_hit"]
 [connection signal="on_recieved_hit" from="." to="HitblinkComponent" method="_on_recieved_hit"]
+[connection signal="on_state_changed" from="." to="StatusComponent" method="_on_state_changed"]
 [connection signal="died" from="HealthComponent" to="." method="_on_died"]
 [connection signal="died" from="HealthComponent" to="BountyComponent" method="_on_health_component_died"]
 [connection signal="health_changed" from="HealthComponent" to="imp/imp2/Node3D/HealthbarComponent" method="_on_health_component_health_changed"]

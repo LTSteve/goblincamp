@@ -4,7 +4,7 @@ class_name Unit
 
 enum State { CHILLED, BLEEDING, BURNING }
 
-var state_states = []
+var state_states: Array[State] = []
 
 @onready var velocity_component: VelocityComponent = $VelocityComponent
 @onready var rotation_component: RotationComponent = $RotationComponent
@@ -16,6 +16,7 @@ var state_states = []
 @export var kill_value: float = 1
 
 signal on_recieved_hit(weapon_hit:Weapon.Hit)
+signal on_state_changed(state_states: Array[State])
 
 var _stunned: float = 0
 var _regular_collision: int = 0
@@ -105,10 +106,12 @@ func add_effect(effect:Effect):
 func add_state(state:State):
 	var index = state_states.find(state)
 	if index == -1: state_states.append(state)
+	on_state_changed.emit(state_states)
 
 func remove_state(state:State):
 	var index = state_states.find(state)
 	if index != -1: state_states.remove_at(index)
+	on_state_changed.emit(state_states)
 
 func has_state(state:State):
 	var index = state_states.find(state)

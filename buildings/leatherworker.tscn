@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://bq8m8udsnmoau"]
 
 [ext_resource type="PackedScene" uid="uid://dnkem6mlvyast" path="res://models/buildings/leatherworker.glb" id="1_8lss5"]
-[ext_resource type="Script" path="res://buildings/building.gd" id="1_w5fmk"]
+[ext_resource type="Script" path="res://buildings/building.gd" id="1_d12im"]
 [ext_resource type="Script" path="res://units/components/HeightComponent.gd" id="2_01jm3"]
 [ext_resource type="PackedScene" uid="uid://hyooxaspre1o" path="res://fx/fire.tscn" id="3_4jk3l"]
 
@@ -13,7 +13,7 @@ radius = 8.0
 
 [node name="Leatherworker" type="Node3D" groups=["Leatherworker"]]
 transform = Transform3D(0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, 0, 0, 0)
-script = ExtResource("1_w5fmk")
+script = ExtResource("1_d12im")
 building_type = 1
 
 [node name="leatherworker" parent="." instance=ExtResource("1_8lss5")]

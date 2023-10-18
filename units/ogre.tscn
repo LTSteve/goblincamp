@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://dlpkm7cy8xudv"]
+[gd_scene load_steps=18 format=3 uid="uid://dlpkm7cy8xudv"]
 
 [ext_resource type="Script" path="res://units/Unit.gd" id="1_4y35d"]
 [ext_resource type="PackedScene" uid="uid://bgfg403d28nmj" path="res://models/ogre/ogre.glb" id="2_q77xx"]
@@ -13,6 +13,9 @@
 [ext_resource type="Script" path="res://units/components/HitblinkComponent.gd" id="9_h0eyv"]
 [ext_resource type="PackedScene" uid="uid://bfg28nholuf7e" path="res://units/components/healthbar_component.tscn" id="10_73rfp"]
 [ext_resource type="Script" path="res://units/components/ArmorComponent.gd" id="13_7x2fu"]
+[ext_resource type="Script" path="res://units/components/MaterialOverrideComponent.gd" id="14_eb1wf"]
+[ext_resource type="Script" path="res://units/components/StatusComponent.gd" id="15_74med"]
+[ext_resource type="Resource" uid="uid://bqs3nawyqs8ov" path="res://units/components/status_component_resource.tres" id="16_tg4vp"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_4afdt"]
 radius = 3.0
@@ -80,17 +83,27 @@ script = ExtResource("8_jblmi")
 fast_rotation_speed = 180.0
 slow_rotation_speed = 150.0
 
-[node name="HitblinkComponent" type="Node" parent="." node_paths=PackedStringArray("model")]
+[node name="HitblinkComponent" type="Node" parent="." node_paths=PackedStringArray("material_override")]
 script = ExtResource("9_h0eyv")
-model = NodePath("../ogre/ogre2")
+material_override = NodePath("../MaterialOverrideComponent")
 
 [node name="ArmorComponent" type="Node" parent="."]
 script = ExtResource("13_7x2fu")
+
+[node name="MaterialOverrideComponent" type="Node" parent="." node_paths=PackedStringArray("mesh_instance")]
+script = ExtResource("14_eb1wf")
+mesh_instance = NodePath("../ogre/ogre2")
+
+[node name="StatusComponent" type="Node" parent="." node_paths=PackedStringArray("material_override")]
+script = ExtResource("15_74med")
+status_component_resource = ExtResource("16_tg4vp")
+material_override = NodePath("../MaterialOverrideComponent")
 
 [connection signal="on_recieved_hit" from="." to="ogre/ogre2/Node3D/DamageNumberComponent" method="_on_damage_recieved"]
 [connection signal="on_recieved_hit" from="." to="HealthComponent" method="_on_recieved_hit"]
 [connection signal="on_recieved_hit" from="." to="VelocityComponent" method="_on_recieved_hit"]
 [connection signal="on_recieved_hit" from="." to="HitblinkComponent" method="_on_recieved_hit"]
+[connection signal="on_state_changed" from="." to="StatusComponent" method="_on_state_changed"]
 [connection signal="died" from="HealthComponent" to="." method="_on_died"]
 [connection signal="died" from="HealthComponent" to="BountyComponent" method="_on_health_component_died"]
 [connection signal="health_changed" from="HealthComponent" to="ogre/ogre2/Node3D/HealthbarComponent" method="_on_health_component_health_changed"]

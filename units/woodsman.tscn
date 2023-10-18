@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://bklpnggu2tj0c"]
+[gd_scene load_steps=21 format=3 uid="uid://bklpnggu2tj0c"]
 
 [ext_resource type="Script" path="res://units/Unit.gd" id="1_co2hn"]
 [ext_resource type="PackedScene" uid="uid://7ompo5s8qd6p" path="res://models/woodsman/woodsman.glb" id="2_72bjw"]
@@ -15,6 +15,9 @@
 [ext_resource type="Script" path="res://units/components/HitblinkComponent.gd" id="6_fqxow"]
 [ext_resource type="PackedScene" uid="uid://bfg28nholuf7e" path="res://units/components/healthbar_component.tscn" id="11_ahflw"]
 [ext_resource type="Script" path="res://units/components/ArmorComponent.gd" id="15_2olfq"]
+[ext_resource type="Script" path="res://units/components/StatusComponent.gd" id="16_ty3ur"]
+[ext_resource type="Resource" uid="uid://bqs3nawyqs8ov" path="res://units/components/status_component_resource.tres" id="17_ls0wv"]
+[ext_resource type="Script" path="res://units/components/MaterialOverrideComponent.gd" id="18_4n51v"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_mwxnr"]
 
@@ -79,6 +82,14 @@ navigation_layers = 3
 avoidance_enabled = true
 radius = 2.0
 
+[node name="FleeRange" type="Area3D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="FleeRange"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("SphereShape3D_jaud8")
+
 [node name="HealthComponent" type="Node" parent="."]
 script = ExtResource("2_jhhwx")
 max_health = 80.0
@@ -98,28 +109,32 @@ max_nearby_melee_threshold = 5
 [node name="RotationComponent" type="Node" parent="."]
 script = ExtResource("5_p0h6f")
 
-[node name="HitblinkComponent" type="Node" parent="." node_paths=PackedStringArray("model")]
+[node name="HitblinkComponent" type="Node" parent="." node_paths=PackedStringArray("material_override")]
 script = ExtResource("6_fqxow")
-model = NodePath("../woodsman/woodsman2")
+material_override = NodePath("../MaterialOverrideComponent")
 
 [node name="ArmorComponent" type="Node" parent="."]
 script = ExtResource("15_2olfq")
 
-[node name="FleeRange" type="Area3D" parent="."]
-collision_layer = 0
-collision_mask = 2
+[node name="StatusComponent" type="Node" parent="." node_paths=PackedStringArray("material_override")]
+script = ExtResource("16_ty3ur")
+status_component_resource = ExtResource("17_ls0wv")
+material_override = NodePath("../MaterialOverrideComponent")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="FleeRange"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
-shape = SubResource("SphereShape3D_jaud8")
+[node name="MaterialOverrideComponent" type="Node" parent="." node_paths=PackedStringArray("mesh_instance")]
+script = ExtResource("18_4n51v")
+mesh_instance = NodePath("../woodsman/woodsman2")
 
 [connection signal="on_recieved_hit" from="." to="woodsman/DamageNumberComponent" method="_on_damage_recieved"]
 [connection signal="on_recieved_hit" from="." to="HealthComponent" method="_on_recieved_hit"]
 [connection signal="on_recieved_hit" from="." to="VelocityComponent" method="_on_recieved_hit"]
 [connection signal="on_recieved_hit" from="." to="HitblinkComponent" method="_on_recieved_hit"]
+[connection signal="on_state_changed" from="." to="StatusComponent" method="_on_state_changed"]
 [connection signal="on_get_kill" from="woodsman/BowAndDagger/Bow" to="woodsman/woodsman2/RankComponent" method="_on_get_kill"]
 [connection signal="on_get_kill" from="woodsman/BowAndDagger/Dagger" to="woodsman/woodsman2/RankComponent" method="_on_get_kill"]
 [connection signal="on_get_kill" from="woodsman/BowAndDagger/Dagger2" to="woodsman/woodsman2/RankComponent" method="_on_get_kill"]
+[connection signal="body_entered" from="FleeRange" to="WoodsmanBrain" method="_on_body_entered_nearby_range"]
+[connection signal="body_exited" from="FleeRange" to="WoodsmanBrain" method="_on_body_exited_nearby_range"]
 [connection signal="died" from="HealthComponent" to="." method="_on_died"]
 [connection signal="health_changed" from="HealthComponent" to="woodsman/woodsman2/HealthbarComponent" method="_on_health_component_health_changed"]
 [connection signal="enter_combat" from="WoodsmanBrain" to="woodsman/BowAndDagger" method="_on_enter_combat"]
@@ -127,8 +142,6 @@ shape = SubResource("SphereShape3D_jaud8")
 [connection signal="on_lock_target" from="WoodsmanBrain" to="RotationComponent" method="_on_lock_target"]
 [connection signal="request_attack" from="WoodsmanBrain" to="woodsman/BowAndDagger" method="_on_request_attack"]
 [connection signal="switch_melee" from="WoodsmanBrain" to="woodsman/BowAndDagger" method="_on_switch_melee"]
-[connection signal="body_entered" from="FleeRange" to="WoodsmanBrain" method="_on_body_entered_nearby_range"]
-[connection signal="body_exited" from="FleeRange" to="WoodsmanBrain" method="_on_body_exited_nearby_range"]
 
 [editable path="woodsman"]
 [editable path="woodsman/woodsman2/RankComponent"]

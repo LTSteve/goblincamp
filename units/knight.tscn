@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://blqqvg7tmek8o"]
+[gd_scene load_steps=18 format=3 uid="uid://blqqvg7tmek8o"]
 
 [ext_resource type="Script" path="res://units/Unit.gd" id="1_ubipr"]
 [ext_resource type="PackedScene" uid="uid://bjni3yp3c1c0c" path="res://models/knight/knight.glb" id="2_71j88"]
@@ -13,6 +13,9 @@
 [ext_resource type="Script" path="res://units/components/HitblinkComponent.gd" id="8_vpyio"]
 [ext_resource type="PackedScene" uid="uid://bfg28nholuf7e" path="res://units/components/healthbar_component.tscn" id="9_gsacq"]
 [ext_resource type="Script" path="res://units/components/ArmorComponent.gd" id="13_xk8ye"]
+[ext_resource type="Script" path="res://units/components/StatusComponent.gd" id="14_oxyq6"]
+[ext_resource type="Resource" uid="uid://bqs3nawyqs8ov" path="res://units/components/status_component_resource.tres" id="15_bw6bl"]
+[ext_resource type="Script" path="res://units/components/MaterialOverrideComponent.gd" id="16_5tqaf"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_nhjdq"]
 radius = 0.7
@@ -71,18 +74,28 @@ weapon = NodePath("../knight/Sword")
 [node name="RotationComponent" type="Node" parent="."]
 script = ExtResource("7_w68d6")
 
-[node name="HitblinkComponent" type="Node" parent="." node_paths=PackedStringArray("model")]
+[node name="HitblinkComponent" type="Node" parent="." node_paths=PackedStringArray("material_override")]
 script = ExtResource("8_vpyio")
-model = NodePath("../knight/knight2")
+material_override = NodePath("../MaterialOverrideComponent")
 
 [node name="ArmorComponent" type="Node" parent="." groups=["Knight"]]
 script = ExtResource("13_xk8ye")
 armor = 1
 
+[node name="StatusComopnent" type="Node" parent="." node_paths=PackedStringArray("material_override")]
+script = ExtResource("14_oxyq6")
+status_component_resource = ExtResource("15_bw6bl")
+material_override = NodePath("../MaterialOverrideComponent")
+
+[node name="MaterialOverrideComponent" type="Node" parent="." node_paths=PackedStringArray("mesh_instance")]
+script = ExtResource("16_5tqaf")
+mesh_instance = NodePath("../knight/knight2")
+
 [connection signal="on_recieved_hit" from="." to="knight/DamageNumberComponent" method="_on_damage_recieved"]
 [connection signal="on_recieved_hit" from="." to="HealthComponent" method="_on_recieved_hit"]
 [connection signal="on_recieved_hit" from="." to="VelocityComponent" method="_on_recieved_hit"]
 [connection signal="on_recieved_hit" from="." to="HitblinkComponent" method="_on_recieved_hit"]
+[connection signal="on_state_changed" from="." to="StatusComopnent" method="_on_state_changed"]
 [connection signal="on_get_kill" from="knight/Sword" to="knight/knight2/RankComponent" method="_on_get_kill"]
 [connection signal="on_get_kill" from="knight/Sword2" to="knight/knight2/RankComponent" method="_on_get_kill"]
 [connection signal="died" from="HealthComponent" to="." method="_on_died"]

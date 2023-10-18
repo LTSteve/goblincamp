@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://eyfqrbpktd2k"]
 
 [ext_resource type="PackedScene" uid="uid://d0rhm8ip4c3ab" path="res://models/buildings/blacksmith.glb" id="1_1b0ay"]
-[ext_resource type="Script" path="res://buildings/building.gd" id="1_awju8"]
+[ext_resource type="Script" path="res://buildings/building.gd" id="1_fji6x"]
 [ext_resource type="PackedScene" uid="uid://hyooxaspre1o" path="res://fx/fire.tscn" id="1_fsagv"]
 [ext_resource type="Script" path="res://units/components/HeightComponent.gd" id="2_qkb1v"]
 
@@ -13,7 +13,7 @@ radius = 9.0
 
 [node name="Blacksmith" type="Node3D" groups=["Blacksmith"]]
 transform = Transform3D(0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, 0, 0, 0)
-script = ExtResource("1_awju8")
+script = ExtResource("1_fji6x")
 
 [node name="blacksmith" parent="." instance=ExtResource("1_1b0ay")]
 script = ExtResource("2_qkb1v")

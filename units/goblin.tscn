@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://duwsqv7i6jgca"]
+[gd_scene load_steps=18 format=3 uid="uid://duwsqv7i6jgca"]
 
 [ext_resource type="Script" path="res://units/Unit.gd" id="1_avfjk"]
 [ext_resource type="Script" path="res://units/components/HealthComponent.gd" id="2_8blxg"]
@@ -13,6 +13,9 @@
 [ext_resource type="Script" path="res://units/components/HitblinkComponent.gd" id="9_ihg7o"]
 [ext_resource type="PackedScene" uid="uid://bfg28nholuf7e" path="res://units/components/healthbar_component.tscn" id="10_rj7ui"]
 [ext_resource type="Script" path="res://units/components/ArmorComponent.gd" id="13_m5apr"]
+[ext_resource type="Script" path="res://units/components/MaterialOverrideComponent.gd" id="14_6diai"]
+[ext_resource type="Script" path="res://units/components/StatusComponent.gd" id="15_idaps"]
+[ext_resource type="Resource" uid="uid://bqs3nawyqs8ov" path="res://units/components/status_component_resource.tres" id="16_vobw8"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_4afdt"]
 radius = 0.55
@@ -70,17 +73,27 @@ worth_varience = 5
 [node name="RotationComponent" type="Node" parent="."]
 script = ExtResource("8_sd4bo")
 
-[node name="HitblinkComponent" type="Node" parent="." node_paths=PackedStringArray("model")]
+[node name="HitblinkComponent" type="Node" parent="." node_paths=PackedStringArray("material_override")]
 script = ExtResource("9_ihg7o")
-model = NodePath("../goblin2/goblin2")
+material_override = NodePath("../MaterialOverrideComponent")
 
 [node name="ArmorComponent" type="Node" parent="."]
 script = ExtResource("13_m5apr")
+
+[node name="MaterialOverrideComponent" type="Node" parent="." node_paths=PackedStringArray("mesh_instance")]
+script = ExtResource("14_6diai")
+mesh_instance = NodePath("../goblin2/goblin2")
+
+[node name="StatusComponent" type="Node" parent="." node_paths=PackedStringArray("material_override")]
+script = ExtResource("15_idaps")
+status_component_resource = ExtResource("16_vobw8")
+material_override = NodePath("../MaterialOverrideComponent")
 
 [connection signal="on_recieved_hit" from="." to="goblin2/goblin2/DamageNumberComponent" method="_on_damage_recieved"]
 [connection signal="on_recieved_hit" from="." to="HealthComponent" method="_on_recieved_hit"]
 [connection signal="on_recieved_hit" from="." to="VelocityComponent" method="_on_recieved_hit"]
 [connection signal="on_recieved_hit" from="." to="HitblinkComponent" method="_on_recieved_hit"]
+[connection signal="on_state_changed" from="." to="StatusComponent" method="_on_state_changed"]
 [connection signal="died" from="HealthComponent" to="." method="_on_died"]
 [connection signal="died" from="HealthComponent" to="BountyComponent" method="_on_health_component_died"]
 [connection signal="health_changed" from="HealthComponent" to="goblin2/goblin2/HealthbarComponent" method="_on_health_component_health_changed"]

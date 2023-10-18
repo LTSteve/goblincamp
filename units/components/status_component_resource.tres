@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="StatusComponentResource" load_steps=2 format=3 uid="uid://bqs3nawyqs8ov"]
+
+[ext_resource type="Script" path="res://units/components/StatusComponentResource.gd" id="1_ofifj"]
+
+[resource]
+script = ExtResource("1_ofifj")
+bleed_color = Color(0.764706, 0.0156863, 0, 1)
+burn_color = Color(0.709804, 0.396078, 0.364706, 1)
+cold_color = Color(0, 0.780392, 0.784314, 1)

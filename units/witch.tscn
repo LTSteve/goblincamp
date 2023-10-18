@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://celifq1gdcq1s"]
+[gd_scene load_steps=19 format=3 uid="uid://celifq1gdcq1s"]
 
 [ext_resource type="Script" path="res://units/Unit.gd" id="1_2bruq"]
 [ext_resource type="PackedScene" uid="uid://c66o7ssgncoaa" path="res://models/witch/witch.glb" id="2_kevcb"]
@@ -13,6 +13,9 @@
 [ext_resource type="Script" path="res://units/components/HitblinkComponent.gd" id="8_rq33g"]
 [ext_resource type="PackedScene" uid="uid://bfg28nholuf7e" path="res://units/components/healthbar_component.tscn" id="9_c8jh5"]
 [ext_resource type="Script" path="res://units/components/ArmorComponent.gd" id="13_8qxvo"]
+[ext_resource type="Script" path="res://units/components/StatusComponent.gd" id="14_cq1n8"]
+[ext_resource type="Resource" uid="uid://bqs3nawyqs8ov" path="res://units/components/status_component_resource.tres" id="15_dmo6o"]
+[ext_resource type="Script" path="res://units/components/MaterialOverrideComponent.gd" id="16_02ypy"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_nhjdq"]
 radius = 0.7
@@ -67,6 +70,14 @@ navigation_layers = 3
 avoidance_enabled = true
 radius = 2.0
 
+[node name="FleeRange" type="Area3D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="FleeRange"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("SphereShape3D_a8j42")
+
 [node name="HealthComponent" type="Node" parent="."]
 script = ExtResource("4_b3ev8")
 max_health = 60.0
@@ -84,34 +95,36 @@ weapon = NodePath("../witch/Staff")
 [node name="RotationComponent" type="Node" parent="."]
 script = ExtResource("7_pgggu")
 
-[node name="HitblinkComponent" type="Node" parent="." node_paths=PackedStringArray("model")]
+[node name="HitblinkComponent" type="Node" parent="." node_paths=PackedStringArray("material_override")]
 script = ExtResource("8_rq33g")
-model = NodePath("../witch/witch2")
+material_override = NodePath("../MaterialOverrideComponent")
 
 [node name="ArmorComponent" type="Node" parent="."]
 script = ExtResource("13_8qxvo")
 
-[node name="FleeRange" type="Area3D" parent="."]
-collision_layer = 0
-collision_mask = 2
+[node name="StatusComponent" type="Node" parent="." node_paths=PackedStringArray("material_override")]
+script = ExtResource("14_cq1n8")
+status_component_resource = ExtResource("15_dmo6o")
+material_override = NodePath("../MaterialOverrideComponent")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="FleeRange"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
-shape = SubResource("SphereShape3D_a8j42")
+[node name="MaterialOverrideComponent" type="Node" parent="." node_paths=PackedStringArray("mesh_instance")]
+script = ExtResource("16_02ypy")
+mesh_instance = NodePath("../witch/witch2")
 
 [connection signal="on_recieved_hit" from="." to="witch/DamageNumberComponent" method="_on_damage_recieved"]
 [connection signal="on_recieved_hit" from="." to="HealthComponent" method="_on_recieved_hit"]
 [connection signal="on_recieved_hit" from="." to="VelocityComponent" method="_on_recieved_hit"]
 [connection signal="on_recieved_hit" from="." to="HitblinkComponent" method="_on_recieved_hit"]
+[connection signal="on_state_changed" from="." to="StatusComponent" method="_on_state_changed"]
 [connection signal="on_get_kill" from="witch/Staff" to="witch/witch2/RankComponent" method="_on_get_kill"]
+[connection signal="body_entered" from="FleeRange" to="WitchBrain" method="_on_body_entered_flee_range"]
+[connection signal="body_exited" from="FleeRange" to="WitchBrain" method="_on_body_exited_flee_range"]
 [connection signal="died" from="HealthComponent" to="." method="_on_died"]
 [connection signal="health_changed" from="HealthComponent" to="witch/witch2/HealthbarComponent" method="_on_health_component_health_changed"]
 [connection signal="enter_combat" from="WitchBrain" to="witch/Staff" method="_on_enter_combat"]
 [connection signal="exit_combat" from="WitchBrain" to="witch/Staff" method="_on_exit_combat"]
 [connection signal="on_lock_target" from="WitchBrain" to="RotationComponent" method="_on_lock_target"]
 [connection signal="request_attack" from="WitchBrain" to="witch/Staff" method="_on_request_attack"]
-[connection signal="body_entered" from="FleeRange" to="WitchBrain" method="_on_body_entered_flee_range"]
-[connection signal="body_exited" from="FleeRange" to="WitchBrain" method="_on_body_exited_flee_range"]
 
 [editable path="witch"]
 [editable path="witch/witch2/RankComponent"]
