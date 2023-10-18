@@ -25,6 +25,7 @@ func _create_hit_override(_base_value:Weapon.Hit, current_value:Weapon.Hit):
 	current_value.hit_stun = 0
 	current_value.pushback = 0
 	current_value.direction = Vector2.ZERO
+	current_value.apply_effects = []
 	
 	return current_value
 
@@ -39,5 +40,7 @@ func _on_hit_landed(enemy:Unit, explosion:AreaOfEffect, original_hit: Weapon.Hit
 	explosion_hit.damage_type = original_hit.damage_type
 	explosion_hit.hit_by = original_hit.hit_by
 	explosion_hit.hit = enemy
+	for effect in original_hit.apply_effects:
+		explosion_hit.apply_effects.append(effect.duplicate(enemy))
 	explosion_hit.hit_creation_data = Weapon.HitCreationData.new(explosion.global_position)
 	enemy.take_hit(explosion_hit)

@@ -6,6 +6,7 @@ class HitCreationData:
 	var base_damage_scale: float = 1.0
 	var base_pushback_scale: float = 1.0
 	var can_crit: bool = true
+	var apply_effects: Array[Effect] = []
 	
 	func _init(point:Vector3 = Vector3.ZERO):
 		hit_point = point
@@ -85,4 +86,5 @@ static func _create_hit(this, unit:Unit, hit_creation_data:HitCreationData = Hit
 	hit_data.hit_by = this
 	hit_data.hit = unit
 	hit_data.hit_creation_data = hit_creation_data
+	hit_data.apply_effects = hit_creation_data.apply_effects
 	return hit_data

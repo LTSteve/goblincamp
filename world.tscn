@@ -1,4 +1,4 @@
-[gd_scene load_steps=58 format=3 uid="uid://c4d1d2j1uy0kb"]
+[gd_scene load_steps=62 format=3 uid="uid://c4d1d2j1uy0kb"]
 
 [ext_resource type="PackedScene" uid="uid://b43v6jawtpn5j" path="res://ground.tscn" id="2_oaunj"]
 [ext_resource type="PackedScene" uid="uid://o2t0d4q03eun" path="res://buildings/campfire.tscn" id="3_8yp2w"]
@@ -24,8 +24,12 @@
 [ext_resource type="Script" path="res://controls/BuyBuildingButton.gd" id="17_aotie"]
 [ext_resource type="Resource" uid="uid://c1aef24c088vl" path="res://card_modifiers/enchanter_deck.tres" id="17_asfou"]
 [ext_resource type="PackedScene" uid="uid://c2qe8ftqf2163" path="res://units/unit_cams/witch_cam.tscn" id="18_4ytrf"]
+[ext_resource type="Script" path="res://card_modifiers/enchanter/embers.gd" id="18_ba3oj"]
 [ext_resource type="Script" path="res://controls/BuyPanelToggle.gd" id="18_ekxat"]
+[ext_resource type="Script" path="res://card_modifiers/enchanter/flaming_weapons.gd" id="18_mkxy1"]
+[ext_resource type="Resource" uid="uid://cq1t2s7sloemw" path="res://card_modifiers/enchanter/flaming_weapons.tres" id="19_h27vp"]
 [ext_resource type="PackedScene" uid="uid://crl8047c1ire1" path="res://units/unit_cams/woodsman_cam.tscn" id="19_n5c1i"]
+[ext_resource type="Resource" uid="uid://bnefvf3f8ga3w" path="res://card_modifiers/enchanter/embers.tres" id="19_yb2q4"]
 [ext_resource type="Environment" uid="uid://b8hhv81bda8f4" path="res://units/unit_cams/unit_cam_env.tres" id="20_g2brn"]
 [ext_resource type="Resource" uid="uid://ddea3wrf63u36" path="res://card_modifiers/enchanter/lingering_flame.tres" id="20_r63s7"]
 [ext_resource type="PackedScene" uid="uid://cl56424ctmbxa" path="res://controls/card_display.tscn" id="22_g0iv7"]
@@ -306,8 +310,14 @@ enchanter_deck = ExtResource("17_asfou")
 force_card = ExtResource("20_r63s7")
 
 [node name="Node" type="Node" parent="CardModifiers"]
+script = ExtResource("18_ba3oj")
+card_resource = ExtResource("19_yb2q4")
+current_rank = 1
 
 [node name="Node2" type="Node" parent="CardModifiers"]
+script = ExtResource("18_mkxy1")
+card_resource = ExtResource("19_h27vp")
+current_rank = 1
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 

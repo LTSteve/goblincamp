@@ -33,6 +33,9 @@ func on_apply():
 func on_remove():
 	pass
 
+func duplicate(new_unit:Unit) -> Effect:
+	return Effect.new(new_unit, duration, buff, id)
+
 func try_replace_existing(effects_list: Array[Effect]) -> bool:
 	for effect in effects_list:
 		if effect.id == id:

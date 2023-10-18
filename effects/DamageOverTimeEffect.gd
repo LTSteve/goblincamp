@@ -41,6 +41,9 @@ func on_remove():
 	if _apply_state != null:
 		unit.remove_state(_apply_state)
 
+func duplicate(new_unit:Unit) -> Effect:
+	return DamageOverTimeEffect.new(new_unit, _applier, _my_damage, _stack_limit, duration, _tick_time, id, _damage_type, _apply_state)
+
 func _calculate_remaining_damage():
 	_remaining_damage = _total_damage
 	_remaining_ticks = floor(duration / _tick_time)
