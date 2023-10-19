@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="RangedBehaviour" load_steps=2 format=3 uid="uid://c7i3ado8qilji"]
+
+[ext_resource type="Script" path="res://units/components/brain/RangedBehaviour.gd" id="1_xxpcc"]
+
+[resource]
+script = ExtResource("1_xxpcc")
+comfortable_range_modifier = 0.8
+flee_distance = 8.0

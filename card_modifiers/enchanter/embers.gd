@@ -54,6 +54,6 @@ func _on_area_3d_body_entered(enemy:Unit, projectile:Projectile, original_hit: W
 	hit_creation_data.can_crit = false
 	for effect in original_hit.apply_effects:
 		hit_creation_data.apply_effects.append(effect.duplicate(enemy))
-	var hit_data = original_hit.hit_by.create_hit.execute([original_hit.hit_by, enemy, hit_creation_data])
+	var hit_data = original_hit.hit_by.create_hit.execute([enemy, hit_creation_data])
 	enemy.take_hit(hit_data)
 	projectile.queue_free()

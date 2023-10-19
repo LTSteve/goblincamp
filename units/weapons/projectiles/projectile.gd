@@ -40,9 +40,9 @@ func _physics_process(delta:float):
 			else:
 				destination_reached.emit()
 		else:
-			look_at(Vector3(target.global_position.x,global_position.y,target.global_position.z))
+			_try_look_at(look)
 	else:
-		look_at(global_position + Math.v2_to_v3(direction, global_position.y))
+		_try_look_at(global_position + Math.v2_to_v3(direction, global_position.y))
 	
 	rotation = Vector3(0, rotation.y, 0)
 	
@@ -52,6 +52,10 @@ func _physics_process(delta:float):
 	
 	velocity_component.set_direction(direction)
 	velocity_component.move_physics(self, delta)
+
+func _try_look_at(pos:Vector3):
+	if pos.length_squared() < 0.001 || pos.angle_to(Vector3.UP) == 0: return
+	look_at(pos)
 
 func _on_area_3d_body_entered(_body):
 	if(free_on_hit):

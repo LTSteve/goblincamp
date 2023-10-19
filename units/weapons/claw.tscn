@@ -1,7 +1,7 @@
 [gd_scene load_steps=14 format=3 uid="uid://byiw0i7pdnhqs"]
 
-[ext_resource type="Script" path="res://units/components/MeleeWeapon.gd" id="1_5m07s"]
 [ext_resource type="PackedScene" uid="uid://bs3qwtfkptsc7" path="res://models/goblin/goblin_weapon.glb" id="1_g4m7c"]
+[ext_resource type="Script" path="res://units/components/weapon/MeleeWeapon.gd" id="1_xglgg"]
 [ext_resource type="AnimationNodeStateMachine" uid="uid://dawvd5u6rapgb" path="res://units/weapons/weapon_animation_state_machine.tres" id="2_rewrc"]
 [ext_resource type="Script" path="res://util/AnimationTreeExpressionExtension.gd" id="4_4f64f"]
 [ext_resource type="Script" path="res://units/components/InverseHeightComponent.gd" id="5_68eio"]
@@ -1256,16 +1256,16 @@ _data = {
 [sub_resource type="BoxShape3D" id="BoxShape3D_6t8rt"]
 size = Vector3(1, 2, 1)
 
-[node name="Claw" type="Node3D" node_paths=PackedStringArray("animation_tree", "collision_areas", "hit_spot") groups=["Claw"]]
+[node name="Claw" type="Node3D" node_paths=PackedStringArray("collision_areas", "hit_spot", "animation_tree") groups=["Claw"]]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 1.02529, 0)
-script = ExtResource("1_5m07s")
-animation_tree = NodePath("AnimationTree")
+script = ExtResource("1_xglgg")
 collision_areas = [NodePath("Hurtboxes/Area3D")]
 hit_spot = NodePath("claws/HitSpot")
-cooldown = 0.6
-damage = 8.0
-pushback = 1.0
-hit_stun = 0.25
+animation_tree = NodePath("AnimationTree")
+weapon_range = 2.2
+damage = 6.0
+pushback = 1.8
+hit_stun = 0.4
 
 [node name="claws" type="Node3D" parent="."]
 
@@ -1273,7 +1273,7 @@ hit_stun = 0.25
 transform = Transform3D(-0.183914, -0.98294, -2.22686e-06, -0.8634, 0.161546, 0.477955, -0.469802, 0.0879048, -0.878383, -1.1, -0.1, 5.05119e-15)
 
 [node name="goblin_weapon_r" parent="claws" instance=ExtResource("1_g4m7c")]
-transform = Transform3D(0.183953, 0.982935, -4.16111e-11, -0.863394, 0.161581, -0.477955, -0.469799, 0.0879213, 0.878383, 1.1, -0.1, -5.05119e-15)
+transform = Transform3D(0.183953, 0.982934, -4.16111e-11, -0.863394, 0.161581, -0.477955, -0.469799, 0.0879212, 0.878383, 1.1, -0.1, -5.05119e-15)
 
 [node name="HitSpot" type="Node3D" parent="claws"]
 transform = Transform3D(1, -3.55271e-15, 0, -7.10543e-15, 1, -3.29875e-16, -8.88178e-16, -3.29875e-16, 1, -2.94088e-08, 0.532809, -0.845332)
@@ -1290,6 +1290,8 @@ active = true
 parameters/conditions/in_combat = false
 parameters/conditions/not_in_combat = false
 parameters/Attack/conditions/use_attack_2 = false
+parameters/Attack/attack/TimeScale/scale = 1.0
+parameters/Attack/attack_2/TimeScale/scale = 1.0
 parameters/Draw/TimeScale/scale = 1.0
 parameters/Stow/TimeScale/scale = 1.0
 script = ExtResource("4_4f64f")

@@ -1,0 +1,116 @@
+[gd_scene load_steps=18 format=3 uid="uid://brhc1aba5usew"]
+
+[ext_resource type="Script" path="res://units/Unit.gd" id="1_6slac"]
+[ext_resource type="Script" path="res://units/components/HeightComponent.gd" id="3_mhfwn"]
+[ext_resource type="PackedScene" uid="uid://bfg28nholuf7e" path="res://units/components/healthbar_component.tscn" id="4_h7kpd"]
+[ext_resource type="PackedScene" uid="uid://cp2wfftw1nmvr" path="res://units/components/rank_component.tscn" id="5_7sy2q"]
+[ext_resource type="PackedScene" uid="uid://bac8aofl217ri" path="res://units/components/damagelabel/damage_number_component.tscn" id="7_rfitb"]
+[ext_resource type="Script" path="res://units/components/HealthComponent.gd" id="8_vakd5"]
+[ext_resource type="Script" path="res://units/components/VelocityComponent.gd" id="9_a1g10"]
+[ext_resource type="Script" path="res://units/components/RotationComponent.gd" id="11_t1h5w"]
+[ext_resource type="Script" path="res://units/components/HitblinkComponent.gd" id="12_tn8gh"]
+[ext_resource type="Script" path="res://units/components/ArmorComponent.gd" id="13_7cffv"]
+[ext_resource type="Script" path="res://units/components/StatusComponent.gd" id="14_4xq4l"]
+[ext_resource type="Resource" uid="uid://bqs3nawyqs8ov" path="res://units/components/status_component_resource.tres" id="15_cfd5q"]
+[ext_resource type="Script" path="res://units/components/BountyComponent.gd" id="15_fndb6"]
+[ext_resource type="Script" path="res://units/components/MaterialOverrideComponent.gd" id="16_fq7mo"]
+[ext_resource type="Script" path="res://units/components/BrainComponent.gd" id="16_wtkvr"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_nhjdq"]
+radius = 0.7
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_phml6"]
+radius = 8.0
+
+[node name="Unit" type="CharacterBody3D"]
+collision_mask = 3
+axis_lock_linear_y = true
+axis_lock_angular_x = true
+axis_lock_angular_z = true
+script = ExtResource("1_6slac")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CapsuleShape3D_nhjdq")
+
+[node name="Model" type="Node3D" parent="."]
+transform = Transform3D(-2.30258e-08, 0, 0.526768, 0, 0.526768, 0, -0.526768, 0, -2.30258e-08, 0, 0, 0)
+script = ExtResource("3_mhfwn")
+
+[node name="DamageNumberComponent" parent="Model" instance=ExtResource("7_rfitb")]
+transform = Transform3D(1, 8.48637e-08, 7.10543e-15, -8.48637e-08, 1, -2.66454e-15, 0, 3.37335e-16, 1, 4.52606e-07, 5.31398, 1.30397e-14)
+is_ally = true
+
+[node name="HealthbarComponent" parent="Model" instance=ExtResource("4_h7kpd")]
+transform = Transform3D(-7.7427e-08, 1.13152e-07, -1.77133, 0, 1.77133, 1.13152e-07, 1.77133, 1.57384e-15, -7.7427e-08, 0.00883782, 4.24613, -0.0184446)
+
+[node name="RankComponent" parent="Model" instance=ExtResource("5_7sy2q")]
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 0, 0)
+
+[node name="WeaponHolder" type="Node3D" parent="Model"]
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+path_height_offset = 0.5
+navigation_layers = 3
+avoidance_enabled = true
+radius = 2.0
+
+[node name="HealthComponent" type="Node" parent="."]
+script = ExtResource("8_vakd5")
+
+[node name="VelocityComponent" type="Node" parent="."]
+script = ExtResource("9_a1g10")
+max_speed = 6.0
+acceleration = 1.0
+
+[node name="RotationComponent" type="Node" parent="."]
+script = ExtResource("11_t1h5w")
+
+[node name="HitblinkComponent" type="Node" parent="." node_paths=PackedStringArray("material_override")]
+script = ExtResource("12_tn8gh")
+material_override = NodePath("../MaterialOverrideComponent")
+
+[node name="ArmorComponent" type="Node" parent="."]
+script = ExtResource("13_7cffv")
+
+[node name="StatusComopnent" type="Node" parent="." node_paths=PackedStringArray("material_override")]
+script = ExtResource("14_4xq4l")
+status_component_resource = ExtResource("15_cfd5q")
+material_override = NodePath("../MaterialOverrideComponent")
+
+[node name="MaterialOverrideComponent" type="Node" parent="."]
+script = ExtResource("16_fq7mo")
+
+[node name="BountyComponent" type="Node" parent="."]
+script = ExtResource("15_fndb6")
+
+[node name="BrainComponent" type="Node" parent="." node_paths=PackedStringArray("unit", "weapon_holder", "flee_range")]
+script = ExtResource("16_wtkvr")
+unit = NodePath("..")
+weapon_holder = NodePath("../Model/WeaponHolder")
+flee_range = NodePath("../FleeRange")
+
+[node name="FleeRange" type="Area3D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="FleeRange"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("SphereShape3D_phml6")
+
+[connection signal="on_get_kill" from="." to="Model/RankComponent" method="_on_get_kill"]
+[connection signal="on_recieved_hit" from="." to="Model/DamageNumberComponent" method="_on_damage_recieved"]
+[connection signal="on_recieved_hit" from="." to="HealthComponent" method="_on_recieved_hit"]
+[connection signal="on_recieved_hit" from="." to="VelocityComponent" method="_on_recieved_hit"]
+[connection signal="on_recieved_hit" from="." to="HitblinkComponent" method="_on_recieved_hit"]
+[connection signal="on_state_changed" from="." to="StatusComopnent" method="_on_state_changed"]
+[connection signal="died" from="HealthComponent" to="." method="_on_died"]
+[connection signal="died" from="HealthComponent" to="BountyComponent" method="_on_health_component_died"]
+[connection signal="health_changed" from="HealthComponent" to="Model/HealthbarComponent" method="_on_health_component_health_changed"]
+[connection signal="on_lock_target" from="BrainComponent" to="RotationComponent" method="_on_lock_target"]
+
+[editable path="Model/RankComponent"]
+[editable path="Model/RankComponent/rank_star"]
+[editable path="Model/RankComponent/rank_star2"]
+[editable path="Model/RankComponent/rank_star3"]
+[editable path="Model/RankComponent/rank_star4"]

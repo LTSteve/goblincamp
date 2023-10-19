@@ -1,0 +1,6 @@
+[gd_resource type="Resource" script_class="WanderBehaviour" load_steps=2 format=3 uid="uid://6a2euiflosoa"]
+
+[ext_resource type="Script" path="res://units/components/brain/WanderBehaviour.gd" id="1_xa3wh"]
+
+[resource]
+script = ExtResource("1_xa3wh")

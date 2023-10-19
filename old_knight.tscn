@@ -1,0 +1,128 @@
+[gd_scene load_steps=18 format=3 uid="uid://cqhk0quwlw8p2"]
+
+[ext_resource type="Script" path="res://units/Unit.gd" id="1_ubipr"]
+[ext_resource type="PackedScene" uid="uid://bjni3yp3c1c0c" path="res://models/knight/knight.glb" id="2_71j88"]
+[ext_resource type="Script" path="res://units/components/HealthComponent.gd" id="2_u35x7"]
+[ext_resource type="Script" path="res://units/components/HeightComponent.gd" id="3_dp6gg"]
+[ext_resource type="Script" path="res://units/components/VelocityComponent.gd" id="3_gto3h"]
+[ext_resource type="PackedScene" uid="uid://p0owu7fjhs2u" path="res://units/weapons/sword.tscn" id="3_qgv83"]
+[ext_resource type="PackedScene" uid="uid://bac8aofl217ri" path="res://units/components/damagelabel/damage_number_component.tscn" id="5_hsn0a"]
+[ext_resource type="PackedScene" uid="uid://cp2wfftw1nmvr" path="res://units/components/rank_component.tscn" id="5_mi52n"]
+[ext_resource type="Script" path="res://units/components/BasicBrain.gd" id="6_e63tc"]
+[ext_resource type="Script" path="res://units/components/RotationComponent.gd" id="7_w68d6"]
+[ext_resource type="Script" path="res://units/components/HitblinkComponent.gd" id="8_vpyio"]
+[ext_resource type="PackedScene" uid="uid://bfg28nholuf7e" path="res://units/components/healthbar_component.tscn" id="9_gsacq"]
+[ext_resource type="Script" path="res://units/components/ArmorComponent.gd" id="13_xk8ye"]
+[ext_resource type="Script" path="res://units/components/StatusComponent.gd" id="14_oxyq6"]
+[ext_resource type="Resource" uid="uid://bqs3nawyqs8ov" path="res://units/components/status_component_resource.tres" id="15_bw6bl"]
+[ext_resource type="Script" path="res://units/components/MaterialOverrideComponent.gd" id="16_5tqaf"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_nhjdq"]
+radius = 0.7
+
+[node name="Knight" type="CharacterBody3D" groups=["Knight"]]
+collision_mask = 3
+axis_lock_linear_y = true
+axis_lock_angular_x = true
+axis_lock_angular_z = true
+script = ExtResource("1_ubipr")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CapsuleShape3D_nhjdq")
+
+[node name="knight" parent="." instance=ExtResource("2_71j88")]
+transform = Transform3D(-2.30258e-08, 0, 0.526768, 0, 0.526768, 0, -0.526768, 0, -2.30258e-08, 0, 0, 0)
+script = ExtResource("3_dp6gg")
+
+[node name="HealthbarComponent" parent="knight/knight2" index="0" instance=ExtResource("9_gsacq")]
+transform = Transform3D(5.53203e-08, -2.19205, 1.26558, -9.58176e-08, -1.26558, -2.19205, 2.53116, 0, -1.10641e-07, -5.25467, -3.03378, 0)
+
+[node name="RankComponent" parent="knight/knight2" index="1" instance=ExtResource("5_mi52n")]
+transform = Transform3D(-0.2, -2.14569e-08, -0.34641, 0.34641, -1.51421e-08, -0.2, -2.38498e-09, -0.4, 2.61532e-08, -3.60903, -2.56196, -1.37593)
+
+[node name="Sword" parent="knight" node_paths=PackedStringArray("collision_areas") instance=ExtResource("3_qgv83")]
+collision_areas = []
+weapon_range = null
+damage = null
+hit_stun = null
+crit_chance = null
+crit_damage_multiplier = null
+damage_type = null
+animation_delay = null
+disabled = null
+
+[node name="Sword2" parent="knight" node_paths=PackedStringArray("collision_areas") instance=ExtResource("3_qgv83")]
+transform = Transform3D(4.37114e-08, 0, -1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 1, 0)
+visible = false
+collision_areas = []
+weapon_range = null
+damage = null
+hit_stun = null
+crit_chance = null
+crit_damage_multiplier = null
+damage_type = null
+animation_delay = 0.2
+disabled = true
+
+[node name="DamageNumberComponent" parent="knight" instance=ExtResource("5_hsn0a")]
+is_ally = true
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+path_height_offset = 0.5
+navigation_layers = 3
+avoidance_enabled = true
+radius = 2.0
+
+[node name="HealthComponent" type="Node" parent="."]
+script = ExtResource("2_u35x7")
+
+[node name="VelocityComponent" type="Node" parent="."]
+script = ExtResource("3_gto3h")
+max_speed = 6.0
+acceleration = 1.0
+
+[node name="BasicBrain" type="Node" parent="." node_paths=PackedStringArray("unit")]
+script = ExtResource("6_e63tc")
+unit = NodePath("..")
+
+[node name="RotationComponent" type="Node" parent="."]
+script = ExtResource("7_w68d6")
+
+[node name="HitblinkComponent" type="Node" parent="." node_paths=PackedStringArray("material_override")]
+script = ExtResource("8_vpyio")
+material_override = NodePath("../MaterialOverrideComponent")
+
+[node name="ArmorComponent" type="Node" parent="." groups=["Knight"]]
+script = ExtResource("13_xk8ye")
+armor = 1
+
+[node name="StatusComopnent" type="Node" parent="." node_paths=PackedStringArray("material_override")]
+script = ExtResource("14_oxyq6")
+status_component_resource = ExtResource("15_bw6bl")
+material_override = NodePath("../MaterialOverrideComponent")
+
+[node name="MaterialOverrideComponent" type="Node" parent="." node_paths=PackedStringArray("mesh_instance")]
+script = ExtResource("16_5tqaf")
+mesh_instance = NodePath("../knight/knight2")
+
+[connection signal="on_recieved_hit" from="." to="knight/DamageNumberComponent" method="_on_damage_recieved"]
+[connection signal="on_recieved_hit" from="." to="HealthComponent" method="_on_recieved_hit"]
+[connection signal="on_recieved_hit" from="." to="VelocityComponent" method="_on_recieved_hit"]
+[connection signal="on_recieved_hit" from="." to="HitblinkComponent" method="_on_recieved_hit"]
+[connection signal="on_state_changed" from="." to="StatusComopnent" method="_on_state_changed"]
+[connection signal="died" from="HealthComponent" to="." method="_on_died"]
+[connection signal="health_changed" from="HealthComponent" to="knight/knight2/HealthbarComponent" method="_on_health_component_health_changed"]
+[connection signal="enter_combat" from="BasicBrain" to="knight/Sword" method="_on_enter_combat"]
+[connection signal="enter_combat" from="BasicBrain" to="knight/Sword2" method="_on_enter_combat"]
+[connection signal="exit_combat" from="BasicBrain" to="knight/Sword" method="_on_exit_combat"]
+[connection signal="exit_combat" from="BasicBrain" to="knight/Sword2" method="_on_exit_combat"]
+[connection signal="request_attack" from="BasicBrain" to="knight/Sword" method="_on_request_attack"]
+[connection signal="request_attack" from="BasicBrain" to="knight/Sword2" method="_on_request_attack"]
+
+[editable path="knight"]
+[editable path="knight/knight2/RankComponent"]
+[editable path="knight/knight2/RankComponent/rank_star"]
+[editable path="knight/knight2/RankComponent/rank_star2"]
+[editable path="knight/knight2/RankComponent/rank_star3"]
+[editable path="knight/knight2/RankComponent/rank_star4"]

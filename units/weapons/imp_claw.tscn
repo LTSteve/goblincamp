@@ -1,6 +1,6 @@
 [gd_scene load_steps=14 format=3 uid="uid://bafd3cjhvdg42"]
 
-[ext_resource type="Script" path="res://units/components/MeleeWeapon.gd" id="1_76c5o"]
+[ext_resource type="Script" path="res://units/components/weapon/MeleeWeapon.gd" id="1_mk2h3"]
 [ext_resource type="PackedScene" uid="uid://edpi0vppt0da" path="res://models/imp/imp_weapon.glb" id="2_u6gfe"]
 [ext_resource type="AnimationNodeStateMachine" uid="uid://dawvd5u6rapgb" path="res://units/weapons/weapon_animation_state_machine.tres" id="3_6kr8s"]
 [ext_resource type="Script" path="res://util/AnimationTreeExpressionExtension.gd" id="4_0ej1c"]
@@ -1257,13 +1257,13 @@ _data = {
 [sub_resource type="BoxShape3D" id="BoxShape3D_6t8rt"]
 size = Vector3(1, 2, 1)
 
-[node name="ImpClaw" type="Node3D" node_paths=PackedStringArray("animation_tree", "collision_areas", "hit_spot") groups=["ImpClaw"]]
+[node name="ImpClaw" type="Node3D" node_paths=PackedStringArray("collision_areas", "hit_spot", "animation_tree") groups=["ImpClaw"]]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 1.02529, 0)
-script = ExtResource("1_76c5o")
-animation_tree = NodePath("AnimationTree")
+script = ExtResource("1_mk2h3")
 collision_areas = [NodePath("Hurtboxes/Area3D")]
 hit_spot = NodePath("claws/HitSpot")
-cooldown = 0.6
+animation_tree = NodePath("AnimationTree")
+weapon_range = 1.5
 damage = 4.0
 pushback = 0.5
 hit_stun = 0.1
@@ -1291,6 +1291,8 @@ active = true
 parameters/conditions/in_combat = false
 parameters/conditions/not_in_combat = false
 parameters/Attack/conditions/use_attack_2 = false
+parameters/Attack/attack/TimeScale/scale = 1.0
+parameters/Attack/attack_2/TimeScale/scale = 1.0
 parameters/Draw/TimeScale/scale = 1.0
 parameters/Stow/TimeScale/scale = 1.0
 script = ExtResource("4_0ej1c")

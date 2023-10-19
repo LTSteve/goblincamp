@@ -42,7 +42,8 @@ func _start_next_day():
 	_day += 1
 	_spawn_wave(_day)
 	on_night.emit()
-	navigation_region.bake_finished.disconnect(_start_next_day)
+	if navigation_region.bake_finished.is_connected(_start_next_day):
+		navigation_region.bake_finished.disconnect(_start_next_day)
 
 func _spawn_wave(number: float):
 	

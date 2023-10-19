@@ -1,6 +1,6 @@
 [gd_scene load_steps=13 format=3 uid="uid://yqmlu4dtpagw"]
 
-[ext_resource type="Script" path="res://units/components/RangedWeapon.gd" id="1_c3soh"]
+[ext_resource type="Script" path="res://units/components/weapon/RangedWeapon.gd" id="1_c3soh"]
 [ext_resource type="PackedScene" uid="uid://fphb7wictjtw" path="res://units/weapons/projectiles/fireball.tscn" id="2_brohl"]
 [ext_resource type="PackedScene" uid="uid://dr03pl5h8j0jd" path="res://models/witch/witch_weapon.glb" id="3_52u0o"]
 [ext_resource type="AnimationNodeStateMachine" uid="uid://dawvd5u6rapgb" path="res://units/weapons/weapon_animation_state_machine.tres" id="4_tr10y"]
@@ -450,12 +450,12 @@ _data = {
 "stow": SubResource("Animation_fy7ry")
 }
 
-[node name="Staff" type="Node3D" node_paths=PackedStringArray("animation_tree", "projectile_spawn_point") groups=["Staff"]]
+[node name="Staff" type="Node3D" node_paths=PackedStringArray("projectile_spawn_point", "animation_tree") groups=["Staff"]]
 transform = Transform3D(1, 0, 3.19744e-14, 0, 1, 0, -3.19744e-14, 0, 1, 0, 2.26303e-07, 0)
 script = ExtResource("1_c3soh")
-animation_tree = NodePath("AnimationTree")
 projectile_scene = ExtResource("2_brohl")
 projectile_spawn_point = NodePath("projectile_spawn")
+animation_tree = NodePath("AnimationTree")
 weapon_range = 25.0
 damage = 25.0
 pushback = 3.0
@@ -471,6 +471,8 @@ active = true
 parameters/conditions/in_combat = false
 parameters/conditions/not_in_combat = false
 parameters/Attack/conditions/use_attack_2 = false
+parameters/Attack/attack/TimeScale/scale = 1.0
+parameters/Attack/attack_2/TimeScale/scale = 1.0
 parameters/Draw/TimeScale/scale = 1.0
 parameters/Stow/TimeScale/scale = 1.0
 script = ExtResource("5_thgkt")

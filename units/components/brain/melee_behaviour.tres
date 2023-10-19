@@ -1,0 +1,7 @@
+[gd_resource type="Resource" script_class="MeleeBehaviour" load_steps=2 format=3 uid="uid://cao1bytnssy28"]
+
+[ext_resource type="Script" path="res://units/components/brain/MeleeBehaviour.gd" id="1_ubn5d"]
+
+[resource]
+script = ExtResource("1_ubn5d")
+comfortable_range_modifier = 0.8

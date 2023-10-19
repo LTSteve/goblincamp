@@ -1,6 +1,6 @@
 [gd_scene load_steps=14 format=3 uid="uid://5kxgrj763bh2"]
 
-[ext_resource type="Script" path="res://units/components/MeleeWeapon.gd" id="1_a4p5a"]
+[ext_resource type="Script" path="res://units/components/weapon/MeleeWeapon.gd" id="1_3b5up"]
 [ext_resource type="PackedScene" uid="uid://di48j8kwxi5nu" path="res://models/ogre/ogre_weapon.glb" id="2_m1iyf"]
 [ext_resource type="AnimationNodeStateMachine" uid="uid://dawvd5u6rapgb" path="res://units/weapons/weapon_animation_state_machine.tres" id="3_s244m"]
 [ext_resource type="Script" path="res://util/AnimationTreeExpressionExtension.gd" id="4_2is1a"]
@@ -511,17 +511,17 @@ _data = {
 [sub_resource type="SphereShape3D" id="SphereShape3D_pxgbv"]
 radius = 2.0
 
-[node name="Hammer" type="Node3D" node_paths=PackedStringArray("animation_tree", "collision_areas", "hit_spot") groups=["Hammer"]]
+[node name="Hammer" type="Node3D" node_paths=PackedStringArray("collision_areas", "hit_spot", "animation_tree") groups=["Hammer"]]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 1, 0)
-script = ExtResource("1_a4p5a")
-animation_tree = NodePath("AnimationTree")
+script = ExtResource("1_3b5up")
 collision_areas = [NodePath("Hitboxes/Area3D"), NodePath("Hitboxes/Area3D2"), NodePath("Hitboxes/Area3D3")]
 hit_spot = NodePath("ogre_weapon/HitSpot")
-cooldown = 1.6
+multi_target = true
+animation_tree = NodePath("AnimationTree")
+weapon_range = 6.0
 damage = 24.0
 pushback = 10.0
 hit_stun = 1.5
-multi_target = true
 
 [node name="ogre_weapon" parent="." instance=ExtResource("2_m1iyf")]
 transform = Transform3D(0.965927, -1.23345e-07, 0.258816, -0.258816, -9.36912e-07, 0.965927, 1.23345e-07, -1, -9.36912e-07, -1.36962, 1.45036, -2)
@@ -536,6 +536,8 @@ active = true
 parameters/conditions/in_combat = false
 parameters/conditions/not_in_combat = false
 parameters/Attack/conditions/use_attack_2 = false
+parameters/Attack/attack/TimeScale/scale = 1.0
+parameters/Attack/attack_2/TimeScale/scale = 1.0
 parameters/Draw/TimeScale/scale = 1.0
 parameters/Stow/TimeScale/scale = 1.0
 script = ExtResource("4_2is1a")
@@ -554,7 +556,7 @@ collision_mask = 0
 monitoring = false
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Hitboxes/Area3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.55548, 2.12786, -4.08834)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.55548, 1.12786, -4.08834)
 shape = SubResource("SphereShape3D_pxgbv")
 
 [node name="Area3D2" type="Area3D" parent="Hitboxes"]
@@ -563,7 +565,7 @@ collision_mask = 0
 monitoring = false
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Hitboxes/Area3D2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.81969, 2.12786, -5.60973)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.81969, 1.12786, -5.60973)
 shape = SubResource("SphereShape3D_pxgbv")
 
 [node name="Area3D3" type="Area3D" parent="Hitboxes"]
@@ -572,5 +574,5 @@ collision_mask = 0
 monitoring = false
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Hitboxes/Area3D3"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.9884, 2.12786, -5.74198)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.9884, 1.12786, -5.74198)
 shape = SubResource("SphereShape3D_pxgbv")

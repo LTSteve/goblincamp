@@ -1,3 +1,5 @@
+extends Node3D
+
 class_name Weapon
 
 class HitCreationData:
@@ -50,41 +52,74 @@ class Hit:
 		obj.apply_effects = apply_effects
 		return obj
 
-static func _on_enter_combat(this):
-	Global.execute_later(func(): 
-		this.animation_tree.set("parameters/conditions/in_combat", true)
-		this.animation_tree.set("parameters/conditions/not_in_combat", false)
-		, this, this.animation_delay)
+signal on_hit_landed(hit_data:Weapon.Hit)
 
-static func _on_exit_combat(this):
-	Global.execute_later(func(): 
-		this.animation_tree.set("parameters/conditions/in_combat", false)
-		this.animation_tree.set("parameters/conditions/not_in_combat", true)
-		, this, this.animation_delay)
+@export var animation_tree: AnimationTreeExpressionExtension
+@export var weapon_range: float = 3.0
+@export var damage: float = 10.0
+@export var pushback: float = 5.0
+@export var hit_stun: float = 0.5
+@export var crit_chance: float = 0.01
+@export var crit_damage_multiplier: float = 1.5
+@export var damage_type: Damage.Type = Damage.Type.Basic
+@export var animation_delay: float = 0
+@export var disabled = false
 
-static func _try_to_attack(this, target:Unit, me:Unit) -> bool:
+var _current_pushback_scale: float = 1.0
+
+var unit:Unit
+var create_hit = CallableStack.new(_create_hit)
+
+func _ready():
+	var root = get_tree().root
+	var parent = get_parent()
+	while parent != root:
+		if parent is Unit:
+			unit = parent
+			break
+		parent = parent.get_parent()
+
+func _on_request_attack(_target:Unit, _me:Unit):
+	pass #override me
+
+func _set_pushback_scale(value: float):
+	_current_pushback_scale = value
+
+func _on_enter_combat():
+	Global.execute_later(func(): 
+		animation_tree.set("parameters/conditions/in_combat", true)
+		animation_tree.set("parameters/conditions/not_in_combat", false)
+		, self, animation_delay)
+
+func _on_exit_combat():
+	Global.execute_later(func(): 
+		animation_tree.set("parameters/conditions/in_combat", false)
+		animation_tree.set("parameters/conditions/not_in_combat", true)
+		, self, animation_delay)
+
+func _try_to_attack(target:Unit, me:Unit) -> bool:
 	#in range and ready to fire?
-	if(this.disabled
-	|| (target.global_position - me.global_position).length() > this.weapon_range
-	|| (this.animation_tree.get("parameters/playback").get_current_node() != "idle_combat")) : return false
+	if(disabled
+	|| (target.global_position - me.global_position).length() > weapon_range
+	|| (animation_tree.get("parameters/playback").get_current_node() != "idle_combat")) : return false
 	
 	#trigger animation
-	this.animation_tree.activate_trigger("attack", this.animation_delay)
+	animation_tree.activate_trigger("attack", animation_delay)
 	
 	return true
 
-static func _create_hit(this, unit:Unit, hit_creation_data:HitCreationData = HitCreationData.new()) -> Weapon.Hit:
+func _create_hit(enemy:Unit, hit_creation_data:HitCreationData = HitCreationData.new()) -> Weapon.Hit:
 	
 	var hit_data = Hit.new()
-	hit_data.direction = Math.unit(Math.v3_to_v2(unit.global_position-this.global_position))
-	hit_data.crit_chance = this.crit_chance if hit_creation_data.can_crit else 0
-	hit_data.crit_damage_multiplier = this.crit_damage_multiplier
-	hit_data.damage = round(this.damage * hit_creation_data.base_damage_scale)
-	hit_data.pushback = this.pushback * hit_creation_data.base_pushback_scale
-	hit_data.hit_stun = this.hit_stun
-	hit_data.damage_type = this.damage_type
-	hit_data.hit_by = this
-	hit_data.hit = unit
+	hit_data.direction = Math.unit(Math.v3_to_v2(enemy.global_position-global_position))
+	hit_data.crit_chance = crit_chance if hit_creation_data.can_crit else 0.0
+	hit_data.crit_damage_multiplier = crit_damage_multiplier
+	hit_data.damage = round(damage * hit_creation_data.base_damage_scale)
+	hit_data.pushback = pushback * hit_creation_data.base_pushback_scale * _current_pushback_scale
+	hit_data.hit_stun = hit_stun
+	hit_data.damage_type = damage_type
+	hit_data.hit_by = self
+	hit_data.hit = enemy
 	hit_data.hit_creation_data = hit_creation_data
 	hit_data.apply_effects = hit_creation_data.apply_effects
 	return hit_data

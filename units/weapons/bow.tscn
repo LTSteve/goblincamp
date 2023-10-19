@@ -1,6 +1,6 @@
 [gd_scene load_steps=15 format=3 uid="uid://banvid5xf5lst"]
 
-[ext_resource type="Script" path="res://units/components/RangedWeapon.gd" id="1_ce8uo"]
+[ext_resource type="Script" path="res://units/components/weapon/RangedWeapon.gd" id="1_ce8uo"]
 [ext_resource type="PackedScene" uid="uid://bjeqt2c2f47xf" path="res://units/weapons/projectiles/arrow.tscn" id="2_keqrn"]
 [ext_resource type="PackedScene" uid="uid://bxdgmne7agdj2" path="res://models/woodsman/woodsman_weapon_ranged.glb" id="3_npfdp"]
 [ext_resource type="PackedScene" uid="uid://c5vxjgrcperkw" path="res://models/woodsman/woodsman_projectile.glb" id="4_goncv"]
@@ -1553,16 +1553,16 @@ _data = {
 "stow": SubResource("Animation_oa54r")
 }
 
-[node name="Bow" type="Node3D" node_paths=PackedStringArray("animation_tree", "projectile_spawn_point") groups=["Bow"]]
+[node name="Bow" type="Node3D" node_paths=PackedStringArray("projectile_spawn_point", "animation_tree") groups=["Bow"]]
 script = ExtResource("1_ce8uo")
-animation_tree = NodePath("AnimationTree")
 projectile_scene = ExtResource("2_keqrn")
 projectile_spawn_point = NodePath("projectile_spawn")
-damage = 10.0
+dumb_projectile = true
+animation_tree = NodePath("AnimationTree")
+weapon_range = 20.0
 pushback = 2.0
 hit_stun = 0.4
 crit_chance = 0.03
-dumb_projectile = true
 
 [node name="woodsman_weapon_ranged" parent="." instance=ExtResource("3_npfdp")]
 transform = Transform3D(0.348296, 0.772859, -0.530448, -0.84466, 0.013369, -0.535133, -0.406491, 0.634433, 0.657461, -0.690866, 0.566561, -0.694432)

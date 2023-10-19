@@ -1,114 +1,50 @@
-[gd_scene load_steps=18 format=3 uid="uid://dlpkm7cy8xudv"]
+[gd_scene load_steps=7 format=3 uid="uid://4si1lnnpt7a2"]
 
-[ext_resource type="Script" path="res://units/Unit.gd" id="1_4y35d"]
+[ext_resource type="PackedScene" uid="uid://brhc1aba5usew" path="res://units/unit.tscn" id="1_yqnhr"]
 [ext_resource type="PackedScene" uid="uid://bgfg403d28nmj" path="res://models/ogre/ogre.glb" id="2_q77xx"]
 [ext_resource type="PackedScene" uid="uid://5kxgrj763bh2" path="res://units/weapons/hammer.tscn" id="3_mcr6p"]
-[ext_resource type="Script" path="res://units/components/HeightComponent.gd" id="3_myoxd"]
-[ext_resource type="Script" path="res://units/components/HealthComponent.gd" id="4_8csbd"]
-[ext_resource type="PackedScene" uid="uid://bac8aofl217ri" path="res://units/components/damagelabel/damage_number_component.tscn" id="5_40vrv"]
-[ext_resource type="Script" path="res://units/components/VelocityComponent.gd" id="5_bgrw1"]
-[ext_resource type="Script" path="res://units/components/BasicBrain.gd" id="6_3lbwv"]
-[ext_resource type="Script" path="res://units/components/BountyComponent.gd" id="7_m1y06"]
-[ext_resource type="Script" path="res://units/components/RotationComponent.gd" id="8_jblmi"]
-[ext_resource type="Script" path="res://units/components/HitblinkComponent.gd" id="9_h0eyv"]
-[ext_resource type="PackedScene" uid="uid://bfg28nholuf7e" path="res://units/components/healthbar_component.tscn" id="10_73rfp"]
-[ext_resource type="Script" path="res://units/components/ArmorComponent.gd" id="13_7x2fu"]
-[ext_resource type="Script" path="res://units/components/MaterialOverrideComponent.gd" id="14_eb1wf"]
-[ext_resource type="Script" path="res://units/components/StatusComponent.gd" id="15_74med"]
-[ext_resource type="Resource" uid="uid://bqs3nawyqs8ov" path="res://units/components/status_component_resource.tres" id="16_tg4vp"]
+[ext_resource type="Resource" uid="uid://cao1bytnssy28" path="res://units/components/brain/melee_behaviour.tres" id="4_0iw8r"]
+[ext_resource type="Resource" uid="uid://6a2euiflosoa" path="res://units/components/brain/wander_behaviour.tres" id="5_rgbwr"]
 
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_4afdt"]
-radius = 3.0
-height = 9.0
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_e0yvo"]
+radius = 1.6
+height = 8.0
 
-[node name="Ogre" type="CharacterBody3D" groups=["Ogre"]]
+[node name="Ogre" instance=ExtResource("1_yqnhr")]
 collision_layer = 2
-collision_mask = 3
-axis_lock_linear_y = true
-axis_lock_angular_x = true
-axis_lock_angular_z = true
-script = ExtResource("1_4y35d")
 is_enemy = true
-kill_value = 2.5
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1.00364, 0, 0, 0, 1.00364, 0, 0, 0, 1.00364, 0, 4.5, 0)
-shape = SubResource("CapsuleShape3D_4afdt")
+[node name="CollisionShape3D" parent="." index="0"]
+shape = SubResource("CapsuleShape3D_e0yvo")
 
-[node name="ogre" parent="." instance=ExtResource("2_q77xx")]
-transform = Transform3D(-2.46772e-08, 0, 0.564549, 0, 0.564549, 0, -0.564549, 0, -2.46772e-08, 0, 0, 0)
-script = ExtResource("3_myoxd")
+[node name="DamageNumberComponent" parent="Model" index="0"]
+is_ally = false
 
-[node name="Node3D" type="Node3D" parent="ogre/ogre2" index="0"]
-transform = Transform3D(2.5809e-08, -1.02268, 0.590442, -4.47025e-08, -0.590442, -1.02268, 1.18088, 0, -5.1618e-08, 0, 0, 0)
+[node name="RankComponent" parent="Model" index="2"]
+visible = false
 
-[node name="HealthbarComponent" parent="ogre/ogre2/Node3D" instance=ExtResource("10_73rfp")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.81849, 0)
+[node name="Hammer" parent="Model/WeaponHolder" index="0" instance=ExtResource("3_mcr6p")]
 
-[node name="DamageNumberComponent" parent="ogre/ogre2/Node3D" instance=ExtResource("5_40vrv")]
-transform = Transform3D(1, 1.4682e-20, 2.71051e-20, 9.59788e-23, 1, 0, 0, 0, 1, 6.5553e-20, 4.31398, 1.81899e-12)
+[node name="ogre" parent="Model" index="4" instance=ExtResource("2_q77xx")]
 
-[node name="Hammer" parent="ogre" instance=ExtResource("3_mcr6p")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0)
+[node name="HealthComponent" parent="." index="3"]
+max_health = 300.0
 
-[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
-path_height_offset = 0.5
-navigation_layers = 3
-avoidance_enabled = true
-radius = 3.0
-avoidance_layers = 2
-avoidance_mask = 2
+[node name="ArmorComponent" parent="." index="7"]
+armor = 2
 
-[node name="HealthComponent" type="Node" parent="."]
-script = ExtResource("4_8csbd")
-max_health = 500.0
+[node name="MaterialOverrideComponent" parent="." index="9" node_paths=PackedStringArray("mesh_instance")]
+mesh_instance = NodePath("../Model/ogre/ogre2")
 
-[node name="VelocityComponent" type="Node" parent="."]
-script = ExtResource("5_bgrw1")
-max_speed = 4.0
-acceleration = 0.5
+[node name="BountyComponent" parent="." index="10"]
+enabled = true
 
-[node name="BasicBrain" type="Node" parent="." node_paths=PackedStringArray("unit", "weapon")]
-script = ExtResource("6_3lbwv")
-unit = NodePath("..")
-weapon = NodePath("../ogre/Hammer")
+[node name="BrainComponent" parent="." index="11"]
+behaviours = Array[Resource("res://units/components/brain/Behaviour.gd")]([ExtResource("4_0iw8r"), ExtResource("5_rgbwr")])
 
-[node name="BountyComponent" type="Node" parent="."]
-script = ExtResource("7_m1y06")
-worth_base = 180
-worth_varience = 40
-
-[node name="RotationComponent" type="Node" parent="."]
-script = ExtResource("8_jblmi")
-fast_rotation_speed = 180.0
-slow_rotation_speed = 150.0
-
-[node name="HitblinkComponent" type="Node" parent="." node_paths=PackedStringArray("material_override")]
-script = ExtResource("9_h0eyv")
-material_override = NodePath("../MaterialOverrideComponent")
-
-[node name="ArmorComponent" type="Node" parent="."]
-script = ExtResource("13_7x2fu")
-
-[node name="MaterialOverrideComponent" type="Node" parent="." node_paths=PackedStringArray("mesh_instance")]
-script = ExtResource("14_eb1wf")
-mesh_instance = NodePath("../ogre/ogre2")
-
-[node name="StatusComponent" type="Node" parent="." node_paths=PackedStringArray("material_override")]
-script = ExtResource("15_74med")
-status_component_resource = ExtResource("16_tg4vp")
-material_override = NodePath("../MaterialOverrideComponent")
-
-[connection signal="on_recieved_hit" from="." to="ogre/ogre2/Node3D/DamageNumberComponent" method="_on_damage_recieved"]
-[connection signal="on_recieved_hit" from="." to="HealthComponent" method="_on_recieved_hit"]
-[connection signal="on_recieved_hit" from="." to="VelocityComponent" method="_on_recieved_hit"]
-[connection signal="on_recieved_hit" from="." to="HitblinkComponent" method="_on_recieved_hit"]
-[connection signal="on_state_changed" from="." to="StatusComponent" method="_on_state_changed"]
-[connection signal="died" from="HealthComponent" to="." method="_on_died"]
-[connection signal="died" from="HealthComponent" to="BountyComponent" method="_on_health_component_died"]
-[connection signal="health_changed" from="HealthComponent" to="ogre/ogre2/Node3D/HealthbarComponent" method="_on_health_component_health_changed"]
-[connection signal="enter_combat" from="BasicBrain" to="ogre/Hammer" method="_on_enter_combat"]
-[connection signal="exit_combat" from="BasicBrain" to="ogre/Hammer" method="_on_exit_combat"]
-[connection signal="request_attack" from="BasicBrain" to="ogre/Hammer" method="_on_request_attack"]
-
-[editable path="ogre"]
+[editable path="Model/RankComponent"]
+[editable path="Model/RankComponent/rank_star"]
+[editable path="Model/RankComponent/rank_star2"]
+[editable path="Model/RankComponent/rank_star3"]
+[editable path="Model/RankComponent/rank_star4"]
+[editable path="Model/ogre"]

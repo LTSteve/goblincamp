@@ -1,134 +1,52 @@
-[gd_scene load_steps=19 format=3 uid="uid://celifq1gdcq1s"]
+[gd_scene load_steps=6 format=3 uid="uid://csnv4vhujnneq"]
 
-[ext_resource type="Script" path="res://units/Unit.gd" id="1_2bruq"]
+[ext_resource type="PackedScene" uid="uid://brhc1aba5usew" path="res://units/unit.tscn" id="1_g4nk8"]
 [ext_resource type="PackedScene" uid="uid://c66o7ssgncoaa" path="res://models/witch/witch.glb" id="2_kevcb"]
 [ext_resource type="PackedScene" uid="uid://yqmlu4dtpagw" path="res://units/weapons/staff.tscn" id="3_sg8hd"]
-[ext_resource type="Script" path="res://units/components/HeightComponent.gd" id="3_vtnte"]
-[ext_resource type="Script" path="res://units/components/HealthComponent.gd" id="4_b3ev8"]
-[ext_resource type="PackedScene" uid="uid://cp2wfftw1nmvr" path="res://units/components/rank_component.tscn" id="5_esmay"]
-[ext_resource type="Script" path="res://units/components/WitchBrain.gd" id="5_lff3w"]
-[ext_resource type="Script" path="res://units/components/VelocityComponent.gd" id="5_s5ou7"]
-[ext_resource type="PackedScene" uid="uid://bac8aofl217ri" path="res://units/components/damagelabel/damage_number_component.tscn" id="6_36t36"]
-[ext_resource type="Script" path="res://units/components/RotationComponent.gd" id="7_pgggu"]
-[ext_resource type="Script" path="res://units/components/HitblinkComponent.gd" id="8_rq33g"]
-[ext_resource type="PackedScene" uid="uid://bfg28nholuf7e" path="res://units/components/healthbar_component.tscn" id="9_c8jh5"]
-[ext_resource type="Script" path="res://units/components/ArmorComponent.gd" id="13_8qxvo"]
-[ext_resource type="Script" path="res://units/components/StatusComponent.gd" id="14_cq1n8"]
-[ext_resource type="Resource" uid="uid://bqs3nawyqs8ov" path="res://units/components/status_component_resource.tres" id="15_dmo6o"]
-[ext_resource type="Script" path="res://units/components/MaterialOverrideComponent.gd" id="16_02ypy"]
+[ext_resource type="Resource" uid="uid://c7i3ado8qilji" path="res://units/components/brain/ranged_behaviour.tres" id="4_4f1ng"]
+[ext_resource type="Resource" uid="uid://6a2euiflosoa" path="res://units/components/brain/wander_behaviour.tres" id="5_a72gt"]
 
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_nhjdq"]
-radius = 0.7
+[node name="Witch" instance=ExtResource("1_g4nk8")]
 
-[sub_resource type="SphereShape3D" id="SphereShape3D_a8j42"]
-radius = 8.0
+[node name="RankComponent" parent="Model" index="2"]
+transform = Transform3D(0.25, 1.09279e-08, 4.77672e-16, 0, -1.09278e-08, 0.25, 1.09279e-08, -0.25, -1.09278e-08, 4.29486e-08, 1.56324, -0.982548)
 
-[node name="Witch" type="CharacterBody3D" groups=["Witch"]]
-collision_mask = 3
-axis_lock_linear_y = true
-axis_lock_angular_x = true
-axis_lock_angular_z = true
-script = ExtResource("1_2bruq")
+[node name="rank_star" parent="Model/RankComponent" index="0"]
+transform = Transform3D(1, -1.69407e-20, -5.04871e-28, -1.42109e-14, 1, 3.55271e-14, 7.06819e-28, -3.19744e-14, 1, 1, 0, 0)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
-shape = SubResource("CapsuleShape3D_nhjdq")
+[node name="Cylinder" parent="Model/RankComponent/rank_star" index="0"]
+transform = Transform3D(0.800751, 0.324627, -0.503401, -0.27483, 0.945841, 0.172775, 0.532226, 4.33788e-09, 0.846601, 1.8942, -0.957816, 2.37044)
 
-[node name="witch" parent="." instance=ExtResource("2_kevcb")]
-transform = Transform3D(-2.30258e-08, 0, 0.526768, 0, 0.526768, 0, -0.526768, 0, -2.30258e-08, 0, 0, 0)
-script = ExtResource("3_vtnte")
+[node name="Cylinder" parent="Model/RankComponent/rank_star2" index="0"]
+transform = Transform3D(0.820129, 0.368141, -0.438018, -0.324728, 0.929769, 0.173433, 0.471104, 2.08465e-09, 0.882077, 0.20061, -0.327034, 3.53799)
 
-[node name="HealthbarComponent" parent="witch/witch2" index="0" instance=ExtResource("9_c8jh5")]
-transform = Transform3D(-8.29805e-08, 0, -1.89837, 0, 1.89837, 0, 1.89837, 0, -8.29805e-08, 0, 4.55067, 0)
+[node name="Cylinder" parent="Model/RankComponent/rank_star3" index="0"]
+transform = Transform3D(0.640116, -0.713861, -0.283994, 0.652524, 0.700286, -0.2895, 0.40554, -9.34514e-09, 0.914076, 0.540088, -0.866138, 0.480682)
 
-[node name="RankComponent" parent="witch/witch2" index="1" instance=ExtResource("5_esmay")]
-transform = Transform3D(0.25, 1.09279e-08, 1.09279e-08, -1.09279e-08, -7.07197e-09, 0.25, 1.09279e-08, -0.25, -7.07197e-09, 3.482e-08, 1.89837, -0.796587)
+[node name="rank_star4" parent="Model/RankComponent" index="3"]
+transform = Transform3D(0.656586, -0.754251, -3.29694e-08, 0.754251, 0.656586, -1.50111e-08, 3.29694e-08, -1.50111e-08, 1, -1, 0, -2)
 
-[node name="rank_star" parent="witch/witch2/RankComponent" index="0"]
-transform = Transform3D(0.878241, 0, -0.478216, -1.76732e-14, 0.999999, -4.27119e-15, 0.478216, 1.77636e-15, 0.878241, 3.27804, 0, 9.53674e-07)
+[node name="Cylinder" parent="Model/RankComponent/rank_star4" index="0"]
+transform = Transform3D(0.954667, 0, -0.297675, -8.9407e-08, 1, 0, 0.297675, -8.88178e-15, 0.954667, -2.12251, -0.974811, 1.65916)
 
-[node name="Cylinder" parent="witch/witch2/RankComponent/rank_star" index="0"]
-transform = Transform3D(0.866025, 0.5, 8.28773e-09, -0.5, 0.866025, -2.56456e-08, -2.00002e-08, 1.80659e-08, 1, -0.490151, 0, 1.03784)
+[node name="Staff" parent="Model/WeaponHolder" index="0" instance=ExtResource("3_sg8hd")]
 
-[node name="rank_star2" parent="witch/witch2/RankComponent" index="1"]
-transform = Transform3D(0.873619, 1.37652e-08, -0.486609, -1.37652e-08, 0.999999, 3.57505e-09, 0.486609, 3.57503e-09, 0.873619, 0.999999, 0.373694, -0.122234)
+[node name="witch" parent="Model" index="4" instance=ExtResource("2_kevcb")]
+transform = Transform3D(1, 0, 3.55271e-15, 0, 1, 0, -3.55271e-15, 0, 1, 0, 0, 0)
 
-[node name="rank_star3" parent="witch/witch2/RankComponent" index="2"]
-transform = Transform3D(0.6612, -0.622059, -0.419352, 0.644218, 0.757244, -0.107531, 0.384443, -0.199055, 0.901432, -0.273235, -0.195954, -0.741447)
+[node name="VelocityComponent" parent="." index="4"]
+max_speed = 4.0
+acceleration = 0.8
 
-[node name="rank_star4" parent="witch/witch2/RankComponent" index="3"]
-transform = Transform3D(0.717459, -0.626119, -0.305326, 0.584036, 0.779561, -0.226238, 0.379673, -0.0160049, 0.924981, -1.47454, -1.22561, -1.49937)
+[node name="MaterialOverrideComponent" parent="." index="9" node_paths=PackedStringArray("mesh_instance")]
+mesh_instance = NodePath("../Model/witch/witch2")
 
-[node name="Staff" parent="witch" instance=ExtResource("3_sg8hd")]
+[node name="BrainComponent" parent="." index="11"]
+behaviours = Array[Resource("res://units/components/brain/Behaviour.gd")]([ExtResource("4_4f1ng"), ExtResource("5_a72gt")])
 
-[node name="DamageNumberComponent" parent="witch" instance=ExtResource("6_36t36")]
-is_ally = true
-
-[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
-path_height_offset = 0.5
-navigation_layers = 3
-avoidance_enabled = true
-radius = 2.0
-
-[node name="FleeRange" type="Area3D" parent="."]
-collision_layer = 0
-collision_mask = 2
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="FleeRange"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
-shape = SubResource("SphereShape3D_a8j42")
-
-[node name="HealthComponent" type="Node" parent="."]
-script = ExtResource("4_b3ev8")
-max_health = 60.0
-
-[node name="VelocityComponent" type="Node" parent="."]
-script = ExtResource("5_s5ou7")
-max_speed = 3.0
-acceleration = 1.0
-
-[node name="WitchBrain" type="Node" parent="." node_paths=PackedStringArray("unit", "weapon")]
-script = ExtResource("5_lff3w")
-unit = NodePath("..")
-weapon = NodePath("../witch/Staff")
-
-[node name="RotationComponent" type="Node" parent="."]
-script = ExtResource("7_pgggu")
-
-[node name="HitblinkComponent" type="Node" parent="." node_paths=PackedStringArray("material_override")]
-script = ExtResource("8_rq33g")
-material_override = NodePath("../MaterialOverrideComponent")
-
-[node name="ArmorComponent" type="Node" parent="."]
-script = ExtResource("13_8qxvo")
-
-[node name="StatusComponent" type="Node" parent="." node_paths=PackedStringArray("material_override")]
-script = ExtResource("14_cq1n8")
-status_component_resource = ExtResource("15_dmo6o")
-material_override = NodePath("../MaterialOverrideComponent")
-
-[node name="MaterialOverrideComponent" type="Node" parent="." node_paths=PackedStringArray("mesh_instance")]
-script = ExtResource("16_02ypy")
-mesh_instance = NodePath("../witch/witch2")
-
-[connection signal="on_recieved_hit" from="." to="witch/DamageNumberComponent" method="_on_damage_recieved"]
-[connection signal="on_recieved_hit" from="." to="HealthComponent" method="_on_recieved_hit"]
-[connection signal="on_recieved_hit" from="." to="VelocityComponent" method="_on_recieved_hit"]
-[connection signal="on_recieved_hit" from="." to="HitblinkComponent" method="_on_recieved_hit"]
-[connection signal="on_state_changed" from="." to="StatusComponent" method="_on_state_changed"]
-[connection signal="on_get_kill" from="witch/Staff" to="witch/witch2/RankComponent" method="_on_get_kill"]
-[connection signal="body_entered" from="FleeRange" to="WitchBrain" method="_on_body_entered_flee_range"]
-[connection signal="body_exited" from="FleeRange" to="WitchBrain" method="_on_body_exited_flee_range"]
-[connection signal="died" from="HealthComponent" to="." method="_on_died"]
-[connection signal="health_changed" from="HealthComponent" to="witch/witch2/HealthbarComponent" method="_on_health_component_health_changed"]
-[connection signal="enter_combat" from="WitchBrain" to="witch/Staff" method="_on_enter_combat"]
-[connection signal="exit_combat" from="WitchBrain" to="witch/Staff" method="_on_exit_combat"]
-[connection signal="on_lock_target" from="WitchBrain" to="RotationComponent" method="_on_lock_target"]
-[connection signal="request_attack" from="WitchBrain" to="witch/Staff" method="_on_request_attack"]
-
-[editable path="witch"]
-[editable path="witch/witch2/RankComponent"]
-[editable path="witch/witch2/RankComponent/rank_star"]
-[editable path="witch/witch2/RankComponent/rank_star2"]
-[editable path="witch/witch2/RankComponent/rank_star3"]
-[editable path="witch/witch2/RankComponent/rank_star4"]
+[editable path="Model/RankComponent"]
+[editable path="Model/RankComponent/rank_star"]
+[editable path="Model/RankComponent/rank_star2"]
+[editable path="Model/RankComponent/rank_star3"]
+[editable path="Model/RankComponent/rank_star4"]
+[editable path="Model/witch"]

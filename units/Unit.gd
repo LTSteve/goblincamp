@@ -17,6 +17,7 @@ var state_states: Array[State] = []
 
 signal on_recieved_hit(weapon_hit:Weapon.Hit)
 signal on_state_changed(state_states: Array[State])
+signal on_get_kill(value: float)
 
 var _stunned: float = 0
 var _regular_collision: int = 0
@@ -50,8 +51,8 @@ func _on_died():
 		if Global.enemies.size() == 0:
 			GameManager.I.cycle_to_day()
 	else: Global.players = Global.players.filter(func(player): return player != self)
-	if _last_hit_by && is_instance_valid(_last_hit_by):
-		_last_hit_by.scored_kill(kill_value)
+	if is_instance_valid(_last_hit_by) && is_instance_valid(_last_hit_by.unit):
+		_last_hit_by.unit.on_get_kill.emit(kill_value)
 	for effect in _active_effects:
 		effect.on_remove()
 	queue_free()
@@ -77,6 +78,8 @@ func _physics_process(delta):
 		
 		velocity_component.accelerate_in_direction(unit_direction, delta)
 		rotation_component.turn(unit_direction, self, delta)
+	else:
+		velocity_component.decelerate(delta)
 	
 	velocity_component.move(self)
 	rotation_component.apply_rotation(self)

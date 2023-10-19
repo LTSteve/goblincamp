@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="BowAndDaggerBehaviour" load_steps=4 format=3 uid="uid://dciy1jkbehvwj"]
+
+[ext_resource type="Script" path="res://units/components/brain/BowAndDaggerBehaviour.gd" id="1_kau8j"]
+[ext_resource type="Resource" uid="uid://cao1bytnssy28" path="res://units/components/brain/melee_behaviour.tres" id="1_vtiqt"]
+[ext_resource type="Resource" uid="uid://c7i3ado8qilji" path="res://units/components/brain/ranged_behaviour.tres" id="2_e4yi2"]
+
+[resource]
+script = ExtResource("1_kau8j")
+melee_behaviour = ExtResource("1_vtiqt")
+ranged_behaviour = ExtResource("2_e4yi2")
+force_melee = false
+min_nearby_melee_threshold = 1
+max_nearby_melee_threshold = 4
+mode_switch_limit = 5.0

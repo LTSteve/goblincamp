@@ -1,104 +1,44 @@
-[gd_scene load_steps=18 format=3 uid="uid://duwsqv7i6jgca"]
+[gd_scene load_steps=5 format=3 uid="uid://i023u5luuvrc"]
 
-[ext_resource type="Script" path="res://units/Unit.gd" id="1_avfjk"]
-[ext_resource type="Script" path="res://units/components/HealthComponent.gd" id="2_8blxg"]
+[ext_resource type="PackedScene" uid="uid://brhc1aba5usew" path="res://units/unit.tscn" id="1_tog43"]
 [ext_resource type="PackedScene" uid="uid://cw68w0g0xv1j6" path="res://models/goblin/goblin.glb" id="2_k8e14"]
 [ext_resource type="PackedScene" uid="uid://byiw0i7pdnhqs" path="res://units/weapons/claw.tscn" id="3_10fnw"]
-[ext_resource type="Script" path="res://units/components/VelocityComponent.gd" id="3_ayc47"]
-[ext_resource type="Script" path="res://units/components/HeightComponent.gd" id="3_l85kw"]
-[ext_resource type="PackedScene" uid="uid://bac8aofl217ri" path="res://units/components/damagelabel/damage_number_component.tscn" id="5_cwhfk"]
-[ext_resource type="Script" path="res://units/components/BasicBrain.gd" id="6_xchoh"]
-[ext_resource type="Script" path="res://units/components/BountyComponent.gd" id="7_bwuvv"]
-[ext_resource type="Script" path="res://units/components/RotationComponent.gd" id="8_sd4bo"]
-[ext_resource type="Script" path="res://units/components/HitblinkComponent.gd" id="9_ihg7o"]
-[ext_resource type="PackedScene" uid="uid://bfg28nholuf7e" path="res://units/components/healthbar_component.tscn" id="10_rj7ui"]
-[ext_resource type="Script" path="res://units/components/ArmorComponent.gd" id="13_m5apr"]
-[ext_resource type="Script" path="res://units/components/MaterialOverrideComponent.gd" id="14_6diai"]
-[ext_resource type="Script" path="res://units/components/StatusComponent.gd" id="15_idaps"]
-[ext_resource type="Resource" uid="uid://bqs3nawyqs8ov" path="res://units/components/status_component_resource.tres" id="16_vobw8"]
+[ext_resource type="Resource" uid="uid://cao1bytnssy28" path="res://units/components/brain/melee_behaviour.tres" id="4_uet6l"]
 
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_4afdt"]
-radius = 0.55
-
-[node name="Goblin" type="CharacterBody3D" groups=["Goblin"]]
+[node name="Goblin" instance=ExtResource("1_tog43")]
 collision_layer = 2
-collision_mask = 3
-axis_lock_linear_y = true
-axis_lock_angular_x = true
-axis_lock_angular_z = true
-script = ExtResource("1_avfjk")
 is_enemy = true
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1.00364, 0, 0, 0, 1.00364, 0, 0, 0, 1.00364, 0, 1, 0)
-shape = SubResource("CapsuleShape3D_4afdt")
+[node name="DamageNumberComponent" parent="Model" index="0"]
+is_ally = false
 
-[node name="goblin2" parent="." instance=ExtResource("2_k8e14")]
-transform = Transform3D(-2.46772e-08, 0, 0.564549, 0, 0.564549, 0, -0.564549, 0, -2.46772e-08, 0.0104129, 1.19209e-07, 0.00498915)
-script = ExtResource("3_l85kw")
+[node name="RankComponent" parent="Model" index="2"]
+visible = false
 
-[node name="HealthbarComponent" parent="goblin2/goblin2" index="0" instance=ExtResource("10_rj7ui")]
-transform = Transform3D(-7.7427e-08, 0, -1.77133, 0, 1.77133, 0, 1.77133, 0, -7.7427e-08, 0.00883741, 4.24613, -0.0184446)
+[node name="goblin" parent="Model" index="3" instance=ExtResource("2_k8e14")]
 
-[node name="DamageNumberComponent" parent="goblin2/goblin2" index="1" instance=ExtResource("5_cwhfk")]
+[node name="Claw" parent="Model/WeaponHolder" index="0" instance=ExtResource("3_10fnw")]
 
-[node name="Claw" parent="goblin2" instance=ExtResource("3_10fnw")]
+[node name="HealthComponent" parent="." index="3"]
+max_health = 45.0
 
-[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
-path_height_offset = 0.5
-navigation_layers = 3
-avoidance_enabled = true
-radius = 2.0
-avoidance_layers = 2
-avoidance_mask = 2
+[node name="VelocityComponent" parent="." index="4"]
+max_speed = 4.5
 
-[node name="HealthComponent" type="Node" parent="."]
-script = ExtResource("2_8blxg")
+[node name="MaterialOverrideComponent" parent="." index="9" node_paths=PackedStringArray("mesh_instance")]
+mesh_instance = NodePath("../Model/goblin/goblin2")
 
-[node name="VelocityComponent" type="Node" parent="."]
-script = ExtResource("3_ayc47")
-max_speed = 6.0
-acceleration = 1.0
+[node name="BountyComponent" parent="." index="10"]
+enabled = true
+worth_base = 75
+worth_varience = 9
 
-[node name="BasicBrain" type="Node" parent="." node_paths=PackedStringArray("unit", "weapon")]
-script = ExtResource("6_xchoh")
-unit = NodePath("..")
-weapon = NodePath("../goblin2/Claw")
+[node name="BrainComponent" parent="." index="11"]
+behaviours = Array[Resource("res://units/components/brain/Behaviour.gd")]([ExtResource("4_uet6l")])
 
-[node name="BountyComponent" type="Node" parent="."]
-script = ExtResource("7_bwuvv")
-worth_base = 35
-worth_varience = 5
-
-[node name="RotationComponent" type="Node" parent="."]
-script = ExtResource("8_sd4bo")
-
-[node name="HitblinkComponent" type="Node" parent="." node_paths=PackedStringArray("material_override")]
-script = ExtResource("9_ihg7o")
-material_override = NodePath("../MaterialOverrideComponent")
-
-[node name="ArmorComponent" type="Node" parent="."]
-script = ExtResource("13_m5apr")
-
-[node name="MaterialOverrideComponent" type="Node" parent="." node_paths=PackedStringArray("mesh_instance")]
-script = ExtResource("14_6diai")
-mesh_instance = NodePath("../goblin2/goblin2")
-
-[node name="StatusComponent" type="Node" parent="." node_paths=PackedStringArray("material_override")]
-script = ExtResource("15_idaps")
-status_component_resource = ExtResource("16_vobw8")
-material_override = NodePath("../MaterialOverrideComponent")
-
-[connection signal="on_recieved_hit" from="." to="goblin2/goblin2/DamageNumberComponent" method="_on_damage_recieved"]
-[connection signal="on_recieved_hit" from="." to="HealthComponent" method="_on_recieved_hit"]
-[connection signal="on_recieved_hit" from="." to="VelocityComponent" method="_on_recieved_hit"]
-[connection signal="on_recieved_hit" from="." to="HitblinkComponent" method="_on_recieved_hit"]
-[connection signal="on_state_changed" from="." to="StatusComponent" method="_on_state_changed"]
-[connection signal="died" from="HealthComponent" to="." method="_on_died"]
-[connection signal="died" from="HealthComponent" to="BountyComponent" method="_on_health_component_died"]
-[connection signal="health_changed" from="HealthComponent" to="goblin2/goblin2/HealthbarComponent" method="_on_health_component_health_changed"]
-[connection signal="enter_combat" from="BasicBrain" to="goblin2/Claw" method="_on_enter_combat"]
-[connection signal="exit_combat" from="BasicBrain" to="goblin2/Claw" method="_on_exit_combat"]
-[connection signal="request_attack" from="BasicBrain" to="goblin2/Claw" method="_on_request_attack"]
-
-[editable path="goblin2"]
+[editable path="Model/RankComponent"]
+[editable path="Model/RankComponent/rank_star"]
+[editable path="Model/RankComponent/rank_star2"]
+[editable path="Model/RankComponent/rank_star3"]
+[editable path="Model/RankComponent/rank_star4"]
+[editable path="Model/goblin"]

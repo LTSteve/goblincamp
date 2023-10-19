@@ -1,6 +1,6 @@
 [gd_scene load_steps=15 format=3 uid="uid://p0owu7fjhs2u"]
 
-[ext_resource type="Script" path="res://units/components/MeleeWeapon.gd" id="1_ievjt"]
+[ext_resource type="Script" path="res://units/components/weapon/MeleeWeapon.gd" id="1_nnyuv"]
 [ext_resource type="PackedScene" uid="uid://ccbj6hhusyqky" path="res://models/knight/knight_weapon.glb" id="1_yltu8"]
 [ext_resource type="AnimationNodeStateMachine" uid="uid://dawvd5u6rapgb" path="res://units/weapons/weapon_animation_state_machine.tres" id="2_cs7hr"]
 [ext_resource type="Script" path="res://util/AnimationTreeExpressionExtension.gd" id="4_7404g"]
@@ -674,15 +674,15 @@ _data = {
 [sub_resource type="SphereShape3D" id="SphereShape3D_pxgbv"]
 radius = 2.2
 
-[node name="Sword" type="Node3D" node_paths=PackedStringArray("animation_tree", "collision_areas", "hit_spot") groups=["Sword"]]
+[node name="Sword" type="Node3D" node_paths=PackedStringArray("collision_areas", "hit_spot", "animation_tree") groups=["Sword"]]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 1, 0)
-script = ExtResource("1_ievjt")
-animation_tree = NodePath("AnimationTree")
+script = ExtResource("1_nnyuv")
 collision_areas = [NodePath("Hitboxes/Area3D"), NodePath("Hitboxes/Area3D2"), NodePath("Hitboxes/Area3D3"), NodePath("Hitboxes/Area3D4")]
 hit_spot = NodePath("knight_weapon/HitSpot")
-cooldown = 0.9
-pushback = 4.0
 multi_target = true
+animation_tree = NodePath("AnimationTree")
+weapon_range = 5.0
+pushback = 4.0
 
 [node name="knight_weapon" parent="." groups=["Sword_Model"] instance=ExtResource("1_yltu8")]
 transform = Transform3D(0.250027, 0.258381, 0.933119, -0.96592, -3.49663e-06, 0.258817, 0.066877, -0.966039, 0.249575, -0.394594, 2.23556, 1.47275)
@@ -697,6 +697,8 @@ active = true
 parameters/conditions/in_combat = false
 parameters/conditions/not_in_combat = false
 parameters/Attack/conditions/use_attack_2 = false
+parameters/Attack/attack/TimeScale/scale = 1.0
+parameters/Attack/attack_2/TimeScale/scale = 1.0
 parameters/Draw/TimeScale/scale = 1.0
 parameters/Stow/TimeScale/scale = 1.0
 script = ExtResource("4_7404g")

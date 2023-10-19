@@ -1,112 +1,52 @@
-[gd_scene load_steps=18 format=3 uid="uid://dc2xntf220y7"]
+[gd_scene load_steps=7 format=3 uid="uid://c3tvd2bcgaujk"]
 
-[ext_resource type="Script" path="res://units/Unit.gd" id="1_7xoce"]
+[ext_resource type="PackedScene" uid="uid://brhc1aba5usew" path="res://units/unit.tscn" id="1_7ffh0"]
 [ext_resource type="PackedScene" uid="uid://citvivc546i87" path="res://models/imp/imp.glb" id="2_tftnr"]
 [ext_resource type="PackedScene" uid="uid://bafd3cjhvdg42" path="res://units/weapons/imp_claw.tscn" id="3_5sjsv"]
-[ext_resource type="Script" path="res://units/components/HeightComponent.gd" id="3_vi2pd"]
-[ext_resource type="Script" path="res://units/components/HealthComponent.gd" id="4_h581y"]
-[ext_resource type="Script" path="res://units/components/VelocityComponent.gd" id="5_3np35"]
-[ext_resource type="PackedScene" uid="uid://bac8aofl217ri" path="res://units/components/damagelabel/damage_number_component.tscn" id="5_w4fxr"]
-[ext_resource type="Script" path="res://units/components/BountyComponent.gd" id="7_mr5cy"]
-[ext_resource type="Script" path="res://units/components/BasicBrain.gd" id="7_xe7lp"]
-[ext_resource type="Script" path="res://units/components/RotationComponent.gd" id="8_ak8ed"]
-[ext_resource type="Script" path="res://units/components/HitblinkComponent.gd" id="9_4qvq2"]
-[ext_resource type="PackedScene" uid="uid://bfg28nholuf7e" path="res://units/components/healthbar_component.tscn" id="10_u0636"]
-[ext_resource type="Script" path="res://units/components/ArmorComponent.gd" id="13_8lrld"]
-[ext_resource type="Script" path="res://units/components/StatusComponent.gd" id="14_lbqq4"]
-[ext_resource type="Script" path="res://units/components/MaterialOverrideComponent.gd" id="15_s4xkc"]
-[ext_resource type="Resource" uid="uid://bqs3nawyqs8ov" path="res://units/components/status_component_resource.tres" id="15_utq3d"]
+[ext_resource type="Resource" uid="uid://cao1bytnssy28" path="res://units/components/brain/melee_behaviour.tres" id="4_jksqw"]
+[ext_resource type="Resource" uid="uid://6a2euiflosoa" path="res://units/components/brain/wander_behaviour.tres" id="5_dwiai"]
 
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_4afdt"]
-radius = 0.35
-height = 4.0
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_1jodv"]
+radius = 0.4
 
-[node name="Imp" type="CharacterBody3D" groups=["Imp"]]
+[node name="Imp" instance=ExtResource("1_7ffh0")]
 collision_layer = 2
-collision_mask = 3
-axis_lock_linear_y = true
-axis_lock_angular_x = true
-axis_lock_angular_z = true
-script = ExtResource("1_7xoce")
 is_enemy = true
-kill_value = 0.5
+kill_value = 0.6
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
-shape = SubResource("CapsuleShape3D_4afdt")
+[node name="CollisionShape3D" parent="." index="0"]
+shape = SubResource("CapsuleShape3D_1jodv")
 
-[node name="imp" parent="." instance=ExtResource("2_tftnr")]
-transform = Transform3D(-2.46772e-08, 0, 0.564549, 0, 0.564549, 0, -0.564549, 0, -2.46772e-08, 0, 0, 0)
-script = ExtResource("3_vi2pd")
+[node name="DamageNumberComponent" parent="Model" index="0"]
+is_ally = false
 
-[node name="Node3D" type="Node3D" parent="imp/imp2" index="0"]
-transform = Transform3D(-3.87135e-08, 0, -0.885663, 0, 0.885663, 0, 0.885663, 0, -3.87135e-08, 0, 0, 0)
+[node name="RankComponent" parent="Model" index="2"]
+visible = false
 
-[node name="HealthbarComponent" parent="imp/imp2/Node3D" instance=ExtResource("10_u0636")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.504, 0)
+[node name="ImpClaw" parent="Model/WeaponHolder" index="0" instance=ExtResource("3_5sjsv")]
 
-[node name="DamageNumberComponent" parent="imp/imp2/Node3D" instance=ExtResource("5_w4fxr")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.31398, 0)
+[node name="imp" parent="Model" index="4" instance=ExtResource("2_tftnr")]
 
-[node name="ImpClaw" parent="imp" instance=ExtResource("3_5sjsv")]
+[node name="HealthComponent" parent="." index="3"]
+max_health = 26.0
 
-[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
-path_height_offset = 0.5
-navigation_layers = 3
-avoidance_enabled = true
-radius = 1.0
-neighbor_distance = 40.0
-avoidance_layers = 2
-avoidance_mask = 2
+[node name="VelocityComponent" parent="." index="4"]
+max_speed = 5.5
 
-[node name="HealthComponent" type="Node" parent="."]
-script = ExtResource("4_h581y")
-max_health = 25.0
+[node name="MaterialOverrideComponent" parent="." index="9" node_paths=PackedStringArray("mesh_instance")]
+mesh_instance = NodePath("../Model/imp/imp2")
 
-[node name="VelocityComponent" type="Node" parent="."]
-script = ExtResource("5_3np35")
-max_speed = 9.0
-acceleration = 1.5
+[node name="BountyComponent" parent="." index="10"]
+enabled = true
+worth_base = 20
+worth_varience = 10
 
-[node name="BountyComponent" type="Node" parent="."]
-script = ExtResource("7_mr5cy")
-worth_base = 15
-worth_varience = 5
+[node name="BrainComponent" parent="." index="11"]
+behaviours = Array[Resource("res://units/components/brain/Behaviour.gd")]([ExtResource("4_jksqw"), ExtResource("5_dwiai")])
 
-[node name="BasicBrain" type="Node" parent="." node_paths=PackedStringArray("unit", "weapon")]
-script = ExtResource("7_xe7lp")
-unit = NodePath("..")
-weapon = NodePath("../imp/ImpClaw")
-
-[node name="RotationComponent" type="Node" parent="."]
-script = ExtResource("8_ak8ed")
-
-[node name="HitblinkComponent" type="Node" parent="." node_paths=PackedStringArray("material_override")]
-script = ExtResource("9_4qvq2")
-material_override = NodePath("../MaterialOverrideComponent")
-
-[node name="ArmorComponent" type="Node" parent="."]
-script = ExtResource("13_8lrld")
-
-[node name="StatusComponent" type="Node" parent="." node_paths=PackedStringArray("material_override")]
-script = ExtResource("14_lbqq4")
-status_component_resource = ExtResource("15_utq3d")
-material_override = NodePath("../MaterialOverrideComponent")
-
-[node name="MaterialOverrideComponent" type="Node" parent="." node_paths=PackedStringArray("mesh_instance")]
-script = ExtResource("15_s4xkc")
-mesh_instance = NodePath("../imp/imp2")
-
-[connection signal="on_recieved_hit" from="." to="imp/imp2/Node3D/DamageNumberComponent" method="_on_damage_recieved"]
-[connection signal="on_recieved_hit" from="." to="HealthComponent" method="_on_recieved_hit"]
-[connection signal="on_recieved_hit" from="." to="VelocityComponent" method="_on_recieved_hit"]
-[connection signal="on_recieved_hit" from="." to="HitblinkComponent" method="_on_recieved_hit"]
-[connection signal="on_state_changed" from="." to="StatusComponent" method="_on_state_changed"]
-[connection signal="died" from="HealthComponent" to="." method="_on_died"]
-[connection signal="died" from="HealthComponent" to="BountyComponent" method="_on_health_component_died"]
-[connection signal="health_changed" from="HealthComponent" to="imp/imp2/Node3D/HealthbarComponent" method="_on_health_component_health_changed"]
-[connection signal="enter_combat" from="BasicBrain" to="imp/ImpClaw" method="_on_enter_combat"]
-[connection signal="exit_combat" from="BasicBrain" to="imp/ImpClaw" method="_on_exit_combat"]
-[connection signal="request_attack" from="BasicBrain" to="imp/ImpClaw" method="_on_request_attack"]
-
-[editable path="imp"]
+[editable path="Model/RankComponent"]
+[editable path="Model/RankComponent/rank_star"]
+[editable path="Model/RankComponent/rank_star2"]
+[editable path="Model/RankComponent/rank_star3"]
+[editable path="Model/RankComponent/rank_star4"]
+[editable path="Model/imp"]
