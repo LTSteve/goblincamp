@@ -24,6 +24,7 @@ var _regular_collision: int = 0
 var _active_effects: Array[Effect] = []
 
 var _last_hit_by
+var _facing_direction
 
 var _set_movement_target_task: PrioritizedTaskManager.PrioritizedTask
 
@@ -79,15 +80,16 @@ func do_move(delta):
 		var current_agent_position: Vector2 = Math.v3_to_v2(global_position)
 		var next_path_position: Vector2 = Math.v3_to_v2(navigation_agent.get_next_path_position())
 		
-		var unit_direction = Math.unit(next_path_position - current_agent_position)
+		_facing_direction = Math.unit(next_path_position - current_agent_position)
 		
-		if unit_direction == Vector2.ZERO:
+		if _facing_direction == Vector2.ZERO:
 			velocity_component.decelerate(delta)
 			return
 		
-		velocity_component.accelerate_in_direction(unit_direction, delta)
-		rotation_component.turn(unit_direction, self, delta)
+		velocity_component.accelerate_in_direction(_facing_direction, delta)
+		rotation_component.turn(_facing_direction, self, delta)
 	else:
+		rotation_component.turn(_facing_direction, self, delta)
 		velocity_component.decelerate(delta)
 	
 	rotation_component.apply_rotation(self)
