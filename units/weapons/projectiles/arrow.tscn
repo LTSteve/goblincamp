@@ -15,6 +15,8 @@ axis_lock_linear_y = true
 axis_lock_angular_x = true
 axis_lock_angular_z = true
 gravity_scale = 0.0
+custom_integrator = true
+freeze = true
 script = ExtResource("1_pjudo")
 collision_areas = [NodePath("woodsman_projectile/Hitboxes/Area3D")]
 hit_spot = NodePath("woodsman_projectile/HitSpot")
@@ -23,6 +25,7 @@ lifespan = 3.0
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(-2.30258e-08, 0, 0.526768, 0, 0.526768, 0, -0.526768, 0, -2.30258e-08, 0, 0, 0)
 shape = SubResource("SphereShape3D_nqljr")
+disabled = true
 
 [node name="woodsman_projectile" parent="." instance=ExtResource("2_c426c")]
 transform = Transform3D(-2.30258e-08, 0, 0.526768, 0, 0.526768, 0, -0.526768, 0, -2.30258e-08, 0, 0, 0)

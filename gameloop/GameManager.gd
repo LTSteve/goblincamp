@@ -35,6 +35,8 @@ func _ready():
 @export var unit_updates_per_time_check: int = 5
 var _unit_index: int = 0
 
+static var time_scale: int = 1
+
 func _physics_process(delta):
 	var player_count = Global.players.size()
 	var enemy_count = Global.enemies.size()
@@ -46,6 +48,9 @@ func _physics_process(delta):
 	var last_unit_index = _unit_index
 	var num_moved = 0
 	var first = true
+	
+	@warning_ignore("integer_division")
+	var scaled_delta = delta * (1 if total_count <= unit_moves_per_tick else (total_count / unit_moves_per_tick))
 	
 	var starting_time = Time.get_ticks_msec()
 	var ending_time = starting_time + max_update_msec
@@ -60,13 +65,14 @@ func _physics_process(delta):
 		elif(_unit_index - player_count - enemy_count) < projectile_count:
 			unit = Global.projectiles[_unit_index - player_count - enemy_count]
 		if is_instance_valid(unit): 
-			unit.do_move(delta)
+			unit.do_move(scaled_delta)
 			num_moved += 1
 		_unit_index = (_unit_index + 1) if _unit_index < total_count else 0
 		if (num_moved % unit_updates_per_time_check) == 0 && Time.get_ticks_msec() >= ending_time:
-			print("long unit move update, exiting after ", num_moved)
-			return
-	
+			#print("long unit move update, exiting after ", num_moved)
+			break
+	@warning_ignore("integer_division")
+	time_scale = (total_count / num_moved) if total_count > num_moved else 1
 
 
 func _on_next_day_button_pressed():
@@ -138,11 +144,11 @@ func _on_unit_spawner_spawn_building(_building_type:UnitSpawner.BuildingType):
 
 
 func _on_stress_test_button_pressed():
-	for i in 50:
+	for i in 100:
 		UnitSpawner.I.spawn_friendly(UnitSpawner.UnitType.Knight)
-	for i in 50:
+	for i in 100:
 		UnitSpawner.I.spawn_friendly(UnitSpawner.UnitType.Witch)
-	for i in 50:
+	for i in 100:
 		UnitSpawner.I.spawn_friendly(UnitSpawner.UnitType.Woodsman)
 	
 	_spawn_wave(20)

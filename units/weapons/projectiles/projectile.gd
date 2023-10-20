@@ -50,8 +50,8 @@ func do_move(delta: float):
 	velocity_component.set_direction(direction)
 	velocity_component.move_physics(self, delta)
 
-func _try_look_in_direction(direction:Vector2):
-	look_at(global_position + Math.v2_to_v3(direction))
+func _try_look_in_direction(dir:Vector2):
+	look_at(global_position + Math.v2_to_v3(dir))
 
 func _on_area_3d_body_entered(_body):
 	if(free_on_hit):

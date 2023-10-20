@@ -4,6 +4,14 @@ class_name AnimationTreeExpressionExtension
 
 var _triggers:Dictionary = {}
 
+var _cached_time_scale = 1
+
+func _process(delta):
+	if _cached_time_scale == GameManager.time_scale: return
+	_cached_time_scale = GameManager.time_scale
+	set("parameters/Attack/attack/TimeScale 2/scale", 1.0 / _cached_time_scale)
+	set("parameters/Attack/attack_2/TimeScale 2/scale", 1.0 / _cached_time_scale)
+
 func create_trigger(trigger_name: String):
 	_triggers[trigger_name] = false
 

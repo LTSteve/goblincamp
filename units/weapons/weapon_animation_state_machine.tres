@@ -1,30 +1,40 @@
-[gd_resource type="AnimationNodeStateMachine" load_steps=27 format=3 uid="uid://dawvd5u6rapgb"]
+[gd_resource type="AnimationNodeStateMachine" load_steps=29 format=3 uid="uid://dawvd5u6rapgb"]
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_h0xle"]
 animation = &"attack"
 
+[sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_kx3sd"]
+
 [sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_cqoif"]
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_mmyvr"]
-graph_offset = Vector2(-372, -11)
+graph_offset = Vector2(-363, 89)
 nodes/Animation/node = SubResource("AnimationNodeAnimation_h0xle")
 nodes/Animation/position = Vector2(-80, 160)
 nodes/TimeScale/node = SubResource("AnimationNodeTimeScale_cqoif")
 nodes/TimeScale/position = Vector2(92, 166)
-node_connections = [&"output", 0, &"TimeScale", &"TimeScale", 0, &"Animation"]
+"nodes/TimeScale 2/node" = SubResource("AnimationNodeTimeScale_kx3sd")
+"nodes/TimeScale 2/position" = Vector2(260, 160)
+nodes/output/position = Vector2(500, 160)
+node_connections = [&"output", 0, &"TimeScale 2", &"TimeScale", 0, &"Animation", &"TimeScale 2", 0, &"TimeScale"]
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_770bn"]
 animation = &"attack_2"
 
+[sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_qbpnv"]
+
 [sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_hexj3"]
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_617ny"]
+graph_offset = Vector2(-52, 101)
 nodes/Animation/node = SubResource("AnimationNodeAnimation_770bn")
 nodes/Animation/position = Vector2(147, 169)
 nodes/TimeScale/node = SubResource("AnimationNodeTimeScale_hexj3")
 nodes/TimeScale/position = Vector2(359, 208)
-nodes/output/position = Vector2(560, 180)
-node_connections = [&"output", 0, &"TimeScale", &"TimeScale", 0, &"Animation"]
+"nodes/TimeScale 2/node" = SubResource("AnimationNodeTimeScale_qbpnv")
+"nodes/TimeScale 2/position" = Vector2(500, 200)
+nodes/output/position = Vector2(660, 200)
+node_connections = [&"output", 0, &"TimeScale 2", &"TimeScale", 0, &"Animation", &"TimeScale 2", 0, &"TimeScale"]
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_xvsti"]
 advance_mode = 2
@@ -48,7 +58,7 @@ states/attack/position = Vector2(414, 36)
 states/attack_2/node = SubResource("AnimationNodeBlendTree_617ny")
 states/attack_2/position = Vector2(389, 179)
 transitions = ["Start", "attack", SubResource("AnimationNodeStateMachineTransition_xvsti"), "attack", "End", SubResource("AnimationNodeStateMachineTransition_mm26l"), "attack_2", "End", SubResource("AnimationNodeStateMachineTransition_j8a7m"), "Start", "attack_2", SubResource("AnimationNodeStateMachineTransition_dkp82")]
-graph_offset = Vector2(-85, -81)
+graph_offset = Vector2(-71, -32)
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_d5u0t"]
 animation = &"draw"

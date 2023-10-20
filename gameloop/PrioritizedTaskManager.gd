@@ -7,12 +7,10 @@ static var _I: PrioritizedTaskManager
 static var _high_priority: LinkedList = LinkedList.new()
 static var _medium_priority: LinkedList = LinkedList.new()
 static var _low_priority: LinkedList = LinkedList.new()
-static var _physics_priority: LinkedList = LinkedList.new()
 
 @export var minimum_medium_priority: int = 5
 @export var minimum_low_priority: int = 1
 @export var max_process_time_ms: int = 2
-@export var max_process_time_ms_physics: int = 5
 @export var tasks_per_check: int = 10
 
 class PrioritizedTask:
@@ -44,13 +42,6 @@ static func add_low_priority_task(task:Callable, node:Node):
 	_low_priority.push(prioritized_task)
 	return prioritized_task
 
-static func add_physics_priority_task(task:Callable, node:Node):
-	var prioritized_task = PrioritizedTask.new()
-	prioritized_task.task = task
-	prioritized_task.node = node
-	_low_priority.push(prioritized_task)
-	return prioritized_task
-
 func _process(_delta):
 	# in ms
 	var starting_time = Time.get_ticks_msec()
@@ -63,18 +54,9 @@ func _process(_delta):
 	_run_through_tasks_until(_medium_priority, ending_time)
 	_run_through_tasks_until(_low_priority, ending_time)
 	
-	var total_time = Time.get_ticks_msec() - starting_time
-	if total_time > max_process_time_ms:
-		print("processed prioritized tasks for: ", total_time, "ms")
-
-func _physics_process(_delta):
-	# in ms
-	var starting_time = Time.get_ticks_msec()
-	var ending_time = starting_time+max_process_time_ms_physics
-	_run_through_tasks_until(_physics_priority, ending_time)
-	var total_time = Time.get_ticks_msec() - starting_time
-	if total_time > max_process_time_ms_physics:
-		print("processed prioritized physics tasks for: ", total_time, "ms")
+	#var total_time = Time.get_ticks_msec() - starting_time
+	#if total_time > max_process_time_ms:
+	#	print("processed prioritized tasks for: ", total_time, "ms")
 
 func _run_through_tasks_until(task_list:LinkedList, time):
 	while true:

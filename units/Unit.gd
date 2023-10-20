@@ -33,7 +33,6 @@ func _ready():
 	
 	if is_enemy: Global.enemies.append(self)
 	else: Global.players.append(self)
-	Global.total_units += 1
 	
 	call_deferred("_apply_unit_modifiers")
 
@@ -55,8 +54,6 @@ func _on_died():
 			GameManager.I.cycle_to_day()
 	else: 
 		Global.players = Global.players.filter(func(player): return player != self)
-	
-	Global.total_units -= 1
 	
 	if is_instance_valid(_last_hit_by) && is_instance_valid(_last_hit_by.unit):
 		_last_hit_by.unit.on_get_kill.emit(kill_value)
