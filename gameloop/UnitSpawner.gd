@@ -35,6 +35,11 @@ enum BuildingType {Blacksmith=0, Leatherworker, Enchanter}
 @export var min_building_radius: float = 10
 @export var max_building_radius: float = 50
 
+static var I: UnitSpawner
+
+func _ready():
+	I = self
+
 func spawn_friendly(unit_type: UnitType):
 	var angle = deg_to_rad(randf() * 359.9)
 	var distance = friendly_spawn_radius * randf()

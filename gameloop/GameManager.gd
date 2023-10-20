@@ -30,6 +30,36 @@ func cycle_to_day():
 func _ready():
 	I = self
 
+@export var unit_moves_per_tick: int = 100
+var _unit_index: int = 0
+
+func _physics_process(delta):
+	var player_count = Global.players.size()
+	var enemy_count = Global.enemies.size()
+	var projectile_count = Global.projectiles.size()
+	var total_count = player_count+enemy_count+projectile_count
+	if total_count == 0: return
+	
+	_unit_index = _unit_index if _unit_index < total_count else 0
+	var last_unit_index = _unit_index
+	var num_moved = 0
+	var first = true
+	
+	while (first || _unit_index != last_unit_index) && num_moved < unit_moves_per_tick:
+		first = false
+		var unit
+		if _unit_index < player_count:
+			unit = Global.players[_unit_index]
+		elif (_unit_index - player_count) < enemy_count:
+			unit = Global.enemies[_unit_index - player_count]
+		elif(_unit_index - player_count - enemy_count) < projectile_count:
+			unit = Global.projectiles[_unit_index - player_count - enemy_count]
+		if is_instance_valid(unit): 
+			unit.do_move(delta)
+			num_moved += 1
+		_unit_index = (_unit_index + 1) if _unit_index < total_count else 0
+	
+
 func _on_next_day_button_pressed():
 	if _spawned_building:
 		navigation_region.bake_navigation_mesh(true)
@@ -96,3 +126,20 @@ func _spawn_wave(number: float):
 
 func _on_unit_spawner_spawn_building(_building_type:UnitSpawner.BuildingType):
 	_spawned_building = true
+
+
+func _on_stress_test_button_pressed():
+	for i in 50:
+		UnitSpawner.I.spawn_friendly(UnitSpawner.UnitType.Knight)
+	for i in 50:
+		UnitSpawner.I.spawn_friendly(UnitSpawner.UnitType.Witch)
+	for i in 50:
+		UnitSpawner.I.spawn_friendly(UnitSpawner.UnitType.Woodsman)
+	
+	_spawn_wave(20)
+	
+	_spawned_building = false
+	_day += 1
+	on_night.emit()
+	if navigation_region.bake_finished.is_connected(_start_next_day):
+		navigation_region.bake_finished.disconnect(_start_next_day)

@@ -414,14 +414,14 @@ mouse_default_cursor_shape = 2
 theme_override_constants/icon_max_width = 100
 theme_override_font_sizes/font_size = 14
 text = "KNIGHT
-(95)"
+(85)"
 icon = SubResource("ViewportTexture_aeej2")
 text_overrun_behavior = 1
 clip_text = true
 icon_alignment = 1
 vertical_icon_alignment = 0
 script = ExtResource("7_uqj5s")
-cost = 95
+cost = 85
 
 [node name="MarginContainer2" type="MarginContainer" parent="CanvasLayer/Theme/Bottom/BuyPanel/BuyUnits/ScrollContainer/MarginContainer/HBoxContainer"]
 layout_mode = 2

@@ -18,7 +18,13 @@ var target: Unit
 
 var _target_position: Vector3
 
-func _physics_process(delta:float):
+func _ready():
+	Global.projectiles.append(self)
+
+func _on_tree_exiting():
+	Global.projectiles = Global.projectiles.filter(func(projectile): return projectile != self)
+
+func do_move(delta: float):
 	lifespan -= delta
 	
 	var has_target_position = false

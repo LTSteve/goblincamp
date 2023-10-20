@@ -25,6 +25,8 @@ var _active_effects: Array[Effect] = []
 
 var _last_hit_by
 
+var _set_movement_target_task: PrioritizedTaskManager.PrioritizedTask
+
 func _ready():
 	# These values need to be adjusted for the actor's speed
 	# and the navigation layout.
@@ -35,6 +37,7 @@ func _ready():
 	
 	if is_enemy: Global.enemies.append(self)
 	else: Global.players.append(self)
+	Global.total_units += 1
 	
 	call_deferred("_apply_unit_modifiers")
 
@@ -43,14 +46,21 @@ func _apply_unit_modifiers():
 	ModifierManager.apply_unit_modifiers(self)
 
 func set_movement_target(movement_target: Vector3):
-	navigation_agent.set_target_position(movement_target)
+	if !_set_movement_target_task || _set_movement_target_task.done:
+		_set_movement_target_task = PrioritizedTaskManager.add_medium_priority_task(func():
+			navigation_agent.set_target_position(movement_target)
+			, self)
 
 func _on_died():
 	if is_enemy:
 		Global.enemies = Global.enemies.filter(func(enemy): return enemy != self)
 		if Global.enemies.size() == 0:
 			GameManager.I.cycle_to_day()
-	else: Global.players = Global.players.filter(func(player): return player != self)
+	else: 
+		Global.players = Global.players.filter(func(player): return player != self)
+	
+	Global.total_units -= 1
+	
 	if is_instance_valid(_last_hit_by) && is_instance_valid(_last_hit_by.unit):
 		_last_hit_by.unit.on_get_kill.emit(kill_value)
 	for effect in _active_effects:
@@ -64,25 +74,24 @@ func _process(delta):
 		var effect = _active_effects[(effects_count - 1) - i]
 		effect.update(delta)
 
-func _physics_process(delta):
-	#TODO: consider this
-	#collision_shape.disabled = _stunned > 0
-	
+func do_move(delta):
 	if _stunned <= 0 && !navigation_agent.is_navigation_finished():
 		var current_agent_position: Vector2 = Math.v3_to_v2(global_position)
 		var next_path_position: Vector2 = Math.v3_to_v2(navigation_agent.get_next_path_position())
 		
 		var unit_direction = Math.unit(next_path_position - current_agent_position)
 		
-		if unit_direction == Vector2.ZERO: return
+		if unit_direction == Vector2.ZERO:
+			velocity_component.decelerate(delta)
+			return
 		
 		velocity_component.accelerate_in_direction(unit_direction, delta)
 		rotation_component.turn(unit_direction, self, delta)
 	else:
 		velocity_component.decelerate(delta)
 	
-	velocity_component.move(self)
 	rotation_component.apply_rotation(self)
+	velocity_component.move(self)
 
 func take_hit(weapon_hit:Weapon.Hit):
 	#calculate crits and armor now after all other calculations

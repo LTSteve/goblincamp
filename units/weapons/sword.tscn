@@ -125,7 +125,7 @@ tracks/9/keys = {
 
 [sub_resource type="Animation" id="Animation_v0h66"]
 resource_name = "attack"
-length = 1.2
+length = 1.7
 step = 0.05
 tracks/0/type = "bezier"
 tracks/0/imported = false
@@ -134,9 +134,9 @@ tracks/0/path = NodePath("knight_weapon:position:x")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"handle_modes": PackedInt32Array(0, 0, 0, 0, 0, 0),
-"points": PackedFloat32Array(1.25084, -0.25, 0, 0.25, 0, 0.57669, 0, 0, 0, 0, -1.48332, 0, 0, 0, 0, -1.65356, 0, 0, 0, 0, 0.258638, -0.25, 0, 0.129495, -0.126497, 1.25084, -0.109678, -0.0618531, 0.25, 0),
-"times": PackedFloat32Array(0, 0.25, 0.55, 0.6, 0.95, 1.2)
+"handle_modes": PackedInt32Array(0, 0, 0, 0, 0, 0, 0),
+"points": PackedFloat32Array(1.25084, -0.25, 0, 0.25, 0, 1.25084, -0.25, 0, 0.25, 0, 0.57669, 0, 0, 0, 0, -1.48332, 0, 0, 0, 0, -1.65356, 0, 0, 0, 0, 0.258638, -0.25, 0, 0.129495, -0.126497, 1.25084, -0.109678, -0.0618531, 0.25, 0),
+"times": PackedFloat32Array(0, 0.1, 0.348052, 0.648052, 0.8, 1.2, 1.7)
 }
 tracks/1/type = "bezier"
 tracks/1/imported = false
@@ -145,9 +145,9 @@ tracks/1/path = NodePath("knight_weapon:position:y")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"handle_modes": PackedInt32Array(0, 0, 0, 0, 0, 0),
-"points": PackedFloat32Array(-0.18948, -0.25, 0, 0.25, 0, 0.781427, 0, 0, 0, 0, 0.436042, 0, 0, 0, 0, 0.767894, 0, 0, 0, 0, 3.76315, -0.25, 0, 0.0816165, -0.303904, -0.18948, -0.0944443, 0.204193, 0.25, 0),
-"times": PackedFloat32Array(0, 0.25, 0.55, 0.6, 0.95, 1.2)
+"handle_modes": PackedInt32Array(0, 0, 0, 0, 0, 0, 0),
+"points": PackedFloat32Array(-0.18948, -0.25, 0, 0.25, 0, -0.18948, -0.25, 0, 0.25, 0, 0.781427, 0, 0, 0, 0, 0.436042, 0, 0, 0, 0, 0.767894, 0, 0, 0, 0, 3.76315, -0.25, 0, 0.0816165, -0.303904, -0.18948, -0.0944443, 0.204193, 0.25, 0),
+"times": PackedFloat32Array(0, 0.1, 0.348052, 0.648052, 0.8, 1.2, 1.7)
 }
 tracks/2/type = "bezier"
 tracks/2/imported = false
@@ -156,9 +156,9 @@ tracks/2/path = NodePath("knight_weapon:position:z")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"handle_modes": PackedInt32Array(0, 0, 0, 0, 0, 0),
-"points": PackedFloat32Array(-1.32519, -0.25, 0, 0.25, 0, -3.80694, 0, 0, 0, 0, -2.09898, 0, 0, 0, 0, -1.72192, 0, 0, 0, 0, -1.72192, -0.25, 0, 0.0881454, 0.0143608, -1.32519, -0.103149, -0.069227, 0.25, 0),
-"times": PackedFloat32Array(0, 0.25, 0.55, 0.6, 0.95, 1.2)
+"handle_modes": PackedInt32Array(0, 0, 0, 0, 0, 0, 0),
+"points": PackedFloat32Array(-1.32519, -0.25, 0, 0.25, 0, -1.32519, -0.25, 0, 0.25, 0, -3.80694, 0, 0, 0, 0, -2.09898, 0, 0, 0, 0, -1.72192, 0, 0, 0, 0, -1.72192, -0.25, 0, 0.0881454, 0.0143608, -1.32519, -0.103149, -0.069227, 0.25, 0),
+"times": PackedFloat32Array(0, 0.1, 0.348052, 0.648052, 0.8, 1.2, 1.7)
 }
 tracks/3/type = "bezier"
 tracks/3/imported = false
@@ -167,9 +167,9 @@ tracks/3/path = NodePath("knight_weapon:rotation:x")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"handle_modes": PackedInt32Array(0, 0, 0, 0, 0, 0),
-"points": PackedFloat32Array(-0.235619, -0.25, 0, 0.25, 0, 0.122173, 0, 0, 0, 0, -0.284489, 0, 0, 0, 0, -0.151844, 0, 0, 0, 0, -3.20268, -0.25, 0, 0.140376, -0.657713, -6.5188, -0.0944443, 0.0750093, 0.25, 0),
-"times": PackedFloat32Array(0, 0.25, 0.55, 0.6, 0.95, 1.2)
+"handle_modes": PackedInt32Array(0, 0, 0, 0, 0, 0, 0),
+"points": PackedFloat32Array(-0.235619, -0.25, 0, 0.25, 0, -0.235619, -0.25, 0, 0.25, 0, 0.122173, 0, 0, 0, 0, -0.284489, 0, 0, 0, 0, -0.151844, 0, 0, 0, 0, -3.20268, -0.25, 0, 0.140376, -0.657713, -6.5188, -0.0944443, 0.0750093, 0.25, 0),
+"times": PackedFloat32Array(0, 0.1, 0.348052, 0.648052, 0.8, 1.2, 1.7)
 }
 tracks/4/type = "bezier"
 tracks/4/imported = false
@@ -178,9 +178,9 @@ tracks/4/path = NodePath("knight_weapon:rotation:y")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
-"handle_modes": PackedInt32Array(0, 0, 0, 0, 0, 0),
-"points": PackedFloat32Array(-1.22697, -0.25, 0, 0.25, 0, 1.90066, 0, 0, 0, 0, 4.06487, 0, 0, 0, 0, 4.42616, 0, 0, 0, 0, 4.69843, -0.25, 0, 0.0924981, 0.052527, 5.05622, -0.109678, -0.187838, 0.25, 0),
-"times": PackedFloat32Array(0, 0.25, 0.55, 0.6, 0.95, 1.2)
+"handle_modes": PackedInt32Array(0, 0, 0, 0, 0, 0, 0),
+"points": PackedFloat32Array(-1.22697, -0.25, 0, 0.25, 0, -1.22697, -0.25, 0, 0.25, 0, 1.90066, 0, 0, 0, 0, 4.06487, 0, 0, 0, 0, 4.42616, 0, 0, 0, 0, 4.69843, -0.25, 0, 0.0924981, 0.052527, 5.05622, -0.109678, -0.187838, 0.25, 0),
+"times": PackedFloat32Array(0, 0.1, 0.348052, 0.648052, 0.8, 1.2, 1.7)
 }
 tracks/5/type = "bezier"
 tracks/5/imported = false
@@ -189,9 +189,9 @@ tracks/5/path = NodePath("knight_weapon:rotation:z")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
-"handle_modes": PackedInt32Array(0, 0, 0, 0, 0, 0),
-"points": PackedFloat32Array(-6.40187, -0.25, 0, 0.25, 0, -6.16625, 0, 0, 0, 0, -6.48913, 0, 0, 0, 0, -6.5764, 0, 0, 0, 0, -6.23606, -0.25, 0, 0.103379, -0.0120215, -6.40187, -0.0857391, -0.0419273, 0.25, 0),
-"times": PackedFloat32Array(0, 0.25, 0.55, 0.6, 0.95, 1.2)
+"handle_modes": PackedInt32Array(0, 0, 0, 0, 0, 0, 0),
+"points": PackedFloat32Array(-6.40187, -0.25, 0, 0.25, 0, -6.40187, -0.25, 0, 0.25, 0, -6.16625, 0, 0, 0, 0, -6.48913, 0, 0, 0, 0, -6.5764, 0, 0, 0, 0, -6.23606, -0.25, 0, 0.103379, -0.0120215, -6.40187, -0.0857391, -0.0419273, 0.25, 0),
+"times": PackedFloat32Array(0, 0.1, 0.348052, 0.648052, 0.8, 1.2, 1.7)
 }
 tracks/6/type = "value"
 tracks/6/imported = false
@@ -200,7 +200,7 @@ tracks/6/path = NodePath("Hitboxes/Area3D:monitoring")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
-"times": PackedFloat32Array(0, 0.15, 0.224158, 1.2),
+"times": PackedFloat32Array(0, 0.248052, 0.32221, 1.29805),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
 "values": [false, true, false, false]
@@ -212,7 +212,7 @@ tracks/7/path = NodePath("Hitboxes/Area3D2:monitoring")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/keys = {
-"times": PackedFloat32Array(0, 0.230687, 0.280742, 1.2),
+"times": PackedFloat32Array(0, 0.328739, 0.378794, 1.29805),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
 "values": [false, true, false, false]
@@ -224,7 +224,7 @@ tracks/8/path = NodePath("Hitboxes/Area3D3:monitoring")
 tracks/8/interp = 1
 tracks/8/loop_wrap = true
 tracks/8/keys = {
-"times": PackedFloat32Array(0, 0.261155, 0.40479),
+"times": PackedFloat32Array(0, 0.359207, 0.502842),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
 "values": [false, true, false]
@@ -236,7 +236,7 @@ tracks/9/path = NodePath("Hitboxes/Area3D4:monitoring")
 tracks/9/interp = 1
 tracks/9/loop_wrap = true
 tracks/9/keys = {
-"times": PackedFloat32Array(0, 0.376498, 0.498371),
+"times": PackedFloat32Array(0, 0.47455, 0.596423),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
 "values": [false, true, false]
@@ -244,7 +244,7 @@ tracks/9/keys = {
 
 [sub_resource type="Animation" id="Animation_pxci4"]
 resource_name = "attack_2"
-length = 1.2
+length = 1.7
 step = 0.05
 tracks/0/type = "bezier"
 tracks/0/imported = false
@@ -253,9 +253,9 @@ tracks/0/path = NodePath("knight_weapon:position:x")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"handle_modes": PackedInt32Array(0, 0, 0, 0, 0, 0),
-"points": PackedFloat32Array(1.25084, -0.25, 0, 0.25, 0, 0.57669, 0, 0, 0, 0, -1.48332, 0, 0, 0, 0, -1.65356, 0, 0, 0, 0, 0.57669, 0, 0, 0, 0, 1.25084, -0.109678, -0.0618531, 0.25, 0),
-"times": PackedFloat32Array(0, 0.25, 0.55, 0.6, 0.85, 1.2)
+"handle_modes": PackedInt32Array(0, 0, 0, 0, 0, 0, 0, 0),
+"points": PackedFloat32Array(1.25084, -0.25, 0, 0.25, 0, 1.25084, -0.25, 0, 0.25, 0, 0.57669, 0, 0, 0, 0, -1.48332, 0, 0, 0, 0, -1.65356, 0, 0, 0, 0, 0.57669, 0, 0, 0, 0, 1.02989, -0.25, 0, 0.25, 0, 1.25084, -0.109678, -0.0618531, 0.25, 0),
+"times": PackedFloat32Array(0, 0.1, 0.350344, 0.650344, 0.922326, 1.17233, 1.37324, 1.7)
 }
 tracks/1/type = "bezier"
 tracks/1/imported = false
@@ -264,9 +264,9 @@ tracks/1/path = NodePath("knight_weapon:position:y")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"handle_modes": PackedInt32Array(0, 0, 0, 0, 0, 0),
-"points": PackedFloat32Array(-0.18948, -0.25, 0, 0.25, 0, 0.781427, 0, 0, 0, 0, 0.436042, 0, 0, 0, 0, 0.767894, 0, 0, 0, 0, 0.781427, 0, 0, 0, 0, -0.18948, -0.0944443, 0.204193, 0.25, 0),
-"times": PackedFloat32Array(0, 0.25, 0.55, 0.6, 0.85, 1.2)
+"handle_modes": PackedInt32Array(0, 0, 0, 0, 0, 0, 0, 0),
+"points": PackedFloat32Array(-0.18948, -0.25, 0, 0.25, 0, -0.18948, -0.25, 0, 0.25, 0, 0.781427, 0, 0, 0, 0, 0.436042, 0, 0, 0, 0, 0.767894, 0, 0, 0, 0, 0.781427, 0, 0, 0, 0, 0.198604, -0.25, 0, 0.25, 0, -0.18948, -0.0944443, 0.204193, 0.25, 0),
+"times": PackedFloat32Array(0, 0.1, 0.350344, 0.650344, 0.922326, 1.17233, 1.37324, 1.7)
 }
 tracks/2/type = "bezier"
 tracks/2/imported = false
@@ -275,9 +275,9 @@ tracks/2/path = NodePath("knight_weapon:position:z")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"handle_modes": PackedInt32Array(0, 0, 0, 0, 0, 0),
-"points": PackedFloat32Array(-1.32519, -0.25, 0, 0.25, 0, -3.80694, 0, 0, 0, 0, -2.09898, 0, 0, 0, 0, -1.72192, 0, 0, 0, 0, -3.80694, 0, 0, 0, 0, -1.32519, -0.103149, -0.069227, 0.25, 0),
-"times": PackedFloat32Array(0, 0.25, 0.55, 0.6, 0.85, 1.2)
+"handle_modes": PackedInt32Array(0, 0, 0, 0, 0, 0, 0, 0),
+"points": PackedFloat32Array(-1.32519, -0.25, 0, 0.25, 0, -1.32519, -0.25, 0, 0.25, 0, -3.80694, 0, 0, 0, 0, -2.09898, 0, 0, 0, 0, -1.72192, 0, 0, 0, 0, -3.80694, 0, 0, 0, 0, -2.0894, -0.25, 0, 0.25, 0, -1.32519, -0.103149, -0.069227, 0.25, 0),
+"times": PackedFloat32Array(0, 0.1, 0.350344, 0.650344, 0.922326, 1.17233, 1.37324, 1.7)
 }
 tracks/3/type = "bezier"
 tracks/3/imported = false
@@ -286,9 +286,9 @@ tracks/3/path = NodePath("knight_weapon:rotation:x")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"handle_modes": PackedInt32Array(0, 0, 0, 0, 0, 0),
-"points": PackedFloat32Array(-0.235619, -0.25, 0, 0.25, 0, 0.122173, 0, 0, 0, 0, -0.284489, 0, 0, 0, 0, -0.151844, 0, 0, 0, 0, 0.122173, 0, 0, 0, 0, -0.235619, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0, 0.25, 0.55, 0.6, 0.85, 1.2)
+"handle_modes": PackedInt32Array(0, 0, 0, 0, 0, 0, 0, 0),
+"points": PackedFloat32Array(-0.235619, -0.25, 0, 0.25, 0, -0.235619, -0.25, 0, 0.25, 0, 0.122173, 0, 0, 0, 0, -0.284489, 0, 0, 0, 0, -0.151844, 0, 0, 0, 0, 0.122173, 0, 0, 0, 0, -0.187694, -0.25, 0, 0.25, 0, -0.235619, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.1, 0.350344, 0.650344, 0.922326, 1.17233, 1.37324, 1.7)
 }
 tracks/4/type = "bezier"
 tracks/4/imported = false
@@ -297,9 +297,9 @@ tracks/4/path = NodePath("knight_weapon:rotation:y")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
-"handle_modes": PackedInt32Array(0, 0, 0, 0, 0, 0),
-"points": PackedFloat32Array(-1.22697, -0.25, 0, 0.25, 0, 1.90066, 0, 0, 0, 0, 4.06487, 0, 0, 0, 0, 4.42616, 0, 0, 0, 0, 1.90066, 0, 0, 0, 0, -1.22697, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0, 0.25, 0.55, 0.6, 0.85, 1.2)
+"handle_modes": PackedInt32Array(0, 0, 0, 0, 0, 0, 0, 0),
+"points": PackedFloat32Array(-1.22697, -0.25, 0, 0.25, 0, -1.22697, -0.25, 0, 0.25, 0, 1.90066, 0, 0, 0, 0, 4.06487, 0, 0, 0, 0, 4.42616, 0, 0, 0, 0, 1.90066, 0, 0, 0, 0, -0.808031, -0.25, 0, 0.25, 0, -1.22697, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.1, 0.350344, 0.650344, 0.922326, 1.17233, 1.37324, 1.7)
 }
 tracks/5/type = "bezier"
 tracks/5/imported = false
@@ -308,9 +308,9 @@ tracks/5/path = NodePath("knight_weapon:rotation:z")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
-"handle_modes": PackedInt32Array(0, 0, 0, 0, 0, 0),
-"points": PackedFloat32Array(-6.40187, -0.25, 0, 0.25, 0, -6.16625, 0, 0, 0, 0, -6.48913, 0, 0, 0, 0, -6.5764, 0, 0, 0, 0, -6.16625, 0, 0, 0, 0, -6.40187, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0, 0.25, 0.55, 0.6, 0.85, 1.2)
+"handle_modes": PackedInt32Array(0, 0, 0, 0, 0, 0, 0, 0),
+"points": PackedFloat32Array(-6.40187, -0.25, 0, 0.25, 0, -6.40187, -0.25, 0, 0.25, 0, -6.16625, 0, 0, 0, 0, -6.48913, 0, 0, 0, 0, -6.5764, 0, 0, 0, 0, -6.16625, 0, 0, 0, 0, -6.37031, -0.25, 0, 0.25, 0, -6.40187, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.1, 0.350344, 0.650344, 0.922326, 1.17233, 1.37324, 1.7)
 }
 tracks/6/type = "value"
 tracks/6/imported = false
@@ -319,7 +319,7 @@ tracks/6/path = NodePath("Hitboxes/Area3D:monitoring")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
-"times": PackedFloat32Array(0, 0.15, 0.224158, 0.93, 1.04, 1.2),
+"times": PackedFloat32Array(0, 0.250344, 0.324502, 1.25233, 1.36233, 1.7),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
 "update": 1,
 "values": [false, true, false, true, false, false]
@@ -331,7 +331,7 @@ tracks/7/path = NodePath("Hitboxes/Area3D2:monitoring")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/keys = {
-"times": PackedFloat32Array(0, 0.230687, 0.280742, 0.83, 0.94, 1.2),
+"times": PackedFloat32Array(0, 0.331031, 0.381086, 1.15233, 1.26233, 1.7),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
 "update": 1,
 "values": [false, true, false, true, false, false]
@@ -343,7 +343,7 @@ tracks/8/path = NodePath("Hitboxes/Area3D3:monitoring")
 tracks/8/interp = 1
 tracks/8/loop_wrap = true
 tracks/8/keys = {
-"times": PackedFloat32Array(0, 0.261155, 0.40479, 0.75, 0.85),
+"times": PackedFloat32Array(0, 0.361499, 0.505134, 1.07233, 1.17233),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 1,
 "values": [false, true, false, true, false]
@@ -355,7 +355,7 @@ tracks/9/path = NodePath("Hitboxes/Area3D4:monitoring")
 tracks/9/interp = 1
 tracks/9/loop_wrap = true
 tracks/9/keys = {
-"times": PackedFloat32Array(0, 0.376498, 0.498371, 0.65, 0.78),
+"times": PackedFloat32Array(0, 0.476842, 0.598715, 0.972326, 1.10233),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 1,
 "values": [false, true, false, true, false]
@@ -367,7 +367,7 @@ tracks/10/path = NodePath(".")
 tracks/10/interp = 1
 tracks/10/loop_wrap = true
 tracks/10/keys = {
-"times": PackedFloat32Array(0.02, 0.52, 0.553259),
+"times": PackedFloat32Array(0.02, 0.620344, 0.653603),
 "transitions": PackedFloat32Array(1, 1, 1),
 "values": [{
 "args": [0.2],
@@ -681,7 +681,8 @@ collision_areas = [NodePath("Hitboxes/Area3D"), NodePath("Hitboxes/Area3D2"), No
 hit_spot = NodePath("knight_weapon/HitSpot")
 multi_target = true
 animation_tree = NodePath("AnimationTree")
-weapon_range = 5.0
+weapon_range = 4.0
+damage = 8.0
 pushback = 4.0
 
 [node name="knight_weapon" parent="." groups=["Sword_Model"] instance=ExtResource("1_yltu8")]

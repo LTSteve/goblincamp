@@ -14,14 +14,15 @@
 transform = Transform3D(0.25, 1.09278e-08, 4.7767e-16, 0, -1.09278e-08, 0.25, 1.09278e-08, -0.25, -1.09278e-08, -0.398014, 3.37389, -1.03442)
 
 [node name="Sword" parent="Model/WeaponHolder" index="0" instance=ExtResource("3_qgv83")]
-allow_brain_binding = null
 
 [node name="Sword2" parent="Model/WeaponHolder" index="1" instance=ExtResource("3_qgv83")]
 transform = Transform3D(4.37114e-08, 0, -1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 1, 0)
 visible = false
 animation_delay = 0.2
 disabled = true
-allow_brain_binding = null
+
+[node name="VelocityComponent" parent="." index="4"]
+max_speed = 5.5
 
 [node name="ArmorComponent" parent="." index="7" groups=["Knight"]]
 armor = 1

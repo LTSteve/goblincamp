@@ -27,6 +27,9 @@ disabled = true
 
 [node name="woodsman" parent="Model" index="4" instance=ExtResource("2_72bjw")]
 
+[node name="HealthComponent" parent="." index="3"]
+max_health = 85.0
+
 [node name="MaterialOverrideComponent" parent="." index="9" node_paths=PackedStringArray("mesh_instance")]
 mesh_instance = NodePath("../Model/woodsman/woodsman2")
 

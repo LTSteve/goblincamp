@@ -2,6 +2,15 @@ class_name Global
 
 static var enemies: Array[Unit] = []
 static var players: Array[Unit] = []
+static var projectiles: Array[Projectile] = []
+
+static var total_units: int:
+	get:
+		return total_units
+	set(value):
+		@warning_ignore("integer_division")
+		Engine.physics_ticks_per_second = max(60 - (value / 70) * 10,5)
+		total_units = value
 
 static func nearest_unit(units: Array[Unit], position):
 	if(!units || units.size() == 0):
