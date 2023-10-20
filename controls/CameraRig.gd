@@ -54,7 +54,7 @@ func _process(delta):
 	distance_input = _combine_actions("camera_zoom", "camera_dezoom")
 	
 	#movement
-	var desired_movement = Math.unit(left_right_input * Vector3.LEFT + forward_back_input * Vector3.FORWARD)
+	var desired_movement = Math.unit_v3(left_right_input * Vector3.LEFT + forward_back_input * Vector3.FORWARD)
 	
 	velocity_component.accelerate_in_direction(Math.v3_to_v2(desired_movement) * camera_scroll_speed, delta)
 	translate(camera_rotation.quaternion * Math.v2_to_v3(velocity_component.apply_delta(delta), global_position.y))

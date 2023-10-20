@@ -31,6 +31,8 @@ func _ready():
 	I = self
 
 @export var unit_moves_per_tick: int = 100
+@export var max_update_msec: int = 4
+@export var unit_updates_per_time_check: int = 5
 var _unit_index: int = 0
 
 func _physics_process(delta):
@@ -45,6 +47,9 @@ func _physics_process(delta):
 	var num_moved = 0
 	var first = true
 	
+	var starting_time = Time.get_ticks_msec()
+	var ending_time = starting_time + max_update_msec
+	
 	while (first || _unit_index != last_unit_index) && num_moved < unit_moves_per_tick:
 		first = false
 		var unit
@@ -58,7 +63,11 @@ func _physics_process(delta):
 			unit.do_move(delta)
 			num_moved += 1
 		_unit_index = (_unit_index + 1) if _unit_index < total_count else 0
+		if (num_moved % unit_updates_per_time_check) == 0 && Time.get_ticks_msec() >= ending_time:
+			print("long unit move update, exiting after ", num_moved)
+			return
 	
+
 
 func _on_next_day_button_pressed():
 	if _spawned_building:

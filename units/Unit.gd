@@ -9,8 +9,8 @@ var state_states: Array[State] = []
 @onready var velocity_component: VelocityComponent = $VelocityComponent
 @onready var rotation_component: RotationComponent = $RotationComponent
 @onready var armor_component: ArmorComponent = get_node_or_null("ArmorComponent")
-@onready var navigation_agent: NavigationAgent3D = $NavigationAgent3D
 @onready var collision_shape: CollisionShape3D = $CollisionShape3D
+@onready var pathfinder_component: PathfinderComponent = $PathfinderComponent
 
 @export var is_enemy: bool = false
 @export var kill_value: float = 1
@@ -24,16 +24,11 @@ var _regular_collision: int = 0
 var _active_effects: Array[Effect] = []
 
 var _last_hit_by
-var _facing_direction
+var _facing_direction = Vector2.ZERO
 
 var _set_movement_target_task: PrioritizedTaskManager.PrioritizedTask
 
 func _ready():
-	# These values need to be adjusted for the actor's speed
-	# and the navigation layout.
-	navigation_agent.path_desired_distance = 0.5
-	navigation_agent.target_desired_distance = 0.5
-	
 	_regular_collision = collision_layer
 	
 	if is_enemy: Global.enemies.append(self)
@@ -49,8 +44,8 @@ func _apply_unit_modifiers():
 func set_movement_target(movement_target: Vector3, speed_scale: float = 1.0):
 	if !_set_movement_target_task || _set_movement_target_task.done:
 		_set_movement_target_task = PrioritizedTaskManager.add_medium_priority_task(func():
-			navigation_agent.set_target_position(movement_target)
 			velocity_component.speed_scale = speed_scale
+			pathfinder_component.find_new_path(movement_target)
 			, self)
 
 func _on_died():
@@ -77,21 +72,11 @@ func _process(delta):
 		effect.update(delta)
 
 func do_move(delta):
-	if _stunned <= 0 && !navigation_agent.is_navigation_finished():
-		var current_agent_position: Vector2 = Math.v3_to_v2(global_position)
-		var next_path_position: Vector2 = Math.v3_to_v2(navigation_agent.get_next_path_position())
-		
-		_facing_direction = Math.unit(next_path_position - current_agent_position)
-		
-		if _facing_direction == Vector2.ZERO:
-			velocity_component.decelerate(delta)
-			return
-		
-		velocity_component.accelerate_in_direction(_facing_direction, delta)
-		rotation_component.turn(_facing_direction, self, delta)
-	else:
-		rotation_component.turn(_facing_direction, self, delta)
-		velocity_component.decelerate(delta)
+	var movement_direction = pathfinder_component.get_next_direction(_stunned > 0)
+	_facing_direction = movement_direction if movement_direction != Vector2.ZERO else _facing_direction
+	
+	velocity_component.accelerate_in_direction(movement_direction, delta)
+	rotation_component.turn(_facing_direction, self, delta)
 	
 	rotation_component.apply_rotation(self)
 	velocity_component.move(self)

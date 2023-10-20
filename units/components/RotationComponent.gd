@@ -20,7 +20,7 @@ func _ready():
 	fast_rotation_cutoff_r = deg_to_rad(fast_rotation_cutoff)
 
 func snap_to_direction(direction:Vector2):
-	_direction = Math.unit(direction)
+	_direction = Math.unit_v2(direction)
 
 func turn(direction:Vector2, unit:Unit, delta):
 	if !is_instance_valid(_target): _target = null

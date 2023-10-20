@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://brhc1aba5usew"]
+[gd_scene load_steps=19 format=3 uid="uid://brhc1aba5usew"]
 
 [ext_resource type="Script" path="res://units/Unit.gd" id="1_6slac"]
 [ext_resource type="Script" path="res://units/components/HeightComponent.gd" id="3_mhfwn"]
@@ -15,6 +15,7 @@
 [ext_resource type="Script" path="res://units/components/BountyComponent.gd" id="15_fndb6"]
 [ext_resource type="Script" path="res://units/components/MaterialOverrideComponent.gd" id="16_fq7mo"]
 [ext_resource type="Script" path="res://units/components/BrainComponent.gd" id="16_wtkvr"]
+[ext_resource type="Script" path="res://units/components/PathfinderComponent.gd" id="16_xkxsm"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_nhjdq"]
 radius = 0.7
@@ -93,6 +94,9 @@ unit = NodePath("..")
 weapon_holder = NodePath("../Model/WeaponHolder")
 flee_range = NodePath("../FleeRange")
 
+[node name="PathfinderComponent" type="Node3D" parent="."]
+script = ExtResource("16_xkxsm")
+
 [node name="FleeRange" type="Area3D" parent="."]
 collision_layer = 0
 collision_mask = 2
@@ -101,7 +105,6 @@ collision_mask = 2
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 shape = SubResource("SphereShape3D_phml6")
 
-[connection signal="on_get_kill" from="." to="Model/RankComponent" method="_on_get_kill"]
 [connection signal="on_recieved_hit" from="." to="Model/DamageNumberComponent" method="_on_damage_recieved"]
 [connection signal="on_recieved_hit" from="." to="HealthComponent" method="_on_recieved_hit"]
 [connection signal="on_recieved_hit" from="." to="VelocityComponent" method="_on_recieved_hit"]

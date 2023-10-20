@@ -2,8 +2,12 @@ class_name Math
 
 static var E: float = 0.57721566490153286060651209008240243
 
-static func unit(vec):
-	if(vec.length() == 0): return vec
+static func unit_v2(vec:Vector2):
+	if(vec == Vector2.ZERO): return vec
+	return vec / vec.length()
+
+static func unit_v3(vec:Vector3):
+	if(vec == Vector3.ZERO): return vec
 	return vec / vec.length()
 
 static func v3_to_v2(vec:Vector3) -> Vector2:

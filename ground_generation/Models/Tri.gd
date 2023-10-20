@@ -13,7 +13,7 @@ func _init(point_a: Vector3,point_b: Vector3,point_c: Vector3,index: int, color:
 	var cross_ab_bc : Vector3 = -ab.cross(bc)
 	var cross_bc_ca : Vector3 = -bc.cross(ca)
 	var cross_ca_ab : Vector3 = -ca.cross(ab)
-	_normal = Math.unit(cross_ab_bc + cross_bc_ca + cross_ca_ab)
+	_normal = Math.unit_v3(cross_ab_bc + cross_bc_ca + cross_ca_ab)
 	_k =  -(_normal.x * point_a.x + _normal.y * point_a.y + _normal.z * point_a.z)
 	
 	_points.append(Point.new(index, point_a, color, _normal))

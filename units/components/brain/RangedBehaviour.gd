@@ -42,7 +42,7 @@ func process(_delta, brain:BrainComponent, weapon):
 		desired_locations.append(brain.unit.global_position)
 	
 	for enemy in brain.fleeing:
-		desired_locations.append(enemy.global_position + Math.unit(brain.unit.global_position - enemy.global_position) * flee_distance)
+		desired_locations.append(enemy.global_position + Math.unit_v3(brain.unit.global_position - enemy.global_position) * flee_distance)
 	
 	var location_sum = Vector3.ZERO
 	for location in desired_locations:

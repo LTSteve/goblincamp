@@ -111,7 +111,7 @@ func _try_to_attack(target:Unit, me:Unit) -> bool:
 func _create_hit(enemy:Unit, hit_creation_data:HitCreationData = HitCreationData.new()) -> Weapon.Hit:
 	
 	var hit_data = Hit.new()
-	hit_data.direction = Math.unit(Math.v3_to_v2(enemy.global_position-global_position))
+	hit_data.direction = Math.unit_v2(Math.v3_to_v2(enemy.global_position-global_position))
 	hit_data.crit_chance = crit_chance if hit_creation_data.can_crit else 0.0
 	hit_data.crit_damage_multiplier = crit_damage_multiplier
 	hit_data.damage = round(damage * hit_creation_data.base_damage_scale)
