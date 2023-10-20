@@ -54,7 +54,9 @@ transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 0, 0)
 path_height_offset = 0.5
 navigation_layers = 3
 avoidance_enabled = true
-radius = 2.0
+height = 10.0
+radius = 5.0
+avoidance_layers = 3
 
 [node name="HealthComponent" type="Node" parent="."]
 script = ExtResource("8_vakd5")

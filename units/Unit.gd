@@ -46,10 +46,11 @@ func _apply_unit_modifiers():
 	#apply modifiers
 	ModifierManager.apply_unit_modifiers(self)
 
-func set_movement_target(movement_target: Vector3):
+func set_movement_target(movement_target: Vector3, speed_scale: float = 1.0):
 	if !_set_movement_target_task || _set_movement_target_task.done:
 		_set_movement_target_task = PrioritizedTaskManager.add_medium_priority_task(func():
 			navigation_agent.set_target_position(movement_target)
+			velocity_component.speed_scale = speed_scale
 			, self)
 
 func _on_died():

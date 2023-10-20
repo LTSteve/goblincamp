@@ -4,3 +4,7 @@
 
 [resource]
 script = ExtResource("1_xa3wh")
+wander_center = Vector3(0, 0, 0)
+wander_range = 35.0
+min_wander_wait = 4.0
+max_wander_wait = 25.0

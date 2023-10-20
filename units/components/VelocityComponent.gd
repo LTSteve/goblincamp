@@ -8,6 +8,8 @@ class_name VelocityComponent
 var get_max_speed:CallableStack
 var get_acceleration:CallableStack
 
+var speed_scale:float = 1.0
+
 var _velocity: Vector2 = Vector2.ZERO
 
 func _ready():
@@ -21,7 +23,7 @@ func _ready():
 func accelerate_to_velocity(velocity:Vector2, delta: float):
 	var acc = get_acceleration.execute()
 	var ad = acc * delta
-	_velocity = (_velocity + velocity * ad) / (ad + 1)
+	_velocity = (_velocity + velocity * ad * speed_scale) / (ad + 1)
 
 func accelerate_in_direction(direction:Vector2, delta: float):
 	accelerate_to_velocity(get_max_speed.execute() * direction, delta)
