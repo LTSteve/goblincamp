@@ -13,12 +13,10 @@ func process(_delta, _brain:BrainComponent, _behaviour_data):
 
 func _bind_to_all_weapons(brain:BrainComponent) -> Array[Weapon]:
 	var all_weps = brain.weapon_holder.find_children("", "Weapon")
-	var rotation_component = brain.get_parent().find_child("RotationComponent") as RotationComponent
 	var weapons:Array[Weapon] = []
 	for wep in all_weps:
 		brain.enter_combat.connect(wep._on_enter_combat)
 		brain.exit_combat.connect(wep._on_exit_combat)
 		brain.request_attack.connect(wep._on_request_attack)
-		if rotation_component: brain.on_lock_target.connect(rotation_component._on_lock_target)
 		weapons.append(wep as Weapon)
 	return weapons
