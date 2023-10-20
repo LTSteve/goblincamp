@@ -10,8 +10,11 @@ var damage: int
 var damage_type: Damage.Type
 var is_crit: bool
 var is_ally: bool
+var audio_stream: AudioStream
 
 var new_target_position:Vector3 = Vector3.ZERO
+
+@onready var audio_stream_player:AudioStreamPlayer3D = $AudioStreamPlayer3D
 
 func _ready():
 	label.text = str(damage)
@@ -20,6 +23,11 @@ func _ready():
 	label.modulate = damage_color * crit_multiplier
 	label.pixel_size = settings.pixel_size
 	if is_crit: label.pixel_size *= settings.crit_font_scale
+	
+	if audio_stream:
+		audio_stream_player.stream = audio_stream
+		audio_stream_player.play()
+	
 	call_deferred("_start_tween")
 
 func _process(delta):

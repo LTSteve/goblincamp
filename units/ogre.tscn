@@ -20,12 +20,17 @@ shape = SubResource("CapsuleShape3D_e0yvo")
 [node name="DamageNumberComponent" parent="Model" index="0"]
 is_ally = false
 
-[node name="RankComponent" parent="Model" index="2"]
+[node name="BountyComponent" parent="Model" index="1"]
+enabled = true
+worth_base = 200
+worth_varience = 50
+
+[node name="RankComponent" parent="Model" index="3"]
 visible = false
 
-[node name="Hammer" parent="Model/WeaponHolder" index="0" instance=ExtResource("3_mcr6p")]
-
 [node name="ogre" parent="Model" index="4" instance=ExtResource("2_q77xx")]
+
+[node name="Hammer" parent="Model/WeaponHolder" index="0" instance=ExtResource("3_mcr6p")]
 
 [node name="HealthComponent" parent="." index="3"]
 max_health = 300.0
@@ -36,10 +41,7 @@ armor = 2
 [node name="MaterialOverrideComponent" parent="." index="9" node_paths=PackedStringArray("mesh_instance")]
 mesh_instance = NodePath("../Model/ogre/ogre2")
 
-[node name="BountyComponent" parent="." index="10"]
-enabled = true
-
-[node name="BrainComponent" parent="." index="11"]
+[node name="BrainComponent" parent="." index="10"]
 behaviours = Array[Resource("res://units/components/brain/Behaviour.gd")]([ExtResource("4_0iw8r"), ExtResource("5_rgbwr")])
 
 [editable path="Model/RankComponent"]

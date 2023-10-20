@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="SFXResource" load_steps=5 format=3 uid="uid://ducfjk1buamd"]
+
+[ext_resource type="Script" path="res://sfx/SFXResource.gd" id="1_h6lw3"]
+[ext_resource type="AudioStream" uid="uid://dirqesucffj7j" path="res://sfx/money_1.wav" id="1_nct5t"]
+[ext_resource type="AudioStream" uid="uid://bndcfsdujqiey" path="res://sfx/money_2.wav" id="2_vkwjr"]
+[ext_resource type="AudioStream" uid="uid://drcyqwgg0m4xr" path="res://sfx/money_3.wav" id="3_b8gsx"]
+
+[resource]
+script = ExtResource("1_h6lw3")
+bounty_sounds = Array[AudioStream]([ExtResource("1_nct5t"), ExtResource("2_vkwjr"), ExtResource("3_b8gsx")])

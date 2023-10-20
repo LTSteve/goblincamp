@@ -10,7 +10,7 @@
 
 [node name="knight" parent="Model" index="0" instance=ExtResource("2_71j88")]
 
-[node name="RankComponent" parent="Model" index="3"]
+[node name="RankComponent" parent="Model" index="4"]
 transform = Transform3D(0.25, 1.09278e-08, 4.7767e-16, 0, -1.09278e-08, 0.25, 1.09278e-08, -0.25, -1.09278e-08, -0.398014, 3.37389, -1.03442)
 
 [node name="Sword" parent="Model/WeaponHolder" index="0" instance=ExtResource("3_qgv83")]
@@ -30,7 +30,7 @@ armor = 1
 [node name="MaterialOverrideComponent" parent="." index="9" node_paths=PackedStringArray("mesh_instance")]
 mesh_instance = NodePath("../Model/knight/knight2")
 
-[node name="BrainComponent" parent="." index="11"]
+[node name="BrainComponent" parent="." index="10"]
 behaviours = Array[Resource("res://units/components/brain/Behaviour.gd")]([ExtResource("4_u2k7p"), ExtResource("5_2y4yu")])
 
 [editable path="Model/knight"]

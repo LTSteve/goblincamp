@@ -12,10 +12,14 @@ is_enemy = true
 [node name="DamageNumberComponent" parent="Model" index="0"]
 is_ally = false
 
-[node name="RankComponent" parent="Model" index="2"]
-visible = false
+[node name="BountyComponent" parent="Model" index="1"]
+enabled = true
+worth_base = 60
 
 [node name="goblin" parent="Model" index="3" instance=ExtResource("2_k8e14")]
+
+[node name="RankComponent" parent="Model" index="4"]
+visible = false
 
 [node name="Claw" parent="Model/WeaponHolder" index="0" instance=ExtResource("3_10fnw")]
 
@@ -28,17 +32,12 @@ max_speed = 4.5
 [node name="MaterialOverrideComponent" parent="." index="9" node_paths=PackedStringArray("mesh_instance")]
 mesh_instance = NodePath("../Model/goblin/goblin2")
 
-[node name="BountyComponent" parent="." index="10"]
-enabled = true
-worth_base = 75
-worth_varience = 9
-
-[node name="BrainComponent" parent="." index="11"]
+[node name="BrainComponent" parent="." index="10"]
 behaviours = Array[Resource("res://units/components/brain/Behaviour.gd")]([ExtResource("4_uet6l")])
 
+[editable path="Model/goblin"]
 [editable path="Model/RankComponent"]
 [editable path="Model/RankComponent/rank_star"]
 [editable path="Model/RankComponent/rank_star2"]
 [editable path="Model/RankComponent/rank_star3"]
 [editable path="Model/RankComponent/rank_star4"]
-[editable path="Model/goblin"]

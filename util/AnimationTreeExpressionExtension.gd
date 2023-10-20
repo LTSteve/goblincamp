@@ -6,7 +6,7 @@ var _triggers:Dictionary = {}
 
 var _cached_time_scale = 1
 
-func _process(delta):
+func _process(_delta):
 	if _cached_time_scale == GameManager.time_scale: return
 	_cached_time_scale = GameManager.time_scale
 	set("parameters/Attack/attack/TimeScale 2/scale", 1.0 / _cached_time_scale)

@@ -19,3 +19,7 @@ render_priority = 100
 outline_render_priority = 99
 text = "50"
 font = ExtResource("1_rc6br")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+volume_db = -2.0
+unit_size = 25.0
