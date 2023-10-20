@@ -1,4 +1,4 @@
 {
-	"duration": 20,
-	"slow_per_rank": 0.15
+	"duration": 10,
+	"slow_per_rank": 0.06
 }
