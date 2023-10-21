@@ -7,8 +7,12 @@ static var _I: ModifierManager
 @export var blacksmith_deck: DeckResource
 @export var leatherworker_deck: DeckResource
 @export var enchanter_deck: DeckResource
+@export var enemy_deck: DeckResource
 
 @export var force_card: CardResource
+@export var force_card_enemy: CardResource
+
+static var enemy_card_no: int = 0
 
 func _ready():
 	_I = self
@@ -44,6 +48,30 @@ static func apply_modifier(resource:CardResource) -> CardModifier:
 
 static func un_apply_modifier(modifier:CardModifier):
 	modifier.derank()
+
+static func get_next_enemy_card() -> CardResource:
+	enemy_card_no += 1
+	
+	if _I.force_card_enemy != null:
+		return _I.force_card_enemy
+	
+	var cards = _I.enemy_deck.get_cards().filter(_I._match_unfinished_cards)
+	cards.shuffle()
+	
+	var infinite_normal = _I._find_and_remove_all(cards, _I._match_infinite_normal)
+	
+	var cycle = (enemy_card_no % 4) + 1
+	match cycle:
+		1:
+			return _I._fall_through_find_and_remove(cards, [_I._match_normal_card, _I._match_rare_card, _I._match_ultra_rare_card], infinite_normal)
+		2:
+			return _I._fall_through_find_and_remove(cards, [_I._match_normal_card, _I._match_rare_card, _I._match_ultra_rare_card], infinite_normal)
+		3:
+			return _I._fall_through_find_and_remove(cards, [_I._match_rare_card, _I._match_ultra_rare_card, _I._match_normal_card], infinite_normal)
+		4:
+			return _I._fall_through_find_and_remove(cards, [_I._match_ultra_rare_card, _I._match_rare_card, _I._match_normal_card], infinite_normal)
+	
+	return infinite_normal[0]
 
 static func generate_card_choices(building_type: UnitSpawner.BuildingType) -> Array:
 	var deck:DeckResource

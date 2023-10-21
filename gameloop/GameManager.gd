@@ -16,7 +16,7 @@ class_name GameManager
 
 signal on_spawn_enemy(unit_type: UnitSpawner.UnitType)
 
-signal on_night()
+signal on_night(day:int)
 signal on_day()
 
 var _day:int = 0
@@ -76,21 +76,24 @@ func _physics_process(delta):
 
 
 func _on_next_day_button_pressed():
-	if _spawned_building:
-		navigation_region.bake_navigation_mesh(true)
-		navigation_region.bake_finished.connect(_start_next_day)
-	else:
-		_start_next_day()
+	TodoList.new(
+	[func(todo_list:TodoList):
+		if _spawned_building:
+			navigation_region.bake_navigation_mesh(true)
+			todo_list.finish_step_after_signal(navigation_region.bake_finished)
+		else:
+			todo_list.mark_step_done()
+	,GoblinCardPanel.I.try_open.bind(_day+1)
+	], true).done.connect(_start_next_day, CONNECT_ONE_SHOT)
 
 func _start_next_day():
 	_spawned_building = false
 	_day += 1
-	_spawn_wave(_day)
-	on_night.emit()
-	if navigation_region.bake_finished.is_connected(_start_next_day):
-		navigation_region.bake_finished.disconnect(_start_next_day)
+	on_night.emit(_day)
 
-func _spawn_wave(number: float):
+#linked from on_night
+func _spawn_wave(day: int):
+	var number = day as float
 	
 	var random_component: float = 0
 	if number >= 10 && number < 20:

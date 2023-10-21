@@ -36,6 +36,9 @@ func pop():
 	
 	return value
 
+func empty():
+	return !_front
+
 func _link(before:LinkedListItem, after:LinkedListItem):
 	before.next = after
 	after.previous = before
