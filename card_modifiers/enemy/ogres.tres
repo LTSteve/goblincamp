@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="CardResource" load_steps=5 format=3 uid="uid://bhembmr1dldgp"]
+
+[ext_resource type="Script" path="res://card_modifiers/enemy/ogres.gd" id="1_0agmc"]
+[ext_resource type="Script" path="res://card_modifiers/CardResource.gd" id="1_s0fir"]
+[ext_resource type="JSON" path="res://card_modifiers/enemy/ogres.json" id="2_sygme"]
+[ext_resource type="Texture2D" uid="uid://bnd0wyrkwbshw" path="res://card_modifiers/icons/ogre.png" id="3_vj1j5"]
+
+[resource]
+script = ExtResource("1_s0fir")
+test_card = false
+title = "Ogres!"
+descriptions = Array[String](["Ogres can spawn", "Ogre damage x{[.ogre_damage_boost]}, knockback x{[.ogre_knockback_boost]}"])
+rarity = 1
+max_rank = 2
+card_script = ExtResource("1_0agmc")
+card_script_params = ExtResource("2_sygme")
+apply_to = Array[String](["MeleeWeapon"])
+group_filters = Array[String](["Hammer"])
+include_enemies = true
+include_players = false
+icon_texture = ExtResource("3_vj1j5")

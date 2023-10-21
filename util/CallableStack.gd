@@ -54,8 +54,9 @@ func add_override(id:Array, callable:Callable, priority: int = 0):
 
 func remove_override(id: Array):
 	var index = _first(UniqueMetaId.create(id))
-	if index != -1:
-		override_stack.remove_at(index)
+	if index == -1: return
+	
+	override_stack.remove_at(index)
 	
 	if _cache_on_override:
 		_cached_value = _execute([])

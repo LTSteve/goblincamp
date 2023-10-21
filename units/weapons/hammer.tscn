@@ -113,7 +113,7 @@ tracks/8/keys = {
 
 [sub_resource type="Animation" id="Animation_n1fdf"]
 resource_name = "attack"
-length = 1.3
+length = 1.6
 tracks/0/type = "bezier"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -121,9 +121,9 @@ tracks/0/path = NodePath("ogre_weapon:position:x")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"handle_modes": PackedInt32Array(0, 0, 0, 1, 0),
+"handle_modes": PackedInt32Array(0, 0, 0, 0, 0),
 "points": PackedFloat32Array(0.630379, -0.25, 0, 0.25, 0, 1.89552, -0.25, 0, 0.150428, -0.632406, -0.488397, 0, 0, 0.01, 0, -0.488397, 0, 0, 0, 0, 0.630379, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0, 0.3, 0.5, 0.6, 1.3)
+"times": PackedFloat32Array(0, 0.402138, 0.602138, 0.702138, 1.6)
 }
 tracks/1/type = "bezier"
 tracks/1/imported = false
@@ -132,9 +132,9 @@ tracks/1/path = NodePath("ogre_weapon:position:y")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"handle_modes": PackedInt32Array(0, 0, 0, 1, 0),
+"handle_modes": PackedInt32Array(0, 0, 0, 0, 0),
 "points": PackedFloat32Array(1.45036, -0.25, 0, 0.25, 0, 1.14673, -0.25, 0, 0.179027, -0.199156, 0.640103, -0.0158662, 0.0742474, 0.0300959, 0.115405, 0.731024, 0, 0, 0, 0, 1.45036, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0, 0.3, 0.5, 0.6, 1.3)
+"times": PackedFloat32Array(0, 0.402138, 0.602138, 0.702138, 1.6)
 }
 tracks/2/type = "bezier"
 tracks/2/imported = false
@@ -143,9 +143,9 @@ tracks/2/path = NodePath("ogre_weapon:position:z")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"handle_modes": PackedInt32Array(0, 0, 1, 1, 0),
+"handle_modes": PackedInt32Array(0, 0, 0, 0, 0),
 "points": PackedFloat32Array(-2, -0.25, 0, 0.25, 0, -2.225, -0.25, 0, 0.149407, -0.257217, -3.32306, 0, 0, 0, 0, -3.32306, 0, 0, 0, 0, -2, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0, 0.3, 0.5, 0.6, 1.3)
+"times": PackedFloat32Array(0, 0.402138, 0.602138, 0.702138, 1.6)
 }
 tracks/3/type = "bezier"
 tracks/3/imported = false
@@ -154,9 +154,9 @@ tracks/3/path = NodePath("ogre_weapon:rotation:x")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"handle_modes": PackedInt32Array(0, 0, 1, 1, 1, 0),
+"handle_modes": PackedInt32Array(0, 0, 0, 0, 0, 0),
 "points": PackedFloat32Array(-0.579574, -0.25, 0, 0.25, 0, -0.471239, -0.25, 0, 0.115701, 0.00573871, 1.10305, 0, 0, 0, 0, 1.11527, 0, 0, 0, 0, 1.10305, 0, 0, 0, 0, -0.579449, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0, 0.3, 0.5, 0.6, 0.7, 1.3)
+"times": PackedFloat32Array(0, 0.402138, 0.602138, 0.702138, 0.802138, 1.6)
 }
 tracks/4/type = "bezier"
 tracks/4/imported = false
@@ -165,9 +165,9 @@ tracks/4/path = NodePath("ogre_weapon:rotation:y")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
-"handle_modes": PackedInt32Array(0, 0, 0, 1, 1, 0),
+"handle_modes": PackedInt32Array(0, 0, 0, 0, 0, 0),
 "points": PackedFloat32Array(-3.12087, -0.25, 0, 0.25, 0, -3.4575, -0.25, 0, 0.162685, 0.193281, -0.74002, 0, 0, 0.054609, -0.123337, -0.788889, 0, 0, 0, 0, -0.74002, 0, 0, 0, 0, -3.12065, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0, 0.3, 0.5, 0.6, 0.7, 1.3)
+"times": PackedFloat32Array(0, 0.402138, 0.602138, 0.702138, 0.802138, 1.6)
 }
 tracks/5/type = "bezier"
 tracks/5/imported = false
@@ -176,9 +176,9 @@ tracks/5/path = NodePath("ogre_weapon:rotation:z")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
-"handle_modes": PackedInt32Array(0, 0, 0, 1, 1, 0),
+"handle_modes": PackedInt32Array(0, 0, 0, 0, 0, 0),
 "points": PackedFloat32Array(2.68234, -0.25, 0, 0.25, 0, 2.35794, -0.25, 0, 0.119787, 0.00271416, 3.70708, 0, 0, 0.06, 0, 3.65646, 0, 0, 0, 0, 3.70708, 0, 0, 0, 0, 2.68257, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0, 0.3, 0.5, 0.6, 0.7, 1.3)
+"times": PackedFloat32Array(0, 0.402138, 0.602138, 0.702138, 0.802138, 1.6)
 }
 tracks/6/type = "value"
 tracks/6/imported = false
@@ -187,7 +187,7 @@ tracks/6/path = NodePath("Hitboxes/Area3D:monitoring")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
-"times": PackedFloat32Array(0, 0.39, 0.44),
+"times": PackedFloat32Array(0, 0.492138, 0.542138),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
 "values": [false, true, false]
@@ -199,7 +199,7 @@ tracks/7/path = NodePath("Hitboxes/Area3D2:monitoring")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/keys = {
-"times": PackedFloat32Array(0, 0.44, 0.48),
+"times": PackedFloat32Array(0, 0.542138, 0.582138),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
 "values": [false, true, false]
@@ -519,9 +519,9 @@ hit_spot = NodePath("ogre_weapon/HitSpot")
 multi_target = true
 animation_tree = NodePath("AnimationTree")
 weapon_range = 6.0
-damage = 24.0
-pushback = 10.0
-hit_stun = 1.5
+damage = 18.0
+pushback = 6.0
+hit_stun = 1.1
 
 [node name="ogre_weapon" parent="." instance=ExtResource("2_m1iyf")]
 transform = Transform3D(0.965927, -1.23345e-07, 0.258816, -0.258816, -9.36912e-07, 0.965927, 1.23345e-07, -1, -9.36912e-07, -1.36962, 1.45036, -2)
@@ -537,7 +537,9 @@ parameters/conditions/in_combat = false
 parameters/conditions/not_in_combat = false
 parameters/Attack/conditions/use_attack_2 = false
 parameters/Attack/attack/TimeScale/scale = 1.0
+"parameters/Attack/attack/TimeScale 2/scale" = 1.0
 parameters/Attack/attack_2/TimeScale/scale = 1.0
+"parameters/Attack/attack_2/TimeScale 2/scale" = 1.0
 parameters/Draw/TimeScale/scale = 1.0
 parameters/Stow/TimeScale/scale = 1.0
 script = ExtResource("4_2is1a")

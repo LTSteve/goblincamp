@@ -18,12 +18,17 @@ is_enemy = true
 shape = SubResource("CapsuleShape3D_e0yvo")
 
 [node name="DamageNumberComponent" parent="Model" index="0"]
+transform = Transform3D(1, 8.48637e-08, 1.77636e-14, -8.48637e-08, 1, -2.66454e-15, -1.06581e-14, 3.37334e-16, 1, 4.52606e-07, 9.11072, 1.30397e-14)
 is_ally = false
 
 [node name="BountyComponent" parent="Model" index="1"]
+transform = Transform3D(1, 0, 1.06581e-14, 0, 1, 0, -1.06581e-14, 0, 1, 4.52606e-07, 9.11072, 1.30397e-14)
 enabled = true
 worth_base = 200
 worth_varience = 50
+
+[node name="HealthbarComponent" parent="Model" index="2"]
+transform = Transform3D(-8.74228e-08, 1.27759e-07, -2, 0, 2, 1.27759e-07, 2, 5.58454e-15, -8.74228e-08, 0.00883782, 9.94124, -0.0184446)
 
 [node name="RankComponent" parent="Model" index="3"]
 visible = false
@@ -33,7 +38,7 @@ visible = false
 [node name="Hammer" parent="Model/WeaponHolder" index="0" instance=ExtResource("3_mcr6p")]
 
 [node name="HealthComponent" parent="." index="3"]
-max_health = 300.0
+max_health = 150.0
 
 [node name="ArmorComponent" parent="." index="7"]
 armor = 2
