@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="CardResource" load_steps=5 format=3 uid="uid://cs16cn36hmmnt"]
+
+[ext_resource type="Script" path="res://card_modifiers/enemy/speedy_feets.gd" id="1_34mji"]
+[ext_resource type="Script" path="res://card_modifiers/CardResource.gd" id="1_rp4wb"]
+[ext_resource type="JSON" path="res://card_modifiers/enemy/speedy_feets.json" id="2_a2515"]
+[ext_resource type="Texture2D" uid="uid://d387t5i2ecn8y" path="res://card_modifiers/icons/velociraptor-tracks.png" id="3_ssd2x"]
+
+[resource]
+script = ExtResource("1_rp4wb")
+test_card = false
+title = "Speedy Feets"
+descriptions = Array[String](["Enemies are {[current_rank]*[.speed_per_rank]*100}% faster"])
+rarity = 0
+max_rank = 5
+card_script = ExtResource("1_34mji")
+card_script_params = ExtResource("2_a2515")
+apply_to = Array[String](["VelocityComponent"])
+group_filters = Array[String]([])
+include_enemies = true
+include_players = false
+icon_texture = ExtResource("3_ssd2x")
