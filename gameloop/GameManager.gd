@@ -14,7 +14,14 @@ class_name GameManager
 @export var imp_cost: float = 3
 @export var goblin_cost: float = 2
 
+@export_dir var enemy_spawn_folder: String = "res://enemy_spawns"
+var enemy_spawns: Array[EnemySpawnResource] = []
+
+static var unlocked_enemy_types: Array[UnitSpawner.UnitType] = [UnitSpawner.UnitType.Goblin]
+static var force_spawn_enemy_type = null
+
 signal on_spawn_enemy(unit_type: UnitSpawner.UnitType)
+signal on_spawn_enemy_group(enemy_spawn: EnemySpawnResource)
 
 signal on_night(day:int)
 signal on_day()
@@ -29,6 +36,13 @@ func cycle_to_day():
 
 func _ready():
 	I = self
+	var directory = DirAccess.open(enemy_spawn_folder)
+	var files = directory.get_files()
+	for file in files:
+		if !file.ends_with(".tres"): continue
+		var resource = load(enemy_spawn_folder + "/" + file)
+		if !(resource is EnemySpawnResource): continue
+		enemy_spawns.append(resource)
 
 @export var unit_moves_per_tick: int = 100
 @export var max_update_msec: int = 4
@@ -84,7 +98,7 @@ func _on_next_day_button_pressed():
 		else:
 			todo_list.mark_step_done()
 	,GoblinCardPanel.I.try_open.bind(_day+1)
-	], true).done.connect(_start_next_day, CONNECT_ONE_SHOT)
+	], true).on_done(_start_next_day)
 
 func _start_next_day():
 	_spawned_building = false
@@ -93,58 +107,49 @@ func _start_next_day():
 
 #linked from on_night
 func _spawn_wave(day: int):
-	var number = day as float
+	var cycle = (day - GoblinCardPanel.I.first_modifier_night) % GoblinCardPanel.I.modifier_interval
 	
-	var random_component: float = 0
-	if number >= 10 && number < 20:
-		random_component = randf_range(0,(number-10)+1)
-	elif number >= 20:
-		random_component = randf_range(0, 11)
+	var random_component = randi_range(0,1)
+	var linear_component = floor(day * 0.5)
 	
-	var exponential_component: float = number * number / 2.0
-	if number < 20:
-		exponential_component = number * number / 2.0
-	else:
-		exponential_component = 200
+	var spawn_power = clampi(random_component+linear_component+cycle, 1, 30)
 	
-	var linear_component: float = number * linear_scale + linear_offset
+	var available_enemy_spawns = enemy_spawns.filter(
+	func(es): 
+		return es.enemies.all(
+		func(enemy):
+			return unlocked_enemy_types.has(enemy)
+		)
+	)
 	
-	var spawn_power: float = linear_component + exponential_component + random_component
+	var enemy_spawns_by_pwr = [
+		[],
+		available_enemy_spawns.filter(func(es): return es.level <= 1),
+		available_enemy_spawns.filter(func(es): return es.level == 2),
+		available_enemy_spawns.filter(func(es): return es.level == 3),
+		available_enemy_spawns.filter(func(es): return es.level >= 4)
+	]
 	
-	var ogre_count: int = 0
-	var goblin_count: int = 0
-	var imp_count: int = 0
+	var spawns: Array[EnemySpawnResource] = []
 	
-	if number > 15:
-		var max_ogre = (spawn_power/ogre_cost) as int
-		@warning_ignore("integer_division")
-		var min_ogre = clampi((max_ogre / 2) as int, 1, max_ogre)
-		ogre_count = randi_range(min_ogre, max_ogre)
-		spawn_power -= ogre_count * ogre_cost
+	if force_spawn_enemy_type != null:
+		var force_spawn = available_enemy_spawns.filter(func(es): return es.enemies.has(force_spawn_enemy_type))[0]
+		spawns.append(force_spawn)
+		force_spawn_enemy_type = null
+		spawn_power -= force_spawn.level
 	
-	if number < 5:
-		goblin_count = (spawn_power / goblin_cost) as int
-		spawn_power -= goblin_count * goblin_cost
-	else:
-		imp_count = ((spawn_power / imp_cost))/2 as int
-		spawn_power -= imp_count * imp_cost
-		goblin_count = (spawn_power / goblin_cost) as int
-		spawn_power -= goblin_count * goblin_cost
+	while spawn_power > 0:
+		enemy_spawns.shuffle()
+		var pwr = randi_range(1, min(spawn_power, 4))
+		var spawns_by_pwr = enemy_spawns_by_pwr[pwr]
+		spawns.append(spawns_by_pwr[randi_range(0,spawns_by_pwr.size() - 1)])
+		spawn_power -= pwr
 	
-	goblin_count = clampi(goblin_count, 1, goblin_count)
-	
-	for i in ogre_count:
-		on_spawn_enemy.emit(UnitSpawner.UnitType.Ogre)
-	
-	for i in imp_count:
-		on_spawn_enemy.emit(UnitSpawner.UnitType.Imp)
-	
-	for i in goblin_count:
-		on_spawn_enemy.emit(UnitSpawner.UnitType.Goblin)
+	for spawn in spawns:
+		on_spawn_enemy_group.emit(spawn)
 
 func _on_unit_spawner_spawn_building(_building_type:UnitSpawner.BuildingType):
 	_spawned_building = true
-
 
 func _on_stress_test_button_pressed():
 	for i in 100:

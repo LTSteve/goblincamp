@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="EnemySpawnResource" load_steps=2 format=3 uid="uid://ba8e6bl0gdtpc"]
+
+[ext_resource type="Script" path="res://enemy_spawns/EnemySpawnResource.gd" id="1_h4746"]
+
+[resource]
+script = ExtResource("1_h4746")
+level = 3
+enemies = Array[int]([3, 5])

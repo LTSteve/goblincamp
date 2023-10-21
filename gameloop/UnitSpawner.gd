@@ -41,14 +41,18 @@ func _ready():
 	I = self
 
 func spawn_friendly(unit_type: UnitType):
-	var angle = deg_to_rad(randf() * 359.9)
-	var distance = friendly_spawn_radius * randf()
-	_spawn(unit_type, friendly_spawn_center + Quaternion.from_euler(Vector3(0,angle,0)) * Vector3.BACK * distance)
+	var r_v2 = Math.rand_v2_range(0, friendly_spawn_radius)
+	_spawn(unit_type, friendly_spawn_center + Math.v2_to_v3(r_v2))
 
-func spawn_hostile(unit_type: UnitType):
-	var angle = deg_to_rad(randf() * 359.9)
-	var distance = enemy_spawn_min_radius + (enemy_spawn_max_radius - enemy_spawn_min_radius) * randf()
-	_spawn(unit_type, enemy_spawn_center + Quaternion.from_euler(Vector3(0,angle,0)) * Vector3.BACK * distance)
+func spawn_hostile(unit_type: UnitType, point: Vector2 = Vector2.ZERO):
+	if point == Vector2.ZERO:
+		point = Math.rand_v2_range(enemy_spawn_min_radius, enemy_spawn_max_radius)
+	_spawn(unit_type, enemy_spawn_center + Math.v2_to_v3(point))
+
+func spawn_enemy_group(enemy_spawn: EnemySpawnResource):
+	var r_v2 = Math.rand_v2_range(enemy_spawn_min_radius, enemy_spawn_max_radius)
+	for enemy in enemy_spawn.enemies:
+		spawn_hostile(enemy, r_v2 + Math.rand_v2_range(0.1, 2))
 
 func spawn_building(building_type: BuildingType, value: int, resource: CardResource):
 	

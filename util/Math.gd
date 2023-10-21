@@ -1,6 +1,7 @@
 class_name Math
 
 static var E: float = 0.57721566490153286060651209008240243
+static var almost_360_rad: float = deg_to_rad(359.99)
 
 static func unit_v2(vec:Vector2):
 	if(vec == Vector2.ZERO): return vec
@@ -44,3 +45,11 @@ static func rangef(start:float, end:float, step:float, limit:int = 200) -> Array
 	for i in min(ceil(r/step), limit):
 		numbers.append(i * step + start)
 	return numbers
+
+static func rand_v2():
+	var angle = randf_range(0,almost_360_rad)
+	return Vector2.RIGHT.rotated(angle)
+
+static func rand_v2_range(min_dist:float, max_dist: float):
+	var v2 = rand_v2()
+	return v2 * randf_range(min_dist,max_dist)
