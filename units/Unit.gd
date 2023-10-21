@@ -2,7 +2,7 @@ extends CharacterBody3D
 
 class_name Unit
 
-enum State { CHILLED, BLEEDING, BURNING }
+enum State { NORMAL, CHILLED, BLEEDING, BURNING, ENRAGED }
 
 var state_states: Array[State] = []
 
@@ -101,15 +101,18 @@ func add_effect(effect:Effect):
 		effect.on_apply()
 
 func add_state(state:State):
+	if state == State.NORMAL: return
 	var index = state_states.find(state)
 	if index == -1: state_states.append(state)
 	on_state_changed.emit(state_states)
 
 func remove_state(state:State):
+	if state == State.NORMAL: return
 	var index = state_states.find(state)
 	if index != -1: state_states.remove_at(index)
 	on_state_changed.emit(state_states)
 
 func has_state(state:State):
+	if state == State.NORMAL: return true
 	var index = state_states.find(state)
 	return index != -1

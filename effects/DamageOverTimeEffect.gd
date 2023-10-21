@@ -48,7 +48,7 @@ func duplicate(new_unit:Unit) -> Effect:
 
 func _calculate_remaining_damage():
 	_remaining_damage = _total_damage
-	_remaining_ticks = floor(duration / _tick_time)
+	_remaining_ticks = floor(abs(duration / _tick_time))
 	@warning_ignore("integer_division")
 	_base_tick_damage = floor(_total_damage / _remaining_ticks)
 
@@ -59,7 +59,7 @@ func update(delta:float):
 	if _current_tick_cooldown > 0: return
 	_current_tick_cooldown += _tick_time
 	
-	var damage = _base_tick_damage if _remaining_damage == (_base_tick_damage * _remaining_ticks) else (_base_tick_damage + 1)
+	var damage = _base_tick_damage if _remaining_damage == (_base_tick_damage * _remaining_ticks) else (_base_tick_damage + sign(_base_tick_damage))
 	_remaining_damage -= damage
 	_remaining_ticks -= 1
 	
