@@ -4,4 +4,7 @@
 
 [resource]
 script = ExtResource("1_ubn5d")
-comfortable_range_modifier = 0.8
+comfortable_range_modifier = 0.6
+nearby_unit_consideration = 10
+nearby_units_dist2_range = 650.0
+just_a_few_units = 1

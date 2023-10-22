@@ -6,6 +6,8 @@ enum State { NORMAL, CHILLED, BLEEDING, BURNING, ENRAGED, SLEEPING }
 
 var state_states: Array[State] = []
 
+var cardinal_claims: Array[bool] = [false, false, false, false, false, false, false, false]
+
 @onready var velocity_component: VelocityComponent = $VelocityComponent
 @onready var rotation_component: RotationComponent = $RotationComponent
 @onready var armor_component: ArmorComponent = get_node_or_null("ArmorComponent")
@@ -116,3 +118,15 @@ func has_state(state:State):
 	if state == State.NORMAL: return true
 	var index = state_states.find(state)
 	return index != -1
+
+func claim_unit(claimer_position: Vector3):
+	var nearest_cardinals = Math.nearest_cardinals(Math.v3_to_v2(claimer_position), Math.v3_to_v2(self.global_position))
+	#find and claim nearest possible cardinal
+	for cardinal in nearest_cardinals:
+		if !cardinal_claims[cardinal]:
+			cardinal_claims[cardinal] = true
+			return cardinal
+	return null
+
+func un_claim_unit(cardinal: Math.Cardinal):
+	cardinal_claims[cardinal] = false

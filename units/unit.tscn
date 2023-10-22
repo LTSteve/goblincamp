@@ -65,7 +65,6 @@ navigation_layers = 3
 avoidance_enabled = true
 height = 10.0
 radius = 5.0
-avoidance_layers = 3
 
 [node name="HealthComponent" type="Node" parent="."]
 script = ExtResource("8_vakd5")
@@ -101,6 +100,7 @@ flee_range = NodePath("../FleeRange")
 
 [node name="PathfinderComponent" type="Node3D" parent="."]
 script = ExtResource("16_xkxsm")
+at_location_distance = 0.5
 
 [node name="FleeRange" type="Area3D" parent="."]
 collision_layer = 0
@@ -120,6 +120,7 @@ attenuation_model = 3
 [connection signal="on_state_changed" from="." to="StatusComopnent" method="_on_state_changed"]
 [connection signal="died" from="HealthComponent" to="." method="_on_died"]
 [connection signal="died" from="HealthComponent" to="Model/BountyComponent" method="_on_health_component_died"]
+[connection signal="died" from="HealthComponent" to="BrainComponent" method="_on_die"]
 [connection signal="health_changed" from="HealthComponent" to="Model/HealthbarComponent" method="_on_health_component_health_changed"]
 [connection signal="on_lock_target" from="BrainComponent" to="RotationComponent" method="_on_lock_target"]
 

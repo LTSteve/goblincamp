@@ -5,8 +5,8 @@ class_name GoblinCardPanel
 @export var card_scene: PackedScene
 @export var card_container: Container
 
-@export var first_modifier_night: int = 1
-@export var modifier_interval: int = 5
+@export var first_modifier_night: int = 5
+@export var modifier_interval: int = 10
 
 var _card_resource: CardResource
 

@@ -161,6 +161,6 @@ func _on_stress_test_button_pressed():
 	
 	_spawned_building = false
 	_day += 1
-	on_night.emit()
+	on_night.emit(_day)
 	if navigation_region.bake_finished.is_connected(_start_next_day):
 		navigation_region.bake_finished.disconnect(_start_next_day)

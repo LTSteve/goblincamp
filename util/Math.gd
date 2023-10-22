@@ -2,6 +2,29 @@ class_name Math
 
 static var E: float = 0.57721566490153286060651209008240243
 static var almost_360_rad: float = deg_to_rad(359.99)
+static var rad_90: float = deg_to_rad(90)
+static var rad_45: float = deg_to_rad(45)
+
+enum Cardinal { RIGHT, UP_RIGHT, UP, UP_LEFT, LEFT, DOWN_LEFT, DOWN, DOWN_RIGHT }
+
+static var Cardinal_As_Direction = [Vector2.RIGHT, Vector2(0.5,-0.5), Vector2.UP, Vector2(-0.5, -0.5), Vector2.LEFT, Vector2(-0.5, 0.5), Vector2.DOWN, Vector2(0.5, 0.5)]
+
+#returns the cardinals in order of closeness
+static func nearest_cardinals(from:Vector2, to:Vector2):
+	var dir = from - to
+	var sorted_cardinals = []
+	for cardinal in Cardinal_As_Direction.size():
+		var card_dir = Cardinal_As_Direction[cardinal]
+		var card_dir_d2 = card_dir.distance_squared_to(dir)
+		var inserted = false
+		for sorted_cardinal_index in sorted_cardinals.size():
+			var sorted_card_dir = Cardinal_As_Direction[sorted_cardinals[sorted_cardinal_index]]
+			if sorted_card_dir.distance_squared_to(card_dir) > card_dir_d2:
+				sorted_cardinals.insert(sorted_cardinal_index, cardinal as Cardinal)
+				inserted = true
+		if !inserted:
+			sorted_cardinals.append(cardinal as Cardinal)
+	return sorted_cardinals
 
 static func unit_v2(vec:Vector2):
 	if(vec == Vector2.ZERO): return vec

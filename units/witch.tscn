@@ -7,8 +7,10 @@
 [ext_resource type="Resource" uid="uid://6a2euiflosoa" path="res://units/components/brain/wander_behaviour.tres" id="5_a72gt"]
 
 [node name="Witch" instance=ExtResource("1_g4nk8")]
+is_enemy = null
+kill_value = null
 
-[node name="RankComponent" parent="Model" index="2"]
+[node name="RankComponent" parent="Model" index="3"]
 transform = Transform3D(0.25, 1.09279e-08, 4.77672e-16, 0, -1.09278e-08, 0.25, 1.09279e-08, -0.25, -1.09278e-08, 4.29486e-08, 1.56324, -0.982548)
 
 [node name="rank_star" parent="Model/RankComponent" index="0"]
@@ -29,10 +31,10 @@ transform = Transform3D(0.656586, -0.754251, -3.29694e-08, 0.754251, 0.656586, -
 [node name="Cylinder" parent="Model/RankComponent/rank_star4" index="0"]
 transform = Transform3D(0.954667, 0, -0.297675, -8.9407e-08, 1, 0, 0.297675, -8.88178e-15, 0.954667, -2.12251, -0.974811, 1.65916)
 
-[node name="Staff" parent="Model/WeaponHolder" index="0" instance=ExtResource("3_sg8hd")]
-
 [node name="witch" parent="Model" index="4" instance=ExtResource("2_kevcb")]
 transform = Transform3D(1, 0, 3.55271e-15, 0, 1, 0, -3.55271e-15, 0, 1, 0, 0, 0)
+
+[node name="Staff" parent="Model/WeaponHolder" index="0" instance=ExtResource("3_sg8hd")]
 
 [node name="HealthComponent" parent="." index="3"]
 max_health = 60.0
@@ -44,7 +46,7 @@ acceleration = 0.7
 [node name="MaterialOverrideComponent" parent="." index="9" node_paths=PackedStringArray("mesh_instance")]
 mesh_instance = NodePath("../Model/witch/witch2")
 
-[node name="BrainComponent" parent="." index="11"]
+[node name="BrainComponent" parent="." index="10"]
 behaviours = Array[Resource("res://units/components/brain/Behaviour.gd")]([ExtResource("4_4f1ng"), ExtResource("5_a72gt")])
 
 [editable path="Model/RankComponent"]

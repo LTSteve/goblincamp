@@ -1,10 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://4si1lnnpt7a2"]
+[gd_scene load_steps=5 format=3 uid="uid://4si1lnnpt7a2"]
 
 [ext_resource type="PackedScene" uid="uid://brhc1aba5usew" path="res://units/unit.tscn" id="1_yqnhr"]
 [ext_resource type="PackedScene" uid="uid://bgfg403d28nmj" path="res://models/ogre/ogre.glb" id="2_q77xx"]
 [ext_resource type="PackedScene" uid="uid://5kxgrj763bh2" path="res://units/weapons/hammer.tscn" id="3_mcr6p"]
-[ext_resource type="Resource" uid="uid://cao1bytnssy28" path="res://units/components/brain/melee_behaviour.tres" id="4_0iw8r"]
-[ext_resource type="Resource" uid="uid://6a2euiflosoa" path="res://units/components/brain/wander_behaviour.tres" id="5_rgbwr"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_e0yvo"]
 radius = 1.6
@@ -45,9 +43,6 @@ armor = 2
 
 [node name="MaterialOverrideComponent" parent="." index="9" node_paths=PackedStringArray("mesh_instance")]
 mesh_instance = NodePath("../Model/ogre/ogre2")
-
-[node name="BrainComponent" parent="." index="10"]
-behaviours = Array[Resource("res://units/components/brain/Behaviour.gd")]([ExtResource("4_0iw8r"), ExtResource("5_rgbwr")])
 
 [editable path="Model/RankComponent"]
 [editable path="Model/RankComponent/rank_star"]

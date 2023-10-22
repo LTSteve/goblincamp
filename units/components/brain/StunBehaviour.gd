@@ -5,7 +5,7 @@ class_name StunBehaviour
 class StunData:
 	var has_reached_target:bool = false
 
-func initialize(brain:BrainComponent):
+func initialize(_brain:BrainComponent):
 	return StunData.new()
 
 func process(_delta, brain:BrainComponent, stun_data:StunData):

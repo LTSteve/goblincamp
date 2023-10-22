@@ -14,11 +14,11 @@ class BowAndDaggerBehaviourData:
 	var mode_switch_cooldown: float = 0
 	var melee: bool = false
 	var ranged_weapon: RangedWeapon
-	var melee_weapon: MeleeWeapon
+	var melee_weapon: MeleeBehaviour.MeleeBehaviourContext
 	
 	func _init(r,m):
 		ranged_weapon = r
-		melee_weapon = m
+		melee_weapon = MeleeBehaviour.MeleeBehaviourContext.new(m)
 
 func initialize(brain:BrainComponent):
 	var bow_and_dagger = brain.weapon_holder.find_child("BowAndDagger") as BowAndDagger

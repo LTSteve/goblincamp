@@ -48,5 +48,9 @@ func _process(delta):
 		behaviours[i].assign_target(delta, self, behaviour_datas[i])
 		if behaviours[i].process(delta, self, behaviour_datas[i]):
 			return
-	
 
+func _on_die():
+	for i in override_behaviours.size():
+		override_behaviours[i].clean_up(self, override_behaviour_datas[i])
+	for i in behaviours.size():
+		behaviours[i].clean_up(self, behaviour_datas[i])

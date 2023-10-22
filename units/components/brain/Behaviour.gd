@@ -11,6 +11,9 @@ func assign_target(_delta, _brain:BrainComponent, _behaviour_data):
 func process(_delta, _brain:BrainComponent, _behaviour_data):
 	pass
 
+func clean_up(_brain:BrainComponent, _behaviour_data):
+	pass
+
 func _bind_to_all_weapons(brain:BrainComponent) -> Array[Weapon]:
 	var all_weps = brain.weapon_holder.find_children("", "Weapon")
 	var weapons:Array[Weapon] = []
