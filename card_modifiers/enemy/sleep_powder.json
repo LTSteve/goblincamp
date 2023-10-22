@@ -1,0 +1,5 @@
+{
+	"sleep_rate_per_rank": 0.15,
+	"sleep_min": 5,
+	"sleep_max": 10
+}

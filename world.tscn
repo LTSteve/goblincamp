@@ -1,4 +1,4 @@
-[gd_scene load_steps=65 format=3 uid="uid://c4d1d2j1uy0kb"]
+[gd_scene load_steps=63 format=3 uid="uid://c4d1d2j1uy0kb"]
 
 [ext_resource type="PackedScene" uid="uid://b43v6jawtpn5j" path="res://ground.tscn" id="2_oaunj"]
 [ext_resource type="PackedScene" uid="uid://o2t0d4q03eun" path="res://buildings/campfire.tscn" id="3_8yp2w"]
@@ -27,11 +27,9 @@
 [ext_resource type="PackedScene" uid="uid://c2qe8ftqf2163" path="res://units/unit_cams/witch_cam.tscn" id="18_4ytrf"]
 [ext_resource type="Script" path="res://controls/BuyPanelToggle.gd" id="18_ekxat"]
 [ext_resource type="Resource" uid="uid://kcxtpg5flv87" path="res://card_modifiers/enemy_deck.tres" id="18_euj83"]
+[ext_resource type="Resource" uid="uid://cpqw23pl807kd" path="res://card_modifiers/enemy/sleep_powder.tres" id="19_aw5nv"]
 [ext_resource type="PackedScene" uid="uid://crl8047c1ire1" path="res://units/unit_cams/woodsman_cam.tscn" id="19_n5c1i"]
-[ext_resource type="Resource" uid="uid://ck8fu2mxpide7" path="res://card_modifiers/enemy/imps.tres" id="19_ymhdg"]
-[ext_resource type="Script" path="res://card_modifiers/enemy/ice_imps.gd" id="20_a57hj"]
 [ext_resource type="Environment" uid="uid://b8hhv81bda8f4" path="res://units/unit_cams/unit_cam_env.tres" id="20_g2brn"]
-[ext_resource type="Resource" uid="uid://2liwhcmdl57b" path="res://card_modifiers/enemy/ice_imps.tres" id="21_hf2ps"]
 [ext_resource type="PackedScene" uid="uid://cl56424ctmbxa" path="res://controls/card_display.tscn" id="22_g0iv7"]
 [ext_resource type="Texture2D" uid="uid://bowt7360oe3sr" path="res://models/buildings/blacksmith_pallete.png" id="22_jlfs3"]
 [ext_resource type="Script" path="res://controls/PickProjectModel.gd" id="22_vbsqd"]
@@ -322,12 +320,9 @@ blacksmith_deck = ExtResource("15_g501y")
 leatherworker_deck = ExtResource("16_jvfo2")
 enchanter_deck = ExtResource("17_asfou")
 enemy_deck = ExtResource("18_euj83")
-force_card_enemy = ExtResource("19_ymhdg")
+force_card_enemy = ExtResource("19_aw5nv")
 
 [node name="Node" type="Node" parent="CardModifiers"]
-script = ExtResource("20_a57hj")
-card_resource = ExtResource("21_hf2ps")
-current_rank = 3
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 

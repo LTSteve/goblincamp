@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="CardResource" load_steps=5 format=3 uid="uid://cpqw23pl807kd"]
+
+[ext_resource type="Script" path="res://card_modifiers/CardResource.gd" id="1_0m3vl"]
+[ext_resource type="Script" path="res://card_modifiers/enemy/sleep_powder.gd" id="1_rvwrg"]
+[ext_resource type="JSON" path="res://card_modifiers/enemy/sleep_powder.json" id="2_fpcdp"]
+[ext_resource type="Texture2D" uid="uid://cbeftrrhy4urt" path="res://card_modifiers/icons/night-sleep.png" id="3_4e875"]
+
+[resource]
+script = ExtResource("1_0m3vl")
+test_card = false
+title = "Sleep Powser"
+descriptions = Array[String](["{[current_rank]*[.sleep_rate_per_rank]*100}% of your units start the night asleep"])
+rarity = 2
+max_rank = 3
+card_script = ExtResource("1_rvwrg")
+card_script_params = ExtResource("2_fpcdp")
+apply_to = Array[String]([])
+group_filters = Array[String]([])
+include_enemies = false
+include_players = false
+icon_texture = ExtResource("3_4e875")

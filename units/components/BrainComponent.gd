@@ -14,6 +14,10 @@ var fleeing:Array[Unit] = []
 
 var behaviour_datas = []
 
+var override_behaviours: Array[Behaviour] = []
+
+var override_behaviour_datas = []
+
 signal request_attack(target:Unit,me:Unit)
 signal enter_combat()
 signal exit_combat()
@@ -24,10 +28,25 @@ func _ready():
 	for behaviour in behaviours:
 		behaviour_datas.append(behaviour.initialize(self))
 
+func add_override_behaviour(override:Behaviour):
+	override_behaviours.push_front(override)
+	override_behaviour_datas.push_front(override.initialize(self))
+
+func remove_override_behaviour(override:Behaviour):
+	var index = override_behaviours.find(override)
+	if index != -1:
+		override_behaviours.remove_at(index)
+		override_behaviour_datas.remove_at(index)
+
 func _process(delta):
+	#process override behaviours first if any
+	for i in override_behaviours.size():
+		override_behaviours[i].assign_target(delta, self, override_behaviour_datas[i])
+		if override_behaviours[i].process(delta, self, override_behaviour_datas[i]):
+			return
 	for i in behaviours.size():
 		behaviours[i].assign_target(delta, self, behaviour_datas[i])
 		if behaviours[i].process(delta, self, behaviour_datas[i]):
-			break
+			return
 	
 
