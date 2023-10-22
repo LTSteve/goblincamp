@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="SettingResource" load_steps=4 format=3 uid="uid://bk7k4xsv6ss7o"]
+
+[ext_resource type="Texture2D" uid="uid://dgtw47rne81qs" path="res://icons/speaker-off.png" id="1_qwow1"]
+[ext_resource type="Script" path="res://controls/settings/SettingResource.gd" id="1_ynkjm"]
+[ext_resource type="Texture2D" uid="uid://gcj4ngse3o47" path="res://icons/speaker.png" id="2_4utae"]
+
+[resource]
+script = ExtResource("1_ynkjm")
+name = "AUDIO"
+icon_off = ExtResource("1_qwow1")
+icon_on = ExtResource("2_4utae")
+setting_type = 0
+default_setting_value_toggle = false
+default_setting_value_slide = 1.0

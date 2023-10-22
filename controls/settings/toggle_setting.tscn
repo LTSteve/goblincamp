@@ -1,0 +1,45 @@
+[gd_scene load_steps=3 format=3 uid="uid://dd4rt3hfrabme"]
+
+[ext_resource type="Script" path="res://controls/settings/ToggleSetting.gd" id="1_cjenc"]
+[ext_resource type="Texture2D" uid="uid://d2c4j1117hrf7" path="res://icons/sound-on.png" id="2_y44kx"]
+
+[node name="CoolnessToggle" type="VBoxContainer" node_paths=PackedStringArray("label")]
+size_flags_vertical = 8
+script = ExtResource("1_cjenc")
+label = NodePath("MarginContainer/VBoxContainer/MarginContainer/Label")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_left = 30
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 30
+theme_override_constants/margin_bottom = 20
+
+[node name="VBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_right = 20
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/MarginContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 25
+text = "COOLNESS"
+horizontal_alignment = 2
+vertical_alignment = 2
+
+[node name="MarginContainer2" type="MarginContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Button" type="Button" parent="MarginContainer/VBoxContainer/MarginContainer2"]
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+toggle_mode = true
+icon = ExtResource("2_y44kx")
+flat = true
+expand_icon = true
+
+[connection signal="toggled" from="MarginContainer/VBoxContainer/MarginContainer2/Button" to="." method="_on_button_toggled"]
