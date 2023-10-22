@@ -1,0 +1,6 @@
+{
+	"bleed_damage": 10,
+	"stack_limit_per_rank": 4,
+	"duration": 10,
+	"tick_time": 1.5
+}

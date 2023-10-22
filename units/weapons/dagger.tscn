@@ -471,7 +471,7 @@ hit_spot = NodePath("woodsman_weapon_melee/HitSpot")
 animation_tree = NodePath("AnimationTree")
 weapon_range = 2.5
 damage = 7.0
-pushback = 1.0
+pushback = 0.8
 hit_stun = 0.2
 
 [node name="woodsman_weapon_melee" parent="." groups=["Dagger_Model"] instance=ExtResource("2_3n6r0")]
@@ -493,7 +493,9 @@ parameters/conditions/in_combat = false
 parameters/conditions/not_in_combat = false
 parameters/Attack/conditions/use_attack_2 = false
 parameters/Attack/attack/TimeScale/scale = 1.0
+"parameters/Attack/attack/TimeScale 2/scale" = 1.0
 parameters/Attack/attack_2/TimeScale/scale = 1.0
+"parameters/Attack/attack_2/TimeScale 2/scale" = 1.0
 parameters/Draw/TimeScale/scale = 1.0
 parameters/Stow/TimeScale/scale = 1.0
 script = ExtResource("4_rsiru")

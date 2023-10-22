@@ -458,7 +458,7 @@ projectile_spawn_point = NodePath("projectile_spawn")
 animation_tree = NodePath("AnimationTree")
 weapon_range = 30.0
 damage = 18.0
-pushback = 2.5
+pushback = 2.0
 damage_type = 2
 
 [node name="witch_weapon" parent="." instance=ExtResource("3_52u0o")]
@@ -472,7 +472,9 @@ parameters/conditions/in_combat = false
 parameters/conditions/not_in_combat = false
 parameters/Attack/conditions/use_attack_2 = false
 parameters/Attack/attack/TimeScale/scale = 1.0
+"parameters/Attack/attack/TimeScale 2/scale" = 1.0
 parameters/Attack/attack_2/TimeScale/scale = 1.0
+"parameters/Attack/attack_2/TimeScale 2/scale" = 1.0
 parameters/Draw/TimeScale/scale = 1.0
 parameters/Stow/TimeScale/scale = 1.0
 script = ExtResource("5_thgkt")

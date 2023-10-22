@@ -35,6 +35,8 @@ enum BuildingType {Blacksmith=0, Leatherworker, Enchanter}
 @export var min_building_radius: float = 10
 @export var max_building_radius: float = 50
 
+var double_imps: bool = false
+
 static var I: UnitSpawner
 
 func _ready():
@@ -48,6 +50,8 @@ func spawn_hostile(unit_type: UnitType, point: Vector2 = Vector2.ZERO):
 	if point == Vector2.ZERO:
 		point = Math.rand_v2_range(enemy_spawn_min_radius, enemy_spawn_max_radius)
 	_spawn(unit_type, enemy_spawn_center + Math.v2_to_v3(point))
+	if double_imps && unit_type == UnitType.Imp:
+		_spawn(unit_type, enemy_spawn_center + Math.v2_to_v3(point+Vector2.RIGHT))
 
 func spawn_enemy_group(enemy_spawn: EnemySpawnResource):
 	var r_v2 = Math.rand_v2_range(enemy_spawn_min_radius, enemy_spawn_max_radius)

@@ -683,7 +683,7 @@ multi_target = true
 animation_tree = NodePath("AnimationTree")
 weapon_range = 4.0
 damage = 8.0
-pushback = 4.0
+pushback = 1.9
 
 [node name="knight_weapon" parent="." groups=["Sword_Model"] instance=ExtResource("1_yltu8")]
 transform = Transform3D(0.250027, 0.258381, 0.933119, -0.96592, -3.49663e-06, 0.258817, 0.066877, -0.966039, 0.249575, -0.394594, 2.23556, 1.47275)

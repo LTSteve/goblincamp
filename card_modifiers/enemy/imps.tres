@@ -8,9 +8,9 @@
 script = ExtResource("1_xlros")
 test_card = false
 title = "Imps!"
-descriptions = Array[String](["Imps start spawning alongside other enemies"])
+descriptions = Array[String](["Imps start spawning alongside other enemies", "Twice as many imps spawn"])
 rarity = 0
-max_rank = 1
+max_rank = 2
 card_script = ExtResource("1_ack74")
 apply_to = Array[String]([])
 group_filters = Array[String]([])

@@ -30,9 +30,10 @@ class Hit:
 	
 	var post_crit_damage: float:
 		get:
+			var armor = flat_armor if damage_type == Damage.Type.Basic else 0
 			var dmg = (damage * crit_damage_multiplier) if is_crit else damage
 			if dmg > 1:
-				dmg = clampi(dmg - flat_armor, 1, dmg)
+				dmg = clampi(dmg - armor, 1, dmg)
 			return dmg
 	
 	func duplicate():
