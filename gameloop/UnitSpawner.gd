@@ -56,7 +56,7 @@ func spawn_hostile(unit_type: UnitType, point: Vector2 = Vector2.ZERO):
 func spawn_enemy_group(enemy_spawn: EnemySpawnResource):
 	var r_v2 = Math.rand_v2_range(enemy_spawn_min_radius, enemy_spawn_max_radius)
 	for enemy in enemy_spawn.enemies:
-		spawn_hostile(enemy, r_v2 + Math.rand_v2_range(0.1, 2))
+		spawn_hostile(enemy, r_v2 + Math.rand_v2_range(0.1, 5))
 
 func spawn_building(building_type: BuildingType, value: int, resource: CardResource):
 	

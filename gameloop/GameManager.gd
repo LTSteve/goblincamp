@@ -10,9 +10,7 @@ class_name GameManager
 
 @export var navigation_region: NavigationRegion3D
 
-@export var ogre_cost: float = 15
-@export var imp_cost: float = 3
-@export var goblin_cost: float = 2
+@export var flat_enemy_power_increase: int = 0
 
 @export_dir var enemy_spawn_folder: String = "res://enemy_spawns"
 var enemy_spawns: Array[EnemySpawnResource] = []
@@ -112,7 +110,7 @@ func _spawn_wave(day: int):
 	var random_component = randi_range(0,1)
 	var linear_component = floor(day * 0.5)
 	
-	var spawn_power = clampi(random_component+linear_component+cycle, 1, 30)
+	var spawn_power = clampi(random_component+linear_component+cycle, 1, 30) + flat_enemy_power_increase
 	
 	var available_enemy_spawns = enemy_spawns.filter(
 	func(es): 
