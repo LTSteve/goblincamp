@@ -1,0 +1,7 @@
+{
+	"slow_per_rank": 0.03,
+	"stacks": 10,
+	"radius": 5,
+	"duration": 4,
+	"check_time": 1
+}

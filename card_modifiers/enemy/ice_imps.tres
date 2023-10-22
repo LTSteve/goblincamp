@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="CardResource" load_steps=5 format=3 uid="uid://2liwhcmdl57b"]
+
+[ext_resource type="Script" path="res://card_modifiers/CardResource.gd" id="1_fylrd"]
+[ext_resource type="Script" path="res://card_modifiers/enemy/ice_imps.gd" id="1_s0fx1"]
+[ext_resource type="JSON" path="res://card_modifiers/enemy/ice_imps.json" id="2_ctywt"]
+[ext_resource type="Texture2D" uid="uid://dx8vx4yj04txh" path="res://card_modifiers/icons/ice-golem.png" id="3_l3ekh"]
+
+[resource]
+script = ExtResource("1_fylrd")
+test_card = false
+title = "Ice Imps"
+descriptions = Array[String](["Imps slow surrounding units, up to {[current_rank]*[.slow_per_rank]*[.stacks]*100}%"])
+rarity = 2
+max_rank = 3
+card_script = ExtResource("1_s0fx1")
+card_script_params = ExtResource("2_ctywt")
+apply_to = Array[String](["MeleeWeapon"])
+group_filters = Array[String](["ImpClaw"])
+include_enemies = true
+include_players = false
+icon_texture = ExtResource("3_l3ekh")
