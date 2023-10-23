@@ -31,9 +31,10 @@ transform = Transform3D(-8.74228e-08, 1.27759e-07, -2, 0, 2, 1.27759e-07, 2, 5.5
 [node name="RankComponent" parent="Model" index="3"]
 visible = false
 
-[node name="ogre" parent="Model" index="4" instance=ExtResource("2_q77xx")]
-
 [node name="Hammer" parent="Model/WeaponHolder" index="0" instance=ExtResource("3_mcr6p")]
+
+[node name="ogre" parent="Model/ModelHolder" index="0" instance=ExtResource("2_q77xx")]
+transform = Transform3D(1, 0, -7.10543e-15, 0, 1, 0, 7.10543e-15, 0, 1, 0, 0, 0)
 
 [node name="HealthComponent" parent="." index="3"]
 max_health = 150.0
@@ -42,11 +43,11 @@ max_health = 150.0
 armor = 2
 
 [node name="MaterialOverrideComponent" parent="." index="9" node_paths=PackedStringArray("mesh_instance")]
-mesh_instance = NodePath("../Model/ogre/ogre2")
+mesh_instance = NodePath("../Model/ModelHolder/ogre/ogre2")
 
 [editable path="Model/RankComponent"]
 [editable path="Model/RankComponent/rank_star"]
 [editable path="Model/RankComponent/rank_star2"]
 [editable path="Model/RankComponent/rank_star3"]
 [editable path="Model/RankComponent/rank_star4"]
-[editable path="Model/ogre"]
+[editable path="Model/ModelHolder/ogre"]

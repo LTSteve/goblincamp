@@ -4,15 +4,32 @@ class_name VelocityComponent
 
 @export var max_speed:float = 100
 @export var acceleration:float = 10
+@export var stopping_cuttoff: float = 0.2
+
+signal is_running()
+signal is_walking()
+signal is_stopping()
 
 var get_max_speed:CallableStack
 var get_acceleration:CallableStack
 
-var speed_scale:float = 1.0
+var speed_scale:float:
+	get:
+		return speed_scale
+	set(value):
+		if speed_scale == value: return
+		if value < 1.0:
+			print("is_walking")
+			is_walking.emit()
+		else:
+			print("is_running")
+			is_running.emit()
+		speed_scale = value
 
 var _velocity: Vector2 = Vector2.ZERO
 
 func _ready():
+	speed_scale = 1
 	get_max_speed = CallableStack.new(func(): 
 		return max_speed
 		, true)
@@ -36,6 +53,8 @@ func set_direction(direction:Vector2):
 
 func decelerate(delta: float):
 	accelerate_to_velocity(Vector2.ZERO, delta)
+	if _velocity.length_squared() < stopping_cuttoff:
+		is_stopping.emit()
 
 func move(character_body:CharacterBody3D):
 	var dist2 = _velocity.length_squared()

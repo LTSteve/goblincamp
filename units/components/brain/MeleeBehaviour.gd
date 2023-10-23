@@ -6,12 +6,14 @@ class_name MeleeBehaviour
 @export var nearby_unit_consideration: int = 10
 @export var nearby_units_dist2_range:float = 30.0
 @export var just_a_few_units: int = 3
+@export var targeting_cooldown: float = 0.2
 
 class MeleeBehaviourContext:
 	var weapon:Weapon
 	var claim_cardinal
 	var lefty:bool
 	var thinking: float = 0
+	var targeting_cd: float = 0
 	func _init(w):
 		weapon = w
 		lefty = randf() > 0.5
@@ -22,6 +24,8 @@ func initialize(brain:BrainComponent):
 
 func assign_target(delta, brain:BrainComponent, ctx):
 	if ! ctx.weapon: return
+	ctx.targeting_cd -= delta
+	if ctx.targeting_cd > 0: return
 	ctx.thinking -= delta
 	if ctx.thinking > 0: return
 	
@@ -49,6 +53,7 @@ func assign_target(delta, brain:BrainComponent, ctx):
 			old_target.un_claim_unit(ctx.claim_cardinal)
 		if brain.target:
 			ctx.claim_cardinal = brain.target.claim_unit(brain.unit.global_position)
+			ctx.targeting_cd = targeting_cooldown
 	
 	if !is_instance_valid(brain.target):
 		brain.exit_combat.emit()
@@ -62,7 +67,7 @@ func assign_target(delta, brain:BrainComponent, ctx):
 func process(_delta, brain:BrainComponent, ctx):
 	if ctx.thinking > 0: return true
 	
-	if brain.target && ctx.weapon:
+	if is_instance_valid(brain.target) && ctx.weapon:
 		if brain.unit.global_position.distance_to(brain.target.global_position) > ctx.weapon.weapon_range * comfortable_range_modifier:
 			if ctx.claim_cardinal == null:
 				#todo: head afeild

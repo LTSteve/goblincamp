@@ -11,7 +11,7 @@ static func load_main_scene(tree:SceneTree):
 		_remove_root(tree)
 		_finish_add_scene(tree, main_scene)
 	)
-	loading.set_load(_begin_add_scene(tree, main_scene))
+	loading.set_load(_begin_add_scene(main_scene))
 
 static func load_main_menu(tree:SceneTree):
 	_remove_root(tree)
@@ -34,7 +34,7 @@ static func _add_scene(tree:SceneTree, scene_name: String) -> Node:
 	tree.paused = false
 	return next_level
 
-static func _begin_add_scene(tree:SceneTree, scene_name: String):
+static func _begin_add_scene(scene_name: String):
 	ResourceLoader.load_threaded_request(scene_name)
 	return scene_name
 

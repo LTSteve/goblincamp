@@ -16,12 +16,13 @@ is_ally = false
 enabled = true
 worth_base = 60
 
-[node name="goblin" parent="Model" index="3" instance=ExtResource("2_k8e14")]
-
-[node name="RankComponent" parent="Model" index="4"]
+[node name="RankComponent" parent="Model" index="3"]
 visible = false
 
 [node name="Claw" parent="Model/WeaponHolder" index="0" instance=ExtResource("3_10fnw")]
+
+[node name="goblin" parent="Model/ModelHolder" index="0" instance=ExtResource("2_k8e14")]
+transform = Transform3D(1, 0, -7.10543e-15, 0, 1, 0, 7.10543e-15, 0, 1, 0, 0, 0)
 
 [node name="HealthComponent" parent="." index="3"]
 max_health = 45.0
@@ -30,14 +31,14 @@ max_health = 45.0
 max_speed = 4.5
 
 [node name="MaterialOverrideComponent" parent="." index="9" node_paths=PackedStringArray("mesh_instance")]
-mesh_instance = NodePath("../Model/goblin/goblin2")
+mesh_instance = NodePath("../Model/ModelHolder/goblin/goblin2")
 
 [node name="BrainComponent" parent="." index="10"]
 behaviours = Array[Resource("res://units/components/brain/Behaviour.gd")]([ExtResource("4_uet6l")])
 
-[editable path="Model/goblin"]
 [editable path="Model/RankComponent"]
 [editable path="Model/RankComponent/rank_star"]
 [editable path="Model/RankComponent/rank_star2"]
 [editable path="Model/RankComponent/rank_star3"]
 [editable path="Model/RankComponent/rank_star4"]
+[editable path="Model/ModelHolder/goblin"]
