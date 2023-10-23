@@ -14,19 +14,21 @@ func _on_recieved_hit(weapon_hit:Weapon.Hit):
 	_jiggle_direction = model_holder.to_local(Math.v2_to_v3(weapon_hit.direction) + model_holder.global_position)
 
 func _vibration_function(x:float):
-	var x_100 = x * 20
+	var x_20 = x * 20
 	#saw from 0 to 10
-	var sawtooth_component = x_100 - ((x_100 as int) / 10) * 10
+	var sawtooth_component = x_20 - ((x_20 as int) / 10) * 10
 	#tri from 0 to 5
 	var triangle_component = sawtooth_component if sawtooth_component < 5 else (10.0 - sawtooth_component)
 	
 	return triangle_component / 5.0
 
 func _process(delta):
+	if _jiggle_direction == Vector3.ZERO: return
+	
 	_jiggle += delta / jiggle_time
-	if _jiggle_direction != Vector3.ZERO:
-		if _jiggle > 1.0:
-			model_holder.position = Vector3.ZERO
-			_jiggle_direction = Vector3.ZERO
-		else:
-			model_holder.position = _jiggle_direction * jiggle_intensity * _vibration_function(_jiggle*_jiggle) * (1.0 - _jiggle)
+	
+	if _jiggle > 1.0:
+		model_holder.position = Vector3.ZERO
+		_jiggle_direction = Vector3.ZERO
+	else:
+		model_holder.position = _jiggle_direction * jiggle_intensity * _vibration_function(_jiggle*_jiggle) * (1.0 - _jiggle)
