@@ -11,9 +11,11 @@ func _ready():
 	icon_off_texture.texture = setting.icon_off
 	icon_full_texture.texture = setting.icon_on
 	
-	slider.set_value_no_signal(setting.default_setting_value_slide)
+	slider.set_value_no_signal(setting.value)
 
 
 func _on_h_slider_drag_ended(value_changed):
 	if ! value_changed: return
-	#do something with slider.value
+	
+	setting.value = slider.value
+	Settings.save_setting(setting)

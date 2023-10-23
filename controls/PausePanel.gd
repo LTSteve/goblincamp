@@ -1,6 +1,6 @@
 extends Panel
 
-@onready var settings_menu = $SettingsMenu
+@onready var settings_menu: SettingsMenu = $SettingsMenu
 
 func toggle():
 	if visible:
@@ -13,16 +13,9 @@ func open():
 	visible = true
 
 func close():
+	settings_menu.close()
 	get_tree().paused = false
 	visible = false
-	close_settings()
-
-func open_settings():
-	settings_menu.visible = true
-
-func close_settings():
-	#todo: save settings
-	settings_menu.visible = false
 
 # for click-outs
 func _on_gui_input(event):
