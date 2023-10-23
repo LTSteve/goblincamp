@@ -30,6 +30,8 @@ func assign_target(delta, brain:BrainComponent, ctx):
 	if ctx.thinking > 0: return
 	
 	var had_no_target = !is_instance_valid(brain.target)
+	if had_no_target:
+		brain.target = null
 	var old_target = brain.target if !had_no_target else null
 	
 	var all_targets = Global.players if brain.unit.is_enemy else Global.enemies
@@ -45,7 +47,7 @@ func assign_target(delta, brain:BrainComponent, ctx):
 		else:
 			brain.target = Global.nearest_unit(all_targets, brain.unit.global_position)
 	else:
-		var lowest_claimed_targets = Global.lowest_claims(available_targets)
+		var lowest_claimed_targets = Global.lowest_claims(available_targets, brain.target)
 		brain.target = Global.nearest_unit(lowest_claimed_targets, brain.unit.global_position)
 	
 	if brain.target != old_target:

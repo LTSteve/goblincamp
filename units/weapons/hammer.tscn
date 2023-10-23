@@ -1,6 +1,7 @@
-[gd_scene load_steps=14 format=3 uid="uid://5kxgrj763bh2"]
+[gd_scene load_steps=15 format=3 uid="uid://5kxgrj763bh2"]
 
 [ext_resource type="Script" path="res://units/components/weapon/MeleeWeapon.gd" id="1_3b5up"]
+[ext_resource type="AudioStream" uid="uid://qrr4ypym75ld" path="res://sfx/explosion.wav" id="2_33wva"]
 [ext_resource type="PackedScene" uid="uid://di48j8kwxi5nu" path="res://models/ogre/ogre_weapon.glb" id="2_m1iyf"]
 [ext_resource type="AnimationNodeStateMachine" uid="uid://dawvd5u6rapgb" path="res://units/weapons/weapon_animation_state_machine.tres" id="3_s244m"]
 [ext_resource type="Script" path="res://util/AnimationTreeExpressionExtension.gd" id="4_2is1a"]
@@ -516,6 +517,7 @@ transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 1, 
 script = ExtResource("1_3b5up")
 collision_areas = [NodePath("Hitboxes/Area3D"), NodePath("Hitboxes/Area3D2"), NodePath("Hitboxes/Area3D3")]
 hit_spot = NodePath("ogre_weapon/HitSpot")
+hit_sfx = Array[AudioStream]([ExtResource("2_33wva")])
 multi_target = true
 animation_tree = NodePath("AnimationTree")
 weapon_range = 6.0

@@ -1,9 +1,12 @@
-[gd_scene load_steps=12 format=3 uid="uid://ds6p75nuj8ef8"]
+[gd_scene load_steps=15 format=3 uid="uid://ds6p75nuj8ef8"]
 
 [ext_resource type="Script" path="res://units/weapons/projectiles/Projectile.gd" id="1_yidec"]
 [ext_resource type="PackedScene" uid="uid://cdqrlwohxtwd3" path="res://models/witch/witch_projectile.glb" id="2_kouxg"]
+[ext_resource type="PackedScene" uid="uid://dk3xglpa1ipe8" path="res://sfx/leave_behind_sfx.tscn" id="2_p0hja"]
 [ext_resource type="Script" path="res://units/components/HeightComponent.gd" id="3_na574"]
+[ext_resource type="AudioStream" uid="uid://criihgvs5tnds" path="res://sfx/small_explosion.wav" id="3_wi4em"]
 [ext_resource type="Script" path="res://units/components/InverseHeightComponent.gd" id="4_utgwq"]
+[ext_resource type="AudioStream" uid="uid://ieong68l022b" path="res://sfx/small_explosion2.wav" id="4_xs2wk"]
 [ext_resource type="Script" path="res://units/components/VelocityComponent.gd" id="5_vfmu3"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_nqljr"]
@@ -55,6 +58,8 @@ collision_areas = [NodePath("witch_projectile/Hitboxes/Area3D")]
 hit_spot = NodePath("witch_projectile/HitSpot")
 lifespan = 4.0
 free_on_hit = false
+leave_behind_sfx_scene = ExtResource("2_p0hja")
+sfx = Array[AudioStream]([ExtResource("3_wi4em"), ExtResource("4_xs2wk")])
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(-2.30258e-08, 0, 0.526768, 0, 0.526768, 0, -0.526768, 0, -2.30258e-08, 0, 0, 0)

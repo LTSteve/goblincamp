@@ -9,6 +9,10 @@ class_name Projectile
 @export var free_on_hit: bool = true
 @export var keep_final_destination: bool = false
 
+@export var leave_behind_sfx_scene: PackedScene
+@export var sfx: Array[AudioStream]
+@export var sfx_volume_db: float = -3.0
+
 @onready var velocity_component: VelocityComponent = $"VelocityComponent"
 
 signal destination_reached()
@@ -56,3 +60,8 @@ func _try_look_in_direction(dir:Vector2):
 func _on_area_3d_body_entered(_body):
 	if(free_on_hit):
 		self.queue_free()
+	if leave_behind_sfx_scene:
+		var leave_behind = leave_behind_sfx_scene.instantiate() as LeaveBehindSFX
+		leave_behind.stream = sfx.pick_random()
+		leave_behind.volume_db = sfx_volume_db
+		get_tree().root.add_child.call_deferred(leave_behind)

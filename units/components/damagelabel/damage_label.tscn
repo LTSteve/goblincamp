@@ -21,5 +21,4 @@ text = "50"
 font = ExtResource("1_rc6br")
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
-volume_db = -2.0
-unit_size = 25.0
+volume_db = -14.0

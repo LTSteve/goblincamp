@@ -16,6 +16,7 @@ func _on_recieved_hit(weapon_hit:Weapon.Hit):
 func _vibration_function(x:float):
 	var x_20 = x * 20
 	#saw from 0 to 10
+	@warning_ignore("integer_division")
 	var sawtooth_component = x_20 - ((x_20 as int) / 10) * 10
 	#tri from 0 to 5
 	var triangle_component = sawtooth_component if sawtooth_component < 5 else (10.0 - sawtooth_component)

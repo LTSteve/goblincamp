@@ -1,10 +1,11 @@
-[gd_scene load_steps=13 format=3 uid="uid://yqmlu4dtpagw"]
+[gd_scene load_steps=14 format=3 uid="uid://yqmlu4dtpagw"]
 
 [ext_resource type="Script" path="res://units/components/weapon/RangedWeapon.gd" id="1_c3soh"]
 [ext_resource type="PackedScene" uid="uid://fphb7wictjtw" path="res://units/weapons/projectiles/fireball.tscn" id="2_brohl"]
 [ext_resource type="PackedScene" uid="uid://dr03pl5h8j0jd" path="res://models/witch/witch_weapon.glb" id="3_52u0o"]
 [ext_resource type="AnimationNodeStateMachine" uid="uid://dawvd5u6rapgb" path="res://units/weapons/weapon_animation_state_machine.tres" id="4_tr10y"]
 [ext_resource type="Script" path="res://util/AnimationTreeExpressionExtension.gd" id="5_thgkt"]
+[ext_resource type="AudioStream" uid="uid://c0jk4quyv01je" path="res://sfx/Fireball.wav" id="6_l2hep"]
 
 [sub_resource type="Animation" id="Animation_i777o"]
 length = 0.001
@@ -156,6 +157,20 @@ tracks/6/keys = {
 "values": [{
 "args": [],
 "method": &"_on_spawn_projectile"
+}]
+}
+tracks/7/type = "method"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("AudioStreamPlayer3D")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(1.9),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [0.0],
+"method": &"play"
 }]
 }
 
@@ -486,3 +501,8 @@ libraries = {
 
 [node name="projectile_spawn" type="Node3D" parent="."]
 transform = Transform3D(0.999999, 0, 7.10543e-15, 0, 0.999999, 0, -7.10543e-15, 0, 0.999999, 2.56513, 1.36873, 1.12126e-07)
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("6_l2hep")
+volume_db = -13.0
+bus = &"InWorld"

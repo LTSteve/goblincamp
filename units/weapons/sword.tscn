@@ -1,9 +1,12 @@
-[gd_scene load_steps=15 format=3 uid="uid://p0owu7fjhs2u"]
+[gd_scene load_steps=18 format=3 uid="uid://p0owu7fjhs2u"]
 
 [ext_resource type="Script" path="res://units/components/weapon/MeleeWeapon.gd" id="1_nnyuv"]
 [ext_resource type="PackedScene" uid="uid://ccbj6hhusyqky" path="res://models/knight/knight_weapon.glb" id="1_yltu8"]
 [ext_resource type="AnimationNodeStateMachine" uid="uid://dawvd5u6rapgb" path="res://units/weapons/weapon_animation_state_machine.tres" id="2_cs7hr"]
+[ext_resource type="AudioStream" uid="uid://b6lk6tkrmw184" path="res://sfx/zapsplat_foley_umbrella_collapsed_swipe_hit_person_003_82657.mp3" id="2_r22we"]
+[ext_resource type="AudioStream" uid="uid://c3n36epcuoata" path="res://sfx/zapsplat_foley_umbrella_collapsed_swipe_hit_person_004_82658.mp3" id="3_454gt"]
 [ext_resource type="Script" path="res://util/AnimationTreeExpressionExtension.gd" id="4_7404g"]
+[ext_resource type="AudioStream" uid="uid://0n2ugmf2tp22" path="res://sfx/zapsplat_foley_umbrella_collapsed_swipe_hit_person_005_82659.mp3" id="4_vq6kt"]
 [ext_resource type="Script" path="res://units/components/InverseHeightComponent.gd" id="5_16kli"]
 
 [sub_resource type="Animation" id="Animation_u37c2"]
@@ -679,6 +682,7 @@ transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 1, 
 script = ExtResource("1_nnyuv")
 collision_areas = [NodePath("Hitboxes/Area3D"), NodePath("Hitboxes/Area3D2"), NodePath("Hitboxes/Area3D3"), NodePath("Hitboxes/Area3D4")]
 hit_spot = NodePath("knight_weapon/HitSpot")
+hit_sfx = Array[AudioStream]([ExtResource("2_r22we"), ExtResource("3_454gt"), ExtResource("4_vq6kt")])
 multi_target = true
 animation_tree = NodePath("AnimationTree")
 weapon_range = 3.8

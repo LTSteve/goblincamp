@@ -1,7 +1,8 @@
-[gd_scene load_steps=14 format=3 uid="uid://dp4vd8emk3wx7"]
+[gd_scene load_steps=15 format=3 uid="uid://dp4vd8emk3wx7"]
 
 [ext_resource type="Script" path="res://units/components/weapon/MeleeWeapon.gd" id="1_o46du"]
 [ext_resource type="PackedScene" uid="uid://cu6t1we7lck7e" path="res://models/woodsman/woodsman_weapon_melee.glb" id="2_3n6r0"]
+[ext_resource type="AudioStream" uid="uid://b6lk6tkrmw184" path="res://sfx/zapsplat_foley_umbrella_collapsed_swipe_hit_person_003_82657.mp3" id="2_q3lig"]
 [ext_resource type="AnimationNodeStateMachine" uid="uid://dawvd5u6rapgb" path="res://units/weapons/weapon_animation_state_machine.tres" id="3_t0118"]
 [ext_resource type="Script" path="res://util/AnimationTreeExpressionExtension.gd" id="4_rsiru"]
 [ext_resource type="Script" path="res://units/components/InverseHeightComponent.gd" id="5_d77kg"]
@@ -468,6 +469,7 @@ radius = 2.0
 script = ExtResource("1_o46du")
 collision_areas = [NodePath("Hitboxes/Area3D")]
 hit_spot = NodePath("woodsman_weapon_melee/HitSpot")
+hit_sfx = Array[AudioStream]([ExtResource("2_q3lig")])
 animation_tree = NodePath("AnimationTree")
 weapon_range = 2.5
 damage = 7.0

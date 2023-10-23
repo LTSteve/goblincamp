@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://dk3xglpa1ipe8"]
+
+[ext_resource type="Script" path="res://sfx/LeaveBehindSFX.gd" id="1_awbad"]
+
+[node name="LeaveBehindSFX" type="AudioStreamPlayer3D"]
+volume_db = -2.0
+max_db = 1.0
+bus = &"InWorld"
+script = ExtResource("1_awbad")

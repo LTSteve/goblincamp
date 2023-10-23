@@ -1614,3 +1614,5 @@ script = ExtResource("6_qfloj")
 
 [node name="projectile_spawn" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 2.13163e-14, 0, 1, 0, -2.13163e-14, 0, 1, 2.34634, 0.961911, -0.0477873)
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]

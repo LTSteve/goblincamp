@@ -60,15 +60,20 @@ static func nearest_units(units:Array[Unit], position, max_count, max_dist2) -> 
 	
 	return nearest_us
 
-static func lowest_claims(units:Array[Unit]) -> Array[Unit]:
+static func lowest_claims(units:Array[Unit], already_claimed: Unit = null) -> Array[Unit]:
 	if(!units || units.size() == 0):
 		return []
+	
+	if ! is_instance_valid(already_claimed):
+		already_claimed = null
 	
 	var lowest = 10000
 	var lowest_units: Array[Unit] = []
 	
 	for unit in units:
 		var claims = get_claims_on_unit(unit)
+		if unit == already_claimed:
+			claims -= 1
 		if claims == lowest:
 			lowest_units.append(unit)
 		elif claims < lowest:
