@@ -1,0 +1,59 @@
+[gd_scene load_steps=6 format=3 uid="uid://dqgio442qcxev"]
+
+[ext_resource type="Theme" uid="uid://cel1y6hrc8slp" path="res://theme/main_theme.tres" id="2_id60i"]
+[ext_resource type="FontFile" uid="uid://d1jvqnhuvekma" path="res://theme/YoungSerif-Regular.ttf" id="3_3l2g2"]
+[ext_resource type="Script" path="res://controls/LoadingBar.gd" id="4_04ouy"]
+
+[sub_resource type="Environment" id="Environment_klts1"]
+background_mode = 1
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rbb8r"]
+bg_color = Color(0.894118, 0.894118, 0.894118, 1)
+
+[node name="loading_screen" type="Node3D"]
+
+[node name="Camera3D" type="Camera3D" parent="."]
+environment = SubResource("Environment_klts1")
+
+[node name="Theme" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme = ExtResource("2_id60i")
+
+[node name="Label" type="Label" parent="Theme"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -100.0
+offset_top = -79.0
+offset_right = 100.0
+offset_bottom = -19.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("3_3l2g2")
+theme_override_font_sizes/font_size = 40
+text = "Loading..."
+
+[node name="LoadingBar" type="Panel" parent="Theme"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -250.0
+offset_top = -20.0
+offset_right = 250.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_rbb8r")
+script = ExtResource("4_04ouy")
