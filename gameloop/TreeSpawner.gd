@@ -43,4 +43,4 @@ func _on_data_changed():
 		model.offset = rand_height
 		model.scale = Vector3.ONE * rand_scale
 	
-	navigation_region.call_deferred("bake_navigation_mesh", false)
+	if navigation_region: navigation_region.call_deferred("bake_navigation_mesh", false)

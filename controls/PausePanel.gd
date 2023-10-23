@@ -21,3 +21,6 @@ func close():
 func _on_gui_input(event):
 	if event is InputEventMouseButton && event.pressed && event.button_index == MOUSE_BUTTON_LEFT:
 		close()
+
+func quit():
+	SceneManager.load_main_menu(get_tree())

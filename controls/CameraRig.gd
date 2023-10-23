@@ -10,6 +10,8 @@ extends Node3D
 @export var camera_angle_speed: float = 20
 @export var camera_distance_speed: float = 3
 
+@export var auto_drive: bool
+
 @onready var camera_rotation: Node3D = $"CameraRotation"
 @onready var camera_angle: Node3D = $"CameraRotation/CameraAngle"
 @onready var camera_distance: Node3D = $"CameraRotation/CameraAngle/CameraDistance"
@@ -46,12 +48,16 @@ func _ready():
 	distance_value = camera_distance_min + (camera_distance_max - camera_distance_min) / 2.0
 
 func _process(delta):
-	#input
-	left_right_input = _combine_actions("camera_right", "camera_left")
-	forward_back_input = _combine_actions("camera_back", "camera_forward")
-	rotate_input = _combine_actions("camera_rotate_right", "camera_rotate_left")
-	angle_input = _combine_actions("camera_angle_up", "camera_angle_down")
-	distance_input = _combine_actions("camera_zoom", "camera_dezoom")
+	if auto_drive:
+		forward_back_input = -1
+		rotate_input = 1
+	else:
+		#input
+		left_right_input = _combine_actions("camera_right", "camera_left")
+		forward_back_input = _combine_actions("camera_back", "camera_forward")
+		rotate_input = _combine_actions("camera_rotate_right", "camera_rotate_left")
+		angle_input = _combine_actions("camera_angle_up", "camera_angle_down")
+		distance_input = _combine_actions("camera_zoom", "camera_dezoom")
 	
 	#movement
 	var desired_movement = Math.unit_v3(left_right_input * Vector3.LEFT + forward_back_input * Vector3.FORWARD)

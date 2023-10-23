@@ -10,6 +10,10 @@ class_name LayeredNoise
 
 @export var middle_scale:float = 0.1
 
+func assign_seed(s: int):
+	for layer in noise_layers:
+		layer.seed = s
+
 func point_in_noise(percent: Vector2) -> float:
 	var sum: float = 0
 	var scale_sum: float = 0

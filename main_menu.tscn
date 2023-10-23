@@ -1,0 +1,149 @@
+[gd_scene load_steps=14 format=3 uid="uid://133jo6pb7hxg"]
+
+[ext_resource type="PackedScene" uid="uid://b43v6jawtpn5j" path="res://ground.tscn" id="1_4khsr"]
+[ext_resource type="PackedScene" uid="uid://dvgfkovckchyd" path="res://camera_rig.tscn" id="1_42x5g"]
+[ext_resource type="Script" path="res://gameloop/TreeSpawner.gd" id="2_0sl38"]
+[ext_resource type="PackedScene" uid="uid://b2hafqpw528um" path="res://ground_generation/trees/tree1.tscn" id="3_pl7i1"]
+[ext_resource type="PackedScene" uid="uid://dfn6c17kw8qwi" path="res://ground_generation/trees/tree2.tscn" id="4_gug0x"]
+[ext_resource type="PackedScene" uid="uid://r7ycgs0ud4r3" path="res://ground_generation/trees/tree3.tscn" id="5_oj1as"]
+[ext_resource type="PackedScene" uid="uid://4s6qkyhad0yk" path="res://ground_generation/trees/tree4.tscn" id="6_2etht"]
+[ext_resource type="Theme" uid="uid://cel1y6hrc8slp" path="res://theme/main_theme.tres" id="8_oq6fe"]
+[ext_resource type="FontFile" uid="uid://d1jvqnhuvekma" path="res://theme/YoungSerif-Regular.ttf" id="9_ya2hh"]
+[ext_resource type="Texture2D" uid="uid://cxquwwj5pp616" path="res://icons/camp_panel.png" id="10_it1x5"]
+[ext_resource type="Script" path="res://controls/MainMenu.gd" id="11_n1vs6"]
+[ext_resource type="PackedScene" uid="uid://cfr8mya77iod3" path="res://controls/settings_menu.tscn" id="12_12y0v"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_3c3gx"]
+texture = ExtResource("10_it1x5")
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+region_rect = Rect2(50, 50, 500, 500)
+
+[node name="main_menu" type="Node3D"]
+
+[node name="CameraRig" parent="." instance=ExtResource("1_42x5g")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -170)
+camera_angle_max = 10.0
+camera_distance_min = 3.0
+camera_distance_max = 3.0
+camera_scroll_speed = 0.025
+camera_rotation_speed = 1.5
+auto_drive = true
+
+[node name="Ground" parent="." instance=ExtResource("1_4khsr")]
+
+[node name="Node3D" type="Node3D" parent="Ground"]
+
+[node name="TreeSpawner" type="Node" parent="." node_paths=PackedStringArray("ground", "obsticle_folder")]
+script = ExtResource("2_0sl38")
+ground = NodePath("../Ground")
+trees = Array[PackedScene]([ExtResource("3_pl7i1"), ExtResource("4_gug0x"), ExtResource("5_oj1as"), ExtResource("6_2etht")])
+obsticle_folder = NodePath("../Ground/Node3D")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.242451, 0.839992, -0.485419, 0.146926, 0.462785, 0.87421, 0.958974, -0.283274, -0.0112137, 0, 132.475, 0)
+light_color = Color(0.960784, 1, 1, 1)
+
+[node name="Theme" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme = ExtResource("8_oq6fe")
+
+[node name="Label" type="Label" parent="Theme"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.33
+anchor_right = 0.5
+anchor_bottom = 0.33
+offset_left = -200.0
+offset_top = -45.84
+offset_right = 194.0
+offset_bottom = 42.16
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("9_ya2hh")
+theme_override_font_sizes/font_size = 60
+text = "Goblin Camp"
+
+[node name="MainMenu" type="Panel" parent="Theme"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -200.0
+offset_top = -46.0
+offset_right = 200.0
+offset_bottom = 254.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_3c3gx")
+script = ExtResource("11_n1vs6")
+settings_menu = Object(Panel,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"editor_description":"","visible":false,"modulate":Color(1, 1, 1, 1),"self_modulate":Color(1, 1, 1, 1),"show_behind_parent":false,"top_level":false,"clip_children":0,"light_mask":1,"visibility_layer":1,"z_index":0,"z_as_relative":true,"y_sort_enabled":false,"texture_filter":0,"texture_repeat":0,"material":null,"use_parent_material":false,"clip_contents":false,"custom_minimum_size":Vector2(400, 538),"layout_direction":0,"layout_mode":1,"anchors_preset":8,"anchor_left":0.5,"anchor_top":0.5,"anchor_right":0.5,"anchor_bottom":0.5,"offset_left":-200.0,"offset_top":-271.0,"offset_right":200.0,"offset_bottom":267.0,"grow_horizontal":2,"grow_vertical":2,"rotation":0.0,"scale":Vector2(1, 1),"pivot_offset":Vector2(0, 0),"size_flags_horizontal":1,"size_flags_vertical":1,"size_flags_stretch_ratio":1.0,"auto_translate":true,"localize_numeral_system":true,"tooltip_text":"","focus_neighbor_left":NodePath(""),"focus_neighbor_top":NodePath(""),"focus_neighbor_right":NodePath(""),"focus_neighbor_bottom":NodePath(""),"focus_next":NodePath(""),"focus_previous":NodePath(""),"focus_mode":0,"mouse_filter":0,"mouse_force_pass_scroll_events":true,"mouse_default_cursor_shape":0,"shortcut_context":null,"theme":null,"theme_type_variation":&"","theme_override_styles/panel":null,"script":Resource("res://controls/settings/SettingsMenu.gd"),"slide_setting_scene":Resource("res://controls/settings/slide_setting.tscn"),"toggle_setting_scene":Resource("res://controls/settings/toggle_setting.tscn"))
+
+
+[node name="MarginContainer" type="MarginContainer" parent="Theme/MainMenu"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Theme/MainMenu/MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="MarginContainer" type="MarginContainer" parent="Theme/MainMenu/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="Button" type="Button" parent="Theme/MainMenu/MarginContainer/VBoxContainer/MarginContainer"]
+layout_mode = 2
+mouse_default_cursor_shape = 2
+theme_override_font_sizes/font_size = 28
+text = "PLAY"
+
+[node name="MarginContainer2" type="MarginContainer" parent="Theme/MainMenu/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="Button" type="Button" parent="Theme/MainMenu/MarginContainer/VBoxContainer/MarginContainer2"]
+layout_mode = 2
+mouse_default_cursor_shape = 2
+theme_override_font_sizes/font_size = 28
+text = "SETTINGS"
+
+[node name="MarginContainer3" type="MarginContainer" parent="Theme/MainMenu/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="Button" type="Button" parent="Theme/MainMenu/MarginContainer/VBoxContainer/MarginContainer3"]
+layout_mode = 2
+mouse_default_cursor_shape = 2
+theme_override_font_sizes/font_size = 28
+text = "QUIT"
+
+[node name="SettingsMenu" parent="Theme" instance=ExtResource("12_12y0v")]
+visible = false
+layout_mode = 1
+offset_top = -271.0
+offset_bottom = 267.0
+
+[connection signal="pressed" from="Theme/MainMenu/MarginContainer/VBoxContainer/MarginContainer/Button" to="Theme/MainMenu" method="on_play"]
+[connection signal="pressed" from="Theme/MainMenu/MarginContainer/VBoxContainer/MarginContainer2/Button" to="Theme/MainMenu" method="on_settings"]
+[connection signal="pressed" from="Theme/MainMenu/MarginContainer/VBoxContainer/MarginContainer3/Button" to="Theme/MainMenu" method="on_quit"]
