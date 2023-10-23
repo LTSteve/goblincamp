@@ -8,6 +8,9 @@
 
 [node name="Knight" groups=["Knight"] instance=ExtResource("1_d7e8e")]
 
+[node name="Model" parent="." index="1"]
+transform = Transform3D(-2.30258e-08, 0, 0.526768, 0, 0.526768, 0, -0.526768, 0, -2.30258e-08, 0, 0, 0)
+
 [node name="RankComponent" parent="Model" index="3"]
 transform = Transform3D(0.25, 1.09278e-08, 4.7767e-16, 0, -1.09278e-08, 0.25, 1.09278e-08, -0.25, -1.09278e-08, -0.398014, 3.37389, -1.03442)
 

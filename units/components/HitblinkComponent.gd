@@ -2,32 +2,31 @@ extends Node
 
 class_name HitblinkComponent
 
-@export var material_override: MaterialOverrideComponent
-@export var flashes_per_second: float = 5
+@export var model_holder: Node3D
+@export var jiggle_intensity: float = 2
+@export var jiggle_time: float = 0.5
 
-var _hit_blink = 0
-var _max_hit_blink = 0
-var _color = Color.WHITE
+var _jiggle: float = 0
+var _jiggle_direction: Vector3 = Vector3.ZERO
 
 func _on_recieved_hit(weapon_hit:Weapon.Hit):
-	if weapon_hit.hit_stun == 0: return
-	_max_hit_blink = weapon_hit.hit_stun
-	_hit_blink = 0
+	_jiggle = 0
+	_jiggle_direction = model_holder.to_local(Math.v2_to_v3(weapon_hit.direction) + model_holder.global_position)
+
+func _vibration_function(x:float):
+	var x_100 = x * 20
+	#saw from 0 to 10
+	var sawtooth_component = x_100 - ((x_100 as int) / 10) * 10
+	#tri from 0 to 5
+	var triangle_component = sawtooth_component if sawtooth_component < 5 else (10.0 - sawtooth_component)
+	
+	return triangle_component / 5.0
 
 func _process(delta):
-	if _max_hit_blink == 0:
-		_hit_blink = 0
-		material_override.remove_emission_color(_color)
-		return
-	
-	_hit_blink += delta
-	
-	if _hit_blink >= _max_hit_blink:
-		_max_hit_blink = 0
-		return
-	
-	var on_off = ((_hit_blink * flashes_per_second * 2) as int % 2) == 0 
-	if on_off:
-		material_override.add_emission_color(_color)
-	else:
-		material_override.remove_emission_color(_color)
+	_jiggle += delta / jiggle_time
+	if _jiggle_direction != Vector3.ZERO:
+		if _jiggle > 1.0:
+			model_holder.position = Vector3.ZERO
+			_jiggle_direction = Vector3.ZERO
+		else:
+			model_holder.position = _jiggle_direction * jiggle_intensity * _vibration_function(_jiggle*_jiggle) * (1.0 - _jiggle)

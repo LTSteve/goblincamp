@@ -10,6 +10,9 @@
 is_enemy = null
 kill_value = null
 
+[node name="Model" parent="." index="1"]
+transform = Transform3D(-2.30258e-08, 0, 0.526768, 0, 0.526768, 0, -0.526768, 0, -2.30258e-08, 0, 0, 0)
+
 [node name="RankComponent" parent="Model" index="3"]
 transform = Transform3D(0.25, 1.09279e-08, 4.77672e-16, 0, -1.09278e-08, 0.25, 1.09279e-08, -0.25, -1.09278e-08, 4.29486e-08, 1.56324, -0.982548)
 

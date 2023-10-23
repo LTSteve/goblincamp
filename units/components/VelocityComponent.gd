@@ -19,10 +19,8 @@ var speed_scale:float:
 	set(value):
 		if speed_scale == value: return
 		if value < 1.0:
-			print("is_walking")
 			is_walking.emit()
 		else:
-			print("is_running")
 			is_running.emit()
 		speed_scale = value
 

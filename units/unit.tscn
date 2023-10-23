@@ -174,7 +174,7 @@ transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 0, 0)
 [node name="WeaponHolder" type="Node3D" parent="Model"]
 
 [node name="ModelHolder" type="Node3D" parent="Model"]
-transform = Transform3D(1, 0, 1.42109e-14, 0, 1, 0, -1.42109e-14, 0, 1, 0, 0, 0)
+transform = Transform3D(1, 0, 1.77636e-14, 0, 1, 0, -1.77636e-14, 0, 1, 0, 0, 0)
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
 path_height_offset = 0.5
@@ -195,9 +195,11 @@ acceleration = 1.0
 script = ExtResource("11_t1h5w")
 slow_rotation_speed = 80.0
 
-[node name="HitblinkComponent" type="Node" parent="." node_paths=PackedStringArray("material_override")]
+[node name="HitblinkComponent" type="Node" parent="." node_paths=PackedStringArray("model_holder")]
 script = ExtResource("12_tn8gh")
-material_override = NodePath("../MaterialOverrideComponent")
+model_holder = NodePath("../Model/ModelHolder")
+jiggle_intensity = 0.5
+jiggle_time = 0.25
 
 [node name="ArmorComponent" type="Node" parent="."]
 script = ExtResource("13_7cffv")
@@ -231,7 +233,7 @@ shape = SubResource("SphereShape3D_phml6")
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
 attenuation_model = 3
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+[node name="MovementAnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_7symn")
 }
@@ -246,9 +248,9 @@ script = ExtResource("19_jo36r")
 [connection signal="died" from="HealthComponent" to="Model/BountyComponent" method="_on_health_component_died"]
 [connection signal="died" from="HealthComponent" to="BrainComponent" method="_on_die"]
 [connection signal="health_changed" from="HealthComponent" to="Model/HealthbarComponent" method="_on_health_component_health_changed"]
-[connection signal="is_running" from="VelocityComponent" to="AnimationPlayer" method="_on_velocity_component_is_running"]
-[connection signal="is_stopping" from="VelocityComponent" to="AnimationPlayer" method="_on_velocity_component_is_stopping"]
-[connection signal="is_walking" from="VelocityComponent" to="AnimationPlayer" method="_on_velocity_component_is_walking"]
+[connection signal="is_running" from="VelocityComponent" to="MovementAnimationPlayer" method="_on_velocity_component_is_running"]
+[connection signal="is_stopping" from="VelocityComponent" to="MovementAnimationPlayer" method="_on_velocity_component_is_stopping"]
+[connection signal="is_walking" from="VelocityComponent" to="MovementAnimationPlayer" method="_on_velocity_component_is_walking"]
 [connection signal="on_lock_target" from="BrainComponent" to="RotationComponent" method="_on_lock_target"]
 
 [editable path="Model/RankComponent"]
