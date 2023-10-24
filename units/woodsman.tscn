@@ -10,9 +10,6 @@
 
 [node name="Woodsman" instance=ExtResource("1_e4j34")]
 
-[node name="Model" parent="." index="1"]
-transform = Transform3D(-2.30258e-08, 0, 0.526768, 0, 0.526768, 0, -0.526768, 0, -2.30258e-08, 0, 0, 0)
-
 [node name="BowAndDagger" type="Node3D" parent="Model/WeaponHolder" index="0" node_paths=PackedStringArray("bow", "daggers")]
 script = ExtResource("2_gqrex")
 bow = NodePath("Bow")
@@ -48,6 +45,9 @@ transform = Transform3D(0.707106, -0.612372, 0.353553, 0.707106, 0.612372, -0.35
 
 [node name="HealthComponent" parent="." index="3"]
 max_health = 85.0
+
+[node name="VelocityComponent" parent="." index="4"]
+acceleration = 2.0
 
 [node name="MaterialOverrideComponent" parent="." index="9" node_paths=PackedStringArray("mesh_instance")]
 mesh_instance = NodePath("../Model/ModelHolder/woodsman/woodsman2")

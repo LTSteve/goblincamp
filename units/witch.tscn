@@ -44,8 +44,8 @@ transform = Transform3D(0.602939, -0.779567, -0.169524, 0.750468, 0.626318, -0.2
 max_health = 60.0
 
 [node name="VelocityComponent" parent="." index="4"]
-max_speed = 2.5
-acceleration = 0.7
+max_speed = 2.25
+acceleration = 1.6
 
 [node name="MaterialOverrideComponent" parent="." index="9" node_paths=PackedStringArray("mesh_instance")]
 mesh_instance = NodePath("../Model/ModelHolder/witch/witch2")

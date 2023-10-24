@@ -36,10 +36,12 @@ transform = Transform3D(-8.74228e-08, 1.27759e-07, -2, 0, 2, 1.27759e-07, 2, 5.5
 transform = Transform3D(1, 0, -7.10543e-15, 0, 1, 0, 7.10543e-15, 0, 1, 0, 0, 0)
 
 [node name="HealthComponent" parent="." index="3"]
-max_health = 150.0
+max_health = 220.0
 
 [node name="VelocityComponent" parent="." index="4"]
-pushback_scale = 0.5
+max_speed = 4.0
+acceleration = 2.5
+pushback_scale = 0.2
 
 [node name="ArmorComponent" parent="." index="7"]
 armor = 2

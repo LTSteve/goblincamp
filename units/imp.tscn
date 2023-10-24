@@ -35,6 +35,7 @@ max_health = 26.0
 
 [node name="VelocityComponent" parent="." index="4"]
 max_speed = 5.5
+acceleration = 2.0
 pushback_scale = 1.15
 
 [node name="MaterialOverrideComponent" parent="." index="9" node_paths=PackedStringArray("mesh_instance")]

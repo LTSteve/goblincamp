@@ -9,9 +9,6 @@
 collision_layer = 2
 is_enemy = true
 
-[node name="Model" parent="." index="1"]
-transform = Transform3D(-2.30258e-08, 0, 0.526768, 0, 0.526768, 0, -0.526768, 0, -2.30258e-08, 0, 0, 0)
-
 [node name="DamageNumberComponent" parent="Model" index="0"]
 is_ally = false
 
@@ -30,6 +27,7 @@ max_health = 45.0
 
 [node name="VelocityComponent" parent="." index="4"]
 max_speed = 4.5
+acceleration = 2.0
 
 [node name="MaterialOverrideComponent" parent="." index="9" node_paths=PackedStringArray("mesh_instance")]
 mesh_instance = NodePath("../Model/ModelHolder/goblin/goblin2")

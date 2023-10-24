@@ -60,7 +60,8 @@ func assign_target(delta, brain:BrainComponent, ctx):
 		if old_target && ctx.claim_cardinal != null:
 			old_target.un_claim_unit(ctx.claim_cardinal)
 		if brain.target:
-			ctx.claim_cardinal = brain.target.claim_unit(brain.unit.global_position)
+			if tactical:
+				ctx.claim_cardinal = brain.target.claim_unit(brain.unit.global_position)
 			ctx.targeting_cd = targeting_cooldown
 	
 	if !is_instance_valid(brain.target):
@@ -87,7 +88,7 @@ func process(_delta, brain:BrainComponent, ctx):
 	if ctx.claim_cardinal == null:
 		if tactical:
 			var inv_separation = (brain.unit.global_position - brain.target.global_position)
-			brain.unit.set_movement_target(inv_separation.rotated(Vector3.UP, Math.rad_90 if ctx.lefty else -Math.rad_90))
+			brain.unit.set_movement_target(brain.target.global_position + inv_separation.rotated(Vector3.UP, Math.rad_90 if ctx.lefty else -Math.rad_90) / 2.0)
 			ctx.thinking = thinking_time
 		else:
 			brain.unit.set_movement_target(brain.target.global_position)

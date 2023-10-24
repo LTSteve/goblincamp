@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://5kxgrj763bh2"]
+[gd_scene load_steps=17 format=3 uid="uid://5kxgrj763bh2"]
 
 [ext_resource type="Script" path="res://units/components/weapon/MeleeWeapon.gd" id="1_3b5up"]
 [ext_resource type="AudioStream" uid="uid://qrr4ypym75ld" path="res://sfx/explosion.wav" id="2_33wva"]
@@ -512,15 +512,20 @@ _data = {
 [sub_resource type="SphereShape3D" id="SphereShape3D_pxgbv"]
 radius = 2.0
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_kjehf"]
+size = Vector3(3, 3, 4)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_k2q7n"]
+size = Vector3(3, 3, 4)
+
 [node name="Hammer" type="Node3D" node_paths=PackedStringArray("collision_areas", "hit_spot", "animation_tree") groups=["Hammer"]]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 1, 0)
 script = ExtResource("1_3b5up")
 collision_areas = [NodePath("Hitboxes/Area3D"), NodePath("Hitboxes/Area3D2"), NodePath("Hitboxes/Area3D3")]
 hit_spot = NodePath("ogre_weapon/HitSpot")
-hit_sfx = Array[AudioStream]([ExtResource("2_33wva")])
 multi_target = true
 animation_tree = NodePath("AnimationTree")
-weapon_range = 6.0
+weapon_range = 5.0
 damage = 18.0
 hit_stun = 1.1
 
@@ -568,8 +573,8 @@ collision_mask = 0
 monitoring = false
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Hitboxes/Area3D2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.81969, 1.12786, -5.60973)
-shape = SubResource("SphereShape3D_pxgbv")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.81969, 0.824262, -5.00345)
+shape = SubResource("BoxShape3D_kjehf")
 
 [node name="Area3D3" type="Area3D" parent="Hitboxes"]
 collision_layer = 0
@@ -577,5 +582,11 @@ collision_mask = 0
 monitoring = false
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Hitboxes/Area3D3"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.9884, 1.12786, -5.74198)
-shape = SubResource("SphereShape3D_pxgbv")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.9884, 0.824262, -5.1357)
+shape = SubResource("BoxShape3D_k2q7n")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("2_33wva")
+volume_db = -6.0
+
+[connection signal="on_hit_landed" from="." to="AudioStreamPlayer3D" method="play" binds= [0.0]]

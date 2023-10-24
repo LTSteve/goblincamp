@@ -30,6 +30,7 @@ visible = false
 
 [node name="VelocityComponent" parent="." index="4"]
 max_speed = 5.5
+acceleration = 2.0
 pushback_scale = 0.9
 
 [node name="ArmorComponent" parent="." index="7" groups=["Knight"]]

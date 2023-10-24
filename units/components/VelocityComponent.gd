@@ -47,6 +47,9 @@ func accelerate_in_direction(direction:Vector2, delta: float):
 func set_velocity(velocity:Vector2):
 	_velocity = velocity
 
+func add_velocity(velocity:Vector2):
+	_velocity += velocity
+
 func set_direction(direction:Vector2):
 	_velocity = direction * get_max_speed.execute()
 
@@ -74,4 +77,5 @@ func apply_delta(delta):
 
 func _on_recieved_hit(weapon_hit:Weapon.Hit):
 	if !weapon_hit.pushback || weapon_hit.direction == Vector2.ZERO: return
-	set_velocity(weapon_hit.direction * weapon_hit.pushback * pushback_scale)
+	var pushback = weapon_hit.direction * weapon_hit.pushback * pushback_scale
+	add_velocity(pushback)
