@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://brhc1aba5usew" path="res://units/unit.tscn" id="1_7ffh0"]
 [ext_resource type="PackedScene" uid="uid://citvivc546i87" path="res://models/imp/imp.glb" id="2_tftnr"]
 [ext_resource type="PackedScene" uid="uid://bafd3cjhvdg42" path="res://units/weapons/imp_claw.tscn" id="3_5sjsv"]
-[ext_resource type="Resource" uid="uid://cao1bytnssy28" path="res://units/components/brain/melee_behaviour.tres" id="4_jksqw"]
+[ext_resource type="Resource" uid="uid://bx08od3oiaac2" path="res://units/components/brain/imp_melee_behaviour.tres" id="4_kbe1u"]
 [ext_resource type="Resource" uid="uid://6a2euiflosoa" path="res://units/components/brain/wander_behaviour.tres" id="5_dwiai"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_1jodv"]
@@ -16,9 +16,6 @@ kill_value = 0.6
 
 [node name="CollisionShape3D" parent="." index="0"]
 shape = SubResource("CapsuleShape3D_1jodv")
-
-[node name="Model" parent="." index="1"]
-transform = Transform3D(-2.30258e-08, 0, 0.526768, 0, 0.526768, 0, -0.526768, 0, -2.30258e-08, 0, 0, 0)
 
 [node name="DamageNumberComponent" parent="Model" index="0"]
 is_ally = false
@@ -38,12 +35,13 @@ max_health = 26.0
 
 [node name="VelocityComponent" parent="." index="4"]
 max_speed = 5.5
+pushback_scale = 1.15
 
 [node name="MaterialOverrideComponent" parent="." index="9" node_paths=PackedStringArray("mesh_instance")]
 mesh_instance = NodePath("../Model/ModelHolder/imp/imp2")
 
 [node name="BrainComponent" parent="." index="10"]
-behaviours = Array[Resource("res://units/components/brain/Behaviour.gd")]([ExtResource("4_jksqw"), ExtResource("5_dwiai")])
+behaviours = Array[Resource("res://units/components/brain/Behaviour.gd")]([ExtResource("4_kbe1u"), ExtResource("5_dwiai")])
 
 [editable path="Model/ModelHolder/imp"]
 [editable path="Model/ModelHolder/RankComponent"]

@@ -8,6 +8,7 @@ class_name MeleeBehaviour
 @export var just_a_few_units: int = 3
 @export var targeting_cooldown: float = 0.2
 @export var thinking_time: float = 0.75
+@export var tactical: bool = true
 
 class MeleeBehaviourContext:
 	var weapon:Weapon
@@ -84,9 +85,12 @@ func process(_delta, brain:BrainComponent, ctx):
 		return true
 	
 	if ctx.claim_cardinal == null:
-		var inv_separation = (brain.unit.global_position - brain.target.global_position)
-		brain.unit.set_movement_target(inv_separation.rotated(Vector3.UP, Math.rad_90 if ctx.lefty else -Math.rad_90))
-		ctx.thinking = thinking_time
+		if tactical:
+			var inv_separation = (brain.unit.global_position - brain.target.global_position)
+			brain.unit.set_movement_target(inv_separation.rotated(Vector3.UP, Math.rad_90 if ctx.lefty else -Math.rad_90))
+			ctx.thinking = thinking_time
+		else:
+			brain.unit.set_movement_target(brain.target.global_position)
 	else:
 		var claimed_dir:Vector2 = Math.Cardinal_As_Direction[ctx.claim_cardinal]
 		var claimed_spot = brain.target.global_position + Math.v2_to_v3(claimed_dir) * ctx.weapon.weapon_range * comfortable_range_modifier

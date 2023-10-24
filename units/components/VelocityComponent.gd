@@ -5,6 +5,7 @@ class_name VelocityComponent
 @export var max_speed:float = 100
 @export var acceleration:float = 10
 @export var stopping_cuttoff: float = 0.2
+@export var pushback_scale: float = 1.0
 
 signal is_running()
 signal is_walking()
@@ -73,4 +74,4 @@ func apply_delta(delta):
 
 func _on_recieved_hit(weapon_hit:Weapon.Hit):
 	if !weapon_hit.pushback || weapon_hit.direction == Vector2.ZERO: return
-	set_velocity(weapon_hit.direction * weapon_hit.pushback)
+	set_velocity(weapon_hit.direction * weapon_hit.pushback * pushback_scale)

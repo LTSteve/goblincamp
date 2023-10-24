@@ -8,9 +8,6 @@
 
 [node name="Knight" groups=["Knight"] instance=ExtResource("1_d7e8e")]
 
-[node name="Model" parent="." index="1"]
-transform = Transform3D(-2.30258e-08, 0, 0.526768, 0, 0.526768, 0, -0.526768, 0, -2.30258e-08, 0, 0, 0)
-
 [node name="Sword" parent="Model/WeaponHolder" index="0" instance=ExtResource("3_qgv83")]
 
 [node name="Sword2" parent="Model/WeaponHolder" index="1" instance=ExtResource("3_qgv83")]
@@ -33,6 +30,7 @@ visible = false
 
 [node name="VelocityComponent" parent="." index="4"]
 max_speed = 5.5
+pushback_scale = 0.9
 
 [node name="ArmorComponent" parent="." index="7" groups=["Knight"]]
 armor = 1
