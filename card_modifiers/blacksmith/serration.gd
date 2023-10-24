@@ -12,7 +12,7 @@ func _create_hit_override(_base_value:Weapon.Hit, current_value:Weapon.Hit):
 	if current_value.damage > 0:
 		var effect = DamageOverTimeEffect.new(current_value.hit, 
 		current_value.hit_by, 
-		current_value.post_crit_damage, 
+		current_value.post_crit_damage / 10.0, 
 		params.stack_limit_per_rank * current_rank,
 		params.duration,
 		params.tick_time,
