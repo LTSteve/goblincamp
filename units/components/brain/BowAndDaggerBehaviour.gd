@@ -10,15 +10,17 @@ class_name BowAndDaggerBehaviour
 @export var max_nearby_melee_threshold: int
 @export var mode_switch_limit: float
 
+@export var comfortable_melee_range_modifier: float = 0.8
+
 class BowAndDaggerBehaviourData:
 	var mode_switch_cooldown: float = 0
 	var melee: bool = false
 	var ranged_weapon: RangedWeapon
 	var melee_weapon: MeleeBehaviour.MeleeBehaviourContext
 	
-	func _init(r,m):
+	func _init(r,m, comfortable_melee_range_modifier):
 		ranged_weapon = r
-		melee_weapon = MeleeBehaviour.MeleeBehaviourContext.new(m)
+		melee_weapon = MeleeBehaviour.MeleeBehaviourContext.new(m, comfortable_melee_range_modifier)
 
 func initialize(brain:BrainComponent):
 	var bow_and_dagger = brain.weapon_holder.find_child("BowAndDagger") as BowAndDagger
@@ -32,7 +34,7 @@ func initialize(brain:BrainComponent):
 		brain.flee_range.body_entered.connect(_on_body_entered_flee_range.bind(brain))
 		brain.flee_range.body_exited.connect(_on_body_exited_flee_range.bind(brain))
 	
-	return BowAndDaggerBehaviourData.new(bow_and_dagger.bow, bow_and_dagger.daggers[0])
+	return BowAndDaggerBehaviourData.new(bow_and_dagger.bow, bow_and_dagger.daggers[0], comfortable_melee_range_modifier)
 
 func assign_target(delta, brain:BrainComponent, behaviour_data:BowAndDaggerBehaviourData):
 	behaviour_data.mode_switch_cooldown -= delta

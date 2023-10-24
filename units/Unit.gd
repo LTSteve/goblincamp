@@ -71,7 +71,7 @@ func _process(delta):
 		effect.update(delta)
 
 func do_move(delta):
-	var movement_direction = pathfinder_component.get_next_direction(_stunned > 0)
+	var movement_direction = pathfinder_component.get_next_direction() if _stunned <= 0 else Vector2.ZERO
 	_facing_direction = movement_direction if movement_direction != Vector2.ZERO else _facing_direction
 	
 	velocity_component.accelerate_in_direction(movement_direction, delta)

@@ -20,13 +20,13 @@ func _ready():
 	navigation_agent.target_desired_distance = at_location_distance
 
 func find_new_path(movement_target:Vector3):
+	if movement_target.distance_squared_to(_movement_target) < _at_location_dist_2: return
 	navigation_agent.set_target_position(movement_target)
 	_movement_target = movement_target
 	_next_path_location = navigation_agent.get_next_path_position()
 	_nav_finished = false
 
-func get_next_direction(stunned:bool):
-	if stunned: return Vector2.ZERO
+func get_next_direction():
 	_nav_finished = _nav_finished || _movement_target.distance_squared_to(global_position) < _at_location_dist_2
 	if _nav_finished: return Vector2.ZERO
 	

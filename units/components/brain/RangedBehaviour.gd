@@ -6,7 +6,7 @@ class_name RangedBehaviour
 @export var flee_distance:float = 8
 
 func initialize(brain:BrainComponent):
-	brain.weapons += _bind_to_all_weapons(brain)
+	brain.weapons += _bind_to_all_weapons(brain,typeof(RangedWeapon))
 	if brain.flee_range:
 		brain.flee_range.body_entered.connect(_on_body_entered_flee_range.bind(brain))
 		brain.flee_range.body_exited.connect(_on_body_exited_flee_range.bind(brain))

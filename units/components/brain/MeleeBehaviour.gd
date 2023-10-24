@@ -7,6 +7,7 @@ class_name MeleeBehaviour
 @export var nearby_units_dist2_range:float = 30.0
 @export var just_a_few_units: int = 3
 @export var targeting_cooldown: float = 0.2
+@export var thinking_time: float = 0.75
 
 class MeleeBehaviourContext:
 	var weapon:Weapon
@@ -14,13 +15,17 @@ class MeleeBehaviourContext:
 	var lefty:bool
 	var thinking: float = 0
 	var targeting_cd: float = 0
-	func _init(w):
+	var comfortable_dist2: float
+	var range2: float
+	func _init(w:Weapon, comfortable_range_modifier: float):
 		weapon = w
 		lefty = randf() > 0.5
+		range2 = w.weapon_range * w.weapon_range
+		comfortable_dist2 = range2 * comfortable_range_modifier * comfortable_range_modifier
 
 func initialize(brain:BrainComponent):
-	brain.weapons = _bind_to_all_weapons(brain)
-	return MeleeBehaviourContext.new(brain.weapons[0] if brain.weapons.size() else null)
+	brain.weapons = _bind_to_all_weapons(brain, typeof(MeleeWeapon))
+	return MeleeBehaviourContext.new(brain.weapons[0] if brain.weapons.size() else null, comfortable_range_modifier)
 
 func assign_target(delta, brain:BrainComponent, ctx):
 	if ! ctx.weapon: return
@@ -39,7 +44,7 @@ func assign_target(delta, brain:BrainComponent, ctx):
 	var nearest_unit = Global.nearest_unit(available_targets, brain.unit.global_position)
 	
 	#if there's a unit in range, just do that
-	if nearest_unit && (brain.unit.global_position - nearest_unit.global_position).length_squared() < (ctx.weapon.weapon_range * ctx.weapon.weapon_range):
+	if nearest_unit && (brain.unit.global_position - nearest_unit.global_position).length_squared() < ctx.range2:
 		brain.target = nearest_unit
 	elif available_targets.size() <= just_a_few_units:
 		if available_targets.size() > 0:
@@ -69,23 +74,25 @@ func assign_target(delta, brain:BrainComponent, ctx):
 func process(_delta, brain:BrainComponent, ctx):
 	if ctx.thinking > 0: return true
 	
-	if is_instance_valid(brain.target) && ctx.weapon:
-		if brain.unit.global_position.distance_to(brain.target.global_position) > ctx.weapon.weapon_range * comfortable_range_modifier:
-			if ctx.claim_cardinal == null:
-				#todo: head afeild
-				var inv_separation = (brain.unit.global_position - brain.target.global_position)
-				brain.unit.set_movement_target(inv_separation.rotated(Vector3.UP, Math.rad_90 if ctx.lefty else -Math.rad_90))
-				ctx.thinking = 1.0
-			else:
-				var claimed_dir:Vector2 = Math.Cardinal_As_Direction[ctx.claim_cardinal]
-				var claimed_spot = brain.target.global_position + Math.v2_to_v3(claimed_dir) * ctx.weapon.weapon_range * comfortable_range_modifier
-				brain.unit.set_movement_target(claimed_spot)
-		else:
-			brain.unit.set_movement_target(brain.unit.global_position)
-		brain.request_attack.emit(brain.target,brain.unit)
+	if !is_instance_valid(brain.target) || !ctx.weapon:
+		return false
+	
+	brain.request_attack.emit(brain.target,brain.unit)
+	
+	if brain.unit.global_position.distance_squared_to(brain.target.global_position) <= ctx.comfortable_dist2:
+		brain.unit.set_movement_target(brain.unit.global_position)
 		return true
 	
-	return false
+	if ctx.claim_cardinal == null:
+		var inv_separation = (brain.unit.global_position - brain.target.global_position)
+		brain.unit.set_movement_target(inv_separation.rotated(Vector3.UP, Math.rad_90 if ctx.lefty else -Math.rad_90))
+		ctx.thinking = thinking_time
+	else:
+		var claimed_dir:Vector2 = Math.Cardinal_As_Direction[ctx.claim_cardinal]
+		var claimed_spot = brain.target.global_position + Math.v2_to_v3(claimed_dir) * ctx.weapon.weapon_range * comfortable_range_modifier
+		brain.unit.set_movement_target(claimed_spot)
+	
+	return true
 
 func clean_up(brain:BrainComponent, ctx):
 	if ctx.claim_cardinal && is_instance_valid(brain.target):
