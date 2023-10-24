@@ -23,7 +23,7 @@ worth_varience = 15
 transform = Transform3D(1, 0, -7.10543e-15, 0, 1, 0, 7.10543e-15, 0, 1, 0, 0, 0)
 
 [node name="HealthComponent" parent="." index="3"]
-max_health = 45.0
+max_health = 450.0
 
 [node name="VelocityComponent" parent="." index="4"]
 max_speed = 4.5

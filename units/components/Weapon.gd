@@ -33,8 +33,8 @@ class Hit:
 			var armor = flat_armor if damage_type == Damage.Type.Basic else 0
 			var dmg = (damage * crit_damage_multiplier) if is_crit else damage
 			if dmg > 1:
-				dmg = clampi(dmg - armor, 1, dmg)
-			return dmg
+				dmg = clampf(dmg - armor, 1, dmg)
+			return round(dmg * 10.0)
 	
 	func duplicate():
 		var obj = Hit.new()
@@ -58,6 +58,7 @@ signal on_hit_landed(hit_data:Weapon.Hit)
 @export var animation_tree: AnimationTreeExpressionExtension
 @export var weapon_range: float = 3.0
 @export var damage: float = 10.0
+@export var damage_random_component: float = 2.0
 @export var pushback: float = 5.0
 @export var hit_stun: float = 0.5
 @export var crit_chance: float = 0.01
@@ -115,7 +116,7 @@ func _create_hit(enemy:Unit, hit_creation_data:HitCreationData = HitCreationData
 	hit_data.direction = Math.unit_v2(Math.v3_to_v2(enemy.global_position-global_position))
 	hit_data.crit_chance = crit_chance if hit_creation_data.can_crit else 0.0
 	hit_data.crit_damage_multiplier = crit_damage_multiplier
-	hit_data.damage = round(damage * hit_creation_data.base_damage_scale)
+	hit_data.damage = damage * hit_creation_data.base_damage_scale + randf_range(0, damage_random_component)
 	hit_data.pushback = pushback * hit_creation_data.base_pushback_scale * _current_pushback_scale
 	hit_data.hit_stun = hit_stun
 	hit_data.damage_type = damage_type
