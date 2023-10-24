@@ -88,5 +88,5 @@ func process(_delta, brain:BrainComponent, ctx):
 	return false
 
 func clean_up(brain:BrainComponent, ctx):
-	if ctx.claim_cardinal:
+	if ctx.claim_cardinal && is_instance_valid(brain.target):
 		brain.target.un_claim_unit(ctx.claim_cardinal)

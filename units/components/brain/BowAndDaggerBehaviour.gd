@@ -35,32 +35,23 @@ func initialize(brain:BrainComponent):
 	return BowAndDaggerBehaviourData.new(bow_and_dagger.bow, bow_and_dagger.daggers[0])
 
 func assign_target(delta, brain:BrainComponent, behaviour_data:BowAndDaggerBehaviourData):
-	var had_no_target = !brain.target
 	behaviour_data.mode_switch_cooldown -= delta
 	
-	brain.target = Global.nearest_unit(Global.enemies, brain.unit.global_position)
+	# throttle mode switches so the unit doesn't get stuck swapping back and forth
+	if behaviour_data.mode_switch_cooldown <= 0:
+		var new_melee = force_melee || brain.fleeing.size() > min_nearby_melee_threshold && brain.fleeing.size() <= max_nearby_melee_threshold
+		if new_melee != behaviour_data.melee:
+			behaviour_data.melee = new_melee
+			behaviour_data.mode_switch_cooldown = mode_switch_limit
+			brain.switch_melee.emit(behaviour_data.melee)
 	
-	brain.on_lock_target.emit(brain.target)
-	
-	if brain.target && had_no_target:
-		brain.enter_combat.emit()
-	
-	if !brain.target:
-		brain.exit_combat.emit()
-	
-	_clean_fleeing_list(brain)
-	
-	if brain.target:
-		# throttle mode switches so the unit doesn't get stuck swapping back and forth
-		if behaviour_data.mode_switch_cooldown <= 0:
-			var new_melee = force_melee || brain.fleeing.size() > min_nearby_melee_threshold && brain.fleeing.size() <= max_nearby_melee_threshold
-			if new_melee != behaviour_data.melee:
-				behaviour_data.melee = new_melee
-				behaviour_data.mode_switch_cooldown = mode_switch_limit
-				brain.switch_melee.emit(behaviour_data.melee)
+	if behaviour_data.melee:
+		melee_behaviour.assign_target(delta, brain, behaviour_data.melee_weapon)
+	else:
+		ranged_behaviour.assign_target(delta, brain, behaviour_data.ranged_weapon)
 
 func process(delta, brain:BrainComponent, behaviour_data:BowAndDaggerBehaviourData):
-	if brain.target:
+	if is_instance_valid(brain.target):
 		if behaviour_data.melee:
 			return melee_behaviour.process(delta, brain, behaviour_data.melee_weapon)
 		else:

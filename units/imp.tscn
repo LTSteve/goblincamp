@@ -17,19 +17,13 @@ kill_value = 0.6
 [node name="CollisionShape3D" parent="." index="0"]
 shape = SubResource("CapsuleShape3D_1jodv")
 
-[node name="Model" parent="." index="1"]
-transform = Transform3D(-2.30258e-08, 0, 0.526768, 0, 0.526768, 0, -0.526768, 0, -2.30258e-08, 0, 0, 0)
-
 [node name="DamageNumberComponent" parent="Model" index="0"]
 is_ally = false
 
 [node name="BountyComponent" parent="Model" index="1"]
 enabled = true
-worth_base = 20
-worth_varience = 8
-
-[node name="RankComponent" parent="Model" index="3"]
-visible = false
+worth_base = 25
+worth_varience = 7
 
 [node name="ImpClaw" parent="Model/WeaponHolder" index="0" instance=ExtResource("3_5sjsv")]
 
@@ -48,9 +42,9 @@ mesh_instance = NodePath("../Model/ModelHolder/imp/imp2")
 [node name="BrainComponent" parent="." index="10"]
 behaviours = Array[Resource("res://units/components/brain/Behaviour.gd")]([ExtResource("4_jksqw"), ExtResource("5_dwiai")])
 
-[editable path="Model/RankComponent"]
-[editable path="Model/RankComponent/rank_star"]
-[editable path="Model/RankComponent/rank_star2"]
-[editable path="Model/RankComponent/rank_star3"]
-[editable path="Model/RankComponent/rank_star4"]
 [editable path="Model/ModelHolder/imp"]
+[editable path="Model/ModelHolder/RankComponent"]
+[editable path="Model/ModelHolder/RankComponent/rank_star"]
+[editable path="Model/ModelHolder/RankComponent/rank_star2"]
+[editable path="Model/ModelHolder/RankComponent/rank_star3"]
+[editable path="Model/ModelHolder/RankComponent/rank_star4"]

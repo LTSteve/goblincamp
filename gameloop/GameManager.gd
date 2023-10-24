@@ -49,6 +49,11 @@ var _unit_index: int = 0
 
 static var time_scale: int = 1
 
+func on_free():
+	Global.players = []
+	Global.enemies = []
+	Global.projectiles = []
+
 func _physics_process(delta):
 	var player_count = Global.players.size()
 	var enemy_count = Global.enemies.size()
@@ -84,7 +89,7 @@ func _physics_process(delta):
 			#print("long unit move update, exiting after ", num_moved)
 			break
 	@warning_ignore("integer_division")
-	time_scale = (total_count / num_moved) if total_count > num_moved else 1
+	time_scale = (total_count / num_moved) if (total_count > num_moved && num_moved > 0) else 1
 
 
 func _on_next_day_button_pressed():

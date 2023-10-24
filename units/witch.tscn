@@ -10,34 +10,37 @@
 is_enemy = null
 kill_value = null
 
-[node name="Model" parent="." index="1"]
-transform = Transform3D(-2.30258e-08, 0, 0.526768, 0, 0.526768, 0, -0.526768, 0, -2.30258e-08, 0, 0, 0)
-
-[node name="RankComponent" parent="Model" index="3"]
-transform = Transform3D(0.25, 1.09279e-08, 4.77672e-16, 0, -1.09278e-08, 0.25, 1.09279e-08, -0.25, -1.09278e-08, 4.29486e-08, 1.56324, -0.982548)
-
-[node name="rank_star" parent="Model/RankComponent" index="0"]
-transform = Transform3D(1, -1.69407e-20, -5.04871e-28, -1.42109e-14, 1, 3.55271e-14, 7.06819e-28, -3.19744e-14, 1, 1, 0, 0)
-
-[node name="Cylinder" parent="Model/RankComponent/rank_star" index="0"]
-transform = Transform3D(0.800751, 0.324627, -0.503401, -0.27483, 0.945841, 0.172775, 0.532226, 4.33788e-09, 0.846601, 1.8942, -0.957816, 2.37044)
-
-[node name="Cylinder" parent="Model/RankComponent/rank_star2" index="0"]
-transform = Transform3D(0.820129, 0.368141, -0.438018, -0.324728, 0.929769, 0.173433, 0.471104, 2.08465e-09, 0.882077, 0.20061, -0.327034, 3.53799)
-
-[node name="Cylinder" parent="Model/RankComponent/rank_star3" index="0"]
-transform = Transform3D(0.640116, -0.713861, -0.283994, 0.652524, 0.700286, -0.2895, 0.40554, -9.34514e-09, 0.914076, 0.540088, -0.866138, 0.480682)
-
-[node name="rank_star4" parent="Model/RankComponent" index="3"]
-transform = Transform3D(0.656586, -0.754251, -3.29694e-08, 0.754251, 0.656586, -1.50111e-08, 3.29694e-08, -1.50111e-08, 1, -1, 0, -2)
-
-[node name="Cylinder" parent="Model/RankComponent/rank_star4" index="0"]
-transform = Transform3D(0.954667, 0, -0.297675, -8.9407e-08, 1, 0, 0.297675, -8.88178e-15, 0.954667, -2.12251, -0.974811, 1.65916)
-
 [node name="Staff" parent="Model/WeaponHolder" index="0" instance=ExtResource("3_sg8hd")]
 
 [node name="witch" parent="Model/ModelHolder" index="0" instance=ExtResource("2_kevcb")]
 transform = Transform3D(1, 0, -3.55271e-15, 0, 1, 0, 3.55271e-15, 0, 1, 0, 0, 0)
+
+[node name="RankComponent" parent="Model/ModelHolder" index="1"]
+transform = Transform3D(0.25, 1.09278e-08, 1.09279e-08, -1.09279e-08, -1.09278e-08, 0.25, 1.09278e-08, -0.25, -1.09278e-08, 3.53799e-08, 1.73795, -0.809396)
+
+[node name="rank_star" parent="Model/ModelHolder/RankComponent" index="0"]
+transform = Transform3D(1, 8.47033e-22, 0, -1.42109e-14, 1, 3.55271e-15, 0, -2.94806e-22, 1, 1, 0, -0.820834)
+
+[node name="Cylinder" parent="Model/ModelHolder/RankComponent/rank_star" index="0"]
+transform = Transform3D(0.861029, 0.333527, -0.383913, -0.304619, 0.94274, 0.135822, 0.407231, 1.58647e-08, 0.913325, 2.00597, -0.361511, 2.47629)
+
+[node name="rank_star2" parent="Model/ModelHolder/RankComponent" index="1"]
+transform = Transform3D(1, 8.47033e-22, 0, -1.42109e-14, 1, 3.55271e-15, 0, -2.94806e-22, 1, 1, 2.38419e-07, -2.82083)
+
+[node name="Cylinder" parent="Model/ModelHolder/RankComponent/rank_star2" index="0"]
+transform = Transform3D(0.857326, 0.386244, -0.340305, -0.358997, 0.922396, 0.142499, 0.368936, 1.65748e-08, 0.929455, 0.374307, 0.25736, 3.78257)
+
+[node name="rank_star3" parent="Model/ModelHolder/RankComponent" index="2"]
+transform = Transform3D(1, 8.47033e-22, 0, -1.42109e-14, 1, 3.55271e-15, 0, -2.94806e-22, 1, -1, 4.76837e-07, -0.820832)
+
+[node name="Cylinder" parent="Model/ModelHolder/RankComponent/rank_star3" index="0"]
+transform = Transform3D(0.649082, -0.587912, -0.482754, 0.471741, 0.808924, -0.350857, 0.596785, -2.54133e-08, 0.802401, 0.917119, 0, 0.948102)
+
+[node name="rank_star4" parent="Model/ModelHolder/RankComponent" index="3"]
+transform = Transform3D(1, 8.47033e-22, 0, -1.42109e-14, 1, 3.55271e-15, 0, -2.94806e-22, 1, -1, 2.38419e-07, -2.82083)
+
+[node name="Cylinder" parent="Model/ModelHolder/RankComponent/rank_star4" index="0"]
+transform = Transform3D(0.602939, -0.779567, -0.169524, 0.750468, 0.626318, -0.211004, 0.270667, -2.4295e-08, 0.962673, -0.266685, -1.15338, 1.86285)
 
 [node name="HealthComponent" parent="." index="3"]
 max_health = 60.0
@@ -52,9 +55,9 @@ mesh_instance = NodePath("../Model/ModelHolder/witch/witch2")
 [node name="BrainComponent" parent="." index="10"]
 behaviours = Array[Resource("res://units/components/brain/Behaviour.gd")]([ExtResource("4_4f1ng"), ExtResource("5_a72gt")])
 
-[editable path="Model/RankComponent"]
-[editable path="Model/RankComponent/rank_star"]
-[editable path="Model/RankComponent/rank_star2"]
-[editable path="Model/RankComponent/rank_star3"]
-[editable path="Model/RankComponent/rank_star4"]
 [editable path="Model/ModelHolder/witch"]
+[editable path="Model/ModelHolder/RankComponent"]
+[editable path="Model/ModelHolder/RankComponent/rank_star"]
+[editable path="Model/ModelHolder/RankComponent/rank_star2"]
+[editable path="Model/ModelHolder/RankComponent/rank_star3"]
+[editable path="Model/ModelHolder/RankComponent/rank_star4"]
