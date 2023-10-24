@@ -8,9 +8,6 @@
 
 [node name="Witch" instance=ExtResource("1_g4nk8")]
 
-[node name="Model" parent="." index="1"]
-transform = Transform3D(-2.30258e-08, 0, 0.526768, 0, 0.526768, 0, -0.526768, 0, -2.30258e-08, 0, 0, 0)
-
 [node name="Staff" parent="Model/WeaponHolder" index="0" instance=ExtResource("3_sg8hd")]
 
 [node name="witch" parent="Model/ModelHolder" index="0" instance=ExtResource("2_kevcb")]
@@ -47,7 +44,7 @@ transform = Transform3D(0.602939, -0.779567, -0.169524, 0.750468, 0.626318, -0.2
 max_health = 60.0
 
 [node name="VelocityComponent" parent="." index="4"]
-max_speed = 3.5
+max_speed = 2.5
 acceleration = 0.7
 
 [node name="MaterialOverrideComponent" parent="." index="9" node_paths=PackedStringArray("mesh_instance")]

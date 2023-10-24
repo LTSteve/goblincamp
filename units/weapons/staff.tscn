@@ -473,7 +473,8 @@ projectile_spawn_point = NodePath("projectile_spawn")
 animation_tree = NodePath("AnimationTree")
 weapon_range = 30.0
 damage = 18.0
-pushback = 2.0
+pushback = 1.5
+hit_stun = 0.3
 damage_type = 2
 
 [node name="witch_weapon" parent="." instance=ExtResource("3_52u0o")]

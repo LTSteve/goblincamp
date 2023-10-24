@@ -1,8 +1,10 @@
 extends CardModifier
 
 var explosion_scene: PackedScene = preload("res://fx/explosion.tscn")
+var explosion_radius_squared: float
 
 func _initialize(_data):
+	explosion_radius_squared = params.explosion_radius * params.explosion_radius
 	#todo, this won't work so preload it somewhere else so we don't have to hard-code in the file
 	pass#explosion_scene = load(data.explosion_scene_reference)
 
@@ -30,13 +32,15 @@ func _create_hit_override(_base_value:Weapon.Hit, current_value:Weapon.Hit):
 	return current_value
 
 func _on_hit_landed(enemy:Unit, explosion:AreaOfEffect, original_hit: Weapon.Hit):
+	var scale = (1.0 - (explosion.global_position.distance_squared_to(enemy.global_position) / explosion_radius_squared))
+	var scale2 = scale * scale
 	var explosion_hit = Weapon.Hit.new()
 	explosion_hit.direction = Math.unit_v2(Math.v3_to_v2(enemy.global_position-explosion.global_position))
 	explosion_hit.is_crit = original_hit.is_crit
 	explosion_hit.crit_damage_multiplier = original_hit.crit_damage_multiplier
-	explosion_hit.damage = original_hit.damage
-	explosion_hit.pushback = original_hit.pushback
-	explosion_hit.hit_stun = original_hit.hit_stun
+	explosion_hit.damage = max(1, original_hit.damage * scale2)
+	explosion_hit.pushback = max(0.1, original_hit.pushback * scale2)
+	explosion_hit.hit_stun = max(0.1, original_hit.hit_stun * scale2)
 	explosion_hit.damage_type = original_hit.damage_type
 	explosion_hit.hit_by = original_hit.hit_by
 	explosion_hit.hit = enemy
