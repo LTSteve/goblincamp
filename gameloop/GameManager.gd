@@ -57,6 +57,7 @@ func on_free():
 func _physics_process(delta):
 	var player_count = Global.players.size()
 	var enemy_count = Global.enemies.size()
+	Global.players_minus_enemies = player_count - enemy_count
 	var projectile_count = Global.projectiles.size()
 	var total_count = player_count+enemy_count+projectile_count
 	if total_count == 0: return

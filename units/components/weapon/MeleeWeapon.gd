@@ -41,9 +41,10 @@ func _on_area_3d_body_entered(enemy):
 		if !_already_hit.is_empty(): return
 		_already_hit.append(enemy);
 	
-	var sfx = leave_behind_sfx_scene.instantiate() as LeaveBehindSFX
-	sfx.stream = hit_sfx.pick_random()
-	get_tree().root.add_child(sfx)
+	if hit_sfx && hit_sfx.size() > 0:
+		var sfx = leave_behind_sfx_scene.instantiate() as LeaveBehindSFX
+		sfx.stream = hit_sfx.pick_random()
+		get_tree().root.add_child(sfx)
 	
 	var hit_data = create_hit.execute([enemy, Weapon.HitCreationData.new(hit_spot.global_position)])
 	enemy.take_hit(hit_data)

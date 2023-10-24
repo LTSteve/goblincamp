@@ -1,5 +1,7 @@
 class_name Global
 
+static var players_minus_enemies: int
+
 static var enemies: Array[Unit] = []
 static var players: Array[Unit] = []
 static var projectiles: Array[Projectile] = []

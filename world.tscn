@@ -274,7 +274,16 @@ max_process_time_ms = 3
 [node name="GameManager" type="Node" parent="." node_paths=PackedStringArray("navigation_region")]
 script = ExtResource("5_v032g")
 sigmoid_offset = 10.0
+sigmoid_x_scale = null
+sigmoid_y_scale = null
+linear_offset = null
+linear_scale = null
 navigation_region = NodePath("../Ground/NavigationRegion3D")
+flat_enemy_power_increase = null
+enemy_spawn_folder = null
+unit_moves_per_tick = null
+max_update_msec = null
+unit_updates_per_time_check = null
 
 [node name="MoneyManager" type="Node" parent="." node_paths=PackedStringArray("label")]
 script = ExtResource("6_5x3ys")

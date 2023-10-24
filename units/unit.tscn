@@ -239,6 +239,7 @@ libraries = {
 }
 script = ExtResource("19_jo36r")
 
+[connection signal="on_get_kill" from="." to="Model/BountyComponent" method="_on_unit_on_get_kill"]
 [connection signal="on_get_kill" from="." to="Model/ModelHolder/RankComponent" method="_on_get_kill"]
 [connection signal="on_recieved_hit" from="." to="Model/DamageNumberComponent" method="_on_damage_recieved"]
 [connection signal="on_recieved_hit" from="." to="HealthComponent" method="_on_recieved_hit"]

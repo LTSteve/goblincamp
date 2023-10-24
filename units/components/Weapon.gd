@@ -2,6 +2,9 @@ extends Node3D
 
 class_name Weapon
 
+const equal_battle_range:int = 5
+const unequal_battle_damage_scale:float = 0.1
+
 class HitCreationData:
 	var hit_point: Vector3 = Vector3.ZERO
 	var can_chain: bool = true
@@ -34,6 +37,18 @@ class Hit:
 			var dmg = (damage * crit_damage_multiplier) if is_crit else damage
 			if dmg > 1:
 				dmg = clampf(dmg - armor, 1, dmg)
+				
+				if Global.players_minus_enemies > equal_battle_range:
+					if (hit.is_enemy):
+						dmg *= (1.0 - unequal_battle_damage_scale)
+					else:
+						dmg *= (1.0 + unequal_battle_damage_scale)
+				elif Global.players_minus_enemies < -equal_battle_range:
+					if (hit.is_enemy):
+						dmg *= (1.0 + unequal_battle_damage_scale)
+					else:
+						dmg *= (1.0 - unequal_battle_damage_scale)
+			
 			return round(dmg * 10.0)
 	
 	func duplicate():
