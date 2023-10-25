@@ -81,8 +81,10 @@ signal on_hit_landed(hit_data:Weapon.Hit)
 @export var damage_type: Damage.Type = Damage.Type.Basic
 @export var animation_delay: float = 0
 @export var disabled = false
+@export var scales_with_day = false
 
 var _current_pushback_scale: float = 1.0
+var _current_damage_scale: float = 1.0
 
 var unit:Unit
 var create_hit = CallableStack.new(_create_hit)
@@ -101,6 +103,9 @@ func _on_request_attack(_target:Unit, _me:Unit):
 
 func _set_pushback_scale(value: float):
 	_current_pushback_scale = value
+
+func _set_damage_scale(value: float):
+	_current_damage_scale = value
 
 func _on_enter_combat():
 	Global.execute_later(func(): 
@@ -131,7 +136,9 @@ func _create_hit(enemy:Unit, hit_creation_data:HitCreationData = HitCreationData
 	hit_data.direction = Math.unit_v2(Math.v3_to_v2(enemy.global_position-global_position))
 	hit_data.crit_chance = crit_chance if hit_creation_data.can_crit else 0.0
 	hit_data.crit_damage_multiplier = crit_damage_multiplier
-	hit_data.damage = damage * hit_creation_data.base_damage_scale + randf_range(0, damage_random_component)
+	hit_data.damage = (damage * hit_creation_data.base_damage_scale + randf_range(0, damage_random_component)) * _current_damage_scale
+	if scales_with_day:
+		hit_data.damage *= 1 + (GameManager.I._day / 100.0)
 	hit_data.pushback = pushback * hit_creation_data.base_pushback_scale * _current_pushback_scale
 	hit_data.hit_stun = hit_stun
 	hit_data.damage_type = damage_type
