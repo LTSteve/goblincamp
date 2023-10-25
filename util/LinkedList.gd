@@ -1,6 +1,6 @@
 class_name LinkedList
 
-class LinkedListItem:
+class LinkedListItem extends Object:
 	var previous = null
 	var next = null
 	var value
@@ -29,10 +29,14 @@ func front():
 func pop():
 	if !_front: return null
 	
-	var value = _front.value
+	var old_front = _front
+	var value = old_front.value
 	
-	_front = _front.next
+	_front = old_front.next
 	if _front == null: _end = null
+	
+	#badass alert
+	old_front.free()
 	
 	return value
 

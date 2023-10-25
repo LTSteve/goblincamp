@@ -13,7 +13,6 @@ func _init(effected_unit:Unit, effect_duration: float, is_buff:bool, effect_id: 
 
 func update_duration_and_return_is_finished(delta) -> bool:
 	if !is_instance_valid(unit):
-		print("Effect being called on invalid unit!")
 		return true
 	
 	duration -= delta

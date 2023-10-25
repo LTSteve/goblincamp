@@ -14,7 +14,6 @@ var _num_killed:int = 0
 
 func _on_health_component_died():
 	if !enabled: return
-	
 	var is_crit = randf() < (_num_killed * 0.15)
 	
 	var worth = worth_base + randi_range(-worth_varience, worth_varience)

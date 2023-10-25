@@ -6,6 +6,7 @@ static var I: StatTracker
 
 const cfg_file = "user://high_scores.cfg"
 
+@export var enabled:bool = true
 
 var _user_friendly_text_day = {
 	money_gained = "Money Gained",
@@ -99,6 +100,7 @@ func _ready():
 	_on_day()
 
 func final_calc_and_save():
+	if !enabled: return ""
 	_current_day.wave_length_ms = Time.get_ticks_msec() - _day_start_time
 	_stats.nights.append(_current_day)
 	_stats.total_run_time_ms = Time.get_ticks_msec() - _run_start_time
@@ -134,6 +136,7 @@ func final_calc_and_save():
 		return to_return
 
 func _on_day():
+	if !enabled: return
 	if _current_day:
 		_current_day.wave_length_ms = Time.get_ticks_msec() - _day_start_time
 		_stats.nights.append(_current_day)
@@ -141,6 +144,7 @@ func _on_day():
 	_current_day = _day_template.duplicate()
 
 func _on_units_child_entered_tree(node):
+	if !enabled: return
 	if !(node is Unit): return
 	var group = node.get_groups()[0]
 	match group:
@@ -210,6 +214,7 @@ func _on_unit_recieved_hit(weapon_hit:Weapon.Hit, unit:Unit):
 				_current_day.healing -= weapon_hit.post_crit_damage
 
 func _on_obsticles_child_entered_tree(node):
+	if !enabled: return
 	if !(node is Building): return
 	
 	match (node as Building).building_type:
@@ -222,6 +227,7 @@ func _on_obsticles_child_entered_tree(node):
 	
 
 func _on_money_manager_on_change(new_value:int, old_value:int):
+	if !enabled: return
 	var change = new_value - old_value
 	if change > 0:
 		_current_day.money_gained += change

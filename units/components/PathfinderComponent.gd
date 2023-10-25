@@ -2,7 +2,7 @@ extends Node3D
 
 class_name PathfinderComponent
 
-@onready var navigation_agent = $"../NavigationAgent3D"
+@onready var navigation_agent:NavigationAgent3D = $"../NavigationAgent3D"
 
 @export var at_location_distance: float = 1.5
 
@@ -29,7 +29,6 @@ func find_new_path(movement_target:Vector3):
 func get_next_direction():
 	_nav_finished = _nav_finished || _movement_target.distance_squared_to(global_position) < _at_location_dist_2
 	if _nav_finished: return Vector2.ZERO
-	
 	if _next_path_location.distance_squared_to(global_position) < _at_location_dist_2:
 		if !_get_next_path_position_task || _get_next_path_position_task.done:
 			_get_next_path_position_task = PrioritizedTaskManager.add_medium_priority_task(func(): 
