@@ -527,6 +527,7 @@ multi_target = true
 animation_tree = NodePath("AnimationTree")
 weapon_range = 5.0
 damage = 18.0
+pushback = 20.5
 hit_stun = 1.1
 
 [node name="ogre_weapon" parent="." instance=ExtResource("2_m1iyf")]
@@ -589,4 +590,4 @@ shape = SubResource("BoxShape3D_k2q7n")
 stream = ExtResource("2_33wva")
 volume_db = -6.0
 
-[connection signal="on_hit_landed" from="." to="AudioStreamPlayer3D" method="play" binds= [0.0]]
+[connection signal="on_hit_landed" from="." to="AudioStreamPlayer3D" method="play" unbinds=1]

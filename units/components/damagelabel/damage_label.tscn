@@ -11,7 +11,7 @@ label = NodePath("DamageLabel")
 
 [node name="DamageLabel" type="Label3D" parent="."]
 sorting_offset = 10000.0
-pixel_size = 0.0045
+pixel_size = 0.0032
 billboard = 1
 double_sided = false
 fixed_size = true
