@@ -30,7 +30,7 @@ worth_varience = 7
 [node name="imp" parent="Model/ModelHolder" index="0" instance=ExtResource("2_tftnr")]
 transform = Transform3D(1, 0, -7.10543e-15, 0, 1, 0, 7.10543e-15, 0, 1, 0, 0, 0)
 
-[node name="HealthComponent" parent="." index="3"]
+[node name="HealthComponent" parent="." index="3" groups=["Imp"]]
 max_health = 260.0
 
 [node name="VelocityComponent" parent="." index="4"]

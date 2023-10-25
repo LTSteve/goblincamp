@@ -8,10 +8,7 @@
 [ext_resource type="Resource" uid="uid://dciy1jkbehvwj" path="res://units/components/brain/bow_and_dagger_behaviour.tres" id="6_q8fw5"]
 [ext_resource type="Resource" uid="uid://6a2euiflosoa" path="res://units/components/brain/wander_behaviour.tres" id="7_cpbkr"]
 
-[node name="Woodsman" instance=ExtResource("1_e4j34")]
-
-[node name="Model" parent="." index="1"]
-transform = Transform3D(-2.30258e-08, 0, 0.526768, 0, 0.526768, 0, -0.526768, 0, -2.30258e-08, 0, 0, 0)
+[node name="Woodsman" groups=["Woodsman"] instance=ExtResource("1_e4j34")]
 
 [node name="BowAndDagger" type="Node3D" parent="Model/WeaponHolder" index="0" node_paths=PackedStringArray("bow", "daggers")]
 script = ExtResource("2_gqrex")

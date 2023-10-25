@@ -23,11 +23,18 @@ signal on_spawn_enemy_group(enemy_spawn: EnemySpawnResource)
 
 signal on_night(day:int)
 signal on_day()
+signal on_game_over()
 
 var _day:int = 0
 var _spawned_building:bool = false
 
 static var I: GameManager
+
+func game_over():
+	Wait.timer(2, self, func():
+		if Global.players.size() == 0:
+			on_game_over.emit()
+	)
 
 func cycle_to_day():
 	on_day.emit()

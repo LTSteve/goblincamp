@@ -4,6 +4,8 @@ class_name MoneyManager
 
 static var I:MoneyManager
 
+signal on_change(new_value:int,old_value:int)
+
 @export var label: Label
 @export var starting_money: int = 200
 
@@ -14,9 +16,10 @@ var money: float:
 		return money
 	set(value):
 		if value == money: return
-		
+		if!(value == starting_money && money == 0):
+			on_change.emit(value, money)
 		money = value
-		label.text = "$%d" % money
+		label.text = "%dg" % money
 
 func _ready():
 	I = self

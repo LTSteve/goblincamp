@@ -6,10 +6,7 @@
 [ext_resource type="Resource" uid="uid://c7i3ado8qilji" path="res://units/components/brain/ranged_behaviour.tres" id="4_4f1ng"]
 [ext_resource type="Resource" uid="uid://6a2euiflosoa" path="res://units/components/brain/wander_behaviour.tres" id="5_a72gt"]
 
-[node name="Witch" instance=ExtResource("1_g4nk8")]
-
-[node name="Model" parent="." index="1"]
-transform = Transform3D(-2.30258e-08, 0, 0.526768, 0, 0.526768, 0, -0.526768, 0, -2.30258e-08, 0, 0, 0)
+[node name="Witch" groups=["Witch"] instance=ExtResource("1_g4nk8")]
 
 [node name="Staff" parent="Model/WeaponHolder" index="0" instance=ExtResource("3_sg8hd")]
 

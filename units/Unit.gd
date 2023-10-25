@@ -56,6 +56,8 @@ func _on_died():
 			GameManager.I.cycle_to_day()
 	else: 
 		Global.players = Global.players.filter(func(player): return player != self)
+		if Global.players.size() == 0:
+			GameManager.I.game_over()
 	
 	if is_instance_valid(_last_hit_by) && is_instance_valid(_last_hit_by.unit):
 		_last_hit_by.unit.on_get_kill.emit(kill_value)
