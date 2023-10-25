@@ -8,6 +8,9 @@
 
 [node name="Witch" groups=["Witch"] instance=ExtResource("1_g4nk8")]
 
+[node name="Model" parent="." index="1"]
+transform = Transform3D(-2.30258e-08, 0, 0.526768, 0, 0.526768, 0, -0.526768, 0, -2.30258e-08, 0, 0, 0)
+
 [node name="Staff" parent="Model/WeaponHolder" index="0" instance=ExtResource("3_sg8hd")]
 
 [node name="witch" parent="Model/ModelHolder" index="0" instance=ExtResource("2_kevcb")]
