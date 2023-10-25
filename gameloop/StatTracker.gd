@@ -224,6 +224,6 @@ func _on_obsticles_child_entered_tree(node):
 func _on_money_manager_on_change(new_value:int, old_value:int):
 	var change = new_value - old_value
 	if change > 0:
-		_current_day.money_earned += change
+		_current_day.money_gained += change
 	if change < 0:
 		_current_day.money_spent -= change
