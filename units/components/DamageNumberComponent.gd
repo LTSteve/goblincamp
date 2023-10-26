@@ -23,7 +23,7 @@ func _on_damage_recieved(weapon_hit:Weapon.Hit):
 	_apply_target_position(damage_label)
 	
 	_my_numbers.append(damage_label)
-	damage_label.tree_exiting.connect(func(): _remove_from_my_numbers(damage_label))
+	damage_label.tree_exiting.connect(_remove_from_my_numbers.bind(damage_label))
 
 func _remove_from_my_numbers(damage_label):
 	var index = _my_numbers.find(damage_label)

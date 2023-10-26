@@ -33,10 +33,10 @@ class Hit:
 	
 	var post_crit_damage: float:
 		get:
-			var armor = flat_armor if damage_type == Damage.Type.Basic else 0
 			var dmg = (damage * crit_damage_multiplier) if is_crit else damage
 			if dmg > 1:
-				dmg = clampf(dmg - armor, 1, dmg)
+				var armor = flat_armor if damage_type == Damage.Type.Basic else 0
+				dmg = max(dmg - armor, 1)
 				
 				if Global.players_minus_enemies > equal_battle_range:
 					if (hit.is_enemy):
@@ -131,7 +131,6 @@ func _try_to_attack(target:Unit, me:Unit) -> bool:
 	return true
 
 func _create_hit(enemy:Unit, hit_creation_data:HitCreationData = HitCreationData.new()) -> Weapon.Hit:
-	
 	var hit_data = Hit.new()
 	hit_data.direction = Math.unit_v2(Math.v3_to_v2(enemy.global_position-global_position))
 	hit_data.crit_chance = crit_chance if hit_creation_data.can_crit else 0.0

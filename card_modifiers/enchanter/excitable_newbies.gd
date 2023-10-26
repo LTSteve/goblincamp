@@ -46,7 +46,7 @@ func _apply(rank_component:RankComponent, unit:Unit):
 func _un_apply(_rank_component:RankComponent, unit:Unit):
 	_find_and_remove_from_rookie_list(unit)
 
-func _on_night():
+func _on_night(_day):
 	if current_rank == 0: return
 	
 	_maintain_rookie_list()

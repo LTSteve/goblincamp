@@ -93,6 +93,7 @@ func take_hit(weapon_hit:Weapon.Hit):
 	
 	_last_hit_by = weapon_hit.hit_by
 	_stunned = max(_stunned, weapon_hit.hit_stun)
+	
 	on_recieved_hit.emit(weapon_hit)
 
 func remove_effect(effect:Effect):
