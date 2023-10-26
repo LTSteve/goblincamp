@@ -41,7 +41,7 @@ func assign_target(delta, brain:BrainComponent, behaviour_data:BowAndDaggerBehav
 	
 	# throttle mode switches so the unit doesn't get stuck swapping back and forth
 	if behaviour_data.mode_switch_cooldown <= 0:
-		var new_melee = force_melee || brain.fleeing.size() > min_nearby_melee_threshold && brain.fleeing.size() <= max_nearby_melee_threshold
+		var new_melee = force_melee || brain.fleeing.size() >= min_nearby_melee_threshold && brain.fleeing.size() <= max_nearby_melee_threshold
 		if new_melee != behaviour_data.melee:
 			behaviour_data.melee = new_melee
 			behaviour_data.mode_switch_cooldown = mode_switch_limit

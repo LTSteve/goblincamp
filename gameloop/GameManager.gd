@@ -52,6 +52,7 @@ func _ready():
 @export var unit_moves_per_tick: int = 100
 @export var max_update_msec: int = 4
 @export var unit_updates_per_time_check: int = 5
+@export var enemy_power_limit: int = 40
 var _unit_index: int = 0
 
 static var time_scale: int = 1
@@ -123,7 +124,7 @@ func _spawn_wave(day: int):
 	var random_component = randi_range(0,1)
 	var linear_component = floor(day * 0.5)
 	
-	var spawn_power = clampi(random_component+linear_component+cycle, 1, 30) + flat_enemy_power_increase
+	var spawn_power = clampi(random_component+linear_component+cycle, 1, enemy_power_limit) + flat_enemy_power_increase
 	
 	var available_enemy_spawns = enemy_spawns.filter(
 	func(es): 

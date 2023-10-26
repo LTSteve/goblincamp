@@ -46,7 +46,7 @@ var _day_template = {
 	
 	blacksmiths_purchased = 0,
 	leatherworkers_purchased = 0,
-	enchaters_purchased = 0,
+	enchanters_purchased = 0,
 	
 	knights_purchased = 0,
 	witches_purchased = 0,

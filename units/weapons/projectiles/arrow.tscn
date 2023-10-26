@@ -9,6 +9,7 @@
 [ext_resource type="Script" path="res://units/components/VelocityComponent.gd" id="3_xoxxp"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_nqljr"]
+radius = 0.2
 
 [node name="Arrow" type="RigidBody3D" node_paths=PackedStringArray("collision_areas", "hit_spot") groups=["Arrow"]]
 collision_layer = 0

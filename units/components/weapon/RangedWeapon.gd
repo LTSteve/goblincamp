@@ -26,7 +26,8 @@ func _on_spawn_projectile():
 	
 	if _current_target && is_instance_valid(_current_target):
 		if dumb_projectile:
-			projectile.direction = Math.v3_to_v2(Math.unit_v3(_current_target.global_position - global_position))
+			var target_position = _current_target.global_position + Math.v2_to_v3(Math.rand_v2_range(0, _current_target.ranged_targeting_radius))
+			projectile.direction = Math.v3_to_v2((target_position - global_position).normalized())
 		else:
 			projectile.target = _current_target
 			projectile.direction = (_current_target.global_position - projectile.global_position).normalized()

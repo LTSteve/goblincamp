@@ -44,11 +44,11 @@ transform = Transform3D(0.722406, -0.635762, 0.271906, 0.688905, 0.627932, -0.36
 transform = Transform3D(0.707106, -0.612372, 0.353553, 0.707106, 0.612372, -0.353553, 6.03961e-14, 0.5, 0.866024, -1.56313, -1.85334, 1.22444)
 
 [node name="HealthComponent" parent="." index="3"]
-max_health = 850.0
+max_health = 640.0
 
 [node name="VelocityComponent" parent="." index="4"]
-max_speed = 5.6
-acceleration = 1.9
+max_speed = 4.5
+acceleration = 1.5
 
 [node name="MaterialOverrideComponent" parent="." index="9" node_paths=PackedStringArray("mesh_instance")]
 mesh_instance = NodePath("../Model/ModelHolder/woodsman/woodsman2")

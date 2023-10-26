@@ -14,6 +14,8 @@ var cardinal_claims: Array[bool] = [false, false, false, false, false, false, fa
 @onready var collision_shape: CollisionShape3D = $CollisionShape3D
 @onready var pathfinder_component: PathfinderComponent = $PathfinderComponent
 
+@export var ranged_targeting_radius: float = 1
+
 @export var is_enemy: bool = false
 @export var kill_value: float = 1
 
