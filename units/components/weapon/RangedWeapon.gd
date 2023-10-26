@@ -29,9 +29,12 @@ func _on_spawn_projectile():
 			projectile.direction = Math.v3_to_v2(Math.unit_v3(_current_target.global_position - global_position))
 		else:
 			projectile.target = _current_target
+			projectile.direction = (_current_target.global_position - projectile.global_position).normalized()
 	else:
 		# forward i think?
 		projectile.direction = Math.v3_to_v2(global_transform.basis.x)
+	
+	projectile._try_look_in_direction(projectile.direction)
 	
 	#assign collision mask of hitboxes
 	for area in projectile.collision_areas:

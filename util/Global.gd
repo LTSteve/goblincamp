@@ -95,9 +95,11 @@ static func get_all_units_near_position(units: Array[Unit], position:Vector3, ra
 	if(!units || units.size() == 0):
 		return []
 	
+	var r2 = radius * radius
+	
 	var all: Array[Unit] = []
 	for unit in units:
-		if((unit.global_position - position).length() <= radius):
+		if((unit.global_position - position).length_squared() <= r2):
 			all.append(unit)
 	
 	return all

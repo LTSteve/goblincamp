@@ -1,4 +1,4 @@
-[gd_scene load_steps=69 format=3 uid="uid://c4d1d2j1uy0kb"]
+[gd_scene load_steps=70 format=3 uid="uid://c4d1d2j1uy0kb"]
 
 [ext_resource type="PackedScene" uid="uid://b43v6jawtpn5j" path="res://ground.tscn" id="2_oaunj"]
 [ext_resource type="PackedScene" uid="uid://o2t0d4q03eun" path="res://buildings/campfire.tscn" id="3_8yp2w"]
@@ -28,6 +28,7 @@
 [ext_resource type="Script" path="res://controls/BuyPanelToggle.gd" id="18_ekxat"]
 [ext_resource type="Resource" uid="uid://kcxtpg5flv87" path="res://card_modifiers/enemy_deck.tres" id="18_euj83"]
 [ext_resource type="PackedScene" uid="uid://crl8047c1ire1" path="res://units/unit_cams/woodsman_cam.tscn" id="19_n5c1i"]
+[ext_resource type="Resource" uid="uid://cpvefuouxnj5t" path="res://card_modifiers/leatherworker/taste_for_blood.tres" id="19_vtkvn"]
 [ext_resource type="Environment" uid="uid://b8hhv81bda8f4" path="res://units/unit_cams/unit_cam_env.tres" id="20_g2brn"]
 [ext_resource type="PackedScene" uid="uid://cl56424ctmbxa" path="res://controls/card_display.tscn" id="22_g0iv7"]
 [ext_resource type="Texture2D" uid="uid://bowt7360oe3sr" path="res://models/buildings/blacksmith_pallete.png" id="22_jlfs3"]
@@ -314,6 +315,7 @@ blacksmith_deck = ExtResource("15_g501y")
 leatherworker_deck = ExtResource("16_jvfo2")
 enchanter_deck = ExtResource("17_asfou")
 enemy_deck = ExtResource("18_euj83")
+force_card = ExtResource("19_vtkvn")
 
 [node name="Node" type="Node" parent="CardModifiers"]
 
