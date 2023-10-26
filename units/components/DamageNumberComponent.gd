@@ -8,7 +8,10 @@ var settings: DamageLabelSettingsResource = preload("res://units/components/dama
 
 static var _my_numbers: Array[DamageLabel] = []
 
+@export var _setting:SettingResource
+
 func _on_damage_recieved(weapon_hit:Weapon.Hit):
+	if !_setting.value: return
 	var post_crit_damage =  abs((weapon_hit.post_crit_damage) as int)
 	if post_crit_damage == 0: return
 	

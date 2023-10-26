@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="SettingResource" load_steps=4 format=3 uid="uid://cdlnp60gmumhc"]
+
+[ext_resource type="Texture2D" uid="uid://c7heskhpd55ok" path="res://icons/circle.png" id="1_cx26c"]
+[ext_resource type="Texture2D" uid="uid://7kf6734kttng" path="res://icons/plain-circle.png" id="2_l56lx"]
+[ext_resource type="Script" path="res://controls/settings/SettingResource.gd" id="3_b4nrk"]
+
+[resource]
+script = ExtResource("3_b4nrk")
+name = "DAMAGE NUMBERS"
+icon_off = ExtResource("1_cx26c")
+icon_on = ExtResource("2_l56lx")
+setting_type = 1
+default_setting_value_toggle = true
+default_setting_value_slide = 1.0
