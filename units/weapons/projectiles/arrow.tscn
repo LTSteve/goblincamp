@@ -31,7 +31,6 @@ model = NodePath("HeightComponent/woodsman_projectile")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(-2.30258e-08, 0, 0.526768, 0, 0.526768, 0, -0.526768, 0, -2.30258e-08, 0, 0, 0)
 shape = SubResource("SphereShape3D_nqljr")
-disabled = true
 
 [node name="VelocityComponent" type="Node" parent="."]
 script = ExtResource("3_xoxxp")

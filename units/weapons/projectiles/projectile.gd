@@ -46,9 +46,7 @@ func do_move(delta: float):
 	
 	if direction.length_squared() < 0.01 || lifespan <= 0:
 		if free_on_hit || lifespan <= 0:
-			if model: model.visible = false
-			if particles: particles.emitting = false
-			Wait.timer(1.0, self, _free_self)
+			_queue_free_self()
 		else:
 			destination_reached.emit()
 		return
@@ -63,14 +61,18 @@ func _try_look_in_direction(dir:Vector2):
 
 func _on_area_3d_body_entered(_body):
 	if(free_on_hit):
-		if model: model.visible = false
-		if particles: particles.emitting = false
-		Wait.timer(1.0, self, _free_self)
+		_queue_free_self()
 	if leave_behind_sfx_scene:
 		var leave_behind = leave_behind_sfx_scene.instantiate() as LeaveBehindSFX
 		leave_behind.stream = sfx.pick_random()
 		get_tree().root.add_child.call_deferred(leave_behind)
 
+func _queue_free_self():
+	if model: model.visible = false
+	if particles: particles.emitting = false
+	for area in collision_areas:
+		area.set_deferred("monitoring", false)
+	Wait.timer(1.0, self, _free_self)
+
 func _free_self():
-	print("free_self")
 	self.queue_free()
