@@ -38,9 +38,8 @@ func _on_spawn_projectile():
 	projectile._try_look_in_direction(projectile.direction)
 	
 	#assign collision mask of hitboxes
-	for area in projectile.collision_areas:
-		area.collision_mask = _target_collision_layer_hack
-		area.area_entered.connect(_on_area_3d_body_entered.bind(projectile))
+	projectile.collision_mask = _target_collision_layer_hack
+	projectile.area_entered.connect(_on_area_3d_body_entered.bind(projectile))
 
 # weapon hit enemy
 func _on_area_3d_body_entered(enemy, projectile:Projectile):

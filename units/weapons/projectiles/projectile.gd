@@ -1,8 +1,7 @@
-extends RigidBody3D
+extends Area3D
 
 class_name Projectile
 
-@export var collision_areas: Array[Area3D]
 @export var hit_spot: Node3D
 
 @export var lifespan:float = 10
@@ -54,7 +53,7 @@ func do_move(delta: float):
 	_try_look_in_direction(direction)
 	
 	velocity_component.set_direction(direction)
-	velocity_component.move_physics(self, delta)
+	velocity_component.move_basic(self, delta)
 
 func _try_look_in_direction(dir:Vector2):
 	look_at(global_position + Math.v2_to_v3(dir))
@@ -70,8 +69,7 @@ func _on_area_3d_body_entered(_body):
 func _queue_free_self():
 	if model: model.visible = false
 	if particles: particles.emitting = false
-	for area in collision_areas:
-		area.set_deferred("monitoring", false)
+	set_deferred("monitoring", false)
 	Wait.timer(1.0, self, _free_self)
 
 func _free_self():
