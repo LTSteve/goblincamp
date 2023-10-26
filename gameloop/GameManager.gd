@@ -144,7 +144,11 @@ func _spawn_wave(day: int):
 	var spawns: Array[EnemySpawnResource] = []
 	
 	if force_spawn_enemy_type != null:
-		var force_spawn = available_enemy_spawns.filter(func(es): return es.enemies.has(force_spawn_enemy_type))[0]
+		var available_forced_enemies = available_enemy_spawns.filter(func(es): return es.enemies.has(force_spawn_enemy_type))
+		available_forced_enemies.sort_custom(func(es1, es2):
+			return es1.level > es2.level
+		)
+		var force_spawn = available_forced_enemies[0]
 		spawns.append(force_spawn)
 		force_spawn_enemy_type = null
 		spawn_power -= force_spawn.level

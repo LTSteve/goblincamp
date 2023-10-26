@@ -21,7 +21,7 @@ func _ready():
 	var crit_multiplier = settings.crit_color_multiplier if is_crit else Color.WHITE
 	var damage_color = settings.ally_damage_color if (is_ally && damage_type != Damage.Type.Heal) else settings.damage_base_colors[damage_type]
 	label.modulate = damage_color * crit_multiplier
-	label.pixel_size = settings.pixel_size
+	label.pixel_size = settings.pixel_size * 0.01
 	if is_crit: label.pixel_size *= settings.crit_font_scale
 	
 	if audio_stream:
