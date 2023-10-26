@@ -9,7 +9,7 @@
 script = ExtResource("1_mid0l")
 test_card = false
 title = "Multi-Strung bows"
-descriptions = Array[String](["Bows fire 3 arrows per salvo, each arrow deals {[current_rank]*[.damage_scale]*100}% damage"])
+descriptions = Array[String](["Bows fire 3 arrows per salvo, each arrow deals 30% damage", "Bows fire 3 arrows per salvo, each arrow deals 45% damage", "Bows fire 3 arrows per salvo, each arrow deals 60% damage"])
 rarity = 2
 max_rank = 3
 card_script = ExtResource("1_0nb8d")

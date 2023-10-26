@@ -15,6 +15,7 @@ var cardinal_claims: Array[bool] = [false, false, false, false, false, false, fa
 @onready var pathfinder_component: PathfinderComponent = $PathfinderComponent
 
 @export var ranged_targeting_radius: float = 1
+@export var stun_scale: float = 1
 
 @export var is_enemy: bool = false
 @export var kill_value: float = 1
@@ -94,7 +95,7 @@ func take_hit(weapon_hit:Weapon.Hit):
 		add_effect(effect)
 	
 	_last_hit_by = weapon_hit.hit_by
-	_stunned = max(_stunned, weapon_hit.hit_stun)
+	_stunned = max(_stunned, weapon_hit.hit_stun * stun_scale)
 	
 	on_recieved_hit.emit(weapon_hit)
 

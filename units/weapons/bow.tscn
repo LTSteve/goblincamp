@@ -1560,10 +1560,9 @@ projectile_spawn_point = NodePath("projectile_spawn")
 dumb_projectile = true
 animation_tree = NodePath("AnimationTree")
 weapon_range = 23.0
-damage = 4.2
-damage_random_component = 3.0
-pushback = 0.6
-hit_stun = 0.2
+damage = 5.6
+pushback = 0.4
+hit_stun = 0.1
 crit_chance = 0.03
 
 [node name="woodsman_weapon_ranged" parent="." instance=ExtResource("3_npfdp")]

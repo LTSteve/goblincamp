@@ -13,6 +13,7 @@ height = 8.0
 [node name="Ogre" groups=["Ogre"] instance=ExtResource("1_yqnhr")]
 collision_layer = 2
 ranged_targeting_radius = 2.2
+stun_scale = 0.5
 is_enemy = true
 
 [node name="CollisionShape3D" parent="." index="0"]
@@ -42,7 +43,7 @@ max_health = 2200.0
 [node name="VelocityComponent" parent="." index="4"]
 max_speed = 4.0
 acceleration = 2.5
-pushback_scale = 0.15
+pushback_scale = 0.02
 
 [node name="ArmorComponent" parent="." index="7"]
 armor = 2

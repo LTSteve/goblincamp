@@ -15,6 +15,6 @@ func _un_apply(node,_unit):
 		node.set("parameters/Attack/conditions/use_attack_2", false)
 
 func _create_hit_override(_base_value:Weapon.Hit, current_value:Weapon.Hit):
-	current_value.damage *= params.damage_scale * current_rank
+	current_value.damage *= (params.damage_base_scale + params.damage_scale * current_rank)
 	return current_value
 
