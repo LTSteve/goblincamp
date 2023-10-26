@@ -30,7 +30,7 @@ func _on_spawn_projectile():
 			projectile.direction = Math.v3_to_v2((target_position - global_position).normalized())
 		else:
 			projectile.target = _current_target
-			projectile.direction = (_current_target.global_position - projectile.global_position).normalized()
+			projectile.direction = Math.v3_to_v2(_current_target.global_position - projectile.global_position).normalized()
 	else:
 		# forward i think?
 		projectile.direction = Math.v3_to_v2(global_transform.basis.x)
@@ -40,7 +40,7 @@ func _on_spawn_projectile():
 	#assign collision mask of hitboxes
 	for area in projectile.collision_areas:
 		area.collision_mask = _target_collision_layer_hack
-		area.body_entered.connect(func(enemy): _on_area_3d_body_entered(enemy, projectile))
+		area.body_entered.connect(_on_area_3d_body_entered.bind(projectile))
 
 # weapon hit enemy
 func _on_area_3d_body_entered(enemy, projectile:Projectile):

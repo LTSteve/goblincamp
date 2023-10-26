@@ -13,10 +13,16 @@ class_name AreaOfEffect
 var callback: Callable
 
 @export var particles: Array[GPUParticles3D]
+@export var leave_behind_sfx_scene: PackedScene = preload("res://sfx/leave_behind_sfx.tscn")
+@export var hit_sfx: Array[AudioStream]
 
 func _ready():
 	if lifespan == 0:
 		call_deferred("_effect_units")
+	if hit_sfx && hit_sfx.size() > 0:
+		var sfx = leave_behind_sfx_scene.instantiate() as LeaveBehindSFX
+		sfx.stream = hit_sfx.pick_random()
+		get_tree().root.add_child(sfx)
 
 func _process(delta):
 	lifespan -= delta

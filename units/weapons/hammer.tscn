@@ -1,7 +1,6 @@
-[gd_scene load_steps=17 format=3 uid="uid://5kxgrj763bh2"]
+[gd_scene load_steps=16 format=3 uid="uid://5kxgrj763bh2"]
 
 [ext_resource type="Script" path="res://units/components/weapon/MeleeWeapon.gd" id="1_3b5up"]
-[ext_resource type="AudioStream" uid="uid://qrr4ypym75ld" path="res://sfx/explosion.wav" id="2_33wva"]
 [ext_resource type="PackedScene" uid="uid://di48j8kwxi5nu" path="res://models/ogre/ogre_weapon.glb" id="2_m1iyf"]
 [ext_resource type="AnimationNodeStateMachine" uid="uid://dawvd5u6rapgb" path="res://units/weapons/weapon_animation_state_machine.tres" id="3_s244m"]
 [ext_resource type="Script" path="res://util/AnimationTreeExpressionExtension.gd" id="4_2is1a"]
@@ -586,9 +585,3 @@ monitoring = false
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Hitboxes/Area3D3"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.9884, 0.824262, -5.1357)
 shape = SubResource("BoxShape3D_k2q7n")
-
-[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
-stream = ExtResource("2_33wva")
-volume_db = -8.0
-
-[connection signal="on_hit_landed" from="." to="AudioStreamPlayer3D" method="play" unbinds=1]

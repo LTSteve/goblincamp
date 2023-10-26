@@ -44,7 +44,7 @@ vertex_color_use_as_albedo = true
 material = SubResource("StandardMaterial3D_xuvs3")
 size = Vector3(0.1, 0.1, 0.1)
 
-[node name="Ember" type="RigidBody3D" node_paths=PackedStringArray("collision_areas", "hit_spot") groups=["Fireball"]]
+[node name="Ember" type="RigidBody3D" node_paths=PackedStringArray("collision_areas", "hit_spot", "model", "particles") groups=["Fireball"]]
 collision_layer = 0
 collision_mask = 0
 axis_lock_linear_y = true
@@ -54,45 +54,50 @@ gravity_scale = 0.0
 custom_integrator = true
 freeze = true
 script = ExtResource("1_yidec")
-collision_areas = [NodePath("witch_projectile/Hitboxes/Area3D")]
-hit_spot = NodePath("witch_projectile/HitSpot")
+collision_areas = [NodePath("Hitboxes/Area3D")]
+hit_spot = NodePath("HeightComponent/witch_projectile/HitSpot")
 lifespan = 4.0
 free_on_hit = false
 leave_behind_sfx_scene = ExtResource("2_p0hja")
 sfx = Array[AudioStream]([ExtResource("3_wi4em"), ExtResource("4_xs2wk")])
+model = NodePath("HeightComponent/witch_projectile")
+particles = NodePath("HeightComponent/GPUParticles3D")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(-2.30258e-08, 0, 0.526768, 0, 0.526768, 0, -0.526768, 0, -2.30258e-08, 0, 0, 0)
 shape = SubResource("SphereShape3D_nqljr")
 disabled = true
 
-[node name="witch_projectile" parent="." instance=ExtResource("2_kouxg")]
-transform = Transform3D(-1.31134e-08, 0, 0.3, 0, 0.3, 0, -0.3, 0, -1.31134e-08, 0, 0, 0)
-script = ExtResource("3_na574")
-offset = 1.369
+[node name="VelocityComponent" type="Node" parent="."]
+script = ExtResource("5_vfmu3")
+max_speed = 9.0
 
-[node name="Hitboxes" type="Node3D" parent="witch_projectile"]
+[node name="Hitboxes" type="Node3D" parent="."]
+transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, 0, 0)
 script = ExtResource("4_utgwq")
-offset = 1.369
+offset = 1.0
 
-[node name="Area3D" type="Area3D" parent="witch_projectile/Hitboxes"]
+[node name="Area3D" type="Area3D" parent="Hitboxes"]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="witch_projectile/Hitboxes/Area3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Hitboxes/Area3D"]
 shape = SubResource("SphereShape3D_nqljr")
 
-[node name="HitSpot" type="Node3D" parent="witch_projectile"]
-transform = Transform3D(1, 0, 1.06581e-14, 0, 1, 0, -1.06581e-14, 0, 1, 0.16942, 0, 7.40561e-09)
+[node name="HeightComponent" type="Node3D" parent="."]
+script = ExtResource("3_na574")
+offset = 1.0
 
-[node name="GPUParticles3D" type="GPUParticles3D" parent="witch_projectile"]
-transform = Transform3D(-6.3279, 0, 5.53202e-07, 0, 6.3279, 0, -5.53202e-07, 0, -6.3279, 0, 0, 0)
+[node name="GPUParticles3D" type="GPUParticles3D" parent="HeightComponent"]
+transform = Transform3D(-8.29803e-08, 0, -1.89837, 0, 1.89837, 0, 1.89837, 0, -8.29803e-08, 0, 0, 0)
 amount = 10
 lifetime = 0.5
 process_material = SubResource("ParticleProcessMaterial_xngn3")
 draw_pass_1 = SubResource("BoxMesh_eoqya")
 
-[node name="VelocityComponent" type="Node" parent="."]
-script = ExtResource("5_vfmu3")
-max_speed = 9.0
+[node name="witch_projectile" parent="HeightComponent" instance=ExtResource("2_kouxg")]
+transform = Transform3D(-1.31134e-08, 0, 0.3, 0, 0.3, 0, -0.3, 0, -1.31134e-08, 0, 0, 0)
+
+[node name="HitSpot" type="Node3D" parent="HeightComponent/witch_projectile"]
+transform = Transform3D(1, 0, 1.06581e-14, 0, 1, 0, -1.06581e-14, 0, 1, 0.16942, 0, 7.40561e-09)
 
 [connection signal="tree_exiting" from="." to="." method="_on_tree_exiting"]
-[connection signal="body_entered" from="witch_projectile/Hitboxes/Area3D" to="." method="_on_area_3d_body_entered"]
+[connection signal="body_entered" from="Hitboxes/Area3D" to="." method="_on_area_3d_body_entered"]

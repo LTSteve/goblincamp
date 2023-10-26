@@ -11,7 +11,9 @@ class_name Projectile
 
 @export var leave_behind_sfx_scene: PackedScene
 @export var sfx: Array[AudioStream]
-@export var sfx_volume_db: float = -3.0
+
+@export var model: Node3D
+@export var particles: GPUParticles3D
 
 @onready var velocity_component: VelocityComponent = $"VelocityComponent"
 
@@ -44,7 +46,9 @@ func do_move(delta: float):
 	
 	if direction.length_squared() < 0.01 || lifespan <= 0:
 		if free_on_hit || lifespan <= 0:
-			self.queue_free()
+			if model: model.visible = false
+			if particles: particles.emitting = false
+			Wait.timer(1.0, self, _free_self)
 		else:
 			destination_reached.emit()
 		return
@@ -59,9 +63,14 @@ func _try_look_in_direction(dir:Vector2):
 
 func _on_area_3d_body_entered(_body):
 	if(free_on_hit):
-		self.queue_free()
+		if model: model.visible = false
+		if particles: particles.emitting = false
+		Wait.timer(1.0, self, _free_self)
 	if leave_behind_sfx_scene:
 		var leave_behind = leave_behind_sfx_scene.instantiate() as LeaveBehindSFX
 		leave_behind.stream = sfx.pick_random()
-		leave_behind.volume_db = sfx_volume_db
 		get_tree().root.add_child.call_deferred(leave_behind)
+
+func _free_self():
+	print("free_self")
+	self.queue_free()

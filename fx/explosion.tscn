@@ -1,7 +1,8 @@
-[gd_scene load_steps=18 format=3 uid="uid://gl44aty0wmuc"]
+[gd_scene load_steps=19 format=3 uid="uid://gl44aty0wmuc"]
 
 [ext_resource type="Script" path="res://fx/AreaOfEffect.gd" id="1_gxu7o"]
 [ext_resource type="Script" path="res://units/components/HeightComponent.gd" id="2_tyi5b"]
+[ext_resource type="AudioStream" uid="uid://qrr4ypym75ld" path="res://sfx/explosion.wav" id="3_7i06x"]
 [ext_resource type="AudioStream" uid="uid://p3r2i8gwj4k6" path="res://sfx/explosion2.wav" id="3_637yt"]
 
 [sub_resource type="Gradient" id="Gradient_2xkl5"]
@@ -80,6 +81,7 @@ script = ExtResource("1_gxu7o")
 enemies = true
 radius = 7.0
 particles = [NodePath("ParticleSpawnPoint/GPUParticles3D"), NodePath("ParticleSpawnPoint/GPUParticles3D2")]
+hit_sfx = Array[AudioStream]([ExtResource("3_637yt"), ExtResource("3_7i06x")])
 
 [node name="ParticleSpawnPoint" type="Node3D" parent="."]
 script = ExtResource("2_tyi5b")
@@ -105,8 +107,3 @@ local_coords = true
 draw_order = 3
 process_material = SubResource("ParticleProcessMaterial_8ijtj")
 draw_pass_1 = SubResource("SphereMesh_8otmo")
-
-[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
-stream = ExtResource("3_637yt")
-volume_db = -9.0
-autoplay = true
