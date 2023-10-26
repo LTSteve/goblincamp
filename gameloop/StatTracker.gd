@@ -14,7 +14,7 @@ var _user_friendly_text_day = {
 	
 	blacksmiths_purchased = "Blacksmiths Purchased",
 	leatherworkers_purchased = "Leatherworkers Purchased",
-	enchaters_purchased = "Enchaters Purchased",
+	enchanters_purchased = "Enchaters Purchased",
 	
 	knights_purchased = "Knights Purchased",
 	witches_purchased = "Witches Purchased",

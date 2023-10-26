@@ -4,8 +4,7 @@
 [ext_resource type="Resource" uid="uid://bk7k4xsv6ss7o" path="res://controls/settings_types/audio.tres" id="2_6oy22"]
 
 [node name="LeaveBehindSFX" type="AudioStreamPlayer3D"]
-volume_db = -2.0
-max_db = 1.0
+max_db = 0.0
 bus = &"InWorld"
 script = ExtResource("1_awbad")
 _setting = ExtResource("2_6oy22")
