@@ -1,4 +1,4 @@
-extends CharacterBody3D
+extends Area3D
 
 class_name Unit
 
@@ -83,7 +83,7 @@ func do_move(delta):
 	rotation_component.turn(_facing_direction, self, delta)
 	
 	rotation_component.apply_rotation(self)
-	velocity_component.move(self)
+	velocity_component.move_basic(self, delta)
 
 func take_hit(weapon_hit:Weapon.Hit):
 	#calculate crits and armor now after all other calculations

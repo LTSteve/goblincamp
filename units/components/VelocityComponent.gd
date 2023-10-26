@@ -72,6 +72,9 @@ func move_physics(rigid_body:RigidBody3D, delta:float):
 	rigid_body.linear_velocity = Math.v2_to_v3(_velocity, 0)
 	rigid_body.move_and_collide(rigid_body.linear_velocity * delta)
 
+func move_basic(node:Node3D, delta:float):
+	node.global_position += Math.v2_to_v3(_velocity * delta, 0)
+
 func apply_delta(delta):
 	return _velocity * delta
 

@@ -43,7 +43,7 @@ func turn(direction:Vector2, unit:Unit, delta):
 	
 	_direction = _direction.rotated(velocity)
 
-func apply_rotation(character_body:CharacterBody3D):
+func apply_rotation(character_body:Node3D):
 	if _direction == _last_looked_at: return
 	_last_looked_at = _direction
 	character_body.look_at(Math.v2_to_v3(_direction + Math.v3_to_v2(character_body.global_position), character_body.global_position.y))

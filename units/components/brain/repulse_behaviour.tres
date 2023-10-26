@@ -1,0 +1,7 @@
+[gd_resource type="Resource" script_class="RepulseBehaviour" load_steps=2 format=3 uid="uid://du4glkse3tqoh"]
+
+[ext_resource type="Script" path="res://units/components/brain/RepulseBehaviour.gd" id="1_vf3ce"]
+
+[resource]
+script = ExtResource("1_vf3ce")
+push_force = 10.0

@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://csnv4vhujnneq"]
+[gd_scene load_steps=7 format=3 uid="uid://csnv4vhujnneq"]
 
 [ext_resource type="PackedScene" uid="uid://brhc1aba5usew" path="res://units/unit.tscn" id="1_g4nk8"]
 [ext_resource type="PackedScene" uid="uid://c66o7ssgncoaa" path="res://models/witch/witch.glb" id="2_kevcb"]
 [ext_resource type="PackedScene" uid="uid://yqmlu4dtpagw" path="res://units/weapons/staff.tscn" id="3_sg8hd"]
 [ext_resource type="Resource" uid="uid://c7i3ado8qilji" path="res://units/components/brain/ranged_behaviour.tres" id="4_4f1ng"]
+[ext_resource type="Resource" uid="uid://du4glkse3tqoh" path="res://units/components/brain/repulse_behaviour.tres" id="4_e1jap"]
 [ext_resource type="Resource" uid="uid://6a2euiflosoa" path="res://units/components/brain/wander_behaviour.tres" id="5_a72gt"]
 
 [node name="Witch" groups=["Witch"] instance=ExtResource("1_g4nk8")]
@@ -51,7 +52,7 @@ acceleration = 1.6
 mesh_instance = NodePath("../Model/ModelHolder/witch/witch2")
 
 [node name="BrainComponent" parent="." index="10"]
-behaviours = Array[Resource("res://units/components/brain/Behaviour.gd")]([ExtResource("4_4f1ng"), ExtResource("5_a72gt")])
+behaviours = Array[Resource("res://units/components/brain/Behaviour.gd")]([ExtResource("4_e1jap"), ExtResource("4_4f1ng"), ExtResource("5_a72gt")])
 
 [editable path="Model/ModelHolder/witch"]
 [editable path="Model/ModelHolder/RankComponent"]

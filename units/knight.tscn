@@ -1,12 +1,17 @@
-[gd_scene load_steps=6 format=3 uid="uid://ckt2arpn61tpv"]
+[gd_scene load_steps=7 format=3 uid="uid://ckt2arpn61tpv"]
 
 [ext_resource type="PackedScene" uid="uid://brhc1aba5usew" path="res://units/unit.tscn" id="1_d7e8e"]
 [ext_resource type="PackedScene" uid="uid://bjni3yp3c1c0c" path="res://models/knight/knight.glb" id="2_71j88"]
 [ext_resource type="PackedScene" uid="uid://p0owu7fjhs2u" path="res://units/weapons/sword.tscn" id="3_qgv83"]
+[ext_resource type="Resource" uid="uid://du4glkse3tqoh" path="res://units/components/brain/repulse_behaviour.tres" id="4_77og7"]
 [ext_resource type="Resource" uid="uid://cao1bytnssy28" path="res://units/components/brain/melee_behaviour.tres" id="4_u2k7p"]
 [ext_resource type="Resource" uid="uid://6a2euiflosoa" path="res://units/components/brain/wander_behaviour.tres" id="5_2y4yu"]
 
 [node name="Knight" groups=["Knight"] instance=ExtResource("1_d7e8e")]
+ranged_targeting_radius = null
+stun_scale = null
+is_enemy = null
+kill_value = null
 
 [node name="Sword" parent="Model/WeaponHolder" index="0" instance=ExtResource("3_qgv83")]
 
@@ -32,7 +37,7 @@ visible = false
 max_health = 1000.0
 
 [node name="VelocityComponent" parent="." index="4"]
-max_speed = 2.75
+max_speed = 3.5
 acceleration = 2.0
 pushback_scale = 0.9
 
@@ -43,7 +48,7 @@ armor = 1
 mesh_instance = NodePath("../Model/ModelHolder/knight/knight2")
 
 [node name="BrainComponent" parent="." index="10"]
-behaviours = Array[Resource("res://units/components/brain/Behaviour.gd")]([ExtResource("4_u2k7p"), ExtResource("5_2y4yu")])
+behaviours = Array[Resource("res://units/components/brain/Behaviour.gd")]([ExtResource("4_77og7"), ExtResource("4_u2k7p"), ExtResource("5_2y4yu")])
 
 [editable path="Model/ModelHolder/knight"]
 [editable path="Model/ModelHolder/RankComponent"]

@@ -15,7 +15,7 @@ var _already_hit:Array[Unit] = []
 func _ready():
 	super._ready()
 	for area in collision_areas:
-		area.body_entered.connect(_on_area_3d_body_entered)
+		area.area_entered.connect(_on_area_3d_body_entered)
 
 func _on_request_attack(target:Unit, me:Unit):
 	if ! _try_to_attack(target, me): return

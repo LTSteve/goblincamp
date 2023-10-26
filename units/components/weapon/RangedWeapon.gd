@@ -40,7 +40,7 @@ func _on_spawn_projectile():
 	#assign collision mask of hitboxes
 	for area in projectile.collision_areas:
 		area.collision_mask = _target_collision_layer_hack
-		area.body_entered.connect(_on_area_3d_body_entered.bind(projectile))
+		area.area_entered.connect(_on_area_3d_body_entered.bind(projectile))
 
 # weapon hit enemy
 func _on_area_3d_body_entered(enemy, projectile:Projectile):

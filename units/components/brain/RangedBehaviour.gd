@@ -7,9 +7,6 @@ class_name RangedBehaviour
 
 func initialize(brain:BrainComponent):
 	brain.weapons += _bind_to_all_weapons(brain,typeof(RangedWeapon))
-	if brain.flee_range:
-		brain.flee_range.body_entered.connect(_on_body_entered_flee_range.bind(brain))
-		brain.flee_range.body_exited.connect(_on_body_exited_flee_range.bind(brain))
 	return brain.weapons[0] if brain.weapons.size() else null
 
 func assign_target(_delta, brain:BrainComponent, _weapon):
@@ -24,8 +21,6 @@ func assign_target(_delta, brain:BrainComponent, _weapon):
 	
 	if !brain.target:
 		brain.exit_combat.emit()
-	
-	_clean_fleeing_list(brain)
 
 func process(_delta, brain:BrainComponent, weapon):
 	if !brain.target || !weapon:
@@ -53,22 +48,3 @@ func process(_delta, brain:BrainComponent, weapon):
 	brain.request_attack.emit(brain.target,brain.unit)
 	
 	return true
-
-func _clean_fleeing_list(brain:BrainComponent):
-	var to_remove = []
-	var index = 0
-	for enemy in brain.fleeing:
-		if !enemy || !is_instance_valid(enemy):
-			to_remove.append(index)
-		index += 1
-	
-	for i in to_remove.size():
-		brain.fleeing.remove_at(to_remove[i])
-
-func _on_body_entered_flee_range(enemy, brain:BrainComponent):
-	if !(enemy is Unit): return
-	brain.fleeing.append(enemy)
-
-func _on_body_exited_flee_range(enemy, brain:BrainComponent):
-	if !(enemy is Unit): return
-	brain.fleeing.remove_at(brain.fleeing.find(enemy))
