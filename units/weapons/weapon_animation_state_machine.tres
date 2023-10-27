@@ -1,4 +1,4 @@
-[gd_resource type="AnimationNodeStateMachine" load_steps=29 format=3 uid="uid://dawvd5u6rapgb"]
+[gd_resource type="AnimationNodeStateMachine" load_steps=35 format=3 uid="uid://dawvd5u6rapgb"]
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_h0xle"]
 animation = &"attack"
@@ -36,7 +36,26 @@ nodes/TimeScale/position = Vector2(359, 208)
 nodes/output/position = Vector2(820, 200)
 node_connections = [&"output", 0, &"TimeScale 2", &"TimeScale", 0, &"Animation", &"TimeScale 2", 0, &"TimeScale"]
 
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_yosft"]
+animation = &"attack"
+
+[sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_3y4b3"]
+
+[sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_5pj7d"]
+
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_fm717"]
+graph_offset = Vector2(-96, 10)
+nodes/Animation/node = SubResource("AnimationNodeAnimation_yosft")
+nodes/Animation/position = Vector2(-70, 141)
+nodes/TimeScale/node = SubResource("AnimationNodeTimeScale_5pj7d")
+nodes/TimeScale/position = Vector2(111, 169)
+"nodes/TimeScale 2/node" = SubResource("AnimationNodeTimeScale_3y4b3")
+"nodes/TimeScale 2/position" = Vector2(260, 160)
+nodes/output/position = Vector2(420, 160)
+node_connections = [&"output", 0, &"TimeScale 2", &"TimeScale", 0, &"Animation", &"TimeScale 2", 0, &"TimeScale"]
+
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_xvsti"]
+priority = 3
 advance_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_mm26l"]
@@ -48,17 +67,27 @@ switch_mode = 2
 advance_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_dkp82"]
-priority = 0
+priority = 2
 advance_mode = 2
 advance_condition = &"use_attack_2"
 
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_86kcm"]
+advance_mode = 2
+advance_condition = &"attack_loops"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ygyyh"]
+advance_mode = 2
+advance_expression = "use_trigger(\"end_channel\")"
+
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_jwpus"]
 states/attack/node = SubResource("AnimationNodeBlendTree_mmyvr")
-states/attack/position = Vector2(416, 37)
+states/attack/position = Vector2(421, 64)
 states/attack_2/node = SubResource("AnimationNodeBlendTree_617ny")
 states/attack_2/position = Vector2(389, 179)
-transitions = ["Start", "attack", SubResource("AnimationNodeStateMachineTransition_xvsti"), "attack", "End", SubResource("AnimationNodeStateMachineTransition_mm26l"), "attack_2", "End", SubResource("AnimationNodeStateMachineTransition_j8a7m"), "Start", "attack_2", SubResource("AnimationNodeStateMachineTransition_dkp82")]
-graph_offset = Vector2(-74, -84)
+states/attack_channel/node = SubResource("AnimationNodeBlendTree_fm717")
+states/attack_channel/position = Vector2(356, -5)
+transitions = ["Start", "attack", SubResource("AnimationNodeStateMachineTransition_xvsti"), "attack", "End", SubResource("AnimationNodeStateMachineTransition_mm26l"), "attack_2", "End", SubResource("AnimationNodeStateMachineTransition_j8a7m"), "Start", "attack_2", SubResource("AnimationNodeStateMachineTransition_dkp82"), "Start", "attack_channel", SubResource("AnimationNodeStateMachineTransition_86kcm"), "attack_channel", "End", SubResource("AnimationNodeStateMachineTransition_ygyyh")]
+graph_offset = Vector2(59, -83)
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_d5u0t"]
 animation = &"draw"
@@ -66,9 +95,9 @@ animation = &"draw"
 [sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_lsesi"]
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_fk2u7"]
-graph_offset = Vector2(-248, 29)
+graph_offset = Vector2(-448, 52)
 nodes/Animation/node = SubResource("AnimationNodeAnimation_d5u0t")
-nodes/Animation/position = Vector2(-56, 161)
+nodes/Animation/position = Vector2(-60, 160)
 nodes/TimeScale/node = SubResource("AnimationNodeTimeScale_lsesi")
 nodes/TimeScale/position = Vector2(120, 160)
 node_connections = [&"output", 0, &"TimeScale", &"TimeScale", 0, &"Animation"]
@@ -121,14 +150,14 @@ advance_condition = &"not_in_combat"
 
 [resource]
 states/Attack/node = SubResource("AnimationNodeStateMachine_jwpus")
-states/Attack/position = Vector2(702, 100)
+states/Attack/position = Vector2(703, 100)
 states/Draw/node = SubResource("AnimationNodeBlendTree_fk2u7")
-states/Draw/position = Vector2(408, 3)
+states/Draw/position = Vector2(409, 3)
 states/Stow/node = SubResource("AnimationNodeBlendTree_bswwy")
 states/Stow/position = Vector2(414, 183)
 states/idle/node = SubResource("AnimationNodeAnimation_276bp")
-states/idle/position = Vector2(332, 100)
+states/idle/position = Vector2(322, 100)
 states/idle_combat/node = SubResource("AnimationNodeAnimation_j2yia")
 states/idle_combat/position = Vector2(526, 100)
 transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_1k68o"), "idle_combat", "Attack", SubResource("AnimationNodeStateMachineTransition_7y4qh"), "Attack", "idle_combat", SubResource("AnimationNodeStateMachineTransition_fabty"), "idle", "Draw", SubResource("AnimationNodeStateMachineTransition_rfrvc"), "Draw", "idle_combat", SubResource("AnimationNodeStateMachineTransition_820cq"), "Stow", "idle", SubResource("AnimationNodeStateMachineTransition_vpp05"), "idle_combat", "Stow", SubResource("AnimationNodeStateMachineTransition_0ginc")]
-graph_offset = Vector2(-41, -37)
+graph_offset = Vector2(58, -23)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://brwcs1vvswxta"]
+[gd_scene load_steps=6 format=3 uid="uid://b3ypqcoyg2qs"]
 
 [ext_resource type="PackedScene" uid="uid://brhc1aba5usew" path="res://units/unit.tscn" id="1_tog43"]
 [ext_resource type="PackedScene" uid="uid://cw68w0g0xv1j6" path="res://models/goblin/goblin.glb" id="2_k8e14"]

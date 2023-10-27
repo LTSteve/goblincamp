@@ -1,0 +1,477 @@
+[gd_scene load_steps=12 format=3 uid="uid://bn8cmrdfwlj5b"]
+
+[ext_resource type="Script" path="res://units/components/weapon/ChannelingWeapon.gd" id="1_dvp0c"]
+[ext_resource type="AnimationNodeStateMachine" uid="uid://dawvd5u6rapgb" path="res://units/weapons/weapon_animation_state_machine.tres" id="1_xm182"]
+[ext_resource type="Script" path="res://util/AnimationTreeExpressionExtension.gd" id="2_8igxu"]
+[ext_resource type="PackedScene" uid="uid://doyk0eonygraq" path="res://models/goblin_priest/goblin_priest_weapon.glb" id="3_f40ik"]
+
+[sub_resource type="Animation" id="Animation_w6bnw"]
+length = 0.001
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("goblin_priest_weapon:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0.393938, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("goblin_priest_weapon:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0.679101, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("goblin_priest_weapon:position:z")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(-0.684486, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("goblin_priest_weapon:rotation:x")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(-0.404846, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/4/type = "bezier"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("goblin_priest_weapon:rotation:y")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(-1.69531, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/5/type = "bezier"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("goblin_priest_weapon:rotation:z")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(1.87311e-08, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+
+[sub_resource type="Animation" id="Animation_3ubsu"]
+resource_name = "attack"
+loop_mode = 1
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("goblin_priest_weapon:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(1, 1, 1, 1, 1),
+"points": PackedFloat32Array(1.21131, 0, 0, 0, 0, 1.21131, 0, 0, 0, 0, 1.21131, 0, 0, 0, 0, 1.28073, 0, 0, 0, 0, 1.21131, 0, 0, 0, 0),
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.7, 1)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("goblin_priest_weapon:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(1, 1, 1, 1, 1),
+"points": PackedFloat32Array(2.13574, 0, 0, 0, 0, 2.20307, 0, 0, 0, 0, 2.13574, 0, 0, 0, 0, 2.027, 0, 0, 0, 0, 2.13574, 0, 0, 0, 0),
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.7, 1)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("goblin_priest_weapon:position:z")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(1, 1, 1, 1, 1),
+"points": PackedFloat32Array(-0.90323, 0, 0, 0, 0, -0.903229, 0, 0, 0, 0, -0.90323, 0, 0, 0, 0, -0.903229, 0, 0, 0, 0, -0.90323, 0, 0, 0, 0),
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.7, 1)
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("goblin_priest_weapon:rotation:x")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(1, 1, 1, 1, 1),
+"points": PackedFloat32Array(-1.33722, 0, 0, 0, 0, -1.38553, 0, 0, 0, 0, -1.33722, 0, 0, 0, 0, -1.44541, 0, 0, 0, 0, -1.33722, 0, 0, 0, 0),
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.7, 1)
+}
+tracks/4/type = "bezier"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("goblin_priest_weapon:rotation:y")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"handle_modes": PackedInt32Array(1, 1, 1, 1, 1),
+"points": PackedFloat32Array(1.07063, 0, 0, 0, 0, 1.22672, 0, 0, 0, 0, 1.07063, 0, 0, 0, 0, 0.702702, 0, 0, 0, 0, 1.07063, 0, 0, 0, 0),
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.7, 1)
+}
+tracks/5/type = "bezier"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("goblin_priest_weapon:rotation:z")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"handle_modes": PackedInt32Array(1, 1, 1, 1, 1),
+"points": PackedFloat32Array(2.58832, 0, 0, 0, 0, 2.20029, 0, 0, 0, 0, 2.58832, 0, 0, 0, 0, 2.96258, 0, 0, 0, 0, 2.58832, 0, 0, 0, 0),
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.7, 1)
+}
+
+[sub_resource type="Animation" id="Animation_nic5g"]
+resource_name = "draw"
+length = 0.9
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("goblin_priest_weapon:rotation:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(-0.198994, -0.25, 0, 0.25, 0, -1.43466, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.9)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("goblin_priest_weapon:rotation:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(-1.69393, -0.25, 0, 0.25, 0, -3.55698, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.9)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("goblin_priest_weapon:rotation:z")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(0.00607078, -0.25, 0, 0.25, 0, 1.08036, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.9)
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("goblin_priest_weapon:position:x")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(0.393938, -0.25, 0, 0.25, 0, 1.00732, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.9)
+}
+tracks/4/type = "bezier"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("goblin_priest_weapon:position:y")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(0.679101, -0.25, 0, 0.25, 0, 0.679101, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.9)
+}
+tracks/5/type = "bezier"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("goblin_priest_weapon:position:z")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(-0.684486, -0.25, 0, 0.25, 0, -1.06814, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.9)
+}
+
+[sub_resource type="Animation" id="Animation_v4sts"]
+resource_name = "idle"
+loop_mode = 1
+step = 0.05
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("goblin_priest_weapon:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(0.393938, -0.25, 0, 0.25, 0, 0.393938, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 1)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("goblin_priest_weapon:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(0.679101, -0.25, 0, 0.25, 0, 0.679101, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 1)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("goblin_priest_weapon:position:z")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(-0.684486, -0.25, 0, 0.25, 0, -0.684486, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 1)
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("goblin_priest_weapon:rotation:x")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(-0.404846, -0.25, 0, 0.25, 0, -0.198994, -0.25, 0, 0.25, 0, -0.404846, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.45, 1)
+}
+tracks/4/type = "bezier"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("goblin_priest_weapon:rotation:y")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(-1.69531, -0.25, 0, 0.25, 0, -1.69393, -0.25, 0, 0.25, 0, -1.69531, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.45, 1)
+}
+tracks/5/type = "bezier"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("goblin_priest_weapon:rotation:z")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(1.87311e-08, -0.25, 0, 0.25, 0, 0.00607078, -0.25, 0, 0.25, 0, 1.87311e-08, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.45, 1)
+}
+
+[sub_resource type="Animation" id="Animation_qtr42"]
+resource_name = "idle_combat"
+length = 0.4
+loop_mode = 1
+step = 0.025
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("goblin_priest_weapon:rotation:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(3, 3, 3),
+"points": PackedFloat32Array(-1.43466, -0.05625, 0, 0.05625, 0, -1.52716, -0.04375, 0, 0.04375, 0, -1.43466, -0.04375, 0, 0.04375, 0),
+"times": PackedFloat32Array(0, 0.225, 0.4)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("goblin_priest_weapon:rotation:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(3, 3, 3),
+"points": PackedFloat32Array(-3.55698, -0.05625, 0, 0.05625, 0, -4.8939, -0.04375, 0, 0.04375, 0, -3.55698, -0.04375, 0, 0.04375, 0),
+"times": PackedFloat32Array(0, 0.225, 0.4)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("goblin_priest_weapon:rotation:z")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(3, 3, 3),
+"points": PackedFloat32Array(1.08036, -0.05625, 0, 0.05625, 0, 2.51327, -0.04375, 0, 0.04375, 0, 1.08036, -0.04375, 0, 0.04375, 0),
+"times": PackedFloat32Array(0, 0.225, 0.4)
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("goblin_priest_weapon:position:x")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(3, 3, 3),
+"points": PackedFloat32Array(1.00732, -0.05625, 0, 0.05625, 0, 1.00732, -0.04375, 0, 0.04375, 0, 1.00732, -0.04375, 0, 0.04375, 0),
+"times": PackedFloat32Array(0, 0.225, 0.4)
+}
+tracks/4/type = "bezier"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("goblin_priest_weapon:position:y")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"handle_modes": PackedInt32Array(3, 3, 3),
+"points": PackedFloat32Array(0.679101, -0.05625, 0, 0.05625, 0, 0.725451, -0.04375, 0, 0.04375, 0, 0.679101, -0.04375, 0, 0.04375, 0),
+"times": PackedFloat32Array(0, 0.225, 0.4)
+}
+tracks/5/type = "bezier"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("goblin_priest_weapon:position:z")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"handle_modes": PackedInt32Array(3, 3, 3),
+"points": PackedFloat32Array(-1.06814, -0.05625, 0, 0.05625, 0, -1.06814, -0.04375, 0, 0.04375, 0, -1.06814, -0.04375, 0, 0.04375, 0),
+"times": PackedFloat32Array(0, 0.225, 0.4)
+}
+
+[sub_resource type="Animation" id="Animation_es86y"]
+resource_name = "stow"
+length = 0.9
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("goblin_priest_weapon:rotation:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(-1.43466, -0.25, 0, 0.25, 0, -0.198994, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.9)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("goblin_priest_weapon:rotation:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(-3.55698, -0.25, 0, 0.25, 0, -1.69393, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.9)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("goblin_priest_weapon:rotation:z")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(1.08036, -0.25, 0, 0.25, 0, 0.00607078, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.9)
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("goblin_priest_weapon:position:x")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(1.00732, -0.25, 0, 0.25, 0, 0.393938, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.9)
+}
+tracks/4/type = "bezier"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("goblin_priest_weapon:position:y")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(0.679101, -0.25, 0, 0.25, 0, 0.679101, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.9)
+}
+tracks/5/type = "bezier"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("goblin_priest_weapon:position:z")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(-1.06814, -0.25, 0, 0.25, 0, -0.684486, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.9)
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_drjh8"]
+_data = {
+"RESET": SubResource("Animation_w6bnw"),
+"attack": SubResource("Animation_3ubsu"),
+"draw": SubResource("Animation_nic5g"),
+"idle": SubResource("Animation_v4sts"),
+"idle_combat": SubResource("Animation_qtr42"),
+"stow": SubResource("Animation_es86y")
+}
+
+[node name="GoblinRod" type="Node3D" node_paths=PackedStringArray("animation_tree") groups=["GoblinRod"]]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0)
+script = ExtResource("1_dvp0c")
+animation_tree = NodePath("AnimationTreeExpressionExtension")
+weapon_range = 50.0
+pushback = 3.0
+scales_with_day = true
+
+[node name="AnimationTreeExpressionExtension" type="AnimationTree" parent="."]
+tree_root = ExtResource("1_xm182")
+anim_player = NodePath("../AnimationPlayer")
+active = true
+parameters/conditions/in_combat = false
+parameters/conditions/not_in_combat = false
+parameters/Attack/conditions/attack_loops = true
+parameters/Attack/conditions/use_attack_2 = false
+parameters/Attack/attack/TimeScale/scale = 1.0
+"parameters/Attack/attack/TimeScale 2/scale" = 1.0
+parameters/Attack/attack_2/TimeScale/scale = 1.0
+"parameters/Attack/attack_2/TimeScale 2/scale" = 1.0
+parameters/Attack/attack_channel/TimeScale/scale = 1.0
+"parameters/Attack/attack_channel/TimeScale 2/scale" = 1.0
+parameters/Draw/TimeScale/scale = 1.0
+parameters/Stow/TimeScale/scale = 1.0
+script = ExtResource("2_8igxu")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_drjh8")
+}
+
+[node name="aoe_spawn" type="Node3D" parent="."]
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+volume_db = -13.0
+
+[node name="goblin_priest_weapon" parent="." instance=ExtResource("3_f40ik")]
+transform = Transform3D(-0.124192, 0.390827, -0.912046, 1.72169e-08, 0.91916, 0.393877, 0.992257, 0.0489163, -0.114153, 0.393938, 0.679101, -0.684486)

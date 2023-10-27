@@ -14,6 +14,7 @@ enum BuildingType {Blacksmith=0, Leatherworker, Enchanter}
 @onready var goblin_scene = preload("res://units/goblin.tscn")
 @onready var ogre_scene = preload("res://units/ogre.tscn")
 @onready var imp_scene = preload("res://units/imp.tscn")
+@onready var goblin_priest_scene = preload("res://units/goblin_priest.tscn")
 
 @onready var blacksmith_scene = preload("res://buildings/blacksmith.tscn")
 @onready var leatherworker_scene = preload("res://buildings/leatherworker.tscn")
@@ -119,7 +120,7 @@ func _get_unit_scene(unit_type: UnitType) -> PackedScene:
 		UnitType.Woodsman:
 			return woodsman_scene
 		UnitType.Goblin:
-			return goblin_scene
+			return goblin_priest_scene
 		UnitType.Imp:
 			return imp_scene
 		UnitType.Ogre:

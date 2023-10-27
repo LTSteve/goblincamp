@@ -25,6 +25,8 @@ signal enter_combat()
 signal exit_combat()
 signal on_lock_target(target:Unit)
 signal switch_melee(melee:bool)
+signal begin_channeling()
+signal end_channeling()
 
 func _ready():
 	if flee_range:

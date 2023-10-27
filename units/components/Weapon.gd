@@ -122,6 +122,12 @@ func _on_exit_combat():
 		animation_tree.set("parameters/conditions/not_in_combat", true)
 		, self, animation_delay)
 
+func _on_begin_channeling():
+	pass
+
+func _on_end_channeling():
+	animation_tree.activate_trigger("end_channel", animation_delay)
+
 func _try_to_attack(target:Unit, me:Unit) -> bool:
 	#in range and ready to fire?
 	if(disabled

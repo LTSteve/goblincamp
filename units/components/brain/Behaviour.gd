@@ -23,5 +23,7 @@ func _bind_to_all_weapons(brain:BrainComponent, type = null) -> Array[Weapon]:
 		brain.exit_combat.connect(wep._on_exit_combat)
 		brain.request_attack.connect(wep._on_request_attack)
 		brain.request_attack_rewind.connect(wep._on_request_attack_rewind)
+		brain.begin_channeling.connect(wep._on_begin_channeling)
+		brain.end_channeling.connect(wep._on_end_channeling)
 		weapons.append(wep as Weapon)
 	return weapons
