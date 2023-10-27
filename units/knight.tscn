@@ -13,6 +13,9 @@ stun_scale = null
 is_enemy = null
 kill_value = null
 
+[node name="Model" parent="." index="1"]
+transform = Transform3D(-2.30258e-08, 0, 0.526768, 0, 0.526768, 0, -0.526768, 0, -2.30258e-08, 0, 0, 0)
+
 [node name="Sword" parent="Model/WeaponHolder" index="0" instance=ExtResource("3_qgv83")]
 
 [node name="Sword2" parent="Model/WeaponHolder" index="1" instance=ExtResource("3_qgv83")]

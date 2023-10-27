@@ -1,4 +1,4 @@
 {
 	"explosion_scene_reference": "res://fx/explosion.tscn",
-	"explosion_radius": 7
+	"explosion_radius": 4
 }

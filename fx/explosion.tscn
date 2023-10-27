@@ -22,7 +22,7 @@ curve = SubResource("Curve_gbv0e")
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_tsg6v"]
 lifetime_randomness = 0.2
 emission_shape = 1
-emission_sphere_radius = 5.0
+emission_sphere_radius = 2.5
 direction = Vector3(0, 1, 0)
 spread = 10.0
 gravity = Vector3(0, -2, 0)
@@ -38,6 +38,8 @@ vertex_color_use_as_albedo = true
 
 [sub_resource type="SphereMesh" id="SphereMesh_os4u5"]
 material = SubResource("StandardMaterial3D_fqq2g")
+radius = 0.25
+height = 0.5
 radial_segments = 6
 rings = 3
 
@@ -49,7 +51,7 @@ colors = PackedColorArray(1, 0.415686, 0.180392, 1, 1, 0.415686, 0.180392, 0.890
 gradient = SubResource("Gradient_ndcu5")
 
 [sub_resource type="Curve" id="Curve_thr37"]
-_data = [Vector2(0, 0), 0.0, 16.352, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+_data = [Vector2(0, 0), 0.0, 7.87368, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
 point_count = 2
 
 [sub_resource type="CurveTexture" id="CurveTexture_7hd2e"]
@@ -57,11 +59,11 @@ curve = SubResource("Curve_thr37")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_8ijtj"]
 emission_shape = 1
-emission_sphere_radius = 2.0
+emission_sphere_radius = 1.0
 direction = Vector3(0, 1, 0)
 gravity = Vector3(0, 1, 0)
-scale_min = 3.5
-scale_max = 3.7
+scale_min = 2.2
+scale_max = 2.5
 scale_curve = SubResource("CurveTexture_7hd2e")
 color = Color(1, 0.415686, 0.180392, 1)
 color_ramp = SubResource("GradientTexture1D_e6tph")
@@ -79,7 +81,7 @@ rings = 3
 [node name="explosion" type="Node3D" node_paths=PackedStringArray("particles")]
 script = ExtResource("1_gxu7o")
 enemies = true
-radius = 7.0
+radius = 3.5
 particles = [NodePath("ParticleSpawnPoint/GPUParticles3D"), NodePath("ParticleSpawnPoint/GPUParticles3D2")]
 hit_sfx = Array[AudioStream]([ExtResource("3_637yt"), ExtResource("3_7i06x")])
 
@@ -88,7 +90,7 @@ script = ExtResource("2_tyi5b")
 
 [node name="GPUParticles3D" type="GPUParticles3D" parent="ParticleSpawnPoint"]
 emitting = false
-amount = 10
+amount = 7
 lifetime = 1.7
 one_shot = true
 explosiveness = 0.74
