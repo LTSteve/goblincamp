@@ -8,14 +8,14 @@ animation = &"attack"
 [sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_cqoif"]
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_mmyvr"]
-graph_offset = Vector2(-363, 89)
+graph_offset = Vector2(-468, 38)
 nodes/Animation/node = SubResource("AnimationNodeAnimation_h0xle")
 nodes/Animation/position = Vector2(-80, 160)
 nodes/TimeScale/node = SubResource("AnimationNodeTimeScale_cqoif")
 nodes/TimeScale/position = Vector2(92, 166)
 "nodes/TimeScale 2/node" = SubResource("AnimationNodeTimeScale_kx3sd")
 "nodes/TimeScale 2/position" = Vector2(260, 160)
-nodes/output/position = Vector2(500, 160)
+nodes/output/position = Vector2(540, 180)
 node_connections = [&"output", 0, &"TimeScale 2", &"TimeScale", 0, &"Animation", &"TimeScale 2", 0, &"TimeScale"]
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_770bn"]
@@ -33,7 +33,7 @@ nodes/TimeScale/node = SubResource("AnimationNodeTimeScale_hexj3")
 nodes/TimeScale/position = Vector2(359, 208)
 "nodes/TimeScale 2/node" = SubResource("AnimationNodeTimeScale_qbpnv")
 "nodes/TimeScale 2/position" = Vector2(500, 200)
-nodes/output/position = Vector2(660, 200)
+nodes/output/position = Vector2(820, 200)
 node_connections = [&"output", 0, &"TimeScale 2", &"TimeScale", 0, &"Animation", &"TimeScale 2", 0, &"TimeScale"]
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_xvsti"]
@@ -54,11 +54,11 @@ advance_condition = &"use_attack_2"
 
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_jwpus"]
 states/attack/node = SubResource("AnimationNodeBlendTree_mmyvr")
-states/attack/position = Vector2(414, 36)
+states/attack/position = Vector2(416, 37)
 states/attack_2/node = SubResource("AnimationNodeBlendTree_617ny")
 states/attack_2/position = Vector2(389, 179)
 transitions = ["Start", "attack", SubResource("AnimationNodeStateMachineTransition_xvsti"), "attack", "End", SubResource("AnimationNodeStateMachineTransition_mm26l"), "attack_2", "End", SubResource("AnimationNodeStateMachineTransition_j8a7m"), "Start", "attack_2", SubResource("AnimationNodeStateMachineTransition_dkp82")]
-graph_offset = Vector2(-71, -32)
+graph_offset = Vector2(-74, -84)
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_d5u0t"]
 animation = &"draw"

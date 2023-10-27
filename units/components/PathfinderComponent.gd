@@ -23,7 +23,10 @@ func find_new_path(movement_target:Vector3):
 	if movement_target.distance_squared_to(_movement_target) < _at_location_dist_2: return
 	navigation_agent.set_target_position(movement_target)
 	_movement_target = movement_target
-	_next_path_location = navigation_agent.get_next_path_position()
+	if navigation_agent.is_target_reachable():
+		_next_path_location = navigation_agent.get_next_path_position()
+	else:
+		_next_path_location = movement_target
 	_nav_finished = false
 
 func get_next_direction():

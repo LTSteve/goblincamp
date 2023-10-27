@@ -20,6 +20,7 @@ func assign_target(_delta, brain:BrainComponent, _weapon):
 		brain.enter_combat.emit()
 	
 	if !brain.target:
+		brain.request_attack_rewind.emit()
 		brain.exit_combat.emit()
 
 func process(_delta, brain:BrainComponent, weapon):

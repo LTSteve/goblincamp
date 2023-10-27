@@ -21,6 +21,7 @@ var override_behaviours: Array[Behaviour] = []
 var override_behaviour_datas = []
 
 signal request_attack(target:Unit,me:Unit)
+signal request_attack_rewind()
 signal enter_combat()
 signal exit_combat()
 signal on_lock_target(target:Unit)

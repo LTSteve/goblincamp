@@ -101,6 +101,9 @@ func _ready():
 func _on_request_attack(_target:Unit, _me:Unit):
 	pass #override me
 
+func _on_request_attack_rewind():
+	animation_tree.activate_trigger("rewind", animation_delay)
+
 func _set_pushback_scale(value: float):
 	_current_pushback_scale = value
 
