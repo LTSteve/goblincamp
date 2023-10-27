@@ -34,14 +34,13 @@ func _create_hit_override(_base_value:Weapon.Hit, current_value:Weapon.Hit):
 		projectile.global_position = hit_point
 		
 		#assign eol free
-		projectile.destination_reached.connect(projectile.queue_free)
+		projectile.destination_reached.connect(projectile._queue_free_self)
 	
 		#assign collision mask of hitboxes
-		for area in projectile.collision_areas:
-			area.collision_mask = enemy.collision_layer
-			area.body_entered.connect(func(unit): 
-				if !is_instance_valid(enemy) || !is_instance_valid(current_value.hit_by): return
-				_on_area_3d_body_entered(unit, projectile, current_value))
+		projectile.collision_mask = enemy.collision_layer
+		projectile.body_entered.connect(func(unit): 
+			if !is_instance_valid(enemy) || !is_instance_valid(current_value.hit_by): return
+			_on_area_3d_body_entered(unit, projectile, current_value))
 	
 	return current_value
 

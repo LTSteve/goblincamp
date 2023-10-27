@@ -5,7 +5,6 @@ class_name BrainComponent
 @export var unit:Unit
 @export var weapon_holder: Node3D
 @export var flee_range: Area3D
-@export var flee_dist2: float = 64
 
 var target:Unit
 var weapons:Array[Weapon]
@@ -68,7 +67,7 @@ func _clean_fleeing_list():
 	var to_remove = []
 	var index = 0
 	for enemy in fleeing:
-		if !enemy || !is_instance_valid(enemy) || enemy.global_position.distance_squared_to(unit.global_position) > flee_dist2:
+		if !enemy || !is_instance_valid(enemy):
 			to_remove.append(index)
 		index += 1
 	to_remove.reverse()
@@ -78,7 +77,7 @@ func _clean_fleeing_list():
 	to_remove = []
 	index = 0
 	for player in nearby_allies:
-		if !player || !is_instance_valid(player) || player.global_position.distance_squared_to(unit.global_position) > flee_dist2:
+		if !player || !is_instance_valid(player):
 			to_remove.append(index)
 		index += 1
 	to_remove.reverse()
@@ -91,3 +90,10 @@ func _on_body_entered_flee_range(entered_unit):
 		fleeing.append(entered_unit)
 	else:
 		nearby_allies.append(entered_unit)
+
+func _on_body_exited_flee_range(entered_unit):
+	if !(entered_unit is Unit) || entered_unit == unit: return
+	if entered_unit.is_enemy != unit.is_enemy:
+		fleeing = fleeing.filter(func(u): return u != entered_unit)
+	else:
+		fleeing = fleeing.filter(func(u): return u != entered_unit)

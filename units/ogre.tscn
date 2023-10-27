@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://4si1lnnpt7a2"]
+[gd_scene load_steps=8 format=3 uid="uid://dvjvqhjjue3jo"]
 
 [ext_resource type="PackedScene" uid="uid://brhc1aba5usew" path="res://units/unit.tscn" id="1_yqnhr"]
 [ext_resource type="PackedScene" uid="uid://bgfg403d28nmj" path="res://models/ogre/ogre.glb" id="2_q77xx"]
@@ -19,6 +19,9 @@ is_enemy = true
 
 [node name="CollisionShape3D" parent="." index="0"]
 shape = SubResource("CapsuleShape3D_e0yvo")
+
+[node name="Model" parent="." index="1"]
+transform = Transform3D(-2.30258e-08, 0, 0.526768, 0, 0.526768, 0, -0.526768, 0, -2.30258e-08, 0, 0, 0)
 
 [node name="DamageNumberComponent" parent="Model" index="0"]
 transform = Transform3D(1, 8.48637e-08, 1.77636e-14, -8.48637e-08, 1, -2.66454e-15, -1.06581e-14, 3.37334e-16, 1, 4.52606e-07, 9.11072, 1.30397e-14)
@@ -42,8 +45,8 @@ transform = Transform3D(1, 0, -7.10543e-15, 0, 1, 0, 7.10543e-15, 0, 1, 0, 0, 0)
 max_health = 2200.0
 
 [node name="VelocityComponent" parent="." index="4"]
-max_speed = 4.0
-acceleration = 2.5
+max_speed = 5.0
+acceleration = 4.5
 pushback_scale = 0.02
 
 [node name="ArmorComponent" parent="." index="7"]

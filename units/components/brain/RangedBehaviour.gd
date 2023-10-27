@@ -4,6 +4,7 @@ class_name RangedBehaviour
 
 @export var comfortable_range_modifier:float = 0.5
 @export var flee_distance:float = 8
+@export var flee_speed_scale: float = 0.75
 
 func initialize(brain:BrainComponent):
 	brain.weapons += _bind_to_all_weapons(brain,typeof(RangedWeapon))
@@ -37,14 +38,16 @@ func process(_delta, brain:BrainComponent, weapon):
 	else:
 		desired_locations.append(brain.unit.global_position)
 	
+	var fleeing = false
 	for enemy in brain.fleeing:
+		fleeing = true
 		desired_locations.append(enemy.global_position + Math.unit_v3(brain.unit.global_position - enemy.global_position) * flee_distance)
 	
 	var location_sum = Vector3.ZERO
 	for location in desired_locations:
 		location_sum += location
 	
-	brain.unit.set_movement_target(location_sum / desired_locations.size())
+	brain.unit.set_movement_target(location_sum / desired_locations.size(), flee_speed_scale if fleeing else 1.0)
 	
 	brain.request_attack.emit(brain.target,brain.unit)
 	

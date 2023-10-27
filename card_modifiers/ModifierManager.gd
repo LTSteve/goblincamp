@@ -14,6 +14,8 @@ static var _I: ModifierManager
 
 static var enemy_card_no: int = 0
 
+var first_pull = true
+
 func _ready():
 	_I = self
 
@@ -94,6 +96,10 @@ static func generate_card_choices(building_type: UnitSpawner.BuildingType) -> Ar
 	var infinite_normal = _I._find_and_remove_all(cards, _I._match_infinite_normal)
 	
 	var r = randf()
+	
+	if _I.first_pull:
+		_I.first_pull = false
+		r = 1
 	
 	if r < 0.4:
 		#three basic cards

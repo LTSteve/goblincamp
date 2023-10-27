@@ -1257,7 +1257,7 @@ _data = {
 }
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_6t8rt"]
-size = Vector3(1, 2, 1)
+size = Vector3(2, 2, 2.5)
 
 [node name="Claw" type="Node3D" node_paths=PackedStringArray("collision_areas", "hit_spot", "animation_tree") groups=["Claw"]]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 1.02529, 0)
@@ -1267,7 +1267,7 @@ hit_spot = NodePath("claws/HitSpot")
 hit_sfx = Array[AudioStream]([ExtResource("2_w6xfg"), ExtResource("3_d8t5w"), ExtResource("4_e5yrg")])
 multi_target = true
 animation_tree = NodePath("AnimationTree")
-weapon_range = 2.2
+weapon_range = 2.5
 damage = 6.5
 pushback = 1.5
 hit_stun = 0.4

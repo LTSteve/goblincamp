@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://i023u5luuvrc"]
+[gd_scene load_steps=6 format=3 uid="uid://brwcs1vvswxta"]
 
 [ext_resource type="PackedScene" uid="uid://brhc1aba5usew" path="res://units/unit.tscn" id="1_tog43"]
 [ext_resource type="PackedScene" uid="uid://cw68w0g0xv1j6" path="res://models/goblin/goblin.glb" id="2_k8e14"]
@@ -10,6 +10,9 @@
 collision_layer = 2
 ranged_targeting_radius = 1.65
 is_enemy = true
+
+[node name="Model" parent="." index="1"]
+transform = Transform3D(-2.30258e-08, 0, 0.526768, 0, 0.526768, 0, -0.526768, 0, -2.30258e-08, 0, 0, 0)
 
 [node name="DamageNumberComponent" parent="Model" index="0"]
 is_ally = false
@@ -28,8 +31,8 @@ transform = Transform3D(1, 0, -7.10543e-15, 0, 1, 0, 7.10543e-15, 0, 1, 0, 0, 0)
 max_health = 495.0
 
 [node name="VelocityComponent" parent="." index="4"]
-max_speed = 4.5
-acceleration = 2.0
+max_speed = 5.5
+acceleration = 4.0
 
 [node name="MaterialOverrideComponent" parent="." index="9" node_paths=PackedStringArray("mesh_instance")]
 mesh_instance = NodePath("../Model/ModelHolder/goblin/goblin2")

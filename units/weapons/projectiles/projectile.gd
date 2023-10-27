@@ -21,6 +21,9 @@ signal destination_reached()
 var direction: Vector2
 var target: Unit
 
+var find_new_targets: bool = false
+var find_pool: Array[Unit]
+
 var _target_position: Vector3
 
 func _ready():
@@ -34,7 +37,10 @@ func do_move(delta: float):
 	
 	var has_target_position = false
 	
-	if target && is_instance_valid(target):
+	if !is_instance_valid(target) && find_new_targets:
+		target = Global.nearest_unit(find_pool, global_position)
+	
+	if is_instance_valid(target):
 		has_target_position = true
 		_target_position = target.global_position
 	elif keep_final_destination:

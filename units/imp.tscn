@@ -19,6 +19,9 @@ kill_value = 0.6
 [node name="CollisionShape3D" parent="." index="0"]
 shape = SubResource("CapsuleShape3D_1jodv")
 
+[node name="Model" parent="." index="1"]
+transform = Transform3D(-2.30258e-08, 0, 0.526768, 0, 0.526768, 0, -0.526768, 0, -2.30258e-08, 0, 0, 0)
+
 [node name="DamageNumberComponent" parent="Model" index="0"]
 is_ally = false
 
@@ -36,8 +39,8 @@ transform = Transform3D(1, 0, -7.10543e-15, 0, 1, 0, 7.10543e-15, 0, 1, 0, 0, 0)
 max_health = 260.0
 
 [node name="VelocityComponent" parent="." index="4"]
-max_speed = 5.5
-acceleration = 2.0
+max_speed = 6.5
+acceleration = 4.0
 pushback_scale = 1.15
 
 [node name="MaterialOverrideComponent" parent="." index="9" node_paths=PackedStringArray("mesh_instance")]

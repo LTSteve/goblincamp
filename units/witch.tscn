@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://csnv4vhujnneq"]
+[gd_scene load_steps=7 format=3 uid="uid://b8phufwvydfos"]
 
 [ext_resource type="PackedScene" uid="uid://brhc1aba5usew" path="res://units/unit.tscn" id="1_g4nk8"]
 [ext_resource type="PackedScene" uid="uid://c66o7ssgncoaa" path="res://models/witch/witch.glb" id="2_kevcb"]
@@ -8,6 +8,9 @@
 [ext_resource type="Resource" uid="uid://6a2euiflosoa" path="res://units/components/brain/wander_behaviour.tres" id="5_a72gt"]
 
 [node name="Witch" groups=["Witch"] instance=ExtResource("1_g4nk8")]
+
+[node name="Model" parent="." index="1"]
+transform = Transform3D(-2.30258e-08, 0, 0.526768, 0, 0.526768, 0, -0.526768, 0, -2.30258e-08, 0, 0, 0)
 
 [node name="Staff" parent="Model/WeaponHolder" index="0" instance=ExtResource("3_sg8hd")]
 
@@ -45,8 +48,8 @@ transform = Transform3D(0.602939, -0.779567, -0.169524, 0.750468, 0.626318, -0.2
 max_health = 600.0
 
 [node name="VelocityComponent" parent="." index="4"]
-max_speed = 2.25
-acceleration = 1.6
+max_speed = 3.25
+acceleration = 3.0
 
 [node name="MaterialOverrideComponent" parent="." index="9" node_paths=PackedStringArray("mesh_instance")]
 mesh_instance = NodePath("../Model/ModelHolder/witch/witch2")

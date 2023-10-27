@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://ckt2arpn61tpv"]
+[gd_scene load_steps=7 format=3 uid="uid://belume8inji0o"]
 
 [ext_resource type="PackedScene" uid="uid://brhc1aba5usew" path="res://units/unit.tscn" id="1_d7e8e"]
 [ext_resource type="PackedScene" uid="uid://bjni3yp3c1c0c" path="res://models/knight/knight.glb" id="2_71j88"]
@@ -37,8 +37,8 @@ visible = false
 max_health = 1000.0
 
 [node name="VelocityComponent" parent="." index="4"]
-max_speed = 3.5
-acceleration = 2.0
+max_speed = 5.5
+acceleration = 4.0
 pushback_scale = 0.9
 
 [node name="ArmorComponent" parent="." index="7" groups=["Knight"]]

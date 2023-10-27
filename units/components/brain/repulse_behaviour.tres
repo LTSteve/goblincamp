@@ -4,4 +4,4 @@
 
 [resource]
 script = ExtResource("1_vf3ce")
-push_force = 10.0
+push_force = 8.0

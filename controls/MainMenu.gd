@@ -2,6 +2,10 @@ extends Panel
 
 @export var settings_menu: SettingsMenu
 
+func _ready():
+	# just to be sure
+	Settings._initialize()
+
 func on_quit():
 	get_tree().quit()
 

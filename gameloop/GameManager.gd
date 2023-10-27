@@ -32,7 +32,7 @@ static var I: GameManager
 
 func game_over():
 	Wait.timer(2, self, func():
-		if Global.players.size() == 0:
+		if Global.players.size() == 0 && Global.enemies.size() != 0:
 			on_game_over.emit()
 	)
 
@@ -147,7 +147,7 @@ func _spawn_wave(day: int):
 	if force_spawn_enemy_type != null:
 		var available_forced_enemies = available_enemy_spawns.filter(func(es): return es.enemies.has(force_spawn_enemy_type))
 		available_forced_enemies.sort_custom(func(es1, es2):
-			return es1.level > es2.level
+			return es1.level < es2.level
 		)
 		var force_spawn = available_forced_enemies[0]
 		spawns.append(force_spawn)

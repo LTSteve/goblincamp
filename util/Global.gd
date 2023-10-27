@@ -10,9 +10,10 @@ static func nearest_unit(units: Array[Unit], position):
 	if(!units || units.size() == 0):
 		return null
 	
-	var nearestUnit = units[0]
-	var nearest_len_2 = (nearestUnit.global_position - position).length_squared()
+	var nearestUnit = null
+	var nearest_len_2 = INF
 	for unit in units:
+		if !is_instance_valid(unit): continue
 		var len2 = (unit.global_position - position).length_squared()
 		if(len2 < nearest_len_2):
 			nearestUnit = unit

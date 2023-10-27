@@ -65,7 +65,7 @@ func assign_target(delta, brain:BrainComponent, ctx):
 			ctx.targeting_cd = targeting_cooldown
 	
 	if !is_instance_valid(brain.target):
-		brain.request_attack_rewind.emit()
+		#brain.request_attack_rewind.emit()
 		brain.exit_combat.emit()
 		return
 	

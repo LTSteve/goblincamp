@@ -6,3 +6,4 @@
 script = ExtResource("1_xxpcc")
 comfortable_range_modifier = 0.8
 flee_distance = 8.0
+flee_speed_scale = 0.6
