@@ -6,3 +6,4 @@
 script = ExtResource("1_jpjkv")
 flee_distance = 8.0
 flee_speed_scale = 0.8
+at_location_dist2 = 0.75

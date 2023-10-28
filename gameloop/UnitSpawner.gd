@@ -4,7 +4,7 @@ class_name UnitSpawner
 
 signal on_spawn_building(building_type:BuildingType)
 
-enum UnitType {Knight=0, Witch, Woodsman, Goblin, Imp, Ogre}
+enum UnitType {Knight=0, Witch, Woodsman, Goblin, Imp, Ogre, GoblinPriest}
 enum BuildingType {Blacksmith=0, Leatherworker, Enchanter}
 
 @onready var knight_scene = preload("res://units/knight.tscn")
@@ -120,11 +120,13 @@ func _get_unit_scene(unit_type: UnitType) -> PackedScene:
 		UnitType.Woodsman:
 			return woodsman_scene
 		UnitType.Goblin:
-			return goblin_priest_scene
+			return goblin_scene
 		UnitType.Imp:
 			return imp_scene
 		UnitType.Ogre:
 			return ogre_scene
+		UnitType.GoblinPriest:
+			return goblin_priest_scene
 	
 	return null
 

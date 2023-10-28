@@ -123,7 +123,8 @@ func _on_exit_combat():
 		, self, animation_delay)
 
 func _on_begin_channeling():
-	pass
+	#trigger animation
+	animation_tree.activate_trigger("attack", animation_delay)
 
 func _on_end_channeling():
 	animation_tree.activate_trigger("end_channel", animation_delay)

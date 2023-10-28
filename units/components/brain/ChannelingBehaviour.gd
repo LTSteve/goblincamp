@@ -4,33 +4,53 @@ class_name ChannelingBehaviour
 
 @export var flee_distance:float = 8
 @export var flee_speed_scale: float = 0.8
+@export var at_location_dist2: float = 0.75
+@export var force_re_target_time: float = 2
+
+class ChannelingCtx:
+	var weapon:ChannelingWeapon
+	var re_target_delay: float = 0
+	func _init(w):
+		weapon = w
 
 func initialize(brain:BrainComponent):
 	brain.weapons += _bind_to_all_weapons(brain,typeof(ChannelingWeapon))
-	return brain.weapons[0] if brain.weapons.size() else null
+	return ChannelingCtx.new(brain.weapons[0] if brain.weapons.size() else null)
 
-func assign_target(_delta, brain:BrainComponent, _weapon):
+func assign_target(delta, brain:BrainComponent, ctx:ChannelingCtx):
+	if !ctx.weapon: return
+	ctx.re_target_delay -= delta
+	
+	if !is_instance_valid(brain.target):
+		brain.target = null
+	
 	var had_no_target = !brain.target
 	
-	brain.target = Global.nearest_unit(Global.players if brain.unit.is_enemy else Global.enemies, brain.unit.global_position)
+	var re_target = had_no_target || (ctx.re_target_delay <= 0) || ctx.weapon.has_reached_location(at_location_dist2)
+	
+	if ! re_target:
+		return
+	
+	if had_no_target || (randf() >= 0.5):
+		brain.target = Global.nearest_unit(Global.players if brain.unit.is_enemy else Global.enemies, brain.unit.global_position)
+	else:
+		brain.target = Global.furthest_unit(Global.players if brain.unit.is_enemy else Global.enemies, brain.target.global_position)
 	
 	brain.on_lock_target.emit(brain.target)
 	
-	if brain.target && had_no_target:
-		brain.enter_combat.emit()
+	if brain.target:
+		if had_no_target:
+			brain.enter_combat.emit()
+			brain.begin_channeling.emit()
+		brain.request_attack.emit(brain.target, brain.unit)
+		ctx.re_target_delay = force_re_target_time
 	
 	if !brain.target:
-		#brain.request_attack_rewind.emit()
 		brain.exit_combat.emit()
+		brain.end_channeling.emit()
 
-func process(_delta, brain:BrainComponent, weapon:ChannelingWeapon):
-	if !brain.target || !weapon:
-		if weapon._active_aoe:
-			brain.end_channeling.emit()
-		return false
-	
-	if !weapon._active_aoe:
-		brain.begin_channeling.emit()
+func process(_delta, brain:BrainComponent, ctx:ChannelingCtx):
+	if !ctx.weapon: return
 	
 	var desired_locations = []
 	

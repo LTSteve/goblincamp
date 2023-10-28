@@ -15,7 +15,7 @@ class_name GameManager
 @export_dir var enemy_spawn_folder: String = "res://enemy_spawns"
 var enemy_spawns: Array[EnemySpawnResource] = []
 
-var unlocked_enemy_types: Array[UnitSpawner.UnitType] = [UnitSpawner.UnitType.Goblin]
+var unlocked_enemy_types: Array[UnitSpawner.UnitType] = [UnitSpawner.UnitType.Goblin, UnitSpawner.UnitType.GoblinPriest]
 var force_spawn_enemy_type = null
 
 signal on_spawn_enemy(unit_type: UnitSpawner.UnitType)

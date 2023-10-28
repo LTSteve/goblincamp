@@ -1,0 +1,110 @@
+[gd_scene load_steps=19 format=3 uid="uid://cjwknsyq0vdir"]
+
+[ext_resource type="Script" path="res://fx/AreaOfEffect.gd" id="1_gl841"]
+[ext_resource type="AudioStream" uid="uid://b6lk6tkrmw184" path="res://sfx/zapsplat_foley_umbrella_collapsed_swipe_hit_person_003_82657.mp3" id="2_v0po4"]
+[ext_resource type="AudioStream" uid="uid://c3n36epcuoata" path="res://sfx/zapsplat_foley_umbrella_collapsed_swipe_hit_person_004_82658.mp3" id="3_o7hs2"]
+[ext_resource type="AudioStream" uid="uid://0n2ugmf2tp22" path="res://sfx/zapsplat_foley_umbrella_collapsed_swipe_hit_person_005_82659.mp3" id="4_txivq"]
+[ext_resource type="Script" path="res://units/components/HeightComponent.gd" id="5_uw5bk"]
+[ext_resource type="Script" path="res://units/components/VelocityComponent.gd" id="6_cr0c8"]
+
+[sub_resource type="Curve" id="Curve_nar32"]
+_data = [Vector2(0, 0), 0.0, 2.38596, 0, 0, Vector2(0.311765, 1), -0.789474, -0.789474, 0, 0, Vector2(0.741176, 0.536842), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_11336"]
+curve = SubResource("Curve_nar32")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_8kc54"]
+lifetime_randomness = 0.1
+emission_shape = 1
+emission_sphere_radius = 0.05
+particle_flag_rotate_y = true
+gravity = Vector3(0, 0, 0)
+angle_min = -90.0
+angle_max = 90.0
+scale_min = 0.9
+scale_max = 1.1
+scale_curve = SubResource("CurveTexture_11336")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pb02t"]
+transparency = 1
+shading_mode = 0
+albedo_color = Color(0.14902, 0, 0.0784314, 0.709804)
+
+[sub_resource type="SphereMesh" id="SphereMesh_dnixb"]
+material = SubResource("StandardMaterial3D_pb02t")
+radius = 2.0
+height = 4.0
+radial_segments = 5
+rings = 4
+
+[sub_resource type="Gradient" id="Gradient_p3hsa"]
+offsets = PackedFloat32Array(0, 0.100719, 0.47482, 0.848921, 1)
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 0, 1, 1, 1, 0.892086, 1, 1, 1, 1, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_jq2lh"]
+gradient = SubResource("Gradient_p3hsa")
+
+[sub_resource type="Curve" id="Curve_fvryv"]
+_data = [Vector2(0, 0.431579), 0.0, 0.0, 0, 0, Vector2(0.494118, 0.947368), 0.0, 0.0, 0, 0, Vector2(1, 0.536842), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_xicy4"]
+curve = SubResource("Curve_fvryv")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_7ak5f"]
+lifetime_randomness = 0.2
+particle_flag_rotate_y = true
+spread = 180.0
+flatness = 0.9
+gravity = Vector3(0, 0, 0)
+initial_velocity_min = 10.0
+initial_velocity_max = 10.0
+linear_accel_min = -15.0
+linear_accel_max = -11.0
+tangential_accel_min = 10.0
+tangential_accel_max = 12.0
+scale_max = 1.2
+scale_curve = SubResource("CurveTexture_xicy4")
+color_ramp = SubResource("GradientTexture1D_jq2lh")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wprcr"]
+transparency = 1
+shading_mode = 0
+vertex_color_use_as_albedo = true
+albedo_color = Color(0.521569, 0, 0.403922, 0.541176)
+
+[sub_resource type="BoxMesh" id="BoxMesh_ybv6f"]
+material = SubResource("StandardMaterial3D_wprcr")
+size = Vector3(0.3, 0.3, 0.3)
+
+[node name="deth_ball" type="Node3D" node_paths=PackedStringArray("particles")]
+script = ExtResource("1_gl841")
+players = true
+radius = 5.0
+interval = 0.6
+infinite = true
+particles = [NodePath("particles/GPUParticles3D"), NodePath("particles/GPUParticles3D2")]
+hit_sfx = Array[AudioStream]([ExtResource("2_v0po4"), ExtResource("3_o7hs2"), ExtResource("4_txivq")])
+clean_up_delay = 1.5
+
+[node name="particles" type="Node3D" parent="."]
+script = ExtResource("5_uw5bk")
+offset = 0.75
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="particles"]
+amount = 3
+lifetime = 1.3
+local_coords = true
+process_material = SubResource("ParticleProcessMaterial_8kc54")
+draw_pass_1 = SubResource("SphereMesh_dnixb")
+
+[node name="GPUParticles3D2" type="GPUParticles3D" parent="particles"]
+amount = 60
+process_material = SubResource("ParticleProcessMaterial_7ak5f")
+draw_pass_1 = SubResource("BoxMesh_ybv6f")
+
+[node name="VelocityComponent" type="Node" parent="."]
+script = ExtResource("6_cr0c8")
+max_speed = 9.0
+acceleration = 5.0
