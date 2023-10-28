@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="CardResource" load_steps=5 format=3 uid="uid://bqxe2jciso4wt"]
+
+[ext_resource type="Script" path="res://card_modifiers/CardResource.gd" id="1_n4do6"]
+[ext_resource type="Script" path="res://card_modifiers/enemy/cold_deth.gd" id="1_vc2ic"]
+[ext_resource type="JSON" path="res://card_modifiers/enemy/cold_deth.json" id="2_j731x"]
+[ext_resource type="Texture2D" uid="uid://cgmvegsrkspdq" path="res://card_modifiers/icons/frozen-ring.png" id="3_l5uho"]
+
+[resource]
+script = ExtResource("1_n4do6")
+test_card = false
+title = "Cold Deth"
+descriptions = Array[String](["Dethballs now deal cold damage and slow units by {[.slow_percent]*100}%"])
+rarity = 1
+max_rank = 1
+card_script = ExtResource("1_vc2ic")
+card_script_params = ExtResource("2_j731x")
+apply_to = Array[String](["ChannelingWeapon"])
+group_filters = Array[String](["GoblinRod"])
+include_enemies = true
+include_players = false
+icon_texture = ExtResource("3_l5uho")

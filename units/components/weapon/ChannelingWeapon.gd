@@ -10,6 +10,8 @@ var _current_target_enemy: bool
 var _active_aoe: AreaOfEffect
 var _velocity_component: VelocityComponent
 
+var create_aoe = CallableStack.new(_create_aoe)
+
 func _physics_process(delta):
 	if !is_instance_valid(_active_aoe): return
 	
@@ -41,12 +43,16 @@ func _on_begin_channeling():
 	super._on_begin_channeling()
 	
 	#spawn aoe
-	_active_aoe = (aoe_scene.instantiate() as AreaOfEffect)
-	_active_aoe.callback = _on_hit_landed
-	_active_aoe.infinite = true
-	get_tree().root.add_child(_active_aoe)
-	_active_aoe.global_position = Math.v2_to_v3(Math.v3_to_v2(aoe_spawn_point.global_position), 0.75)
-	_velocity_component = _active_aoe.find_child("VelocityComponent")
+	_active_aoe = create_aoe.execute()
+
+func _create_aoe():
+	var aoe = (aoe_scene.instantiate() as AreaOfEffect)
+	aoe.callback = _on_hit_landed
+	aoe.infinite = true
+	get_tree().root.add_child(aoe)
+	aoe.global_position = Math.v2_to_v3(Math.v3_to_v2(aoe_spawn_point.global_position), 0.75)
+	_velocity_component = aoe.find_child("VelocityComponent")
+	return aoe
 
 func _on_tree_exiting():
 	#clean up aoe

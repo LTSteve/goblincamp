@@ -4,7 +4,7 @@
 
 [resource]
 script = ExtResource("1_7hu07")
-damage_base_colors = Array[Color]([Color(1, 1, 1, 1), Color(0.701961, 1, 0.682353, 1), Color(1, 0.701961, 0.490196, 1), Color(1, 0.380392, 0.392157, 1)])
+damage_base_colors = Array[Color]([Color(1, 1, 1, 1), Color(0.701961, 1, 0.682353, 1), Color(1, 0.701961, 0.490196, 1), Color(1, 0.380392, 0.392157, 1), Color(0.278431, 0.952941, 1, 1)])
 ally_damage_color = Color(0.839216, 0.345098, 0.443137, 1)
 crit_color_multiplier = Color(0.901961, 0.921569, 0.501961, 1)
 crit_font_scale = 1.4

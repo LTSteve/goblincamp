@@ -116,10 +116,10 @@ static func generate_card_choices(building_type: UnitSpawner.BuildingType) -> Ar
 			_I._fall_through_find_and_remove(cards, [_I._match_normal_card, _I._match_rare_card, _I._match_ultra_rare_card], infinite_normal),
 		]
 	else:
-		#one ultra rare, two rare
+		#two ultra rare, one rare
 		return [
 			_I._fall_through_find_and_remove(cards, [_I._match_ultra_rare_card, _I._match_rare_card, _I._match_normal_card], infinite_normal),
-			_I._fall_through_find_and_remove(cards, [_I._match_rare_card, _I._match_normal_card, _I._match_ultra_rare_card], infinite_normal),
+			_I._fall_through_find_and_remove(cards, [_I._match_ultra_rare_card, _I._match_rare_card, _I._match_normal_card], infinite_normal),
 			_I._fall_through_find_and_remove(cards, [_I._match_rare_card, _I._match_normal_card, _I._match_ultra_rare_card], infinite_normal),
 		]
 	

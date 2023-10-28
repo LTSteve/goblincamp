@@ -31,7 +31,7 @@ func assign_target(delta, brain:BrainComponent, ctx:ChannelingCtx):
 	if ! re_target:
 		return
 	
-	if had_no_target || (randf() >= 0.5):
+	if had_no_target || brain.fleeing.size() > 0 || (randf() >= 0.1):
 		brain.target = Global.nearest_unit(Global.players if brain.unit.is_enemy else Global.enemies, brain.unit.global_position)
 	else:
 		brain.target = Global.furthest_unit(Global.players if brain.unit.is_enemy else Global.enemies, brain.target.global_position)
