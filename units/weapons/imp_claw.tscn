@@ -1287,17 +1287,20 @@ libraries = {
 "": SubResource("AnimationLibrary_50052")
 }
 
-[node name="AnimationTree" type="AnimationTree" parent="."]
+[node name="AnimationTree" type="AnimationTree" parent="." groups=["ImpClaw"]]
 tree_root = ExtResource("3_6kr8s")
 anim_player = NodePath("../AnimationPlayer")
 active = true
 parameters/conditions/in_combat = false
 parameters/conditions/not_in_combat = false
+parameters/Attack/conditions/attack_loops = false
 parameters/Attack/conditions/use_attack_2 = false
 parameters/Attack/attack/TimeScale/scale = 1.0
 "parameters/Attack/attack/TimeScale 2/scale" = 1.0
 parameters/Attack/attack_2/TimeScale/scale = 1.0
 "parameters/Attack/attack_2/TimeScale 2/scale" = 1.0
+parameters/Attack/attack_channel/TimeScale/scale = 1.0
+"parameters/Attack/attack_channel/TimeScale 2/scale" = 1.0
 parameters/Draw/TimeScale/scale = 1.0
 parameters/Stow/TimeScale/scale = 1.0
 script = ExtResource("4_0ej1c")

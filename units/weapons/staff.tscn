@@ -479,9 +479,9 @@ hit_stun = 0.3
 damage_type = 2
 
 [node name="witch_weapon" parent="." instance=ExtResource("3_52u0o")]
-transform = Transform3D(0.991327, 0.0125548, 0.130793, -0.131394, 0.0947242, 0.98679, -3.87429e-07, -0.995421, 0.0955525, 0.664789, 1.13067, 1.02012)
+transform = Transform3D(0.992164, 0.0118022, 0.12436, -0.124918, 0.0955277, 0.987553, -0.0002245, -0.995353, 0.0962537, 0.664789, 1.15763, 1.02012)
 
-[node name="AnimationTree" type="AnimationTree" parent="."]
+[node name="AnimationTree" type="AnimationTree" parent="." groups=["Staff"]]
 tree_root = ExtResource("4_tr10y")
 anim_player = NodePath("../AnimationPlayer")
 active = true

@@ -478,7 +478,7 @@ pushback = 0.8
 hit_stun = 0.2
 
 [node name="woodsman_weapon_melee" parent="." groups=["Dagger_Model"] instance=ExtResource("2_3n6r0")]
-transform = Transform3D(-0.986349, -7.19055e-06, 0.164653, -0.164653, -5.96041e-07, -0.986349, 7.19055e-06, -0.999997, -5.96041e-07, 0.131204, 0.565012, 0.947975)
+transform = Transform3D(-0.982442, 0.0263496, 0.184686, -0.184705, 0.00173511, -0.98279, -0.0262167, -0.999648, 0.00316229, 0.131204, 0.553206, 0.947975)
 
 [node name="HitSpot" type="Node3D" parent="woodsman_weapon_melee"]
 transform = Transform3D(1, 0, -4.28589e-12, 9.09495e-13, 1, -1.13687e-13, -4.28589e-12, 1.13687e-13, 1, 0.99954, -1.19209e-07, 0)
@@ -494,11 +494,14 @@ anim_player = NodePath("../AnimationPlayer")
 active = true
 parameters/conditions/in_combat = false
 parameters/conditions/not_in_combat = false
+parameters/Attack/conditions/attack_loops = false
 parameters/Attack/conditions/use_attack_2 = false
 parameters/Attack/attack/TimeScale/scale = 1.0
 "parameters/Attack/attack/TimeScale 2/scale" = 1.0
 parameters/Attack/attack_2/TimeScale/scale = 1.0
 "parameters/Attack/attack_2/TimeScale 2/scale" = 1.0
+parameters/Attack/attack_channel/TimeScale/scale = 1.0
+"parameters/Attack/attack_channel/TimeScale 2/scale" = 1.0
 parameters/Draw/TimeScale/scale = 1.0
 parameters/Stow/TimeScale/scale = 1.0
 script = ExtResource("4_rsiru")

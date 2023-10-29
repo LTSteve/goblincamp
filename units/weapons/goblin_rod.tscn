@@ -451,7 +451,7 @@ pushback = 0.0
 hit_stun = 0.2
 scales_with_day = true
 
-[node name="AnimationTreeExpressionExtension" type="AnimationTree" parent="."]
+[node name="AnimationTreeExpressionExtension" type="AnimationTree" parent="." groups=["GoblinRod"]]
 tree_root = ExtResource("1_xm182")
 anim_player = NodePath("../AnimationPlayer")
 active = true
@@ -481,6 +481,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.31134e-07, 1, -3)
 volume_db = -13.0
 
 [node name="goblin_priest_weapon" parent="." instance=ExtResource("3_f40ik")]
-transform = Transform3D(-0.124192, 0.390827, -0.912046, 1.72169e-08, 0.91916, 0.393877, 0.992257, 0.0489163, -0.114153, 0.393938, 0.679101, -0.684486)
+transform = Transform3D(-0.124152, 0.38881, -0.912913, 6.0236e-05, 0.920032, 0.391836, 0.992262, 0.0485921, -0.114247, 0.393938, 0.679101, -0.684486)
 
 [connection signal="tree_exiting" from="." to="." method="_on_tree_exiting"]
