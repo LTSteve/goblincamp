@@ -35,19 +35,22 @@ func _on_tree_exiting():
 func do_move(delta: float):
 	lifespan -= delta
 	
-	var has_target_position = false
+	if !is_instance_valid(target):
+		target = null
 	
-	if !is_instance_valid(target) && find_new_targets:
+	if !target && find_new_targets:
 		target = Global.nearest_unit(find_pool, global_position)
 	
-	if is_instance_valid(target):
+	var has_target_position = false
+	
+	if target:
 		has_target_position = true
 		_target_position = target.global_position
 	elif keep_final_destination:
 		has_target_position = true
 	
 	if has_target_position:
-		direction = Math.unit_v2(Math.v3_to_v2(_target_position - global_position))
+		direction = Math.v3_to_v2(_target_position - global_position).normalized()
 	
 	if direction.length_squared() < 0.01 || lifespan <= 0:
 		if free_on_hit || lifespan <= 0:

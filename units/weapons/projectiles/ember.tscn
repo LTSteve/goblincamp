@@ -51,7 +51,6 @@ collision_mask = 0
 script = ExtResource("1_yidec")
 hit_spot = NodePath("HeightComponent/witch_projectile/HitSpot")
 lifespan = 4.0
-free_on_hit = false
 leave_behind_sfx_scene = ExtResource("2_p0hja")
 sfx = Array[AudioStream]([ExtResource("3_wi4em"), ExtResource("4_xs2wk")])
 model = NodePath("HeightComponent/witch_projectile")

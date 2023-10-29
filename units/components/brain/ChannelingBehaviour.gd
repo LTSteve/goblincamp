@@ -10,7 +10,7 @@ class_name ChannelingBehaviour
 class ChannelingCtx:
 	var weapon:ChannelingWeapon
 	var re_target_delay: float = 0
-	func _init(w):
+	func _init(w:ChannelingWeapon):
 		weapon = w
 
 func initialize(brain:BrainComponent):
@@ -58,6 +58,8 @@ func process(_delta, brain:BrainComponent, ctx:ChannelingCtx):
 	for enemy in brain.fleeing:
 		fleeing = true
 		desired_locations.append(enemy.global_position + Math.unit_v3(brain.unit.global_position - enemy.global_position) * flee_distance)
+	
+	ctx.weapon.double_speed = fleeing
 	
 	if fleeing:
 		var location_sum = Vector3.ZERO

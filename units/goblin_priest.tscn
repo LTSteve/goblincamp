@@ -20,6 +20,11 @@ enabled = true
 worth_base = 80
 
 [node name="GoblinRod" parent="Model/WeaponHolder" index="0" instance=ExtResource("2_1ckjm")]
+crit_chance = null
+crit_damage_multiplier = null
+damage_type = null
+animation_delay = null
+disabled = null
 
 [node name="goblin_priest" parent="Model/ModelHolder" index="1" instance=ExtResource("2_q1y50")]
 

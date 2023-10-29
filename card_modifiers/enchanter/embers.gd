@@ -30,22 +30,20 @@ func _create_hit_override(_base_value:Weapon.Hit, current_value:Weapon.Hit):
 		#spawn projectile
 		var projectile = (ember_scene.instantiate() as Projectile)
 		projectile.target = enemy
-		get_tree().root.add_child(projectile)
-		projectile.global_position = hit_point
 		
-		#assign eol free
-		projectile.destination_reached.connect(projectile._queue_free_self)
-	
 		#assign collision mask of hitboxes
 		projectile.collision_mask = enemy.collision_layer
-		projectile.body_entered.connect(func(unit): 
-			if !is_instance_valid(enemy) || !is_instance_valid(current_value.hit_by): return
+		projectile.area_entered.connect(func(unit): 
+			if !is_instance_valid(unit) || !is_instance_valid(current_value.hit_by): return
 			_on_area_3d_body_entered(unit, projectile, current_value))
+		
+		get_tree().root.add_child(projectile)
+		projectile.global_position = hit_point
 	
 	return current_value
 
 func _on_area_3d_body_entered(enemy:Unit, projectile:Projectile, original_hit: Weapon.Hit):
-	if enemy == null || enemy != projectile.target: return
+	if !is_instance_valid(enemy) || enemy != projectile.target: return
 	var hit_creation_data = Weapon.HitCreationData.new(projectile.hit_spot.global_position)
 	hit_creation_data.can_chain = false
 	hit_creation_data.base_damage_scale = params.ember_damage_scale
@@ -55,4 +53,3 @@ func _on_area_3d_body_entered(enemy:Unit, projectile:Projectile, original_hit: W
 		hit_creation_data.apply_effects.append(effect.duplicate(enemy))
 	var hit_data = original_hit.hit_by.create_hit.execute([enemy, hit_creation_data])
 	enemy.take_hit(hit_data)
-	projectile.queue_free()

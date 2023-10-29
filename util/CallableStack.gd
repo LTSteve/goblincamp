@@ -35,8 +35,11 @@ func _execute(params):
 	return current_value
 
 ## priority high = later in order
-func add_override(id:Array, callable:Callable, priority: int = 0):
+func add_override(id:Array, callable:Callable, priority: int = 0, stop_cache_on_override: bool = false):
 	var override = Override.new(priority, callable, UniqueMetaId.create(id))
+	
+	if stop_cache_on_override:
+		_cache_on_override = false
 	
 	var inserted = false
 	for i in override_stack.size():

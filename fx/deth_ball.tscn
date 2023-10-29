@@ -109,5 +109,5 @@ draw_pass_1 = SubResource("BoxMesh_ybv6f")
 
 [node name="VelocityComponent" type="Node" parent="."]
 script = ExtResource("6_cr0c8")
-max_speed = 7.9
+max_speed = 5.8
 acceleration = 5.0

@@ -11,6 +11,7 @@ var _active_aoe: AreaOfEffect
 var _velocity_component: VelocityComponent
 
 var create_aoe = CallableStack.new(_create_aoe)
+var double_speed: bool = false
 
 func _physics_process(delta):
 	if !is_instance_valid(_active_aoe): return
@@ -51,7 +52,10 @@ func _create_aoe():
 	aoe.infinite = true
 	get_tree().root.add_child(aoe)
 	aoe.global_position = Math.v2_to_v3(Math.v3_to_v2(aoe_spawn_point.global_position), 0.75)
-	_velocity_component = aoe.find_child("VelocityComponent")
+	_velocity_component = aoe.find_child("VelocityComponent") as VelocityComponent
+	_velocity_component.get_max_speed.add_override(["double_speed"], func(_base_value:float, current_value:float): 
+		return (current_value * 2.0) if double_speed else current_value
+	, 0, true)
 	return aoe
 
 func _on_tree_exiting():
