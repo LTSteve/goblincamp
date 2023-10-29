@@ -46,11 +46,14 @@ material = SubResource("StandardMaterial3D_xuvs3")
 size = Vector3(0.1, 0.1, 0.1)
 
 [node name="Ember" type="Area3D" node_paths=PackedStringArray("hit_spot", "model", "particles") groups=["Fireball"]]
+editor_description = "Ember"
 collision_layer = 0
 collision_mask = 0
 script = ExtResource("1_yidec")
 hit_spot = NodePath("HeightComponent/witch_projectile/HitSpot")
 lifespan = 4.0
+free_on_hit = false
+keep_final_destination = true
 leave_behind_sfx_scene = ExtResource("2_p0hja")
 sfx = Array[AudioStream]([ExtResource("3_wi4em"), ExtResource("4_xs2wk")])
 model = NodePath("HeightComponent/witch_projectile")

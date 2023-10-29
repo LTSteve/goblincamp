@@ -33,7 +33,7 @@ func has_reached_location(at_location_dist2:float) -> bool:
 	if !_active_aoe: return false
 	return Math.v3_to_v2(_current_target - _active_aoe.global_position).length_squared() <= at_location_dist2
 
-func _on_request_attack(target:Unit, me:Unit):
+func _on_request_attack(target:Unit, _me:Unit):
 	#lock target
 	_current_target = target.global_position
 	_current_target_enemy = target.is_enemy

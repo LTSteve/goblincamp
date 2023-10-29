@@ -18,18 +18,24 @@ func _create_hit_override(_base_value:Weapon.Hit, current_value:Weapon.Hit):
 	
 	var hit_point = current_value.hit_creation_data.hit_point
 	
-	var enemies = Global.get_all_units_near_position(
+	var all_enemies = Global.get_all_units_near_position(
 		Global.enemies, 
 		Vector3(hit_point.x, 1, hit_point.z), 
 		params.ember_scan_radius
-		).filter(func(enemy:Unit):
-			return is_instance_valid(enemy) && enemy != current_value.hit )
+		)
+	
+	var enemies = all_enemies.filter(func(enemy:Unit):
+		return is_instance_valid(enemy) && enemy != current_value.hit )
 	
 	for i in min(enemies.size(), current_rank):
 		var enemy = enemies[i]
 		#spawn projectile
 		var projectile = (ember_scene.instantiate() as Projectile)
 		projectile.target = enemy
+		
+		#have to do this so the ember won't free itself on hit with enemies that arent the target
+		projectile.free_on_hit = false
+		projectile.destination_reached.connect(projectile._queue_free_self)
 		
 		#assign collision mask of hitboxes
 		projectile.collision_mask = enemy.collision_layer
@@ -53,3 +59,4 @@ func _on_area_3d_body_entered(enemy:Unit, projectile:Projectile, original_hit: W
 		hit_creation_data.apply_effects.append(effect.duplicate(enemy))
 	var hit_data = original_hit.hit_by.create_hit.execute([enemy, hit_creation_data])
 	enemy.take_hit(hit_data)
+	projectile._queue_free_self()

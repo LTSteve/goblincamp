@@ -52,7 +52,7 @@ func do_move(delta: float):
 	if has_target_position:
 		direction = Math.v3_to_v2(_target_position - global_position).normalized()
 	
-	if direction.length_squared() < 0.01 || lifespan <= 0:
+	if (has_target_position && _target_position.distance_squared_to(global_position) < 0.01) || lifespan <= 0:
 		if free_on_hit || lifespan <= 0:
 			_queue_free_self()
 		else:

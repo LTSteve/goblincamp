@@ -10,31 +10,31 @@ static func nearest_unit(units: Array[Unit], position):
 	if(!units || units.size() == 0):
 		return null
 	
-	var nearest_unit = null
+	var nearest = null
 	var nearest_len_2 = INF
 	for unit in units:
 		if !is_instance_valid(unit): continue
 		var len2 = (unit.global_position - position).length_squared()
 		if(len2 < nearest_len_2):
-			nearest_unit = unit
+			nearest = unit
 			nearest_len_2 = len2
 	
-	return nearest_unit
+	return nearest
 
 static func furthest_unit(units: Array[Unit], position):
 	if(!units || units.size() == 0):
 		return null
 	
-	var furthest_unit = null
-	var furthest_len_2 = 0
+	var furthest = null
+	var furthest_len_2 = -1
 	for unit in units:
 		if !is_instance_valid(unit): continue
 		var len2 = (unit.global_position - position).length_squared()
 		if(len2 > furthest_len_2):
-			furthest_unit = unit
+			furthest = unit
 			furthest_len_2 = len2
 	
-	return furthest_unit
+	return furthest
 
 
 static func nearest_units(units:Array[Unit], position, max_count, max_dist2) -> Array[Unit]:
