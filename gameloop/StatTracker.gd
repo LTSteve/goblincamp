@@ -24,17 +24,20 @@ var _user_friendly_text_day = {
 	woodsman_lost = "Woodsman Lost",
 	
 	goblins_killed = "Goblins Killed",
+	goblin_priests_killed = "Goblin Priests Killed",
 	imps_killed = "Imps Killed",
 	ogres_killed = "Ogres Killed",
 	
 	normal_damage_delt = "Normal Damage Delt",
 	fire_damage_delt = "Fire Damage Delt",
 	bleed_damage_delt = "Bleed Damage Delt",
+	cold_damage_delt = "Cold Damage Delt",
 	healing = "Healing Recieved",
 	
 	normal_damage_recieved = "Normal Damage Recieved",
 	fire_damage_recieved = "Fire Damage Recieved",
 	bleed_damage_recieved = "Bleed Damage Recieved",
+	cold_damage_recieved = "Cold Damage Recieved",
 	enemy_healing = "Enemy Healing Recieved",
 	
 	wave_length_ms = "Wave Length (s)"
@@ -56,17 +59,20 @@ var _day_template = {
 	woodsman_lost = 0,
 	
 	goblins_killed = 0,
+	goblin_priests_killed = 0,
 	imps_killed = 0,
 	ogres_killed = 0,
 	
 	normal_damage_delt = 0,
 	fire_damage_delt = 0,
 	bleed_damage_delt = 0,
+	cold_damage_delt = 0,
 	healing = 0,
 	
 	normal_damage_recieved = 0,
 	fire_damage_recieved = 0,
 	bleed_damage_recieved = 0,
+	cold_damage_recieved = 0,
 	enemy_healing = 0,
 	
 	wave_length_ms = 0
@@ -188,6 +194,9 @@ func _on_unit_died(unit:Unit):
 		"Ogre":
 			_current_day.ogres_killed += 1
 			_current_enemy_army_size -= 1
+		"GoblinPriest":
+			_current_day.goblin_priests_killed += 1
+			_current_enemy_army_size -= 1
 
 func _on_unit_recieved_hit(weapon_hit:Weapon.Hit, unit:Unit):
 	match weapon_hit.damage_type:
@@ -206,6 +215,11 @@ func _on_unit_recieved_hit(weapon_hit:Weapon.Hit, unit:Unit):
 				_current_day.fire_damage_delt += weapon_hit.post_crit_damage
 			else:
 				_current_day.fire_damage_recieved += weapon_hit.post_crit_damage
+		Damage.Type.Cold:
+			if unit.is_enemy:
+				_current_day.cold_damage_delt += weapon_hit.post_crit_damage
+			else:
+				_current_day.cold_damage_recieved += weapon_hit.post_crit_damage
 		
 		Damage.Type.Heal:
 			if unit.is_enemy:
