@@ -15,7 +15,7 @@ class_name GameManager
 @export_dir var enemy_spawn_folder: String = "res://enemy_spawns"
 var enemy_spawns: Array[EnemySpawnResource] = []
 
-var unlocked_enemy_types: Array[UnitSpawner.UnitType] = [UnitSpawner.UnitType.Goblin, UnitSpawner.UnitType.GoblinPriest]
+var unlocked_enemy_types: Array[UnitSpawner.UnitType] = [UnitSpawner.UnitType.Goblin]
 var force_spawn_enemy_type = null
 
 signal on_spawn_enemy(unit_type: UnitSpawner.UnitType)
@@ -120,6 +120,8 @@ func _start_next_day():
 #linked from on_night
 func _spawn_wave(day: int):
 	var cycle = (day - GoblinCardPanel.I.first_modifier_night) % GoblinCardPanel.I.modifier_interval
+	
+	if day == 7: unlocked_enemy_types.append(UnitSpawner.UnitType.GoblinPriest)
 	
 	var random_component = randi_range(0,1)
 	var linear_component = floor(day * 0.5)
