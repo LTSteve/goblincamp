@@ -29,6 +29,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -15)
 [node name="Camera3D" type="Camera3D" parent="CameraRotation/CameraAngle/CameraDistance"]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
 environment = SubResource("Environment_iy72c")
+current = true
 fov = 106.162
 
 [node name="AudioListener3D" type="AudioListener3D" parent="CameraRotation/CameraAngle/CameraDistance/Camera3D"]

@@ -10,7 +10,14 @@ class LinkedListItem extends Object:
 var _front:LinkedListItem = null
 var _end:LinkedListItem = null
 
+var _size: int = 0
+
+func size():
+	return _size
+
 func push(value):
+	_size += 1
+	
 	var linked_list_item = LinkedListItem.new(value)
 	if _front == null:
 		_front = linked_list_item
@@ -28,6 +35,8 @@ func front():
 
 func pop():
 	if !_front: return null
+	
+	_size -= 1
 	
 	var old_front = _front
 	var value = old_front.value

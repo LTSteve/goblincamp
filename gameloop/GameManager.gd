@@ -12,8 +12,7 @@ class_name GameManager
 
 @export var flat_enemy_power_increase: int = 0
 
-@export_dir var enemy_spawn_folder: String = "res://enemy_spawns"
-var enemy_spawns: Array[EnemySpawnResource] = []
+var enemy_spawns = []
 
 var unlocked_enemy_types: Array[UnitSpawner.UnitType] = [UnitSpawner.UnitType.Goblin]
 var force_spawn_enemy_type = null
@@ -41,14 +40,6 @@ func cycle_to_day():
 
 func _ready():
 	I = self
-	var directory = DirAccess.open(enemy_spawn_folder)
-	var files = directory.get_files()
-	for file in files:
-		file = file.trim_suffix(".remap")
-		if !file.ends_with(".tres"): continue
-		var resource = load(enemy_spawn_folder + "/" + file)
-		if !(resource is EnemySpawnResource): continue
-		enemy_spawns.append(resource)
 
 @export var unit_moves_per_tick: int = 100
 @export var max_update_msec: int = 4
@@ -128,6 +119,8 @@ func _spawn_wave(day: int):
 	var linear_component = floor(day * 0.5)
 	
 	var spawn_power = clampi(random_component+linear_component+cycle, 1, enemy_power_limit) + flat_enemy_power_increase
+	
+	enemy_spawns = DB.I.resource_groups["enemy_spawns"]
 	
 	var available_enemy_spawns = enemy_spawns.filter(
 	func(es): 

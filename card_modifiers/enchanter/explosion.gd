@@ -1,12 +1,11 @@
 extends CardModifier
 
-var explosion_scene: PackedScene = preload("res://fx/explosion.tscn")
+var explosion_scene: PackedScene
 var explosion_radius_squared: float
 
 func _initialize(_data):
 	explosion_radius_squared = params.explosion_radius * params.explosion_radius
-	#todo, this won't work so preload it somewhere else so we don't have to hard-code in the file
-	pass#explosion_scene = load(data.explosion_scene_reference)
+	explosion_scene = DB.I.explosion_scene
 
 func _apply(weapon:RangedWeapon,_unit):
 	#add with high priority so all damage calculations take place first

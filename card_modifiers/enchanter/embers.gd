@@ -1,10 +1,9 @@
 extends CardModifier
 
-var ember_scene: PackedScene = preload("res://units/weapons/projectiles/ember.tscn")
+var ember_scene: PackedScene
 
 func _initialize(_data):
-	#todo, this won't work so preload it somewhere else so we don't have to hard-code in the file
-	pass#ember_scene = load(data.ember_scene_reference)
+	ember_scene = DB.I.scenes.ember_scene
 
 func _apply(weapon:RangedWeapon,_unit):
 	#add with high priority so all damage calculations take place first

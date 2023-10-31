@@ -1,10 +1,9 @@
 extends CardModifier
 
-var taste_for_blood_scene: PackedScene = preload("res://fx/generic_aoe.tscn")
+var taste_for_blood_scene
 
 func _initialize(_data):
-	#todo, this won't work so preload it somewhere else so we don't have to hard-code in the file
-	pass#explosion_scene = load(data.explosion_scene_reference)
+	taste_for_blood_scene = DB.I.scenes.taste_for_blood_scene
 
 func _apply(_node,unit):
 	unit.on_recieved_hit.connect(_on_recieved_hit)

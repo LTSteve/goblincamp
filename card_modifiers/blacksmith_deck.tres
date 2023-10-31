@@ -4,4 +4,4 @@
 
 [resource]
 script = ExtResource("1_gxfqh")
-card_folder = "res://card_modifiers/blacksmith"
+card_folder_name = "blacksmith_deck"

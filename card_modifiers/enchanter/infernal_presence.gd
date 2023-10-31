@@ -1,6 +1,9 @@
 extends CardModifier
 
-var aoe_scene = preload("res://fx/generic_aoe.tscn")
+var aoe_scene: PackedScene
+
+func _initialize(_data):
+	aoe_scene = DB.I.scenes.aoe_scene
 
 func _apply(ranged_weapon:RangedWeapon,unit:Unit):
 	var aoe = aoe_scene.instantiate() as AreaOfEffect

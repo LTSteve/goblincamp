@@ -4,4 +4,4 @@
 
 [resource]
 script = ExtResource("1_3ugba")
-card_folder = "res://card_modifiers/leatherworker"
+card_folder_name = "leatherworker_deck"

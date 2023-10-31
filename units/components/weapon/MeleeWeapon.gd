@@ -5,7 +5,6 @@ class_name MeleeWeapon
 @export var collision_areas: Array[Area3D]
 @export var hit_spot: Node3D
 
-@export var leave_behind_sfx_scene: PackedScene = preload("res://sfx/leave_behind_sfx.tscn")
 @export var hit_sfx: Array[AudioStream]
 
 @export var multi_target: bool = false
@@ -42,7 +41,7 @@ func _on_area_3d_body_entered(enemy):
 		_already_hit.append(enemy);
 	
 	if hit_sfx && hit_sfx.size() > 0:
-		var sfx = leave_behind_sfx_scene.instantiate() as LeaveBehindSFX
+		var sfx = DB.I.scenes.leave_behind_sfx_scene.instantiate() as LeaveBehindSFX
 		sfx.stream = hit_sfx.pick_random()
 		get_tree().root.add_child(sfx)
 	

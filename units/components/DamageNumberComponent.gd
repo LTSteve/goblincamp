@@ -2,13 +2,16 @@ extends Node3D
 
 class_name DamageNumberComponent
 
-var settings: DamageLabelSettingsResource = preload("res://units/components/damagelabel/damage_label_settings.tres")
+var settings: DamageLabelSettingsResource
 @export var damage_label_scene: PackedScene
 @export var is_ally: bool
 
 static var _my_numbers: Array[DamageLabel] = []
 
 @export var _setting:SettingResource
+
+func _ready():
+	settings = DB.I.scenes.damage_label_settings
 
 func _on_damage_recieved(weapon_hit:Weapon.Hit):
 	if !_setting.value: return

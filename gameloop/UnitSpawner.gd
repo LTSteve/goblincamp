@@ -7,19 +7,6 @@ signal on_spawn_building(building_type:BuildingType)
 enum UnitType {Knight=0, Witch, Woodsman, Goblin, Imp, Ogre, GoblinPriest}
 enum BuildingType {Blacksmith=0, Leatherworker, Enchanter}
 
-@onready var knight_scene = preload("res://units/knight.tscn")
-@onready var witch_scene = preload("res://units/witch.tscn")
-@onready var woodsman_scene = preload("res://units/woodsman.tscn")
-
-@onready var goblin_scene = preload("res://units/goblin.tscn")
-@onready var ogre_scene = preload("res://units/ogre.tscn")
-@onready var imp_scene = preload("res://units/imp.tscn")
-@onready var goblin_priest_scene = preload("res://units/goblin_priest.tscn")
-
-@onready var blacksmith_scene = preload("res://buildings/blacksmith.tscn")
-@onready var leatherworker_scene = preload("res://buildings/leatherworker.tscn")
-@onready var enchanter_scene = preload("res://buildings/enchanter.tscn")
-
 @export var units_folder: Node
 @export var buildings_folder: Node
 @export var world_root: Node3D
@@ -114,29 +101,29 @@ func _spawn(unit_type: UnitType, position: Vector3):
 func _get_unit_scene(unit_type: UnitType) -> PackedScene:
 	match unit_type:
 		UnitType.Knight:
-			return knight_scene
+			return DB.I.scenes.knight_scene
 		UnitType.Witch:
-			return witch_scene
+			return DB.I.scenes.witch_scene
 		UnitType.Woodsman:
-			return woodsman_scene
+			return DB.I.scenes.woodsman_scene
 		UnitType.Goblin:
-			return goblin_scene
+			return DB.I.scenes.goblin_scene
 		UnitType.Imp:
-			return imp_scene
+			return DB.I.scenes.imp_scene
 		UnitType.Ogre:
-			return ogre_scene
+			return DB.I.scenes.ogre_scene
 		UnitType.GoblinPriest:
-			return goblin_priest_scene
+			return DB.I.scenes.goblin_priest_scene
 	
 	return null
 
 func _get_building_scene(building_type: BuildingType) -> PackedScene:
 	match building_type:
 		BuildingType.Blacksmith:
-			return blacksmith_scene
+			return DB.I.scenes.blacksmith_scene
 		BuildingType.Leatherworker:
-			return leatherworker_scene
+			return DB.I.scenes.leatherworker_scene
 		BuildingType.Enchanter:
-			return enchanter_scene
+			return DB.I.scenes.enchanter_scene
 	
 	return null

@@ -13,7 +13,7 @@ static func _initialize():
 	if initialized: return
 	initialized = true
 	
-	#load setting resources
+	#load setting resources (can't do this through DB right now since we need it on the main menu)
 	var directory = DirAccess.open(settings_folder)
 	var files = directory.get_files()
 	for file in files:

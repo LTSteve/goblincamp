@@ -13,7 +13,6 @@ class_name AreaOfEffect
 var callback: Callable
 
 @export var particles: Array[GPUParticles3D]
-@export var leave_behind_sfx_scene: PackedScene = preload("res://sfx/leave_behind_sfx.tscn")
 @export var hit_sfx: Array[AudioStream]
 
 @export var clean_up_delay: float = 1
@@ -53,7 +52,7 @@ func _effect_units():
 	for particle in particles:
 		particle.emitting = true
 	if hit_sfx && hit_sfx.size() > 0:
-		var sfx = leave_behind_sfx_scene.instantiate() as LeaveBehindSFX
+		var sfx = DB.I.scenes.leave_behind_sfx_scene.instantiate() as LeaveBehindSFX
 		sfx.stream = hit_sfx.pick_random()
 		get_tree().root.add_child(sfx)
 	
