@@ -10,6 +10,8 @@ extends Node3D
 @export var camera_angle_speed: float = 20
 @export var camera_distance_speed: float = 3
 
+@export var drag_speed: float = 4.0
+
 @export var auto_drive: bool
 
 @onready var camera_rotation: Node3D = $"CameraRotation"
@@ -52,17 +54,18 @@ func _process(delta):
 		forward_back_input = -1
 		rotate_input = 1
 	else:
+		var drag_v2:Vector2 = TouchAndMouseInput.I.get_current_drag_v2() * drag_speed
 		#input
-		left_right_input = _combine_actions("camera_right", "camera_left")
-		forward_back_input = _combine_actions("camera_back", "camera_forward")
+		left_right_input = _combine_actions("camera_right", "camera_left") - drag_v2.x
+		forward_back_input = _combine_actions("camera_back", "camera_forward") - drag_v2.y
 		rotate_input = _combine_actions("camera_rotate_right", "camera_rotate_left")
 		angle_input = _combine_actions("camera_angle_up", "camera_angle_down")
 		distance_input = _combine_actions("camera_zoom", "camera_dezoom")
 	
 	#movement
-	var desired_movement = Math.unit_v3(left_right_input * Vector3.LEFT + forward_back_input * Vector3.FORWARD)
+	var desired_movement = left_right_input * Vector3.LEFT + forward_back_input * Vector3.FORWARD
 	
-	velocity_component.accelerate_in_direction(Math.v3_to_v2(desired_movement) * camera_scroll_speed, delta)
+	velocity_component.accelerate_to_velocity(Math.v3_to_v2(desired_movement) * camera_scroll_speed, delta)
 	translate(camera_rotation.quaternion * Math.v2_to_v3(velocity_component.apply_delta(delta), global_position.y))
 	global_position.y = Ground.sample_height(camera.global_position.x, camera.global_position.z) + 0.1
 	
@@ -77,8 +80,6 @@ func _process(delta):
 	#distance
 	distance_value += distance_input * camera_distance_speed * delta
 	camera_distance.position = Vector3(0,0,-distance_value)
-	
-	
 
 func _combine_actions(positive_input:String, negative_input:String) -> int:
 	return (Input.get_action_strength(positive_input) - Input.get_action_strength(negative_input)) as int
