@@ -531,7 +531,7 @@ hit_stun = 1.1
 scales_with_day = true
 
 [node name="ogre_weapon" parent="." instance=ExtResource("2_m1iyf")]
-transform = Transform3D(0.974989, -8.75602e-08, 0.222256, -0.222256, -7.7807e-07, 0.974989, 8.75603e-08, -1, -7.7807e-07, -1.38503, 1.35629, -2)
+transform = Transform3D(0.965927, -1.23345e-07, 0.258816, -0.258816, -9.36912e-07, 0.965927, 1.23345e-07, -1, -9.36912e-07, -1.36962, 1.45036, -2)
 
 [node name="HitSpot" type="Node3D" parent="ogre_weapon"]
 transform = Transform3D(1, -2.30926e-14, -4.47035e-08, -5.50671e-14, 1, 8.43769e-15, 4.47035e-08, -1.19904e-14, 1, 3.63648, 2.38419e-07, 0)

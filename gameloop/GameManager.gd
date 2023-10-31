@@ -44,6 +44,7 @@ func _ready():
 	var directory = DirAccess.open(enemy_spawn_folder)
 	var files = directory.get_files()
 	for file in files:
+		file = file.trim_suffix(".remap")
 		if !file.ends_with(".tres"): continue
 		var resource = load(enemy_spawn_folder + "/" + file)
 		if !(resource is EnemySpawnResource): continue

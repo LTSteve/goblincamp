@@ -1,8 +1,6 @@
 [gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://vjdnyqs235ys"]
 
-[ext_resource type="Texture2D" uid="uid://ctqy1r2xv05ci" path="res://models/pallete.png" id="1_n1ia5"]
+[ext_resource type="Texture2D" uid="uid://hdo5tb4ke5es" path="res://models/pallete.png" id="1_id5ve"]
 
 [resource]
-albedo_texture = ExtResource("1_n1ia5")
-emission_enabled = true
-emission_energy_multiplier = 0.3
+albedo_texture = ExtResource("1_id5ve")

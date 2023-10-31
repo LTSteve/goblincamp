@@ -17,6 +17,7 @@ static func _initialize():
 	var directory = DirAccess.open(settings_folder)
 	var files = directory.get_files()
 	for file in files:
+		file = file.trim_suffix(".remap")
 		if !file.ends_with(".tres"): continue
 		var resource = load(settings_folder + "/" + file)
 		if !(resource is SettingResource): continue

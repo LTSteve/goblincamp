@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://bfg28nholuf7e"]
 
 [ext_resource type="Script" path="res://units/components/HealthbarComponent.gd" id="1_tqx4m"]
-[ext_resource type="Texture2D" uid="uid://ctqy1r2xv05ci" path="res://models/pallete.png" id="2_gubig"]
+[ext_resource type="Texture2D" uid="uid://hdo5tb4ke5es" path="res://models/pallete.png" id="2_5xb47"]
 
 [node name="HealthbarComponent" type="Node3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.39715, 0)
@@ -11,6 +11,6 @@ script = ExtResource("1_tqx4m")
 transform = Transform3D(20, 0, 0, 0, 2, 0, 0, 0, 1, 0, 0, 0)
 gi_mode = 0
 billboard = 1
-texture = ExtResource("2_gubig")
+texture = ExtResource("2_5xb47")
 region_enabled = true
 region_rect = Rect2(466.38, 312.284, 10, 10)
