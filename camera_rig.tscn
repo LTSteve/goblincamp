@@ -15,7 +15,6 @@ fog_height_density = -0.3516
 
 [node name="CameraRig" type="Node3D"]
 script = ExtResource("1_rylmo")
-camera_scroll_speed = 2.0
 
 [node name="CameraRotation" type="Node3D" parent="."]
 transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 0, 0, 0)
@@ -37,3 +36,4 @@ current = true
 
 [node name="VelocityComponent" type="Node" parent="."]
 script = ExtResource("2_yobrm")
+acceleration = 20.0
