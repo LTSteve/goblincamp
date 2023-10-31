@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://brhc1aba5usew" path="res://units/unit.tscn" id="1_g4nk8"]
 [ext_resource type="PackedScene" uid="uid://c66o7ssgncoaa" path="res://models/witch/witch.glb" id="2_kevcb"]
-[ext_resource type="PackedScene" uid="uid://yqmlu4dtpagw" path="res://units/weapons/staff.tscn" id="3_sg8hd"]
+[ext_resource type="PackedScene" uid="uid://dhkqnkpw6rynx" path="res://units/weapons/ranged/staff.tscn" id="2_p6m06"]
 [ext_resource type="Resource" uid="uid://c7i3ado8qilji" path="res://units/components/brain/ranged_behaviour.tres" id="4_4f1ng"]
 [ext_resource type="Resource" uid="uid://du4glkse3tqoh" path="res://units/components/brain/repulse_behaviour.tres" id="4_e1jap"]
 [ext_resource type="Resource" uid="uid://6a2euiflosoa" path="res://units/components/brain/wander_behaviour.tres" id="5_a72gt"]
@@ -12,7 +12,7 @@
 [node name="Model" parent="." index="1"]
 transform = Transform3D(-2.30258e-08, 0, 0.526768, 0, 0.526768, 0, -0.526768, 0, -2.30258e-08, 0, 0, 0)
 
-[node name="Staff" parent="Model/WeaponHolder" index="0" instance=ExtResource("3_sg8hd")]
+[node name="Staff" parent="Model/WeaponHolder" index="0" instance=ExtResource("2_p6m06")]
 
 [node name="witch" parent="Model/ModelHolder" index="0" instance=ExtResource("2_kevcb")]
 transform = Transform3D(1, 0, -3.55271e-15, 0, 1, 0, 3.55271e-15, 0, 1, 0, 0, 0)

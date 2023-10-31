@@ -1,0 +1,74 @@
+[gd_scene load_steps=9 format=3 uid="uid://t114fmnn33nk"]
+
+[ext_resource type="PackedScene" uid="uid://cqd8cffwoc8n4" path="res://units/weapons/melee_weapon.tscn" id="1_lr0qh"]
+[ext_resource type="PackedScene" uid="uid://ccbj6hhusyqky" path="res://models/knight/knight_weapon.glb" id="1_yltu8"]
+[ext_resource type="AudioStream" uid="uid://b6lk6tkrmw184" path="res://sfx/zapsplat_foley_umbrella_collapsed_swipe_hit_person_003_82657.mp3" id="2_xeyop"]
+[ext_resource type="AudioStream" uid="uid://c3n36epcuoata" path="res://sfx/zapsplat_foley_umbrella_collapsed_swipe_hit_person_004_82658.mp3" id="3_gnvpa"]
+[ext_resource type="AnimationLibrary" uid="uid://cfhecwtr5qdxj" path="res://units/weapons/melee/sword_animations.res" id="3_moog0"]
+[ext_resource type="AudioStream" uid="uid://0n2ugmf2tp22" path="res://sfx/zapsplat_foley_umbrella_collapsed_swipe_hit_person_005_82659.mp3" id="4_4s42t"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_85hrd"]
+radius = 2.2
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_4sv15"]
+radius = 2.2
+
+[node name="Sword" node_paths=PackedStringArray("collision_areas", "hit_spot") groups=["Sword"] instance=ExtResource("1_lr0qh")]
+collision_areas = [NodePath("Hitboxes/Area3D"), NodePath("Hitboxes/Area3D2"), NodePath("Hitboxes/Area3D3"), NodePath("Hitboxes/Area3D4")]
+hit_spot = NodePath("ModelHolder/knight_weapon/HitPoint")
+hit_sfx = Array[AudioStream]([ExtResource("2_xeyop"), ExtResource("3_gnvpa"), ExtResource("4_4s42t")])
+multi_target = true
+weapon_range = 3.8
+damage = 7.0
+pushback = 4.5
+
+[node name="knight_weapon" parent="ModelHolder" index="0" instance=ExtResource("1_yltu8")]
+transform = Transform3D(0.250029, 0.258382, 0.933126, -0.965926, -3.49664e-06, 0.258819, 0.0668774, -0.966043, 0.249577, -0.394594, 2.23556, 1.47275)
+
+[node name="HitPoint" type="Node3D" parent="ModelHolder/knight_weapon" index="1"]
+transform = Transform3D(1, 2.23517e-08, -1.49012e-08, 7.45058e-09, 1, 0, -1.49012e-08, -1.49012e-08, 1, 2.13271, 7.15256e-07, -5.96046e-08)
+
+[node name="AnimationTreeExpressionExtension" parent="." index="1" groups=["Sword"]]
+
+[node name="AnimationPlayer" parent="." index="2"]
+libraries = {
+"": ExtResource("3_moog0")
+}
+
+[node name="Hitboxes" parent="." index="3" groups=["Sword_Hitbox"]]
+
+[node name="Area3D" type="Area3D" parent="Hitboxes" index="0"]
+collision_layer = 0
+collision_mask = 0
+monitoring = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Hitboxes/Area3D" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.70306, 1.51939, -2.23572)
+shape = SubResource("SphereShape3D_85hrd")
+
+[node name="Area3D2" type="Area3D" parent="Hitboxes" index="1"]
+collision_layer = 0
+collision_mask = 0
+monitoring = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Hitboxes/Area3D2" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.02445, 1.51939, -4.69074)
+shape = SubResource("SphereShape3D_4sv15")
+
+[node name="Area3D3" type="Area3D" parent="Hitboxes" index="2"]
+collision_layer = 0
+collision_mask = 0
+monitoring = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Hitboxes/Area3D3" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.32759, 1.51939, -4.45369)
+shape = SubResource("SphereShape3D_4sv15")
+
+[node name="Area3D4" type="Area3D" parent="Hitboxes" index="3"]
+collision_layer = 0
+collision_mask = 0
+monitoring = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Hitboxes/Area3D4" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.68794, 1.51939, -2.48111)
+shape = SubResource("SphereShape3D_4sv15")

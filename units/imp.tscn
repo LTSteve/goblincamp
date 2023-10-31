@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://brhc1aba5usew" path="res://units/unit.tscn" id="1_7ffh0"]
 [ext_resource type="PackedScene" uid="uid://citvivc546i87" path="res://models/imp/imp.glb" id="2_tftnr"]
-[ext_resource type="PackedScene" uid="uid://bafd3cjhvdg42" path="res://units/weapons/imp_claw.tscn" id="3_5sjsv"]
+[ext_resource type="PackedScene" uid="uid://dvjrella2vjj4" path="res://units/weapons/melee/imp_claw.tscn" id="2_ud3bp"]
 [ext_resource type="Resource" uid="uid://du4glkse3tqoh" path="res://units/components/brain/repulse_behaviour.tres" id="4_gxj6e"]
 [ext_resource type="Resource" uid="uid://bx08od3oiaac2" path="res://units/components/brain/imp_melee_behaviour.tres" id="4_kbe1u"]
 [ext_resource type="Resource" uid="uid://6a2euiflosoa" path="res://units/components/brain/wander_behaviour.tres" id="5_dwiai"]
@@ -30,7 +30,7 @@ enabled = true
 worth_base = 25
 worth_varience = 7
 
-[node name="ImpClaw" parent="Model/WeaponHolder" index="0" instance=ExtResource("3_5sjsv")]
+[node name="ImpClaw" parent="Model/WeaponHolder" index="0" instance=ExtResource("2_ud3bp")]
 
 [node name="imp" parent="Model/ModelHolder" index="0" instance=ExtResource("2_tftnr")]
 transform = Transform3D(1, 0, -7.10543e-15, 0, 1, 0, 7.10543e-15, 0, 1, 0, 0, 0)

@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://brhc1aba5usew" path="res://units/unit.tscn" id="1_d7e8e"]
 [ext_resource type="PackedScene" uid="uid://bjni3yp3c1c0c" path="res://models/knight/knight.glb" id="2_71j88"]
-[ext_resource type="PackedScene" uid="uid://p0owu7fjhs2u" path="res://units/weapons/sword.tscn" id="3_qgv83"]
+[ext_resource type="PackedScene" uid="uid://t114fmnn33nk" path="res://units/weapons/melee/sword.tscn" id="2_wode8"]
 [ext_resource type="Resource" uid="uid://du4glkse3tqoh" path="res://units/components/brain/repulse_behaviour.tres" id="4_77og7"]
 [ext_resource type="Resource" uid="uid://cao1bytnssy28" path="res://units/components/brain/melee_behaviour.tres" id="4_u2k7p"]
 [ext_resource type="Resource" uid="uid://6a2euiflosoa" path="res://units/components/brain/wander_behaviour.tres" id="5_2y4yu"]
@@ -12,9 +12,9 @@
 [node name="Model" parent="." index="1"]
 transform = Transform3D(-2.30258e-08, 0, 0.526768, 0, 0.526768, 0, -0.526768, 0, -2.30258e-08, 0, 0, 0)
 
-[node name="Sword" parent="Model/WeaponHolder" index="0" instance=ExtResource("3_qgv83")]
+[node name="Sword" parent="Model/WeaponHolder" index="0" instance=ExtResource("2_wode8")]
 
-[node name="Sword2" parent="Model/WeaponHolder" index="1" instance=ExtResource("3_qgv83")]
+[node name="Sword2" parent="Model/WeaponHolder" index="1" instance=ExtResource("2_wode8")]
 transform = Transform3D(4.37114e-08, 0, -1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 1, 0)
 visible = false
 animation_delay = 0.2

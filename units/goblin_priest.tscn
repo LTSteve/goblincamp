@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://brja51ts4kkm1"]
 
 [ext_resource type="PackedScene" uid="uid://brhc1aba5usew" path="res://units/unit.tscn" id="1_o6a4c"]
-[ext_resource type="PackedScene" uid="uid://bn8cmrdfwlj5b" path="res://units/weapons/goblin_rod.tscn" id="2_1ckjm"]
+[ext_resource type="PackedScene" uid="uid://cfg0rjlguiigk" path="res://units/weapons/channeling/goblin_rod.tscn" id="2_k4knw"]
 [ext_resource type="PackedScene" uid="uid://cx6nlib0memhr" path="res://models/goblin_priest/goblin_priest.glb" id="2_q1y50"]
 [ext_resource type="Resource" uid="uid://bojkc8g5upa4c" path="res://units/components/brain/priest_repulse_behaviour.tres" id="4_uvtix"]
 [ext_resource type="Resource" uid="uid://gn36ryd3nnjj" path="res://units/components/brain/channeling_behaviour.tres" id="6_1yhhw"]
@@ -12,16 +12,14 @@ collision_layer = 2
 ranged_targeting_radius = 1.5
 is_enemy = true
 
+[node name="Model" parent="." index="1"]
+transform = Transform3D(-2.30258e-08, 0, 0.526768, 0, 0.526768, 0, -0.526768, 0, -2.30258e-08, 0, 0, 0)
+
 [node name="BountyComponent" parent="Model" index="1"]
 enabled = true
 worth_base = 80
 
-[node name="GoblinRod" parent="Model/WeaponHolder" index="0" instance=ExtResource("2_1ckjm")]
-crit_chance = null
-crit_damage_multiplier = null
-damage_type = null
-animation_delay = null
-disabled = null
+[node name="GoblinRod" parent="Model/WeaponHolder" index="0" instance=ExtResource("2_k4knw")]
 
 [node name="goblin_priest" parent="Model/ModelHolder" index="1" instance=ExtResource("2_q1y50")]
 

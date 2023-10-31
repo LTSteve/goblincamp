@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://koy1ibb7oip4"]
+
+[ext_resource type="PackedScene" uid="uid://bpmqrnq0rvyj4" path="res://units/weapons/weapon.tscn" id="1_vipc8"]
+[ext_resource type="Script" path="res://units/components/weapon/RangedWeapon.gd" id="2_l4ted"]
+
+[node name="RangedWeapon" node_paths=PackedStringArray("projectile_spawn_point") instance=ExtResource("1_vipc8")]
+script = ExtResource("2_l4ted")
+projectile_scene = null
+projectile_spawn_point = NodePath("projectile_spawn")
+dumb_projectile = false
+
+[node name="AnimationTreeExpressionExtension" parent="." index="1"]
+active = true
+
+[node name="projectile_spawn" type="Node3D" parent="." index="3"]
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="." index="4"]

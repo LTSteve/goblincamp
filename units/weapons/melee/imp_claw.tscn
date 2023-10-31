@@ -1,0 +1,45 @@
+[gd_scene load_steps=6 format=3 uid="uid://dvjrella2vjj4"]
+
+[ext_resource type="PackedScene" uid="uid://cqd8cffwoc8n4" path="res://units/weapons/melee_weapon.tscn" id="1_gygif"]
+[ext_resource type="PackedScene" uid="uid://edpi0vppt0da" path="res://models/imp/imp_weapon.glb" id="2_7w71k"]
+[ext_resource type="AudioStream" uid="uid://b6lk6tkrmw184" path="res://sfx/zapsplat_foley_umbrella_collapsed_swipe_hit_person_003_82657.mp3" id="2_tae5q"]
+[ext_resource type="AnimationLibrary" uid="uid://dgv8h513jh2yi" path="res://units/weapons/melee/imp_claw_animations.res" id="4_fr8jc"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_m8vj3"]
+size = Vector3(1, 2, 1)
+
+[node name="ImpClaw" node_paths=PackedStringArray("collision_areas", "hit_spot") groups=["ImpClaw"] instance=ExtResource("1_gygif")]
+collision_areas = [NodePath("Hitboxes/Area3D")]
+hit_spot = NodePath("ModelHolder/claws/HitSpot")
+hit_sfx = Array[AudioStream]([ExtResource("2_tae5q")])
+weapon_range = 1.5
+damage = 4.0
+pushback = 0.5
+hit_stun = 0.1
+scales_with_day = true
+
+[node name="claws" type="Node3D" parent="ModelHolder" index="0"]
+
+[node name="imp_weapon_l" parent="ModelHolder/claws" index="0" instance=ExtResource("2_7w71k")]
+transform = Transform3D(0.00949368, -0.788297, 0.283591, -0.723367, 0.135345, 0.400437, -0.422585, -0.24939, -0.679084, -0.453122, -0.505079, -0.29645)
+
+[node name="imp_weapon_r" parent="ModelHolder/claws" index="1" instance=ExtResource("2_7w71k")]
+transform = Transform3D(-0.0105946, 0.787503, 0.285754, -0.72305, 0.135735, -0.400877, -0.423101, -0.251682, 0.677915, 0.453268, -0.505402, -0.29604)
+
+[node name="HitSpot" type="Node3D" parent="ModelHolder/claws" index="2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.01644e-08, 0, -1.3764)
+
+[node name="AnimationPlayer" parent="." index="2" groups=["ImpClaw"]]
+libraries = {
+"": ExtResource("4_fr8jc")
+}
+
+[node name="Area3D" type="Area3D" parent="Hitboxes" index="0"]
+transform = Transform3D(1, 0, -6.77626e-21, 0, 1, 0, 6.77626e-21, 0, 1, 0, 0, -1.98714)
+collision_layer = 0
+collision_mask = 0
+monitoring = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Hitboxes/Area3D" index="0"]
+transform = Transform3D(1, 0, 8.47033e-22, 0, 1, 0, -8.47033e-22, 0, 1, 6.6517e-15, 0, 0.450586)
+shape = SubResource("BoxShape3D_m8vj3")

@@ -1,0 +1,30 @@
+[gd_scene load_steps=6 format=3 uid="uid://dhkqnkpw6rynx"]
+
+[ext_resource type="PackedScene" uid="uid://koy1ibb7oip4" path="res://units/weapons/ranged_weapon.tscn" id="1_yokpo"]
+[ext_resource type="PackedScene" uid="uid://dr03pl5h8j0jd" path="res://models/witch/witch_weapon.glb" id="2_6xeua"]
+[ext_resource type="PackedScene" uid="uid://fphb7wictjtw" path="res://units/weapons/projectiles/fireball.tscn" id="2_r1tlr"]
+[ext_resource type="AudioStream" uid="uid://c0jk4quyv01je" path="res://sfx/Fireball.wav" id="3_agdi3"]
+[ext_resource type="AnimationLibrary" uid="uid://b6wnckokfgdid" path="res://units/weapons/ranged/staff_animations.res" id="4_hk7ha"]
+
+[node name="Staff" groups=["Staff"] instance=ExtResource("1_yokpo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+projectile_scene = ExtResource("2_r1tlr")
+weapon_range = 20.0
+damage = 15.8
+damage_random_component = 3.0
+pushback = 4.0
+hit_stun = 0.3
+damage_type = 2
+
+[node name="witch_weapon" parent="ModelHolder" index="0" instance=ExtResource("2_6xeua")]
+transform = Transform3D(0.999544, -0.00189849, 0.0300112, -0.0298168, 0.066972, 0.997305, -0.00390332, -0.99775, 0.0668851, 0.664789, 1.63432, 1.02012)
+
+[node name="AnimationTreeExpressionExtension" parent="." index="1" groups=["Staff"]]
+
+[node name="AnimationPlayer" parent="." index="2"]
+libraries = {
+"": ExtResource("4_hk7ha")
+}
+
+[node name="AudioStreamPlayer3D" parent="." index="4"]
+stream = ExtResource("3_agdi3")

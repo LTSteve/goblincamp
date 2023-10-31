@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://cqd8cffwoc8n4"]
+
+[ext_resource type="PackedScene" uid="uid://bpmqrnq0rvyj4" path="res://units/weapons/weapon.tscn" id="1_8jw71"]
+[ext_resource type="Script" path="res://units/components/weapon/MeleeWeapon.gd" id="2_fhofy"]
+[ext_resource type="Script" path="res://units/components/InverseHeightComponent.gd" id="3_ndqkt"]
+
+[node name="MeleeWeapon" node_paths=PackedStringArray("collision_areas") instance=ExtResource("1_8jw71")]
+script = ExtResource("2_fhofy")
+collision_areas = []
+hit_sfx = []
+multi_target = false
+
+[node name="AnimationTreeExpressionExtension" parent="." index="1"]
+active = true
+
+[node name="Hitboxes" type="Node3D" parent="." index="3"]
+script = ExtResource("3_ndqkt")

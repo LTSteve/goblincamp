@@ -1,0 +1,31 @@
+[gd_scene load_steps=4 format=3 uid="uid://bpmqrnq0rvyj4"]
+
+[ext_resource type="Script" path="res://units/components/Weapon.gd" id="1_gi4kr"]
+[ext_resource type="AnimationNodeStateMachine" uid="uid://dawvd5u6rapgb" path="res://units/weapons/weapon_animation_state_machine.tres" id="2_a8w1v"]
+[ext_resource type="Script" path="res://util/AnimationTreeExpressionExtension.gd" id="3_i3yfl"]
+
+[node name="Weapon" type="Node3D" node_paths=PackedStringArray("animation_tree")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 1, 0)
+script = ExtResource("1_gi4kr")
+animation_tree = NodePath("AnimationTreeExpressionExtension")
+
+[node name="ModelHolder" type="Node3D" parent="."]
+
+[node name="AnimationTreeExpressionExtension" type="AnimationTree" parent="."]
+tree_root = ExtResource("2_a8w1v")
+anim_player = NodePath("../AnimationPlayer")
+parameters/conditions/in_combat = false
+parameters/conditions/not_in_combat = false
+parameters/Attack/conditions/attack_loops = false
+parameters/Attack/conditions/use_attack_2 = false
+parameters/Attack/attack/TimeScale/scale = 1.0
+"parameters/Attack/attack/TimeScale 2/scale" = 1.0
+parameters/Attack/attack_2/TimeScale/scale = 1.0
+"parameters/Attack/attack_2/TimeScale 2/scale" = 1.0
+parameters/Attack/attack_channel/TimeScale/scale = 1.0
+"parameters/Attack/attack_channel/TimeScale 2/scale" = 1.0
+parameters/Draw/TimeScale/scale = 1.0
+parameters/Stow/TimeScale/scale = 1.0
+script = ExtResource("3_i3yfl")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
