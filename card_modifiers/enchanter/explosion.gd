@@ -5,7 +5,7 @@ var explosion_radius_squared: float
 
 func _initialize(_data):
 	explosion_radius_squared = params.explosion_radius * params.explosion_radius
-	explosion_scene = DB.I.explosion_scene
+	explosion_scene = DB.I.scenes.explosion_scene
 
 func _apply(weapon:RangedWeapon,_unit):
 	#add with high priority so all damage calculations take place first

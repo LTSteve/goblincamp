@@ -22,4 +22,4 @@ fog_density = 0.0008
 fog_sky_affect = 0.14
 adjustment_enabled = true
 adjustment_contrast = 0.95
-adjustment_saturation = 1.7
+adjustment_saturation = 1.85
