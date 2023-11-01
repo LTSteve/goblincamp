@@ -1,6 +1,16 @@
-[gd_resource type="Environment" format=3 uid="uid://dewoeykm6c8my"]
+[gd_resource type="Environment" load_steps=4 format=3 uid="uid://dewoeykm6c8my"]
+
+[ext_resource type="Texture2D" uid="uid://ks85sdn8xh4e" path="res://skybox_low_res.exr" id="1_sskg1"]
+
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_gtddt"]
+panorama = ExtResource("1_sskg1")
+
+[sub_resource type="Sky" id="Sky_t5b71"]
+sky_material = SubResource("PanoramaSkyMaterial_gtddt")
 
 [resource]
+background_mode = 2
+sky = SubResource("Sky_t5b71")
 ambient_light_source = 1
 ssr_enabled = true
 ssao_enabled = true
@@ -8,6 +18,7 @@ ssil_enabled = true
 fog_enabled = true
 fog_light_color = Color(0.780392, 0.827451, 0.909804, 1)
 fog_density = 0.0008
+fog_sky_affect = 0.14
 adjustment_enabled = true
 adjustment_contrast = 0.95
 adjustment_saturation = 1.7

@@ -21,6 +21,10 @@ region_rect = Rect2(50, 50, 500, 500)
 
 [node name="main_menu" type="Node3D"]
 
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = ExtResource("11_ofhcg")
+camera_attributes = ExtResource("12_vvwwe")
+
 [node name="CameraRig" parent="." instance=ExtResource("1_42x5g")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -170)
 camera_angle_max = 10.0
@@ -147,10 +151,6 @@ visible = false
 layout_mode = 1
 offset_top = -271.0
 offset_bottom = 267.0
-
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = ExtResource("11_ofhcg")
-camera_attributes = ExtResource("12_vvwwe")
 
 [connection signal="pressed" from="Theme/MainMenu/MarginContainer/VBoxContainer/MarginContainer/Button" to="Theme/MainMenu" method="on_play"]
 [connection signal="pressed" from="Theme/MainMenu/MarginContainer/VBoxContainer/MarginContainer2/Button" to="Theme/MainMenu" method="on_settings"]
