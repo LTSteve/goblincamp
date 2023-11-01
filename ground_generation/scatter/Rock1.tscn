@@ -8,4 +8,5 @@
 [node name="model" parent="." instance=ExtResource("1_l1xjd")]
 transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, 0, 0, 0)
 script = ExtResource("2_ub6tt")
+offset = -0.5
 once = true

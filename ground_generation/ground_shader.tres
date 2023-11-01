@@ -4,11 +4,13 @@
 input_name = "color"
 
 [sub_resource type="VisualShaderNodeFloatConstant" id="VisualShaderNodeFloatConstant_uic3g"]
+constant = 0.1
 
 [sub_resource type="VisualShaderNodeFloatConstant" id="VisualShaderNodeFloatConstant_ptjw8"]
-constant = 0.5
+constant = 0.9
 
 [sub_resource type="VisualShaderNodeFloatConstant" id="VisualShaderNodeFloatConstant_6tnq4"]
+constant = 0.05
 
 [resource]
 code = "shader_type spatial;
@@ -23,15 +25,15 @@ void fragment() {
 
 
 // FloatConstant:3
-	float n_out3p0 = 0.000000;
+	float n_out3p0 = 0.100000;
 
 
 // FloatConstant:4
-	float n_out4p0 = 0.500000;
+	float n_out4p0 = 0.900000;
 
 
 // FloatConstant:5
-	float n_out5p0 = 0.000000;
+	float n_out5p0 = 0.050000;
 
 
 // Output:0

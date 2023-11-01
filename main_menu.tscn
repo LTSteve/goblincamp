@@ -40,7 +40,7 @@ obsticle_folder = NodePath("../Ground/Node3D")
 [node name="ScatterSpawner" type="Node" parent="." node_paths=PackedStringArray("ground")]
 script = ExtResource("4_vafby")
 ground = NodePath("../Ground")
-scatter_min = 0.05
+scatter_min = 0.01
 scatter_setting = ExtResource("5_dss63")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]

@@ -1,0 +1,18 @@
+[gd_resource type="Environment" format=3 uid="uid://vy3sceqn68nj"]
+
+[resource]
+ambient_light_source = 2
+ambient_light_color = Color(1, 1, 1, 1)
+ambient_light_energy = 0.0
+ssr_enabled = true
+ssao_enabled = true
+ssil_enabled = true
+glow_enabled = true
+fog_light_color = Color(0.780392, 0.827451, 0.909804, 1)
+fog_light_energy = 2.25
+fog_density = 0.0015
+fog_height = 11.15
+fog_height_density = -0.3516
+adjustment_enabled = true
+adjustment_contrast = 0.95
+adjustment_saturation = 1.7

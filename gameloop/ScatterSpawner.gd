@@ -88,7 +88,7 @@ func _spawn_scatter(scatter):
 		new_scatter.global_position.z = rand_y
 		new_scatter.global_rotation.y = rand_rot
 		var model = new_scatter.find_child("model") as HeightComponent
-		model.offset = rand_height
+		model.offset += rand_height
 		model.scale = model.scale * rand_scale
 		
 		scatters.append(new_scatter)

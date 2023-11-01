@@ -3,6 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://hdo5tb4ke5es" path="res://models/pallete.png" id="1_eamfu"]
 
 [resource]
+transparency = 1
 shading_mode = 0
 albedo_color = Color(0.996078, 1, 1, 1)
 albedo_texture = ExtResource("1_eamfu")

@@ -4,12 +4,12 @@
 [ext_resource type="Script" path="res://ground_generation/LayeredNoise.gd" id="2_rh8kf"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_wkpqs"]
-seed = 1695495906
+seed = 405305498
 frequency = 0.1369
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_r0x5d"]
 noise_type = 5
-seed = 1695495906
+seed = 405305498
 frequency = 0.443
 
 [sub_resource type="Resource" id="Resource_ybxcl"]
@@ -23,5 +23,5 @@ script = ExtResource("1_0njb0")
 max_height = 60.0
 resolution = 20
 color_scale = 0.08
-colors = Array[Color]([Color(0.40625, 0.804688, 0.398438, 1), Color(0.199219, 0.558594, 0.140625, 1), Color(0.511719, 0.523438, 0.441406, 1)])
+colors = Array[Color]([Color(0.305882, 0.607843, 0.294118, 1), Color(0.137255, 0.380392, 0.0941176, 1), Color(0.384314, 0.396078, 0.32549, 1)])
 noise_layers = SubResource("Resource_ybxcl")
