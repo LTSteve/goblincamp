@@ -39,6 +39,8 @@ func _ready():
 	if is_enemy: Global.enemies.append(self)
 	else: Global.players.append(self)
 	
+	GameManager.I.on_day.connect(remove_all_effects)
+	
 	call_deferred("_apply_unit_modifiers")
 
 func _apply_unit_modifiers():
@@ -99,8 +101,16 @@ func take_hit(weapon_hit:Weapon.Hit):
 	
 	on_recieved_hit.emit(weapon_hit)
 
+func remove_all_effects():
+	for effect in _active_effects:
+		if !is_instance_valid(effect): continue
+		effect.on_remove()
+	_active_effects = []
+
 func remove_effect(effect:Effect):
-	_active_effects.remove_at(_active_effects.find(effect))
+	var index = _active_effects.find(effect)
+	if index == -1: return
+	_active_effects.remove_at(index)
 	effect.on_remove()
 
 func add_effect(effect:Effect):

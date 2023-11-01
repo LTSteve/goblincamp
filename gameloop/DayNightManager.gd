@@ -17,7 +17,7 @@ func _ready():
 	I = self
 	for light_source in light_sources:
 		_light_source_full.append(light_source.light_energy)
-		_light_source_half.append(light_source.light_energy * 0.4)
+		_light_source_half.append(light_source.light_energy * 0.3)
 
 func _move_to_night(_day):
 	_target_dayness = 0
@@ -28,7 +28,7 @@ func _move_to_day():
 func _process(delta):
 	if _target_dayness == _dayness: return
 	
-	_dayness = lerpf(_dayness, _target_dayness, (delta * 0.25) if _target_dayness == 0 else (delta * 0.5))
+	_dayness = lerpf(_dayness, _target_dayness, (delta * 0.33) if _target_dayness == 0 else (delta * 0.5))
 	
 	_apply_dayness(_dayness)
 
