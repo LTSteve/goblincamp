@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://133jo6pb7hxg"]
+[gd_scene load_steps=14 format=3 uid="uid://133jo6pb7hxg"]
 
 [ext_resource type="PackedScene" uid="uid://b43v6jawtpn5j" path="res://ground.tscn" id="1_4khsr"]
 [ext_resource type="PackedScene" uid="uid://dvgfkovckchyd" path="res://camera_rig.tscn" id="1_42x5g"]
@@ -9,7 +9,9 @@
 [ext_resource type="FontFile" uid="uid://d1jvqnhuvekma" path="res://theme/YoungSerif-Regular.ttf" id="9_ya2hh"]
 [ext_resource type="Texture2D" uid="uid://cxquwwj5pp616" path="res://icons/camp_panel.png" id="10_it1x5"]
 [ext_resource type="Script" path="res://controls/MainMenu.gd" id="11_n1vs6"]
+[ext_resource type="Environment" uid="uid://dewoeykm6c8my" path="res://world_environment.tres" id="11_ofhcg"]
 [ext_resource type="PackedScene" uid="uid://cfr8mya77iod3" path="res://controls/settings_menu.tscn" id="12_12y0v"]
+[ext_resource type="CameraAttributesPractical" uid="uid://c0b6x7w2dcuek" path="res://world_camera_attributes.tres" id="12_vvwwe"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_3c3gx"]
 texture = ExtResource("10_it1x5")
@@ -145,6 +147,10 @@ visible = false
 layout_mode = 1
 offset_top = -271.0
 offset_bottom = 267.0
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = ExtResource("11_ofhcg")
+camera_attributes = ExtResource("12_vvwwe")
 
 [connection signal="pressed" from="Theme/MainMenu/MarginContainer/VBoxContainer/MarginContainer/Button" to="Theme/MainMenu" method="on_play"]
 [connection signal="pressed" from="Theme/MainMenu/MarginContainer/VBoxContainer/MarginContainer2/Button" to="Theme/MainMenu" method="on_settings"]

@@ -1,7 +1,6 @@
-[gd_scene load_steps=4 format=3 uid="uid://dvgfkovckchyd"]
+[gd_scene load_steps=3 format=3 uid="uid://dvgfkovckchyd"]
 
 [ext_resource type="Script" path="res://controls/CameraRig.gd" id="1_rylmo"]
-[ext_resource type="Environment" uid="uid://vy3sceqn68nj" path="res://camera_rig_environment.tres" id="2_x1ace"]
 [ext_resource type="Script" path="res://units/components/VelocityComponent.gd" id="2_yobrm"]
 
 [node name="CameraRig" type="Node3D"]
@@ -18,7 +17,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -15)
 
 [node name="Camera3D" type="Camera3D" parent="CameraRotation/CameraAngle/CameraDistance"]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
-environment = ExtResource("2_x1ace")
 current = true
 fov = 106.162
 

@@ -1,0 +1,13 @@
+[gd_resource type="Environment" format=3 uid="uid://dewoeykm6c8my"]
+
+[resource]
+ambient_light_source = 1
+ssr_enabled = true
+ssao_enabled = true
+ssil_enabled = true
+fog_enabled = true
+fog_light_color = Color(0.780392, 0.827451, 0.909804, 1)
+fog_density = 0.0008
+adjustment_enabled = true
+adjustment_contrast = 0.95
+adjustment_saturation = 1.7
