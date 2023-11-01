@@ -50,3 +50,7 @@ static func save_setting(setting:SettingResource):
 	_initialize()
 	config.set_value(SETTINGS, setting.name, setting.value)
 	config.save(cfg_file)
+
+static func get_setting(name:String):
+	_initialize()
+	return Global.find_by_func(settings, func(val): return val.name == name)

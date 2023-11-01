@@ -2,27 +2,26 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dw0ywnkwvs2f1"
-path.s3tc="res://.godot/imported/Dirt 00 seamless.jpg-8bd62552e377a6bfa41797b23c03faf8.s3tc.ctex"
+uid="uid://b463e2kgh336a"
+path="res://.godot/imported/grass.png-d2e27d0008ba3e1a275dbf60e5739bc9.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
-"vram_texture": true
+"vram_texture": false
 }
 
 [deps]
 
-source_file="res://Dirt 00 seamless.jpg"
-dest_files=["res://.godot/imported/Dirt 00 seamless.jpg-8bd62552e377a6bfa41797b23c03faf8.s3tc.ctex"]
+source_file="res://icons/grass.png"
+dest_files=["res://.godot/imported/grass.png-d2e27d0008ba3e1a275dbf60e5739bc9.ctex"]
 
 [params]
 
-compress/mode=2
+compress/mode=0
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1
 compress/normal_map=0
 compress/channel_pack=0
-mipmaps/generate=true
+mipmaps/generate=false
 mipmaps/limit=-1
 roughness/mode=0
 roughness/src_normal=""
@@ -32,4 +31,4 @@ process/normal_map_invert_y=false
 process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
-detect_3d/compress_to=0
+detect_3d/compress_to=1

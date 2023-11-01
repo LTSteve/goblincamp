@@ -17,5 +17,11 @@ func _ready():
 func _on_h_slider_drag_ended(value_changed):
 	if ! value_changed: return
 	
-	setting.value = slider.value
-	Settings.save_setting(setting)
+	if !setting.update_on_close:
+		setting.value = slider.value
+		Settings.save_setting(setting)
+
+func on_close():
+	if setting.update_on_close:
+		setting.value = slider.value
+	super.on_close()

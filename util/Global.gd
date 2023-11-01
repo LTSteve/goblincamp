@@ -136,3 +136,9 @@ static func execute_later(fn:Callable, node_ctx:Node, delay: float):
 		timer.set_wait_time(delay)
 		node_ctx.add_child(timer)
 		timer.start()
+
+static func find_by_func(arr,fn:Callable):
+	for i in arr.size():
+		var value = arr[i]
+		if fn.call(value): return value
+	return null

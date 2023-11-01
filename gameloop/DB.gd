@@ -29,7 +29,16 @@ var _scene_paths = {
 	blacksmith_scene = "res://buildings/blacksmith.tscn",
 	leatherworker_scene = "res://buildings/leatherworker.tscn",
 	enchanter_scene = "res://buildings/enchanter.tscn",
-	damage_label_settings = "res://units/components/damagelabel/damage_label_settings.tres"
+	damage_label_settings = "res://units/components/damagelabel/damage_label_settings.tres",
+	rock1_scene = "res://ground_generation/scatter/Rock1.tscn",
+	rock2_scene = "res://ground_generation/scatter/Rock2.tscn",
+	rock3_scene = "res://ground_generation/scatter/Rock3.tscn",
+	grass1_scene = "res://ground_generation/scatter/Grass1.tscn",
+	grass2_scene = "res://ground_generation/scatter/Grass2.tscn",
+	tree1_scene = "res://ground_generation/trees/tree1.tscn",
+	tree2_scene = "res://ground_generation/trees/tree2.tscn",
+	tree3_scene = "res://ground_generation/trees/tree3.tscn",
+	tree4_scene = "res://ground_generation/trees/tree4.tscn"
 }
 
 var scenes = {}

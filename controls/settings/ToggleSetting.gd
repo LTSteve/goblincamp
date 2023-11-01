@@ -13,5 +13,11 @@ func _on_button_toggled(button_pressed):
 	button.button_pressed = button_pressed
 	button.icon = setting.icon_on if button_pressed else setting.icon_off
 	
-	setting.value = button_pressed
-	Settings.save_setting(setting)
+	if !setting.update_on_close:
+		setting.value = button.button_pressed
+		Settings.save_setting(setting)
+
+func on_close():
+	if setting.update_on_close:
+		setting.value = button.button_pressed
+	super.on_close()

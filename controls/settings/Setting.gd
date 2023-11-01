@@ -8,3 +8,7 @@ class_name Setting
 
 func _ready():
 	label.text = setting.name
+
+func on_close():
+	if setting.update_on_close:
+		Settings.save_setting(setting)

@@ -1,12 +1,10 @@
-[gd_scene load_steps=14 format=3 uid="uid://133jo6pb7hxg"]
+[gd_scene load_steps=12 format=3 uid="uid://133jo6pb7hxg"]
 
 [ext_resource type="PackedScene" uid="uid://b43v6jawtpn5j" path="res://ground.tscn" id="1_4khsr"]
 [ext_resource type="PackedScene" uid="uid://dvgfkovckchyd" path="res://camera_rig.tscn" id="1_42x5g"]
 [ext_resource type="Script" path="res://gameloop/TreeSpawner.gd" id="2_0sl38"]
-[ext_resource type="PackedScene" uid="uid://b2hafqpw528um" path="res://ground_generation/trees/tree1.tscn" id="3_pl7i1"]
-[ext_resource type="PackedScene" uid="uid://dfn6c17kw8qwi" path="res://ground_generation/trees/tree2.tscn" id="4_gug0x"]
-[ext_resource type="PackedScene" uid="uid://r7ycgs0ud4r3" path="res://ground_generation/trees/tree3.tscn" id="5_oj1as"]
-[ext_resource type="PackedScene" uid="uid://4s6qkyhad0yk" path="res://ground_generation/trees/tree4.tscn" id="6_2etht"]
+[ext_resource type="Script" path="res://gameloop/ScatterSpawner.gd" id="4_vafby"]
+[ext_resource type="Resource" uid="uid://chpelyc6drf4f" path="res://controls/settings_types/scatter.tres" id="5_dss63"]
 [ext_resource type="Theme" uid="uid://cel1y6hrc8slp" path="res://theme/main_theme.tres" id="8_oq6fe"]
 [ext_resource type="FontFile" uid="uid://d1jvqnhuvekma" path="res://theme/YoungSerif-Regular.ttf" id="9_ya2hh"]
 [ext_resource type="Texture2D" uid="uid://cxquwwj5pp616" path="res://icons/camp_panel.png" id="10_it1x5"]
@@ -37,8 +35,13 @@ auto_drive = true
 [node name="TreeSpawner" type="Node" parent="." node_paths=PackedStringArray("ground", "obsticle_folder")]
 script = ExtResource("2_0sl38")
 ground = NodePath("../Ground")
-trees = Array[PackedScene]([ExtResource("3_pl7i1"), ExtResource("4_gug0x"), ExtResource("5_oj1as"), ExtResource("6_2etht")])
 obsticle_folder = NodePath("../Ground/Node3D")
+
+[node name="ScatterSpawner" type="Node" parent="." node_paths=PackedStringArray("ground")]
+script = ExtResource("4_vafby")
+ground = NodePath("../Ground")
+scatter_min = 0.05
+scatter_setting = ExtResource("5_dss63")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.242451, 0.839992, -0.485419, 0.146926, 0.462785, 0.87421, 0.958974, -0.283274, -0.0112137, 0, 132.475, 0)

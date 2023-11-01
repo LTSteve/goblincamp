@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://0r8u56lxdnap"]
+
+[ext_resource type="PackedScene" uid="uid://m2smn7s7q50f" path="res://models/grass/grass1.glb" id="1_kn5k4"]
+[ext_resource type="Script" path="res://units/components/HeightComponent.gd" id="2_e14a1"]
+
+[node name="Grass1" type="Node3D"]
+
+[node name="model" parent="." instance=ExtResource("1_kn5k4")]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 0, 0)
+script = ExtResource("2_e14a1")

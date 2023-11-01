@@ -21,5 +21,8 @@ func open():
 	visible = true
 
 func close():
+	for setting in settings_container.get_children():
+		setting.on_close()
+	
 	#todo: save settings
 	visible = false

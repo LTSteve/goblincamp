@@ -7,9 +7,9 @@
 size = Vector3(1.5, 10, 1.5)
 
 [node name="Tree" type="Node3D"]
-transform = Transform3D(0.82, 0, 0, 0, 0.82, 0, 0, 0, 0.82, 0, 0, 0)
 
 [node name="model" parent="." instance=ExtResource("1_f47gc")]
+transform = Transform3D(0.82, 0, 0, 0, 0.82, 0, 0, 0, 0.82, 0, 0, 0)
 script = ExtResource("2_c4mtp")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="."]
