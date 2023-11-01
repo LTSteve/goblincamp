@@ -80,7 +80,6 @@ func _spawn_scatter(scatter):
 		var rand_x = (1 if randf() > 0.5 else -1) * randf_range(scatter_min, scatter_max) * ground.scale.x
 		var rand_y = (1 if randf() > 0.5 else -1) * randf_range(scatter_min, scatter_max) * ground.scale.z
 		var rand_rot = deg_to_rad(randf_range(0, 359.99))
-		var rand_height = randf_range(-0.1,0.1)
 		var rand_scale = randf_range(0.93,1.07)
 		var new_scatter: Node3D = scatter.pick_random().instantiate()
 		get_tree().root.add_child(new_scatter)
@@ -88,7 +87,6 @@ func _spawn_scatter(scatter):
 		new_scatter.global_position.z = rand_y
 		new_scatter.global_rotation.y = rand_rot
 		var model = new_scatter.find_child("model") as HeightComponent
-		model.offset += rand_height
 		model.scale = model.scale * rand_scale
 		
 		scatters.append(new_scatter)

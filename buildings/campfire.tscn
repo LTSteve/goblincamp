@@ -12,6 +12,7 @@ transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, 0, 0, 0)
 
 [node name="campfire" parent="." instance=ExtResource("1_gc7o8")]
 script = ExtResource("2_84wil")
+offset = -0.2
 once = true
 
 [node name="Fire" parent="campfire" instance=ExtResource("3_q8esc")]
