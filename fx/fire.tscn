@@ -68,3 +68,8 @@ amount = 16
 visibility_aabb = AABB(-0.925508, -1.34788, -1.16623, 1.85102, 2.69575, 2.33246)
 process_material = SubResource("ParticleProcessMaterial_em1cq")
 draw_pass_1 = SubResource("QuadMesh_83hhg")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.617052, 0)
+light_color = Color(1, 0.882353, 0.862745, 1)
+omni_range = 17.6

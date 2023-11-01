@@ -1,12 +1,13 @@
 [gd_resource type="Environment" load_steps=4 format=3 uid="uid://dewoeykm6c8my"]
 
-[ext_resource type="Texture2D" uid="uid://ks85sdn8xh4e" path="res://skybox_low_res.exr" id="1_sskg1"]
+[ext_resource type="Shader" uid="uid://b65kspp6og2kk" path="res://sky_shader.tres" id="1_wok8o"]
 
-[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_gtddt"]
-panorama = ExtResource("1_sskg1")
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_h8ptv"]
+shader = ExtResource("1_wok8o")
+shader_parameter/Dayness = 1.0
 
 [sub_resource type="Sky" id="Sky_t5b71"]
-sky_material = SubResource("PanoramaSkyMaterial_gtddt")
+sky_material = SubResource("ShaderMaterial_h8ptv")
 
 [resource]
 background_mode = 2
