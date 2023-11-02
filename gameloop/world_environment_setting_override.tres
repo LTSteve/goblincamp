@@ -1,0 +1,32 @@
+[gd_resource type="Resource" script_class="WorldEnvironmentSettingOverrideResource" load_steps=11 format=3 uid="uid://dgc85osswl15x"]
+
+[ext_resource type="Resource" uid="uid://bfie0t8lqbpnr" path="res://controls/settings_types/Visuals/2brightness.tres" id="1_1yg7m"]
+[ext_resource type="Script" path="res://gameloop/WorldEnvironmentSettingOverrideResource.gd" id="1_rp0ka"]
+[ext_resource type="Resource" uid="uid://bv3ikpnl34g78" path="res://controls/settings_types/Performance/2fog_density.tres" id="1_yl1ej"]
+[ext_resource type="Resource" uid="uid://8ho2cb5vb8sx" path="res://controls/settings_types/Performance/1fog.tres" id="2_n0hhg"]
+[ext_resource type="Resource" uid="uid://brysdcdfs6ted" path="res://controls/settings_types/Visuals/3contrast.tres" id="2_tmq6h"]
+[ext_resource type="Resource" uid="uid://dbusdp3kusdml" path="res://controls/settings_types/Performance/3depth_of_field.tres" id="3_mwh51"]
+[ext_resource type="Resource" uid="uid://lm5brjtcjn2x" path="res://controls/settings_types/Visuals/4saturation.tres" id="6_wqofv"]
+[ext_resource type="Resource" uid="uid://bt112unxce250" path="res://controls/settings_types/Performance/8ssao.tres" id="8_kujv3"]
+[ext_resource type="Resource" uid="uid://b0vxdl4i31452" path="res://controls/settings_types/Performance/7ssil.tres" id="9_riau4"]
+[ext_resource type="Resource" uid="uid://wv0bvrtl3yqf" path="res://controls/settings_types/Performance/9ssr.tres" id="10_85feq"]
+
+[resource]
+script = ExtResource("1_rp0ka")
+fog_setting = ExtResource("2_n0hhg")
+fog_density_setting = ExtResource("1_yl1ej")
+dof_setting = ExtResource("3_mwh51")
+ssil_setting = ExtResource("9_riau4")
+ssao_setting = ExtResource("8_kujv3")
+ssr_setting = ExtResource("10_85feq")
+brightness_setting = ExtResource("1_1yg7m")
+contrast_setting = ExtResource("2_tmq6h")
+saturation_setting = ExtResource("6_wqofv")
+fog_density_min = 0.0
+fog_density_max = 0.11
+brightness_min = 0.25
+brightness_max = 1.5
+contrast_min = 0.1
+contrast_max = 1.7
+saturation_min = 0.1
+saturation_max = 3.6

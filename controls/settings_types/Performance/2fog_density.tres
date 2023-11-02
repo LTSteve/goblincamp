@@ -7,5 +7,5 @@ script = ExtResource("1_8l63o")
 name = "FOG DENSITY"
 setting_type = 0
 default_setting_value_toggle = false
-default_setting_value_slide = 0.5
+default_setting_value_slide = 0.1
 update_on_close = false

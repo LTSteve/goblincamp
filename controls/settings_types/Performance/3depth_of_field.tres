@@ -1,11 +1,15 @@
-[gd_resource type="Resource" script_class="SettingResource" load_steps=2 format=3 uid="uid://dbusdp3kusdml"]
+[gd_resource type="Resource" script_class="SettingResource" load_steps=4 format=3 uid="uid://dbusdp3kusdml"]
 
+[ext_resource type="Texture2D" uid="uid://c7heskhpd55ok" path="res://icons/circle.png" id="1_0onxl"]
 [ext_resource type="Script" path="res://controls/settings/SettingResource.gd" id="1_r5fcp"]
+[ext_resource type="Texture2D" uid="uid://7kf6734kttng" path="res://icons/plain-circle.png" id="2_fgs3p"]
 
 [resource]
 script = ExtResource("1_r5fcp")
 name = "DEPTH OF FIELD"
-setting_type = 0
-default_setting_value_toggle = false
-default_setting_value_slide = 0.5
+icon_off = ExtResource("1_0onxl")
+icon_on = ExtResource("2_fgs3p")
+setting_type = 1
+default_setting_value_toggle = true
+default_setting_value_slide = 1.0
 update_on_close = false
