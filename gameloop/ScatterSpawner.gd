@@ -27,9 +27,9 @@ func _ready():
 	_load_data()
 
 func _process(_delta):
-	if Engine.is_editor_hint() || !scatter_setting || _last_scatter_setting == scatter_setting.value: return
+	if Engine.is_editor_hint() || !scatter_setting || _last_scatter_setting == scatter_setting.current_value: return
 	_on_data_changed()
-	_last_scatter_setting = scatter_setting.value
+	_last_scatter_setting = scatter_setting.current_value
 
 func _on_data_changed():
 	for s in scatters:
@@ -42,8 +42,8 @@ func _on_data_changed():
 	if rocks.size() == 0:
 		_load_data()
 	
-	_last_scatter_setting = scatter_setting.value if (!Engine.is_editor_hint() && scatter_setting) else _last_scatter_setting
-	var current_scatter_count = max_scatter_count * scatter_setting.value if (!Engine.is_editor_hint() && scatter_setting) else max_scatter_count
+	_last_scatter_setting = scatter_setting.current_value if (!Engine.is_editor_hint() && scatter_setting) else _last_scatter_setting
+	var current_scatter_count = max_scatter_count * scatter_setting.current_value if (!Engine.is_editor_hint() && scatter_setting) else max_scatter_count
 	var rock_count = current_scatter_count * rock_ratio
 	var grass_count = current_scatter_count * (1.0 - rock_ratio)
 	

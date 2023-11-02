@@ -11,6 +11,7 @@ sky_material = SubResource("ShaderMaterial_h8ptv")
 
 [resource]
 background_mode = 2
+background_energy_multiplier = 1.1
 sky = SubResource("Sky_t5b71")
 ambient_light_source = 1
 ssr_enabled = true

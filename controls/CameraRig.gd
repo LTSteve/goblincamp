@@ -14,6 +14,8 @@ extends Node3D
 
 @export var auto_drive: bool
 
+@export var fov_setting: SettingResource
+
 @onready var camera_rotation: Node3D = $"CameraRotation"
 @onready var camera_angle: Node3D = $"CameraRotation/CameraAngle"
 @onready var camera_distance: Node3D = $"CameraRotation/CameraAngle/CameraDistance"
@@ -45,11 +47,22 @@ var rotate_input: float
 var angle_input: float
 var distance_input: float
 
+var _last_fov_setting:float
+
 func _ready():
 	angle_value = camera_angle_min + (camera_angle_max - camera_angle_min) / 2.0
 	distance_value = camera_distance_min + (camera_distance_max - camera_distance_min) / 2.0
+	_last_fov_setting = fov_setting.current_value
+	camera.fov = _percent_to_fov(fov_setting.current_value)
+
+func _percent_to_fov(percent):
+	return clampf(25.0 + 110 * percent, 45, 179)
 
 func _process(delta):
+	if _last_fov_setting != fov_setting.current_value:
+		_last_fov_setting = fov_setting.current_value
+		camera.fov = _percent_to_fov(_last_fov_setting)
+	
 	if auto_drive:
 		forward_back_input = -1
 		rotate_input = 1

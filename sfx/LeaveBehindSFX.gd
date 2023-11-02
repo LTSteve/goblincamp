@@ -6,7 +6,7 @@ class_name LeaveBehindSFX
 @export var _setting: SettingResource
 
 func _ready():
-	volume_db = linear_to_db(_setting.value)
+	volume_db = linear_to_db(_setting.current_value)
 	play()
 
 func _process(delta):

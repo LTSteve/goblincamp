@@ -18,17 +18,15 @@ func _ready():
 	else:
 		icon_full_texture.visible = false
 	
-	slider.set_value_no_signal(setting.value)
+	slider.set_value_no_signal(setting.current_value)
 
 
 func _on_h_slider_drag_ended(value_changed):
-	if ! value_changed: return
-	
 	if !setting.update_on_close:
-		setting.value = slider.value
+		setting.current_value = slider.value
 		Settings.save_setting(setting)
 
 func on_close():
 	if setting.update_on_close:
-		setting.value = slider.value
+		setting.current_value = slider.value
 	super.on_close()

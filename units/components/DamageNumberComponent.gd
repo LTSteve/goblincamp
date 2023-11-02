@@ -14,7 +14,7 @@ func _ready():
 	settings = DB.I.scenes.damage_label_settings
 
 func _on_damage_recieved(weapon_hit:Weapon.Hit):
-	if !_setting.value: return
+	if !_setting.current_value: return
 	var post_crit_damage =  abs((weapon_hit.post_crit_damage) as int)
 	if post_crit_damage == 0: return
 	

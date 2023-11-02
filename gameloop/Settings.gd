@@ -31,21 +31,18 @@ static func _initialize():
 	if config.load(cfg_file) == ERR_FILE_CANT_OPEN:
 		printerr("Can't load settings!")
 	else:
-		if config.has_section(SETTINGS):
-			#load cfg file
-			for category in settings_categories:
+		for category in settings_categories:
+			if config.has_section(SETTINGS + "_" + category.name):
+				#load cfg file
 				for setting in category.settings:
 					if config.has_section_key(SETTINGS + "_" + category.name, setting.name):
-						setting.value = config.get_value(SETTINGS + "_" + category.name, setting.name)
+						setting.current_value = config.get_value(SETTINGS + "_" + category.name, setting.name)
 					else:
 						config.set_value(SETTINGS + "_" + category.name, setting.name, setting.default_setting)
-						setting.value = setting.default_setting
-		else:
-			#make cfg file
-			for category in settings_categories:
+			else:
+				#make cfg file
 				for setting in category.settings:
 					config.set_value(SETTINGS + "_" + category.name, setting.name, setting.default_setting)
-					setting.value = setting.default_setting
 
 static func _find_settings_in_folder(dir_name: String) -> Array[SettingResource]:
 	var to_return: Array[SettingResource] = []
@@ -72,7 +69,7 @@ static func get_settings(name:String):
 static func save_setting(setting:SettingResource):
 	_initialize()
 	var category = Global.find_by_func(settings_categories, func(category): return category.settings.has(setting))
-	config.set_value(SETTINGS + "_" + category.name, setting.name, setting.value)
+	config.set_value(SETTINGS + "_" + category.name, setting.name, setting.current_value)
 	config.save(cfg_file)
 
 static func get_setting(category_name:String, setting_name:String):

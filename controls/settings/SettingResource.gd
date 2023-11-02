@@ -12,7 +12,20 @@ enum TYPE {SLIDE,TOGGLE}
 @export var default_setting_value_slide: float = 1.0
 @export var update_on_close: bool = false
 
-var value
+var value_has_been_set:bool = false
+var current_value: 
+	get:
+		if !value_has_been_set:
+			if setting_type == TYPE.SLIDE:
+				return default_setting_value_slide
+			else:
+				return default_setting_value_toggle
+		else:
+			return current_value
+	set(value):
+		print("setting ", name)
+		value_has_been_set = true
+		current_value = value
 
 var default_setting:
 	get:
