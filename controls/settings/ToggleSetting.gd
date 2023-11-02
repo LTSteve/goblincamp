@@ -7,7 +7,10 @@ class_name ToggleSetting
 func _ready():
 	super._ready()
 	button.set_pressed_no_signal(setting.value)
-	button.icon = setting.icon_on if setting.value else setting.icon_off
+	
+	if setting.icon_off && setting.icon_on:
+		button.icon = setting.icon_on if setting.value else setting.icon_off
+	else: button.visible = false
 
 func _on_button_toggled(button_pressed):
 	button.button_pressed = button_pressed

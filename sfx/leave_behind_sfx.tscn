@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://dk3xglpa1ipe8"]
 
 [ext_resource type="Script" path="res://sfx/LeaveBehindSFX.gd" id="1_awbad"]
-[ext_resource type="Resource" uid="uid://bk7k4xsv6ss7o" path="res://controls/settings_types/audio.tres" id="2_6oy22"]
+[ext_resource type="Resource" uid="uid://bk7k4xsv6ss7o" path="res://controls/settings_types/Audio/1sfx.tres" id="2_6oy22"]
 
 [node name="LeaveBehindSFX" type="AudioStreamPlayer3D"]
 max_db = 0.0

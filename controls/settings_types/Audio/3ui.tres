@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="SettingResource" load_steps=2 format=3 uid="uid://brgnm4q4rrl48"]
+
+[ext_resource type="Script" path="res://controls/settings/SettingResource.gd" id="1_7bt03"]
+
+[resource]
+script = ExtResource("1_7bt03")
+name = "UI"
+setting_type = 0
+default_setting_value_toggle = false
+default_setting_value_slide = 1.0
+update_on_close = false

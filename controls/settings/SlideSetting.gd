@@ -8,8 +8,15 @@ class_name SlideSetting
 func _ready():
 	super._ready()
 	
-	icon_off_texture.texture = setting.icon_off
-	icon_full_texture.texture = setting.icon_on
+	if setting.icon_off:
+		icon_off_texture.texture = setting.icon_off
+	else:
+		icon_off_texture.visible = false
+	
+	if setting.icon_on:
+		icon_full_texture.texture = setting.icon_on
+	else:
+		icon_full_texture.visible = false
 	
 	slider.set_value_no_signal(setting.value)
 

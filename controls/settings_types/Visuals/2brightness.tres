@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="SettingResource" load_steps=2 format=3 uid="uid://bfie0t8lqbpnr"]
+
+[ext_resource type="Script" path="res://controls/settings/SettingResource.gd" id="1_eyj84"]
+
+[resource]
+script = ExtResource("1_eyj84")
+name = "BRIGHTNESS"
+setting_type = 0
+default_setting_value_toggle = false
+default_setting_value_slide = 0.5
+update_on_close = false

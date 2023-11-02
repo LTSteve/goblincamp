@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="SettingResource" load_steps=2 format=3 uid="uid://crqpe1mopg1fk"]
+
+[ext_resource type="Script" path="res://controls/settings/SettingResource.gd" id="1_xho33"]
+
+[resource]
+script = ExtResource("1_xho33")
+name = "SHADOW QUALITY"
+setting_type = 0
+default_setting_value_toggle = false
+default_setting_value_slide = 0.5
+update_on_close = false

@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="SettingResource" load_steps=4 format=3 uid="uid://bk7k4xsv6ss7o"]
+
+[ext_resource type="Texture2D" uid="uid://dgtw47rne81qs" path="res://icons/speaker-off.png" id="1_e1d4v"]
+[ext_resource type="Texture2D" uid="uid://gcj4ngse3o47" path="res://icons/speaker.png" id="2_nqrw6"]
+[ext_resource type="Script" path="res://controls/settings/SettingResource.gd" id="3_qyyqi"]
+
+[resource]
+script = ExtResource("3_qyyqi")
+name = "SFX"
+icon_off = ExtResource("1_e1d4v")
+icon_on = ExtResource("2_nqrw6")
+setting_type = 0
+default_setting_value_toggle = false
+default_setting_value_slide = 1.0
+update_on_close = false

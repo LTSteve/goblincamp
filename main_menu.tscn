@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://dvgfkovckchyd" path="res://camera_rig.tscn" id="1_42x5g"]
 [ext_resource type="Script" path="res://gameloop/TreeSpawner.gd" id="2_0sl38"]
 [ext_resource type="Script" path="res://gameloop/ScatterSpawner.gd" id="4_vafby"]
-[ext_resource type="Resource" uid="uid://chpelyc6drf4f" path="res://controls/settings_types/scatter.tres" id="5_dss63"]
+[ext_resource type="Resource" uid="uid://chpelyc6drf4f" path="res://controls/settings_types/Performance/4scatter.tres" id="5_dss63"]
 [ext_resource type="Theme" uid="uid://cel1y6hrc8slp" path="res://theme/main_theme.tres" id="8_oq6fe"]
 [ext_resource type="FontFile" uid="uid://d1jvqnhuvekma" path="res://theme/YoungSerif-Regular.ttf" id="9_ya2hh"]
 [ext_resource type="Texture2D" uid="uid://cxquwwj5pp616" path="res://icons/camp_panel.png" id="10_it1x5"]

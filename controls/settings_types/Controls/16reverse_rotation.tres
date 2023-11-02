@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="SettingResource" load_steps=4 format=3 uid="uid://bq740w81y2gn6"]
+
+[ext_resource type="Script" path="res://controls/settings/SettingResource.gd" id="1_o5v3q"]
+[ext_resource type="Texture2D" uid="uid://c7heskhpd55ok" path="res://icons/circle.png" id="1_r1jjj"]
+[ext_resource type="Texture2D" uid="uid://7kf6734kttng" path="res://icons/plain-circle.png" id="2_6000i"]
+
+[resource]
+script = ExtResource("1_o5v3q")
+name = "REVERSE ROTATION"
+icon_off = ExtResource("1_r1jjj")
+icon_on = ExtResource("2_6000i")
+setting_type = 1
+default_setting_value_toggle = true
+default_setting_value_slide = 1.0
+update_on_close = false

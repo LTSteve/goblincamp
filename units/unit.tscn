@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://units/Unit.gd" id="1_6slac"]
 [ext_resource type="Script" path="res://units/components/HeightComponent.gd" id="3_mhfwn"]
-[ext_resource type="Resource" uid="uid://cdlnp60gmumhc" path="res://controls/settings_types/damage_numbers.tres" id="4_asybo"]
+[ext_resource type="Resource" uid="uid://cdlnp60gmumhc" path="res://controls/settings_types/Visuals/7damage_numbers.tres" id="4_beg1h"]
 [ext_resource type="PackedScene" uid="uid://bfg28nholuf7e" path="res://units/components/healthbar_component.tscn" id="4_h7kpd"]
 [ext_resource type="PackedScene" uid="uid://cp2wfftw1nmvr" path="res://units/components/rank_component.tscn" id="5_7sy2q"]
 [ext_resource type="PackedScene" uid="uid://dqqle5ukx4unc" path="res://units/components/damagelabel/damage_label.tscn" id="5_irgpp"]
@@ -155,7 +155,7 @@ script = ExtResource("3_mhfwn")
 [node name="DamageNumberComponent" parent="Model" instance=ExtResource("7_rfitb")]
 transform = Transform3D(1, 8.48637e-08, 7.10543e-15, -8.48637e-08, 1, -2.66454e-15, 0, 3.37335e-16, 1, 4.52606e-07, 5.31398, 1.30397e-14)
 is_ally = true
-_setting = ExtResource("4_asybo")
+_setting = ExtResource("4_beg1h")
 
 [node name="BountyComponent" type="Node3D" parent="Model"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.52606e-07, 5.31398, 1.30397e-14)

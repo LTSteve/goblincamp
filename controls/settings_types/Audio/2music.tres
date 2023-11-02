@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="SettingResource" load_steps=4 format=3 uid="uid://cj1voma1xa4b7"]
+
+[ext_resource type="Script" path="res://controls/settings/SettingResource.gd" id="1_8i8lf"]
+[ext_resource type="Texture2D" uid="uid://dsiamf6hsw3re" path="res://icons/sound-off.png" id="1_kvy7m"]
+[ext_resource type="Texture2D" uid="uid://d2c4j1117hrf7" path="res://icons/sound-on.png" id="2_qs824"]
+
+[resource]
+script = ExtResource("1_8i8lf")
+name = "MUSIC"
+icon_off = ExtResource("1_kvy7m")
+icon_on = ExtResource("2_qs824")
+setting_type = 0
+default_setting_value_toggle = false
+default_setting_value_slide = 1.0
+update_on_close = false

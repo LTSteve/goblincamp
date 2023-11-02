@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="SettingResource" load_steps=4 format=3 uid="uid://bt112unxce250"]
+
+[ext_resource type="Texture2D" uid="uid://c7heskhpd55ok" path="res://icons/circle.png" id="1_k5a31"]
+[ext_resource type="Script" path="res://controls/settings/SettingResource.gd" id="1_t7eyd"]
+[ext_resource type="Texture2D" uid="uid://7kf6734kttng" path="res://icons/plain-circle.png" id="2_iexxa"]
+
+[resource]
+script = ExtResource("1_t7eyd")
+name = "SSAO"
+icon_off = ExtResource("1_k5a31")
+icon_on = ExtResource("2_iexxa")
+setting_type = 1
+default_setting_value_toggle = true
+default_setting_value_slide = 1.0
+update_on_close = false

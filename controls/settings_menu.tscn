@@ -18,7 +18,7 @@ axis_stretch_horizontal = 1
 axis_stretch_vertical = 1
 region_rect = Rect2(50, 50, 500, 500)
 
-[node name="SettingsMenu" type="Panel"]
+[node name="SettingsMenu" type="Panel" node_paths=PackedStringArray("category_option")]
 custom_minimum_size = Vector2(400, 538)
 anchors_preset = 8
 anchor_left = 0.5
@@ -35,6 +35,7 @@ theme_override_styles/panel = SubResource("StyleBoxTexture_ss5py")
 script = ExtResource("2_f6f5c")
 slide_setting_scene = ExtResource("3_v4bhe")
 toggle_setting_scene = ExtResource("4_rrf1r")
+category_option = NodePath("MarginContainer4/OptionButton")
 
 [node name="MarginContainer2" type="MarginContainer" parent="."]
 layout_mode = 1
@@ -43,11 +44,12 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 
 [node name="Label" type="Label" parent="MarginContainer2"]
 layout_mode = 2
 size_flags_vertical = 0
-theme_override_font_sizes/font_size = 40
+theme_override_font_sizes/font_size = 34
 text = "SETTINGS"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -60,7 +62,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/margin_left = 20
-theme_override_constants/margin_top = 65
+theme_override_constants/margin_top = 90
 theme_override_constants/margin_right = 20
 theme_override_constants/margin_bottom = 55
 
@@ -91,4 +93,23 @@ layout_mode = 2
 mouse_default_cursor_shape = 2
 text = "DONE"
 
+[node name="MarginContainer4" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_right = 50
+
+[node name="OptionButton" type="OptionButton" parent="MarginContainer4"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+mouse_default_cursor_shape = 2
+
 [connection signal="pressed" from="MarginContainer3/DoneButton" to="." method="close"]
+[connection signal="item_selected" from="MarginContainer4/OptionButton" to="." method="_on_option_button_item_selected"]

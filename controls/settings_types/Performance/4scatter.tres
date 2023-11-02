@@ -1,13 +1,11 @@
-[gd_resource type="Resource" script_class="SettingResource" load_steps=4 format=3 uid="uid://chpelyc6drf4f"]
+[gd_resource type="Resource" script_class="SettingResource" load_steps=3 format=3 uid="uid://chpelyc6drf4f"]
 
-[ext_resource type="Texture2D" uid="uid://bjtwdvjpdgdht" path="res://icons/theater-curtains.png" id="1_1i8p4"]
 [ext_resource type="Script" path="res://controls/settings/SettingResource.gd" id="1_omt11"]
 [ext_resource type="Texture2D" uid="uid://b463e2kgh336a" path="res://icons/grass.png" id="2_874l6"]
 
 [resource]
 script = ExtResource("1_omt11")
-name = "Scatter"
-icon_off = ExtResource("1_1i8p4")
+name = "SCATTER"
 icon_on = ExtResource("2_874l6")
 setting_type = 0
 default_setting_value_toggle = false
