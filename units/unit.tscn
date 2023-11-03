@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://brhc1aba5usew"]
+[gd_scene load_steps=27 format=3 uid="uid://brhc1aba5usew"]
 
 [ext_resource type="Script" path="res://units/Unit.gd" id="1_6slac"]
 [ext_resource type="Script" path="res://units/components/HeightComponent.gd" id="3_mhfwn"]
@@ -13,6 +13,7 @@
 [ext_resource type="Script" path="res://units/components/HitblinkComponent.gd" id="12_tn8gh"]
 [ext_resource type="Script" path="res://units/components/ArmorComponent.gd" id="13_7cffv"]
 [ext_resource type="Script" path="res://units/components/StatusComponent.gd" id="14_4xq4l"]
+[ext_resource type="Script" path="res://units/components/HitBurstComponent.gd" id="14_f1l6s"]
 [ext_resource type="Resource" uid="uid://bqs3nawyqs8ov" path="res://units/components/status_component_resource.tres" id="15_cfd5q"]
 [ext_resource type="Script" path="res://units/components/BountyComponent.gd" id="15_fndb6"]
 [ext_resource type="Resource" uid="uid://ducfjk1buamd" path="res://sfx/sfx_resource.tres" id="15_owmi0"]
@@ -199,6 +200,9 @@ model_holder = NodePath("../Model/ModelHolder")
 jiggle_intensity = 0.5
 jiggle_time = 0.25
 
+[node name="HitBurstComponent" type="Node" parent="."]
+script = ExtResource("14_f1l6s")
+
 [node name="ArmorComponent" type="Node" parent="."]
 script = ExtResource("13_7cffv")
 
@@ -244,6 +248,7 @@ script = ExtResource("19_jo36r")
 [connection signal="on_recieved_hit" from="." to="HealthComponent" method="_on_recieved_hit"]
 [connection signal="on_recieved_hit" from="." to="VelocityComponent" method="_on_recieved_hit"]
 [connection signal="on_recieved_hit" from="." to="HitblinkComponent" method="_on_recieved_hit"]
+[connection signal="on_recieved_hit" from="." to="HitBurstComponent" method="_on_recieved_hit"]
 [connection signal="on_state_changed" from="." to="StatusComopnent" method="_on_state_changed"]
 [connection signal="died" from="HealthComponent" to="." method="_on_died"]
 [connection signal="died" from="HealthComponent" to="Model/BountyComponent" method="_on_health_component_died"]

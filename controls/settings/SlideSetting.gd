@@ -21,7 +21,7 @@ func _ready():
 	slider.set_value_no_signal(setting.current_value)
 
 
-func _on_h_slider_drag_ended(value_changed):
+func _on_h_slider_drag_ended(_value_changed):
 	if !setting.update_on_close:
 		setting.current_value = slider.value
 		Settings.save_setting(setting)

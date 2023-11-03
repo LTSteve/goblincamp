@@ -33,6 +33,6 @@ func _on_player_found(player:Unit, _aoe:AreaOfEffect, heal_value: float):
 		heal_hit.damage = -heal_value
 		heal_hit.damage_type = Damage.Type.Heal
 		heal_hit.hit = player
-		heal_hit.hit_creation_data = Weapon.HitCreationData.new(Vector3(player.global_position.x,0.5,player.global_position.z))
+		heal_hit.hit_creation_data = Weapon.HitCreationData.new(Vector3(player.global_position.x,player.find_child("Model").get_height(),player.global_position.z))
 		
 		player.take_hit(heal_hit)

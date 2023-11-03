@@ -13,4 +13,7 @@ func _process(_delta):
 			return
 		else:
 			_once = true
-	global_position.y = offset + Ground.sample_height(global_position.x, global_position.z)
+	global_position.y = get_height()
+
+func get_height():
+	return offset + Ground.sample_height(global_position.x, global_position.z)

@@ -38,7 +38,12 @@ var _scene_paths = {
 	tree1_scene = "res://ground_generation/trees/tree1.tscn",
 	tree2_scene = "res://ground_generation/trees/tree2.tscn",
 	tree3_scene = "res://ground_generation/trees/tree3.tscn",
-	tree4_scene = "res://ground_generation/trees/tree4.tscn"
+	tree4_scene = "res://ground_generation/trees/tree4.tscn",
+	basic_burst_scene= "res://units/burst_scenes/basic_burst.tscn",
+	heal_burst_scene= "res://units/burst_scenes/heal_burst.tscn",
+	fire_burst_scene= "res://units/burst_scenes/fire_burst.tscn",
+	bleed_burst_scene= "res://units/burst_scenes/bleed_burst.tscn",
+	cold_burst_scene= "res://units/burst_scenes/cold_burst.tscn"
 }
 
 var scenes = {}

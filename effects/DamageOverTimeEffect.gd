@@ -71,7 +71,7 @@ func update(delta:float):
 	hit_data.hit = unit
 	hit_data.crit_chance = _crit_chance
 	hit_data.crit_damage_multiplier = 1.5
-	hit_data.hit_creation_data = Weapon.HitCreationData.new(Vector3(unit.global_position.x,0.5,unit.global_position.z))
+	hit_data.hit_creation_data = Weapon.HitCreationData.new(Vector3(unit.global_position.x,unit.find_child("Model").get_height() + 1,unit.global_position.z))
 	unit.take_hit(hit_data)
 
 func replace_with(effect:Effect):
