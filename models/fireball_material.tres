@@ -1,9 +1,10 @@
 [gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://b8klj75qq3ogy"]
 
-[ext_resource type="Texture2D" uid="uid://hdo5tb4ke5es" path="res://models/pallete.png" id="1_eamfu"]
+[ext_resource type="Texture2D" uid="uid://8n0l417guxst" path="res://models/new_pallete.png" id="1_qxv0b"]
 
 [resource]
 transparency = 1
 shading_mode = 0
 albedo_color = Color(0.996078, 1, 1, 1)
-albedo_texture = ExtResource("1_eamfu")
+albedo_texture = ExtResource("1_qxv0b")
+texture_filter = 0

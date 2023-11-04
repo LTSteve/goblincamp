@@ -1,9 +1,9 @@
 [gd_resource type="VisualShader" load_steps=16 format=3 uid="uid://cwfu6py5vuy6e"]
 
-[ext_resource type="Texture2D" uid="uid://hdo5tb4ke5es" path="res://models/pallete.png" id="1_qlevs"]
+[ext_resource type="Texture2D" uid="uid://8n0l417guxst" path="res://models/new_pallete.png" id="1_h2hex"]
 
 [sub_resource type="VisualShaderNodeTexture" id="VisualShaderNodeTexture_dwu70"]
-texture = ExtResource("1_qlevs")
+texture = ExtResource("1_h2hex")
 
 [sub_resource type="VisualShaderNodeVectorOp" id="VisualShaderNodeVectorOp_522sx"]
 default_input_values = [0, Vector3(0, 0, 0), 1, Vector3(3.5, 3.5, 3.5)]

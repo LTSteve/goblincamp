@@ -45,7 +45,7 @@ vertex_color_use_as_albedo = true
 material = SubResource("StandardMaterial3D_x8k7n")
 size = Vector3(0.2, 0.2, 0.2)
 
-[node name="Fireball" type="Area3D" node_paths=PackedStringArray("hit_spot", "model", "particles") groups=["Fireball"]]
+[node name="Fireball" type="Area3D" node_paths=PackedStringArray("hit_spot", "particles") groups=["Fireball"]]
 collision_layer = 0
 collision_mask = 0
 script = ExtResource("1_3kikx")
@@ -53,7 +53,6 @@ hit_spot = NodePath("HeightComponent/witch_projectile/HitSpot")
 lifespan = 2.5
 leave_behind_sfx_scene = ExtResource("2_d8ch4")
 sfx = Array[AudioStream]([ExtResource("3_5dklg"), ExtResource("4_3aj3u")])
-model = NodePath("HeightComponent/witch_projectile")
 particles = NodePath("HeightComponent/GPUParticles3D")
 
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="."]

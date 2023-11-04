@@ -33,7 +33,6 @@ func _load_data():
 			DB.I.scenes.tree4_scene
 		]
 	else:
-		print("loading trees from scenes")
 		trees = [
 			load("res://ground_generation/trees/tree1.tscn"),
 			load("res://ground_generation/trees/tree2.tscn"),

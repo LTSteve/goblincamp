@@ -65,7 +65,6 @@ func _load_data():
 			DB.I.scenes.grass2_scene
 		]
 	else:
-		print("loading scatter from scenes")
 		rocks = [
 			load("res://ground_generation/scatter/Rock1.tscn"),
 			load("res://ground_generation/scatter/Rock2.tscn"),

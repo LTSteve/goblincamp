@@ -40,13 +40,13 @@ max_speed = 5.5
 acceleration = 4.0
 pushback_scale = 0.9
 
-[node name="ArmorComponent" parent="." index="7" groups=["Knight"]]
+[node name="ArmorComponent" parent="." index="8" groups=["Knight"]]
 armor = 1
 
-[node name="MaterialOverrideComponent" parent="." index="9" node_paths=PackedStringArray("mesh_instance")]
+[node name="MaterialOverrideComponent" parent="." index="10" node_paths=PackedStringArray("mesh_instance")]
 mesh_instance = NodePath("../Model/ModelHolder/knight/knight2")
 
-[node name="BrainComponent" parent="." index="10"]
+[node name="BrainComponent" parent="." index="11"]
 behaviours = Array[Resource("res://units/components/brain/Behaviour.gd")]([ExtResource("4_77og7"), ExtResource("4_u2k7p"), ExtResource("5_2y4yu")])
 
 [editable path="Model/ModelHolder/knight"]

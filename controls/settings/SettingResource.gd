@@ -23,7 +23,6 @@ var current_value:
 		else:
 			return current_value
 	set(value):
-		print("setting ", name)
 		value_has_been_set = true
 		current_value = value
 
