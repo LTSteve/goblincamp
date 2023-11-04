@@ -20,3 +20,5 @@ class_name WorldEnvironmentSettingOverrideResource
 @export var contrast_max: float = 2.5
 @export var saturation_min: float = 0.1
 @export var saturation_max: float = 5
+
+@export var world_environment: Environment

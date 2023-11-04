@@ -14,6 +14,9 @@ var _brightness: float = 0.5
 var _contrast: float = 0.5
 var _saturation: float = 0.5
 
+func _ready():
+	environment = resource.world_environment
+
 func _process(_delta):
 	if _fog_toggle != resource.fog_setting.current_value:
 		_fog_toggle = resource.fog_setting.current_value

@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="WorldEnvironmentSettingOverrideResource" load_steps=11 format=3 uid="uid://dgc85osswl15x"]
+[gd_resource type="Resource" script_class="WorldEnvironmentSettingOverrideResource" load_steps=12 format=3 uid="uid://dgc85osswl15x"]
 
 [ext_resource type="Resource" uid="uid://bfie0t8lqbpnr" path="res://controls/settings_types/Visuals/2brightness.tres" id="1_1yg7m"]
 [ext_resource type="Script" path="res://gameloop/WorldEnvironmentSettingOverrideResource.gd" id="1_rp0ka"]
@@ -10,6 +10,7 @@
 [ext_resource type="Resource" uid="uid://bt112unxce250" path="res://controls/settings_types/Performance/8ssao.tres" id="8_kujv3"]
 [ext_resource type="Resource" uid="uid://b0vxdl4i31452" path="res://controls/settings_types/Performance/7ssil.tres" id="9_riau4"]
 [ext_resource type="Resource" uid="uid://wv0bvrtl3yqf" path="res://controls/settings_types/Performance/9ssr.tres" id="10_85feq"]
+[ext_resource type="Environment" uid="uid://dewoeykm6c8my" path="res://world_environment.tres" id="11_qwvgx"]
 
 [resource]
 script = ExtResource("1_rp0ka")
@@ -30,3 +31,4 @@ contrast_min = 0.1
 contrast_max = 1.7
 saturation_min = 0.1
 saturation_max = 3.6
+world_environment = ExtResource("11_qwvgx")
