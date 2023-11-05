@@ -11,7 +11,7 @@ func on_quit():
 
 func on_play():
 	settings_menu.close()
-	SceneManager.load_main_scene(get_tree())
+	SceneManager.load_loading_scene(get_tree())
 
 func on_settings():
 	settings_menu.open()

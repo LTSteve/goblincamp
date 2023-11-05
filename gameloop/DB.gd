@@ -52,32 +52,40 @@ var resource_groups = {}
 
 #really shouldn't be doing UI and loading stuff in the same class but w/e
 @export var loading_bar: LoadingBar
-@export var loading_panel: ColorRect
+@export var loading_scene: Node3D
 
 func _ready():
 	I = self
 	
-	loading_bar.on_loaded.connect(_loading_finished)
+	call_deferred("_post_init")
+
+func _post_init():
+	loading_bar.set_load(SceneManager.main_scene)
 	
 	for scene_name in _scene_paths.keys():
 		loading_bar.set_load(_scene_paths[scene_name], "preloading resources")
 	
 	for dir_name in _resource_folders.keys():
 		var paths = _get_resource_paths(_resource_folders[dir_name])
+		
 		for path in paths:
 			loading_bar.set_load(path, "preloading resources")
+	
+	loading_bar.on_loaded.connect(_loading_finished)
 
-func _loading_finished():
+func _loading_finished(loaded:Array[Resource]):
 	for scene_name in _scene_paths.keys():
-		scenes[scene_name] = ResourceLoader.load_threaded_get(_scene_paths[scene_name])
+		scenes[scene_name] = Global.find_by_func(loaded, func(ld:Resource): return ld.resource_path == _scene_paths[scene_name])
 	
 	for dir_name in _resource_folders.keys():
 		var paths = _get_resource_paths(_resource_folders[dir_name])
 		resource_groups[dir_name] = []
 		for path in paths:
-			resource_groups[dir_name].append(ResourceLoader.load_threaded_get(path))
+			resource_groups[dir_name].append(Global.find_by_func(loaded, func(ld:Resource): return ld.resource_path == path))
 	
-	loading_panel.visible = false
+	SceneManager.load_main_scene(get_tree(), loaded)
+	
+	loading_scene.queue_free()
 
 func _get_resource_paths(resource_folder:String):
 	var to_return = []

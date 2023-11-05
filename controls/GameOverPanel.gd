@@ -17,4 +17,4 @@ func close():
 	visible = false
 
 func try_again():
-	SceneManager.load_main_scene(get_tree())
+	SceneManager.load_loading_scene(get_tree())

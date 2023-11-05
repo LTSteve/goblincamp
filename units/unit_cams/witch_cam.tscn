@@ -186,7 +186,7 @@ transform = Transform3D(-2.30258e-08, 0, 0.526768, 0, 0.526768, 0, -0.526768, 0,
 [node name="ModelHolder" type="Node3D" parent="Witch/Staff"]
 
 [node name="witch_weapon" parent="Witch/Staff/ModelHolder" instance=ExtResource("2_p21br")]
-transform = Transform3D(0.991325, 0.0125547, 0.130793, -0.131394, 0.0947242, 0.98679, -3.87428e-07, -0.995421, 0.0955525, 0.664789, 1.13067, 1.02012)
+transform = Transform3D(0.991325, 0.0125548, 0.130793, -0.131394, 0.0947242, 0.98679, -3.87428e-07, -0.995421, 0.0955525, 0.664789, 1.13067, 1.02012)
 
 [node name="witch_weapon2" parent="Witch/Staff/ModelHolder/witch_weapon" index="0"]
 layers = 2
