@@ -20,6 +20,8 @@ var cardinal_claims: Array[bool] = [false, false, false, false, false, false, fa
 @export var is_enemy: bool = false
 @export var kill_value: float = 1
 
+@export var is_npc: bool = false
+
 signal on_recieved_hit(weapon_hit:Weapon.Hit)
 signal on_state_changed(state_states: Array[State])
 signal on_get_kill(value: float)
@@ -36,8 +38,12 @@ var _set_movement_target_task: PrioritizedTaskManager.PrioritizedTask
 func _ready():
 	_regular_collision = collision_layer
 	
-	if is_enemy: Global.enemies.append(self)
-	else: Global.players.append(self)
+	if is_npc:
+		Global.npcs.append(self)
+		return
+	else:
+		if is_enemy: Global.enemies.append(self)
+		else: Global.players.append(self)
 	
 	GameManager.I.on_day.connect(remove_all_effects)
 	
@@ -55,14 +61,17 @@ func set_movement_target(movement_target: Vector3, speed_scale: float = 1.0):
 			, self)
 
 func _on_died():
-	if is_enemy:
-		Global.enemies = Global.enemies.filter(func(enemy): return enemy != self)
-		if Global.enemies.size() == 0:
-			GameManager.I.cycle_to_day()
-	else: 
-		Global.players = Global.players.filter(func(player): return player != self)
-		if Global.players.size() == 0:
-			GameManager.I.game_over()
+	if is_npc:
+		Global.npcs = Global.npcs.filter(func(npc): return npc != self)
+	else:
+		if is_enemy:
+			Global.enemies = Global.enemies.filter(func(enemy): return enemy != self)
+			if Global.enemies.size() == 0:
+				GameManager.I.cycle_to_day()
+		else: 
+			Global.players = Global.players.filter(func(player): return player != self)
+			if Global.players.size() == 0:
+				GameManager.I.game_over()
 	
 	if is_instance_valid(_last_hit_by) && is_instance_valid(_last_hit_by.unit):
 		_last_hit_by.unit.on_get_kill.emit(kill_value)
@@ -88,6 +97,8 @@ func do_move(delta):
 	velocity_component.move_basic(self, delta)
 
 func take_hit(weapon_hit:Weapon.Hit):
+	if is_npc: return
+	
 	#calculate crits and armor now after all other calculations
 	weapon_hit.is_crit = weapon_hit.is_crit || (randf_range(0,.999) < weapon_hit.crit_chance)
 	if(armor_component):

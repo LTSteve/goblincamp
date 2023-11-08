@@ -5,6 +5,9 @@ static var players_minus_enemies: int
 static var enemies: Array[Unit] = []
 static var players: Array[Unit] = []
 static var projectiles: Array[Projectile] = []
+static var npcs: Array[Unit] = []
+
+static var buildings: Array[Building] = []
 
 static func nearest_unit(units: Array[Unit], position):
 	if(!units || units.size() == 0):

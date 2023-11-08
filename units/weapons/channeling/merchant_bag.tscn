@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://dp865ep1fvdru"]
+
+[ext_resource type="PackedScene" uid="uid://dxpkl07g0vev7" path="res://units/weapons/channeling_weapon.tscn" id="1_g62sy"]
+[ext_resource type="PackedScene" uid="uid://cay02n8pd26th" path="res://models/npc/merchant_bag.glb" id="2_sueax"]
+[ext_resource type="AnimationLibrary" uid="uid://cgsm0plu4y05o" path="res://units/weapons/channeling/merchant_bag_animations.res" id="3_de17b"]
+
+[node name="MerchantBag" instance=ExtResource("1_g62sy")]
+channeled_effect_scene = null
+
+[node name="merchant_bag" parent="ModelHolder" index="0" instance=ExtResource("2_sueax")]
+transform = Transform3D(-6.81846e-11, 4.41735e-08, 1, 0.989313, 0.145807, -6.37334e-09, -0.145807, 0.989313, -4.37114e-08, -5.04017e-14, -0.23662, 0.830351)
+
+[node name="AnimationTreeExpressionExtension" parent="." index="1"]
+parameters/Attack/conditions/attack_loops = true
+
+[node name="AnimationPlayer" parent="." index="2"]
+libraries = {
+"": ExtResource("3_de17b")
+}
+
+[node name="aoe_spawn" parent="." index="3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.31134e-07, -1, -3)

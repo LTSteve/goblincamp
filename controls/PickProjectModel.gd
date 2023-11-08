@@ -8,7 +8,12 @@ class_name PickProjectModel
 var _building_type:UnitSpawner.BuildingType
 var _value: int
 
+static var I: PickProjectModel
+
 signal on_card_selected(building_type:UnitSpawner.BuildingType, value: int, resource:CardResource)
+
+func _ready():
+	I = self
 
 func open(building_type:UnitSpawner.BuildingType, value: int):
 	if visible: return

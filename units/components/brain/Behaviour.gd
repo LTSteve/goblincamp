@@ -9,7 +9,10 @@ func assign_target(_delta, _brain:BrainComponent, _behaviour_data):
 	pass
 
 func process(_delta, _brain:BrainComponent, _behaviour_data):
-	pass
+	return false
+
+func physics_process(_delta, _brain:BrainComponent, _behaviour_data):
+	return false
 
 func clean_up(_brain:BrainComponent, _behaviour_data):
 	pass

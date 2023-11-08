@@ -7,8 +7,15 @@ class_name TweenSlide
 @export var slide_out_value: Vector2
 @export var slide_time: float = 0.5
 @export var ease_type: Tween.EaseType
+@export var start_in: bool = false
 
 var _tween: Tween
+
+func _ready():
+	if start_in:
+		me.position = slide_in_value
+	else:
+		me.position = slide_out_value
 
 func slide_in():
 	_tween = _reset_tween()

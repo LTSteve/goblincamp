@@ -59,6 +59,15 @@ func _process(delta):
 		if behaviours[i].process(delta, self, behaviour_datas[i]):
 			return
 
+func _physics_process(delta):
+	#process override behaviours first if any
+	for i in override_behaviours.size():
+		if override_behaviours[i].physics_process(delta, self, override_behaviour_datas[i]):
+			return
+	for i in behaviours.size():
+		if behaviours[i].physics_process(delta, self, behaviour_datas[i]):
+			return
+
 func _on_die():
 	for i in override_behaviours.size():
 		override_behaviours[i].clean_up(self, override_behaviour_datas[i])

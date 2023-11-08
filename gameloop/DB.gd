@@ -43,7 +43,8 @@ var _scene_paths = {
 	heal_burst_scene= "res://units/burst_scenes/heal_burst.tscn",
 	fire_burst_scene= "res://units/burst_scenes/fire_burst.tscn",
 	bleed_burst_scene= "res://units/burst_scenes/bleed_burst.tscn",
-	cold_burst_scene= "res://units/burst_scenes/cold_burst.tscn"
+	cold_burst_scene= "res://units/burst_scenes/cold_burst.tscn",
+	offer_display_scene= "res://controls/offer_display.tscn"
 }
 
 var scenes = {}

@@ -5,9 +5,10 @@
 [ext_resource type="PackedScene" uid="uid://doyk0eonygraq" path="res://models/goblin_priest/goblin_priest_weapon.glb" id="2_ox5wd"]
 [ext_resource type="AnimationLibrary" uid="uid://cevmu2la0bu24" path="res://units/weapons/channeling/goblin_rod_animations.res" id="2_ubbef"]
 
-[node name="GoblinRod" instance=ExtResource("1_8nk37")]
+[node name="GoblinRod" node_paths=PackedStringArray("channeled_effect_spawn_point") instance=ExtResource("1_8nk37")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0)
-aoe_scene = ExtResource("2_g3sq6")
+channeled_effect_scene = ExtResource("2_g3sq6")
+channeled_effect_spawn_point = NodePath("aoe_spawn")
 weapon_range = 50.0
 damage = 4.0
 damage_random_component = 1.0

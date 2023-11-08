@@ -11,7 +11,7 @@ signal on_change(new_value:int,old_value:int)
 
 @export var debug: bool
 
-var money: float:
+var money: int:
 	get:
 		return money
 	set(value):

@@ -1,6 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://cj2qtrra51gcp"]
+[gd_scene load_steps=8 format=3 uid="uid://cj2qtrra51gcp"]
 
 [ext_resource type="PackedScene" uid="uid://cqd8cffwoc8n4" path="res://units/weapons/melee_weapon.tscn" id="1_rce77"]
+[ext_resource type="AudioStream" uid="uid://p3r2i8gwj4k6" path="res://sfx/explosion2.wav" id="2_64if2"]
 [ext_resource type="PackedScene" uid="uid://di48j8kwxi5nu" path="res://models/ogre/ogre_weapon.glb" id="2_lqwa0"]
 [ext_resource type="AnimationLibrary" uid="uid://co0x1g0qobw5g" path="res://units/weapons/melee/hammer_animation.res" id="3_m3pu0"]
 
@@ -16,6 +17,8 @@ size = Vector3(3, 3, 4)
 [node name="Hammer" node_paths=PackedStringArray("collision_areas", "hit_spot") groups=["Hammer"] instance=ExtResource("1_rce77")]
 collision_areas = [NodePath("Hitboxes/Area3D"), NodePath("Hitboxes/Area3D2"), NodePath("Hitboxes/Area3D3")]
 hit_spot = NodePath("ModelHolder/ogre_weapon/HitSpot")
+hit_sfx = Array[AudioStream]([ExtResource("2_64if2")])
+multi_target = true
 weapon_range = 5.0
 damage = 14.5
 pushback = 20.5

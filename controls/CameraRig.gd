@@ -1,5 +1,9 @@
 extends Node3D
 
+class_name CameraRig
+
+static var I:CameraRig
+
 @export var camera_angle_min: float = 10
 @export var camera_angle_max: float = 90
 @export var camera_distance_min: float = 2
@@ -47,9 +51,16 @@ var rotate_input: float
 var angle_input: float
 var distance_input: float
 
-var _last_fov_setting:float
+var _last_fov_setting: float
+
+var _angle_override:CameraSettings
+
+class CameraSettings:
+	var locked_to: Unit
+	var lock_strength: float = 0
 
 func _ready():
+	I = self
 	angle_value = camera_angle_min + (camera_angle_max - camera_angle_min) / 2.0
 	distance_value = camera_distance_min + (camera_distance_max - camera_distance_min) / 2.0
 	_last_fov_setting = fov_setting.current_value
@@ -59,6 +70,11 @@ func _percent_to_fov(percent):
 	return clampf(25.0 + 110 * percent, 45, 179)
 
 func _process(delta):
+	if _angle_override != null:
+		velocity_component.set_velocity(Vector2.ZERO)
+		var pos = Vector2(_angle_override.locked_to.global_position.x, _angle_override.locked_to.global_position.z)
+		global_position = lerp(global_position, Math.v2_to_v3(pos, Ground.sample_height(pos.x, pos.y)), _angle_override.lock_strength)
+	
 	if _last_fov_setting != fov_setting.current_value:
 		_last_fov_setting = fov_setting.current_value
 		camera.fov = _percent_to_fov(_last_fov_setting)
@@ -69,8 +85,12 @@ func _process(delta):
 	else:
 		var drag_v2:Vector2 = TouchAndMouseInput.I.get_current_drag_v2()
 		#input
-		left_right_input = _combine_actions("camera_right", "camera_left") * camera_scroll_speed - drag_v2.x * drag_speed
-		forward_back_input = _combine_actions("camera_back", "camera_forward") * camera_scroll_speed - drag_v2.y * drag_speed
+		if _angle_override:
+			left_right_input = 0
+			forward_back_input = 0
+		else:
+			left_right_input = _combine_actions("camera_right", "camera_left") * camera_scroll_speed - drag_v2.x * drag_speed
+			forward_back_input = _combine_actions("camera_back", "camera_forward") * camera_scroll_speed - drag_v2.y * drag_speed
 		rotate_input = _combine_actions("camera_rotate_right", "camera_rotate_left")
 		angle_input = _combine_actions("camera_angle_up", "camera_angle_down")
 		distance_input = _combine_actions("camera_zoom", "camera_dezoom")
@@ -96,3 +116,13 @@ func _process(delta):
 
 func _combine_actions(positive_input:String, negative_input:String) -> float:
 	return (Input.get_action_strength(positive_input) - Input.get_action_strength(negative_input)) as float
+
+func set_camera_angle_override(cam_settings:CameraSettings):
+	var tween = self.create_tween()
+	tween.set_ease(Tween.EASE_OUT)
+	tween.tween_property(cam_settings, "lock_strength", 1.0, 0.5)
+	
+	_angle_override = cam_settings
+
+func unset_camera_angle_override():
+	_angle_override = null

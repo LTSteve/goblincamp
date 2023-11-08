@@ -1,9 +1,10 @@
 [gd_resource type="Resource" script_class="ChannelingBehaviour" load_steps=2 format=3 uid="uid://gn36ryd3nnjj"]
 
-[ext_resource type="Script" path="res://units/components/brain/ChannelingBehaviour.gd" id="1_jpjkv"]
+[ext_resource type="Script" path="res://units/components/brain/DethballBehaviour.gd" id="1_jpjkv"]
 
 [resource]
 script = ExtResource("1_jpjkv")
 flee_distance = 8.0
 flee_speed_scale = 0.8
 at_location_dist2 = 0.75
+force_re_target_time = 2.0

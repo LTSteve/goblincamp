@@ -17,10 +17,12 @@ var _held_modifier: CardModifier
 
 func _ready():
 	_held_modifier = ModifierManager.apply_modifier(card_resource)
+	Global.buildings.append(self)
 
 func _on_tree_exiting():
 	ModifierManager.un_apply_modifier(_held_modifier)
 	MoneyManager.I.add_money(sell_value)
+	Global.buildings = Global.buildings.filter(func(building): return building != self)
 
 func _on_click_area_input_event(_camera, event, _position, _normal, _shape_idx):
 	if event is InputEventMouseButton:

@@ -24,10 +24,15 @@ signal on_night(day:int)
 signal on_day()
 signal on_game_over()
 
+var is_daytime: bool = true
+
 var _day:int = 0
 var _spawned_building:bool = false
 
 static var I: GameManager
+
+func get_day():
+	return _day
 
 func game_over():
 	Wait.timer(2, self, func():
@@ -36,6 +41,7 @@ func game_over():
 	)
 
 func cycle_to_day():
+	is_daytime = true
 	on_day.emit()
 
 func _ready():
@@ -55,6 +61,11 @@ func on_free():
 	Global.projectiles = []
 
 func _physics_process(delta):
+	#update all npcs
+	for npc in Global.npcs:
+		if !is_instance_valid(npc): continue
+		npc.do_move(delta)
+	
 	var player_count = Global.players.size()
 	var enemy_count = Global.enemies.size()
 	Global.players_minus_enemies = player_count - enemy_count
@@ -105,6 +116,7 @@ func _on_next_day_button_pressed():
 	], true).on_done(_start_next_day)
 
 func _start_next_day():
+	is_daytime = false
 	_spawned_building = false
 	_day += 1
 	on_night.emit(_day)

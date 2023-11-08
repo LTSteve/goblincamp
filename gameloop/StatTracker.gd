@@ -151,7 +151,7 @@ func _on_day():
 
 func _on_units_child_entered_tree(node):
 	if !enabled: return
-	if !(node is Unit): return
+	if !(node is Unit) || node.is_npc: return
 	var group = node.get_groups()[0]
 	match group:
 		"Knight":
