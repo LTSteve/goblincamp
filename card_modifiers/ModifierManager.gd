@@ -7,6 +7,8 @@ static var _I: ModifierManager
 @export var blacksmith_deck: DeckResource
 @export var leatherworker_deck: DeckResource
 @export var enchanter_deck: DeckResource
+@export var tavern_deck: DeckResource
+
 @export var enemy_deck: DeckResource
 
 @export var force_card: CardResource
@@ -84,6 +86,8 @@ static func generate_card_choices(building_type: UnitSpawner.BuildingType) -> Ar
 			deck = _I.leatherworker_deck
 		UnitSpawner.BuildingType.Enchanter:
 			deck = _I.enchanter_deck
+		UnitSpawner.BuildingType.Tavern:
+			deck = _I.tavern_deck
 	
 	var cards = deck.get_cards()
 	

@@ -1,0 +1,35 @@
+[gd_scene load_steps=5 format=3 uid="uid://byt5xpjdxieuo"]
+
+[ext_resource type="Script" path="res://buildings/building.gd" id="1_11aeh"]
+[ext_resource type="PackedScene" uid="uid://b3gtkfcan4upj" path="res://models/buildings/tavern.glb" id="2_108ml"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_4kbs0"]
+size = Vector3(13.5, 20, 13.5)
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_17v1k"]
+radius = 9.0
+
+[node name="Tavern" type="Node3D" groups=["Blacksmith"]]
+transform = Transform3D(0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, 0, 0, 0)
+script = ExtResource("1_11aeh")
+building_type = 3
+
+[node name="tavern" parent="." instance=ExtResource("2_108ml")]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+collision_layer = 4
+collision_mask = 0
+input_ray_pickable = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+shape = SubResource("BoxShape3D_4kbs0")
+
+[node name="ClickArea" type="Area3D" parent="."]
+collision_layer = 1073741824
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ClickArea"]
+shape = SubResource("SphereShape3D_17v1k")
+
+[connection signal="tree_exiting" from="." to="." method="_on_tree_exiting"]
+[connection signal="input_event" from="ClickArea" to="." method="_on_click_area_input_event"]
