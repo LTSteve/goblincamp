@@ -11,10 +11,11 @@ size = Vector3(5, 20, 5)
 [sub_resource type="SphereShape3D" id="SphereShape3D_ol15f"]
 radius = 8.0
 
-[node name="Leatherworker" type="Node3D" groups=["Leatherworker"]]
+[node name="Leatherworker" type="Node3D" node_paths=PackedStringArray("project_sprite") groups=["Leatherworker"]]
 transform = Transform3D(0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, 0, 0, 0)
 script = ExtResource("1_d12im")
 building_type = 1
+project_sprite = NodePath("leatherworker/Sprite3D")
 
 [node name="leatherworker" parent="." instance=ExtResource("1_8lss5")]
 script = ExtResource("2_01jm3")
@@ -22,6 +23,13 @@ once = true
 
 [node name="Fire" parent="leatherworker" instance=ExtResource("3_4jk3l")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.216403, 0, -1.3487)
+
+[node name="Sprite3D" type="Sprite3D" parent="leatherworker"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10, 0)
+pixel_size = 0.0004
+billboard = 1
+double_sided = false
+fixed_size = true
 
 [node name="StaticBody3D" type="StaticBody3D" parent="."]
 collision_layer = 4

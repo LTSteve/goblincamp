@@ -4,6 +4,8 @@ class_name Building
 
 @export var building_type: UnitSpawner.BuildingType
 
+@export var project_sprite: Sprite3D
+
 var card_resource: CardResource
 var all_cards: Array[CardResource]
 var _held_modifier: CardModifier
@@ -21,3 +23,4 @@ func select_card(card:CardResource):
 		ModifierManager.un_apply_modifier(_held_modifier)
 	_held_modifier = ModifierManager.apply_modifier(card)
 	card_resource = card
+	project_sprite.texture = card_resource.icon_texture

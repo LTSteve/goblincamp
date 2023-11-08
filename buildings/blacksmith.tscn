@@ -11,9 +11,10 @@ size = Vector3(13.5, 20, 13.5)
 [sub_resource type="SphereShape3D" id="SphereShape3D_17v1k"]
 radius = 9.0
 
-[node name="Blacksmith" type="Node3D" groups=["Blacksmith"]]
+[node name="Blacksmith" type="Node3D" node_paths=PackedStringArray("project_sprite") groups=["Blacksmith"]]
 transform = Transform3D(0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, 0, 0, 0)
 script = ExtResource("1_fji6x")
+project_sprite = NodePath("blacksmith/Sprite3D")
 
 [node name="blacksmith" parent="." instance=ExtResource("1_1b0ay")]
 script = ExtResource("2_qkb1v")
@@ -24,6 +25,13 @@ transform = Transform3D(0.498252, 0, 0, 0, 0.602099, 0, 0, 0, 0.403297, 5.14145,
 
 [node name="GPUParticles3D2" parent="blacksmith/Fire" index="1"]
 emitting = false
+
+[node name="Sprite3D" type="Sprite3D" parent="blacksmith"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10, 0)
+pixel_size = 0.0004
+billboard = 1
+double_sided = false
+fixed_size = true
 
 [node name="StaticBody3D" type="StaticBody3D" parent="."]
 collision_layer = 4

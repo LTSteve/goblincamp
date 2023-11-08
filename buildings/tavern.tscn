@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://byt5xpjdxieuo"]
+[gd_scene load_steps=6 format=3 uid="uid://byt5xpjdxieuo"]
 
 [ext_resource type="Script" path="res://buildings/building.gd" id="1_11aeh"]
 [ext_resource type="PackedScene" uid="uid://b3gtkfcan4upj" path="res://models/buildings/tavern.glb" id="2_108ml"]
+[ext_resource type="Script" path="res://units/components/HeightComponent.gd" id="3_qjovx"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_4kbs0"]
 size = Vector3(13.5, 20, 13.5)
@@ -9,12 +10,22 @@ size = Vector3(13.5, 20, 13.5)
 [sub_resource type="SphereShape3D" id="SphereShape3D_17v1k"]
 radius = 9.0
 
-[node name="Tavern" type="Node3D" groups=["Blacksmith"]]
+[node name="Tavern" type="Node3D" node_paths=PackedStringArray("project_sprite") groups=["Blacksmith"]]
 transform = Transform3D(0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, 0, 0, 0)
 script = ExtResource("1_11aeh")
 building_type = 3
+project_sprite = NodePath("tavern/Sprite3D")
 
 [node name="tavern" parent="." instance=ExtResource("2_108ml")]
+script = ExtResource("3_qjovx")
+once = true
+
+[node name="Sprite3D" type="Sprite3D" parent="tavern"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10, 0)
+pixel_size = 0.0004
+billboard = 1
+double_sided = false
+fixed_size = true
 
 [node name="StaticBody3D" type="StaticBody3D" parent="."]
 collision_layer = 4
