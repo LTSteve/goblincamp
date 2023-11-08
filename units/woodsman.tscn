@@ -56,10 +56,12 @@ max_health = 685.0
 max_speed = 4.0
 acceleration = 3.5
 
-[node name="MaterialOverrideComponent" parent="." index="9" node_paths=PackedStringArray("mesh_instance")]
+[node name="ArmorComponent" parent="." index="8" groups=["Woodsman"]]
+
+[node name="MaterialOverrideComponent" parent="." index="10" node_paths=PackedStringArray("mesh_instance")]
 mesh_instance = NodePath("../Model/ModelHolder/woodsman/woodsman2")
 
-[node name="BrainComponent" parent="." index="10"]
+[node name="BrainComponent" parent="." index="11"]
 behaviours = Array[Resource("res://units/components/brain/Behaviour.gd")]([ExtResource("6_drbmq"), ExtResource("6_q8fw5"), ExtResource("7_cpbkr")])
 
 [editable path="Model/ModelHolder/woodsman"]

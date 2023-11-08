@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="CardResource" load_steps=5 format=3 uid="uid://cpwps8s88jcl5"]
+
+[ext_resource type="Script" path="res://card_modifiers/CardResource.gd" id="1_3bis1"]
+[ext_resource type="Script" path="res://card_modifiers/rituals/dual_wield.gd" id="1_av47v"]
+[ext_resource type="JSON" path="res://card_modifiers/rituals/dual_wield.json" id="2_qvijm"]
+[ext_resource type="Texture2D" uid="uid://j84n0uy55qqn" path="res://card_modifiers/icons/crossed-swords.png" id="3_7elhj"]
+
+[resource]
+script = ExtResource("1_3bis1")
+test_card = false
+title = "Dual Wield"
+descriptions = Array[String](["Double swords & daggers! ({[current_rank]*[.damage_scale_per_rank]*100}% damage)"])
+rarity = 2
+max_rank = 3
+card_script = ExtResource("1_av47v")
+card_script_params = ExtResource("2_qvijm")
+apply_to = Array[String](["MeleeWeapon"])
+group_filters = Array[String](["Sword", "Dagger"])
+include_enemies = false
+include_players = true
+icon_texture = ExtResource("3_7elhj")

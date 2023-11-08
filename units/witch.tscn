@@ -51,10 +51,12 @@ max_health = 600.0
 max_speed = 3.25
 acceleration = 3.0
 
-[node name="MaterialOverrideComponent" parent="." index="9" node_paths=PackedStringArray("mesh_instance")]
+[node name="ArmorComponent" parent="." index="8" groups=["Witch"]]
+
+[node name="MaterialOverrideComponent" parent="." index="10" node_paths=PackedStringArray("mesh_instance")]
 mesh_instance = NodePath("../Model/ModelHolder/witch/witch2")
 
-[node name="BrainComponent" parent="." index="10"]
+[node name="BrainComponent" parent="." index="11"]
 behaviours = Array[Resource("res://units/components/brain/Behaviour.gd")]([ExtResource("4_e1jap"), ExtResource("4_4f1ng"), ExtResource("5_a72gt")])
 
 [editable path="Model/ModelHolder/witch"]

@@ -6,22 +6,21 @@ class_name PickProjectModel
 @export var card_container: Container
 
 var _building_type:UnitSpawner.BuildingType
-var _value: int
+var _cards: Array[CardResource]
 
 static var I: PickProjectModel
 
-signal on_card_selected(building_type:UnitSpawner.BuildingType, value: int, resource:CardResource)
+signal on_card_selected(building_type:UnitSpawner.BuildingType, chosen_card:CardResource, all_cards:Array[CardResource])
 
 func _ready():
 	I = self
 
-func open(building_type:UnitSpawner.BuildingType, value: int):
+func open(building_type:UnitSpawner.BuildingType):
 	if visible: return
 	
 	_building_type = building_type
-	_value = value
-	var cards = ModifierManager.generate_card_choices(building_type)
-	for card in cards:
+	_cards = ModifierManager.generate_card_choices(building_type)
+	for card in _cards:
 		var new_card = card_scene.instantiate() as CardDisplay
 		new_card.card_resource = card
 		new_card.show_next_rank = true
@@ -37,12 +36,5 @@ func close():
 	visible = false
 
 func _on_card_selected(resource:CardResource):
-	on_card_selected.emit(_building_type, _value, resource)
+	on_card_selected.emit(_building_type, resource, _cards)
 	close()
-
-# for click-outs
-func _on_gui_input(event):
-	if event is InputEventMouseButton && event.pressed && event.button_index == MOUSE_BUTTON_LEFT:
-		#refund
-		MoneyManager.I.add_money(_value)
-		close()

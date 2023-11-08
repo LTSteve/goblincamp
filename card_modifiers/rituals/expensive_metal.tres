@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="CardResource" load_steps=5 format=3 uid="uid://b6dqvh4bg7top"]
+
+[ext_resource type="Script" path="res://card_modifiers/CardResource.gd" id="1_7rads"]
+[ext_resource type="JSON" path="res://card_modifiers/rituals/expensive_metal.json" id="1_jpyyv"]
+[ext_resource type="Script" path="res://card_modifiers/rituals/expensive_metal.gd" id="1_nv2wh"]
+[ext_resource type="Texture2D" uid="uid://c6l8eol50vw8d" path="res://card_modifiers/icons/sword-tie.png" id="3_15wpm"]
+
+[resource]
+script = ExtResource("1_7rads")
+test_card = false
+title = "Expensive metal"
+descriptions = Array[String](["Sword and dagger damage increases as units gain experience", "Sword and dagger damage increases more as units gain experience"])
+rarity = 0
+max_rank = 5
+card_script = ExtResource("1_nv2wh")
+card_script_params = ExtResource("1_jpyyv")
+apply_to = Array[String](["MeleeWeapon"])
+group_filters = Array[String](["Sword", "Dagger"])
+include_enemies = false
+include_players = true
+icon_texture = ExtResource("3_15wpm")

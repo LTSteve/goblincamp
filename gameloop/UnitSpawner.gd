@@ -46,7 +46,7 @@ func spawn_enemy_group(enemy_spawn: EnemySpawnResource):
 	for enemy in enemy_spawn.enemies:
 		spawn_hostile(enemy, r_v2 + Math.rand_v2_range(0.1, 5))
 
-func spawn_building(building_type: BuildingType, value: int, resource: CardResource):
+func spawn_building(building_type: BuildingType, selected_card: CardResource, all_cards: Array[CardResource]):
 	
 	var space_state = world_root.get_world_3d().direct_space_state
 	var sphere:SphereShape3D = SphereShape3D.new()
@@ -63,9 +63,9 @@ func spawn_building(building_type: BuildingType, value: int, resource: CardResou
 			physics_sphere.transform = world_root.transform.translated(check_position)
 			var intersections = space_state.intersect_shape(physics_sphere,1)
 			if !intersections || intersections.size() == 0:
-				var instance = _get_building_scene(building_type).instantiate() as Node3D
-				instance.value = value
-				instance.card_resource = resource
+				var instance = _get_building_scene(building_type).instantiate() as Building
+				instance.all_cards = all_cards
+				instance.select_card(selected_card)
 				buildings_folder.add_child(instance)
 				instance.global_position = check_position
 				instance.rotate_y(Math.random_rotation())

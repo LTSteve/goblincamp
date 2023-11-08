@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="CardResource" load_steps=5 format=3 uid="uid://br8a1jribdhpl"]
+
+[ext_resource type="Script" path="res://card_modifiers/CardResource.gd" id="1_upapf"]
+[ext_resource type="Script" path="res://card_modifiers/rituals/optimized_quivers.gd" id="1_wdewp"]
+[ext_resource type="JSON" path="res://card_modifiers/rituals/optimized_quivers.json" id="2_gbi2a"]
+[ext_resource type="Texture2D" uid="uid://diqcn0bve0nd0" path="res://card_modifiers/icons/quiver.png" id="3_hi38m"]
+
+[resource]
+script = ExtResource("1_upapf")
+test_card = false
+title = "Optomized Quivers"
+descriptions = Array[String](["Bows shoot {[current_rank]*[.speed_increase_per_rank]*100}% faster"])
+rarity = 0
+max_rank = 3
+card_script = ExtResource("1_wdewp")
+card_script_params = ExtResource("2_gbi2a")
+apply_to = Array[String](["AnimationTree"])
+group_filters = Array[String](["Bow"])
+include_enemies = false
+include_players = true
+icon_texture = ExtResource("3_hi38m")

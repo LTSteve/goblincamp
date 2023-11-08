@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="CardResource" load_steps=4 format=3 uid="uid://ktqacwdtqnra"]
+
+[ext_resource type="Script" path="res://card_modifiers/CardResource.gd" id="1_1g0p5"]
+[ext_resource type="Script" path="res://card_modifiers/rituals/mutant_arm.gd" id="1_vwl68"]
+[ext_resource type="Texture2D" uid="uid://byc1dx5s01p45" path="res://card_modifiers/icons/arm.png" id="2_16uak"]
+
+[resource]
+script = ExtResource("1_1g0p5")
+test_card = false
+title = "MutantArm"
+descriptions = Array[String](["Woodsman now use bows and daggers simultaneously"])
+rarity = 2
+max_rank = 1
+card_script = ExtResource("1_vwl68")
+apply_to = Array[String](["BowAndDagger"])
+group_filters = Array[String]([])
+include_enemies = false
+include_players = true
+icon_texture = ExtResource("2_16uak")

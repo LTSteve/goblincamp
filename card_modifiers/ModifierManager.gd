@@ -75,7 +75,7 @@ static func get_next_enemy_card() -> CardResource:
 	
 	return infinite_normal[0]
 
-static func generate_card_choices(building_type: UnitSpawner.BuildingType) -> Array:
+static func generate_card_choices(building_type: UnitSpawner.BuildingType) -> Array[CardResource]:
 	var deck:DeckResource
 	match building_type:
 		UnitSpawner.BuildingType.Blacksmith:
@@ -85,44 +85,9 @@ static func generate_card_choices(building_type: UnitSpawner.BuildingType) -> Ar
 		UnitSpawner.BuildingType.Enchanter:
 			deck = _I.enchanter_deck
 	
-	var cards = deck.get_cards().filter(_I._match_unfinished_cards)
-	cards.shuffle()
+	var cards = deck.get_cards()
 	
-	if _I.force_card != null:
-		var card = _I._find_and_remove(cards, func(c): return c == _I.force_card)
-		if card:
-			cards.push_front(card)
-	
-	var infinite_normal = _I._find_and_remove_all(cards, _I._match_infinite_normal)
-	
-	var r = randf()
-	
-	if _I.first_pull:
-		_I.first_pull = false
-		r = 1
-	
-	if r < 0.4:
-		#three basic cards
-		return [
-			_I._fall_through_find_and_remove(cards, [_I._match_normal_card, _I._match_rare_card, _I._match_ultra_rare_card], infinite_normal),
-			_I._fall_through_find_and_remove(cards, [_I._match_normal_card, _I._match_rare_card, _I._match_ultra_rare_card], infinite_normal),
-			_I._fall_through_find_and_remove(cards, [_I._match_normal_card, _I._match_rare_card, _I._match_ultra_rare_card], infinite_normal),
-		]
-	elif r < 0.8:
-		#two rare one basic
-		return [
-			_I._fall_through_find_and_remove(cards, [_I._match_rare_card, _I._match_normal_card, _I._match_ultra_rare_card], infinite_normal),
-			_I._fall_through_find_and_remove(cards, [_I._match_rare_card, _I._match_normal_card, _I._match_ultra_rare_card], infinite_normal),
-			_I._fall_through_find_and_remove(cards, [_I._match_normal_card, _I._match_rare_card, _I._match_ultra_rare_card], infinite_normal),
-		]
-	else:
-		#two ultra rare, one rare
-		return [
-			_I._fall_through_find_and_remove(cards, [_I._match_ultra_rare_card, _I._match_rare_card, _I._match_normal_card], infinite_normal),
-			_I._fall_through_find_and_remove(cards, [_I._match_ultra_rare_card, _I._match_rare_card, _I._match_normal_card], infinite_normal),
-			_I._fall_through_find_and_remove(cards, [_I._match_rare_card, _I._match_normal_card, _I._match_ultra_rare_card], infinite_normal),
-		]
-	
+	return cards
 
 #cant make these static or they won't work as Callables
 

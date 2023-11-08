@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="CardResource" load_steps=5 format=3 uid="uid://i5xfdlyi261v"]
+
+[ext_resource type="Script" path="res://card_modifiers/CardResource.gd" id="1_336u5"]
+[ext_resource type="Script" path="res://card_modifiers/rituals/long_steel.gd" id="1_lkr04"]
+[ext_resource type="JSON" path="res://card_modifiers/rituals/long_steel.json" id="2_kyxw0"]
+[ext_resource type="Texture2D" uid="uid://crvinl312xu1m" path="res://card_modifiers/icons/pointy-sword.png" id="3_j6bs6"]
+
+[resource]
+script = ExtResource("1_336u5")
+test_card = false
+title = "Long Steel"
+descriptions = Array[String](["Lengthen swords and daggers by {[current_rank]*[.scale_per_rank]*100}%"])
+rarity = 1
+max_rank = 3
+card_script = ExtResource("1_lkr04")
+card_script_params = ExtResource("2_kyxw0")
+apply_to = Array[String](["Node3D"])
+group_filters = Array[String](["Sword_Hitbox", "Dagger_Hitbox", "Sword_Model", "Dagger_Model"])
+include_enemies = false
+include_players = true
+icon_texture = ExtResource("3_j6bs6")

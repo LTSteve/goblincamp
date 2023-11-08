@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="CardResource" load_steps=5 format=3 uid="uid://ty4ptuyulbyx"]
+
+[ext_resource type="Script" path="res://card_modifiers/CardResource.gd" id="1_cc4vs"]
+[ext_resource type="Script" path="res://card_modifiers/blacksmith/melee_damage.gd" id="1_llrqn"]
+[ext_resource type="JSON" path="res://card_modifiers/blacksmith/melee_damage.json" id="2_76i8v"]
+[ext_resource type="Texture2D" uid="uid://d3mkbhf2km0ps" path="res://card_modifiers/icons/anvil-impact.png" id="3_uq48h"]
+
+[resource]
+script = ExtResource("1_cc4vs")
+test_card = false
+title = "Melee Damage +"
+descriptions = Array[String](["Increase melee damage by {[.percent]*100}%"])
+rarity = 0
+max_rank = 0
+card_script = ExtResource("1_llrqn")
+card_script_params = ExtResource("2_76i8v")
+apply_to = Array[String](["MeleeWeapon"])
+group_filters = Array[String]([])
+include_enemies = false
+include_players = true
+icon_texture = ExtResource("3_uq48h")

@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="CardResource" load_steps=5 format=3 uid="uid://cnjcyl2vo6lnp"]
+
+[ext_resource type="Script" path="res://card_modifiers/rituals/excitable_newbies.gd" id="1_c4gf4"]
+[ext_resource type="Script" path="res://card_modifiers/CardResource.gd" id="1_idy5h"]
+[ext_resource type="JSON" path="res://card_modifiers/rituals/excitable_newbies.json" id="2_d6msr"]
+[ext_resource type="Texture2D" uid="uid://l327e1xa2w1v" path="res://card_modifiers/icons/run.png" id="3_uvpiq"]
+
+[resource]
+script = ExtResource("1_idy5h")
+test_card = false
+title = "Excitable Newbies"
+descriptions = Array[String](["Fresh recruits move {[current_rank]*[.speed_gain_per_rank]*100}% faster at the start of combat"])
+rarity = 1
+max_rank = 3
+card_script = ExtResource("1_c4gf4")
+card_script_params = ExtResource("2_d6msr")
+apply_to = Array[String](["RankComponent"])
+group_filters = Array[String]([])
+include_enemies = false
+include_players = true
+icon_texture = ExtResource("3_uvpiq")

@@ -9,7 +9,9 @@ class_name CardDisplay
 @export var card_title: Label
 @export var card_icon: TextureRect
 @export var card_description: Label
+@export var card_outline: Panel
 
+var selected: bool = false
 var clickable: bool = true
 var show_next_rank: bool = false
 
@@ -20,6 +22,7 @@ func _ready():
 	if ! clickable:
 		card_background.mouse_default_cursor_shape = Control.CURSOR_ARROW
 	
+	card_outline.visible = selected
 	card_background.modulate = card_defaults.rarity_colors[card_resource.rarity]
 	card_title.text = card_resource.title
 	card_icon.texture = card_resource.icon_texture
@@ -36,6 +39,9 @@ func _on_mouse_entered():
 	if !clickable: return
 	card_background.self_modulate = card_defaults.card_selected_color
 
+func update_selected(s:bool):
+	selected = s
+	card_outline.visible = selected
 
 func _on_mouse_exited():
 	if !clickable: return

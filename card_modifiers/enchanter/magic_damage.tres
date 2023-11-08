@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="CardResource" load_steps=5 format=3 uid="uid://drfawtg6bkm23"]
+
+[ext_resource type="Script" path="res://card_modifiers/CardResource.gd" id="1_cthss"]
+[ext_resource type="Texture2D" uid="uid://cbc060sdvlsjn" path="res://card_modifiers/icons/fire.png" id="1_j8pxm"]
+[ext_resource type="Script" path="res://card_modifiers/enchanter/magic_damage.gd" id="1_pf7d7"]
+[ext_resource type="JSON" path="res://card_modifiers/enchanter/magic_damage.json" id="2_q32gi"]
+
+[resource]
+script = ExtResource("1_cthss")
+test_card = false
+title = "Magic Damage +"
+descriptions = Array[String](["Increase magic damage by {[.percent]*100}%"])
+rarity = 0
+max_rank = 0
+card_script = ExtResource("1_pf7d7")
+card_script_params = ExtResource("2_q32gi")
+apply_to = Array[String](["RangedWeapon"])
+group_filters = Array[String](["Staff"])
+include_enemies = false
+include_players = true
+icon_texture = ExtResource("1_j8pxm")

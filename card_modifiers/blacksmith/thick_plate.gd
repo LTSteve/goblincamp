@@ -2,6 +2,7 @@ extends CardModifier
 
 func _apply(armor,_unit):
 	armor.apply_to_hit.add_override([armor, self, "_apply_to_hit_override"], _apply_to_hit_override)
+	print("applying armor")
 
 func _un_apply(armor,_unit):
 	armor.apply_to_hit.remove_override([armor, self, "_apply_to_hit_override"])

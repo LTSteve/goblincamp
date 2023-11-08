@@ -16,7 +16,7 @@ func _merchant_input_event(_camera: Node, event: InputEvent, _position: Vector3,
 	if !(event is InputEventMouseButton): return
 	if (event as InputEventMouseButton).pressed:
 		if GameManager.I.is_daytime:
-			open_buy_panel(brain.unit)
+			MerchantBehaviour.open_buy_panel(brain.unit)
 
 static func open_buy_panel(merchant:Unit):
 	BuyPanel.I.slide_in()

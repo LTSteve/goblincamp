@@ -113,8 +113,7 @@ func _on_purchase_button_pressed(offer:Offer, offer_display:OfferDisplay):
 		for _i in offer.type_1_count:
 			UnitSpawner.I.spawn_friendly(offer.unit_type_1)
 		if offer.type_2_is_building:
-			var value = building_costs[available_building_types.find(offer.building_type_2)]
-			PickProjectModel.I.open(offer.building_type_2, value)
+			PickProjectModel.I.open(offer.building_type_2)
 			slide_out()
 		else:
 			for _i in offer.type_2_count:

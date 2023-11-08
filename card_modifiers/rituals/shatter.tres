@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="CardResource" load_steps=5 format=3 uid="uid://mbeq8krfdkpb"]
+
+[ext_resource type="Script" path="res://card_modifiers/CardResource.gd" id="1_c00f8"]
+[ext_resource type="Script" path="res://card_modifiers/rituals/shatter.gd" id="1_hytlk"]
+[ext_resource type="JSON" path="res://card_modifiers/rituals/shatter.json" id="2_a0510"]
+[ext_resource type="Texture2D" uid="uid://odjtxkvj1ww5" path="res://card_modifiers/icons/hammer-break.png" id="3_vu2gu"]
+
+[resource]
+script = ExtResource("1_c00f8")
+test_card = false
+title = "Shatter"
+descriptions = Array[String](["+{[current_rank]*[.crit_per_rank]*100}% crit chance vs chilled enemies"])
+rarity = 1
+max_rank = 3
+card_script = ExtResource("1_hytlk")
+card_script_params = ExtResource("2_a0510")
+apply_to = Array[String](["MeleeWeapon", "RangedWeapon"])
+group_filters = Array[String](["Bow", "Staff", "Dagger", "Sword"])
+include_enemies = false
+include_players = true
+icon_texture = ExtResource("3_vu2gu")
