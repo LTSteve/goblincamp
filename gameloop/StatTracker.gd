@@ -240,8 +240,8 @@ func _on_obsticles_child_entered_tree(node):
 			_current_day.enchanters_purchased += 1
 	
 
-func _on_money_manager_on_change(new_value:int, old_value:int):
-	if !enabled: return
+func _on_money_manager_on_change(new_value:int, old_value:int, type:MoneyManager.MoneyType):
+	if !enabled || type != MoneyManager.MoneyType.Gold: return
 	var change = new_value - old_value
 	if change > 0:
 		_current_day.money_gained += change

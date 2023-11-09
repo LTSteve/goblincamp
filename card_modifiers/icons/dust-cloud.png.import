@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://27s4o8hjiwcc"
-path="res://.godot/imported/metal-disc.png-72b416c0be5287f5d92e9b8bd303d6ab.ctex"
+uid="uid://cfqnbenu44x8n"
+path="res://.godot/imported/dust-cloud.png-27625ee2bd35b096463bba9767b63861.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://icons/metal-disc.png"
-dest_files=["res://.godot/imported/metal-disc.png-72b416c0be5287f5d92e9b8bd303d6ab.ctex"]
+source_file="res://card_modifiers/icons/dust-cloud.png"
+dest_files=["res://.godot/imported/dust-cloud.png-27625ee2bd35b096463bba9767b63861.ctex"]
 
 [params]
 

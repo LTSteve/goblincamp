@@ -56,9 +56,12 @@ var _unit_index: int = 0
 static var time_scale: int = 1
 
 func on_free():
+	#clearly very silly, different choices should have been made
 	Global.players = []
 	Global.enemies = []
 	Global.projectiles = []
+	Global.npcs = []
+	Global.ears = []
 
 func _physics_process(delta):
 	#update all npcs

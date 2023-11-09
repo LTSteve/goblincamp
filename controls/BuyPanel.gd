@@ -38,7 +38,7 @@ func slide_out():
 	super.slide_out()
 
 func _on_day():
-	_create_offers(5, GameManager.I.get_day(), Global.players.size(), Global.buildings.size(), MoneyManager.I.money)
+	_create_offers(5, GameManager.I.get_day(), Global.players.size(), Global.buildings.size(), MoneyManager.I.get_resource(MoneyManager.MoneyType.Gold))
 	_create_offer_display()
 
 func _create_offers(number_to_offer:int, day: int, player_count: int, building_count: int, player_money: int):

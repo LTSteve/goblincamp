@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://dd122wrl6vlgu"]
+[gd_scene load_steps=10 format=3 uid="uid://dd122wrl6vlgu"]
 
 [ext_resource type="PackedScene" uid="uid://brhc1aba5usew" path="res://units/unit.tscn" id="1_e4j34"]
 [ext_resource type="PackedScene" uid="uid://7ompo5s8qd6p" path="res://models/woodsman/woodsman.glb" id="2_72bjw"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://reg5i7hshy2t" path="res://units/weapons/melee/dagger.tscn" id="4_bt2yp"]
 [ext_resource type="Resource" uid="uid://du4glkse3tqoh" path="res://units/components/brain/repulse_behaviour.tres" id="6_drbmq"]
 [ext_resource type="Resource" uid="uid://dciy1jkbehvwj" path="res://units/components/brain/bow_and_dagger_behaviour.tres" id="6_q8fw5"]
+[ext_resource type="Resource" uid="uid://cpbw516utgbfj" path="res://units/components/brain/ear_hunt_behaviour.tres" id="7_bq1gp"]
 [ext_resource type="Resource" uid="uid://6a2euiflosoa" path="res://units/components/brain/wander_behaviour.tres" id="7_cpbkr"]
 
 [node name="Woodsman" groups=["Woodsman"] instance=ExtResource("1_e4j34")]
@@ -62,7 +63,7 @@ acceleration = 3.5
 mesh_instance = NodePath("../Model/ModelHolder/woodsman/woodsman2")
 
 [node name="BrainComponent" parent="." index="11"]
-behaviours = Array[Resource("res://units/components/brain/Behaviour.gd")]([ExtResource("6_drbmq"), ExtResource("6_q8fw5"), ExtResource("7_cpbkr")])
+behaviours = Array[Resource("res://units/components/brain/Behaviour.gd")]([ExtResource("6_drbmq"), ExtResource("6_q8fw5"), ExtResource("7_bq1gp"), ExtResource("7_cpbkr")])
 
 [editable path="Model/ModelHolder/woodsman"]
 [editable path="Model/ModelHolder/RankComponent"]

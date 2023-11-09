@@ -76,3 +76,6 @@ static func rand_v2():
 static func rand_v2_range(min_dist:float, max_dist: float):
 	var v2 = rand_v2()
 	return v2 * randf_range(min_dist,max_dist)
+
+static func unit_sin(x:float):
+	return (sin(x * 2.0 * PI) / 2.0) + 0.5

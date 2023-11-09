@@ -6,8 +6,25 @@ static var enemies: Array[Unit] = []
 static var players: Array[Unit] = []
 static var projectiles: Array[Projectile] = []
 static var npcs: Array[Unit] = []
+static var ears: Array[GoblinEar] = []
 
 static var buildings: Array[Building] = []
+
+static func claim_nearest_unclaimed_ear(position):
+	if(!ears || ears.size() == 0):
+		return null
+	
+	var nearest = null
+	var nearest_len_2 = INF
+	for ear in ears:
+		if !is_instance_valid(ear) || ear.claimed: continue
+		var len2 = (ear.global_position - position).length_squared()
+		if(len2 < nearest_len_2):
+			nearest = ear
+			nearest_len_2 = len2
+	
+	if nearest: nearest.claimed = true
+	return nearest
 
 static func nearest_unit(units: Array[Unit], position):
 	if(!units || units.size() == 0):

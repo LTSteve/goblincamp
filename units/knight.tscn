@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://belume8inji0o"]
+[gd_scene load_steps=8 format=3 uid="uid://belume8inji0o"]
 
 [ext_resource type="PackedScene" uid="uid://brhc1aba5usew" path="res://units/unit.tscn" id="1_d7e8e"]
 [ext_resource type="PackedScene" uid="uid://bjni3yp3c1c0c" path="res://models/knight/knight.glb" id="2_71j88"]
@@ -6,6 +6,7 @@
 [ext_resource type="Resource" uid="uid://du4glkse3tqoh" path="res://units/components/brain/repulse_behaviour.tres" id="4_77og7"]
 [ext_resource type="Resource" uid="uid://cao1bytnssy28" path="res://units/components/brain/melee_behaviour.tres" id="4_u2k7p"]
 [ext_resource type="Resource" uid="uid://6a2euiflosoa" path="res://units/components/brain/wander_behaviour.tres" id="5_2y4yu"]
+[ext_resource type="Resource" uid="uid://cpbw516utgbfj" path="res://units/components/brain/ear_hunt_behaviour.tres" id="5_kexcl"]
 
 [node name="Knight" groups=["Knight"] instance=ExtResource("1_d7e8e")]
 
@@ -47,7 +48,7 @@ armor = 1
 mesh_instance = NodePath("../Model/ModelHolder/knight/knight2")
 
 [node name="BrainComponent" parent="." index="11"]
-behaviours = Array[Resource("res://units/components/brain/Behaviour.gd")]([ExtResource("4_77og7"), ExtResource("4_u2k7p"), ExtResource("5_2y4yu")])
+behaviours = Array[Resource("res://units/components/brain/Behaviour.gd")]([ExtResource("4_77og7"), ExtResource("4_u2k7p"), ExtResource("5_kexcl"), ExtResource("5_2y4yu")])
 
 [editable path="Model/ModelHolder/knight"]
 [editable path="Model/ModelHolder/RankComponent"]

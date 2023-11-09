@@ -27,8 +27,7 @@ is_ally = false
 
 [node name="BountyComponent" parent="Model" index="1"]
 enabled = true
-worth_base = 25
-worth_varience = 7
+worth_base = 0
 
 [node name="ImpClaw" parent="Model/WeaponHolder" index="0" instance=ExtResource("2_ud3bp")]
 
@@ -43,10 +42,10 @@ max_speed = 6.5
 acceleration = 4.0
 pushback_scale = 1.15
 
-[node name="MaterialOverrideComponent" parent="." index="9" node_paths=PackedStringArray("mesh_instance")]
+[node name="MaterialOverrideComponent" parent="." index="10" node_paths=PackedStringArray("mesh_instance")]
 mesh_instance = NodePath("../Model/ModelHolder/imp/imp2")
 
-[node name="BrainComponent" parent="." index="10"]
+[node name="BrainComponent" parent="." index="11"]
 behaviours = Array[Resource("res://units/components/brain/Behaviour.gd")]([ExtResource("4_gxj6e"), ExtResource("4_kbe1u"), ExtResource("5_dwiai")])
 
 [editable path="Model/ModelHolder/imp"]

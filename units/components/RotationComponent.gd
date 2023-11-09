@@ -43,6 +43,14 @@ func turn(direction:Vector2, unit:Unit, delta):
 	
 	_direction = _direction.rotated(velocity)
 
+func turn_by_rot_dir(rotation_direction: bool, delta:float, fast: bool = false):
+	var speed = fast_rotation_speed_r if fast else slow_rotation_speed_r
+	var velocity = speed if rotation_direction else -speed
+	_direction = _direction.rotated(velocity * delta)
+
+func set_rotation(rotation: float):
+	_direction = _direction.rotated(rotation)
+
 func apply_rotation(character_body:Node3D):
 	if _direction == _last_looked_at: return
 	_last_looked_at = _direction

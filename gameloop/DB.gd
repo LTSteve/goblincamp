@@ -46,7 +46,8 @@ var _scene_paths = {
 	fire_burst_scene= "res://units/burst_scenes/fire_burst.tscn",
 	bleed_burst_scene= "res://units/burst_scenes/bleed_burst.tscn",
 	cold_burst_scene= "res://units/burst_scenes/cold_burst.tscn",
-	offer_display_scene= "res://controls/offer_display.tscn"
+	offer_display_scene= "res://controls/offer_display.tscn",
+	goblin_ear_scene="res://pickups/goblin_ear.tscn"
 }
 
 var scenes = {}

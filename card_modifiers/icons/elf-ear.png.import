@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://27s4o8hjiwcc"
-path="res://.godot/imported/metal-disc.png-72b416c0be5287f5d92e9b8bd303d6ab.ctex"
+uid="uid://bty86nqbq0jnt"
+path="res://.godot/imported/elf-ear.png-4866daeb361434fbadea5ad0e5b29cce.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://icons/metal-disc.png"
-dest_files=["res://.godot/imported/metal-disc.png-72b416c0be5287f5d92e9b8bd303d6ab.ctex"]
+source_file="res://card_modifiers/icons/elf-ear.png"
+dest_files=["res://.godot/imported/elf-ear.png-4866daeb361434fbadea5ad0e5b29cce.ctex"]
 
 [params]
 

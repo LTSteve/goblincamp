@@ -1,0 +1,6 @@
+[gd_resource type="Resource" script_class="EarHuntBehaviour" load_steps=2 format=3 uid="uid://cpbw516utgbfj"]
+
+[ext_resource type="Script" path="res://units/components/brain/EarHuntBehaviour.gd" id="1_0cm2q"]
+
+[resource]
+script = ExtResource("1_0cm2q")

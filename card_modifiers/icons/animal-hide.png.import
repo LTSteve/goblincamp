@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://27s4o8hjiwcc"
-path="res://.godot/imported/metal-disc.png-72b416c0be5287f5d92e9b8bd303d6ab.ctex"
+uid="uid://cqsg2fa2yd7b7"
+path="res://.godot/imported/animal-hide.png-dec8272fe69c06b80532db7d56415d27.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://icons/metal-disc.png"
-dest_files=["res://.godot/imported/metal-disc.png-72b416c0be5287f5d92e9b8bd303d6ab.ctex"]
+source_file="res://card_modifiers/icons/animal-hide.png"
+dest_files=["res://.godot/imported/animal-hide.png-dec8272fe69c06b80532db7d56415d27.ctex"]
 
 [params]
 

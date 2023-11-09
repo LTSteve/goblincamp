@@ -19,8 +19,6 @@ is_ally = false
 
 [node name="BountyComponent" parent="Model" index="1"]
 enabled = true
-worth_base = 70
-worth_varience = 15
 
 [node name="Claw" parent="Model/WeaponHolder" index="0" instance=ExtResource("2_t4l2k")]
 

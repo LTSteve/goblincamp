@@ -17,7 +17,7 @@ transform = Transform3D(-2.30258e-08, 0, 0.526768, 0, 0.526768, 0, -0.526768, 0,
 
 [node name="BountyComponent" parent="Model" index="1"]
 enabled = true
-worth_base = 80
+worth_varience = 0
 
 [node name="GoblinRod" parent="Model/WeaponHolder" index="0" instance=ExtResource("2_k4knw")]
 
