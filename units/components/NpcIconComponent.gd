@@ -1,6 +1,6 @@
 extends Node3D
 
-class_name MerchantIconComponent
+class_name NpcIconComponent
 
 @onready var icon: Sprite3D = $"Sprite3D"
 
@@ -23,7 +23,8 @@ func _on_night(_day):
 
 func _on_mouse_entered():
 	icon.pixel_size = hover_pixel_size
-
+	Input.set_default_cursor_shape(Input.CURSOR_POINTING_HAND)
 
 func _on_mouse_exited():
 	icon.pixel_size = base_pixel_size
+	Input.set_default_cursor_shape(Input.CURSOR_ARROW)

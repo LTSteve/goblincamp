@@ -1,0 +1,7 @@
+[gd_resource type="Resource" script_class="DeckResource" load_steps=2 format=3 uid="uid://brmufrimhxlns"]
+
+[ext_resource type="Script" path="res://card_modifiers/DeckResource.gd" id="1_0gwk1"]
+
+[resource]
+script = ExtResource("1_0gwk1")
+card_folder_name = "ritual_deck"

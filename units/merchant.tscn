@@ -1,13 +1,13 @@
 [gd_scene load_steps=10 format=3 uid="uid://c05p4gopqbs6e"]
 
 [ext_resource type="PackedScene" uid="uid://brhc1aba5usew" path="res://units/unit.tscn" id="1_a2d7n"]
-[ext_resource type="Script" path="res://units/components/MerchantIconComponent.gd" id="2_eqio8"]
 [ext_resource type="PackedScene" uid="uid://cyplod3i2l3l3" path="res://models/npc/merchant.glb" id="2_ngx6n"]
+[ext_resource type="PackedScene" uid="uid://bndi4qjvqo1vy" path="res://units/components/npc_icon_component.tscn" id="2_p3d7d"]
 [ext_resource type="PackedScene" uid="uid://dp865ep1fvdru" path="res://units/weapons/channeling/merchant_bag.tscn" id="2_wfuwv"]
-[ext_resource type="Texture2D" uid="uid://dy2bpgqamwchw" path="res://icons/swap-bag.png" id="3_uvxbo"]
 [ext_resource type="Resource" uid="uid://c5lj8afn8ogvv" path="res://units/components/brain/mercant_behaviour.tres" id="4_762ss"]
 [ext_resource type="Resource" uid="uid://6a2euiflosoa" path="res://units/components/brain/wander_behaviour.tres" id="4_cc0aj"]
 [ext_resource type="Script" path="res://units/components/HeightComponent.gd" id="6_8g4b0"]
+[ext_resource type="Resource" uid="uid://du4glkse3tqoh" path="res://units/components/brain/repulse_behaviour.tres" id="6_ngoe1"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_8g8w7"]
 radius = 2.8
@@ -22,15 +22,7 @@ transform = Transform3D(-2.30258e-08, 0, 0.526768, 0, 0.526768, 0, -0.526768, 0,
 [node name="HealthbarComponent" parent="Model" index="2"]
 visible = false
 
-[node name="MerchantIconComponent" type="Node3D" parent="Model" index="3"]
-transform = Transform3D(1, 0, 4.61853e-14, 0, 1, 0, -4.61853e-14, 0, 1, 0, 4.92037, 0)
-script = ExtResource("2_eqio8")
-
-[node name="Sprite3D" type="Sprite3D" parent="Model/MerchantIconComponent" index="0"]
-pixel_size = 0.004
-billboard = 1
-double_sided = false
-texture = ExtResource("3_uvxbo")
+[node name="NpcIconComponent" parent="Model" index="3" instance=ExtResource("2_p3d7d")]
 
 [node name="MerchantIndicator" type="Node3D" parent="Model" index="4"]
 transform = Transform3D(1, 0, 1.77636e-14, 0, 1, 0, -1.77636e-14, 0, 1, 0, 3.63682, 0)
@@ -43,7 +35,7 @@ transform = Transform3D(1, 0, 1.77636e-14, 0, 1, 0, -1.77636e-14, 0, 1, 0, 3.636
 mesh_instance = NodePath("../Model/ModelHolder/merchant/merchant2")
 
 [node name="BrainComponent" parent="." index="11"]
-behaviours = Array[Resource("res://units/components/brain/Behaviour.gd")]([ExtResource("4_762ss"), ExtResource("4_cc0aj")])
+behaviours = Array[Resource("res://units/components/brain/Behaviour.gd")]([ExtResource("6_ngoe1"), ExtResource("4_762ss"), ExtResource("4_cc0aj")])
 
 [node name="FleeRange" parent="." index="13"]
 collision_layer = 8192
@@ -54,8 +46,8 @@ script = ExtResource("6_8g4b0")
 [node name="CollisionShape3D" parent="FleeRange" index="0"]
 shape = SubResource("SphereShape3D_8g8w7")
 
-[connection signal="mouse_entered" from="FleeRange" to="Model/MerchantIconComponent" method="_on_mouse_entered"]
-[connection signal="mouse_exited" from="FleeRange" to="Model/MerchantIconComponent" method="_on_mouse_exited"]
+[connection signal="mouse_entered" from="FleeRange" to="Model/NpcIconComponent" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="FleeRange" to="Model/NpcIconComponent" method="_on_mouse_exited"]
 
 [editable path="Model/ModelHolder/RankComponent"]
 [editable path="Model/ModelHolder/RankComponent/rank_star"]

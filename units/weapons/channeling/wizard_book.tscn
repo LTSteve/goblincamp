@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=3 uid="uid://bw1mopqb16njh"]
+
+[ext_resource type="PackedScene" uid="uid://dxpkl07g0vev7" path="res://units/weapons/channeling_weapon.tscn" id="1_dsfhk"]
+[ext_resource type="PackedScene" uid="uid://db2rqddlt1i4y" path="res://models/wizard/wizard_weapon.glb" id="2_dipm4"]
+[ext_resource type="AnimationLibrary" uid="uid://cx557jjw8oubg" path="res://units/weapons/channeling/wizard_book_animations.res" id="3_kru36"]
+
+[node name="WizardBook" instance=ExtResource("1_dsfhk")]
+channeled_effect_scene = null
+
+[node name="wizard_weapon" parent="ModelHolder" index="0" instance=ExtResource("2_dipm4")]
+transform = Transform3D(0.808749, -0.29503, -0.508804, 0.435954, 0.8814, 0.181872, 0.394803, -0.368904, 0.841452, 0.386455, -0.491841, -0.755578)
+
+[node name="AnimationPlayer" parent="." index="2"]
+libraries = {
+"": ExtResource("3_kru36")
+}

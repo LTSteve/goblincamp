@@ -9,6 +9,7 @@ var _resource_folders = {
 	enchanter_deck = "res://card_modifiers/enchanter",
 	leatherworker_deck = "res://card_modifiers/leatherworker",
 	tavern_deck = "res://card_modifiers/tavern",
+	ritual_deck = "res://card_modifiers/rituals",
 	enemy_deck = "res://card_modifiers/enemy",
 	settings = "res://controls/settings_types",
 	enemy_spawns = "res://enemy_spawns"
@@ -47,7 +48,9 @@ var _scene_paths = {
 	bleed_burst_scene= "res://units/burst_scenes/bleed_burst.tscn",
 	cold_burst_scene= "res://units/burst_scenes/cold_burst.tscn",
 	offer_display_scene= "res://controls/offer_display.tscn",
-	goblin_ear_scene="res://pickups/goblin_ear.tscn"
+	ritual_display_scene= "res://controls/ritual_display.tscn",
+	goblin_ear_scene="res://pickups/goblin_ear.tscn",
+	resource_cost_scene= "res://controls/resource_cost.tscn"
 }
 
 var scenes = {}

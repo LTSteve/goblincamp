@@ -8,6 +8,7 @@ static var _I: ModifierManager
 @export var leatherworker_deck: DeckResource
 @export var enchanter_deck: DeckResource
 @export var tavern_deck: DeckResource
+@export var ritual_deck: DeckResource
 
 @export var enemy_deck: DeckResource
 
@@ -92,6 +93,18 @@ static func generate_card_choices(building_type: UnitSpawner.BuildingType) -> Ar
 	var cards = deck.get_cards()
 	
 	return cards
+
+static func generate_ritual_card_choices(ritual_type: Ritual.Type) -> Array[CardResource]:
+	var deck:DeckResource = _I.ritual_deck
+	
+	var cards = deck.get_cards().filter(_I._match_unfinished_cards)
+	if ritual_type == Ritual.Type.Advanced:
+		cards = cards.filter(_I._match_ultra_rare_card) + cards.filter(_I._match_rare_card)
+	else:
+		cards = cards.filter(_I._match_rare_card) + cards.filter(_I._match_normal_card)
+	cards.shuffle()
+	
+	return [cards[0],cards[1],cards[2]]
 
 #cant make these static or they won't work as Callables
 

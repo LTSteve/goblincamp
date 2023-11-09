@@ -2,21 +2,21 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cfqnbenu44x8n"
-path.s3tc="res://.godot/imported/dust-cloud.png-27625ee2bd35b096463bba9767b63861.s3tc.ctex"
+uid="uid://chuc43736ew41"
+path="res://.godot/imported/wizard_weapon_new_pallete.png-3cf15b2d24822c93226dc5f6b67c4a74.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
-"vram_texture": true
+"vram_texture": false
 }
+generator_parameters={}
 
 [deps]
 
-source_file="res://card_modifiers/icons/dust-cloud.png"
-dest_files=["res://.godot/imported/dust-cloud.png-27625ee2bd35b096463bba9767b63861.s3tc.ctex"]
+source_file="res://models/wizard/wizard_weapon_new_pallete.png"
+dest_files=["res://.godot/imported/wizard_weapon_new_pallete.png-3cf15b2d24822c93226dc5f6b67c4a74.ctex"]
 
 [params]
 
-compress/mode=2
+compress/mode=0
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1

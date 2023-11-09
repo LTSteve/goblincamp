@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="CardResource" load_steps=5 format=3 uid="uid://dqoc2glwwicwp"]
+
+[ext_resource type="Script" path="res://card_modifiers/blacksmith/ingots.gd" id="1_0p8m4"]
+[ext_resource type="JSON" path="res://card_modifiers/blacksmith/ingots.json" id="2_mdd8t"]
+[ext_resource type="Texture2D" uid="uid://btq5ebrsh1yhm" path="res://icons/metal-bar.png" id="3_w6sc3"]
+[ext_resource type="Script" path="res://card_modifiers/CardResource.gd" id="4_0bxwi"]
+
+[resource]
+script = ExtResource("4_0bxwi")
+test_card = false
+title = "Ingots"
+descriptions = Array[String](["Spend [.cost_per_rank]g per day to produce 1 Ingot"])
+rarity = 0
+max_rank = 0
+card_script = ExtResource("1_0p8m4")
+card_script_params = ExtResource("2_mdd8t")
+apply_to = Array[String]([])
+group_filters = Array[String]([])
+include_enemies = false
+include_players = false
+icon_texture = ExtResource("3_w6sc3")

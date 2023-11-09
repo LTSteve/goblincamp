@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://cnjhgj7upfeun"]
+
+[ext_resource type="Script" path="res://controls/ResourceCost.gd" id="1_m5f4m"]
+[ext_resource type="Texture2D" uid="uid://bty86nqbq0jnt" path="res://card_modifiers/icons/elf-ear.png" id="2_pywt8"]
+
+[node name="ResourceCost" type="HBoxContainer"]
+script = ExtResource("1_m5f4m")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 2
+texture = ExtResource("2_pywt8")
+expand_mode = 3
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "5"

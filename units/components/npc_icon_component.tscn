@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://bndi4qjvqo1vy"]
+
+[ext_resource type="Script" path="res://units/components/NpcIconComponent.gd" id="1_qkas4"]
+[ext_resource type="Texture2D" uid="uid://dy2bpgqamwchw" path="res://icons/swap-bag.png" id="2_pjbda"]
+
+[node name="NpcIconComponent" type="Node3D"]
+transform = Transform3D(1, 0, 4.61853e-14, 0, 1, 0, -4.61853e-14, 0, 1, 0, 4.92037, 0)
+script = ExtResource("1_qkas4")
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+pixel_size = 0.004
+billboard = 1
+double_sided = false
+texture = ExtResource("2_pjbda")

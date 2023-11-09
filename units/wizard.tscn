@@ -1,0 +1,59 @@
+[gd_scene load_steps=11 format=3 uid="uid://c80w07885m8u1"]
+
+[ext_resource type="PackedScene" uid="uid://brhc1aba5usew" path="res://units/unit.tscn" id="1_gd25m"]
+[ext_resource type="PackedScene" uid="uid://bw1mopqb16njh" path="res://units/weapons/channeling/wizard_book.tscn" id="2_ljneo"]
+[ext_resource type="PackedScene" uid="uid://w325ppy4jbsf" path="res://models/wizard/wizard.glb" id="2_pxwt3"]
+[ext_resource type="PackedScene" uid="uid://bndi4qjvqo1vy" path="res://units/components/npc_icon_component.tscn" id="4_ywfm2"]
+[ext_resource type="Texture2D" uid="uid://cfqnbenu44x8n" path="res://card_modifiers/icons/dust-cloud.png" id="5_ijuua"]
+[ext_resource type="Resource" uid="uid://du4glkse3tqoh" path="res://units/components/brain/repulse_behaviour.tres" id="6_ghxdd"]
+[ext_resource type="Resource" uid="uid://ccndi511ewfdy" path="res://units/components/brain/wizard_behaviour.tres" id="7_byps2"]
+[ext_resource type="Resource" uid="uid://6a2euiflosoa" path="res://units/components/brain/wander_behaviour.tres" id="7_ujjig"]
+[ext_resource type="Script" path="res://units/components/HeightComponent.gd" id="9_icy0l"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_a7y2r"]
+radius = 2.8
+
+[node name="Wizard" instance=ExtResource("1_gd25m")]
+is_npc = true
+
+[node name="Model" parent="." index="1"]
+transform = Transform3D(-2.30258e-08, 0, 0.526768, 0, 0.526768, 0, -0.526768, 0, -2.30258e-08, 0, 0, 0)
+
+[node name="HealthbarComponent" parent="Model" index="2"]
+visible = false
+
+[node name="WizardBook" parent="Model/WeaponHolder" index="0" instance=ExtResource("2_ljneo")]
+
+[node name="wizard" parent="Model/ModelHolder" index="1" instance=ExtResource("2_pxwt3")]
+
+[node name="NpcIconComponent" parent="Model" index="5" instance=ExtResource("4_ywfm2")]
+
+[node name="Sprite3D" parent="Model/NpcIconComponent" index="0"]
+modulate = Color(0.945098, 0.623529, 1, 1)
+texture = ExtResource("5_ijuua")
+
+[node name="MaterialOverrideComponent" parent="." index="10" node_paths=PackedStringArray("mesh_instance")]
+mesh_instance = NodePath("../Model/ModelHolder/wizard/wizard2")
+
+[node name="BrainComponent" parent="." index="11"]
+behaviours = Array[Resource("res://units/components/brain/Behaviour.gd")]([ExtResource("6_ghxdd"), ExtResource("7_byps2"), ExtResource("7_ujjig")])
+
+[node name="FleeRange" parent="." index="13"]
+collision_layer = 8192
+monitoring = false
+monitorable = true
+script = ExtResource("9_icy0l")
+
+[node name="CollisionShape3D" parent="FleeRange" index="0"]
+shape = SubResource("SphereShape3D_a7y2r")
+
+[connection signal="mouse_entered" from="FleeRange" to="Model/NpcIconComponent" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="FleeRange" to="Model/NpcIconComponent" method="_on_mouse_exited"]
+
+[editable path="Model/ModelHolder/RankComponent"]
+[editable path="Model/ModelHolder/RankComponent/rank_star"]
+[editable path="Model/ModelHolder/RankComponent/rank_star2"]
+[editable path="Model/ModelHolder/RankComponent/rank_star3"]
+[editable path="Model/ModelHolder/RankComponent/rank_star4"]
+[editable path="Model/ModelHolder/wizard"]
+[editable path="Model/NpcIconComponent"]
