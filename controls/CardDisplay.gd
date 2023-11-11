@@ -22,7 +22,7 @@ func _ready():
 	if ! clickable:
 		card_background.mouse_default_cursor_shape = Control.CURSOR_ARROW
 	
-	card_outline.visible = selected
+	set_selected(selected)
 	card_background.modulate = card_defaults.rarity_colors[card_resource.rarity]
 	card_title.text = card_resource.title
 	card_icon.texture = card_resource.icon_texture
@@ -30,6 +30,10 @@ func _ready():
 	var current_rank = current_modifier.current_rank
 	var text = card_resource.descriptions[min(card_resource.descriptions.size() - 1, current_rank)]
 	card_description.text = ExpressionsParser.parse(text, { "current_rank": current_rank + (1 if show_next_rank else 0)}, current_modifier.params)
+
+func set_selected(s:bool):
+	selected = s
+	card_outline.visible = selected
 
 func _on_gui_input(event):
 	if event is InputEventMouseButton && event.button_index == MOUSE_BUTTON_LEFT && event.pressed:

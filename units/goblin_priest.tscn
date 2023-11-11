@@ -24,7 +24,7 @@ worth_varience = 0
 [node name="goblin_priest" parent="Model/ModelHolder" index="1" instance=ExtResource("2_q1y50")]
 
 [node name="HealthComponent" parent="." index="3"]
-max_health = 200.0
+max_health = 800.0
 
 [node name="VelocityComponent" parent="." index="4"]
 max_speed = 2.2

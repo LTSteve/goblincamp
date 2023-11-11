@@ -7,10 +7,11 @@
 
 [resource]
 script = ExtResource("1_cthss")
+building_card = true
 test_card = false
 title = "Magic Damage +"
 descriptions = Array[String](["Increase magic damage by {[.percent]*100}%"])
-rarity = 0
+rarity = 1
 max_rank = 0
 card_script = ExtResource("1_pf7d7")
 card_script_params = ExtResource("2_q32gi")

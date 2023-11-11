@@ -29,7 +29,7 @@ offset = 1.0
 
 [node name="VelocityComponent" type="Node" parent="."]
 script = ExtResource("3_xoxxp")
-max_speed = 41.5
+max_speed = 43.0
 acceleration = 15.0
 
 [node name="HeightComponent" type="Node3D" parent="."]

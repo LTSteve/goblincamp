@@ -67,7 +67,7 @@ offset = 1.0
 
 [node name="VelocityComponent" type="Node" parent="."]
 script = ExtResource("5_vfmu3")
-max_speed = 9.0
+max_speed = 11.0
 
 [node name="HeightComponent" type="Node3D" parent="."]
 script = ExtResource("3_na574")

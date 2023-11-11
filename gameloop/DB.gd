@@ -50,7 +50,8 @@ var _scene_paths = {
 	offer_display_scene= "res://controls/offer_display.tscn",
 	ritual_display_scene= "res://controls/ritual_display.tscn",
 	goblin_ear_scene="res://pickups/goblin_ear.tscn",
-	resource_cost_scene= "res://controls/resource_cost.tscn"
+	resource_cost_scene= "res://controls/resource_cost.tscn",
+	card_display_scene= "res://controls/card_display.tscn"
 }
 
 var scenes = {}

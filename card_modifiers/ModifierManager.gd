@@ -22,6 +22,10 @@ var first_pull = true
 func _ready():
 	_I = self
 
+static func get_active_rituals():
+	var cards = _I.ritual_deck.get_cards()
+	return cards.filter(_I._match_active_cards)
+
 static func get_modifier_by_resource(card_resource: CardResource, generate_default: bool = true):
 	var active_modifiers = _I.get_children()
 	for mod in active_modifiers:
@@ -50,6 +54,13 @@ static func apply_modifier(resource:CardResource) -> CardModifier:
 		_I.add_child(current_modifier)
 	current_modifier.rank_up()
 	return current_modifier
+
+static func un_apply_card(card: CardResource):
+	for child in _I.get_children():
+		if !(child is CardModifier): continue
+		if (child as CardModifier).card_resource == card:
+			un_apply_modifier(child)
+			return
 
 static func un_apply_modifier(modifier:CardModifier):
 	modifier.derank()
@@ -159,6 +170,15 @@ func _match_rare_card(card_resource:CardResource) -> bool:
 	return card_resource == force_card || (card_resource.rarity == CardResource.CardRarity.Rare)
 func _match_normal_card(card_resource:CardResource) -> bool:
 	return card_resource == force_card || (card_resource.rarity == CardResource.CardRarity.Normal)
+
+func _match_active_cards(card_resource:CardResource) -> bool:
+	var children = _I.get_children()
+	var existing_card = _get_first_or_null(children, func(card_modifier): 
+		if !(card_modifier is CardModifier): return false
+		return card_modifier.card_resource == card_resource) as CardModifier
+	if existing_card && existing_card.current_rank > 0:
+		return true
+	return false
 
 func _match_unfinished_cards(card_resource:CardResource)->bool:
 	#always allow infinite cards

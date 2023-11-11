@@ -7,10 +7,11 @@
 
 [resource]
 script = ExtResource("1_o0nio")
+building_card = true
 test_card = false
 title = "Thick Leather"
 descriptions = Array[String](["Reduce damage taken by Woodsman and Witches by {[current_rank]*[.flat_armor_per_rank]}"])
-rarity = 0
+rarity = 1
 max_rank = 0
 card_script = ExtResource("1_t8sm2")
 card_script_params = ExtResource("2_82led")

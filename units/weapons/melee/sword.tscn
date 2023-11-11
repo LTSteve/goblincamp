@@ -19,7 +19,8 @@ hit_spot = NodePath("ModelHolder/knight_weapon/HitPoint")
 hit_sfx = Array[AudioStream]([ExtResource("2_xeyop"), ExtResource("3_gnvpa"), ExtResource("4_4s42t")])
 multi_target = true
 weapon_range = 3.8
-damage = 7.0
+damage = 6.0
+damage_random_component = 1.75
 pushback = 4.5
 
 [node name="knight_weapon" parent="ModelHolder" index="0" instance=ExtResource("1_yltu8")]

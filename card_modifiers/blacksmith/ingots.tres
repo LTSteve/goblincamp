@@ -7,6 +7,7 @@
 
 [resource]
 script = ExtResource("4_0bxwi")
+building_card = true
 test_card = false
 title = "Ingots"
 descriptions = Array[String](["Spend [.cost_per_rank]g per day to produce 1 Ingot"])

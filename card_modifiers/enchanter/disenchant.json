@@ -1,0 +1,8 @@
+{
+	"days_needed_normal": 3,
+	"days_needed_rare": 5,
+	"days_needed_epic": 10,
+	"dust_normal": 1,
+	"dust_rare": 2,
+	"dust_epic": 4
+}

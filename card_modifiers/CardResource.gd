@@ -4,6 +4,7 @@ class_name CardResource
 
 enum CardRarity {Normal,Rare,UltraRare}
 
+@export var building_card: bool
 @export var test_card: bool
 @export var title: String
 ## can format with available data

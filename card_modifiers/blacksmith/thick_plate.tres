@@ -7,6 +7,7 @@
 
 [resource]
 script = ExtResource("1_lt7kj")
+building_card = true
 test_card = false
 title = "Thick Plate"
 descriptions = Array[String](["Reduce damage taken by Knights by {[current_rank]*[.flat_armor_per_rank]}"])
