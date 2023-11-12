@@ -3,7 +3,8 @@ extends Behaviour
 class_name WanderBehaviour
 
 @export var wander_center: Vector3 = Vector3.ZERO
-@export var wander_range: float = 10
+@export var min_wander_range: float = 10
+@export var max_wander_range: float = 20
 
 @export var min_wander_wait: float = 5
 @export var max_wander_wait: float = 30
@@ -24,6 +25,8 @@ func initialize(brain:BrainComponent):
 func assign_target(delta, _brain:BrainComponent, wander_data:WanderData):
 	wander_data.time_to_next_wander -= delta
 	if wander_data.time_to_next_wander <= 0:
+		var wander_range = GameManager.I.get_day() * 0.5 + 5
+		wander_range = clampf(wander_range,min_wander_range, max_wander_range)
 		wander_data.target = wander_center + Vector3.RIGHT.rotated(Vector3.UP, randf_range(0,_almost_360_r)) * randf_range(0, wander_range)
 		wander_data.time_to_next_wander = randf_range(min_wander_wait, max_wander_wait)
 		wander_data.reached_destination = false

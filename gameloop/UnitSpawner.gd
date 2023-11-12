@@ -36,15 +36,29 @@ func spawn_friendly(unit_type: UnitType):
 
 func spawn_hostile(unit_type: UnitType, point: Vector2 = Vector2.ZERO):
 	if point == Vector2.ZERO:
-		point = Math.rand_v2_range(enemy_spawn_min_radius, enemy_spawn_max_radius)
+		point = _get_enemy_spawn_point()
 	_spawn(unit_type, enemy_spawn_center + Math.v2_to_v3(point))
 	if double_imps && unit_type == UnitType.Imp:
 		_spawn(unit_type, enemy_spawn_center + Math.v2_to_v3(point+Vector2.RIGHT))
 
 func spawn_enemy_group(enemy_spawn: EnemySpawnResource):
-	var r_v2 = Math.rand_v2_range(enemy_spawn_min_radius, enemy_spawn_max_radius)
+	var r_v2 = _get_enemy_spawn_point()
 	for enemy in enemy_spawn.enemies:
 		spawn_hostile(enemy, r_v2 + Math.rand_v2_range(0.1, 5))
+
+func _get_enemy_spawn_point():
+	var actual_enemy_min = enemy_spawn_min_radius
+	var actual_enemy_max = enemy_spawn_max_radius
+	var day = GameManager.I.get_day() if GameManager.I else 0
+	
+	if day <= 5:
+		actual_enemy_max *= 0.5
+	elif day <= 20:
+		actual_enemy_max *= 0.75
+	else:
+		actual_enemy_min = actual_enemy_max * 0.5
+	
+	return Math.rand_v2_range(actual_enemy_min, actual_enemy_max)
 
 func spawn_building(building_type: BuildingType, selected_card: CardResource, all_cards: Array[CardResource]):
 	

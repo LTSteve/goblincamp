@@ -9,9 +9,13 @@ class_name HitblinkComponent
 var _jiggle: float = 0
 var _jiggle_direction: Vector3 = Vector3.ZERO
 
+func _ready():
+	set_process(false)
+
 func _on_recieved_hit(weapon_hit:Weapon.Hit):
 	_jiggle = 0
 	_jiggle_direction = model_holder.to_local(Math.v2_to_v3(weapon_hit.direction) + model_holder.global_position)
+	set_process(true)
 
 func _vibration_function(x:float):
 	var x_20 = x * 20
@@ -24,12 +28,11 @@ func _vibration_function(x:float):
 	return triangle_component / 5.0
 
 func _process(delta):
-	if _jiggle_direction == Vector3.ZERO: return
-	
 	_jiggle += delta / jiggle_time
 	
 	if _jiggle > 1.0:
 		model_holder.position = Vector3.ZERO
 		_jiggle_direction = Vector3.ZERO
+		set_process(false)
 	else:
 		model_holder.position = _jiggle_direction * jiggle_intensity * _vibration_function(_jiggle*_jiggle) * (1.0 - _jiggle)

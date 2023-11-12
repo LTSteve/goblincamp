@@ -12,9 +12,19 @@ class_name EarExchangePanel
 @export var phase_change_rate: float = 0.05
 
 var _current_exchange_rate: int = 200
+var _average_exchange_rate: int
 
 var _current_phase: float = 0
 var _current_phase_change: float = 0.1
+
+static var I: EarExchangePanel
+
+func _ready():
+	I = self
+	_average_exchange_rate = int(min_exchange_rate + exchange_rate_range * 2.0)
+
+func get_average_ear_exchange_rate():
+	return _average_exchange_rate
 
 func on_sell(count:int):
 	if MoneyManager.I.try_spend(count, MoneyManager.MoneyType.Ear):

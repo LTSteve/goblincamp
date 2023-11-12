@@ -21,16 +21,19 @@ func _ready():
 
 func _move_to_night(_day):
 	_target_dayness = 0
+	set_process(true)
 
 func _move_to_day():
 	_target_dayness = 1
+	set_process(true)
 
 func _process(delta):
-	if _target_dayness == _dayness: return
-	
-	_dayness = lerpf(_dayness, _target_dayness, (delta * 0.33) if _target_dayness == 0 else (delta * 0.5))
+	_dayness = clampf(lerpf(_dayness, _target_dayness, (delta * 0.33) if _target_dayness == 0 else (delta * 0.5)), 0, 1)
 	
 	_apply_dayness(_dayness)
+	
+	if _dayness == _target_dayness:
+		set_process(false)
 
 func _apply_dayness(dayness):
 	environment.sky.sky_material.set_shader_parameter("Dayness", dayness)

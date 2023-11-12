@@ -29,29 +29,16 @@ func _ready():
 func get_material() -> BaseMaterial3D:
 	return _material
 
-func _process(_delta):
-	if _use_emission:
-		if _emission_color_stack.size() == 0:
-			_material.emission_enabled = false
-		else:
-			_material.emission_enabled = true
-			_material.emission = _emission_color_stack.reduce(func(accum,color):
-				return color + accum, _base_emission_color)
-	
-	if _color_stack.size() > 0:
-		_material.albedo_color = _color_stack.reduce(func(accum,color):
-			return color + accum, Color.BLACK)
-	else:
-		_material.albedo_color = _base_color
-
 func add_color(color:Color):
 	if _color_stack.has(color): return
 	_color_stack.append(color)
+	_update_color()
 
 func remove_color(color:Color):
 	var index = _color_stack.find(color)
 	if index == -1: return
 	_color_stack.remove_at(index)
+	_update_color()
 
 func add_emission_color(color:Color):
 	if !_use_emission: 
@@ -60,6 +47,8 @@ func add_emission_color(color:Color):
 	
 	if _emission_color_stack.has(color): return
 	_emission_color_stack.append(color)
+	
+	_update_emission_color()
 
 func remove_emission_color(color:Color):
 	if !_use_emission: 
@@ -69,3 +58,22 @@ func remove_emission_color(color:Color):
 	var index = _emission_color_stack.find(color)
 	if index == -1: return
 	_emission_color_stack.remove_at(index)
+	
+	_update_emission_color()
+
+func _update_color():
+	if _color_stack.size() > 0:
+		_material.albedo_color = _color_stack.reduce(func(accum,color):
+			return color + accum, Color.BLACK)
+	else:
+		_material.albedo_color = _base_color
+
+func _update_emission_color():
+	if !_use_emission: return
+	
+	if _emission_color_stack.size() == 0:
+		_material.emission_enabled = false
+	else:
+		_material.emission_enabled = true
+		_material.emission = _emission_color_stack.reduce(func(accum,color):
+			return color + accum, _base_emission_color)

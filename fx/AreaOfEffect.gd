@@ -17,15 +17,11 @@ var callback: Callable
 
 @export var clean_up_delay: float = 1
 
-var _cleaning_up: bool = false
-
 func _ready():
 	if lifespan == 0:
 		call_deferred("_effect_units")
 
 func _process(delta):
-	if _cleaning_up: return
-	
 	lifespan -= delta
 	if !infinite && lifespan <= 0:
 		delayed_queue_free()
@@ -43,7 +39,7 @@ func _process(delta):
 		delay += lifespan * 2
 
 func delayed_queue_free():
-	_cleaning_up = true
+	set_process(false)
 	for particle in particles:
 		particle.emitting = false
 	Wait.timer(clean_up_delay, self, queue_free)

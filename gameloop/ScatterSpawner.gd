@@ -1,13 +1,6 @@
-@tool
-
 extends Node
 
 static var scatters = []
-
-@export var re_render: bool:
-	set(_value):
-		re_render = false
-		_on_data_changed()
 
 @export var ground: Ground
 
@@ -27,17 +20,14 @@ func _ready():
 	_load_data()
 
 func _process(_delta):
-	if Engine.is_editor_hint() || !scatter_setting || _last_scatter_setting == scatter_setting.current_value: return
+	if !scatter_setting || _last_scatter_setting == scatter_setting.current_value: return
 	_on_data_changed()
 	_last_scatter_setting = scatter_setting.current_value
 
 func _on_data_changed():
 	for s in scatters:
-		if Engine.is_editor_hint():
-			s.free()
-		else:
-			if is_instance_valid(s):
-				s.queue_free()
+		if is_instance_valid(s):
+			s.queue_free()
 
 	if rocks.size() == 0:
 		_load_data()

@@ -8,11 +8,17 @@ extends Node3D
 var _size:float = 1
 var _persist_cooldown = 0
 
+func _ready():
+	set_process(false)
+
 func _on_health_component_health_changed(health_update:HealthComponent.HealthUpdate):
 	_size = clampf(health_update.health_percent, 0, 1)
 	_persist_cooldown = persist_duration
+	set_process(true)
 
 func _process(delta):
 	_persist_cooldown -= delta
 	sprite_3d.visible = _size < insist_persist_at || _persist_cooldown > 0
 	scale = Vector3(_size, 1, 1)
+	if _persist_cooldown <= 0:
+		set_process(false)
