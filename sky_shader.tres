@@ -1,15 +1,19 @@
-[gd_resource type="VisualShader" load_steps=11 format=3 uid="uid://b65kspp6og2kk"]
+[gd_resource type="VisualShader" load_steps=12 format=3 uid="uid://b65kspp6og2kk"]
 
 [ext_resource type="Texture2D" uid="uid://ks85sdn8xh4e" path="res://skybox_low_res.exr" id="1_n63gc"]
-[ext_resource type="Texture2D" uid="uid://rfs40eantwei" path="res://skybox_night_low_res.exr" id="2_heltg"]
+
+[sub_resource type="VisualShaderNodeMultiplyAdd" id="VisualShaderNodeMultiplyAdd_nl0l8"]
+
+[sub_resource type="VisualShaderNodeColorConstant" id="VisualShaderNodeColorConstant_cm1er"]
+constant = Color(0.34902, 0.0313726, 0.152941, 0.443137)
+
+[sub_resource type="VisualShaderNodeVec3Constant" id="VisualShaderNodeVec3Constant_n6m4y"]
+constant = Vector3(-0.125, -0.125, -0.125)
 
 [sub_resource type="VisualShaderNodeTexture" id="VisualShaderNodeTexture_rdi1w"]
 output_port_for_preview = 0
 texture = ExtResource("1_n63gc")
 texture_type = 1
-
-[sub_resource type="VisualShaderNodeTexture" id="VisualShaderNodeTexture_a776l"]
-texture = ExtResource("2_heltg")
 
 [sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_4djve"]
 input_name = "sky_coords"
@@ -34,7 +38,6 @@ operator = 2
 code = "shader_type sky;
 uniform sampler2D tex_sky_2 : source_color;
 uniform float Dayness = 1;
-uniform sampler2D tex_sky_3;
 
 
 
@@ -55,8 +58,16 @@ void sky() {
 	vec3 n_out5p0 = vec3(n_out2p0.xyz) * vec3(n_out6p0);
 
 
-// Texture2D:3
-	vec4 n_out3p0 = texture(tex_sky_3, n_out4p0);
+// ColorConstant:13
+	vec4 n_out13p0 = vec4(0.349020, 0.031373, 0.152941, 0.443137);
+
+
+// Vector3Constant:14
+	vec3 n_out14p0 = vec3(-0.125000, -0.125000, -0.125000);
+
+
+// MultiplyAdd:12
+	float n_out12p0 = fma(n_out2p0.x, n_out13p0.x, n_out14p0.x);
 
 
 // FloatFunc:7
@@ -64,7 +75,7 @@ void sky() {
 
 
 // VectorOp:8
-	vec3 n_out8p0 = vec3(n_out3p0.xyz) * vec3(n_out7p0);
+	vec3 n_out8p0 = vec3(n_out12p0) * vec3(n_out7p0);
 
 
 // VectorOp:9
@@ -77,6 +88,7 @@ void sky() {
 
 }
 "
+graph_offset = Vector2(-521.69, 75.6619)
 mode = 3
 flags/use_half_res_pass = false
 flags/use_quarter_res_pass = false
@@ -84,19 +96,23 @@ flags/disable_fog = false
 flags/use_debanding = false
 nodes/sky/0/position = Vector2(560, -40)
 nodes/sky/2/node = SubResource("VisualShaderNodeTexture_rdi1w")
-nodes/sky/2/position = Vector2(-80, -120)
-nodes/sky/3/node = SubResource("VisualShaderNodeTexture_a776l")
-nodes/sky/3/position = Vector2(-80, 320)
+nodes/sky/2/position = Vector2(-220, -120)
 nodes/sky/4/node = SubResource("VisualShaderNodeInput_4djve")
 nodes/sky/4/position = Vector2(-540, -20)
 nodes/sky/5/node = SubResource("VisualShaderNodeVectorOp_jp18n")
-nodes/sky/5/position = Vector2(200, 20)
+nodes/sky/5/position = Vector2(220, -20)
 nodes/sky/6/node = SubResource("VisualShaderNodeFloatParameter_f1snj")
-nodes/sky/6/position = Vector2(180, 500)
+nodes/sky/6/position = Vector2(140, 520)
 nodes/sky/7/node = SubResource("VisualShaderNodeFloatFunc_o3eo4")
 nodes/sky/7/position = Vector2(469.408, 456.791)
 nodes/sky/8/node = SubResource("VisualShaderNodeVectorOp_bns58")
-nodes/sky/8/position = Vector2(200, 260)
+nodes/sky/8/position = Vector2(220, 260)
 nodes/sky/9/node = SubResource("VisualShaderNodeVectorOp_esxcr")
-nodes/sky/9/position = Vector2(360, 120)
-nodes/sky/connections = PackedInt32Array(6, 0, 7, 0, 6, 0, 5, 1, 7, 0, 8, 1, 5, 0, 9, 0, 8, 0, 9, 1, 9, 0, 0, 0, 4, 0, 3, 0, 4, 0, 2, 0, 2, 0, 5, 0, 3, 0, 8, 0)
+nodes/sky/9/position = Vector2(380, 40)
+nodes/sky/12/node = SubResource("VisualShaderNodeMultiplyAdd_nl0l8")
+nodes/sky/12/position = Vector2(-20, 480)
+nodes/sky/13/node = SubResource("VisualShaderNodeColorConstant_cm1er")
+nodes/sky/13/position = Vector2(-259.925, 470.379)
+nodes/sky/14/node = SubResource("VisualShaderNodeVec3Constant_n6m4y")
+nodes/sky/14/position = Vector2(-480, 640)
+nodes/sky/connections = PackedInt32Array(4, 0, 2, 0, 5, 0, 9, 0, 2, 0, 5, 0, 9, 0, 0, 0, 8, 0, 9, 1, 6, 0, 5, 1, 6, 0, 7, 0, 7, 0, 8, 1, 2, 0, 12, 0, 13, 0, 12, 1, 12, 0, 8, 0, 14, 0, 12, 2)

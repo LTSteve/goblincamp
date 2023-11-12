@@ -36,6 +36,7 @@ func _process(delta):
 		set_process(false)
 
 func _apply_dayness(dayness):
+	if !environment.sky: return
 	environment.sky.sky_material.set_shader_parameter("Dayness", dayness)
 	for i in light_sources.size():
 		var light_source = light_sources[i]
