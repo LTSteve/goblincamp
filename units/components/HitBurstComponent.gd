@@ -20,7 +20,7 @@ func _ready():
 
 func _on_recieved_hit(weapon_hit: Weapon.Hit):
 	var current_time = Time.get_ticks_msec()
-	if _last_burst <= (current_time + BURST_THROTTLE): return
+	if _last_burst > (current_time - BURST_THROTTLE): return
 	
 	var new_burst = burst_scenes[weapon_hit.damage_type].instantiate()
 	get_tree().root.add_child(new_burst)
