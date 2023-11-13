@@ -1,18 +1,11 @@
-[gd_resource type="Environment" load_steps=4 format=3 uid="uid://dewoeykm6c8my"]
+[gd_resource type="Environment" load_steps=2 format=3 uid="uid://dewoeykm6c8my"]
 
-[ext_resource type="Shader" uid="uid://b65kspp6og2kk" path="res://sky_shader.tres" id="1_wok8o"]
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_y4fxi"]
-shader = ExtResource("1_wok8o")
-shader_parameter/Dayness = 1.0
-
-[sub_resource type="Sky" id="Sky_1kjpe"]
-sky_material = SubResource("ShaderMaterial_y4fxi")
+[ext_resource type="Sky" uid="uid://buedn05gof7n6" path="res://world_sky.tres" id="1_0kjyv"]
 
 [resource]
 background_mode = 2
 background_energy_multiplier = 1.1
-sky = SubResource("Sky_1kjpe")
+sky = ExtResource("1_0kjyv")
 ambient_light_source = 3
 reflected_light_source = 2
 ssr_enabled = true

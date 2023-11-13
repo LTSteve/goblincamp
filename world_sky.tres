@@ -1,0 +1,10 @@
+[gd_resource type="Sky" load_steps=3 format=3 uid="uid://buedn05gof7n6"]
+
+[ext_resource type="Shader" uid="uid://b65kspp6og2kk" path="res://sky_shader.tres" id="1_gywob"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_i6pli"]
+shader = ExtResource("1_gywob")
+shader_parameter/Dayness = 1.0
+
+[resource]
+sky_material = SubResource("ShaderMaterial_i6pli")
