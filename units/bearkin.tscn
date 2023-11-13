@@ -1,0 +1,91 @@
+[gd_scene load_steps=9 format=3 uid="uid://b6u655unubog0"]
+
+[ext_resource type="PackedScene" uid="uid://brhc1aba5usew" path="res://units/unit.tscn" id="1_quqov"]
+[ext_resource type="PackedScene" uid="uid://ja83ratbnxbs" path="res://models/bearkin/bearkin.glb" id="2_ahweh"]
+[ext_resource type="PackedScene" uid="uid://b3hknvfjysar6" path="res://units/weapons/melee/bear_claw.tscn" id="2_cene2"]
+[ext_resource type="Resource" uid="uid://du4glkse3tqoh" path="res://units/components/brain/repulse_behaviour.tres" id="4_y7ncd"]
+[ext_resource type="Resource" uid="uid://cao1bytnssy28" path="res://units/components/brain/melee_behaviour.tres" id="5_pfokl"]
+[ext_resource type="Resource" uid="uid://cpbw516utgbfj" path="res://units/components/brain/ear_hunt_behaviour.tres" id="6_q3vgh"]
+[ext_resource type="Resource" uid="uid://6a2euiflosoa" path="res://units/components/brain/wander_behaviour.tres" id="7_imd88"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_4qwu5"]
+radius = 0.8
+height = 2.75
+
+[node name="Bearkin" groups=["Bearkin"] instance=ExtResource("1_quqov")]
+stun_scale = 0.85
+
+[node name="CollisionShape3D" parent="." index="0"]
+shape = SubResource("CapsuleShape3D_4qwu5")
+
+[node name="Model" parent="." index="1"]
+transform = Transform3D(-2.30258e-08, 0, 0.526768, 0, 0.526768, 0, -0.526768, 0, -2.30258e-08, 0, 0, 0)
+
+[node name="DamageNumberComponent" parent="Model" index="0"]
+transform = Transform3D(1, 8.48637e-08, 3.55271e-14, -8.48637e-08, 1, -2.66454e-15, -3.19744e-14, 3.37334e-16, 1, 4.52606e-07, 5.99579, 1.30397e-14)
+
+[node name="HealthbarComponent" parent="Model" index="2"]
+transform = Transform3D(-7.7427e-08, 1.13152e-07, -1.77133, 0, 1.77133, 1.13152e-07, 1.77133, 1.57384e-15, -7.7427e-08, 0.00883782, 5.58016, -0.0184446)
+
+[node name="BearClaw" parent="Model/WeaponHolder" index="0" instance=ExtResource("2_cene2")]
+transform = Transform3D(-5.46392e-08, 0, -1.25, 0, 1.25, 0, 1.25, 0, -5.46392e-08, 0, 1, 0)
+scales_with_day = false
+
+[node name="BearClaw2" parent="Model/WeaponHolder" index="1" instance=ExtResource("2_cene2")]
+transform = Transform3D(9.43724e-08, 8.25029e-15, -1.25, -1.09278e-07, 1.25, 0, -1.25, -1.09278e-07, -9.43724e-08, 0, 1, 0)
+animation_delay = 0.4
+
+[node name="RankComponent" parent="Model/ModelHolder" index="0"]
+transform = Transform3D(0.25, -1.09278e-08, 1.09279e-08, 1.09279e-08, -1.09278e-08, -0.25, 1.09278e-08, 0.25, -1.09278e-08, -8.29803e-08, 0, 1.89837)
+
+[node name="rank_star" parent="Model/ModelHolder/RankComponent" index="0"]
+transform = Transform3D(1, 8.47033e-22, 0, -1.42109e-14, 1, 1.06581e-14, 0, -7.10543e-15, 1, 2.19875, -4.76837e-07, -11.7875)
+visible = true
+
+[node name="Cylinder" parent="Model/ModelHolder/RankComponent/rank_star" index="0"]
+transform = Transform3D(0.982681, 8.1e-09, 0.185306, -8.1e-09, 1, -7.57074e-10, -0.185306, -7.57037e-10, 0.982681, 0.384514, -1.98442, -4.32409)
+
+[node name="rank_star2" parent="Model/ModelHolder/RankComponent" index="1"]
+transform = Transform3D(1, 8.47033e-22, 0, -1.42109e-14, 1, 1.06581e-14, 0, -7.10543e-15, 1, 2.38773, 9.53674e-07, -9.93723)
+visible = true
+
+[node name="Cylinder" parent="Model/ModelHolder/RankComponent/rank_star2" index="0"]
+transform = Transform3D(0.944383, 0.290251, -0.154581, -0.286439, 0.956951, 0.0468857, 0.161535, 1.3995e-08, 0.986867, 0.698446, -1.98442, -4.57151)
+
+[node name="rank_star3" parent="Model/ModelHolder/RankComponent" index="2"]
+transform = Transform3D(1, 8.47033e-22, 0, -1.42109e-14, 1, 1.06581e-14, 0, -7.10543e-15, 1, 2.58438, 0, -8.02887)
+visible = true
+
+[node name="Cylinder" parent="Model/ModelHolder/RankComponent/rank_star3" index="0"]
+transform = Transform3D(0.940707, -0.337079, 0.0380622, 0.336803, 0.941477, 0.0136275, -0.0404282, -1.22118e-08, 0.999182, -0.0647364, -1.98442, -4.83719)
+
+[node name="rank_star4" parent="Model/ModelHolder/RankComponent" index="3"]
+transform = Transform3D(-0.999999, -8.74227e-08, -8.74228e-08, 8.74228e-08, -0.999999, 8.74228e-08, -8.74228e-08, 8.74228e-08, 0.999999, 1.76067, -15.4779, -11.1951)
+visible = true
+
+[node name="Cylinder" parent="Model/ModelHolder/RankComponent/rank_star4" index="0"]
+transform = Transform3D(0.867542, -0.148776, -0.474591, 0.130522, 0.988871, -0.0714026, 0.479933, 3.05772e-08, 0.877305, -0.922435, -2.15739, -4.81995)
+
+[node name="bearkin" parent="Model/ModelHolder" index="1" instance=ExtResource("2_ahweh")]
+transform = Transform3D(1.625, 0, 0, 0, 1.625, 0, 0, 0, 1.625, 0, 0, 0)
+
+[node name="HealthComponent" parent="." index="3"]
+max_health = 4600.0
+
+[node name="VelocityComponent" parent="." index="4"]
+max_speed = 5.5
+acceleration = 4.0
+pushback_scale = 0.8
+
+[node name="MaterialOverrideComponent" parent="." index="10" node_paths=PackedStringArray("mesh_instance")]
+mesh_instance = NodePath("../Model/ModelHolder/bearkin/bearkin2")
+
+[node name="BrainComponent" parent="." index="11"]
+behaviours = Array[Resource("res://units/components/brain/Behaviour.gd")]([ExtResource("4_y7ncd"), ExtResource("5_pfokl"), ExtResource("6_q3vgh"), ExtResource("7_imd88")])
+
+[editable path="Model/ModelHolder/RankComponent"]
+[editable path="Model/ModelHolder/RankComponent/rank_star"]
+[editable path="Model/ModelHolder/RankComponent/rank_star2"]
+[editable path="Model/ModelHolder/RankComponent/rank_star3"]
+[editable path="Model/ModelHolder/RankComponent/rank_star4"]
+[editable path="Model/ModelHolder/bearkin"]

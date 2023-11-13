@@ -5,4 +5,4 @@
 [resource]
 script = ExtResource("1_gclic")
 level = 1
-enemies = Array[int]([3, 3, 3])
+enemies = Array[int]([4, 4, 4])

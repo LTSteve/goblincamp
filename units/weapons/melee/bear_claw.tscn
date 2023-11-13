@@ -1,0 +1,46 @@
+[gd_scene load_steps=8 format=3 uid="uid://b3hknvfjysar6"]
+
+[ext_resource type="PackedScene" uid="uid://cqd8cffwoc8n4" path="res://units/weapons/melee_weapon.tscn" id="1_jflx1"]
+[ext_resource type="AudioStream" uid="uid://b6lk6tkrmw184" path="res://sfx/zapsplat_foley_umbrella_collapsed_swipe_hit_person_003_82657.mp3" id="2_jl1jk"]
+[ext_resource type="AudioStream" uid="uid://c3n36epcuoata" path="res://sfx/zapsplat_foley_umbrella_collapsed_swipe_hit_person_004_82658.mp3" id="3_qjmdr"]
+[ext_resource type="AudioStream" uid="uid://0n2ugmf2tp22" path="res://sfx/zapsplat_foley_umbrella_collapsed_swipe_hit_person_005_82659.mp3" id="4_h3dbn"]
+[ext_resource type="AnimationLibrary" uid="uid://sp284lwpxvot" path="res://units/weapons/melee/bear_claw_animations.res" id="6_wuhs8"]
+[ext_resource type="PackedScene" uid="uid://b4oiqnjpi4g03" path="res://models/bearkin/bearkin_claw.glb" id="6_yss6x"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_h147w"]
+size = Vector3(3, 2, 2.5)
+
+[node name="BearClaw" node_paths=PackedStringArray("collision_areas", "hit_spot") groups=["Claw"] instance=ExtResource("1_jflx1")]
+collision_areas = [NodePath("Hitboxes/Area3D")]
+hit_spot = NodePath("ModelHolder/claws/HitSpot")
+hit_sfx = Array[AudioStream]([ExtResource("2_jl1jk"), ExtResource("3_qjmdr"), ExtResource("4_h3dbn")])
+multi_target = true
+weapon_range = 2.5
+damage = 7.0
+damage_random_component = 2.2
+pushback = 1.2
+hit_stun = 0.85
+scales_with_day = true
+
+[node name="claws" type="Node3D" parent="ModelHolder" index="0"]
+
+[node name="bearkin_claw" parent="ModelHolder/claws" index="0" instance=ExtResource("6_yss6x")]
+transform = Transform3D(-6.1196e-08, 1.3523, 0.362348, -1.49214e-14, 0.362348, -1.3523, -1.4, -5.9111e-08, -1.58387e-08, 1, 0, -4.37114e-08)
+
+[node name="HitSpot" type="Node3D" parent="ModelHolder/claws" index="1"]
+transform = Transform3D(1, -3.55271e-15, 0, -7.10543e-15, 1, -3.29875e-16, -8.88178e-16, -3.29875e-16, 1, -2.94088e-08, 0.532809, -0.845332)
+
+[node name="AnimationPlayer" parent="." index="2" groups=["Claw"]]
+libraries = {
+"": ExtResource("6_wuhs8")
+}
+
+[node name="Area3D" type="Area3D" parent="Hitboxes" index="0"]
+transform = Transform3D(1, 0, -6.77626e-21, 0, 1, 0, 6.77626e-21, 0, 1, 0, 0, -1.98714)
+collision_layer = 0
+collision_mask = 0
+monitoring = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Hitboxes/Area3D" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.254078)
+shape = SubResource("BoxShape3D_h147w")

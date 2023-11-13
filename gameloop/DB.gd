@@ -24,6 +24,7 @@ var _scene_paths = {
 	knight_scene = "res://units/knight.tscn",
 	witch_scene = "res://units/witch.tscn",
 	woodsman_scene = "res://units/woodsman.tscn",
+	bearkin_scene = "res://units/bearkin.tscn",
 	goblin_scene = "res://units/goblin.tscn",
 	ogre_scene = "res://units/ogre.tscn",
 	imp_scene = "res://units/imp.tscn",

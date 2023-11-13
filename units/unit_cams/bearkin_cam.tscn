@@ -1,0 +1,73 @@
+[gd_scene load_steps=5 format=3 uid="uid://c2quprpaqset5"]
+
+[ext_resource type="Environment" uid="uid://b8hhv81bda8f4" path="res://units/unit_cams/unit_cam_env.tres" id="1_dmhn2"]
+[ext_resource type="PackedScene" uid="uid://b4oiqnjpi4g03" path="res://models/bearkin/bearkin_claw.glb" id="5_7rji6"]
+[ext_resource type="AnimationLibrary" uid="uid://sp284lwpxvot" path="res://units/weapons/melee/bear_claw_animations.res" id="7_xjahw"]
+[ext_resource type="PackedScene" uid="uid://ja83ratbnxbs" path="res://models/bearkin/bearkin.glb" id="12_1gckf"]
+
+[node name="BearkinCam" type="Camera3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 500, 0)
+cull_mask = 1047554
+environment = ExtResource("1_dmhn2")
+projection = 1
+current = true
+size = 2.7
+near = 1.0
+far = 10.0
+
+[node name="Bearkin" type="Node3D" parent="."]
+transform = Transform3D(-0.927184, 0, 0.374606, 0, 1, 0, -0.374606, 0, -0.927184, 0, -1, -6)
+
+[node name="Model" type="Node3D" parent="Bearkin"]
+transform = Transform3D(-2.30258e-08, 0, 0.526768, 0, 0.526768, 0, -0.526768, 0, -2.30258e-08, 0, 0, 0)
+
+[node name="WeaponHolder" type="Node3D" parent="Bearkin/Model"]
+
+[node name="BearClaw" type="Node3D" parent="Bearkin/Model/WeaponHolder" groups=["Claw"]]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 1, 0)
+
+[node name="ModelHolder" type="Node3D" parent="Bearkin/Model/WeaponHolder/BearClaw"]
+
+[node name="claws" type="Node3D" parent="Bearkin/Model/WeaponHolder/BearClaw/ModelHolder"]
+
+[node name="bearkin_claw" parent="Bearkin/Model/WeaponHolder/BearClaw/ModelHolder/claws" instance=ExtResource("5_7rji6")]
+transform = Transform3D(-6.1196e-08, 1.3523, 0.362348, -1.49214e-14, 0.362348, -1.3523, -1.4, -5.9111e-08, -1.58387e-08, 1, 0, -4.37114e-08)
+
+[node name="Cube" parent="Bearkin/Model/WeaponHolder/BearClaw/ModelHolder/claws/bearkin_claw" index="0"]
+layers = 2
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Bearkin/Model/WeaponHolder/BearClaw" groups=["Claw"]]
+libraries = {
+"": ExtResource("7_xjahw")
+}
+
+[node name="BearClaw2" type="Node3D" parent="Bearkin/Model/WeaponHolder" groups=["Claw"]]
+transform = Transform3D(4.37114e-08, 0, -1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 1, 0)
+
+[node name="ModelHolder" type="Node3D" parent="Bearkin/Model/WeaponHolder/BearClaw2"]
+
+[node name="claws" type="Node3D" parent="Bearkin/Model/WeaponHolder/BearClaw2/ModelHolder"]
+
+[node name="bearkin_claw" parent="Bearkin/Model/WeaponHolder/BearClaw2/ModelHolder/claws" instance=ExtResource("5_7rji6")]
+transform = Transform3D(-6.1196e-08, 1.3523, 0.362348, -1.49214e-14, 0.362348, -1.3523, -1.4, -5.9111e-08, -1.58387e-08, 1, 0, -4.37114e-08)
+
+[node name="Cube" parent="Bearkin/Model/WeaponHolder/BearClaw2/ModelHolder/claws/bearkin_claw" index="0"]
+layers = 2
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Bearkin/Model/WeaponHolder/BearClaw2" groups=["Claw"]]
+libraries = {
+"": ExtResource("7_xjahw")
+}
+
+[node name="ModelHolder" type="Node3D" parent="Bearkin/Model"]
+transform = Transform3D(1, 0, 1.77636e-14, 0, 1, 0, -1.77636e-14, 0, 1, 0, 0, 0)
+
+[node name="bearkin" parent="Bearkin/Model/ModelHolder" instance=ExtResource("12_1gckf")]
+transform = Transform3D(1.3, 0, 0, 0, 1.3, 0, 0, 0, 1.3, 0, 0, 0)
+
+[node name="bearkin2" parent="Bearkin/Model/ModelHolder/bearkin" index="0"]
+layers = 2
+
+[editable path="Bearkin/Model/WeaponHolder/BearClaw/ModelHolder/claws/bearkin_claw"]
+[editable path="Bearkin/Model/WeaponHolder/BearClaw2/ModelHolder/claws/bearkin_claw"]
+[editable path="Bearkin/Model/ModelHolder/bearkin"]

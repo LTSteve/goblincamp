@@ -5,4 +5,4 @@
 [resource]
 script = ExtResource("1_77mr3")
 level = 2
-enemies = Array[int]([6, 3])
+enemies = Array[int]([7, 4])

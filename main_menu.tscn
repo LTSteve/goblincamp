@@ -4,8 +4,8 @@
 [ext_resource type="PackedScene" uid="uid://dvgfkovckchyd" path="res://camera_rig.tscn" id="1_42x5g"]
 [ext_resource type="Script" path="res://gameloop/TreeSpawner.gd" id="2_0sl38"]
 [ext_resource type="Script" path="res://gameloop/WorldEnvironmentSettingOverride.gd" id="3_mar1s"]
-[ext_resource type="Resource" uid="uid://dgc85osswl15x" path="res://gameloop/world_environment_setting_override.tres" id="4_5a82g"]
 [ext_resource type="Script" path="res://gameloop/ScatterSpawner.gd" id="4_vafby"]
+[ext_resource type="Resource" uid="uid://dgc85osswl15x" path="res://world_environment_setting_override.tres" id="4_wge6q"]
 [ext_resource type="Resource" uid="uid://chpelyc6drf4f" path="res://controls/settings_types/Performance/4scatter.tres" id="5_dss63"]
 [ext_resource type="Theme" uid="uid://cel1y6hrc8slp" path="res://theme/main_theme.tres" id="8_oq6fe"]
 [ext_resource type="FontFile" uid="uid://d1jvqnhuvekma" path="res://theme/YoungSerif-Regular.ttf" id="9_ya2hh"]
@@ -27,7 +27,7 @@ region_rect = Rect2(50, 50, 500, 500)
 environment = ExtResource("11_ofhcg")
 camera_attributes = ExtResource("12_vvwwe")
 script = ExtResource("3_mar1s")
-resource = ExtResource("4_5a82g")
+resource = ExtResource("4_wge6q")
 
 [node name="CameraRig" parent="." instance=ExtResource("1_42x5g")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -170)

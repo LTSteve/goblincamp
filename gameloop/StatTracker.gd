@@ -19,9 +19,11 @@ var _user_friendly_text_day = {
 	knights_purchased = "Knights Purchased",
 	witches_purchased = "Witches Purchased",
 	woodsman_purchased = "Woodsman Purchased",
+	bearkin_purchased = "Bearkin Purchased",
 	knights_lost = "Knights Lost",
 	witches_lost = "Witches Lost",
 	woodsman_lost = "Woodsman Lost",
+	bearkin_lost = "Bearkin Lost",
 	
 	goblins_killed = "Goblins Killed",
 	goblin_priests_killed = "Goblin Priests Killed",
@@ -54,9 +56,11 @@ var _day_template = {
 	knights_purchased = 0,
 	witches_purchased = 0,
 	woodsman_purchased = 0,
+	bearkin_purchased = 0,
 	knights_lost = 0,
 	witches_lost = 0,
 	woodsman_lost = 0,
+	bearkin_lost = 0,
 	
 	goblins_killed = 0,
 	goblin_priests_killed = 0,
@@ -160,6 +164,8 @@ func _on_units_child_entered_tree(node):
 			_current_day.witches_purchased += 1
 		"Woodsman":
 			_current_day.woodsman_purchased += 1
+		"Bearkin":
+			_current_day.bearkin_purchased += 1
 	
 	node.find_child("HealthComponent").died.connect(_on_unit_died.bind(node))
 	node.on_recieved_hit.connect(_on_unit_recieved_hit.bind(node))
@@ -184,6 +190,9 @@ func _on_unit_died(unit:Unit):
 			_current_army_size -= 1
 		"Woodsman":
 			_current_day.woodsman_lost += 1
+			_current_army_size -= 1
+		"Bearkin":
+			_current_day.bearkin_lost += 1
 			_current_army_size -= 1
 		"Goblin":
 			_current_day.goblins_killed += 1

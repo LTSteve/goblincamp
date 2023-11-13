@@ -4,7 +4,7 @@ class_name UnitSpawner
 
 signal on_spawn_building(building_type:BuildingType)
 
-enum UnitType {Knight=0, Witch, Woodsman, Goblin, Imp, Ogre, GoblinPriest}
+enum UnitType {Knight=0, Witch, Woodsman, Bearkin, Goblin, Imp, Ogre, GoblinPriest}
 enum BuildingType {Blacksmith=0, Leatherworker, Enchanter, Tavern}
 
 @export var units_folder: Node
@@ -120,6 +120,8 @@ func _get_unit_scene(unit_type: UnitType) -> PackedScene:
 			return DB.I.scenes.witch_scene
 		UnitType.Woodsman:
 			return DB.I.scenes.woodsman_scene
+		UnitType.Bearkin:
+			return DB.I.scenes.bearkin_scene
 		UnitType.Goblin:
 			return DB.I.scenes.goblin_scene
 		UnitType.Imp:
