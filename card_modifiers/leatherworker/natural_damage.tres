@@ -1,16 +1,16 @@
 [gd_resource type="Resource" script_class="CardResource" load_steps=5 format=3 uid="uid://bxc4xb3fdl6bp"]
 
-[ext_resource type="Script" path="res://card_modifiers/leatherworker/sharper_arrows.gd" id="1_74pig"]
+[ext_resource type="Script" path="res://card_modifiers/leatherworker/natural_damage.gd" id="1_74pig"]
 [ext_resource type="Script" path="res://card_modifiers/CardResource.gd" id="2_h7hck"]
-[ext_resource type="JSON" path="res://card_modifiers/leatherworker/sharper_arrows.json" id="2_t6op5"]
-[ext_resource type="Texture2D" uid="uid://dgupdadxc0gi5" path="res://icons/aerodynamic-harpoon.png" id="3_12my4"]
+[ext_resource type="JSON" path="res://card_modifiers/leatherworker/natural_damage.json" id="2_t6op5"]
+[ext_resource type="Texture2D" uid="uid://d2f2l1kdkulff" path="res://icons/barbed-nails.png" id="3_cmv7c"]
 
 [resource]
 script = ExtResource("2_h7hck")
 building_card = true
 test_card = false
-title = "Sharper Arrows"
-descriptions = Array[String](["Arrow damage +"])
+title = "Natural Damage"
+descriptions = Array[String](["Natural Damage +"])
 rarity = 0
 max_rank = 0
 card_script = ExtResource("1_74pig")
@@ -19,4 +19,4 @@ apply_to = Array[String](["RangedWeapon"])
 group_filters = Array[String](["Bow"])
 include_enemies = false
 include_players = true
-icon_texture = ExtResource("3_12my4")
+icon_texture = ExtResource("3_cmv7c")
