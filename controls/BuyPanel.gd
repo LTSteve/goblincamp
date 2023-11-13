@@ -52,7 +52,7 @@ func _create_offers(number_to_offer:int, day: int, player_count: int, building_c
 	var current_bulk_discount: float = bulk_discount if player_count < (day * 6) else (bulk_discount / 2)
 	var ear_exchange_rate = EarExchangePanel.I.get_average_ear_exchange_rate()
 	var value = player_money + player_ears * ear_exchange_rate
-	var one_tenth_value = (value * 0.1) if value > 1000 else 0
+	var one_tenth_value = (value * 0.09) if value > 1000 else 0
 	
 	if can_buy_buildings:
 		if player_count > day * 5:

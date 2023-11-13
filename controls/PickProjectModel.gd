@@ -29,7 +29,7 @@ func open_ritual(ritual: Ritual):
 	if visible: return
 	
 	_ritual = ritual
-	_cards = ModifierManager.generate_ritual_card_choices(_ritual.type)
+	_cards = ModifierManager.generate_ritual_card_choices(_ritual.type, _ritual.size)
 	_display_cards()
 	
 	visible = true

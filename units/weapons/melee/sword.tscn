@@ -24,7 +24,7 @@ damage_random_component = 1.75
 pushback = 4.5
 
 [node name="knight_weapon" parent="ModelHolder" index="0" instance=ExtResource("1_yltu8")]
-transform = Transform3D(0.219158, 0.285404, 0.933014, -0.959741, -0.109129, 0.258819, 0.175687, -0.952174, 0.249997, -1.12335, 2.54707, 1.26868)
+transform = Transform3D(0.226765, 0.279398, 0.933014, -0.962332, -0.0832432, 0.258819, 0.14998, -0.95656, 0.249997, -1.12335, 2.60041, 1.26868)
 
 [node name="HitPoint" type="Node3D" parent="ModelHolder/knight_weapon" index="1"]
 transform = Transform3D(1, 2.23517e-08, -1.49012e-08, 7.45058e-09, 1, 0, -1.49012e-08, -1.49012e-08, 1, 2.13271, 7.15256e-07, -5.96046e-08)

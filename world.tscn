@@ -830,6 +830,7 @@ text = "0"
 custom_minimum_size = Vector2(20, 20)
 layout_mode = 2
 size_flags_horizontal = 4
+texture = ExtResource("37_8efqf")
 expand_mode = 5
 
 [node name="Label4" type="Label" parent="CanvasLayer/Theme/ResourcesPanel/MarginContainer2/HBoxContainer"]
@@ -1135,9 +1136,9 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -290.0
+offset_left = -490.0
 offset_top = -200.0
-offset_right = 290.0
+offset_right = 490.0
 offset_bottom = 200.0
 grow_horizontal = 2
 grow_vertical = 2
@@ -1171,6 +1172,41 @@ theme_override_constants/margin_bottom = 68
 layout_mode = 2
 size_flags_horizontal = 4
 alignment = 1
+
+[node name="CardDisplay" parent="CanvasLayer/Theme/PickCardPanelBlocker/PickCardPanel/MarginContainer/HBoxContainer" instance=ExtResource("22_g0iv7")]
+layout_mode = 2
+
+[node name="CardDisplay2" parent="CanvasLayer/Theme/PickCardPanelBlocker/PickCardPanel/MarginContainer/HBoxContainer" node_paths=PackedStringArray("card_background", "card_title", "card_icon", "card_description", "card_outline") instance=ExtResource("22_g0iv7")]
+layout_mode = 2
+card_background = NodePath("../CardDisplay/MarginContainer/TextureRect")
+card_title = NodePath("../CardDisplay/MarginContainer/TextureRect/MarginContainer/TitlePanel/Label")
+card_icon = NodePath("../CardDisplay/MarginContainer/TextureRect/Icon")
+card_description = NodePath("../CardDisplay/MarginContainer/TextureRect/MarginContainer2/Panel/MarginContainer/Description")
+card_outline = NodePath("../CardDisplay/Panel")
+
+[node name="CardDisplay3" parent="CanvasLayer/Theme/PickCardPanelBlocker/PickCardPanel/MarginContainer/HBoxContainer" node_paths=PackedStringArray("card_background", "card_title", "card_icon", "card_description", "card_outline") instance=ExtResource("22_g0iv7")]
+layout_mode = 2
+card_background = NodePath("../CardDisplay/MarginContainer/TextureRect")
+card_title = NodePath("../CardDisplay/MarginContainer/TextureRect/MarginContainer/TitlePanel/Label")
+card_icon = NodePath("../CardDisplay/MarginContainer/TextureRect/Icon")
+card_description = NodePath("../CardDisplay/MarginContainer/TextureRect/MarginContainer2/Panel/MarginContainer/Description")
+card_outline = NodePath("../CardDisplay/Panel")
+
+[node name="CardDisplay4" parent="CanvasLayer/Theme/PickCardPanelBlocker/PickCardPanel/MarginContainer/HBoxContainer" node_paths=PackedStringArray("card_background", "card_title", "card_icon", "card_description", "card_outline") instance=ExtResource("22_g0iv7")]
+layout_mode = 2
+card_background = NodePath("../CardDisplay/MarginContainer/TextureRect")
+card_title = NodePath("../CardDisplay/MarginContainer/TextureRect/MarginContainer/TitlePanel/Label")
+card_icon = NodePath("../CardDisplay/MarginContainer/TextureRect/Icon")
+card_description = NodePath("../CardDisplay/MarginContainer/TextureRect/MarginContainer2/Panel/MarginContainer/Description")
+card_outline = NodePath("../CardDisplay/Panel")
+
+[node name="CardDisplay5" parent="CanvasLayer/Theme/PickCardPanelBlocker/PickCardPanel/MarginContainer/HBoxContainer" node_paths=PackedStringArray("card_background", "card_title", "card_icon", "card_description", "card_outline") instance=ExtResource("22_g0iv7")]
+layout_mode = 2
+card_background = NodePath("../CardDisplay/MarginContainer/TextureRect")
+card_title = NodePath("../CardDisplay/MarginContainer/TextureRect/MarginContainer/TitlePanel/Label")
+card_icon = NodePath("../CardDisplay/MarginContainer/TextureRect/Icon")
+card_description = NodePath("../CardDisplay/MarginContainer/TextureRect/MarginContainer2/Panel/MarginContainer/Description")
+card_outline = NodePath("../CardDisplay/Panel")
 
 [node name="BuildingProjectPanelBlocker" type="Panel" parent="CanvasLayer/Theme" node_paths=PackedStringArray("title", "card_container")]
 visible = false

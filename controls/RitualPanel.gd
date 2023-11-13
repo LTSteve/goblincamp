@@ -41,30 +41,30 @@ func _create_rituals(day: int):
 	ritual.resource_textures = [resource_textures[MoneyManager.MoneyType.Gold], resource_textures[MoneyManager.MoneyType.Ear]]
 	_current_rituals.append(ritual)
 	
-	#basic ritual hide and iron
-	ritual = Ritual.new(Ritual.Type.Basic)
-	ritual.prices = [(day/2.0) as int + 1 + randi_range(0,1), (day/2.0) as int + 1 + randi_range(0,1)]
+	#basic broad ritual hide and iron
+	ritual = Ritual.new(Ritual.Type.Basic, Ritual.Size.Broad)
+	ritual.prices = [(day/4.0) as int + 1 + randi_range(0,1), (day/4.0) as int + 1 + randi_range(0,1)]
 	ritual.resources = [MoneyManager.MoneyType.Hide, MoneyManager.MoneyType.Iron]
 	ritual.resource_textures = [resource_textures[MoneyManager.MoneyType.Hide], resource_textures[MoneyManager.MoneyType.Iron]]
 	_current_rituals.append(ritual)
 	
-	#basic ritual dust
-	ritual = Ritual.new(Ritual.Type.Basic)
-	ritual.prices = [day + 1 + randi_range(0,2)]
+	#basic narrow ritual dust
+	ritual = Ritual.new(Ritual.Type.Basic, Ritual.Size.Narrow)
+	ritual.prices = [(day/2.0) as int + 1 + randi_range(0,2)]
 	ritual.resources = [MoneyManager.MoneyType.Dust]
 	ritual.resource_textures = [resource_textures[MoneyManager.MoneyType.Dust]]
 	_current_rituals.append(ritual)
 	
 	#advanced ritual hide or iron and dust
 	ritual = Ritual.new(Ritual.Type.Advanced)
-	ritual.prices = [(day/2.0) as int + 1 + randi_range(0,1), (day/2.0) as int + 1 + randi_range(0,3)]
+	ritual.prices = [(day/3.0) as int + 1 + randi_range(0,1), (day/3.0) as int + 1 + randi_range(0,3)]
 	ritual.resources = [MoneyManager.MoneyType.Hide if randf() > 0.5 else MoneyManager.MoneyType.Iron, MoneyManager.MoneyType.Dust]
 	ritual.resource_textures = [resource_textures[ritual.resources[0]], resource_textures[MoneyManager.MoneyType.Dust]]
 	_current_rituals.append(ritual)
 	
-	#advanced ritual gold ears and dust 
+	#advanced broad ritual gold ears and dust 
 	ritual = Ritual.new(Ritual.Type.Advanced)
-	ritual.prices = [day * 10 + 50, day + 1 + randi_range(0, 10), day + 1 + randi_range(0, 10)]
+	ritual.prices = [day * 10 + 50, (day/2.0) as int + 1 + randi_range(0, 10), (day/2.0) as int + 1 + randi_range(0, 10)]
 	ritual.resources = [MoneyManager.MoneyType.Gold, MoneyManager.MoneyType.Ear, MoneyManager.MoneyType.Dust]
 	ritual.resource_textures = [resource_textures[MoneyManager.MoneyType.Gold], resource_textures[MoneyManager.MoneyType.Ear], resource_textures[MoneyManager.MoneyType.Dust]]
 	_current_rituals.append(ritual)

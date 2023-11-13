@@ -105,7 +105,7 @@ static func generate_card_choices(building_type: UnitSpawner.BuildingType) -> Ar
 	
 	return cards
 
-static func generate_ritual_card_choices(ritual_type: Ritual.Type) -> Array[CardResource]:
+static func generate_ritual_card_choices(ritual_type: Ritual.Type, ritual_size: Ritual.Size) -> Array[CardResource]:
 	var deck:DeckResource = _I.ritual_deck
 	
 	var cards = deck.get_cards().filter(_I._match_unfinished_cards)
@@ -115,10 +115,14 @@ static func generate_ritual_card_choices(ritual_type: Ritual.Type) -> Array[Card
 		cards = cards.filter(_I._match_rare_card) + cards.filter(_I._match_normal_card)
 	cards.shuffle()
 	
-	return [cards[0],cards[1],cards[2]]
+	if ritual_size == Ritual.Size.Narrow:
+		return [cards[0],cards[1]]
+	elif ritual_size == Ritual.Size.Normal:
+		return [cards[0],cards[1],cards[2]]
+	else:
+		return [cards[0],cards[1],cards[2],cards[3],cards[4]]
 
 #cant make these static or they won't work as Callables
-
 func _fall_through_find_and_remove(array: Array, matchers: Array[Callable], fallback):
 	for matcher in matchers:
 		if array.any(matcher):
