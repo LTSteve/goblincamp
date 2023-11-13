@@ -5,15 +5,15 @@ var ember_scene: PackedScene
 func _initialize(_data):
 	ember_scene = DB.I.scenes.ember_scene
 
-func _apply(weapon:RangedWeapon,_unit):
+func _apply(weapon:Weapon,_unit):
 	#add with high priority so all damage calculations take place first
 	weapon.create_hit.add_override([weapon, self, "_create_hit_override"], _create_hit_override, 1000)
 
-func _un_apply(weapon:RangedWeapon,_unit):
+func _un_apply(weapon:Weapon,_unit):
 	weapon.create_hit.remove_override([weapon, self, "_create_hit_override"])
 
 func _create_hit_override(_base_value:Weapon.Hit, current_value:Weapon.Hit):
-	if !current_value.hit_creation_data.can_chain: return current_value
+	if !current_value.hit_creation_data.can_chain || current_value.damage_type != Damage.Type.Fire: return current_value
 	
 	var hit_point = current_value.hit_creation_data.hit_point
 	

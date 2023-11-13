@@ -1,10 +1,10 @@
 extends CardModifier
 
-func _apply(weapon:MeleeWeapon,_unit:Unit):
+func _apply(weapon,_unit:Unit):
 	#make sure this override happens near the end to get full damage calculations
 	weapon.create_hit.add_override([self, "_create_hit_override"], _create_hit_override, 1000)
 
-func _un_apply(weapon:MeleeWeapon,_unit:Unit):
+func _un_apply(weapon,_unit:Unit):
 	weapon.create_hit.remove_override([self, "_create_hit_override"])
 
 func _create_hit_override(_base_value:Weapon.Hit, current_value:Weapon.Hit):

@@ -43,19 +43,27 @@ func apply_to_unit(unit:Unit):
 	if card_resource.apply_to.size() == 0 || (unit.is_enemy && !card_resource.include_enemies) || (!unit.is_enemy && !card_resource.include_players):
 		return
 	for type in card_resource.apply_to:
-		var all_of_type = unit.find_children("", type)
-		for instance in all_of_type:
-			if !card_resource.group_filters || card_resource.group_filters.size() == 0 || instance.get_groups().size() == 0 || card_resource.group_filters.any(instance.is_in_group):
-				_apply(instance,unit)
+		if type == "Unit":
+			if !card_resource.group_filters || card_resource.group_filters.size() == 0 || card_resource.group_filters.any(unit.is_in_group):
+				_apply(unit,unit)
+		else:
+			var all_of_type = unit.find_children("", type)
+			for instance in all_of_type:
+				if !card_resource.group_filters || card_resource.group_filters.size() == 0 || instance.get_groups().size() == 0 || card_resource.group_filters.any(instance.is_in_group):
+					_apply(instance,unit)
 
 func un_apply_to_unit(unit:Unit):
 	if card_resource.apply_to.size() == 0 || (unit.is_enemy && !card_resource.include_enemies) || (!unit.is_enemy && !card_resource.include_players):
 		return
 	for type in card_resource.apply_to:
-		var all_of_type = unit.find_children("", type)
-		for instance in all_of_type:
-			if !card_resource.group_filters || card_resource.group_filters.size() == 0 || card_resource.group_filters.any(instance.is_in_group):
-				_un_apply(instance,unit)
+		if type == "Unit":
+			if !card_resource.group_filters || card_resource.group_filters.size() == 0 || card_resource.group_filters.any(unit.is_in_group):
+				_un_apply(unit, unit)
+		else:
+			var all_of_type = unit.find_children("", type)
+			for instance in all_of_type:
+				if !card_resource.group_filters || card_resource.group_filters.size() == 0 || card_resource.group_filters.any(instance.is_in_group):
+					_un_apply(instance,unit)
 
 #override
 func _initialize(_data):

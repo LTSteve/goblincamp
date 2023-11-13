@@ -40,12 +40,12 @@ class BloodThirstEffect extends DamageOverTimeEffect:
 	func _get_acceleration_override(_base_value: float, current_value: float):
 		return current_value * (1.0 + params.movement_speed_per_rank * current_rank)
 
-func _apply(_weapon:Node,unit:Unit):
-	var _on_get_kill_override = func (_value): _on_get_kill(unit)
-	UniqueMetaId.store([unit, self, "_on_get_kill_override"], _on_get_kill_override)
+func _apply(_unit,unit:Unit):
+	var _on_get_kill_override = _on_get_kill.bind(unit)
+	UniqueMetaId.store([unit, self, "_on_get_kill_override"], _on_get_kill)
 	unit.on_get_kill.connect(_on_get_kill_override)
 
-func _un_apply(_weapon:Node,unit:Unit):
+func _un_apply(_unit,unit:Unit):
 	unit.on_get_kill.disconnect(UniqueMetaId.retrieve([unit, self, "_on_get_kill_override"]))
 
 func _on_get_kill(killer:Unit):

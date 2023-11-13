@@ -27,11 +27,11 @@ class ColdSteelEffect extends Effect:
 		
 		_velocity_component.get_max_speed.remove_override([id, "_get_max_speed_override"])
 
-func _apply(weapon:MeleeWeapon,_unit:Unit):
+func _apply(weapon:Weapon,_unit:Unit):
 	# just a little later so we can't shatter on the first hit
 	weapon.create_hit.add_override([weapon, self, "_create_hit_override"], _create_hit_override, 2)
 
-func _un_apply(weapon:MeleeWeapon,_unit:Unit):
+func _un_apply(weapon:Weapon,_unit:Unit):
 	weapon.create_hit.remove_override([weapon, self, "_create_hit_override"])
 
 func _create_hit_override(_base_value:Weapon.Hit, current_value:Weapon.Hit):

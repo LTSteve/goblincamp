@@ -26,7 +26,7 @@ class Hit:
 	var flat_armor:int
 	var crit_chance: float
 	var damage_type: Damage.Type
-	var hit_by
+	var hit_by: Weapon
 	var hit:Unit
 	var apply_effects:Array[Effect] = []
 	var hit_creation_data:HitCreationData
