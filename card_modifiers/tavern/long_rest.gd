@@ -10,10 +10,7 @@ func _on_day():
 	if current_rank <= 0: return
 	var number_to_heal = current_rank * params.number
 	var reloaded = false
-	while true:
-		if number_to_heal <= 0 || Global.players.size() == 0:
-			break
-		
+	while number_to_heal > 0 && Global.players.size() != 0:
 		if hungry_players.size() == 0:
 			if reloaded: break
 			reloaded = true

@@ -52,7 +52,7 @@ func _create_offers(number_to_offer:int, day: int, player_count: int, building_c
 	var current_bulk_discount: float = bulk_discount if player_count < (day * 6) else (bulk_discount / 2)
 	var ear_exchange_rate = EarExchangePanel.I.get_average_ear_exchange_rate()
 	var value = player_money + player_ears * ear_exchange_rate
-	var one_tenth_value = (value * 0.09) if value > 1000 else 0
+	value = (value * 0.05) if value > 1000 else 0
 	
 	if can_buy_buildings:
 		if player_count > day * 5:
@@ -88,7 +88,7 @@ func _create_offers(number_to_offer:int, day: int, player_count: int, building_c
 		var base_price = unit_costs[indexes[0]] * offer.type_1_count + (building_costs[indexes[1]] if offer.type_2_is_building else unit_costs[indexes[1]]) * offer.type_2_count
 		var random_varience = 1.0 + randf() * random_price_varience
 		var discount = 1.0 - (offer.type_1_count + offer.type_2_count) * current_bulk_discount
-		offer.price = (one_tenth_value + base_price * discount) * random_varience
+		offer.price = (value + base_price * discount) * random_varience
 		
 		offer.name = Offer.random_name()
 		
