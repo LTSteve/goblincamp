@@ -10,13 +10,15 @@ func _on_day():
 	if current_rank <= 0: return
 	var number_to_heal = current_rank * params.number
 	var reloaded = false
-	for _i in number_to_heal:
+	while true:
+		if number_to_heal <= 0 || Global.players.size() == 0:
+			break
+		
 		if hungry_players.size() == 0:
 			if reloaded: break
 			reloaded = true
 			hungry_players.append_array(Global.players)
 			hungry_players.shuffle()
-			if hungry_players.size() == 0: break
 		
 		var player = hungry_players.pop_back()
 		if !is_instance_valid(player): continue
@@ -29,3 +31,4 @@ func _on_day():
 		heal_hit.hit_creation_data = Weapon.HitCreationData.new(Vector3(player.global_position.x,player.find_child("Model").get_height(),player.global_position.z))
 		
 		player.take_hit(heal_hit)
+		number_to_heal -= 1

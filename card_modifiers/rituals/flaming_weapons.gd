@@ -8,7 +8,7 @@ func _un_apply(weapon,_unit:Unit):
 	weapon.create_hit.remove_override([weapon,self,"_create_hit_override"])
 
 func _create_hit_override(_base_value:Weapon.Hit, current_value:Weapon.Hit):
-	if _can_apply(current_value): return current_value
+	if !_can_apply(current_value): return current_value
 	
 	var effect = BurnEffect.new(current_value.hit,
 	current_value.hit_by,
