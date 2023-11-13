@@ -3,10 +3,11 @@
 [ext_resource type="Script" path="res://card_modifiers/rituals/infernal_presence.gd" id="1_7pjrh"]
 [ext_resource type="Script" path="res://card_modifiers/CardResource.gd" id="1_467f3"]
 [ext_resource type="JSON" path="res://card_modifiers/rituals/infernal_presence.json" id="2_ljx5k"]
-[ext_resource type="Texture2D" uid="uid://bo520c0mgkae7" path="res://card_modifiers/icons/ifrit.png" id="3_0dpjl"]
+[ext_resource type="Texture2D" uid="uid://dtcxkb0j2ykpy" path="res://icons/ifrit.png" id="3_hl44c"]
 
 [resource]
 script = ExtResource("1_467f3")
+building_card = false
 test_card = false
 title = "Infernal Presence"
 descriptions = Array[String](["Enemies next to Witches are set aflame", "Enemies near Witches are set aflame", "Enemies remotely near Witches are set aflame"])
@@ -18,4 +19,4 @@ apply_to = Array[String](["RangedWeapon"])
 group_filters = Array[String](["Staff"])
 include_enemies = false
 include_players = true
-icon_texture = ExtResource("3_0dpjl")
+icon_texture = ExtResource("3_hl44c")

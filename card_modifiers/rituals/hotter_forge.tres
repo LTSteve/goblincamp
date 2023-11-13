@@ -1,12 +1,13 @@
 [gd_resource type="Resource" script_class="CardResource" load_steps=5 format=3 uid="uid://cq2d2pq3c3xui"]
 
 [ext_resource type="Script" path="res://card_modifiers/rituals/hotter_forge.gd" id="1_o6tti"]
-[ext_resource type="Texture2D" uid="uid://d3mkbhf2km0ps" path="res://card_modifiers/icons/anvil-impact.png" id="2_0uoua"]
 [ext_resource type="JSON" path="res://card_modifiers/rituals/hotter_forge.json" id="2_2bd82"]
 [ext_resource type="Script" path="res://card_modifiers/CardResource.gd" id="2_gcg8j"]
+[ext_resource type="Texture2D" uid="uid://cyln30qs0ddbi" path="res://icons/anvil-impact.png" id="3_svt84"]
 
 [resource]
 script = ExtResource("2_gcg8j")
+building_card = false
 test_card = false
 title = "Hotter Forge"
 descriptions = Array[String](["Sword & Dagger damage +"])
@@ -18,4 +19,4 @@ apply_to = Array[String](["MeleeWeapon"])
 group_filters = Array[String](["Sword", "Dagger"])
 include_enemies = false
 include_players = true
-icon_texture = ExtResource("2_0uoua")
+icon_texture = ExtResource("3_svt84")

@@ -3,10 +3,11 @@
 [ext_resource type="Script" path="res://card_modifiers/CardResource.gd" id="1_kwx7m"]
 [ext_resource type="Script" path="res://card_modifiers/rituals/fast_hands.gd" id="1_vtm55"]
 [ext_resource type="JSON" path="res://card_modifiers/rituals/fast_hands.json" id="2_i3s7c"]
-[ext_resource type="Texture2D" uid="uid://dwlowvkl1og2m" path="res://card_modifiers/icons/hand.png" id="3_d7bka"]
+[ext_resource type="Texture2D" uid="uid://bsovykmlx0lei" path="res://icons/hand.png" id="3_cyvtk"]
 
 [resource]
 script = ExtResource("1_kwx7m")
+building_card = false
 test_card = false
 title = "Fast Hands"
 descriptions = Array[String](["Increase weapon swap speed by {[current_rank]*([.speed_increase]*100)}%"])
@@ -18,4 +19,4 @@ apply_to = Array[String](["AnimationTree"])
 group_filters = Array[String](["Bow", "Dagger"])
 include_enemies = false
 include_players = true
-icon_texture = ExtResource("3_d7bka")
+icon_texture = ExtResource("3_cyvtk")

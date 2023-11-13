@@ -3,10 +3,11 @@
 [ext_resource type="Script" path="res://card_modifiers/CardResource.gd" id="1_or58i"]
 [ext_resource type="Script" path="res://card_modifiers/rituals/explosion.gd" id="1_ytuoh"]
 [ext_resource type="JSON" path="res://card_modifiers/rituals/explosion.json" id="2_evve6"]
-[ext_resource type="Texture2D" uid="uid://i5q8etvjuiom" path="res://card_modifiers/icons/gooey-impact.png" id="3_l1jrn"]
+[ext_resource type="Texture2D" uid="uid://3eo1o84oh6mw" path="res://icons/gooey-impact.png" id="3_yr2mt"]
 
 [resource]
 script = ExtResource("1_or58i")
+building_card = false
 test_card = false
 title = "Explosion!"
 descriptions = Array[String](["Fireballs now have an explosion radius"])
@@ -18,4 +19,4 @@ apply_to = Array[String](["RangedWeapon"])
 group_filters = Array[String](["Staff"])
 include_enemies = false
 include_players = true
-icon_texture = ExtResource("3_l1jrn")
+icon_texture = ExtResource("3_yr2mt")

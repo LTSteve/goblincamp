@@ -3,10 +3,11 @@
 [ext_resource type="Script" path="res://card_modifiers/CardResource.gd" id="1_1e3i3"]
 [ext_resource type="Script" path="res://card_modifiers/rituals/nice_socks.gd" id="1_gyjy7"]
 [ext_resource type="JSON" path="res://card_modifiers/rituals/nice_socks.json" id="2_bwrls"]
-[ext_resource type="Texture2D" uid="uid://xufyl50mnlnh" path="res://card_modifiers/icons/socks.png" id="3_fsaa1"]
+[ext_resource type="Texture2D" uid="uid://gkpr3gphk1fj" path="res://icons/socks.png" id="3_l660t"]
 
 [resource]
 script = ExtResource("1_1e3i3")
+building_card = false
 test_card = false
 title = "Nice Socks"
 descriptions = Array[String](["Movement +{[current_rank]*[.movement_speed_by_rank]*100}%"])
@@ -18,4 +19,4 @@ apply_to = Array[String](["VelocityComponent"])
 group_filters = Array[String]([])
 include_enemies = false
 include_players = true
-icon_texture = ExtResource("3_fsaa1")
+icon_texture = ExtResource("3_l660t")

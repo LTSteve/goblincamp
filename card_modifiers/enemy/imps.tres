@@ -2,10 +2,11 @@
 
 [ext_resource type="Script" path="res://card_modifiers/enemy/imps.gd" id="1_ack74"]
 [ext_resource type="Script" path="res://card_modifiers/CardResource.gd" id="1_xlros"]
-[ext_resource type="Texture2D" uid="uid://dp58nu1hv3xuf" path="res://card_modifiers/icons/imp.png" id="2_gxjc2"]
+[ext_resource type="Texture2D" uid="uid://dangon53ogu1i" path="res://icons/imp.png" id="2_6hbim"]
 
 [resource]
 script = ExtResource("1_xlros")
+building_card = false
 test_card = false
 title = "Imps!"
 descriptions = Array[String](["Imps start spawning alongside other enemies", "Twice as many imps spawn"])
@@ -16,4 +17,4 @@ apply_to = Array[String]([])
 group_filters = Array[String]([])
 include_enemies = false
 include_players = false
-icon_texture = ExtResource("2_gxjc2")
+icon_texture = ExtResource("2_6hbim")

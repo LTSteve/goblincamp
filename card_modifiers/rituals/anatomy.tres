@@ -3,10 +3,11 @@
 [ext_resource type="Script" path="res://card_modifiers/rituals/anatomy.gd" id="1_k20on"]
 [ext_resource type="Script" path="res://card_modifiers/CardResource.gd" id="1_ue5j4"]
 [ext_resource type="JSON" path="res://card_modifiers/rituals/anatomy.json" id="2_m5ka5"]
-[ext_resource type="Texture2D" uid="uid://dxcw0l1h4tdmf" path="res://card_modifiers/icons/heart-organ.png" id="3_rhdt1"]
+[ext_resource type="Texture2D" uid="uid://bxxp76a751b8o" path="res://icons/heart-organ.png" id="3_1m5rk"]
 
 [resource]
 script = ExtResource("1_ue5j4")
+building_card = false
 test_card = false
 title = "Anatomy"
 descriptions = Array[String](["All units crit chance +{[current_rank]*[.crit_per_rank]*100}%"])
@@ -18,4 +19,4 @@ apply_to = Array[String](["MeleeWeapon", "RangedWeapon"])
 group_filters = Array[String]([])
 include_enemies = false
 include_players = true
-icon_texture = ExtResource("3_rhdt1")
+icon_texture = ExtResource("3_1m5rk")

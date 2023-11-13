@@ -3,10 +3,11 @@
 [ext_resource type="Script" path="res://card_modifiers/rituals/deep_burns.gd" id="1_4w76y"]
 [ext_resource type="Script" path="res://card_modifiers/CardResource.gd" id="1_q8fug"]
 [ext_resource type="JSON" path="res://card_modifiers/rituals/deep_burns.json" id="2_4qggr"]
-[ext_resource type="Texture2D" uid="uid://5y05kpymtcyj" path="res://card_modifiers/icons/burning-skull.png" id="3_jordu"]
+[ext_resource type="Texture2D" uid="uid://b6fj3ruhgrqv4" path="res://icons/burning-skull.png" id="3_j7nex"]
 
 [resource]
 script = ExtResource("1_q8fug")
+building_card = false
 test_card = false
 title = "Deep Burns"
 descriptions = Array[String](["Burn effects have a {[current_rank]*[.crit_chance_per_rank]*100}% chance to crit"])
@@ -18,4 +19,4 @@ apply_to = Array[String]([])
 group_filters = Array[String]([])
 include_enemies = true
 include_players = false
-icon_texture = ExtResource("3_jordu")
+icon_texture = ExtResource("3_j7nex")

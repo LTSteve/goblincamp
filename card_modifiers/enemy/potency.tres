@@ -3,10 +3,11 @@
 [ext_resource type="Script" path="res://card_modifiers/CardResource.gd" id="1_7a66o"]
 [ext_resource type="Script" path="res://card_modifiers/enemy/potency.gd" id="1_lhocd"]
 [ext_resource type="JSON" path="res://card_modifiers/enemy/potency.json" id="2_i3udy"]
-[ext_resource type="Texture2D" uid="uid://6fhwnfdmuutq" path="res://card_modifiers/icons/imp-laugh.png" id="3_72uyg"]
+[ext_resource type="Texture2D" uid="uid://jkkrispggrae" path="res://icons/imp-laugh.png" id="3_kx7bk"]
 
 [resource]
 script = ExtResource("1_7a66o")
+building_card = false
 test_card = false
 title = "Potency"
 descriptions = Array[String](["Enemies are more durable and do more damage"])
@@ -18,4 +19,4 @@ apply_to = Array[String](["MeleeWeapon", "RangedWeapon", "ArmorComponent"])
 group_filters = Array[String]([])
 include_enemies = true
 include_players = false
-icon_texture = ExtResource("3_72uyg")
+icon_texture = ExtResource("3_kx7bk")

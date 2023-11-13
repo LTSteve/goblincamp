@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://card_modifiers/tavern/long_rest.gd" id="1_ftw8l"]
 [ext_resource type="Script" path="res://card_modifiers/CardResource.gd" id="1_l2p7c"]
 [ext_resource type="JSON" path="res://card_modifiers/tavern/long_rest.json" id="2_ws4o8"]
-[ext_resource type="Texture2D" uid="uid://b77eanlefyqw5" path="res://card_modifiers/icons/bed.png" id="3_v1nsm"]
+[ext_resource type="Texture2D" uid="uid://cciwgpifecp3r" path="res://icons/bed.png" id="3_qconc"]
 
 [resource]
 script = ExtResource("1_l2p7c")
@@ -19,4 +19,4 @@ apply_to = Array[String]([])
 group_filters = Array[String]([])
 include_enemies = false
 include_players = true
-icon_texture = ExtResource("3_v1nsm")
+icon_texture = ExtResource("3_qconc")

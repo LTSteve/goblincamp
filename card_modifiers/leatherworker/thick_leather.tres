@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://card_modifiers/CardResource.gd" id="1_o0nio"]
 [ext_resource type="Script" path="res://card_modifiers/blacksmith/thick_plate.gd" id="1_t8sm2"]
 [ext_resource type="JSON" path="res://card_modifiers/blacksmith/thick_plate.json" id="2_82led"]
-[ext_resource type="Texture2D" uid="uid://cxwg1ni0ait62" path="res://card_modifiers/icons/leather-vest.png" id="3_hudba"]
+[ext_resource type="Texture2D" uid="uid://8ffiv2xiwmvm" path="res://icons/leather-vest.png" id="3_3hf65"]
 
 [resource]
 script = ExtResource("1_o0nio")
@@ -19,4 +19,4 @@ apply_to = Array[String](["ArmorComponent"])
 group_filters = Array[String](["Witch", "Woodsman"])
 include_enemies = false
 include_players = true
-icon_texture = ExtResource("3_hudba")
+icon_texture = ExtResource("3_3hf65")

@@ -3,10 +3,11 @@
 [ext_resource type="Script" path="res://card_modifiers/CardResource.gd" id="1_fhg7p"]
 [ext_resource type="Script" path="res://card_modifiers/enemy/jagged_nails.gd" id="1_lcbya"]
 [ext_resource type="JSON" path="res://card_modifiers/enemy/jagged_nails.json" id="2_ty8qx"]
-[ext_resource type="Texture2D" uid="uid://bl3di6867eq3v" path="res://card_modifiers/icons/ivory-tusks.png" id="3_rjqer"]
+[ext_resource type="Texture2D" uid="uid://dj3ir46jp38ix" path="res://icons/ivory-tusks.png" id="3_gysbw"]
 
 [resource]
 script = ExtResource("1_fhg7p")
+building_card = false
 test_card = false
 title = "Jagged Nails"
 descriptions = Array[String](["Claw attacks cause a stacking bleed effect"])
@@ -18,4 +19,4 @@ apply_to = Array[String](["MeleeWeapon"])
 group_filters = Array[String](["Claw", "ImpClaw"])
 include_enemies = true
 include_players = false
-icon_texture = ExtResource("3_rjqer")
+icon_texture = ExtResource("3_gysbw")

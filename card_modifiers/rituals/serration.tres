@@ -2,11 +2,12 @@
 
 [ext_resource type="Script" path="res://card_modifiers/CardResource.gd" id="1_82kv4"]
 [ext_resource type="Script" path="res://card_modifiers/rituals/serration.gd" id="1_rdg3k"]
-[ext_resource type="Texture2D" uid="uid://8ru3cdk7o411" path="res://card_modifiers/icons/shard-sword.png" id="2_3dihg"]
 [ext_resource type="JSON" path="res://card_modifiers/rituals/serration.json" id="2_fe8jx"]
+[ext_resource type="Texture2D" uid="uid://bmw6curp4ibid" path="res://icons/shard-sword.png" id="3_c1t30"]
 
 [resource]
 script = ExtResource("1_82kv4")
+building_card = false
 test_card = false
 title = "Serration"
 descriptions = Array[String](["Melee weapons cause bleed over {[.duration]}s (stacks {[current_rank]*[.stack_limit_per_rank]} times)"])
@@ -18,4 +19,4 @@ apply_to = Array[String](["MeleeWeapon"])
 group_filters = Array[String](["Sword", "Dagger"])
 include_enemies = false
 include_players = true
-icon_texture = ExtResource("2_3dihg")
+icon_texture = ExtResource("3_c1t30")

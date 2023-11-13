@@ -3,10 +3,11 @@
 [ext_resource type="Script" path="res://card_modifiers/CardResource.gd" id="1_cel01"]
 [ext_resource type="Script" path="res://card_modifiers/rituals/heavy_metal.gd" id="1_gwqrs"]
 [ext_resource type="JSON" path="res://card_modifiers/rituals/heavy_metal.json" id="2_fptms"]
-[ext_resource type="Texture2D" uid="uid://bst3yqv0q2h88" path="res://card_modifiers/icons/metal-bar.png" id="3_405ly"]
+[ext_resource type="Texture2D" uid="uid://btq5ebrsh1yhm" path="res://icons/metal-bar.png" id="3_fspl5"]
 
 [resource]
 script = ExtResource("1_cel01")
+building_card = false
 test_card = false
 title = "Heavy Metal"
 descriptions = Array[String](["Metal weapon pushback +{[current_rank]*[.pushback_per_rank]*100}%"])
@@ -18,4 +19,4 @@ apply_to = Array[String](["MeleeWeapon", "RangedWeapon"])
 group_filters = Array[String](["Sword", "Dagger", "Bow"])
 include_enemies = false
 include_players = true
-icon_texture = ExtResource("3_405ly")
+icon_texture = ExtResource("3_fspl5")

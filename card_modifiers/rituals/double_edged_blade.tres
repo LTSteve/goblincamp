@@ -3,10 +3,11 @@
 [ext_resource type="Script" path="res://card_modifiers/CardResource.gd" id="1_2uopx"]
 [ext_resource type="Script" path="res://card_modifiers/rituals/double_edged_blade.gd" id="1_ng1ld"]
 [ext_resource type="JSON" path="res://card_modifiers/rituals/double_edged_blade.json" id="2_0hcih"]
-[ext_resource type="Texture2D" uid="uid://bubk62bem5t3e" path="res://card_modifiers/icons/back-forth.png" id="3_1q2xl"]
+[ext_resource type="Texture2D" uid="uid://uyh6po0yt611" path="res://icons/back-forth.png" id="3_85gu6"]
 
 [resource]
 script = ExtResource("1_2uopx")
+building_card = false
 test_card = false
 title = "Double Edged Blade"
 descriptions = Array[String](["Knights swing twice"])
@@ -18,4 +19,4 @@ apply_to = Array[String](["AnimationTree"])
 group_filters = Array[String](["Sword"])
 include_enemies = false
 include_players = true
-icon_texture = ExtResource("3_1q2xl")
+icon_texture = ExtResource("3_85gu6")

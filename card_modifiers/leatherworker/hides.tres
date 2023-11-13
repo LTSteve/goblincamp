@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://card_modifiers/leatherworker/hides.gd" id="1_yuuqt"]
 [ext_resource type="JSON" path="res://card_modifiers/leatherworker/hides.json" id="2_j0gvi"]
-[ext_resource type="Texture2D" uid="uid://cqsg2fa2yd7b7" path="res://card_modifiers/icons/animal-hide.png" id="3_nq24d"]
+[ext_resource type="Texture2D" uid="uid://cncu166pto4xa" path="res://icons/animal-hide.png" id="3_epjdq"]
 [ext_resource type="Script" path="res://card_modifiers/CardResource.gd" id="4_lrmcu"]
 
 [resource]
@@ -19,4 +19,4 @@ apply_to = Array[String]([])
 group_filters = Array[String]([])
 include_enemies = false
 include_players = false
-icon_texture = ExtResource("3_nq24d")
+icon_texture = ExtResource("3_epjdq")

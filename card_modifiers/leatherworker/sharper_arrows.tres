@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://card_modifiers/leatherworker/sharper_arrows.gd" id="1_74pig"]
 [ext_resource type="Script" path="res://card_modifiers/CardResource.gd" id="2_h7hck"]
 [ext_resource type="JSON" path="res://card_modifiers/leatherworker/sharper_arrows.json" id="2_t6op5"]
-[ext_resource type="Texture2D" uid="uid://dtbvvgjm0m5fi" path="res://card_modifiers/icons/aerodynamic-harpoon.png" id="3_s28xd"]
+[ext_resource type="Texture2D" uid="uid://dgupdadxc0gi5" path="res://icons/aerodynamic-harpoon.png" id="3_12my4"]
 
 [resource]
 script = ExtResource("2_h7hck")
@@ -19,4 +19,4 @@ apply_to = Array[String](["RangedWeapon"])
 group_filters = Array[String](["Bow"])
 include_enemies = false
 include_players = true
-icon_texture = ExtResource("3_s28xd")
+icon_texture = ExtResource("3_12my4")

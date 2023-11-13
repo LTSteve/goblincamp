@@ -3,10 +3,11 @@
 [ext_resource type="JSON" path="res://card_modifiers/rituals/embers.json" id="1_4is7p"]
 [ext_resource type="Script" path="res://card_modifiers/CardResource.gd" id="1_hloul"]
 [ext_resource type="Script" path="res://card_modifiers/rituals/embers.gd" id="1_js6af"]
-[ext_resource type="Texture2D" uid="uid://luf37l24ql6d" path="res://card_modifiers/icons/ricochet.png" id="3_2gtxd"]
+[ext_resource type="Texture2D" uid="uid://c6lgubyc6xg4g" path="res://icons/ricochet.png" id="3_216o6"]
 
 [resource]
 script = ExtResource("1_hloul")
+building_card = false
 test_card = false
 title = "Split Embers"
 descriptions = Array[String](["Fireballs spawn 1 ember on hit", "Fireballs spawn {[current_rank]} embers on hit"])
@@ -18,4 +19,4 @@ apply_to = Array[String](["RangedWeapon"])
 group_filters = Array[String](["Staff"])
 include_enemies = false
 include_players = true
-icon_texture = ExtResource("3_2gtxd")
+icon_texture = ExtResource("3_216o6")
