@@ -13,7 +13,7 @@ radius = 2.2
 [sub_resource type="SphereShape3D" id="SphereShape3D_4sv15"]
 radius = 2.2
 
-[node name="Sword" node_paths=PackedStringArray("collision_areas", "hit_spot") groups=["Sword"] instance=ExtResource("1_lr0qh")]
+[node name="Sword" node_paths=PackedStringArray("collision_areas", "hit_spot") groups=["Martial", "Sword"] instance=ExtResource("1_lr0qh")]
 collision_areas = [NodePath("Hitboxes/Area3D"), NodePath("Hitboxes/Area3D2"), NodePath("Hitboxes/Area3D3"), NodePath("Hitboxes/Area3D4")]
 hit_spot = NodePath("ModelHolder/knight_weapon/HitPoint")
 hit_sfx = Array[AudioStream]([ExtResource("2_xeyop"), ExtResource("3_gnvpa"), ExtResource("4_4s42t")])
@@ -24,12 +24,12 @@ damage_random_component = 1.75
 pushback = 4.5
 
 [node name="knight_weapon" parent="ModelHolder" index="0" instance=ExtResource("1_yltu8")]
-transform = Transform3D(0.250029, 0.258382, 0.933126, -0.965926, -3.49664e-06, 0.258819, 0.0668774, -0.966043, 0.249577, -0.394594, 2.23556, 1.47275)
+transform = Transform3D(0.219158, 0.285404, 0.933014, -0.959741, -0.109129, 0.258819, 0.175687, -0.952174, 0.249997, -1.12335, 2.54707, 1.26868)
 
 [node name="HitPoint" type="Node3D" parent="ModelHolder/knight_weapon" index="1"]
 transform = Transform3D(1, 2.23517e-08, -1.49012e-08, 7.45058e-09, 1, 0, -1.49012e-08, -1.49012e-08, 1, 2.13271, 7.15256e-07, -5.96046e-08)
 
-[node name="AnimationTreeExpressionExtension" parent="." index="1" groups=["Sword"]]
+[node name="AnimationTreeExpressionExtension" parent="." index="1" groups=["Martial", "Sword"]]
 
 [node name="AnimationPlayer" parent="." index="2"]
 libraries = {

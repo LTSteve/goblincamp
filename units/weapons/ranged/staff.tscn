@@ -6,7 +6,7 @@
 [ext_resource type="AudioStream" uid="uid://c0jk4quyv01je" path="res://sfx/Fireball.wav" id="3_agdi3"]
 [ext_resource type="AnimationLibrary" uid="uid://b6wnckokfgdid" path="res://units/weapons/ranged/staff_animations.res" id="4_hk7ha"]
 
-[node name="Staff" groups=["Staff"] instance=ExtResource("1_yokpo")]
+[node name="Staff" groups=["Magic", "Staff"] instance=ExtResource("1_yokpo")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 projectile_scene = ExtResource("2_r1tlr")
 weapon_range = 20.0
@@ -17,9 +17,9 @@ hit_stun = 0.3
 damage_type = 2
 
 [node name="witch_weapon" parent="ModelHolder" index="0" instance=ExtResource("2_6xeua")]
-transform = Transform3D(0.999544, -0.00189849, 0.0300112, -0.0298168, 0.066972, 0.997305, -0.00390332, -0.99775, 0.0668851, 0.664789, 1.63432, 1.02012)
+transform = Transform3D(0.991326, 0.0125548, 0.130793, -0.131394, 0.0947242, 0.98679, -3.87429e-07, -0.995421, 0.0955525, 0.664789, 1.13067, 1.02012)
 
-[node name="AnimationTreeExpressionExtension" parent="." index="1" groups=["Staff"]]
+[node name="AnimationTreeExpressionExtension" parent="." index="1" groups=["Magic", "Staff"]]
 
 [node name="AnimationPlayer" parent="." index="2"]
 libraries = {

@@ -57,7 +57,7 @@ max_health = 2740.0
 max_speed = 4.0
 acceleration = 3.5
 
-[node name="ArmorComponent" parent="." index="8" groups=["Woodsman"]]
+[node name="ArmorComponent" parent="." index="8" groups=["Unarmored", "Woodsman"]]
 
 [node name="MaterialOverrideComponent" parent="." index="10" node_paths=PackedStringArray("mesh_instance")]
 mesh_instance = NodePath("../Model/ModelHolder/woodsman/woodsman2")

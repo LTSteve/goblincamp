@@ -33,6 +33,8 @@ max_health = 800.0
 max_speed = 2.2
 acceleration = 2.0
 
+[node name="ArmorComponent" parent="." index="8" groups=["GoblinPriest", "Unarmored"]]
+
 [node name="MaterialOverrideComponent" parent="." index="10" node_paths=PackedStringArray("mesh_instance")]
 mesh_instance = NodePath("../Model/ModelHolder/goblin_priest/Goblin_priest")
 

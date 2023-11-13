@@ -41,7 +41,7 @@ max_speed = 5.5
 acceleration = 4.0
 pushback_scale = 0.9
 
-[node name="ArmorComponent" parent="." index="8" groups=["Knight"]]
+[node name="ArmorComponent" parent="." index="8" groups=["Armored", "Knight"]]
 armor = 1
 
 [node name="MaterialOverrideComponent" parent="." index="10" node_paths=PackedStringArray("mesh_instance")]

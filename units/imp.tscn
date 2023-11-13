@@ -42,6 +42,8 @@ max_speed = 6.5
 acceleration = 4.0
 pushback_scale = 1.15
 
+[node name="ArmorComponent" parent="." index="8" groups=["Imp", "Unarmored"]]
+
 [node name="MaterialOverrideComponent" parent="." index="10" node_paths=PackedStringArray("mesh_instance")]
 mesh_instance = NodePath("../Model/ModelHolder/imp/imp2")
 

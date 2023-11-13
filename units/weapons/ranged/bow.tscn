@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://c5vxjgrcperkw" path="res://models/woodsman/woodsman_projectile.glb" id="3_35qfx"]
 [ext_resource type="AnimationLibrary" uid="uid://bsiqxjcsd5gap" path="res://units/weapons/ranged/bow_animations.res" id="4_k170w"]
 
-[node name="Bow" groups=["Bow"] instance=ExtResource("1_oklne")]
+[node name="Bow" groups=["Bow", "Martial"] instance=ExtResource("1_oklne")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 projectile_scene = ExtResource("2_gl2bw")
 dumb_projectile = true
@@ -18,7 +18,7 @@ hit_stun = 0.1
 crit_chance = 0.03
 
 [node name="woodsman_weapon_ranged" parent="ModelHolder" index="0" instance=ExtResource("2_naril")]
-transform = Transform3D(0.348296, 0.772859, -0.530448, -0.84466, 0.013369, -0.535133, -0.406491, 0.634433, 0.657461, -0.690866, 0.566561, -0.694432)
+transform = Transform3D(0.369897, 0.765295, -0.526779, -0.822266, 0.00572384, -0.56907, -0.432492, 0.643651, 0.631396, -0.672663, 0.530194, -0.679423)
 
 [node name="woodsman_projectile4" parent="ModelHolder" index="1" instance=ExtResource("3_35qfx")]
 transform = Transform3D(-0.378149, 0.872912, 0.308259, -0.7988, -0.139377, -0.585226, -0.467888, -0.467541, 0.749989, -0.580299, 0.799693, 0.68466)
@@ -33,7 +33,7 @@ transform = Transform3D(-0.378149, 0.872912, 0.308259, -0.7988, -0.139377, -0.58
 visible = false
 
 [node name="arrows" type="Node3D" parent="ModelHolder" index="4"]
-transform = Transform3D(0.872914, 0.378147, 0.308259, -0.139375, 0.798801, -0.585226, -0.46754, 0.467889, 0.749989, -0.646295, 0.926228, 0.525613)
+transform = Transform3D(0.856223, 0.394221, 0.33387, -0.136247, 0.795718, -0.590142, -0.498313, 0.459806, 0.735023, -0.646295, 0.917754, 0.525613)
 
 [node name="woodsman_projectile" parent="ModelHolder/arrows" index="0" instance=ExtResource("3_35qfx")]
 transform = Transform3D(0, 1, 2.98023e-08, -1, -5.96046e-08, -6.70552e-08, -1.11759e-07, 2.98023e-08, 1, -0.0272858, 0.0854712, -2.98023e-08)
@@ -44,7 +44,7 @@ transform = Transform3D(-2.82879e-08, 1, -4.37115e-08, -1, -2.82879e-08, -4.3711
 [node name="woodsman_projectile3" parent="ModelHolder/arrows" index="2" instance=ExtResource("3_35qfx")]
 transform = Transform3D(-2.82879e-08, 0.999999, -4.37115e-08, -0.999999, -2.82879e-08, -4.37115e-08, -4.37115e-08, 4.37115e-08, 0.999999, -1.78814e-07, 0, 0.207579)
 
-[node name="AnimationTreeExpressionExtension" parent="." index="1" groups=["Bow"]]
+[node name="AnimationTreeExpressionExtension" parent="." index="1" groups=["Bow", "Martial"]]
 
 [node name="AnimationPlayer" parent="." index="2"]
 libraries = {

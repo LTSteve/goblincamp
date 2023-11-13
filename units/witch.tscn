@@ -52,7 +52,7 @@ max_health = 2400.0
 max_speed = 3.25
 acceleration = 3.0
 
-[node name="ArmorComponent" parent="." index="8" groups=["Witch"]]
+[node name="ArmorComponent" parent="." index="8" groups=["Unarmored", "Witch"]]
 
 [node name="MaterialOverrideComponent" parent="." index="10" node_paths=PackedStringArray("mesh_instance")]
 mesh_instance = NodePath("../Model/ModelHolder/witch/witch2")

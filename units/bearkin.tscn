@@ -40,28 +40,24 @@ transform = Transform3D(0.25, -1.09278e-08, 1.09279e-08, 1.09279e-08, -1.09278e-
 
 [node name="rank_star" parent="Model/ModelHolder/RankComponent" index="0"]
 transform = Transform3D(1, 8.47033e-22, 0, -1.42109e-14, 1, 1.06581e-14, 0, -7.10543e-15, 1, 2.19875, -4.76837e-07, -11.7875)
-visible = true
 
 [node name="Cylinder" parent="Model/ModelHolder/RankComponent/rank_star" index="0"]
 transform = Transform3D(0.982681, 8.1e-09, 0.185306, -8.1e-09, 1, -7.57074e-10, -0.185306, -7.57037e-10, 0.982681, 0.384514, -1.98442, -4.32409)
 
 [node name="rank_star2" parent="Model/ModelHolder/RankComponent" index="1"]
 transform = Transform3D(1, 8.47033e-22, 0, -1.42109e-14, 1, 1.06581e-14, 0, -7.10543e-15, 1, 2.38773, 9.53674e-07, -9.93723)
-visible = true
 
 [node name="Cylinder" parent="Model/ModelHolder/RankComponent/rank_star2" index="0"]
 transform = Transform3D(0.944383, 0.290251, -0.154581, -0.286439, 0.956951, 0.0468857, 0.161535, 1.3995e-08, 0.986867, 0.698446, -1.98442, -4.57151)
 
 [node name="rank_star3" parent="Model/ModelHolder/RankComponent" index="2"]
 transform = Transform3D(1, 8.47033e-22, 0, -1.42109e-14, 1, 1.06581e-14, 0, -7.10543e-15, 1, 2.58438, 0, -8.02887)
-visible = true
 
 [node name="Cylinder" parent="Model/ModelHolder/RankComponent/rank_star3" index="0"]
 transform = Transform3D(0.940707, -0.337079, 0.0380622, 0.336803, 0.941477, 0.0136275, -0.0404282, -1.22118e-08, 0.999182, -0.0647364, -1.98442, -4.83719)
 
 [node name="rank_star4" parent="Model/ModelHolder/RankComponent" index="3"]
 transform = Transform3D(-0.999999, -8.74227e-08, -8.74228e-08, 8.74228e-08, -0.999999, 8.74228e-08, -8.74228e-08, 8.74228e-08, 0.999999, 1.76067, -15.4779, -11.1951)
-visible = true
 
 [node name="Cylinder" parent="Model/ModelHolder/RankComponent/rank_star4" index="0"]
 transform = Transform3D(0.867542, -0.148776, -0.474591, 0.130522, 0.988871, -0.0714026, 0.479933, 3.05772e-08, 0.877305, -0.922435, -2.15739, -4.81995)
@@ -76,6 +72,8 @@ max_health = 4600.0
 max_speed = 5.5
 acceleration = 4.0
 pushback_scale = 0.8
+
+[node name="ArmorComponent" parent="." index="8" groups=["Bearkin", "Unarmored"]]
 
 [node name="MaterialOverrideComponent" parent="." index="10" node_paths=PackedStringArray("mesh_instance")]
 mesh_instance = NodePath("../Model/ModelHolder/bearkin/bearkin2")

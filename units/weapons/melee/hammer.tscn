@@ -14,7 +14,7 @@ size = Vector3(3, 3, 4)
 [sub_resource type="BoxShape3D" id="BoxShape3D_sgocl"]
 size = Vector3(3, 3, 4)
 
-[node name="Hammer" node_paths=PackedStringArray("collision_areas", "hit_spot") groups=["Hammer"] instance=ExtResource("1_rce77")]
+[node name="Hammer" node_paths=PackedStringArray("collision_areas", "hit_spot") groups=["Hammer", "Martial"] instance=ExtResource("1_rce77")]
 collision_areas = [NodePath("Hitboxes/Area3D"), NodePath("Hitboxes/Area3D2"), NodePath("Hitboxes/Area3D3")]
 hit_spot = NodePath("ModelHolder/ogre_weapon/HitSpot")
 hit_sfx = Array[AudioStream]([ExtResource("2_64if2")])
@@ -31,7 +31,7 @@ transform = Transform3D(0.965927, -1.23345e-07, 0.258816, -0.258816, -9.36912e-0
 [node name="HitSpot" type="Node3D" parent="ModelHolder/ogre_weapon" index="1"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.58258, 0, -1.566e-07)
 
-[node name="AnimationTreeExpressionExtension" parent="." index="1" groups=["Hammer"]]
+[node name="AnimationTreeExpressionExtension" parent="." index="1" groups=["Hammer", "Martial"]]
 
 [node name="AnimationPlayer" parent="." index="2"]
 libraries = {
