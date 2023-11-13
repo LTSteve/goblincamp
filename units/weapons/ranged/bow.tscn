@@ -18,7 +18,7 @@ hit_stun = 0.1
 crit_chance = 0.03
 
 [node name="woodsman_weapon_ranged" parent="ModelHolder" index="0" instance=ExtResource("2_naril")]
-transform = Transform3D(0.433812, 0.74476, -0.507085, -0.749528, -0.0140234, -0.661821, -0.500009, 0.667182, 0.552137, -0.619959, 0.424898, -0.635967)
+transform = Transform3D(0.348296, 0.772859, -0.530448, -0.844659, 0.013369, -0.535133, -0.406491, 0.634434, 0.657461, -0.690866, 0.566561, -0.694432)
 
 [node name="woodsman_projectile4" parent="ModelHolder" index="1" instance=ExtResource("3_35qfx")]
 transform = Transform3D(-0.378149, 0.872912, 0.308259, -0.7988, -0.139377, -0.585226, -0.467888, -0.467541, 0.749989, -0.580299, 0.799693, 0.68466)
@@ -33,7 +33,7 @@ transform = Transform3D(-0.378149, 0.872912, 0.308259, -0.7988, -0.139377, -0.58
 visible = false
 
 [node name="arrows" type="Node3D" parent="ModelHolder" index="4"]
-transform = Transform3D(0.780367, 0.456283, 0.427586, -0.124102, 0.783194, -0.609264, -0.61288, 0.422387, 0.667805, -0.646295, 0.884427, 0.525613)
+transform = Transform3D(0.872913, 0.378147, 0.308259, -0.139375, 0.798801, -0.585226, -0.467539, 0.467889, 0.749989, -0.646295, 0.926228, 0.525613)
 
 [node name="woodsman_projectile" parent="ModelHolder/arrows" index="0" instance=ExtResource("3_35qfx")]
 transform = Transform3D(0, 1, 2.98023e-08, -1, -5.96046e-08, -6.70552e-08, -1.11759e-07, 2.98023e-08, 1, -0.0272858, 0.0854712, -2.98023e-08)
