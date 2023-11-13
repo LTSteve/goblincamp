@@ -1,6 +1,6 @@
 class_name Ritual
 
-enum Type {Basic, Advanced}
+enum Type {Basic, Advanced, Epic}
 enum Size {Broad, Normal, Narrow}
 
 var prices: Array[int] = []

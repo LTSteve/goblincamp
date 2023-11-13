@@ -111,8 +111,10 @@ static func generate_ritual_card_choices(ritual_type: Ritual.Type, ritual_size: 
 	var cards = deck.get_cards().filter(_I._match_unfinished_cards)
 	if ritual_type == Ritual.Type.Advanced:
 		cards = cards.filter(_I._match_ultra_rare_card) + cards.filter(_I._match_rare_card)
+	elif ritual_type == Ritual.Type.Basic:
+		cards = cards.filter(_I._match_ultra_rare_card) + cards.filter(_I._match_rare_card) + cards.filter(_I._match_normal_card)
 	else:
-		cards = cards.filter(_I._match_rare_card) + cards.filter(_I._match_normal_card)
+		cards = cards.filter(_I._match_ultra_rare_card)
 	cards.shuffle()
 	
 	if ritual_size == Ritual.Size.Narrow:

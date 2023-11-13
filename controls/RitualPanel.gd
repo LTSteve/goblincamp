@@ -11,6 +11,8 @@ static var I: RitualPanel
 
 var _current_rituals: Array[Ritual] = []
 
+var _one_free_epic: bool = true
+
 func _ready():
 	I = self
 	super._ready()
@@ -35,17 +37,17 @@ func _create_rituals(day: int):
 	var ritual:Ritual
 	
 	#basic ritual gold and ears
-	ritual = Ritual.new(Ritual.Type.Basic)
+	ritual = Ritual.new(Ritual.Type.Epic if _one_free_epic else Ritual.Type.Basic)
 	ritual.prices = [day * 10 + 50, (day/2.0) as int + 1]
 	ritual.resources = [MoneyManager.MoneyType.Gold, MoneyManager.MoneyType.Ear]
 	ritual.resource_textures = [resource_textures[MoneyManager.MoneyType.Gold], resource_textures[MoneyManager.MoneyType.Ear]]
 	_current_rituals.append(ritual)
 	
-	#basic broad ritual hide and iron
+	#basic broad ritual gold and hide or iron
 	ritual = Ritual.new(Ritual.Type.Basic, Ritual.Size.Broad)
-	ritual.prices = [(day/4.0) as int + 1 + randi_range(0,1), (day/4.0) as int + 1 + randi_range(0,1)]
-	ritual.resources = [MoneyManager.MoneyType.Hide, MoneyManager.MoneyType.Iron]
-	ritual.resource_textures = [resource_textures[MoneyManager.MoneyType.Hide], resource_textures[MoneyManager.MoneyType.Iron]]
+	ritual.prices = [day * 10 + 50, (day/4.0) as int + 1 + randi_range(0,1)]
+	ritual.resources = [MoneyManager.MoneyType.Gold, MoneyManager.MoneyType.Hide if randf() > 0.5 else MoneyManager.MoneyType.Iron]
+	ritual.resource_textures = [resource_textures[MoneyManager.MoneyType.Gold], resource_textures[ritual.resources[1]]]
 	_current_rituals.append(ritual)
 	
 	#basic narrow ritual dust
@@ -86,6 +88,8 @@ func _on_purchase_button_pressed(ritual:Ritual, ritual_display:RitualDisplay):
 	if MoneyManager.I.try_spend_multiple(ritual.prices, ritual.resources):
 		ritual_display.disable()
 		PickProjectModel.I.open_ritual(ritual)
+		if ritual.type == Ritual.Type.Epic:
+			_one_free_epic = false
 
 func _on_gui_input(event:InputEvent):
 	if event is InputEventMouseButton && event.pressed && event.button_index == MOUSE_BUTTON_LEFT:

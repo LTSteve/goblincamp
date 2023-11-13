@@ -20,7 +20,10 @@ func _ready():
 		new_resource_cost.cost_label.text = str(price)
 		new_resource_cost.resource_image.texture = resource_texture
 	
-	ritual_name.text = ("Broad " if ritual.size == Ritual.Size.Broad else ("Narrow " if ritual.size == Ritual.Size.Narrow else "")) + ("Basic Ritual" if ritual.type == Ritual.Type.Basic else "Advanced Ritual")
+	var bredth = "Broad " if ritual.size == Ritual.Size.Broad else ("Narrow " if ritual.size == Ritual.Size.Narrow else "")
+	var type = "Basic " if ritual.type == Ritual.Type.Basic else ("Epic " if ritual.type == Ritual.Type.Epic else "Advanced ")
+	
+	ritual_name.text = "%s%sRitual" %[bredth, type]
 
 func disable():
 	price_button.disabled = true
