@@ -4,52 +4,33 @@ class_name WorldEnvironmentSettingOverride
 
 @export var resource: WorldEnvironmentSettingOverrideResource
 
-var _fog_toggle: bool = false
-var _fog_density: float = 0.5
-var _dof_toggle: bool = false
-var _ssil_toggle: bool = false
-var _ssao_toggle: bool = false
-var _ssr_toggle: bool = false
-var _brightness: float = 0.5
-var _contrast: float = 0.5
-var _saturation: float = 0.5
-
 func _ready():
 	environment = resource.world_environment
-
-func _process(_delta):
-	if _fog_toggle != resource.fog_setting.current_value:
-		_fog_toggle = resource.fog_setting.current_value
-		environment.fog_enabled = _fog_toggle
-
-	if _fog_density != resource.fog_density_setting.current_value:
-		_fog_density = resource.fog_density_setting.current_value
-		environment.fog_density = resource.fog_density_min + (resource.fog_density_max - resource.fog_density_min) * _fog_density * _fog_density
-
-	if _dof_toggle != resource.dof_setting.current_value:
-		_dof_toggle = resource.dof_setting.current_value
-		camera_attributes.dof_blur_far_enabled = _dof_toggle
-
-	if _ssil_toggle != resource.ssil_setting.current_value:
-		_ssil_toggle = resource.ssil_setting.current_value
-		environment.ssil_enabled = _ssil_toggle
-
-	if _ssao_toggle != resource.ssao_setting.current_value:
-		_ssao_toggle = resource.ssao_setting.current_value
-		environment.ssao_enabled = _ssao_toggle
-
-	if _ssr_toggle != resource.ssr_setting.current_value:
-		_ssr_toggle = resource.ssr_setting.current_value
-		environment.ssr_enabled = _ssr_toggle
 	
-	if _brightness != resource.brightness_setting.current_value:
-		_brightness = resource.brightness_setting.current_value
-		environment.adjustment_brightness = resource.brightness_min + (resource.brightness_max - resource.brightness_min) * _brightness
+	resource.fog_setting.on_change.connect(_setting_changed.bind(environment,"fog_enabled"))
 	
-	if _contrast != resource.contrast_setting.current_value:
-		_contrast = resource.contrast_setting.current_value
-		environment.adjustment_contrast = resource.contrast_min + (resource.contrast_max - resource.contrast_min) * _contrast
+	resource.fog_density_setting.on_change.connect(_setting_changed.bind(environment,"fog_density", 
+	func(value): return resource.fog_density_min + (resource.fog_density_max - resource.fog_density_min) * value * value))
 	
-	if _saturation != resource.saturation_setting.current_value:
-		_saturation = resource.saturation_setting.current_value
-		environment.adjustment_saturation = resource.saturation_min + (resource.saturation_max - resource.saturation_min) * _saturation
+	resource.ssil_setting.on_change.connect(_setting_changed.bind(environment,"ssil_enabled"))
+	
+	resource.ssao_setting.on_change.connect(_setting_changed.bind(environment,"ssao_enabled"))
+	
+	resource.ssr_setting.on_change.connect(_setting_changed.bind(environment,"ssr_enabled"))
+	
+	resource.brightness_setting.on_change.connect(_setting_changed.bind(environment,"adjustment_brightness", 
+	func(value): return resource.brightness_min + (resource.brightness_max - resource.brightness_min) * value))
+	
+	resource.contrast_setting.on_change.connect(_setting_changed.bind(environment,"adjustment_contrast", 
+	func(value): return resource.contrast_min + (resource.contrast_max - resource.contrast_min) * value))
+	
+	resource.saturation_setting.on_change.connect(_setting_changed.bind(environment,"adjustment_saturation", 
+	func(value): return resource.saturation_min + (resource.saturation_max - resource.saturation_min) * value))
+	
+	resource.dof_setting.on_change.connect(_setting_changed.bind(camera_attributes,"dof_blur_far_enabled"))
+
+func _pass_through(value):
+	return value
+
+func _setting_changed(new_value, set_object, set_key, transform_value = _pass_through):
+	set_object.set(set_key, transform_value.call(new_value))

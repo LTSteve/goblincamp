@@ -51,8 +51,6 @@ var rotate_input: float
 var angle_input: float
 var distance_input: float
 
-var _last_fov_setting: float
-
 var _angle_override:CameraSettings
 
 class CameraSettings:
@@ -63,21 +61,18 @@ func _ready():
 	I = self
 	angle_value = camera_angle_min + (camera_angle_max - camera_angle_min) / 2.0
 	distance_value = camera_distance_min + (camera_distance_max - camera_distance_min) / 2.0
-	_last_fov_setting = fov_setting.current_value
-	camera.fov = _percent_to_fov(fov_setting.current_value)
+	
+	fov_setting.on_change.connect(_fov_change)
+	_fov_change(fov_setting.current_value)
 
-func _percent_to_fov(percent):
-	return clampf(25.0 + 110 * percent, 45, 179)
+func _fov_change(new_fov):
+	camera.fov = clampf(25.0 + 110 * new_fov, 45, 179)
 
 func _process(delta):
 	if _angle_override != null:
 		velocity_component.set_velocity(Vector2.ZERO)
 		var pos = Vector2(_angle_override.locked_to.global_position.x, _angle_override.locked_to.global_position.z)
 		global_position = lerp(global_position, Math.v2_to_v3(pos, Ground.sample_height(pos.x, pos.y)), _angle_override.lock_strength)
-	
-	if _last_fov_setting != fov_setting.current_value:
-		_last_fov_setting = fov_setting.current_value
-		camera.fov = _percent_to_fov(_last_fov_setting)
 	
 	if auto_drive:
 		forward_back_input = -1
