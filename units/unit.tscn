@@ -280,16 +280,17 @@ skeleton = NodePath("../../..")
 
 [node name="SleepEye" type="MeshInstance3D" parent="Model/ModelHolder/EyeComponent/Eyes/RightEye"]
 transform = Transform3D(0.8, -3.55271e-15, 1.55294e-22, 0, -3.49691e-08, -0.8, 3.55271e-15, 0.8, -3.49691e-08, 0, 0, 0)
+visible = false
 mesh = ExtResource("8_vf1p3")
 skeleton = NodePath("../../..")
 
 [node name="Eye" type="MeshInstance3D" parent="Model/ModelHolder/EyeComponent/Eyes/RightEye"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2.98023e-08)
-visible = false
 mesh = ExtResource("8_vf1p3")
 skeleton = NodePath("../../..")
 
 [node name="PainEye" type="Node3D" parent="Model/ModelHolder/EyeComponent/Eyes/RightEye"]
+visible = false
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Model/ModelHolder/EyeComponent/Eyes/RightEye/PainEye"]
 transform = Transform3D(0.6, 3.51373e-09, -1.31134e-08, -1.31134e-08, 0.3, -0.519615, 3.51373e-09, 0.519615, 0.3, 0, 0.108735, 0)
@@ -309,17 +310,18 @@ skeleton = NodePath("../../..")
 
 [node name="SleepEye" type="MeshInstance3D" parent="Model/ModelHolder/EyeComponent/Eyes/LeftEye"]
 transform = Transform3D(0.8, -3.55271e-15, 1.55294e-22, 0, -3.49691e-08, -0.8, 3.55271e-15, 0.8, -3.49691e-08, 0, 0, 0)
+visible = false
 mesh = ExtResource("8_vf1p3")
 skeleton = NodePath("../../..")
 
 [node name="Eye" type="MeshInstance3D" parent="Model/ModelHolder/EyeComponent/Eyes/LeftEye"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2.98023e-08)
-visible = false
 mesh = ExtResource("8_vf1p3")
 skeleton = NodePath("../../..")
 
 [node name="PainEye" type="Node3D" parent="Model/ModelHolder/EyeComponent/Eyes/LeftEye"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, -1, 0, 0, 0)
+visible = false
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Model/ModelHolder/EyeComponent/Eyes/LeftEye/PainEye"]
 transform = Transform3D(0.6, 3.51373e-09, -1.31134e-08, -1.31134e-08, 0.3, -0.519615, 3.51373e-09, 0.519615, 0.3, 0, 0.108735, 0)
@@ -342,8 +344,8 @@ libraries = {
 [node name="AnimationTree_Blink" type="AnimationTree" parent="Model/ModelHolder/EyeComponent"]
 tree_root = SubResource("AnimationNodeStateMachine_3fww7")
 anim_player = NodePath("../AnimationPlayer_Blink")
-active = true
 script = ExtResource("11_w2jh1")
+can_rewind = true
 
 [node name="AnimationPlayer_Blink" type="AnimationPlayer" parent="Model/ModelHolder/EyeComponent"]
 libraries = {
