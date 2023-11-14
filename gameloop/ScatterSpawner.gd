@@ -21,7 +21,7 @@ func _post_ready():
 	scatter_setting.on_change.connect(_on_data_changed)
 	_on_data_changed(scatter_setting.current_value)
 
-func _on_data_changed(scatter_setting):
+func _on_data_changed(scatter_value):
 	for s in scatters:
 		if is_instance_valid(s):
 			s.queue_free()
@@ -29,7 +29,7 @@ func _on_data_changed(scatter_setting):
 	if rocks.size() == 0:
 		_load_data()
 	
-	var current_scatter_count = max_scatter_count * scatter_setting
+	var current_scatter_count = max_scatter_count * scatter_value
 	var rock_count = current_scatter_count * rock_ratio
 	var grass_count = current_scatter_count * (1.0 - rock_ratio)
 	

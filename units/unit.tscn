@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=3 uid="uid://brhc1aba5usew"]
+[gd_scene load_steps=50 format=3 uid="uid://brhc1aba5usew"]
 
 [ext_resource type="Script" path="res://units/Unit.gd" id="1_6slac"]
 [ext_resource type="Script" path="res://units/components/HeightComponent.gd" id="3_mhfwn"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://bfg28nholuf7e" path="res://units/components/healthbar_component.tscn" id="4_h7kpd"]
 [ext_resource type="PackedScene" uid="uid://cp2wfftw1nmvr" path="res://units/components/rank_component.tscn" id="5_7sy2q"]
 [ext_resource type="PackedScene" uid="uid://bac8aofl217ri" path="res://units/components/damagelabel/damage_number_component.tscn" id="7_rfitb"]
+[ext_resource type="Script" path="res://units/eyes/EyeComponent.gd" id="8_0r4f4"]
 [ext_resource type="Script" path="res://units/components/HealthComponent.gd" id="8_vakd5"]
 [ext_resource type="BoxMesh" uid="uid://bs1j88cpdamcq" path="res://units/eyes/eye_mesh.tres" id="8_vf1p3"]
 [ext_resource type="Script" path="res://units/components/VelocityComponent.gd" id="9_a1g10"]
@@ -13,6 +14,7 @@
 [ext_resource type="AnimationLibrary" uid="uid://d1ig1ey1id2pn" path="res://units/eyes/eye_animation_lib.tres" id="10_aqhqn"]
 [ext_resource type="Script" path="res://units/components/RotationComponent.gd" id="11_t1h5w"]
 [ext_resource type="AnimationLibrary" uid="uid://vp0rby4wlj5r" path="res://units/eyes/blink_animation_lib.tres" id="11_uo48n"]
+[ext_resource type="Script" path="res://util/AnimationTreeExpressionExtension.gd" id="11_w2jh1"]
 [ext_resource type="Script" path="res://units/components/HitblinkComponent.gd" id="12_tn8gh"]
 [ext_resource type="Script" path="res://units/components/ArmorComponent.gd" id="13_7cffv"]
 [ext_resource type="Script" path="res://units/components/StatusComponent.gd" id="14_4xq4l"]
@@ -27,57 +29,92 @@
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_nhjdq"]
 radius = 0.7
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_weei5"]
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ctbvb"]
 animation = &"blink"
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_i5qy7"]
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_0ryec"]
 animation = &"dontblink"
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_8rh8w"]
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_7yls2"]
 animation = &"dontblink_2"
 
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_cchl6"]
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_niopj"]
 advance_mode = 2
 
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_qx2vq"]
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_xvh41"]
 switch_mode = 2
 advance_mode = 2
 advance_expression = "randf() > 0.5"
 
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_lgd7u"]
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_7u3ol"]
 switch_mode = 2
 advance_mode = 2
 advance_expression = "randf() > 0.5"
 
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_7l6dk"]
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_c0t04"]
 switch_mode = 2
 advance_mode = 2
 advance_expression = "randf() > 0.5"
 
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ng62k"]
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_h0m5t"]
 switch_mode = 2
 advance_mode = 2
 advance_expression = "randf() > 0.5"
 
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_dijtf"]
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_g0qon"]
 switch_mode = 2
 advance_mode = 2
 advance_expression = "randf() > 0.5"
 
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_1ywuf"]
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_1bik7"]
 switch_mode = 2
 advance_mode = 2
 advance_expression = "randf() > 0.5"
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_s1gsd"]
+states/blink/node = SubResource("AnimationNodeAnimation_ctbvb")
+states/blink/position = Vector2(566, 122)
+states/dontblink/node = SubResource("AnimationNodeAnimation_0ryec")
+states/dontblink/position = Vector2(429, 55)
+states/dontblink_2/node = SubResource("AnimationNodeAnimation_7yls2")
+states/dontblink_2/position = Vector2(456, 209)
+transitions = ["Start", "dontblink", SubResource("AnimationNodeStateMachineTransition_niopj"), "dontblink", "dontblink_2", SubResource("AnimationNodeStateMachineTransition_xvh41"), "dontblink_2", "dontblink", SubResource("AnimationNodeStateMachineTransition_7u3ol"), "dontblink", "blink", SubResource("AnimationNodeStateMachineTransition_c0t04"), "blink", "dontblink", SubResource("AnimationNodeStateMachineTransition_h0m5t"), "blink", "dontblink_2", SubResource("AnimationNodeStateMachineTransition_g0qon"), "dontblink_2", "blink", SubResource("AnimationNodeStateMachineTransition_1bik7")]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_5woey"]
+animation = &"pain"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_gixnr"]
+animation = &"sleep"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_efcdn"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ijdro"]
+advance_mode = 2
+advance_expression = "use_trigger(\"pain\")"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_v0v2h"]
+advance_mode = 2
+advance_expression = "use_trigger(\"sleep\")"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_oh26m"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_5pr5m"]
+advance_mode = 2
+advance_expression = "use_trigger(\"wake\")"
 
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_3fww7"]
-states/blink/node = SubResource("AnimationNodeAnimation_weei5")
-states/blink/position = Vector2(663, 50)
-states/dontblink/node = SubResource("AnimationNodeAnimation_i5qy7")
-states/dontblink/position = Vector2(435, 95)
-states/dontblink_2/node = SubResource("AnimationNodeAnimation_8rh8w")
-states/dontblink_2/position = Vector2(596, 166)
-transitions = ["Start", "dontblink", SubResource("AnimationNodeStateMachineTransition_cchl6"), "dontblink", "blink", SubResource("AnimationNodeStateMachineTransition_qx2vq"), "blink", "dontblink_2", SubResource("AnimationNodeStateMachineTransition_lgd7u"), "dontblink_2", "dontblink", SubResource("AnimationNodeStateMachineTransition_7l6dk"), "dontblink", "dontblink_2", SubResource("AnimationNodeStateMachineTransition_ng62k"), "dontblink_2", "blink", SubResource("AnimationNodeStateMachineTransition_dijtf"), "blink", "dontblink", SubResource("AnimationNodeStateMachineTransition_1ywuf")]
-graph_offset = Vector2(19, -72)
+states/End/position = Vector2(1040, 139)
+states/Normal/node = SubResource("AnimationNodeStateMachine_s1gsd")
+states/Normal/position = Vector2(446, 0)
+states/pain/node = SubResource("AnimationNodeAnimation_5woey")
+states/pain/position = Vector2(836, 37)
+states/sleep/node = SubResource("AnimationNodeAnimation_gixnr")
+states/sleep/position = Vector2(770, 166)
+transitions = ["Start", "Normal", SubResource("AnimationNodeStateMachineTransition_efcdn"), "Normal", "pain", SubResource("AnimationNodeStateMachineTransition_ijdro"), "Normal", "sleep", SubResource("AnimationNodeStateMachineTransition_v0v2h"), "pain", "Normal", SubResource("AnimationNodeStateMachineTransition_oh26m"), "sleep", "Normal", SubResource("AnimationNodeStateMachineTransition_5pr5m")]
+graph_offset = Vector2(64, -38)
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_phml6"]
 radius = 8.0
@@ -229,9 +266,9 @@ transform = Transform3D(0.25, 0, -2.66454e-15, 0, 0.25, 0, 2.66454e-15, 0, 0.25,
 
 [node name="EyeComponent" type="Node3D" parent="Model/ModelHolder"]
 transform = Transform3D(1, 0, 1.06581e-14, 0, 1, 0, -1.06581e-14, 0, 1, 0.879517, 2.17072, 3.84448e-08)
+script = ExtResource("8_0r4f4")
 
 [node name="Eyes" type="Node3D" parent="Model/ModelHolder/EyeComponent"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0173641, 0.136325)
 
 [node name="RightEye" type="Node3D" parent="Model/ModelHolder/EyeComponent/Eyes"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.25)
@@ -241,15 +278,26 @@ transform = Transform3D(0, 0, 0, 0, 0, 0, 0, 0, 0, 0.0234672, 0.265347, -2.98023
 mesh = ExtResource("8_vf1p3")
 skeleton = NodePath("../../..")
 
-[node name="LowerBrow" type="MeshInstance3D" parent="Model/ModelHolder/EyeComponent/Eyes/RightEye"]
-transform = Transform3D(0, 0, 0, 0, 0, 0, 0, 0, 0, 0.0234672, -0.232599, -2.98023e-08)
+[node name="SleepEye" type="MeshInstance3D" parent="Model/ModelHolder/EyeComponent/Eyes/RightEye"]
+transform = Transform3D(0.8, -3.55271e-15, 1.55294e-22, 0, -3.49691e-08, -0.8, 3.55271e-15, 0.8, -3.49691e-08, 0, 0, 0)
 mesh = ExtResource("8_vf1p3")
 skeleton = NodePath("../../..")
 
 [node name="Eye" type="MeshInstance3D" parent="Model/ModelHolder/EyeComponent/Eyes/RightEye"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2.98023e-08)
+visible = false
 mesh = ExtResource("8_vf1p3")
 skeleton = NodePath("../../..")
+
+[node name="PainEye" type="Node3D" parent="Model/ModelHolder/EyeComponent/Eyes/RightEye"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Model/ModelHolder/EyeComponent/Eyes/RightEye/PainEye"]
+transform = Transform3D(0.6, 3.51373e-09, -1.31134e-08, -1.31134e-08, 0.3, -0.519615, 3.51373e-09, 0.519615, 0.3, 0, 0.108735, 0)
+mesh = ExtResource("8_vf1p3")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Model/ModelHolder/EyeComponent/Eyes/RightEye/PainEye"]
+transform = Transform3D(0.6, 1.1973e-08, 4.50122e-08, 4.50122e-08, -0.298102, -0.520706, 1.1973e-08, 0.520706, -0.298102, 0, -0.111035, 0)
+mesh = ExtResource("8_vf1p3")
 
 [node name="LeftEye" type="Node3D" parent="Model/ModelHolder/EyeComponent/Eyes"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.25)
@@ -259,15 +307,27 @@ transform = Transform3D(0, 0, 0, 0, 0, 0, 0, 0, 0, 0.0234672, 0.265347, -2.98023
 mesh = ExtResource("8_vf1p3")
 skeleton = NodePath("../../..")
 
-[node name="LowerBrow" type="MeshInstance3D" parent="Model/ModelHolder/EyeComponent/Eyes/LeftEye"]
-transform = Transform3D(0, 0, 0, 0, 0, 0, 0, 0, 0, 0.0234672, -0.232599, -2.98023e-08)
+[node name="SleepEye" type="MeshInstance3D" parent="Model/ModelHolder/EyeComponent/Eyes/LeftEye"]
+transform = Transform3D(0.8, -3.55271e-15, 1.55294e-22, 0, -3.49691e-08, -0.8, 3.55271e-15, 0.8, -3.49691e-08, 0, 0, 0)
 mesh = ExtResource("8_vf1p3")
 skeleton = NodePath("../../..")
 
 [node name="Eye" type="MeshInstance3D" parent="Model/ModelHolder/EyeComponent/Eyes/LeftEye"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2.98023e-08)
+visible = false
 mesh = ExtResource("8_vf1p3")
 skeleton = NodePath("../../..")
+
+[node name="PainEye" type="Node3D" parent="Model/ModelHolder/EyeComponent/Eyes/LeftEye"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, -1, 0, 0, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Model/ModelHolder/EyeComponent/Eyes/LeftEye/PainEye"]
+transform = Transform3D(0.6, 3.51373e-09, -1.31134e-08, -1.31134e-08, 0.3, -0.519615, 3.51373e-09, 0.519615, 0.3, 0, 0.108735, 0)
+mesh = ExtResource("8_vf1p3")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Model/ModelHolder/EyeComponent/Eyes/LeftEye/PainEye"]
+transform = Transform3D(0.6, 1.1973e-08, 4.50122e-08, 4.50122e-08, -0.298102, -0.520706, 1.1973e-08, 0.520706, -0.298102, 0, -0.111035, 0)
+mesh = ExtResource("8_vf1p3")
 
 [node name="AnimationTree_Look" type="AnimationTree" parent="Model/ModelHolder/EyeComponent"]
 tree_root = ExtResource("9_stike")
@@ -283,6 +343,7 @@ libraries = {
 tree_root = SubResource("AnimationNodeStateMachine_3fww7")
 anim_player = NodePath("../AnimationPlayer_Blink")
 active = true
+script = ExtResource("11_w2jh1")
 
 [node name="AnimationPlayer_Blink" type="AnimationPlayer" parent="Model/ModelHolder/EyeComponent"]
 libraries = {
@@ -359,10 +420,12 @@ script = ExtResource("19_jo36r")
 [connection signal="on_get_kill" from="." to="Model/BountyComponent" method="_on_unit_on_get_kill"]
 [connection signal="on_get_kill" from="." to="Model/ModelHolder/RankComponent" method="_on_get_kill"]
 [connection signal="on_recieved_hit" from="." to="Model/DamageNumberComponent" method="_on_damage_recieved"]
+[connection signal="on_recieved_hit" from="." to="Model/ModelHolder/EyeComponent" method="_on_recieved_hit"]
 [connection signal="on_recieved_hit" from="." to="HealthComponent" method="_on_recieved_hit"]
 [connection signal="on_recieved_hit" from="." to="VelocityComponent" method="_on_recieved_hit"]
 [connection signal="on_recieved_hit" from="." to="HitblinkComponent" method="_on_recieved_hit"]
 [connection signal="on_recieved_hit" from="." to="HitBurstComponent" method="_on_recieved_hit"]
+[connection signal="on_state_changed" from="." to="Model/ModelHolder/EyeComponent" method="_on_state_changed"]
 [connection signal="on_state_changed" from="." to="StatusComopnent" method="_on_state_changed"]
 [connection signal="died" from="HealthComponent" to="." method="_on_died"]
 [connection signal="died" from="HealthComponent" to="Model/BountyComponent" method="_on_health_component_died"]
