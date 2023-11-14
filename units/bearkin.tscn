@@ -18,9 +18,6 @@ stun_scale = 0.85
 [node name="CollisionShape3D" parent="." index="0"]
 shape = SubResource("CapsuleShape3D_4qwu5")
 
-[node name="Model" parent="." index="1"]
-transform = Transform3D(-2.30258e-08, 0, 0.526768, 0, 0.526768, 0, -0.526768, 0, -2.30258e-08, 0, 0, 0)
-
 [node name="DamageNumberComponent" parent="Model" index="0"]
 transform = Transform3D(1, 8.48637e-08, 3.55271e-14, -8.48637e-08, 1, -2.66454e-15, -3.19744e-14, 3.37334e-16, 1, 4.52606e-07, 5.99579, 1.30397e-14)
 
@@ -64,6 +61,12 @@ transform = Transform3D(0.867542, -0.148776, -0.474591, 0.130522, 0.988871, -0.0
 
 [node name="bearkin" parent="Model/ModelHolder" index="1" instance=ExtResource("2_ahweh")]
 transform = Transform3D(1.625, 0, 0, 0, 1.625, 0, 0, 0, 1.625, 0, 0, 0)
+
+[node name="EyeComponent" parent="Model/ModelHolder" index="2"]
+transform = Transform3D(1.3, 0, 0, 0, 1.3, 0, 0, 0, 1.3, 1.30971, 3.53528, 5.72494e-08)
+
+[node name="Eyes" parent="Model/ModelHolder/EyeComponent" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 
 [node name="HealthComponent" parent="." index="3"]
 max_health = 4600.0

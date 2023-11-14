@@ -3,7 +3,7 @@ extends Node3D
 class_name DamageNumberComponent
 
 var settings: DamageLabelSettingsResource
-@export var damage_label_scene: PackedScene
+var damage_label_scene: PackedScene
 @export var is_ally: bool
 
 static var _my_numbers: Array[DamageLabel] = []
@@ -12,10 +12,11 @@ static var _my_numbers: Array[DamageLabel] = []
 
 func _ready():
 	settings = DB.I.scenes.damage_label_settings
+	damage_label_scene = DB.I.scenes.damage_label_scene
 
 func _on_damage_recieved(weapon_hit:Weapon.Hit):
 	if !_setting.current_value: return
-	var post_crit_damage =  abs((weapon_hit.post_crit_damage) as int)
+	var post_crit_damage = abs((weapon_hit.post_crit_damage) as int)
 	if post_crit_damage == 0: return
 	
 	var damage_label = damage_label_scene.instantiate() as DamageLabel

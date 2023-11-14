@@ -16,9 +16,6 @@ radius = 2.8
 collision_layer = 3
 is_npc = true
 
-[node name="Model" parent="." index="1"]
-transform = Transform3D(-2.30258e-08, 0, 0.526768, 0, 0.526768, 0, -0.526768, 0, -2.30258e-08, 0, 0, 0)
-
 [node name="HealthbarComponent" parent="Model" index="2"]
 visible = false
 
@@ -30,6 +27,12 @@ transform = Transform3D(1, 0, 1.77636e-14, 0, 1, 0, -1.77636e-14, 0, 1, 0, 3.636
 [node name="MerchantBag" parent="Model/WeaponHolder" index="0" instance=ExtResource("2_wfuwv")]
 
 [node name="merchant" parent="Model/ModelHolder" index="1" instance=ExtResource("2_ngx6n")]
+
+[node name="EyeComponent" parent="Model/ModelHolder" index="2"]
+transform = Transform3D(0.6, 0, 2.13163e-14, 0, 0.6, 0, -2.13163e-14, 0, 0.6, 0.509101, 1.99769, 2.22533e-08)
+
+[node name="Eyes" parent="Model/ModelHolder/EyeComponent" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 
 [node name="MaterialOverrideComponent" parent="." index="10" node_paths=PackedStringArray("mesh_instance")]
 mesh_instance = NodePath("../Model/ModelHolder/merchant/merchant2")

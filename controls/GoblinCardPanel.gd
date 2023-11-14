@@ -2,7 +2,7 @@ extends Panel
 
 class_name GoblinCardPanel
 
-@export var card_scene: PackedScene
+var card_scene: PackedScene
 @export var card_container: Container
 
 @export var first_modifier_night: int = 5
@@ -15,6 +15,7 @@ var _todo_list: TodoList
 static var I: GoblinCardPanel
 
 func _ready():
+	card_scene = DB.I.scenes.card_scene
 	I = self
 
 func try_open(todo_list:TodoList, day: int):

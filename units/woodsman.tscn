@@ -12,9 +12,6 @@
 
 [node name="Woodsman" groups=["Woodsman"] instance=ExtResource("1_e4j34")]
 
-[node name="Model" parent="." index="1"]
-transform = Transform3D(-2.30258e-08, 0, 0.526768, 0, 0.526768, 0, -0.526768, 0, -2.30258e-08, 0, 0, 0)
-
 [node name="BowAndDagger" type="Node3D" parent="Model/WeaponHolder" index="0" node_paths=PackedStringArray("bow", "daggers")]
 script = ExtResource("2_gqrex")
 bow = NodePath("Bow")
@@ -49,6 +46,12 @@ transform = Transform3D(0.722406, -0.635762, 0.271906, 0.688905, 0.627932, -0.36
 
 [node name="Cylinder" parent="Model/ModelHolder/RankComponent/rank_star4" index="0"]
 transform = Transform3D(0.707106, -0.612372, 0.353553, 0.707106, 0.612372, -0.353553, 6.03961e-14, 0.5, 0.866024, -1.56313, -1.85334, 1.22444)
+
+[node name="EyeComponent" parent="Model/ModelHolder" index="2"]
+transform = Transform3D(0.5, 0, 8.88178e-15, 0, 0.5, 0, -8.88178e-15, 0, 0.5, 0.831685, 2.10456, 3.6354e-08)
+
+[node name="Eyes" parent="Model/ModelHolder/EyeComponent" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 
 [node name="HealthComponent" parent="." index="3"]
 max_health = 2740.0

@@ -1,0 +1,68 @@
+[gd_resource type="AnimationNodeStateMachine" load_steps=14 format=3 uid="uid://beu30pn2tj6dj"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_4ao3b"]
+animation = &"look_around_1"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_jqrsr"]
+animation = &"look_around_2"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_27ebt"]
+animation = &"look_around_3"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_6bd6p"]
+animation = &"look_around_4"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_m3mcl"]
+switch_mode = 2
+advance_mode = 2
+advance_expression = "randf() > 0.5"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_rwkso"]
+switch_mode = 2
+advance_mode = 2
+advance_expression = "randf() > 0.5"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ngnty"]
+switch_mode = 2
+advance_mode = 2
+advance_expression = "randf() > 0.5"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_8ntcw"]
+switch_mode = 2
+advance_mode = 2
+advance_expression = "randf() > 0.5"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ptifd"]
+switch_mode = 2
+advance_mode = 2
+advance_expression = "randf() > 0.5"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_c37ah"]
+switch_mode = 2
+advance_mode = 2
+advance_expression = "randf() > 0.5"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_u4fs7"]
+switch_mode = 2
+advance_mode = 2
+advance_expression = "randf() > 0.5"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_6dybu"]
+switch_mode = 2
+advance_mode = 2
+advance_expression = "randf() > 0.5"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_08yag"]
+advance_mode = 2
+
+[resource]
+states/look_around_1/node = SubResource("AnimationNodeAnimation_4ao3b")
+states/look_around_1/position = Vector2(339.888, 48)
+states/look_around_2/node = SubResource("AnimationNodeAnimation_jqrsr")
+states/look_around_2/position = Vector2(577.888, 43)
+states/look_around_3/node = SubResource("AnimationNodeAnimation_27ebt")
+states/look_around_3/position = Vector2(628.888, 169)
+states/look_around_4/node = SubResource("AnimationNodeAnimation_6bd6p")
+states/look_around_4/position = Vector2(406.888, 169)
+transitions = ["look_around_1", "look_around_4", SubResource("AnimationNodeStateMachineTransition_m3mcl"), "look_around_4", "look_around_3", SubResource("AnimationNodeStateMachineTransition_rwkso"), "look_around_3", "look_around_2", SubResource("AnimationNodeStateMachineTransition_ngnty"), "look_around_2", "look_around_1", SubResource("AnimationNodeStateMachineTransition_8ntcw"), "look_around_1", "look_around_2", SubResource("AnimationNodeStateMachineTransition_ptifd"), "look_around_2", "look_around_3", SubResource("AnimationNodeStateMachineTransition_c37ah"), "look_around_3", "look_around_4", SubResource("AnimationNodeStateMachineTransition_u4fs7"), "look_around_4", "look_around_1", SubResource("AnimationNodeStateMachineTransition_6dybu"), "Start", "look_around_1", SubResource("AnimationNodeStateMachineTransition_08yag")]
+graph_offset = Vector2(-83.1124, 0)

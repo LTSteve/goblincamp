@@ -4,7 +4,7 @@ class_name BuildingProjectPanel
 
 @export var title:Label
 @export var card_container:Container
-@export var card_display_scene: PackedScene
+var card_display_scene: PackedScene
 
 var _selected_card: CardResource
 var _cards: Array[CardResource]
@@ -13,6 +13,7 @@ var _building: Building
 static var I: BuildingProjectPanel
 
 func _ready():
+	card_display_scene = DB.I.scenes.card_scene
 	I = self
 
 func open(card:CardResource, building:Building):

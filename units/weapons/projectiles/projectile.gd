@@ -8,7 +8,7 @@ class_name Projectile
 @export var free_on_hit: bool = true
 @export var keep_final_destination: bool = false
 
-@export var leave_behind_sfx_scene: PackedScene
+var leave_behind_sfx_scene: PackedScene
 @export var sfx: Array[AudioStream]
 
 @export var model: Node3D
@@ -27,6 +27,7 @@ var find_pool: Array[Unit]
 var _target_position: Vector3
 
 func _ready():
+	leave_behind_sfx_scene = DB.I.scenes.leave_behind_sfx_scene
 	Global.projectiles.append(self)
 
 func _on_tree_exiting():

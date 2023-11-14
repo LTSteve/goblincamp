@@ -2,7 +2,7 @@ extends Panel
 
 class_name PickProjectModel
 
-@export var card_scene: PackedScene
+var card_scene: PackedScene
 @export var card_container: Container
 
 var _building_type:UnitSpawner.BuildingType
@@ -14,6 +14,7 @@ static var I: PickProjectModel
 signal on_building_card_selected(building_type:UnitSpawner.BuildingType, chosen_card:CardResource, all_cards:Array[CardResource])
 
 func _ready():
+	card_scene = DB.I.scenes.card_scene
 	I = self
 
 func open(building_type:UnitSpawner.BuildingType):

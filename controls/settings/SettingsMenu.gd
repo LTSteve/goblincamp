@@ -2,8 +2,8 @@ extends Panel
 
 class_name SettingsMenu
 
-@export var slide_setting_scene: PackedScene
-@export var toggle_setting_scene: PackedScene
+var slide_setting_scene: PackedScene
+var toggle_setting_scene: PackedScene
 
 @export var category_option: OptionButton
 
@@ -12,6 +12,9 @@ var settings_categories: Array[Settings.SettingsCategory]
 @onready var settings_container: VBoxContainer = $"MarginContainer/ScrollContainer/VBoxContainer2"
 
 func _ready():
+	slide_setting_scene = DB.I.scenes.slide_setting_scene if DB.I else load("res://controls/settings/slide_setting.tscn")
+	toggle_setting_scene = DB.I.scenes.toggle_setting_scene if DB.I else load("res://controls/settings/toggle_setting.tscn")
+	
 	settings_categories = Settings.get_settings_categories()
 	for category in settings_categories:
 		category_option.add_item(category.name)

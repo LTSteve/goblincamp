@@ -29,11 +29,11 @@ func _initialize(data):
 func _apply(weapon:ChannelingWeapon,_unit):
 	#add with high priority so all damage calculations take place first
 	weapon.create_hit.add_override([self, "_create_hit_override"], _create_hit_override)
-	weapon.create_aoe.add_override([self, "_create_aoe_override"], _create_aoe_override)
+	weapon.create_channeled_scene.add_override([self, "_create_aoe_override"], _create_aoe_override)
 
 func _un_apply(weapon:ChannelingWeapon,_unit):
 	weapon.create_hit.remove_override([self, "_create_hit_override"])
-	weapon.create_aoe.remove_override([self, "_create_aoe_override"])
+	weapon.create_channeled_scene.remove_override([self, "_create_aoe_override"])
 
 func _create_hit_override(_base_value:Weapon.Hit, current_value:Weapon.Hit):
 	current_value.damage_type = Damage.Type.Cold

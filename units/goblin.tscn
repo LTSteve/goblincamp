@@ -11,9 +11,6 @@ collision_layer = 2
 ranged_targeting_radius = 1.65
 is_enemy = true
 
-[node name="Model" parent="." index="1"]
-transform = Transform3D(-2.30258e-08, 0, 0.526768, 0, 0.526768, 0, -0.526768, 0, -2.30258e-08, 0, 0, 0)
-
 [node name="DamageNumberComponent" parent="Model" index="0"]
 is_ally = false
 
@@ -24,6 +21,12 @@ enabled = true
 
 [node name="goblin" parent="Model/ModelHolder" index="0" instance=ExtResource("2_k8e14")]
 transform = Transform3D(1, 0, -7.10543e-15, 0, 1, 0, 7.10543e-15, 0, 1, 0, 0, 0)
+
+[node name="EyeComponent" parent="Model/ModelHolder" index="2"]
+transform = Transform3D(0.9, 0, 1.27898e-14, 0, 0.9, 0, -1.27898e-14, 0, 0.9, 0.55109, 2.37117, 2.40888e-08)
+
+[node name="Eyes" parent="Model/ModelHolder/EyeComponent" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 
 [node name="HealthComponent" parent="." index="3"]
 max_health = 1980.0

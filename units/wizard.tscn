@@ -16,15 +16,18 @@ radius = 2.8
 [node name="Wizard" instance=ExtResource("1_gd25m")]
 is_npc = true
 
-[node name="Model" parent="." index="1"]
-transform = Transform3D(-2.30258e-08, 0, 0.526768, 0, 0.526768, 0, -0.526768, 0, -2.30258e-08, 0, 0, 0)
-
 [node name="HealthbarComponent" parent="Model" index="2"]
 visible = false
 
 [node name="WizardBook" parent="Model/WeaponHolder" index="0" instance=ExtResource("2_ljneo")]
 
 [node name="wizard" parent="Model/ModelHolder" index="1" instance=ExtResource("2_pxwt3")]
+
+[node name="EyeComponent" parent="Model/ModelHolder" index="2"]
+transform = Transform3D(0.7, 0, 2.84217e-14, 0, 0.7, 0, -2.84217e-14, 0, 0.7, 0.707398, 2.1503, 3.09212e-08)
+
+[node name="Eyes" parent="Model/ModelHolder/EyeComponent" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 
 [node name="NpcIconComponent" parent="Model" index="5" instance=ExtResource("4_ywfm2")]
 

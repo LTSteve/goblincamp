@@ -18,7 +18,10 @@ var _resource_folders = {
 var _scene_paths = {
 	aoe_scene = "res://fx/generic_aoe.tscn",
 	explosion_scene = "res://fx/explosion.tscn",
+	deth_ball_scene = "res://fx/deth_ball.tscn",
 	ember_scene = "res://units/weapons/projectiles/ember.tscn",
+	arrow_scene= "res://units/weapons/projectiles/arrow.tscn",
+	fireball_scene= "res://units/weapons/projectiles/fireball.tscn",
 	taste_for_blood_scene = "res://fx/generic_aoe.tscn",
 	leave_behind_sfx_scene = "res://sfx/leave_behind_sfx.tscn",
 	knight_scene = "res://units/knight.tscn",
@@ -52,7 +55,11 @@ var _scene_paths = {
 	ritual_display_scene= "res://controls/ritual_display.tscn",
 	goblin_ear_scene="res://pickups/goblin_ear.tscn",
 	resource_cost_scene= "res://controls/resource_cost.tscn",
-	card_display_scene= "res://controls/card_display.tscn"
+	card_display_scene= "res://controls/card_display.tscn",
+	damage_label_scene= "res://units/components/damagelabel/damage_label.tscn",
+	slide_setting_scene= "res://controls/settings/slide_setting.tscn",
+	toggle_setting_scene= "res://controls/settings/toggle_setting.tscn",
+	card_scene= "res://controls/card_display.tscn",
 }
 
 var scenes = {}
