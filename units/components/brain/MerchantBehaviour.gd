@@ -5,7 +5,19 @@ class_name MerchantBehaviour
 func initialize(brain:BrainComponent):
 	var ctx = null
 	brain.flee_range.input_event.connect(_merchant_input_event.bind(brain))
+	brain.unit.visible = true
+	call_deferred("_wire_up", brain.unit)
 	return ctx
+
+func _wire_up(unit):
+	GameManager.I.on_day.connect(_on_day.bind(unit))
+	GameManager.I.on_night.connect(_on_night.bind(unit))
+
+func _on_day(unit):
+	unit.visible = true
+
+func _on_night(_day, unit):
+	unit.visible = false
 
 func process(_delta, _brain:BrainComponent, _ctx):
 	return false

@@ -4,6 +4,8 @@ class_name UnitSpawner
 
 signal on_spawn_building(building_type:BuildingType)
 
+signal on_spawn_unit(unit:Unit)
+
 enum UnitType {Knight=0, Witch, Woodsman, Bearkin, Goblin, Imp, Ogre, GoblinPriest}
 enum BuildingType {Blacksmith=0, Leatherworker, Enchanter, Tavern}
 
@@ -111,6 +113,7 @@ func _spawn(unit_type: UnitType, position: Vector3):
 		
 		instance.position = position
 		position += Vector3((randf()-0.5)*2, 0, (randf()-0.5)*2)
+		on_spawn_unit.emit(instance)
 
 func _get_unit_scene(unit_type: UnitType) -> PackedScene:
 	match unit_type:

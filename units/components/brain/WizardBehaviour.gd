@@ -14,6 +14,7 @@ func initialize(brain:BrainComponent):
 
 func _wire_up(unit):
 	GameManager.I.on_day.connect(_on_day.bind(unit))
+	GameManager.I.on_night.connect(_on_night.bind(unit))
 
 func process(_delta, _brain:BrainComponent, _ctx):
 	return false
@@ -26,6 +27,9 @@ func _wizard_input_event(_camera: Node, event: InputEvent, _position: Vector3, _
 
 func _on_day(unit):
 	unit.visible = WizardBehaviour.is_wizard_active()
+
+func _on_night(_day, unit):
+	unit.visible = false
 
 static func open_buy_panel(wizard:Unit):
 	RitualPanel.I.slide_in()

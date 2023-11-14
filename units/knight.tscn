@@ -30,9 +30,6 @@ visible = true
 [node name="Cylinder" parent="Model/ModelHolder/RankComponent/rank_star" index="0"]
 visible = false
 
-[node name="AnimationTree" parent="Model/ModelHolder/EyeComponent" index="1"]
-active = true
-
 [node name="HealthComponent" parent="." index="3"]
 max_health = 4600.0
 
