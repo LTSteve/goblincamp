@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="ObservableResource" load_steps=2 format=3 uid="uid://62e11cmrkcqr"]
+
+[ext_resource type="Script" path="res://util/observable/ObservableResource.gd" id="1_46b86"]
+
+[resource]
+resource_name = "has_made_purchase"
+script = ExtResource("1_46b86")
+default_value_ptr = [false]

@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="ObservableResource" load_steps=2 format=3 uid="uid://b1pkis5babvwj"]
 
-[ext_resource type="Script" path="res://util/ObservableResource.gd" id="1_3pyfh"]
+[ext_resource type="Script" path="res://util/observable/ObservableResource.gd" id="1_3pyfh"]
 
 [resource]
 resource_name = "enemies"

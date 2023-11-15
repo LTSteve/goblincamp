@@ -18,21 +18,20 @@ func _ready():
 	card_scene = DB.I.scenes.card_scene
 	I = self
 
-func try_open(todo_list:TodoList, day: int):
-	if day < first_modifier_night || ((day - first_modifier_night) % modifier_interval) != 0:
+static func try_open(todo_list:TodoList, day: int):
+	if !I || (day < I.first_modifier_night || ((day - I.first_modifier_night) % I.modifier_interval) != 0): 
 		todo_list.mark_step_done()
 		return
-	_card_resource = ModifierManager.get_next_enemy_card()
+	I._card_resource = ModifierManager.get_next_enemy_card()
 	
-	var new_card = card_scene.instantiate() as CardDisplay
-	new_card.card_resource = _card_resource
+	var new_card = I.card_scene.instantiate() as CardDisplay
+	new_card.card_resource = I._card_resource
 	new_card.show_next_rank = true
 	new_card.clickable = false
-	card_container.add_child(new_card)
+	I.card_container.add_child(new_card)
 	
-	visible = true
-	_todo_list = todo_list
-	
+	I.visible = true
+	I._todo_list = I.todo_list
 
 func close():
 	ModifierManager.apply_modifier(_card_resource)

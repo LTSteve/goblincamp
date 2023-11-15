@@ -1,8 +1,8 @@
 [gd_resource type="Resource" script_class="ObservableResource" load_steps=2 format=3 uid="uid://bq4aic53umc5k"]
 
-[ext_resource type="Script" path="res://util/ObservableResource.gd" id="1_d5keq"]
+[ext_resource type="Script" path="res://util/observable/ObservableResource.gd" id="1_o3ac3"]
 
 [resource]
 resource_name = "is_day"
-script = ExtResource("1_d5keq")
+script = ExtResource("1_o3ac3")
 default_value_ptr = [true]

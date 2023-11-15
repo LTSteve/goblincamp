@@ -8,12 +8,7 @@ class_name GameManager
 @export var linear_offset: float = 2
 @export var linear_scale: float = 2
 
-@export var navigation_region: NavigationRegion3D
-
 @export var flat_enemy_power_increase: int = 0
-
-@export var day_number: ObservableResource
-@export var is_day: ObservableResource
 
 var enemy_spawns = []
 
@@ -27,53 +22,28 @@ signal on_game_over()
 
 @export var enemy_power_limit: int = 40
 
-var _spawned_building:bool = false
-
 static var I: GameManager
 
+@export_group("Observables")
+@export var day_number: ObservableResource
+@export var is_day: ObservableResource
 @export var players_resource: ObservableResource
 @export var enemies_resource: ObservableResource
-@export var npcs_resource: ObservableResource
-@export var projectiles_resource: ObservableResource
 
 func _ready():
 	I = self
 	is_day.value_changed.connect(_on_day_changed)
 	players_resource.value_changed.connect(_on_players_changed)
-	enemies_resource.value_changed.connect(_on_enemies_changed)
 
 func _on_players_changed(players,_old_players):
 	if players.size() == 0:
 		game_over()
-
-func _on_enemies_changed(enemies,_old_enemies):
-	if enemies.size() == 0:
-		cycle_to_day()
-
-func cycle_to_day():
-	is_day.value = true
 
 func game_over():
 	Wait.timer(2, self, func():
 		if players_resource.value.size() == 0 && enemies_resource.value.size() != 0:
 			on_game_over.emit()
 	)
-
-func _on_next_day_button_pressed():
-	TodoList.new(
-	[func(todo_list:TodoList):
-		if _spawned_building:
-			navigation_region.bake_navigation_mesh(true)
-			todo_list.finish_step_after_signal(navigation_region.bake_finished)
-		else:
-			todo_list.mark_step_done()
-	,GoblinCardPanel.I.try_open.bind(day_number.value+1)
-	], true).on_done(_start_next_day)
-
-func _start_next_day():
-	day_number.value += 1
-	is_day.value = false
-	_spawned_building = false
 
 func _on_day_changed(is_d, _was_d):
 	if is_d: return
@@ -128,21 +98,3 @@ func _spawn_wave(day):
 	
 	for spawn in spawns:
 		on_spawn_enemy_group.emit(spawn)
-
-func _on_unit_spawner_spawn_building(_building_type:UnitSpawner.BuildingType):
-	_spawned_building = true
-
-func _on_stress_test_button_pressed():
-	for i in 100:
-		UnitSpawner.I.spawn_friendly(UnitSpawner.UnitType.Knight)
-	for i in 100:
-		UnitSpawner.I.spawn_friendly(UnitSpawner.UnitType.Witch)
-	for i in 100:
-		UnitSpawner.I.spawn_friendly(UnitSpawner.UnitType.Woodsman)
-	
-	_spawn_wave(20)
-	
-	_spawned_building = false
-	day_number.value += 1
-	if navigation_region.bake_finished.is_connected(_start_next_day):
-		navigation_region.bake_finished.disconnect(_start_next_day)

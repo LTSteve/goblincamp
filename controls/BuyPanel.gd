@@ -4,8 +4,6 @@ class_name BuyPanel
 
 static var I: BuyPanel
 
-signal purchase_made()
-
 @onready var container:Container = $"BuyPanel/MarginContainer/Offers/ScrollContainer/MarginContainer/FlowContainer"
 @onready var scroll_container: ScrollContainer = $"BuyPanel/MarginContainer/Offers/ScrollContainer"
 
@@ -21,11 +19,12 @@ signal purchase_made()
 @export var random_price_varience: float = 0.1
 @export var bulk_discount: float = 0.01
 
+@export_group("Observable")
 @export var is_day_resource: ObservableResource
 @export var day_number_resource: ObservableResource
-
 @export var players_resource: ObservableResource
 @export var buildings_resource: ObservableResource
+@export var has_made_purchase_resource: ObservableResource
 
 var _current_offers: Array[Offer] = []
 
@@ -121,7 +120,7 @@ func _create_offer_display():
 func _on_purchase_button_pressed(offer:Offer, offer_display:OfferDisplay):
 	if MoneyManager.I.try_spend(offer.price):
 		offer_display.disable()
-		purchase_made.emit()
+		has_made_purchase_resource.value = true
 		
 		for _i in offer.type_1_count:
 			UnitSpawner.I.spawn_friendly(offer.unit_type_1)
