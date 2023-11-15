@@ -1,6 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://byt5xpjdxieuo"]
+[gd_scene load_steps=7 format=3 uid="uid://byt5xpjdxieuo"]
 
 [ext_resource type="Script" path="res://buildings/building.gd" id="1_11aeh"]
+[ext_resource type="Resource" uid="uid://bweje1wvoj7fh" path="res://observables/buildings.tres" id="2_8ax0i"]
 [ext_resource type="PackedScene" uid="uid://b3gtkfcan4upj" path="res://models/buildings/tavern.glb" id="2_108ml"]
 [ext_resource type="Script" path="res://units/components/HeightComponent.gd" id="3_qjovx"]
 
@@ -15,6 +16,7 @@ transform = Transform3D(0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, 0, 0, 0)
 script = ExtResource("1_11aeh")
 building_type = 3
 project_sprite = NodePath("tavern/Sprite3D")
+buildings_resource = ExtResource("2_8ax0i")
 
 [node name="tavern" parent="." instance=ExtResource("2_108ml")]
 script = ExtResource("3_qjovx")

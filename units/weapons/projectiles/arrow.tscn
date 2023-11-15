@@ -1,8 +1,8 @@
 [gd_scene load_steps=9 format=3 uid="uid://bjeqt2c2f47xf"]
 
 [ext_resource type="Script" path="res://units/weapons/projectiles/Projectile.gd" id="1_pjudo"]
-[ext_resource type="PackedScene" uid="uid://dk3xglpa1ipe8" path="res://sfx/leave_behind_sfx.tscn" id="2_1l56g"]
 [ext_resource type="PackedScene" uid="uid://c5vxjgrcperkw" path="res://models/woodsman/woodsman_projectile.glb" id="2_c426c"]
+[ext_resource type="Resource" uid="uid://bdlowc7m431g" path="res://observables/projectiles.tres" id="3_acrwq"]
 [ext_resource type="AudioStream" uid="uid://b6lk6tkrmw184" path="res://sfx/zapsplat_foley_umbrella_collapsed_swipe_hit_person_003_82657.mp3" id="3_bq3nb"]
 [ext_resource type="Script" path="res://units/components/HeightComponent.gd" id="3_f0vfv"]
 [ext_resource type="Script" path="res://units/components/InverseHeightComponent.gd" id="3_usi7e"]
@@ -17,9 +17,9 @@ collision_mask = 0
 script = ExtResource("1_pjudo")
 hit_spot = NodePath("HeightComponent/woodsman_projectile/HitSpot")
 lifespan = 1.3
-leave_behind_sfx_scene = ExtResource("2_1l56g")
 sfx = Array[AudioStream]([ExtResource("3_bq3nb")])
 model = NodePath("HeightComponent/woodsman_projectile")
+projectiles_resource = ExtResource("3_acrwq")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(0.526768, 0, 0, 0, 0.526768, 0, 0, 0, 0.526768, 0, 0, 0)

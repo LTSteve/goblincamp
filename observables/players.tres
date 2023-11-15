@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="ObservableResource" load_steps=2 format=3 uid="uid://2ff00a5yi2ro"]
+
+[ext_resource type="Script" path="res://util/ObservableResource.gd" id="1_v86we"]
+
+[resource]
+resource_name = "players"
+script = ExtResource("1_v86we")
+default_value_ptr = [[]]

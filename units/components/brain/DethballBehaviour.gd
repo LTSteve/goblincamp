@@ -7,6 +7,9 @@ class_name DethballBehaviour
 @export var at_location_dist2: float = 0.75
 @export var force_re_target_time: float = 2
 
+@export var players_resource: ObservableResource
+@export var enemies_resource: ObservableResource
+
 class DethballCtx:
 	var weapon:ChannelingWeapon
 	var re_target_delay: float = 0
@@ -50,9 +53,9 @@ func assign_target(delta, brain:BrainComponent, ctx:DethballCtx):
 		return
 	
 	if had_no_target || brain.fleeing.size() > 0 || (randf() >= 0.1):
-		brain.target = Global.nearest_unit(Global.players if brain.unit.is_enemy else Global.enemies, brain.unit.global_position)
+		brain.target = Global.nearest_unit(players_resource.value if brain.unit.is_enemy else enemies_resource.value, brain.unit.global_position)
 	else:
-		brain.target = Global.furthest_unit(Global.players if brain.unit.is_enemy else Global.enemies, brain.target.global_position)
+		brain.target = Global.furthest_unit(players_resource.value if brain.unit.is_enemy else enemies_resource.value, brain.target.global_position)
 	
 	brain.on_lock_target.emit(brain.target)
 	

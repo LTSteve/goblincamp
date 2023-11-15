@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="ObservableResource" load_steps=2 format=3 uid="uid://bp1makqi1hcne"]
+
+[ext_resource type="Script" path="res://util/ObservableResource.gd" id="1_ej5y0"]
+
+[resource]
+resource_name = "npcs"
+script = ExtResource("1_ej5y0")
+default_value_ptr = [[]]

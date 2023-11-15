@@ -30,7 +30,7 @@ func _on_day(is_day, _was_day):
 	if is_day: return
 	if current_rank == 0: return
 	
-	var players = Global.players
+	var players = DB.I.observables.players.value
 	var num_to_sleep = max(floor((params.sleep_rate_per_rank * current_rank) * players.size()), 1)
 	var random_indexes = range(players.size())
 	

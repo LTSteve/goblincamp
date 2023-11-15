@@ -17,6 +17,9 @@ var callback: Callable
 
 @export var clean_up_delay: float = 1
 
+@export var players_resource: ObservableResource
+@export var enemies_resource: ObservableResource
+
 func _ready():
 	if lifespan == 0:
 		call_deferred("_effect_units")
@@ -54,6 +57,6 @@ func _effect_units():
 	
 	if !callback.is_valid(): return
 	
-	var units = Global.get_all_units_near_position((Global.enemies if enemies else ([] as Array[Unit])) + (Global.players if players else ([] as Array[Unit])), global_position, radius)
+	var units = Global.get_all_units_near_position((enemies_resource.value if enemies else ([] as Array[Unit])) + (players_resource.value if players else ([] as Array[Unit])), global_position, radius)
 	for unit in units:
 		callback.call(unit, self)

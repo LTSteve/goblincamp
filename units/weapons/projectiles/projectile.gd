@@ -16,22 +16,24 @@ var leave_behind_sfx_scene: PackedScene
 
 @onready var velocity_component: VelocityComponent = $"VelocityComponent"
 
+@export var projectiles_resource: ObservableResource
+
 signal destination_reached()
 
 var direction: Vector2
 var target: Unit
 
 var find_new_targets: bool = false
-var find_pool: Array[Unit]
+var find_pool: Array
 
 var _target_position: Vector3
 
 func _ready():
 	leave_behind_sfx_scene = DB.I.scenes.leave_behind_sfx_scene
-	Global.projectiles.append(self)
+	projectiles_resource.value += [self]
 
 func _on_tree_exiting():
-	Global.projectiles = Global.projectiles.filter(func(projectile): return projectile != self)
+	projectiles_resource.value = projectiles_resource.value.filter(func(projectile): return projectile != self)
 
 func do_move(delta: float):
 	lifespan -= delta

@@ -18,7 +18,7 @@ func _create_hit_override(_base_value:Weapon.Hit, current_value:Weapon.Hit):
 	var hit_point = current_value.hit_creation_data.hit_point
 	
 	var all_enemies = Global.get_all_units_near_position(
-		Global.enemies, 
+		DB.I.observables.enemies.value, 
 		Vector3(hit_point.x, 1, hit_point.z), 
 		params.ember_scan_radius
 		)

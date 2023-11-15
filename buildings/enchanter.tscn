@@ -1,8 +1,9 @@
-[gd_scene load_steps=11 format=3 uid="uid://c41e8jd2dpobk"]
+[gd_scene load_steps=12 format=3 uid="uid://c41e8jd2dpobk"]
 
 [ext_resource type="Script" path="res://buildings/building.gd" id="1_55b0b"]
 [ext_resource type="PackedScene" uid="uid://cvh4b4xoetdyu" path="res://models/buildings/enchanter.glb" id="1_v05e1"]
 [ext_resource type="Script" path="res://units/components/HeightComponent.gd" id="2_6ludl"]
+[ext_resource type="Resource" uid="uid://bweje1wvoj7fh" path="res://observables/buildings.tres" id="2_okha0"]
 
 [sub_resource type="Curve" id="Curve_81h6e"]
 _data = [Vector2(0, 0.0842105), 0.0, 0.0, 0, 0, Vector2(0.31003, 0.631579), 0.0, 0.0, 0, 0, Vector2(0.680851, 0.421053), 0.0, 0.0, 0, 0, Vector2(0.869301, 0.915789), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
@@ -51,6 +52,7 @@ transform = Transform3D(0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, 0, 0, 0)
 script = ExtResource("1_55b0b")
 building_type = 2
 project_sprite = NodePath("enchanter/Sprite3D")
+buildings_resource = ExtResource("2_okha0")
 
 [node name="enchanter" parent="." instance=ExtResource("1_v05e1")]
 script = ExtResource("2_6ludl")

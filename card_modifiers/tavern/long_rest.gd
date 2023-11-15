@@ -13,11 +13,11 @@ func _on_day(is_day, _was_day):
 	var number_to_heal = current_rank * params.number
 	var reloaded = false
 	
-	while number_to_heal > 0 && Global.players.size() != 0:
+	while number_to_heal > 0 && DB.I.observables.players.value != 0:
 		if hungry_players.size() == 0:
 			if reloaded: break
 			reloaded = true
-			hungry_players.append_array(Global.players)
+			hungry_players.append_array(DB.I.observables.players.value)
 			hungry_players.shuffle()
 		
 		var player = hungry_players.pop_back()

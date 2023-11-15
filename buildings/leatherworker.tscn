@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://bq8m8udsnmoau"]
+[gd_scene load_steps=8 format=3 uid="uid://bq8m8udsnmoau"]
 
 [ext_resource type="PackedScene" uid="uid://dnkem6mlvyast" path="res://models/buildings/leatherworker.glb" id="1_8lss5"]
 [ext_resource type="Script" path="res://buildings/building.gd" id="1_d12im"]
 [ext_resource type="Script" path="res://units/components/HeightComponent.gd" id="2_01jm3"]
+[ext_resource type="Resource" uid="uid://bweje1wvoj7fh" path="res://observables/buildings.tres" id="2_4g23p"]
 [ext_resource type="PackedScene" uid="uid://hyooxaspre1o" path="res://fx/fire.tscn" id="3_4jk3l"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_4kbs0"]
@@ -16,6 +17,7 @@ transform = Transform3D(0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, 0, 0, 0)
 script = ExtResource("1_d12im")
 building_type = 1
 project_sprite = NodePath("leatherworker/Sprite3D")
+buildings_resource = ExtResource("2_4g23p")
 
 [node name="leatherworker" parent="." instance=ExtResource("1_8lss5")]
 script = ExtResource("2_01jm3")

@@ -2,9 +2,9 @@
 
 [ext_resource type="Script" path="res://units/weapons/projectiles/Projectile.gd" id="1_yidec"]
 [ext_resource type="PackedScene" uid="uid://cdqrlwohxtwd3" path="res://models/witch/witch_projectile.glb" id="2_kouxg"]
-[ext_resource type="PackedScene" uid="uid://dk3xglpa1ipe8" path="res://sfx/leave_behind_sfx.tscn" id="2_p0hja"]
 [ext_resource type="Script" path="res://units/components/HeightComponent.gd" id="3_na574"]
 [ext_resource type="AudioStream" uid="uid://criihgvs5tnds" path="res://sfx/small_explosion.wav" id="3_wi4em"]
+[ext_resource type="Resource" uid="uid://bdlowc7m431g" path="res://observables/projectiles.tres" id="4_cscb6"]
 [ext_resource type="Script" path="res://units/components/InverseHeightComponent.gd" id="4_utgwq"]
 [ext_resource type="AudioStream" uid="uid://ieong68l022b" path="res://sfx/small_explosion2.wav" id="4_xs2wk"]
 [ext_resource type="Script" path="res://units/components/VelocityComponent.gd" id="5_vfmu3"]
@@ -54,10 +54,10 @@ hit_spot = NodePath("HeightComponent/witch_projectile/HitSpot")
 lifespan = 4.0
 free_on_hit = false
 keep_final_destination = true
-leave_behind_sfx_scene = ExtResource("2_p0hja")
 sfx = Array[AudioStream]([ExtResource("3_wi4em"), ExtResource("4_xs2wk")])
 model = NodePath("HeightComponent/witch_projectile")
 particles = NodePath("HeightComponent/GPUParticles3D")
+projectiles_resource = ExtResource("4_cscb6")
 
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="."]
 transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, 0, 0)

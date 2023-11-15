@@ -1,13 +1,17 @@
-[gd_scene load_steps=3 format=3 uid="uid://koy1ibb7oip4"]
+[gd_scene load_steps=5 format=3 uid="uid://koy1ibb7oip4"]
 
 [ext_resource type="PackedScene" uid="uid://bpmqrnq0rvyj4" path="res://units/weapons/weapon.tscn" id="1_vipc8"]
 [ext_resource type="Script" path="res://units/components/weapon/RangedWeapon.gd" id="2_l4ted"]
+[ext_resource type="Resource" uid="uid://2ff00a5yi2ro" path="res://observables/players.tres" id="3_m6bqx"]
+[ext_resource type="Resource" uid="uid://b1pkis5babvwj" path="res://observables/enemies.tres" id="4_v5dga"]
 
 [node name="RangedWeapon" node_paths=PackedStringArray("projectile_spawn_point") instance=ExtResource("1_vipc8")]
 script = ExtResource("2_l4ted")
 projectile_scene = null
 projectile_spawn_point = NodePath("projectile_spawn")
 dumb_projectile = false
+players_resource = ExtResource("3_m6bqx")
+enemies_resource = ExtResource("4_v5dga")
 
 [node name="AnimationTreeExpressionExtension" parent="." index="1"]
 active = true

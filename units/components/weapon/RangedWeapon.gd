@@ -7,6 +7,9 @@ class_name RangedWeapon
 
 @export var dumb_projectile: bool = false
 
+@export var players_resource: ObservableResource
+@export var enemies_resource: ObservableResource
+
 var _current_target:Unit
 var _target_collision_layer_hack
 var _current_target_enemy: bool
@@ -32,7 +35,7 @@ func _on_spawn_projectile():
 	
 	if !dumb_projectile:
 		projectile.find_new_targets = true
-		projectile.find_pool = Global.enemies if _current_target_enemy else Global.players
+		projectile.find_pool = enemies_resource.value if _current_target_enemy else players_resource.value
 		if is_instance_valid(_current_target):
 			projectile.target = _current_target
 	

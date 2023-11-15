@@ -22,6 +22,9 @@ var cardinal_claims: Array[bool] = [false, false, false, false, false, false, fa
 
 @export var is_npc: bool = false
 
+@export var unit_list_resource: ObservableResource
+@export var is_day_resource: ObservableResource
+
 signal on_recieved_hit(weapon_hit:Weapon.Hit)
 signal on_state_changed(state_states: Array[State])
 signal on_get_kill(value: float)
@@ -38,14 +41,9 @@ var _set_movement_target_task: PrioritizedTaskManager.PrioritizedTask
 func _ready():
 	_regular_collision = collision_layer
 	
-	if is_npc:
-		Global.npcs.append(self)
-		return
-	else:
-		if is_enemy: Global.enemies.append(self)
-		else: Global.players.append(self)
+	unit_list_resource.value += [self]
 	
-	DB.I.observables.is_day.value_changed.connect(_on_day)
+	is_day_resource.value_changed.connect(_on_day)
 	
 	call_deferred("_apply_unit_modifiers")
 
@@ -61,17 +59,7 @@ func set_movement_target(movement_target: Vector3, speed_scale: float = 1.0):
 			, self)
 
 func _on_died():
-	if is_npc:
-		Global.npcs = Global.npcs.filter(func(npc): return npc != self)
-	else:
-		if is_enemy:
-			Global.enemies = Global.enemies.filter(func(enemy): return enemy != self)
-			if Global.enemies.size() == 0:
-				GameManager.I.cycle_to_day()
-		else: 
-			Global.players = Global.players.filter(func(player): return player != self)
-			if Global.players.size() == 0:
-				GameManager.I.game_over()
+	unit_list_resource.value = unit_list_resource.value.filter(func(unit): return unit != self)
 	
 	if is_instance_valid(_last_hit_by) && is_instance_valid(_last_hit_by.unit):
 		_last_hit_by.unit.on_get_kill.emit(kill_value)

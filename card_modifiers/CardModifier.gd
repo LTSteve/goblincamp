@@ -12,7 +12,7 @@ func _ready():
 	_initialize(params)
 
 func rank_up():
-	var active_units = (Global.enemies if card_resource.include_enemies else []) + (Global.players if card_resource.include_players else [])
+	var active_units = (DB.I.observables.enemies.value if card_resource.include_enemies else []) + (DB.I.observables.players.value if card_resource.include_players else [])
 	if current_rank > 0:
 		if card_resource.apply_to.size() == 0:
 			_un_apply(null,null)
@@ -25,7 +25,7 @@ func rank_up():
 		apply_to_unit(unit)
 
 func derank():
-	var active_units = (Global.enemies if card_resource.include_enemies else []) + (Global.players if card_resource.include_players else [])
+	var active_units = (DB.I.observables.enemies.value if card_resource.include_enemies else []) + (DB.I.observables.players.value if card_resource.include_players else [])
 	if card_resource.apply_to.size() == 0:
 		_un_apply(null,null)
 	else: for unit in active_units:

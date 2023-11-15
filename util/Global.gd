@@ -2,15 +2,7 @@ class_name Global
 
 static var players_minus_enemies: int
 
-static var enemies: Array[Unit] = []
-static var players: Array[Unit] = []
-static var projectiles: Array[Projectile] = []
-static var npcs: Array[Unit] = []
-static var ears: Array[GoblinEar] = []
-
-static var buildings: Array[Building] = []
-
-static func claim_nearest_unclaimed_ear(position):
+static func claim_nearest_unclaimed_ear(position, ears):
 	if(!ears || ears.size() == 0):
 		return null
 	
@@ -26,7 +18,7 @@ static func claim_nearest_unclaimed_ear(position):
 	if nearest: nearest.claimed = true
 	return nearest
 
-static func nearest_unit(units: Array[Unit], position):
+static func nearest_unit(units: Array, position):
 	if(!units || units.size() == 0):
 		return null
 	
@@ -41,7 +33,7 @@ static func nearest_unit(units: Array[Unit], position):
 	
 	return nearest
 
-static func furthest_unit(units: Array[Unit], position):
+static func furthest_unit(units: Array, position):
 	if(!units || units.size() == 0):
 		return null
 	
@@ -57,11 +49,11 @@ static func furthest_unit(units: Array[Unit], position):
 	return furthest
 
 
-static func nearest_units(units:Array[Unit], position, max_count, max_dist2) -> Array[Unit]:
+static func nearest_units(units:Array, position, max_count, max_dist2) -> Array:
 	if(!units || units.size() == 0):
 		return []
 	
-	var nearest_us: Array[Unit] = []
+	var nearest_us: Array = []
 	var nearest_len2s = []
 	var furthest_nearest_len_2 = 0
 	
@@ -99,7 +91,7 @@ static func nearest_units(units:Array[Unit], position, max_count, max_dist2) -> 
 	
 	return nearest_us
 
-static func lowest_claims(units:Array[Unit], already_claimed: Unit = null) -> Array[Unit]:
+static func lowest_claims(units:Array, already_claimed: Unit = null) -> Array:
 	if(!units || units.size() == 0):
 		return []
 	
@@ -107,7 +99,7 @@ static func lowest_claims(units:Array[Unit], already_claimed: Unit = null) -> Ar
 		already_claimed = null
 	
 	var lowest = 10000
-	var lowest_units: Array[Unit] = []
+	var lowest_units: Array = []
 	
 	for unit in units:
 		var claims = get_claims_on_unit(unit)
@@ -128,13 +120,13 @@ static func get_claims_on_unit(unit:Unit):
 			sum += 1
 	return sum
 
-static func get_all_units_near_position(units: Array[Unit], position:Vector3, radius: float) -> Array[Unit]:
+static func get_all_units_near_position(units: Array, position:Vector3, radius: float) -> Array:
 	if(!units || units.size() == 0):
 		return []
 	
 	var r2 = radius * radius
 	
-	var all: Array[Unit] = []
+	var all: Array = []
 	for unit in units:
 		if((unit.global_position - position).length_squared() <= r2):
 			all.append(unit)

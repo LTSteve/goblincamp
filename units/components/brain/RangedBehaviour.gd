@@ -6,6 +6,9 @@ class_name RangedBehaviour
 @export var flee_distance:float = 8
 @export var flee_speed_scale: float = 0.75
 
+@export var players_resource: ObservableResource
+@export var enemies_resource: ObservableResource
+
 func initialize(brain:BrainComponent):
 	brain.weapons += _bind_to_all_weapons(brain,typeof(RangedWeapon))
 	return brain.weapons[0] if brain.weapons.size() else null
@@ -13,7 +16,7 @@ func initialize(brain:BrainComponent):
 func assign_target(_delta, brain:BrainComponent, _weapon):
 	var had_no_target = !brain.target
 	
-	brain.target = Global.nearest_unit(Global.enemies, brain.unit.global_position)
+	brain.target = Global.nearest_unit(players_resource.value if brain.unit.is_enemy else enemies_resource.value, brain.unit.global_position)
 	
 	brain.on_lock_target.emit(brain.target)
 	

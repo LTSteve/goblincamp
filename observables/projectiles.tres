@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="ObservableResource" load_steps=2 format=3 uid="uid://bdlowc7m431g"]
+
+[ext_resource type="Script" path="res://util/ObservableResource.gd" id="1_avb38"]
+
+[resource]
+resource_name = "projectiles"
+script = ExtResource("1_avb38")
+default_value_ptr = [[]]

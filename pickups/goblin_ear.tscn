@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://c3n7df1giijoi"]
+[gd_scene load_steps=7 format=3 uid="uid://c3n7df1giijoi"]
 
 [ext_resource type="Script" path="res://pickups/GoblinEar.gd" id="1_xk7jo"]
 [ext_resource type="PackedScene" uid="uid://cv6yvjh1p5113" path="res://models/goblin_ear.glb" id="2_1070h"]
+[ext_resource type="Resource" uid="uid://b7j7pydhgi04a" path="res://observables/ears.tres" id="2_n80si"]
 [ext_resource type="Script" path="res://units/components/HeightComponent.gd" id="3_pfjst"]
 [ext_resource type="Script" path="res://units/components/RotationComponent.gd" id="4_fk84e"]
 
@@ -13,6 +14,7 @@ collision_layer = 0
 monitoring = false
 monitorable = false
 script = ExtResource("1_xk7jo")
+ears_resource = ExtResource("2_n80si")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("SphereShape3D_hbbr7")

@@ -1,6 +1,8 @@
-[gd_resource type="Resource" script_class="MeleeBehaviour" load_steps=2 format=3 uid="uid://bx08od3oiaac2"]
+[gd_resource type="Resource" script_class="MeleeBehaviour" load_steps=4 format=3 uid="uid://bx08od3oiaac2"]
 
+[ext_resource type="Resource" uid="uid://b1pkis5babvwj" path="res://observables/enemies.tres" id="1_5jbfj"]
 [ext_resource type="Script" path="res://units/components/brain/MeleeBehaviour.gd" id="1_7hnix"]
+[ext_resource type="Resource" uid="uid://2ff00a5yi2ro" path="res://observables/players.tres" id="2_gnvl4"]
 
 [resource]
 script = ExtResource("1_7hnix")
@@ -11,3 +13,5 @@ just_a_few_units = 3
 targeting_cooldown = 0.3
 thinking_time = 0.4
 tactical = false
+players_resource = ExtResource("2_gnvl4")
+enemies_resource = ExtResource("1_5jbfj")

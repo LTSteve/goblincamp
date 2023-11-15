@@ -6,12 +6,14 @@ class_name Building
 
 @export var project_sprite: Sprite3D
 
+@export var buildings_resource: ObservableResource
+
 var card_resource: CardResource
 var all_cards: Array[CardResource]
 var _held_modifier: CardModifier
 
 func _ready():
-	Global.buildings.append(self)
+	buildings_resource.value += [self]
 
 func _on_click_area_input_event(_camera, event, _position, _normal, _shape_idx):
 	if event is InputEventMouseButton:

@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="ObservableResource" load_steps=2 format=3 uid="uid://bweje1wvoj7fh"]
+
+[ext_resource type="Script" path="res://util/ObservableResource.gd" id="1_uxo8p"]
+
+[resource]
+resource_name = "buildings"
+script = ExtResource("1_uxo8p")
+default_value_ptr = [[]]

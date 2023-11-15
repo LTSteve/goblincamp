@@ -1,6 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://b3ypqcoyg2qs"]
+[gd_scene load_steps=7 format=3 uid="uid://b3ypqcoyg2qs"]
 
 [ext_resource type="PackedScene" uid="uid://brhc1aba5usew" path="res://units/unit.tscn" id="1_tog43"]
+[ext_resource type="Resource" uid="uid://b1pkis5babvwj" path="res://observables/enemies.tres" id="2_ie27n"]
 [ext_resource type="PackedScene" uid="uid://cw68w0g0xv1j6" path="res://models/goblin/goblin.glb" id="2_k8e14"]
 [ext_resource type="PackedScene" uid="uid://dnedsjutd8p51" path="res://units/weapons/melee/claw.tscn" id="2_t4l2k"]
 [ext_resource type="Resource" uid="uid://du4glkse3tqoh" path="res://units/components/brain/repulse_behaviour.tres" id="4_8th67"]
@@ -10,6 +11,7 @@
 collision_layer = 2
 ranged_targeting_radius = 1.65
 is_enemy = true
+unit_list_resource = ExtResource("2_ie27n")
 
 [node name="DamageNumberComponent" parent="Model" index="0"]
 is_ally = false
@@ -24,9 +26,6 @@ transform = Transform3D(1, 0, -7.10543e-15, 0, 1, 0, 7.10543e-15, 0, 1, 0, 0, 0)
 
 [node name="EyeComponent" parent="Model/ModelHolder" index="2"]
 transform = Transform3D(0.9, 0, 1.27898e-14, 0, 0.9, 0, -1.27898e-14, 0, 0.9, 0.55109, 2.37117, 2.40888e-08)
-
-[node name="Eyes" parent="Model/ModelHolder/EyeComponent" index="0"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 
 [node name="HealthComponent" parent="." index="3"]
 max_health = 1980.0

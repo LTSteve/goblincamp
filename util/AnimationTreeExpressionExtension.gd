@@ -18,7 +18,7 @@ var _triggers:Dictionary = {}
 var _rewinding = false
 
 func _process(_delta):
-	var time_scale = GameManager.time_scale
+	var time_scale = ThrottledProcessManager.time_scale
 	set("parameters/Attack/attack/TimeScale 2/scale", 1.0 / time_scale)
 	set("parameters/Attack/attack_2/TimeScale 2/scale", 1.0 / time_scale)
 

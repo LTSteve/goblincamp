@@ -24,6 +24,9 @@ signal purchase_made()
 @export var is_day_resource: ObservableResource
 @export var day_number_resource: ObservableResource
 
+@export var players_resource: ObservableResource
+@export var buildings_resource: ObservableResource
+
 var _current_offers: Array[Offer] = []
 
 func _ready():
@@ -46,7 +49,7 @@ func _on_day_changed(is_day, _was_day):
 	_setup_offers()
 
 func _setup_offers():
-	_create_offers(5, day_number_resource.value, Global.players.size(), Global.buildings.size(), MoneyManager.I.get_resource(MoneyManager.MoneyType.Gold), MoneyManager.I.get_resource(MoneyManager.MoneyType.Ear))
+	_create_offers(5, day_number_resource.value, players_resource.value.size(), buildings_resource.value.size(), MoneyManager.I.get_resource(MoneyManager.MoneyType.Gold), MoneyManager.I.get_resource(MoneyManager.MoneyType.Ear))
 	_create_offer_display()
 
 func _create_offers(number_to_offer:int, day: int, player_count: int, building_count: int, player_money: int, player_ears: int):

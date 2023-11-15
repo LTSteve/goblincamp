@@ -10,6 +10,9 @@ class_name MeleeBehaviour
 @export var thinking_time: float = 0.75
 @export var tactical: bool = true
 
+@export var players_resource: ObservableResource
+@export var enemies_resource: ObservableResource
+
 class MeleeBehaviourContext:
 	var weapon:Weapon
 	var claim_cardinal
@@ -40,7 +43,7 @@ func assign_target(delta, brain:BrainComponent, ctx):
 		brain.target = null
 	var old_target = brain.target if !had_no_target else null
 	
-	var all_targets = Global.players if brain.unit.is_enemy else Global.enemies
+	var all_targets = players_resource.value if brain.unit.is_enemy else enemies_resource.value
 	var available_targets = Global.nearest_units(all_targets, brain.unit.global_position, nearby_unit_consideration, nearby_units_dist2_range)
 	var nearest_unit = Global.nearest_unit(available_targets, brain.unit.global_position)
 	

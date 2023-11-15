@@ -1,6 +1,10 @@
-[gd_scene load_steps=2 format=3 uid="uid://cg50tmm5h57es"]
+[gd_scene load_steps=4 format=3 uid="uid://cg50tmm5h57es"]
 
 [ext_resource type="Script" path="res://fx/AreaOfEffect.gd" id="1_ee54e"]
+[ext_resource type="Resource" uid="uid://2ff00a5yi2ro" path="res://observables/players.tres" id="2_vekyi"]
+[ext_resource type="Resource" uid="uid://b1pkis5babvwj" path="res://observables/enemies.tres" id="3_1bvi3"]
 
 [node name="generic_aoe" type="Node3D"]
 script = ExtResource("1_ee54e")
+players_resource = ExtResource("2_vekyi")
+enemies_resource = ExtResource("3_1bvi3")

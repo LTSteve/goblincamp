@@ -1,6 +1,7 @@
-[gd_scene load_steps=50 format=3 uid="uid://brhc1aba5usew"]
+[gd_scene load_steps=51 format=3 uid="uid://brhc1aba5usew"]
 
 [ext_resource type="Script" path="res://units/Unit.gd" id="1_6slac"]
+[ext_resource type="Resource" uid="uid://bq4aic53umc5k" path="res://observables/is_day.tres" id="2_xtir1"]
 [ext_resource type="Script" path="res://units/components/HeightComponent.gd" id="3_mhfwn"]
 [ext_resource type="Resource" uid="uid://cdlnp60gmumhc" path="res://controls/settings_types/Visuals/7damage_numbers.tres" id="4_beg1h"]
 [ext_resource type="PackedScene" uid="uid://bfg28nholuf7e" path="res://units/components/healthbar_component.tscn" id="4_h7kpd"]
@@ -235,6 +236,7 @@ _data = {
 [node name="Unit" type="Area3D"]
 collision_mask = 3
 script = ExtResource("1_6slac")
+is_day_resource = ExtResource("2_xtir1")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)

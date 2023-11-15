@@ -12,6 +12,8 @@ const A: float = 2.828
 @onready var rotation_component: RotationComponent = $"RotationComponent"
 @onready var landing_point: Node3D = $"GoblinEarLandingPoint"
 
+@export var ears_resource: ObservableResource
+
 var claimed: bool = false
 
 var _arc_progress: float = 0.0
@@ -37,7 +39,7 @@ func _on_area_entered(area):
 	if !(area is Unit): return
 	
 	MoneyManager.I.add_money(1, MoneyManager.MoneyType.Ear)
-	Global.ears = Global.ears.filter(func(ear): return ear != self)
+	ears_resource.value = ears_resource.value.filter(func(ear): return ear != self)
 	queue_free()
 
 func start_spawning(pos:Vector3):
@@ -55,4 +57,4 @@ func start_spawning(pos:Vector3):
 	rotation_component.set_rotation(Math.random_rotation())
 	rotation_component.apply_rotation(model)
 	
-	Global.ears.append(self)
+	ears_resource.value += [self]

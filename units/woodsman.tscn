@@ -1,8 +1,9 @@
-[gd_scene load_steps=10 format=3 uid="uid://dd122wrl6vlgu"]
+[gd_scene load_steps=11 format=3 uid="uid://dd122wrl6vlgu"]
 
 [ext_resource type="PackedScene" uid="uid://brhc1aba5usew" path="res://units/unit.tscn" id="1_e4j34"]
 [ext_resource type="PackedScene" uid="uid://7ompo5s8qd6p" path="res://models/woodsman/woodsman.glb" id="2_72bjw"]
 [ext_resource type="Script" path="res://units/components/BowAndDagger.gd" id="2_gqrex"]
+[ext_resource type="Resource" uid="uid://2ff00a5yi2ro" path="res://observables/players.tres" id="2_pncfk"]
 [ext_resource type="PackedScene" uid="uid://dt1tfbrupq5wj" path="res://units/weapons/ranged/bow.tscn" id="3_q8yd6"]
 [ext_resource type="PackedScene" uid="uid://reg5i7hshy2t" path="res://units/weapons/melee/dagger.tscn" id="4_bt2yp"]
 [ext_resource type="Resource" uid="uid://du4glkse3tqoh" path="res://units/components/brain/repulse_behaviour.tres" id="6_drbmq"]
@@ -11,6 +12,7 @@
 [ext_resource type="Resource" uid="uid://6a2euiflosoa" path="res://units/components/brain/wander_behaviour.tres" id="7_cpbkr"]
 
 [node name="Woodsman" groups=["Woodsman"] instance=ExtResource("1_e4j34")]
+unit_list_resource = ExtResource("2_pncfk")
 
 [node name="BowAndDagger" type="Node3D" parent="Model/WeaponHolder" index="0" node_paths=PackedStringArray("bow", "daggers")]
 script = ExtResource("2_gqrex")
@@ -49,12 +51,6 @@ transform = Transform3D(0.707106, -0.612372, 0.353553, 0.707106, 0.612372, -0.35
 
 [node name="EyeComponent" parent="Model/ModelHolder" index="2"]
 transform = Transform3D(0.5, 0, 8.88178e-15, 0, 0.5, 0, -8.88178e-15, 0, 0.5, 0.831685, 2.10456, 3.6354e-08)
-
-[node name="UpperBrow" parent="Model/ModelHolder/EyeComponent/Eyes/RightEye" index="0"]
-transform = Transform3D(0, 0, 0, 0, 0, 0, 0, 0, 0, 0.0234672, 0.265347, -2.98023e-08)
-
-[node name="UpperBrow" parent="Model/ModelHolder/EyeComponent/Eyes/LeftEye" index="0"]
-transform = Transform3D(0, 0, 0, 0, 0, 0, 0, 0, 0, 0.0234672, 0.265347, -2.98023e-08)
 
 [node name="HealthComponent" parent="." index="3"]
 max_health = 2740.0

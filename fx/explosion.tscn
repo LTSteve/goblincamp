@@ -1,9 +1,11 @@
-[gd_scene load_steps=19 format=3 uid="uid://gl44aty0wmuc"]
+[gd_scene load_steps=21 format=3 uid="uid://gl44aty0wmuc"]
 
 [ext_resource type="Script" path="res://fx/AreaOfEffect.gd" id="1_gxu7o"]
 [ext_resource type="Script" path="res://units/components/HeightComponent.gd" id="2_tyi5b"]
 [ext_resource type="AudioStream" uid="uid://qrr4ypym75ld" path="res://sfx/explosion.wav" id="3_7i06x"]
 [ext_resource type="AudioStream" uid="uid://p3r2i8gwj4k6" path="res://sfx/explosion2.wav" id="3_637yt"]
+[ext_resource type="Resource" uid="uid://2ff00a5yi2ro" path="res://observables/players.tres" id="4_7ai70"]
+[ext_resource type="Resource" uid="uid://b1pkis5babvwj" path="res://observables/enemies.tres" id="5_hkejm"]
 
 [sub_resource type="Gradient" id="Gradient_2xkl5"]
 offsets = PackedFloat32Array(0, 0.00967742, 0.122581, 0.470968, 0.996774, 1)
@@ -84,6 +86,8 @@ enemies = true
 radius = 5.5
 particles = [NodePath("ParticleSpawnPoint/GPUParticles3D"), NodePath("ParticleSpawnPoint/GPUParticles3D2")]
 hit_sfx = Array[AudioStream]([ExtResource("3_637yt"), ExtResource("3_7i06x")])
+players_resource = ExtResource("4_7ai70")
+enemies_resource = ExtResource("5_hkejm")
 
 [node name="ParticleSpawnPoint" type="Node3D" parent="."]
 script = ExtResource("2_tyi5b")

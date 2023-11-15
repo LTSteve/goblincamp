@@ -1,6 +1,7 @@
-[gd_scene load_steps=8 format=3 uid="uid://c3tvd2bcgaujk"]
+[gd_scene load_steps=9 format=3 uid="uid://c3tvd2bcgaujk"]
 
 [ext_resource type="PackedScene" uid="uid://brhc1aba5usew" path="res://units/unit.tscn" id="1_7ffh0"]
+[ext_resource type="Resource" uid="uid://b1pkis5babvwj" path="res://observables/enemies.tres" id="2_no0wg"]
 [ext_resource type="PackedScene" uid="uid://citvivc546i87" path="res://models/imp/imp.glb" id="2_tftnr"]
 [ext_resource type="PackedScene" uid="uid://dvjrella2vjj4" path="res://units/weapons/melee/imp_claw.tscn" id="2_ud3bp"]
 [ext_resource type="Resource" uid="uid://du4glkse3tqoh" path="res://units/components/brain/repulse_behaviour.tres" id="4_gxj6e"]
@@ -15,6 +16,7 @@ collision_layer = 2
 ranged_targeting_radius = 1.5
 is_enemy = true
 kill_value = 0.6
+unit_list_resource = ExtResource("2_no0wg")
 
 [node name="CollisionShape3D" parent="." index="0"]
 shape = SubResource("CapsuleShape3D_1jodv")
@@ -33,9 +35,6 @@ transform = Transform3D(1, 0, -7.10543e-15, 0, 1, 0, 7.10543e-15, 0, 1, 0, 0, 0)
 
 [node name="EyeComponent" parent="Model/ModelHolder" index="2"]
 transform = Transform3D(0.5, 0, 7.10543e-15, 0, 0.5, 0, -7.10543e-15, 0, 0.5, 0.374191, 1.1252, 1.63563e-08)
-
-[node name="Eyes" parent="Model/ModelHolder/EyeComponent" index="0"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 
 [node name="HealthComponent" parent="." index="3" groups=["Imp"]]
 max_health = 1040.0

@@ -19,3 +19,5 @@ var value:
 
 func initialize():
 	_value = default_value_ptr[0]
+	for connection in value_changed.get_connections():
+		value_changed.disconnect(connection.callable)

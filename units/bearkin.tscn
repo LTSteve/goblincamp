@@ -1,6 +1,7 @@
-[gd_scene load_steps=9 format=3 uid="uid://b6u655unubog0"]
+[gd_scene load_steps=10 format=3 uid="uid://b6u655unubog0"]
 
 [ext_resource type="PackedScene" uid="uid://brhc1aba5usew" path="res://units/unit.tscn" id="1_quqov"]
+[ext_resource type="Resource" uid="uid://2ff00a5yi2ro" path="res://observables/players.tres" id="2_6dvn7"]
 [ext_resource type="PackedScene" uid="uid://ja83ratbnxbs" path="res://models/bearkin/bearkin.glb" id="2_ahweh"]
 [ext_resource type="PackedScene" uid="uid://b3hknvfjysar6" path="res://units/weapons/melee/bear_claw.tscn" id="2_cene2"]
 [ext_resource type="Resource" uid="uid://du4glkse3tqoh" path="res://units/components/brain/repulse_behaviour.tres" id="4_y7ncd"]
@@ -14,6 +15,7 @@ height = 2.75
 
 [node name="Bearkin" groups=["Bearkin"] instance=ExtResource("1_quqov")]
 stun_scale = 0.85
+unit_list_resource = ExtResource("2_6dvn7")
 
 [node name="CollisionShape3D" parent="." index="0"]
 shape = SubResource("CapsuleShape3D_4qwu5")
@@ -64,9 +66,6 @@ transform = Transform3D(1.625, 0, 0, 0, 1.625, 0, 0, 0, 1.625, 0, 0, 0)
 
 [node name="EyeComponent" parent="Model/ModelHolder" index="2"]
 transform = Transform3D(1.3, 0, 0, 0, 1.3, 0, 0, 0, 1.3, 1.30971, 3.53528, 5.72494e-08)
-
-[node name="Eyes" parent="Model/ModelHolder/EyeComponent" index="0"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 
 [node name="HealthComponent" parent="." index="3"]
 max_health = 4600.0
