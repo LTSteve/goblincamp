@@ -27,7 +27,7 @@ func initialize(brain:BrainComponent):
 func assign_target(delta, _brain:BrainComponent, wander_data:WanderData):
 	wander_data.time_to_next_wander -= delta
 	if wander_data.time_to_next_wander <= 0:
-		var wander_range = day_number_resource.value * 0.5 + 5
+		var wander_range = day_number_resource.value * 4 + 20
 		wander_range = clampf(wander_range,min_wander_range, max_wander_range)
 		wander_data.target = wander_center + Vector3.RIGHT.rotated(Vector3.UP, randf_range(0,_almost_360_r)) * randf_range(0, wander_range)
 		wander_data.time_to_next_wander = randf_range(min_wander_wait, max_wander_wait)

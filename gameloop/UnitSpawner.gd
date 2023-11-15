@@ -2,8 +2,6 @@ extends Node
 
 class_name UnitSpawner
 
-signal on_spawn_building(building_type:BuildingType)
-
 signal on_spawn_unit(unit:Unit)
 
 enum UnitType {Knight=0, Witch, Woodsman, Bearkin, Goblin, Imp, Ogre, GoblinPriest}
@@ -87,7 +85,6 @@ func spawn_building(building_type: BuildingType, selected_card: CardResource, al
 				buildings_folder.add_child(instance)
 				instance.global_position = check_position
 				instance.rotate_y(Math.random_rotation())
-				on_spawn_building.emit(building_type)
 				return
 
 func _linear_distance_to_rotation(distance:float, radius: float):

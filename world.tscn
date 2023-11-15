@@ -1814,7 +1814,6 @@ layers = 3
 
 [connection signal="child_entered_tree" from="Ground/NavigationRegion3D/Obsticles" to="StatTracker" method="_on_obsticles_child_entered_tree"]
 [connection signal="child_entered_tree" from="Units" to="StatTracker" method="_on_units_child_entered_tree"]
-[connection signal="on_spawn_building" from="UnitSpawner" to="GameManager" method="_on_unit_spawner_spawn_building"]
 [connection signal="on_game_over" from="GameManager" to="CanvasLayer/Theme/PopupHolder/GameOverPanel" method="_on_game_over"]
 [connection signal="on_spawn_enemy" from="GameManager" to="UnitSpawner" method="spawn_hostile"]
 [connection signal="on_spawn_enemy_group" from="GameManager" to="UnitSpawner" method="spawn_enemy_group"]

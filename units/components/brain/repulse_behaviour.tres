@@ -4,4 +4,6 @@
 
 [resource]
 script = ExtResource("1_vf3ce")
-push_force = 8.0
+push_force = 3.25
+flee_dist = 8.0
+repulse_dist = 2.5

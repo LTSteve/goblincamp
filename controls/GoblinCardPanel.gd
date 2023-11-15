@@ -31,7 +31,7 @@ static func try_open(todo_list:TodoList, day: int):
 	I.card_container.add_child(new_card)
 	
 	I.visible = true
-	I._todo_list = I.todo_list
+	I._todo_list = todo_list
 
 func close():
 	ModifierManager.apply_modifier(_card_resource)
