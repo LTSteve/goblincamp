@@ -4,22 +4,17 @@ class_name MoneyManager
 
 static var I:MoneyManager
 
-signal on_change(new_value:int,old_value:int,type:MoneyType)
-
 enum MoneyType {Gold=0,Ear,Hide,Iron,Dust}
 
 @export var debug: bool
 
-@export var resources: Array[int] = [200,0,0,0,0]
-@export var labels: Array[Label] = []
+@export var resource_counts: Array[ObservableResource] = []
 
 func _ready():
 	I = self
-	for i in labels.size():
-		labels[i].text = str(resources[i])
 
 func try_spend(amount: int, type: MoneyType = MoneyType.Gold) -> bool:
-	var current_money = resources[type]
+	var current_money = resource_counts[type].value
 	if (current_money >= amount) || debug:
 		_change_amount(-amount, type)
 		return true
@@ -30,7 +25,7 @@ func try_spend_multiple(amounts: Array[int], types: Array[MoneyType]) -> bool:
 	for i in types.size():
 		var type = types[i]
 		var amount = amounts[i]
-		if resources[type] < amount:
+		if resource_counts[type].value < amount:
 			all_passed = false
 			break
 	
@@ -46,11 +41,7 @@ func add_money(amount: int, type: MoneyType = MoneyType.Gold):
 	_change_amount(amount, type)
 
 func _change_amount(amount: int, type: MoneyType):
-	var old_value = resources[type]
-	resources[type] += amount
-	var new_value = resources[type]
-	labels[type].text = str(new_value)
-	on_change.emit(old_value, new_value, type)
+	resource_counts[type].value += amount
 
 func get_resource(type: MoneyType):
-	return resources[type]
+	return resource_counts[type].value

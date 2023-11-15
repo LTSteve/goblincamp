@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="ObservableResource" load_steps=2 format=3 uid="uid://bdvhx2k14fsic"]
+
+[ext_resource type="Script" path="res://util/observable/ObservableResource.gd" id="1_tg2xk"]
+
+[resource]
+resource_name = "dust_count"
+script = ExtResource("1_tg2xk")
+default_value_ptr = [0]

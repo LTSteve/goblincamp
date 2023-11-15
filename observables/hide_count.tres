@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="ObservableResource" load_steps=2 format=3 uid="uid://cyuwv3davo8mt"]
+
+[ext_resource type="Script" path="res://util/observable/ObservableResource.gd" id="1_bs3kb"]
+
+[resource]
+resource_name = "ingot_count"
+script = ExtResource("1_bs3kb")
+default_value_ptr = [0]
