@@ -7,6 +7,8 @@ static var I: DayNightManager
 @export var environment:Environment
 @export var light_sources: Array[DirectionalLight3D]
 
+@export var is_day_resource: ObservableResource
+
 var _dayness:float = 1.0
 var _target_dayness: float = 1.0
 
@@ -15,16 +17,15 @@ var _light_source_half: Array[float]
 
 func _ready():
 	I = self
+	
 	for light_source in light_sources:
 		_light_source_full.append(light_source.light_energy)
 		_light_source_half.append(light_source.light_energy * 0.3)
+	
+	is_day_resource.value_changed.connect(_on_day_changed)
 
-func _move_to_night(_day):
-	_target_dayness = 0
-	set_process(true)
-
-func _move_to_day():
-	_target_dayness = 1
+func _on_day_changed(is_day, _was_day):
+	_target_dayness = 1 if is_day else 0
 	set_process(true)
 
 func _process(delta):

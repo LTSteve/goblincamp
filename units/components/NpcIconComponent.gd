@@ -9,17 +9,10 @@ class_name NpcIconComponent
 
 func _ready():
 	icon.pixel_size = base_pixel_size
-	call_deferred("_bind_to_day_night")
+	DB.I.observables.is_day.value_changed.connect(_on_day_changed)
 
-func _bind_to_day_night():
-	GameManager.I.on_day.connect(_on_day)
-	GameManager.I.on_night.connect(_on_night)
-
-func _on_day():
-	icon.visible = true
-
-func _on_night(_day):
-	icon.visible = false
+func _on_day_changed(is_day, _was_day):
+	icon.visible = is_day
 
 func _on_mouse_entered():
 	icon.pixel_size = hover_pixel_size

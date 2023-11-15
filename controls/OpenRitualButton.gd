@@ -1,14 +1,12 @@
 extends Button
 
-@export var wizard: Unit
+@export var is_day_resource: ObservableResource
+
+func _ready():
+	is_day_resource.value_changed.connect(_on_day_changed)
 
 func _pressed():
-	if ! wizard: return
-	WizardBehaviour.open_buy_panel(wizard)
+	WizardBehaviour.open_buy_panel()
 
-func _on_night(_day):
-	visible = false
-
-func _on_day():
-	if WizardBehaviour.is_wizard_active():
-		visible = true
+func _on_day_changed(is_day, _was_day):
+	visible = WizardBehaviour.is_wizard_active() if is_day else false

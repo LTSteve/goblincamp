@@ -7,6 +7,7 @@ static var I: StatTracker
 const cfg_file = "user://high_scores.cfg"
 
 @export var enabled:bool = true
+@export var is_day_resource: ObservableResource
 
 var _user_friendly_text_day = {
 	money_gained = "Money Gained",
@@ -108,6 +109,7 @@ func _ready():
 	I = self
 	_run_start_time = Time.get_ticks_msec()
 	_on_day()
+	is_day_resource.value_changed.connect(_on_day_changed)
 
 func final_calc_and_save():
 	if !enabled: return ""
@@ -144,6 +146,9 @@ func final_calc_and_save():
 		
 		config.save(cfg_file)
 		return to_return
+
+func _on_day_changed(is_day, _was_day):
+	if is_day: _on_day()
 
 func _on_day():
 	if !enabled: return

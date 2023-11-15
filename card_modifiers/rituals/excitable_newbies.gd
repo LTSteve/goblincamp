@@ -36,7 +36,7 @@ class Unit_Data:
 var rookies:Array[Unit_Data] = []
 
 func _initialize(_data):
-	GameManager.I.on_night.connect(_on_night)
+	DB.I.observables.is_day.value_changed.connect(_on_day)
 
 func _apply(rank_component:RankComponent, unit:Unit):
 	if rank_component.get_rank() != 0: return
@@ -46,7 +46,8 @@ func _apply(rank_component:RankComponent, unit:Unit):
 func _un_apply(_rank_component:RankComponent, unit:Unit):
 	_find_and_remove_from_rookie_list(unit)
 
-func _on_night(_day):
+func _on_day(is_day, _was_day):
+	if is_day: return
 	if current_rank == 0: return
 	
 	_maintain_rookie_list()

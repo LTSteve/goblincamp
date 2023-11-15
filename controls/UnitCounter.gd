@@ -10,13 +10,10 @@ var _player_unit_count: int = 0
 var _enemy_unit_count: int = 0
 
 func _ready():
-	call_deferred("_late_ready")
+	DB.I.observables.day_number.value_changed.connect(_day_changed)
 
-func _late_ready():
-	GameManager.I.on_day.connect(_on_day)
-
-func _on_day():
-	day_counter.text = str(GameManager.I.get_day() + 1)
+func _day_changed(day_number, _last_day):
+	day_counter.text = str(day_number + 1)
 
 func _on_spawn_unit(unit:Unit):
 	if !is_instance_valid(unit) || unit.is_npc: return

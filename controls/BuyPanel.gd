@@ -21,15 +21,19 @@ signal purchase_made()
 @export var random_price_varience: float = 0.1
 @export var bulk_discount: float = 0.01
 
+@export var is_day_resource: ObservableResource
+@export var day_number_resource: ObservableResource
+
 var _current_offers: Array[Offer] = []
 
 func _ready():
 	I = self
 	super._ready()
+	is_day_resource.value_changed.connect(_on_day_changed)
 
 func slide_in():
 	if _current_offers.is_empty():
-		_on_day()
+		_setup_offers()
 	scroll_container.scroll_vertical = 0
 	super.slide_in()
 
@@ -37,8 +41,12 @@ func slide_out():
 	CameraRig.I.unset_camera_angle_override()
 	super.slide_out()
 
-func _on_day():
-	_create_offers(5, GameManager.I.get_day(), Global.players.size(), Global.buildings.size(), MoneyManager.I.get_resource(MoneyManager.MoneyType.Gold), MoneyManager.I.get_resource(MoneyManager.MoneyType.Ear))
+func _on_day_changed(is_day, _was_day):
+	if !is_day: return
+	_setup_offers()
+
+func _setup_offers():
+	_create_offers(5, day_number_resource.value, Global.players.size(), Global.buildings.size(), MoneyManager.I.get_resource(MoneyManager.MoneyType.Gold), MoneyManager.I.get_resource(MoneyManager.MoneyType.Ear))
 	_create_offer_display()
 
 func _create_offers(number_to_offer:int, day: int, player_count: int, building_count: int, player_money: int, player_ears: int):

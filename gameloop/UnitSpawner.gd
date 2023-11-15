@@ -25,6 +25,8 @@ enum BuildingType {Blacksmith=0, Leatherworker, Enchanter, Tavern}
 @export var min_building_radius: float = 10
 @export var max_building_radius: float = 50
 
+@export var day_number_resource: ObservableResource
+
 var double_imps: bool = false
 
 static var I: UnitSpawner
@@ -51,7 +53,7 @@ func spawn_enemy_group(enemy_spawn: EnemySpawnResource):
 func _get_enemy_spawn_point():
 	var actual_enemy_min = enemy_spawn_min_radius
 	var actual_enemy_max = enemy_spawn_max_radius
-	var day = GameManager.I.get_day() if GameManager.I else 0
+	var day = day_number_resource.value
 	
 	if day <= 5:
 		actual_enemy_max *= 0.5

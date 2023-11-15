@@ -1,12 +1,14 @@
-[gd_scene load_steps=4 format=3 uid="uid://bpmqrnq0rvyj4"]
+[gd_scene load_steps=5 format=3 uid="uid://bpmqrnq0rvyj4"]
 
 [ext_resource type="Script" path="res://units/components/Weapon.gd" id="1_gi4kr"]
+[ext_resource type="Resource" uid="uid://di0r47nymtihe" path="res://observables/day_number.tres" id="2_3wj3r"]
 [ext_resource type="AnimationNodeStateMachine" uid="uid://dawvd5u6rapgb" path="res://units/weapons/weapon_animation_state_machine.tres" id="2_a8w1v"]
 [ext_resource type="Script" path="res://util/AnimationTreeExpressionExtension.gd" id="3_i3yfl"]
 
 [node name="Weapon" type="Node3D" node_paths=PackedStringArray("animation_tree")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 1, 0)
 script = ExtResource("1_gi4kr")
+day_number_resource = ExtResource("2_3wj3r")
 animation_tree = NodePath("AnimationTreeExpressionExtension")
 
 [node name="ModelHolder" type="Node3D" parent="."]

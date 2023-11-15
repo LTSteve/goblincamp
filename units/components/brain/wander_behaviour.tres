@@ -1,5 +1,6 @@
-[gd_resource type="Resource" script_class="WanderBehaviour" load_steps=2 format=3 uid="uid://6a2euiflosoa"]
+[gd_resource type="Resource" script_class="WanderBehaviour" load_steps=3 format=3 uid="uid://6a2euiflosoa"]
 
+[ext_resource type="Resource" uid="uid://di0r47nymtihe" path="res://observables/day_number.tres" id="1_lsyq4"]
 [ext_resource type="Script" path="res://units/components/brain/WanderBehaviour.gd" id="1_xa3wh"]
 
 [resource]
@@ -9,3 +10,4 @@ min_wander_range = 8.0
 max_wander_range = 45.0
 min_wander_wait = 6.0
 max_wander_wait = 30.0
+day_number_resource = ExtResource("1_lsyq4")

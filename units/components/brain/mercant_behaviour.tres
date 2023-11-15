@@ -1,6 +1,8 @@
-[gd_resource type="Resource" script_class="MerchantBehaviour" load_steps=2 format=3 uid="uid://c5lj8afn8ogvv"]
+[gd_resource type="Resource" script_class="MerchantBehaviour" load_steps=3 format=3 uid="uid://c5lj8afn8ogvv"]
 
 [ext_resource type="Script" path="res://units/components/brain/MerchantBehaviour.gd" id="1_m0thb"]
+[ext_resource type="Resource" uid="uid://bq4aic53umc5k" path="res://observables/is_day.tres" id="1_pfukn"]
 
 [resource]
 script = ExtResource("1_m0thb")
+is_day_resource = ExtResource("1_pfukn")

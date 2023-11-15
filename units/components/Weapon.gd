@@ -5,6 +5,8 @@ class_name Weapon
 const equal_battle_range:int = 5
 const unequal_battle_damage_scale:float = 0.1
 
+@export var day_number_resource: ObservableResource
+
 class HitCreationData:
 	var hit_point: Vector3 = Vector3.ZERO
 	var can_chain: bool = true
@@ -147,7 +149,7 @@ func _create_hit(enemy:Unit, hit_creation_data:HitCreationData = HitCreationData
 	hit_data.crit_damage_multiplier = crit_damage_multiplier
 	hit_data.damage = (damage * hit_creation_data.base_damage_scale + randf_range(0, damage_random_component)) * _current_damage_scale
 	if scales_with_day:
-		hit_data.damage *= 1 + (GameManager.I._day / 100.0)
+		hit_data.damage *= 1 + (day_number_resource.value / 100.0)
 	hit_data.pushback = pushback * hit_creation_data.base_pushback_scale * _current_pushback_scale
 	hit_data.hit_stun = hit_stun
 	hit_data.damage_type = damage_type

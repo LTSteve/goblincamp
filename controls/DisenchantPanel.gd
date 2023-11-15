@@ -23,7 +23,7 @@ static var I: DisenchantPanel
 
 func _ready():
 	I = self
-	GameManager.I.on_day.connect(_on_day)
+	DB.I.observables.is_day.value_changed.connect(_on_day)
 	_card_display_scene = DB.I.scenes.card_display_scene
 
 func set_disenchant_properties(disenchant_power_costs: Array[int], disenchant_results: Array[int]):
@@ -34,7 +34,8 @@ func add_disenchant_power(power):
 	_current_disenchant_power += power
 	disenchant_power_label.text = str(_current_disenchant_power)
 
-func _on_day():
+func _on_day(is_day, _was_day):
+	if !is_day: return
 	disenchant_button.text = "Select Enchantment"
 	disenchant_button.disabled = true
 	disenchant_button_content.visible = false

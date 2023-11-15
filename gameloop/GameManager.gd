@@ -12,6 +12,9 @@ class_name GameManager
 
 @export var flat_enemy_power_increase: int = 0
 
+@export var day_number: ObservableResource
+@export var is_day: ObservableResource
+
 var enemy_spawns = []
 
 var unlocked_enemy_types: Array[UnitSpawner.UnitType] = [UnitSpawner.UnitType.Goblin]
@@ -20,19 +23,15 @@ var force_spawn_enemy_type = null
 signal on_spawn_enemy(unit_type: UnitSpawner.UnitType)
 signal on_spawn_enemy_group(enemy_spawn: EnemySpawnResource)
 
-signal on_night(day:int)
-signal on_day()
 signal on_game_over()
 
-var is_daytime: bool = true
-
-var _day:int = 0
 var _spawned_building:bool = false
 
 static var I: GameManager
 
-func get_day():
-	return _day
+func _ready():
+	I = self
+	is_day.value_changed.connect(_on_day_changed)
 
 func game_over():
 	Wait.timer(2, self, func():
@@ -41,11 +40,7 @@ func game_over():
 	)
 
 func cycle_to_day():
-	is_daytime = true
-	on_day.emit()
-
-func _ready():
-	I = self
+	is_day.value = true
 
 @export var unit_moves_per_tick: int = 100
 @export var max_update_msec: int = 4
@@ -115,17 +110,19 @@ func _on_next_day_button_pressed():
 			todo_list.finish_step_after_signal(navigation_region.bake_finished)
 		else:
 			todo_list.mark_step_done()
-	,GoblinCardPanel.I.try_open.bind(_day+1)
+	,GoblinCardPanel.I.try_open.bind(day_number.value+1)
 	], true).on_done(_start_next_day)
 
 func _start_next_day():
-	is_daytime = false
+	day_number.value += 1
+	is_day.value = false
 	_spawned_building = false
-	_day += 1
-	on_night.emit(_day)
 
-#linked from on_night
-func _spawn_wave(day: int):
+func _on_day_changed(is_d, _was_d):
+	if is_d: return
+	_spawn_wave(day_number.value)
+
+func _spawn_wave(day):
 	var cycle = (day - GoblinCardPanel.I.first_modifier_night) % GoblinCardPanel.I.modifier_interval
 	
 	if day == 7: unlocked_enemy_types.append(UnitSpawner.UnitType.GoblinPriest)
@@ -189,7 +186,6 @@ func _on_stress_test_button_pressed():
 	_spawn_wave(20)
 	
 	_spawned_building = false
-	_day += 1
-	on_night.emit(_day)
+	day_number.value += 1
 	if navigation_region.bake_finished.is_connected(_start_next_day):
 		navigation_region.bake_finished.disconnect(_start_next_day)

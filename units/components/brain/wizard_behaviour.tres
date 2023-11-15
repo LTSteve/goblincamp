@@ -1,6 +1,10 @@
-[gd_resource type="Resource" script_class="WizardBehaviour" load_steps=2 format=3 uid="uid://ccndi511ewfdy"]
+[gd_resource type="Resource" script_class="WizardBehaviour" load_steps=4 format=3 uid="uid://ccndi511ewfdy"]
 
+[ext_resource type="Resource" uid="uid://di0r47nymtihe" path="res://observables/day_number.tres" id="1_t8j8h"]
 [ext_resource type="Script" path="res://units/components/brain/WizardBehaviour.gd" id="1_ugv06"]
+[ext_resource type="Resource" uid="uid://bq4aic53umc5k" path="res://observables/is_day.tres" id="2_rtni7"]
 
 [resource]
 script = ExtResource("1_ugv06")
+day_number_resource = ExtResource("1_t8j8h")
+is_day_resource = ExtResource("2_rtni7")

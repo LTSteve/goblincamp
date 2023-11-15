@@ -45,7 +45,7 @@ func _ready():
 		if is_enemy: Global.enemies.append(self)
 		else: Global.players.append(self)
 	
-	GameManager.I.on_day.connect(remove_all_effects)
+	DB.I.observables.is_day.value_changed.connect(_on_day)
 	
 	call_deferred("_apply_unit_modifiers")
 
@@ -111,6 +111,10 @@ func take_hit(weapon_hit:Weapon.Hit):
 	_stunned = max(_stunned, weapon_hit.hit_stun * stun_scale)
 	
 	on_recieved_hit.emit(weapon_hit)
+
+func _on_day(is_day, _was_day):
+	if !is_day: return
+	remove_all_effects()
 
 func remove_all_effects():
 	for effect in _active_effects:

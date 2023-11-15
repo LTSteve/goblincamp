@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="ObservableResource" load_steps=2 format=3 uid="uid://di0r47nymtihe"]
+
+[ext_resource type="Script" path="res://util/ObservableResource.gd" id="1_35u3e"]
+
+[resource]
+resource_name = "day_number"
+script = ExtResource("1_35u3e")
+default_value_ptr = [0]

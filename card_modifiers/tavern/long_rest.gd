@@ -3,13 +3,16 @@ extends CardModifier
 var hungry_players: Array[Unit] = []
 
 func _initialize(_data):
-	GameManager.I.on_day.connect(_on_day)
+	DB.I.observables.is_day.value_changed.connect(_on_day) 
 
 #this'll still double-heal sometimes, TODO: if this is an issue rework the process
-func _on_day():
+func _on_day(is_day, _was_day):
+	if !is_day: return
 	if current_rank <= 0: return
+	
 	var number_to_heal = current_rank * params.number
 	var reloaded = false
+	
 	while number_to_heal > 0 && Global.players.size() != 0:
 		if hungry_players.size() == 0:
 			if reloaded: break

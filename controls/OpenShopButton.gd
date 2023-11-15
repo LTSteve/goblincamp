@@ -1,10 +1,12 @@
 extends Button
 
-@export var merchant: Unit
+@export var is_day_resource: ObservableResource
+
+func _ready():
+	is_day_resource.value_changed.connect(_on_day_changed)
 
 func _pressed():
-	if ! merchant: return
-	MerchantBehaviour.open_buy_panel(merchant)
+	MerchantBehaviour.open_buy_panel()
 
-func _on_night(_day):
-	visible = false
+func _on_day_changed(is_day, _was_day):
+	visible = is_day

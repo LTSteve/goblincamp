@@ -4,6 +4,8 @@ class_name DB
 
 static var I: DB
 
+var _observables_folder = "res://observables"
+
 var _resource_folders = {
 	blacksmith_deck = "res://card_modifiers/blacksmith",
 	enchanter_deck = "res://card_modifiers/enchanter",
@@ -66,6 +68,8 @@ var scenes = {}
 
 var resource_groups = {}
 
+var observables = {}
+
 #really shouldn't be doing UI and loading stuff in the same class but w/e
 @export var loading_bar: LoadingBar
 @export var loading_scene: Node3D
@@ -87,6 +91,10 @@ func _post_init():
 		for path in paths:
 			loading_bar.set_load(path, "preloading resources")
 	
+	var observables_paths = _get_resource_paths(_observables_folder)
+	for path in observables_paths:
+		loading_bar.set_load(path, "preloading resources")
+	
 	loading_bar.on_loaded.connect(_loading_finished)
 
 func _loading_finished(loaded:Array[Resource]):
@@ -97,7 +105,16 @@ func _loading_finished(loaded:Array[Resource]):
 		var paths = _get_resource_paths(_resource_folders[dir_name])
 		resource_groups[dir_name] = []
 		for path in paths:
-			resource_groups[dir_name].append(Global.find_by_func(loaded, func(ld:Resource): return ld.resource_path == path))
+			var res = Global.find_by_func(loaded, func(ld:Resource): return ld.resource_path == path)
+			resource_groups[dir_name].append(res)
+	
+	var observables_paths = _get_resource_paths(_observables_folder)
+	for path in observables_paths:
+		var res = Global.find_by_func(loaded, func(ld:Resource): return ld.resource_path == path)
+		# this is interesting, I could implement interfaces
+		# something like Initializable.is_applied(obj), Initialize.assert_applied(self), etc
+		if res.has_method("initialize"): res.initialize()
+		observables[res.resource_name] = res
 	
 	SceneManager.load_main_scene(get_tree(), loaded)
 	

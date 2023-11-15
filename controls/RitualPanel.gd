@@ -9,6 +9,8 @@ static var I: RitualPanel
 
 @export var resource_textures: Array[Texture2D] = []
 
+@export var day_number: ObservableResource
+
 var _current_rituals: Array[Ritual] = []
 
 var _one_free_epic: bool = true
@@ -16,10 +18,12 @@ var _one_free_epic: bool = true
 func _ready():
 	I = self
 	super._ready()
+	day_number.value_changed.connect(_on_day_number_changed)
 
 func slide_in():
 	if _current_rituals.is_empty():
-		_on_day()
+		_create_rituals(0)
+		_create_ritual_display()
 	scroll_container.scroll_vertical = 0
 	super.slide_in()
 
@@ -27,8 +31,8 @@ func slide_out():
 	CameraRig.I.unset_camera_angle_override()
 	super.slide_out()
 
-func _on_day():
-	_create_rituals(GameManager.I.get_day())
+func _on_day_number_changed(day: int, _last_day):
+	_create_rituals(day)
 	_create_ritual_display()
 
 func _create_rituals(day: int):
