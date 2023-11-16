@@ -22,6 +22,7 @@ class_name TreeSpawner
 @export var tree_min: float = 0.1
 @export var tree_max: float = 0.99
 @export var tree_scale: Vector3 = Vector3.ONE
+@export var skip_collision_boxes: bool = false
 
 var tree_multimesh_scene: PackedScene
 var trees: Array[PackedScene] = []
@@ -108,10 +109,11 @@ func _on_data_changed():
 			
 			var ground_height = Ground.sample_height(rand_x,rand_y)
 			
-			var new_tree = trees[mesh_i].instantiate() as Node3D
-			obsticle_folder.add_child(new_tree)
-			new_tree.global_position.x = rand_x
-			new_tree.global_position.z = rand_y
+			if !skip_collision_boxes:
+				var new_tree = trees[mesh_i].instantiate() as Node3D
+				obsticle_folder.add_child(new_tree)
+				new_tree.global_position.x = rand_x
+				new_tree.global_position.z = rand_y
 			
 			var random_transform = Transform3D.IDENTITY
 			random_transform = random_transform.rotated(Vector3.UP, rand_rot)
