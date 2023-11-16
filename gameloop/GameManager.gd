@@ -16,7 +16,7 @@ var unlocked_enemy_types: Array[UnitSpawner.UnitType] = [UnitSpawner.UnitType.Go
 var force_spawn_enemy_type = null
 
 signal on_spawn_enemy(unit_type: UnitSpawner.UnitType)
-signal on_spawn_enemy_group(enemy_spawn: EnemySpawnResource)
+signal on_spawn_enemy_group(unit_types: Array[UnitSpawner.UnitType])
 
 signal on_game_over()
 
@@ -57,44 +57,22 @@ func _spawn_wave(day):
 	var random_component = randi_range(0,1)
 	var linear_component = floor(day * 0.5)
 	
-	var spawn_power = clampi(random_component+linear_component+cycle, 1, enemy_power_limit) + flat_enemy_power_increase
+	var spawn_power = clampi(random_component+linear_component+cycle, 2, enemy_power_limit) + flat_enemy_power_increase
 	
-	enemy_spawns = DB.I.resource_groups["enemy_spawns"]
-	
-	var available_enemy_spawns = enemy_spawns.filter(
-	func(es): 
-		return es.enemies.all(
-		func(enemy):
-			return unlocked_enemy_types.has(enemy)
-		)
-	)
-	
-	var enemy_spawns_by_pwr = [
-		[],
-		available_enemy_spawns.filter(func(es): return es.level <= 1),
-		available_enemy_spawns.filter(func(es): return es.level == 2),
-		available_enemy_spawns.filter(func(es): return es.level == 3),
-		available_enemy_spawns.filter(func(es): return es.level >= 4)
-	]
-	
-	var spawns: Array[EnemySpawnResource] = []
-	
-	if force_spawn_enemy_type != null:
-		var available_forced_enemies = available_enemy_spawns.filter(func(es): return es.enemies.has(force_spawn_enemy_type))
-		available_forced_enemies.sort_custom(func(es1, es2):
-			return es1.level < es2.level
-		)
-		var force_spawn = available_forced_enemies[0]
-		spawns.append(force_spawn)
-		force_spawn_enemy_type = null
-		spawn_power -= force_spawn.level
-	
-	while spawn_power > 0:
-		enemy_spawns.shuffle()
-		var pwr = randi_range(1, min(spawn_power, 4))
-		var spawns_by_pwr = enemy_spawns_by_pwr[pwr]
-		spawns.append(spawns_by_pwr[randi_range(0,spawns_by_pwr.size() - 1)])
-		spawn_power -= pwr
-	
-	for spawn in spawns:
-		on_spawn_enemy_group.emit(spawn)
+	var group_count = 1 if day <= 5 else (2 if day <= 15 else (3 if day < 35 else 4))
+	for group_i in group_count:
+		var size_of_group = 0
+		if group_i == group_count - 1:
+			size_of_group = spawn_power
+		else:
+			size_of_group = spawn_power / (2 + group_i) 
+		
+		_spawn_group(size_of_group)
+		
+		spawn_power -= size_of_group
+
+func _spawn_group(size):
+	var to_spawn: Array[UnitSpawner.UnitType] = []
+	for i in size:
+		to_spawn.append(unlocked_enemy_types.pick_random())
+	on_spawn_enemy_group.emit(to_spawn)

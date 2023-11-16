@@ -43,10 +43,10 @@ func spawn_hostile(unit_type: UnitType, point: Vector2 = Vector2.ZERO):
 	if double_imps && unit_type == UnitType.Imp:
 		_spawn(unit_type, enemy_spawn_center + Math.v2_to_v3(point+Vector2.RIGHT))
 
-func spawn_enemy_group(enemy_spawn: EnemySpawnResource):
-	var r_v2 = _get_enemy_spawn_point()
-	for enemy in enemy_spawn.enemies:
-		spawn_hostile(enemy, r_v2 + Math.rand_v2_range(0.1, 5))
+func spawn_hostile_group(unit_types: Array[UnitType]):
+	var point = _get_enemy_spawn_point()
+	for unit_type in unit_types:
+		spawn_hostile(unit_type, point)
 
 func _get_enemy_spawn_point():
 	var actual_enemy_min = enemy_spawn_min_radius

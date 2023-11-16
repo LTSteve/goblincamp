@@ -1,6 +1,8 @@
-[gd_resource type="Resource" script_class="ChannelingBehaviour" load_steps=2 format=3 uid="uid://gn36ryd3nnjj"]
+[gd_resource type="Resource" script_class="DethballBehaviour" load_steps=4 format=3 uid="uid://gn36ryd3nnjj"]
 
 [ext_resource type="Script" path="res://units/components/brain/DethballBehaviour.gd" id="1_jpjkv"]
+[ext_resource type="Resource" uid="uid://b1pkis5babvwj" path="res://observables/enemies.tres" id="1_w56hy"]
+[ext_resource type="Resource" uid="uid://2ff00a5yi2ro" path="res://observables/players.tres" id="2_pjr25"]
 
 [resource]
 script = ExtResource("1_jpjkv")
@@ -8,3 +10,5 @@ flee_distance = 8.0
 flee_speed_scale = 0.8
 at_location_dist2 = 0.75
 force_re_target_time = 2.0
+players_resource = ExtResource("2_pjr25")
+enemies_resource = ExtResource("1_w56hy")

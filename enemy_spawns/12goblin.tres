@@ -1,8 +1,0 @@
-[gd_resource type="Resource" script_class="EnemySpawnResource" load_steps=2 format=3 uid="uid://ctk12vnnws3ky"]
-
-[ext_resource type="Script" path="res://enemy_spawns/EnemySpawnResource.gd" id="1_jurwc"]
-
-[resource]
-script = ExtResource("1_jurwc")
-level = 4
-enemies = Array[int]([4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4])

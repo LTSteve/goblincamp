@@ -13,8 +13,7 @@ var _resource_folders = {
 	tavern_deck = "res://card_modifiers/tavern",
 	ritual_deck = "res://card_modifiers/rituals",
 	enemy_deck = "res://card_modifiers/enemy",
-	settings = "res://controls/settings_types",
-	enemy_spawns = "res://enemy_spawns"
+	settings = "res://controls/settings_types"
 }
 
 var _scene_paths = {
