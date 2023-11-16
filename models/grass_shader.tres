@@ -1,9 +1,12 @@
-[gd_resource type="VisualShader" load_steps=16 format=3 uid="uid://cwfu6py5vuy6e"]
+[gd_resource type="VisualShader" load_steps=17 format=3 uid="uid://cwfu6py5vuy6e"]
 
 [ext_resource type="Texture2D" uid="uid://8n0l417guxst" path="res://models/new_pallete.png" id="1_h2hex"]
 
 [sub_resource type="VisualShaderNodeTexture" id="VisualShaderNodeTexture_dwu70"]
 texture = ExtResource("1_h2hex")
+
+[sub_resource type="VisualShaderNodeDistanceFade" id="VisualShaderNodeDistanceFade_ltn3o"]
+default_input_values = [0, 0.5, 1, 4.6]
 
 [sub_resource type="VisualShaderNodeVectorOp" id="VisualShaderNodeVectorOp_522sx"]
 default_input_values = [0, Vector3(0, 0, 0), 1, Vector3(3.5, 3.5, 3.5)]
@@ -122,8 +125,15 @@ void fragment() {
 	vec4 n_out2p0 = texture(tex_frg_2, UV);
 
 
+// DistanceFade:3
+	float n_in3p0 = 0.50000;
+	float n_in3p1 = 4.60000;
+	float n_out3p0 = clamp(smoothstep(n_in3p0, n_in3p1,-VERTEX.z),0.0,1.0);
+
+
 // Output:0
 	ALBEDO = vec3(n_out2p0.xyz);
+	ALPHA = n_out3p0;
 
 
 }
@@ -154,5 +164,7 @@ nodes/vertex/13/node = SubResource("VisualShaderNodeVectorOp_ln1co")
 nodes/vertex/13/position = Vector2(-460, 260)
 nodes/vertex/connections = PackedInt32Array(4, 0, 3, 1, 7, 0, 3, 0, 3, 0, 0, 0, 8, 0, 9, 0, 2, 0, 10, 0, 10, 0, 7, 1, 6, 1, 7, 0, 11, 1, 12, 0, 11, 3, 12, 1, 12, 0, 13, 0, 9, 0, 13, 1, 13, 0, 2, 0)
 nodes/fragment/2/node = SubResource("VisualShaderNodeTexture_dwu70")
-nodes/fragment/2/position = Vector2(105.27, 167.639)
-nodes/fragment/connections = PackedInt32Array(2, 0, 0, 0)
+nodes/fragment/2/position = Vector2(-100, 140)
+nodes/fragment/3/node = SubResource("VisualShaderNodeDistanceFade_ltn3o")
+nodes/fragment/3/position = Vector2(80, -20)
+nodes/fragment/connections = PackedInt32Array(2, 0, 0, 0, 3, 0, 0, 1)

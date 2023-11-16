@@ -20,7 +20,6 @@ buildings_resource = ExtResource("2_wuv70")
 
 [node name="blacksmith" parent="." instance=ExtResource("1_1b0ay")]
 script = ExtResource("2_qkb1v")
-once = true
 
 [node name="Fire" parent="blacksmith" instance=ExtResource("1_fsagv")]
 transform = Transform3D(0.498252, 0, 0, 0, 0.602099, 0, 0, 0, 0.403297, 5.14145, 5.84516, -5.16964)
