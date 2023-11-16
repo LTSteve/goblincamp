@@ -62,6 +62,11 @@ var _scene_paths = {
 	slide_setting_scene= "res://controls/settings/slide_setting.tscn",
 	toggle_setting_scene= "res://controls/settings/toggle_setting.tscn",
 	card_scene= "res://controls/card_display.tscn",
+	scatter_multimesh_scene= "res://ground_generation/scatter_multimesh.tscn",
+	tree1_mesh= "res://models/trees/tree_1_Icosphere_003.res",
+	tree2_mesh= "res://models/trees/tree_2_Cube_001.res",
+	tree3_mesh= "res://models/trees/tree_3_Cube_002.res",
+	tree4_mesh= "res://models/trees/tree_4_Cube_003.res"
 }
 
 var scenes = {}

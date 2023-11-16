@@ -1,7 +1,6 @@
-[gd_scene load_steps=4 format=3 uid="uid://4s6qkyhad0yk"]
+[gd_scene load_steps=3 format=3 uid="uid://4s6qkyhad0yk"]
 
 [ext_resource type="PackedScene" uid="uid://b7uhveqhli2vv" path="res://models/trees/tree_4.glb" id="1_p3mdd"]
-[ext_resource type="Script" path="res://units/components/HeightComponent.gd" id="2_bktdi"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_fan4f"]
 size = Vector3(1.2, 5, 1.2)
@@ -10,7 +9,7 @@ size = Vector3(1.2, 5, 1.2)
 
 [node name="model" parent="." instance=ExtResource("1_p3mdd")]
 transform = Transform3D(0.82, 0, 0, 0, 0.75, 0, 0, 0, 0.82, 0, 0, 0)
-script = ExtResource("2_bktdi")
+visible = false
 
 [node name="StaticBody3D" type="StaticBody3D" parent="."]
 collision_layer = 8

@@ -16,6 +16,8 @@ var grass: Array[PackedScene] = []
 func _ready():
 	_load_data()
 	call_deferred("_post_ready")
+	var mm = MultiMeshInstance3D.new()
+	mm.multimesh = MultiMesh.new()
 
 func _post_ready():
 	scatter_setting.on_change.connect(_on_data_changed)

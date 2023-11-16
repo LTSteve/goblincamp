@@ -41,11 +41,15 @@ auto_drive = true
 [node name="Ground" parent="." instance=ExtResource("1_4khsr")]
 
 [node name="Node3D" type="Node3D" parent="Ground"]
+transform = Transform3D(0.003, 0, 0, 0, 1, 0, 0, 0, 0.003, 0, 0, 0)
 
 [node name="TreeSpawner" type="Node" parent="." node_paths=PackedStringArray("ground", "obsticle_folder")]
 script = ExtResource("2_0sl38")
 ground = NodePath("../Ground")
 obsticle_folder = NodePath("../Ground/Node3D")
+tree_count = 90
+tree_min = 0.01
+tree_scale = Vector3(0.85, 0.85, 0.85)
 
 [node name="ScatterSpawner" type="Node" parent="." node_paths=PackedStringArray("ground")]
 script = ExtResource("4_vafby")

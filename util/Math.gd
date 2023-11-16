@@ -1,7 +1,7 @@
 class_name Math
 
+const almost_360: float = 359.99
 static var E: float = 0.57721566490153286060651209008240243
-static var almost_360_rad: float = deg_to_rad(359.99)
 static var rad_90: float = deg_to_rad(90)
 static var rad_45: float = deg_to_rad(45)
 
@@ -59,7 +59,7 @@ static func crosses_zero(val1: float, val2:float) -> bool:
 	return (val1 > 0 && val2 < 0) || (val1 < 0 && val2 > 0)
 
 static func random_rotation() -> float:
-	return deg_to_rad(randf()*359.99)
+	return deg_to_rad(randf()*almost_360)
 
 static func rangef(start:float, end:float, step:float, limit:int = 200) -> Array[float]:
 	if step <= 0 || start >= end: return [start]
@@ -70,7 +70,7 @@ static func rangef(start:float, end:float, step:float, limit:int = 200) -> Array
 	return numbers
 
 static func rand_v2():
-	var angle = randf_range(0,almost_360_rad)
+	var angle = random_rotation()
 	return Vector2.RIGHT.rotated(angle)
 
 static func rand_v2_range(min_dist:float, max_dist: float):

@@ -1,9 +1,163 @@
-[gd_scene load_steps=5 format=3 uid="uid://c2quprpaqset5"]
+[gd_scene load_steps=9 format=3 uid="uid://c2quprpaqset5"]
 
 [ext_resource type="Environment" uid="uid://b8hhv81bda8f4" path="res://units/unit_cams/unit_cam_env.tres" id="1_dmhn2"]
+[ext_resource type="AnimationNodeStateMachine" uid="uid://dawvd5u6rapgb" path="res://units/weapons/weapon_animation_state_machine.tres" id="3_ym0xm"]
 [ext_resource type="PackedScene" uid="uid://b4oiqnjpi4g03" path="res://models/bearkin/bearkin_claw.glb" id="5_7rji6"]
-[ext_resource type="AnimationLibrary" uid="uid://sp284lwpxvot" path="res://units/weapons/melee/bear_claw_animations.res" id="7_xjahw"]
 [ext_resource type="PackedScene" uid="uid://ja83ratbnxbs" path="res://models/bearkin/bearkin.glb" id="12_1gckf"]
+
+[sub_resource type="Animation" id="Animation_kenkg"]
+length = 0.001
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ModelHolder/claws/bearkin_claw:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ModelHolder/claws/bearkin_claw:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("ModelHolder/claws/bearkin_claw:position:z")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(-4.37114e-08, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("ModelHolder/claws/bearkin_claw:rotation:x")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(1.309, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/4/type = "bezier"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("ModelHolder/claws/bearkin_claw:rotation:y")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(1.5708, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/5/type = "bezier"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("ModelHolder/claws/bearkin_claw:rotation:z")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(-4.11799e-14, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+
+[sub_resource type="Animation" id="Animation_aeo5c"]
+resource_name = "idle"
+length = 1.1
+loop_mode = 1
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ModelHolder/claws/bearkin_claw:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.6, 1.1)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ModelHolder/claws/bearkin_claw:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 0.0758874, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.6, 1.1)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("ModelHolder/claws/bearkin_claw:position:z")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(-4.37114e-08, -0.25, 0, 0.25, 0, -4.37114e-08, -0.25, 0, 0.25, 0, -4.37114e-08, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.6, 1.1)
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("ModelHolder/claws/bearkin_claw:rotation:x")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(0.25268, -0.25, 0, 0.25, 0, 0.156721, -0.25, 0, 0.25, 0, 0.25268, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.6, 1.1)
+}
+tracks/4/type = "bezier"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("ModelHolder/claws/bearkin_claw:rotation:y")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(0.270597, -0.25, 0, 0.25, 0, 0.265125, -0.25, 0, 0.25, 0, 0.270597, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.6, 1.1)
+}
+tracks/5/type = "bezier"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("ModelHolder/claws/bearkin_claw:rotation:z")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(-1.50156, -0.25, 0, 0.25, 0, -1.52844, -0.25, 0, 0.25, 0, -1.50156, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.6, 1.1)
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_yv7hr"]
+resource_local_to_scene = true
+_data = {
+"RESET": SubResource("Animation_kenkg"),
+"idle": SubResource("Animation_aeo5c")
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_o6w3i"]
+resource_local_to_scene = true
+_data = {
+"RESET": SubResource("Animation_kenkg"),
+"idle": SubResource("Animation_aeo5c")
+}
 
 [node name="BearkinCam" type="Camera3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 500, 0)
@@ -38,8 +192,25 @@ layers = 2
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Bearkin/Model/WeaponHolder/BearClaw" groups=["Claw"]]
 libraries = {
-"": ExtResource("7_xjahw")
+"": SubResource("AnimationLibrary_yv7hr")
 }
+
+[node name="AnimationTree" type="AnimationTree" parent="Bearkin/Model/WeaponHolder/BearClaw"]
+tree_root = ExtResource("3_ym0xm")
+anim_player = NodePath("../AnimationPlayer")
+active = true
+parameters/conditions/in_combat = false
+parameters/conditions/not_in_combat = false
+parameters/Attack/conditions/attack_loops = false
+parameters/Attack/conditions/use_attack_2 = false
+parameters/Attack/attack/TimeScale/scale = 1.0
+"parameters/Attack/attack/TimeScale 2/scale" = 1.0
+parameters/Attack/attack_2/TimeScale/scale = 1.0
+"parameters/Attack/attack_2/TimeScale 2/scale" = 1.0
+parameters/Attack/attack_channel/TimeScale/scale = 1.0
+"parameters/Attack/attack_channel/TimeScale 2/scale" = 1.0
+parameters/Draw/TimeScale/scale = 1.0
+parameters/Stow/TimeScale/scale = 1.0
 
 [node name="BearClaw2" type="Node3D" parent="Bearkin/Model/WeaponHolder" groups=["Claw"]]
 transform = Transform3D(4.37114e-08, 0, -1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 1, 0)
@@ -56,8 +227,25 @@ layers = 2
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Bearkin/Model/WeaponHolder/BearClaw2" groups=["Claw"]]
 libraries = {
-"": ExtResource("7_xjahw")
+"": SubResource("AnimationLibrary_o6w3i")
 }
+
+[node name="AnimationTree2" type="AnimationTree" parent="Bearkin/Model/WeaponHolder/BearClaw2"]
+tree_root = ExtResource("3_ym0xm")
+anim_player = NodePath("../AnimationPlayer")
+active = true
+parameters/conditions/in_combat = false
+parameters/conditions/not_in_combat = false
+parameters/Attack/conditions/attack_loops = false
+parameters/Attack/conditions/use_attack_2 = false
+parameters/Attack/attack/TimeScale/scale = 1.0
+"parameters/Attack/attack/TimeScale 2/scale" = 1.0
+parameters/Attack/attack_2/TimeScale/scale = 1.0
+"parameters/Attack/attack_2/TimeScale 2/scale" = 1.0
+parameters/Attack/attack_channel/TimeScale/scale = 1.0
+"parameters/Attack/attack_channel/TimeScale 2/scale" = 1.0
+parameters/Draw/TimeScale/scale = 1.0
+parameters/Stow/TimeScale/scale = 1.0
 
 [node name="ModelHolder" type="Node3D" parent="Bearkin/Model"]
 transform = Transform3D(1, 0, 1.77636e-14, 0, 1, 0, -1.77636e-14, 0, 1, 0, 0, 0)
