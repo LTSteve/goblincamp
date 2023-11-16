@@ -64,6 +64,20 @@ func _create_offers(number_to_offer:int, day: int, player_count: int, building_c
 	var value = player_money + player_ears * ear_exchange_rate
 	value = (value * 0.05) if value > 1000 else 0
 	
+	var target_spawn_power = GameManager.I.get_spawn_power(day+1)
+	
+	var effective_player_count = ((value / 100.0) + player_count) as int
+	
+	var scl:float = 0
+	if effective_player_count < target_spawn_power || day <= 1:
+		scl = .75
+	elif effective_player_count < (target_spawn_power + 5):
+		scl = 1
+	elif effective_player_count < (target_spawn_power + 10):
+		scl = 1.3
+	else:
+		scl = 2.0
+	
 	if can_buy_buildings:
 		if player_count > day * 5:
 			building_split_number -= 1
@@ -98,7 +112,9 @@ func _create_offers(number_to_offer:int, day: int, player_count: int, building_c
 		var base_price = unit_costs[indexes[0]] * offer.type_1_count + (building_costs[indexes[1]] if offer.type_2_is_building else unit_costs[indexes[1]]) * offer.type_2_count
 		var random_varience = 1.0 + randf() * random_price_varience
 		var discount = 1.0 - (offer.type_1_count + offer.type_2_count) * current_bulk_discount
-		offer.price = (value + base_price * discount) * random_varience
+		offer.price = ((value + base_price * discount) * random_varience * scl)
+		if day <= 1:
+			offer.price = min(offer.price, 500)
 		
 		offer.name = Offer.random_name()
 		

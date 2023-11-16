@@ -11,12 +11,14 @@ func initialize(brain:BrainComponent):
 	brain.flee_range.input_event.connect(_merchant_input_event)
 	
 	brain.unit.visible = true
+	brain.unit.set_process(true)
 	is_day_resource.value_changed.connect(_on_day_changed.bind(brain.unit))
 	
 	return null
 
 func _on_day_changed(is_day, _was_day, unit):
 	unit.visible = is_day
+	unit.set_process(is_day)
 
 func process(_delta, _brain:BrainComponent, _ctx):
 	return false

@@ -18,8 +18,8 @@ static func load_main_menu(tree:SceneTree):
 
 static func _remove_node(node:Node):
 	for child in node.get_children():
-		node.remove_child(child)
-		child.call_deferred("free")
+		if is_instance_valid(child):
+			child.queue_free()
 
 static func _remove_root(tree:SceneTree):
 	# Remove the current level

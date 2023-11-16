@@ -5,4 +5,4 @@
 [resource]
 resource_name = "gold_count"
 script = ExtResource("1_q1w28")
-default_value_ptr = [1000]
+default_value_ptr = [500]

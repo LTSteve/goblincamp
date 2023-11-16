@@ -15,6 +15,9 @@ static var _I: ModifierManager
 @export var force_card: CardResource
 @export var force_card_enemy: CardResource
 
+@export var imp_card: CardResource
+@export var ogre_card: CardResource
+
 static var enemy_card_no: int = 0
 
 var first_pull = true
@@ -68,8 +71,16 @@ static func un_apply_modifier(modifier:CardModifier):
 static func get_next_enemy_card() -> CardResource:
 	enemy_card_no += 1
 	
+	if enemy_card_no == 2 && Global.find_by_func(_I.get_children(), func(card_modifier:CardModifier): return card_modifier.card_resource == _I.imp_card) == null:
+		_I.force_card_enemy = _I.imp_card
+	
+	if enemy_card_no == 5 && Global.find_by_func(_I.get_children(), func(card_modifier:CardModifier): return card_modifier.card_resource == _I.ogre_card) == null:
+		_I.force_card_enemy = _I.ogre_card
+	
 	if _I.force_card_enemy != null:
-		return _I.force_card_enemy
+		var to_return = _I.force_card_enemy
+		_I.force_card_enemy = null
+		return to_return
 	
 	var cards = _I.enemy_deck.get_cards().filter(_I._match_unfinished_cards)
 	cards.shuffle()

@@ -13,14 +13,12 @@ func initialize(brain:BrainComponent):
 	_WIZARD = brain.unit
 	
 	brain.unit.visible = false
+	brain.unit.set_process(false)
 	DB.I.observables.is_day.value_changed.connect(_on_day_changed.bind(brain.unit))
 	
 	brain.flee_range.input_event.connect(_wizard_input_event)
 	
 	return null
-
-func process(_delta, _brain:BrainComponent, _ctx):
-	return false
 
 func _wizard_input_event(_camera: Node, event: InputEvent, _position: Vector3, _normal: Vector3, _shape_idx: int):
 	if !(event is InputEventMouseButton): return
@@ -30,6 +28,7 @@ func _wizard_input_event(_camera: Node, event: InputEvent, _position: Vector3, _
 
 func _on_day_changed(is_day, _was_day, unit):
 	unit.visible = WizardBehaviour.is_wizard_active() if is_day else false
+	unit.set_process(unit.visible)
 
 static func open_buy_panel():
 	if ! _WIZARD: return

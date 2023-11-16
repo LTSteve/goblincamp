@@ -42,13 +42,13 @@ class BloodThirstEffect extends DamageOverTimeEffect:
 
 func _apply(_unit,unit:Unit):
 	var _on_get_kill_override = _on_get_kill.bind(unit)
-	UniqueMetaId.store([unit, self, "_on_get_kill_override"], _on_get_kill)
+	UniqueMetaId.store([unit, self, "_on_get_kill_override"], _on_get_kill_override)
 	unit.on_get_kill.connect(_on_get_kill_override)
 
 func _un_apply(_unit,unit:Unit):
 	unit.on_get_kill.disconnect(UniqueMetaId.retrieve([unit, self, "_on_get_kill_override"]))
 
-func _on_get_kill(killer:Unit):
+func _on_get_kill(_value: float, killer:Unit):
 	if !is_instance_valid(killer): return
 	# do sphere cast for nearby enemy units
 	var nearby_units:Array[Unit] = Global.get_all_units_near_position(DB.I.observables.enemies.value, killer.global_position, params.range)
