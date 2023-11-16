@@ -7,7 +7,7 @@
 albedo_texture = ExtResource("1_o0cvf")
 distance_fade_mode = 2
 distance_fade_min_distance = 1.5
-distance_fade_max_distance = 12.5
+distance_fade_max_distance = 9.5
 
 [sub_resource type="MultiMesh" id="MultiMesh_6dejg"]
 transform_format = 1
