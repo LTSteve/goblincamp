@@ -346,6 +346,7 @@ libraries = {
 [node name="AnimationTree_Blink" type="AnimationTree" parent="Model/ModelHolder/EyeComponent"]
 tree_root = SubResource("AnimationNodeStateMachine_3fww7")
 anim_player = NodePath("../AnimationPlayer_Blink")
+active = true
 script = ExtResource("11_w2jh1")
 can_rewind = true
 
