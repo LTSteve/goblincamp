@@ -17,6 +17,9 @@ func physics_process(_delta, _brain:BrainComponent, _behaviour_data):
 func clean_up(_brain:BrainComponent, _behaviour_data):
 	pass
 
+func get_id():
+	return ""
+
 func _bind_to_all_weapons(brain:BrainComponent, type = null) -> Array[Weapon]:
 	var all_weps = brain.weapon_holder.find_children("", "Weapon")
 	var weapons:Array[Weapon] = []

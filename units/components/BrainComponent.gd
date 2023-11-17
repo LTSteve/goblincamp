@@ -108,3 +108,9 @@ func _on_body_exited_flee_range(entered_unit):
 		fleeing = fleeing.filter(func(u): return u != entered_unit)
 	else:
 		fleeing = fleeing.filter(func(u): return u != entered_unit)
+
+func get_ctx(id: String):
+	for i in behaviours.size():
+		if behaviours[i].get_id() == id:
+			return behaviour_datas[i]
+	return null

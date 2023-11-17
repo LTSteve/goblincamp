@@ -2,20 +2,18 @@ extends Area3D
 
 class_name Projectile
 
-@export var hit_spot: Node3D
+@onready var leave_behind_sfx_scene: PackedScene = DB.I.scenes.leave_behind_sfx_scene
+@onready var velocity_component: VelocityComponent = $"VelocityComponent"
 
+@export var hit_spot: Node3D
 @export var lifespan:float = 10
 @export var free_on_hit: bool = true
 @export var keep_final_destination: bool = false
-
-var leave_behind_sfx_scene: PackedScene
 @export var sfx: Array[AudioStream]
-
 @export var model: Node3D
 @export var particles: GPUParticles3D
 
-@onready var velocity_component: VelocityComponent = $"VelocityComponent"
-
+@export_group("Observables")
 @export var projectiles_resource: ObservableResource
 
 signal destination_reached()
@@ -29,7 +27,6 @@ var find_pool: Array
 var _target_position: Vector3
 
 func _ready():
-	leave_behind_sfx_scene = DB.I.scenes.leave_behind_sfx_scene
 	projectiles_resource.value += [self]
 
 func _on_tree_exiting():
