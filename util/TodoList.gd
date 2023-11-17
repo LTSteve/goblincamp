@@ -10,7 +10,7 @@ var _done: bool = false
 
 signal done()
 
-func _init(tasks:Array[Callable], async: bool = false):
+func _init(tasks:Array, async: bool = false):
 	done.connect(func(): _done = true, CONNECT_ONE_SHOT)
 	_async = async
 	if async:

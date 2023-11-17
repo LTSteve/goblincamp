@@ -1,0 +1,7 @@
+[gd_resource type="Resource" script_class="SignalBus" load_steps=2 format=3 uid="uid://delmi3k8kq53b"]
+
+[ext_resource type="Script" path="res://util/observable/SignalBus.gd" id="1_d6oc4"]
+
+[resource]
+resource_name = "on_next_day_pressed"
+script = ExtResource("1_d6oc4")
