@@ -18,8 +18,6 @@ var force_spawn_enemy_type = null
 signal on_spawn_enemy(unit_type: UnitSpawner.UnitType)
 signal on_spawn_enemy_group(unit_types: Array[UnitSpawner.UnitType])
 
-signal on_game_over()
-
 @export var enemy_power_limit: int = 40
 
 static var I: GameManager
@@ -27,8 +25,6 @@ static var I: GameManager
 @export_group("Observables")
 @export var day_number: ObservableResource
 @export var is_day: ObservableResource
-@export var players_resource: ObservableResource
-@export var enemies_resource: ObservableResource
 
 var unit_ratios = {
 	UnitSpawner.UnitType.Goblin: 0.5,
@@ -43,17 +39,6 @@ var unit_ratio_map = RatioMap.new({
 func _ready():
 	I = self
 	is_day.value_changed.connect(_on_day_changed)
-	players_resource.value_changed.connect(_on_players_changed)
-
-func _on_players_changed(players,_old_players):
-	if players.size() == 0:
-		game_over()
-
-func game_over():
-	Wait.timer(2, self, func():
-		if players_resource.value.size() == 0 && enemies_resource.value.size() != 0:
-			on_game_over.emit()
-	)
 
 func _on_day_changed(is_d, _was_d):
 	if is_d: return

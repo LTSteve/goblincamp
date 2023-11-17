@@ -1,0 +1,7 @@
+[gd_resource type="Resource" script_class="SignalBus" load_steps=2 format=3 uid="uid://bwp8rchw1mo0c"]
+
+[ext_resource type="Script" path="res://util/observable/SignalBus.gd" id="1_4gpvd"]
+
+[resource]
+resource_name = "game_over"
+script = ExtResource("1_4gpvd")
