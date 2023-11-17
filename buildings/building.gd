@@ -6,7 +6,9 @@ class_name Building
 
 @export var project_sprite: Sprite3D
 
+@export_group("Observables")
 @export var buildings_resource: ObservableResource
+@export var is_day_resource: ObservableResource
 
 var card_resource: CardResource
 var all_cards: Array[CardResource]
@@ -16,6 +18,8 @@ func _ready():
 	buildings_resource.value += [self]
 
 func _on_click_area_input_event(_camera, event, _position, _normal, _shape_idx):
+	#if it's not day, don't do anything
+	if !is_day_resource.value: return
 	if event is InputEventMouseButton:
 		if event.button_index == MOUSE_BUTTON_LEFT && event.pressed:
 			BuildingProjectPanel.I.open(card_resource, self)

@@ -25,8 +25,8 @@ func _ready():
 	I = self
 	todo_before_day_resource.bind(_get_todo_before_day)
 
-func _get_todo_before_day():
-	return try_open
+func _get_todo_before_day() -> TodoListItem:
+	return TodoListItem.new(try_open)
 
 func try_open(todo_list:TodoList):
 	var day = day_number_resource.value + 1

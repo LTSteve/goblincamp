@@ -16,7 +16,7 @@ func _init(tasks:Array, async: bool = false):
 	if async:
 		_remaining_steps = tasks.size()
 		for task in tasks:
-			task.call(self)
+			task.execute(self)
 	else:
 		for task in tasks:
 			_tasks.push(task)
@@ -30,7 +30,7 @@ func mark_step_done():
 			done.emit()
 	else:
 		var task = _tasks.pop()
-		if task: task.call(self)
+		if task: task.execute(self)
 		else: done.emit()
 
 func finish_step_after_signal(signl: Signal):

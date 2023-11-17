@@ -31,6 +31,7 @@ static var I: UnitSpawner
 
 func _ready():
 	I = self
+	
 
 func spawn_friendly(unit_type: UnitType):
 	var r_v2 = Math.rand_v2_range(0, friendly_spawn_radius)

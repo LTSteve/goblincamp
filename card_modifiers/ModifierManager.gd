@@ -128,6 +128,9 @@ static func generate_ritual_card_choices(ritual_type: Ritual.Type, ritual_size: 
 		cards = cards.filter(_I._match_ultra_rare_card)
 	cards.shuffle()
 	
+	if _I.force_card:
+		cards[0] = _I.force_card
+	
 	if ritual_size == Ritual.Size.Narrow:
 		return [cards[0],cards[1]]
 	elif ritual_size == Ritual.Size.Normal:

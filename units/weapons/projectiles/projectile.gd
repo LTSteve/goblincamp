@@ -52,15 +52,18 @@ func do_move(delta: float):
 	elif keep_final_destination:
 		has_target_position = true
 	
-	if has_target_position:
-		direction = Math.v3_to_v2(_target_position - global_position).normalized()
+	var target_pos_v2 = Math.v3_to_v2(_target_position)
+	var global_pos_v2 = Math.v3_to_v2(global_position)
 	
-	if (has_target_position && _target_position.distance_squared_to(global_position) < 0.01) || lifespan <= 0:
+	if (has_target_position && target_pos_v2.distance_squared_to(global_pos_v2) < 0.01) || lifespan <= 0:
 		if free_on_hit || lifespan <= 0:
 			_queue_free_self()
 		else:
 			destination_reached.emit()
 		return
+	
+	if has_target_position:
+		direction = Math.v3_to_v2(_target_position - global_position).normalized()
 	
 	_try_look_in_direction(direction)
 	

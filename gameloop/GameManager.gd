@@ -2,15 +2,7 @@ extends Node
 
 class_name GameManager
 
-@export var sigmoid_offset: float = -10
-@export var sigmoid_x_scale: float = 0.5
-@export var sigmoid_y_scale: float = 10
-@export var linear_offset: float = 2
-@export var linear_scale: float = 2
-
 @export var flat_enemy_power_increase: int = 0
-
-var enemy_spawns = []
 
 var unlocked_enemy_types: Array[UnitSpawner.UnitType] = [UnitSpawner.UnitType.Goblin]
 var force_spawn_enemy_type = null

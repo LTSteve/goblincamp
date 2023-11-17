@@ -11,13 +11,11 @@ func initialize():
 func bind(callable:Callable):
 	callables.append(callable)
 
-func inverse_signal(type:int = -1) -> Array:
+func inverse_signal() -> Array:
 	var to_return := []
 	
 	for callable in callables:
 		var ret = callable.call()
-		if type != -1 && typeof(ret) != type:
-			printerr("Type of ISB return was not as expected: Expected(%s), Got(%s)" % [type, typeof(ret)])
 		to_return.append(ret)
 	
 	return to_return

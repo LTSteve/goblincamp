@@ -13,13 +13,16 @@ radius = 0.4
 
 [node name="Imp" groups=["Imp"] instance=ExtResource("1_7ffh0")]
 collision_layer = 2
-ranged_targeting_radius = 1.5
+ranged_targeting_radius = 1.4
 is_enemy = true
 kill_value = 0.6
 unit_list_resource = ExtResource("2_no0wg")
 
 [node name="CollisionShape3D" parent="." index="0"]
 shape = SubResource("CapsuleShape3D_1jodv")
+
+[node name="Model" parent="." index="1"]
+transform = Transform3D(-2.30258e-08, 0, 0.526768, 0, 0.526768, 0, -0.526768, 0, -2.30258e-08, 0, 0, 0)
 
 [node name="DamageNumberComponent" parent="Model" index="0"]
 is_ally = false

@@ -9,9 +9,12 @@
 
 [node name="Goblin" groups=["Goblin"] instance=ExtResource("1_tog43")]
 collision_layer = 2
-ranged_targeting_radius = 1.65
+ranged_targeting_radius = 1.55
 is_enemy = true
 unit_list_resource = ExtResource("2_ie27n")
+
+[node name="Model" parent="." index="1"]
+transform = Transform3D(-2.30258e-08, 0, 0.526768, 0, 0.526768, 0, -0.526768, 0, -2.30258e-08, 0, 0, 0)
 
 [node name="DamageNumberComponent" parent="Model" index="0"]
 is_ally = false

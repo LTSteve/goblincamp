@@ -18,7 +18,7 @@ func _buildings_changed(_v,_ov):
 	_spawned_building = true
 
 func _get_todo_before_day():
-	return _bake_nav_mesh
+	return TodoListItem.new(_bake_nav_mesh)
 
 func _bake_nav_mesh(todo_list):
 	if _spawned_building:

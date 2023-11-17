@@ -29,7 +29,7 @@ func cycle_to_day():
 	is_day_resource.value = true
 
 func cycle_to_night():
-	var todo = todo_before_day_resource.inverse_signal(TYPE_CALLABLE)
+	var todo = todo_before_day_resource.inverse_signal()
 	TodoList.new(todo, true).on_done(_start_next_day)
 
 func _start_next_day():
