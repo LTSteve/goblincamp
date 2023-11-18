@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://byt5xpjdxieuo"]
 
-[ext_resource type="Script" path="res://buildings/building.gd" id="1_11aeh"]
+[ext_resource type="Script" path="res://buildings/Building.gd" id="1_11aeh"]
 [ext_resource type="Resource" uid="uid://bweje1wvoj7fh" path="res://observables/buildings.tres" id="2_8ax0i"]
 [ext_resource type="PackedScene" uid="uid://b3gtkfcan4upj" path="res://models/buildings/tavern.glb" id="2_108ml"]
 [ext_resource type="Resource" uid="uid://bq4aic53umc5k" path="res://observables/is_day.tres" id="3_h0q4c"]

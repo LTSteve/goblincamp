@@ -52,8 +52,8 @@ script = ExtResource("1_3kikx")
 hit_spot = NodePath("HeightComponent/witch_projectile/HitSpot")
 lifespan = 2.6
 sfx = Array[AudioStream]([ExtResource("3_5dklg"), ExtResource("4_3aj3u")])
-model = NodePath("HeightComponent/witch_projectile")
-particles = NodePath("HeightComponent/GPUParticles3D")
+model = NodePath("")
+particles = NodePath("")
 projectiles_resource = ExtResource("4_re2ui")
 
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="."]

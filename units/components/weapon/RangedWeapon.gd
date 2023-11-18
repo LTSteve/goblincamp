@@ -50,7 +50,7 @@ func _on_spawn_projectile():
 
 # weapon hit enemy
 func _on_area_3d_body_entered(enemy, projectile:Projectile):
-	if !(enemy is Unit): return
+	if !is_instance_valid(enemy) || !(enemy is Unit) || !is_inside_tree(): return
 	
 	var hit_data = create_hit.execute([enemy, Weapon.HitCreationData.new(projectile.hit_spot.global_position)])
 	enemy.take_hit(hit_data)

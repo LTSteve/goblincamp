@@ -55,8 +55,8 @@ lifespan = 4.0
 free_on_hit = false
 keep_final_destination = true
 sfx = Array[AudioStream]([ExtResource("3_wi4em"), ExtResource("4_xs2wk")])
-model = NodePath("HeightComponent/witch_projectile")
-particles = NodePath("HeightComponent/GPUParticles3D")
+model = NodePath("")
+particles = NodePath("")
 projectiles_resource = ExtResource("4_cscb6")
 
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="."]
