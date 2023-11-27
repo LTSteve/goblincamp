@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://133jo6pb7hxg"]
+[gd_scene load_steps=23 format=3 uid="uid://133jo6pb7hxg"]
 
 [ext_resource type="PackedScene" uid="uid://b43v6jawtpn5j" path="res://ground.tscn" id="1_4khsr"]
 [ext_resource type="Script" path="res://gameloop/TreeSpawner.gd" id="2_0sl38"]
@@ -13,6 +13,7 @@
 [ext_resource type="Environment" uid="uid://dewoeykm6c8my" path="res://world_environment.tres" id="11_ofhcg"]
 [ext_resource type="PackedScene" uid="uid://cfr8mya77iod3" path="res://controls/settings_menu.tscn" id="12_12y0v"]
 [ext_resource type="CameraAttributesPractical" uid="uid://c0b6x7w2dcuek" path="res://world_camera_attributes.tres" id="12_vvwwe"]
+[ext_resource type="Script" path="res://units/components/HeightComponent.gd" id="15_7fmkp"]
 [ext_resource type="FontFile" uid="uid://uv8oidl5wkap" path="res://theme/FingerPaint-Regular.ttf" id="17_3ugf7"]
 [ext_resource type="PackedScene" path="res://models/signpost/signpost.glb" id="17_nb3do"]
 [ext_resource type="FontFile" uid="uid://q8or8vsxpn3x" path="res://theme/Anton-Regular.ttf" id="18_8vm2m"]
@@ -88,14 +89,14 @@ layout_mode = 1
 offset_top = -271.0
 offset_bottom = 267.0
 
-[node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -3.64475, 4, -1.50552)
-
 [node name="Menu" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.3553, 0, -1.50552)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -207.796, 0, -28.7659)
 
 [node name="signpost" parent="Menu" instance=ExtResource("17_nb3do")]
 transform = Transform3D(0.173648, 0, 0.984808, 0, 1, 0, -0.984808, 0, 0.173648, -15, 0.5, -4.5)
+script = ExtResource("15_7fmkp")
+offset = 0.5
+once = true
 
 [node name="Label3D" type="Label3D" parent="Menu/signpost"]
 transform = Transform3D(-0.0391727, 0, -0.999234, 0, 1, 0, 0.999234, 0, -0.0391727, -0.349678, 3, 0.0616579)
@@ -108,16 +109,24 @@ font_size = 160
 outline_size = 0
 line_spacing = -40.0
 
+[node name="Camera3D" type="Camera3D" parent="Menu/signpost"]
+transform = Transform3D(-0.984808, 0, -0.173648, 0, 1, 0, 0.173648, 0, -0.984808, -5.47394, 2.82682, -5.12709)
+
 [node name="Play" type="Area3D" parent="Menu" node_paths=PackedStringArray("node_to_scale")]
-transform = Transform3D(-0.527045, 0, 0.849838, 0, 1, 0, -0.849838, 0, -0.527045, -8.4, 1, -0.7)
+transform = Transform3D(-0.527045, 0, 0.849838, 0, 1, 0, -0.849838, 0, -0.527045, -8.4, 1, -0.699997)
 script = ExtResource("19_se6cr")
 node_to_scale = NodePath("knight")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Menu/Play"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
 shape = SubResource("SphereShape3D_pij3f")
+script = ExtResource("15_7fmkp")
+offset = 2.0
+once = true
 
 [node name="knight" parent="Menu/Play" instance=ExtResource("18_spgfj")]
+script = ExtResource("15_7fmkp")
+once = true
 
 [node name="Label3D" type="Label3D" parent="Menu/Play/knight"]
 transform = Transform3D(-0.965926, 0, 0.258819, 0, 1, 0, -0.258819, 0, -0.965926, 0.581927, 0.681725, -1.09001)
@@ -135,8 +144,13 @@ node_to_scale = NodePath("merchant")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Menu/Settings"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
 shape = SubResource("SphereShape3D_pij3f")
+script = ExtResource("15_7fmkp")
+offset = 2.0
+once = true
 
 [node name="merchant" parent="Menu/Settings" instance=ExtResource("19_h4800")]
+script = ExtResource("15_7fmkp")
+once = true
 
 [node name="Label3D2" type="Label3D" parent="Menu/Settings/merchant"]
 transform = Transform3D(-0.974843, 0, -0.222893, 0, 1, 0, 0.222893, 0, -0.974843, -0.118719, 0.681725, -0.823676)
@@ -154,8 +168,13 @@ node_to_scale = NodePath("wizard")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Menu/Quit"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
 shape = SubResource("SphereShape3D_pij3f")
+script = ExtResource("15_7fmkp")
+offset = 2.0
+once = true
 
 [node name="wizard" parent="Menu/Quit" instance=ExtResource("20_fuf74")]
+script = ExtResource("15_7fmkp")
+once = true
 
 [node name="Label3D3" type="Label3D" parent="Menu/Quit/wizard"]
 transform = Transform3D(-0.867184, 0, 0.497988, 0, 1, 0, -0.497988, 0, -0.867184, 0.281171, 0.681725, -0.789053)
