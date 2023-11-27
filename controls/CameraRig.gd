@@ -17,6 +17,7 @@ static var I:CameraRig
 @export var drag_speed: float = 4.0
 
 @export var auto_drive: bool
+@export var no_drive: bool
 
 @export var fov_setting: SettingResource
 
@@ -77,7 +78,7 @@ func _process(delta):
 	if auto_drive:
 		forward_back_input = -1
 		rotate_input = 1
-	else:
+	elif !no_drive:
 		var drag_v2:Vector2 = TouchAndMouseInput.I.get_current_drag_v2()
 		#input
 		if _angle_override:

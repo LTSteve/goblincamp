@@ -1,44 +1,38 @@
-[gd_scene load_steps=18 format=3 uid="uid://133jo6pb7hxg"]
+[gd_scene load_steps=22 format=3 uid="uid://133jo6pb7hxg"]
 
 [ext_resource type="PackedScene" uid="uid://b43v6jawtpn5j" path="res://ground.tscn" id="1_4khsr"]
-[ext_resource type="PackedScene" uid="uid://dvgfkovckchyd" path="res://camera_rig.tscn" id="1_42x5g"]
 [ext_resource type="Script" path="res://gameloop/TreeSpawner.gd" id="2_0sl38"]
 [ext_resource type="Script" path="res://gameloop/WorldEnvironmentSettingOverride.gd" id="3_mar1s"]
 [ext_resource type="Script" path="res://gameloop/ScatterSpawner.gd" id="4_vafby"]
 [ext_resource type="Resource" uid="uid://dgc85osswl15x" path="res://world_environment_setting_override.tres" id="4_wge6q"]
 [ext_resource type="Resource" uid="uid://chpelyc6drf4f" path="res://controls/settings_types/Performance/4scatter.tres" id="5_dss63"]
 [ext_resource type="Theme" uid="uid://cel1y6hrc8slp" path="res://theme/main_theme.tres" id="8_oq6fe"]
-[ext_resource type="FontFile" uid="uid://d1jvqnhuvekma" path="res://theme/YoungSerif-Regular.ttf" id="9_ya2hh"]
 [ext_resource type="Material" uid="uid://vjdnyqs235ys" path="res://models/base_material.tres" id="10_5rxve"]
-[ext_resource type="Texture2D" uid="uid://cxquwwj5pp616" path="res://icons/camp_panel.png" id="10_it1x5"]
 [ext_resource type="Material" uid="uid://b030a03eirjwc" path="res://models/grass_material.tres" id="11_5bo0y"]
 [ext_resource type="Script" path="res://controls/MainMenu.gd" id="11_n1vs6"]
 [ext_resource type="Environment" uid="uid://dewoeykm6c8my" path="res://world_environment.tres" id="11_ofhcg"]
 [ext_resource type="PackedScene" uid="uid://cfr8mya77iod3" path="res://controls/settings_menu.tscn" id="12_12y0v"]
 [ext_resource type="CameraAttributesPractical" uid="uid://c0b6x7w2dcuek" path="res://world_camera_attributes.tres" id="12_vvwwe"]
+[ext_resource type="FontFile" uid="uid://uv8oidl5wkap" path="res://theme/FingerPaint-Regular.ttf" id="17_3ugf7"]
+[ext_resource type="PackedScene" path="res://models/signpost/signpost.glb" id="17_nb3do"]
+[ext_resource type="FontFile" uid="uid://q8or8vsxpn3x" path="res://theme/Anton-Regular.ttf" id="18_8vm2m"]
+[ext_resource type="PackedScene" uid="uid://bjni3yp3c1c0c" path="res://models/knight/knight.glb" id="18_spgfj"]
+[ext_resource type="PackedScene" uid="uid://cyplod3i2l3l3" path="res://models/npc/merchant.glb" id="19_h4800"]
+[ext_resource type="Script" path="res://controls/ClickableArea.gd" id="19_se6cr"]
+[ext_resource type="PackedScene" uid="uid://w325ppy4jbsf" path="res://models/wizard/wizard.glb" id="20_fuf74"]
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_3c3gx"]
-texture = ExtResource("10_it1x5")
-axis_stretch_horizontal = 1
-axis_stretch_vertical = 1
-region_rect = Rect2(50, 50, 500, 500)
+[sub_resource type="SphereShape3D" id="SphereShape3D_pij3f"]
+radius = 2.0
 
-[node name="main_menu" type="Node3D"]
+[node name="main_menu" type="Node3D" node_paths=PackedStringArray("settings_menu")]
+script = ExtResource("11_n1vs6")
+settings_menu = NodePath("Theme/SettingsMenu")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = ExtResource("11_ofhcg")
 camera_attributes = ExtResource("12_vvwwe")
 script = ExtResource("3_mar1s")
 resource = ExtResource("4_wge6q")
-
-[node name="CameraRig" parent="." instance=ExtResource("1_42x5g")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -170)
-camera_angle_max = 10.0
-camera_distance_min = 3.0
-camera_distance_max = 3.0
-camera_scroll_speed = 0.025
-camera_rotation_speed = 1.5
-auto_drive = true
 
 [node name="Ground" parent="." instance=ExtResource("1_4khsr")]
 
@@ -53,7 +47,7 @@ script = ExtResource("2_0sl38")
 ground = NodePath("../Ground")
 obsticle_folder = NodePath("../Ground/Node3D")
 tree_count = 90
-tree_min = 0.04
+tree_min = 0.09
 tree_scale = Vector3(0.85, 0.85, 0.85)
 skip_collision_boxes = true
 
@@ -63,14 +57,20 @@ ground = NodePath("../Ground")
 scatter_holder = NodePath("../Ground/ScatterHolder")
 max_scatter_count = 100
 rock_ratio = 0.5
-scatter_min = 0.004
+scatter_min = 0.05
 scatter_setting = ExtResource("5_dss63")
 rock_material = ExtResource("10_5rxve")
 grass_material = ExtResource("11_5bo0y")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(0.242451, 0.839992, -0.485419, 0.146926, 0.462785, 0.87421, 0.958974, -0.283274, -0.0112137, 0, 132.475, 0)
+transform = Transform3D(0.958946, -0.283378, -0.010999, 0.146592, 0.462116, 0.87462, -0.242765, -0.840325, 0.484685, 0, 132.475, 0)
 light_color = Color(0.960784, 1, 1, 1)
+
+[node name="DirectionalLight3D2" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.923423, -0.283378, 0.258818, -0.367965, 0.462116, -0.806877, 0.109048, -0.840325, -0.531002, 0, 132.475, 0)
+light_color = Color(1, 1, 0.960784, 1)
+light_energy = 0.2
+sky_mode = 1
 
 [node name="Theme" type="Control" parent="."]
 layout_mode = 3
@@ -82,95 +82,98 @@ grow_vertical = 2
 mouse_filter = 2
 theme = ExtResource("8_oq6fe")
 
-[node name="Label" type="Label" parent="Theme"]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.5
-anchor_top = 0.33
-anchor_right = 0.5
-anchor_bottom = 0.33
-offset_left = -200.0
-offset_top = -45.84
-offset_right = 194.0
-offset_bottom = 42.16
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_fonts/font = ExtResource("9_ya2hh")
-theme_override_font_sizes/font_size = 60
-text = "Goblin Camp"
-
-[node name="MainMenu" type="Panel" parent="Theme" node_paths=PackedStringArray("settings_menu")]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -200.0
-offset_top = -46.0
-offset_right = 200.0
-offset_bottom = 254.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxTexture_3c3gx")
-script = ExtResource("11_n1vs6")
-settings_menu = NodePath("../SettingsMenu")
-
-[node name="MarginContainer" type="MarginContainer" parent="Theme/MainMenu"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/margin_left = 20
-theme_override_constants/margin_top = 20
-theme_override_constants/margin_right = 20
-theme_override_constants/margin_bottom = 20
-
-[node name="VBoxContainer" type="VBoxContainer" parent="Theme/MainMenu/MarginContainer"]
-layout_mode = 2
-size_flags_vertical = 4
-
-[node name="MarginContainer" type="MarginContainer" parent="Theme/MainMenu/MarginContainer/VBoxContainer"]
-layout_mode = 2
-theme_override_constants/margin_top = 10
-theme_override_constants/margin_bottom = 10
-
-[node name="Button" type="Button" parent="Theme/MainMenu/MarginContainer/VBoxContainer/MarginContainer"]
-layout_mode = 2
-mouse_default_cursor_shape = 2
-theme_override_font_sizes/font_size = 28
-text = "PLAY"
-
-[node name="MarginContainer2" type="MarginContainer" parent="Theme/MainMenu/MarginContainer/VBoxContainer"]
-layout_mode = 2
-theme_override_constants/margin_top = 10
-theme_override_constants/margin_bottom = 10
-
-[node name="Button" type="Button" parent="Theme/MainMenu/MarginContainer/VBoxContainer/MarginContainer2"]
-layout_mode = 2
-mouse_default_cursor_shape = 2
-theme_override_font_sizes/font_size = 28
-text = "SETTINGS"
-
-[node name="MarginContainer3" type="MarginContainer" parent="Theme/MainMenu/MarginContainer/VBoxContainer"]
-layout_mode = 2
-theme_override_constants/margin_top = 10
-theme_override_constants/margin_bottom = 10
-
-[node name="Button" type="Button" parent="Theme/MainMenu/MarginContainer/VBoxContainer/MarginContainer3"]
-layout_mode = 2
-mouse_default_cursor_shape = 2
-theme_override_font_sizes/font_size = 28
-text = "QUIT"
-
 [node name="SettingsMenu" parent="Theme" instance=ExtResource("12_12y0v")]
 visible = false
 layout_mode = 1
 offset_top = -271.0
 offset_bottom = 267.0
 
-[connection signal="pressed" from="Theme/MainMenu/MarginContainer/VBoxContainer/MarginContainer/Button" to="Theme/MainMenu" method="on_play"]
-[connection signal="pressed" from="Theme/MainMenu/MarginContainer/VBoxContainer/MarginContainer2/Button" to="Theme/MainMenu" method="on_settings"]
-[connection signal="pressed" from="Theme/MainMenu/MarginContainer/VBoxContainer/MarginContainer3/Button" to="Theme/MainMenu" method="on_quit"]
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -3.64475, 4, -1.50552)
+
+[node name="Menu" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.3553, 0, -1.50552)
+
+[node name="signpost" parent="Menu" instance=ExtResource("17_nb3do")]
+transform = Transform3D(0.173648, 0, 0.984808, 0, 1, 0, -0.984808, 0, 0.173648, -15, 0.5, -4.5)
+
+[node name="Label3D" type="Label3D" parent="Menu/signpost"]
+transform = Transform3D(-0.0391727, 0, -0.999234, 0, 1, 0, 0.999234, 0, -0.0391727, -0.349678, 3, 0.0616579)
+modulate = Color(1, 1, 0.819608, 1)
+outline_modulate = Color(0.517647, 0.517647, 0.517647, 0)
+text = "Goblin
+Lands"
+font = ExtResource("17_3ugf7")
+font_size = 160
+outline_size = 0
+line_spacing = -40.0
+
+[node name="Play" type="Area3D" parent="Menu" node_paths=PackedStringArray("node_to_scale")]
+transform = Transform3D(-0.527045, 0, 0.849838, 0, 1, 0, -0.849838, 0, -0.527045, -8.4, 1, -0.7)
+script = ExtResource("19_se6cr")
+node_to_scale = NodePath("knight")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Menu/Play"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+shape = SubResource("SphereShape3D_pij3f")
+
+[node name="knight" parent="Menu/Play" instance=ExtResource("18_spgfj")]
+
+[node name="Label3D" type="Label3D" parent="Menu/Play/knight"]
+transform = Transform3D(-0.965926, 0, 0.258819, 0, 1, 0, -0.258819, 0, -0.965926, 0.581927, 0.681725, -1.09001)
+pixel_size = 0.008
+billboard = 2
+text = "PLAY"
+font = ExtResource("18_8vm2m")
+font_size = 64
+
+[node name="Settings" type="Area3D" parent="Menu" node_paths=PackedStringArray("node_to_scale")]
+transform = Transform3D(0.0871558, 0, 0.996195, 0, 1, 0, -0.996195, 0, 0.0871558, -8, 1, 4.25)
+script = ExtResource("19_se6cr")
+node_to_scale = NodePath("merchant")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Menu/Settings"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+shape = SubResource("SphereShape3D_pij3f")
+
+[node name="merchant" parent="Menu/Settings" instance=ExtResource("19_h4800")]
+
+[node name="Label3D2" type="Label3D" parent="Menu/Settings/merchant"]
+transform = Transform3D(-0.974843, 0, -0.222893, 0, 1, 0, 0.222893, 0, -0.974843, -0.118719, 0.681725, -0.823676)
+pixel_size = 0.008
+billboard = 2
+text = "SETTINGS"
+font = ExtResource("18_8vm2m")
+font_size = 64
+
+[node name="Quit" type="Area3D" parent="Menu" node_paths=PackedStringArray("node_to_scale")]
+transform = Transform3D(-0.156434, 0, 0.987688, 0, 1, 0, -0.987688, 0, -0.156434, -9, 1, 10.2)
+script = ExtResource("19_se6cr")
+node_to_scale = NodePath("wizard")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Menu/Quit"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+shape = SubResource("SphereShape3D_pij3f")
+
+[node name="wizard" parent="Menu/Quit" instance=ExtResource("20_fuf74")]
+
+[node name="Label3D3" type="Label3D" parent="Menu/Quit/wizard"]
+transform = Transform3D(-0.867184, 0, 0.497988, 0, 1, 0, -0.497988, 0, -0.867184, 0.281171, 0.681725, -0.789053)
+pixel_size = 0.008
+billboard = 2
+text = "EXIT"
+font = ExtResource("18_8vm2m")
+font_size = 64
+
+[connection signal="clicked" from="Menu/Play" to="." method="on_play"]
+[connection signal="input_event" from="Menu/Play" to="Menu/Play" method="_on_input_event"]
+[connection signal="mouse_entered" from="Menu/Play" to="Menu/Play" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="Menu/Play" to="Menu/Play" method="_on_mouse_exited"]
+[connection signal="clicked" from="Menu/Settings" to="." method="on_settings"]
+[connection signal="input_event" from="Menu/Settings" to="Menu/Settings" method="_on_input_event"]
+[connection signal="mouse_entered" from="Menu/Settings" to="Menu/Settings" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="Menu/Settings" to="Menu/Settings" method="_on_mouse_exited"]
+[connection signal="clicked" from="Menu/Quit" to="." method="on_quit"]
+[connection signal="input_event" from="Menu/Quit" to="Menu/Quit" method="_on_input_event"]
+[connection signal="mouse_entered" from="Menu/Quit" to="Menu/Quit" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="Menu/Quit" to="Menu/Quit" method="_on_mouse_exited"]

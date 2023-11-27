@@ -1,4 +1,4 @@
-extends Panel
+extends Node
 
 @export var settings_menu: SettingsMenu
 
