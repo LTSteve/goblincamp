@@ -21,7 +21,7 @@ var _todo_list: TodoList
 static var I: GoblinCardPanel
 
 func _ready():
-	card_scene = DB.I.scenes.card_scene
+	card_scene = DB.I.scenes.card_display_scene
 	I = self
 	todo_before_day_resource.bind(_get_todo_before_day)
 
@@ -38,7 +38,6 @@ func try_open(todo_list:TodoList):
 	var new_card = card_scene.instantiate() as CardDisplay
 	new_card.card_resource = _card_resource
 	new_card.show_next_rank = true
-	new_card.clickable = false
 	card_container.add_child(new_card)
 	
 	visible = true

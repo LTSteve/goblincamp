@@ -1,11 +1,11 @@
 [gd_resource type="Environment" load_steps=2 format=3 uid="uid://dewoeykm6c8my"]
 
-[ext_resource type="Sky" uid="uid://buedn05gof7n6" path="res://world_sky.tres" id="1_65nqa"]
+[ext_resource type="Sky" uid="uid://buedn05gof7n6" path="res://world_sky.tres" id="1_fqcbt"]
 
 [resource]
 background_mode = 2
 background_energy_multiplier = 1.1
-sky = ExtResource("1_65nqa")
+sky = ExtResource("1_fqcbt")
 ambient_light_source = 3
 reflected_light_source = 2
 ssr_enabled = true

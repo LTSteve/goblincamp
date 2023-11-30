@@ -2,17 +2,18 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dindi5t5ovbrl"
-path.s3tc="res://.godot/imported/shattered-sword.png-11fca92adf39e84e2aa18bba55e8eeb3.s3tc.ctex"
+uid="uid://i1uc6yw2xv8n"
+path.s3tc="res://.godot/imported/card_card_background.png-47f3156eaab6ca22768e22e5aed7ce76.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
+generator_parameters={}
 
 [deps]
 
-source_file="res://icons/shattered-sword.png"
-dest_files=["res://.godot/imported/shattered-sword.png-11fca92adf39e84e2aa18bba55e8eeb3.s3tc.ctex"]
+source_file="res://models/card/card_card_background.png"
+dest_files=["res://.godot/imported/card_card_background.png-47f3156eaab6ca22768e22e5aed7ce76.s3tc.ctex"]
 
 [params]
 

@@ -2,21 +2,21 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dindi5t5ovbrl"
-path.s3tc="res://.godot/imported/shattered-sword.png-11fca92adf39e84e2aa18bba55e8eeb3.s3tc.ctex"
+uid="uid://bnlyyj7a0oipq"
+path="res://.godot/imported/card_new_pallete.png-ce05c4eee15a93e2afe1d81d3ae319e1.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
-"vram_texture": true
+"vram_texture": false
 }
+generator_parameters={}
 
 [deps]
 
-source_file="res://icons/shattered-sword.png"
-dest_files=["res://.godot/imported/shattered-sword.png-11fca92adf39e84e2aa18bba55e8eeb3.s3tc.ctex"]
+source_file="res://models/card/card_new_pallete.png"
+dest_files=["res://.godot/imported/card_new_pallete.png-ce05c4eee15a93e2afe1d81d3ae319e1.ctex"]
 
 [params]
 
-compress/mode=2
+compress/mode=0
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1

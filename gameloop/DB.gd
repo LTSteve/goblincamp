@@ -56,16 +56,16 @@ var _scene_paths = {
 	ritual_display_scene= "res://controls/ritual_display.tscn",
 	goblin_ear_scene="res://pickups/goblin_ear.tscn",
 	resource_cost_scene= "res://controls/resource_cost.tscn",
-	card_display_scene= "res://controls/card_display.tscn",
+	card_display_scene= "res://controls/cards/card_display.tscn",
 	damage_label_scene= "res://units/components/damagelabel/damage_label.tscn",
 	slide_setting_scene= "res://controls/settings/slide_setting.tscn",
 	toggle_setting_scene= "res://controls/settings/toggle_setting.tscn",
-	card_scene= "res://controls/card_display.tscn",
 	scatter_multimesh_scene= "res://ground_generation/scatter_multimesh.tscn",
 	tree1_mesh= "res://models/trees/tree_1_Icosphere_003.res",
 	tree2_mesh= "res://models/trees/tree_2_Cube_001.res",
 	tree3_mesh= "res://models/trees/tree_3_Cube_002.res",
-	tree4_mesh= "res://models/trees/tree_4_Cube_003.res"
+	tree4_mesh= "res://models/trees/tree_4_Cube_003.res",
+	pick_project_scene= "res://controls/popups/pick_project.tscn"
 }
 
 var scenes = {}

@@ -141,7 +141,11 @@ func _on_purchase_button_pressed(offer:Offer, offer_display:OfferDisplay):
 		for _i in offer.type_1_count:
 			UnitSpawner.I.spawn_friendly(offer.unit_type_1)
 		if offer.type_2_is_building:
-			PickProjectModel.I.open(offer.building_type_2)
+			
+			var pick_project_modal: PickProjectModel = DB.I.scenes.pick_project_scene.instantiate()
+			pick_project_modal.generate_building_cards(offer.building_type_2)
+			HUD.I.on_popup_open(pick_project_modal)
+			
 			slide_out()
 		else:
 			for _i in offer.type_2_count:

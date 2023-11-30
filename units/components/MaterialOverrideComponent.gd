@@ -40,6 +40,11 @@ func remove_color(color:Color):
 	_color_stack.remove_at(index)
 	_update_color()
 
+func set_color(color:Color):
+	_color_stack.clear()
+	add_color(color)
+	_update_color()
+
 func add_emission_color(color:Color):
 	if !_use_emission: 
 		add_color(color)

@@ -1,0 +1,102 @@
+[gd_scene load_steps=5 format=3 uid="uid://27jmv87jb7qx"]
+
+[ext_resource type="Script" path="res://controls/PickProjectModel.gd" id="1_106yj"]
+[ext_resource type="PackedScene" uid="uid://baemiseha5yiw" path="res://controls/3d_texture_rect.tscn" id="2_w6vvu"]
+[ext_resource type="PackedScene" uid="uid://bxuks2nqox5rb" path="res://controls/cards/card_container.tscn" id="3_sq8g5"]
+[ext_resource type="FontFile" uid="uid://q8or8vsxpn3x" path="res://theme/Anton-Regular.ttf" id="4_7gamq"]
+
+[node name="PickProject" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_106yj")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 86.0
+grow_horizontal = 2
+theme_override_constants/margin_top = 40
+
+[node name="Label" type="Label" parent="MarginContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 28
+text = "PICK A PROJECT"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MarginContainer2" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_top = 120
+theme_override_constants/margin_bottom = 100
+
+[node name="3DTextureRect" parent="MarginContainer2" instance=ExtResource("2_w6vvu")]
+layout_mode = 2
+size_flags_horizontal = 4
+mouse_filter = 0
+mouse_default_cursor_shape = 2
+expand_mode = 3
+model_scale = Vector3(0.38, 0.38, 0.38)
+model_offset = Vector3(0, 1, 0)
+viewport_pixels = Vector2i(2048, 1024)
+projection = 0
+model_scene = ExtResource("3_sq8g5")
+
+[node name="Left_Icon" type="Label" parent="MarginContainer2/3DTextureRect"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -14.0
+offset_right = 40.0
+offset_bottom = 14.0
+grow_vertical = 2
+theme_override_font_sizes/font_size = 60
+text = "<"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="Right_Icon" type="Label" parent="MarginContainer2/3DTextureRect"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -40.0
+offset_top = -24.5
+offset_bottom = 24.5
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_font_sizes/font_size = 60
+text = ">"
+vertical_alignment = 1
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -100.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="Button" type="Button" parent="CenterContainer"]
+layout_mode = 2
+mouse_default_cursor_shape = 2
+theme_override_fonts/font = ExtResource("4_7gamq")
+theme_override_font_sizes/font_size = 30
+text = "   CHOOSE CARD   "
+
+[connection signal="gui_input" from="MarginContainer2/3DTextureRect" to="." method="_on_card_holder_gui_input"]
+[connection signal="pressed" from="CenterContainer/Button" to="." method="on_choose_card"]

@@ -1,0 +1,140 @@
+[gd_scene load_steps=17 format=3 uid="uid://0grbgsy4o0bp"]
+
+[ext_resource type="Script" path="res://controls/cards/CardDisplay.gd" id="1_w1dks"]
+[ext_resource type="Resource" uid="uid://bx7huosi7j2ja" path="res://controls/cards/card_defaults.tres" id="2_tyvj3"]
+[ext_resource type="PackedScene" uid="uid://cttk1al4b6jpw" path="res://models/card/card.glb" id="3_l3h7b"]
+[ext_resource type="Shader" uid="uid://gtg4p3ryy3rp" path="res://models/card/card_portal.tres" id="4_hvmpi"]
+[ext_resource type="Theme" uid="uid://cel1y6hrc8slp" path="res://theme/main_theme.tres" id="5_kpnk4"]
+[ext_resource type="FontFile" uid="uid://q8or8vsxpn3x" path="res://theme/Anton-Regular.ttf" id="6_6tqea"]
+[ext_resource type="PackedScene" uid="uid://baemiseha5yiw" path="res://controls/3d_texture_rect.tscn" id="7_74geb"]
+[ext_resource type="PackedScene" uid="uid://w325ppy4jbsf" path="res://models/wizard/wizard.glb" id="8_fde04"]
+[ext_resource type="FontFile" uid="uid://d1jvqnhuvekma" path="res://theme/YoungSerif-Regular.ttf" id="9_ruhxr"]
+[ext_resource type="Script" path="res://units/components/MaterialOverrideComponent.gd" id="10_c3i1t"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_4sj7h"]
+render_priority = 0
+shader = ExtResource("4_hvmpi")
+
+[sub_resource type="QuadMesh" id="QuadMesh_rnkrh"]
+material = SubResource("ShaderMaterial_4sj7h")
+size = Vector2(10, 10)
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_fnkml"]
+viewport_path = NodePath("SubViewport")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_hywhr"]
+viewport_path = NodePath("SubViewport")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0tpla"]
+resource_local_to_scene = true
+transparency = 1
+shading_mode = 0
+albedo_texture = SubResource("ViewportTexture_hywhr")
+
+[sub_resource type="QuadMesh" id="QuadMesh_dio2s"]
+size = Vector2(2.5, 3.5)
+
+[node name="CardDisplay" type="Node3D" node_paths=PackedStringArray("card_title", "card_description")]
+script = ExtResource("1_w1dks")
+card_defaults = ExtResource("2_tyvj3")
+card_title = NodePath("SubViewport/Theme/VBoxContainer/MarginContainer/Label")
+card_description = NodePath("SubViewport/Theme/VBoxContainer/MarginContainer3/Panel/MarginContainer/Label")
+
+[node name="card" parent="." instance=ExtResource("3_l3h7b")]
+
+[node name="Cube" parent="card" index="0"]
+layers = 2
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0.110833, 0.632051, 0)
+layers = 2
+mesh = SubResource("QuadMesh_rnkrh")
+
+[node name="SubViewport" type="SubViewport" parent="."]
+own_world_3d = true
+transparent_bg = true
+handle_input_locally = false
+size = Vector2i(500, 700)
+
+[node name="Theme" type="Control" parent="SubViewport"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+theme = ExtResource("5_kpnk4")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="SubViewport/Theme"]
+layout_mode = 0
+offset_right = 500.0
+offset_bottom = 700.0
+
+[node name="MarginContainer" type="MarginContainer" parent="SubViewport/Theme/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 10
+
+[node name="Label" type="Label" parent="SubViewport/Theme/VBoxContainer/MarginContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("6_6tqea")
+theme_override_font_sizes/font_size = 40
+text = "CARD NAME"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MarginContainer2" type="MarginContainer" parent="SubViewport/Theme/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 60
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 60
+theme_override_constants/margin_bottom = 15
+
+[node name="3DTextureRect" parent="SubViewport/Theme/VBoxContainer/MarginContainer2" instance=ExtResource("7_74geb")]
+layout_mode = 2
+texture = SubResource("ViewportTexture_fnkml")
+viewport_pixels = Vector2i(768, 768)
+model_scene = ExtResource("8_fde04")
+
+[node name="MarginContainer3" type="MarginContainer" parent="SubViewport/Theme/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 55
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 55
+theme_override_constants/margin_bottom = 20
+
+[node name="Panel" type="Panel" parent="SubViewport/Theme/VBoxContainer/MarginContainer3"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="SubViewport/Theme/VBoxContainer/MarginContainer3/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="Label" type="Label" parent="SubViewport/Theme/VBoxContainer/MarginContainer3/Panel/MarginContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("9_ruhxr")
+theme_override_font_sizes/font_size = 23
+text = "Does something, I'm sure of itDoes something, I'm sure of itDoes something, I'm sure of it"
+autowrap_mode = 2
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+transform = Transform3D(-8.74228e-08, 0, 2, 0, 2, 0, -2, 0, -8.74228e-08, 0.111957, 0, 0)
+layers = 2
+sorting_offset = 10.0
+material_override = SubResource("StandardMaterial3D_0tpla")
+mesh = SubResource("QuadMesh_dio2s")
+
+[node name="MaterialOverrideComponent" type="Node" parent="." node_paths=PackedStringArray("mesh_instance")]
+script = ExtResource("10_c3i1t")
+mesh_instance = NodePath("../card/Cube")
+
+[editable path="card"]

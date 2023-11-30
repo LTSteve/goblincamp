@@ -13,7 +13,7 @@ var _building: Building
 static var I: BuildingProjectPanel
 
 func _ready():
-	card_display_scene = DB.I.scenes.card_scene
+	card_display_scene = DB.I.scenes.card_display_scene
 	I = self
 
 func open(card:CardResource, building:Building):

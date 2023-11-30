@@ -91,7 +91,11 @@ func _create_ritual_display():
 func _on_purchase_button_pressed(ritual:Ritual, ritual_display:RitualDisplay):
 	if MoneyManager.I.try_spend_multiple(ritual.prices, ritual.resources):
 		ritual_display.disable()
-		PickProjectModel.I.open_ritual(ritual)
+		
+		var pick_project_modal: PickProjectModel = DB.I.scenes.pick_project_scene.instantiate()
+		pick_project_modal.generate_ritual_cards(ritual)
+		HUD.I.on_popup_open(pick_project_modal)
+		
 		if ritual.type == Ritual.Type.Epic:
 			_one_free_epic = false
 
