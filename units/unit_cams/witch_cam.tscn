@@ -1,6 +1,5 @@
-[gd_scene load_steps=41 format=3 uid="uid://c2qe8ftqf2163"]
+[gd_scene load_steps=40 format=3 uid="uid://c2qe8ftqf2163"]
 
-[ext_resource type="Environment" uid="uid://b8hhv81bda8f4" path="res://units/unit_cams/unit_cam_env.tres" id="1_kjpkg"]
 [ext_resource type="PackedScene" uid="uid://dr03pl5h8j0jd" path="res://models/witch/witch_weapon.glb" id="2_p21br"]
 [ext_resource type="AnimationLibrary" uid="uid://b6wnckokfgdid" path="res://units/weapons/ranged/staff_animations.res" id="5_uiis5"]
 [ext_resource type="Script" path="res://util/AnimationTreeExpressionExtension.gd" id="7_doxk8"]
@@ -168,14 +167,7 @@ states/idle_combat/position = Vector2(526, 100)
 transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_1k68o"), "idle_combat", "Attack", SubResource("AnimationNodeStateMachineTransition_7y4qh"), "Attack", "idle_combat", SubResource("AnimationNodeStateMachineTransition_fabty"), "idle", "Draw", SubResource("AnimationNodeStateMachineTransition_rfrvc"), "Draw", "idle_combat", SubResource("AnimationNodeStateMachineTransition_820cq"), "Stow", "idle", SubResource("AnimationNodeStateMachineTransition_vpp05"), "idle_combat", "Stow", SubResource("AnimationNodeStateMachineTransition_0ginc")]
 graph_offset = Vector2(58, -23)
 
-[node name="WitchCam" type="Camera3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 500, 0)
-cull_mask = 524290
-environment = ExtResource("1_kjpkg")
-projection = 1
-size = 2.7
-near = 1.0
-far = 10.0
+[node name="WitchCam" type="Node3D"]
 
 [node name="Witch" type="Node3D" parent="."]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, -1, -6)

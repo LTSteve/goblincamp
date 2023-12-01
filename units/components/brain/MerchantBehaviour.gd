@@ -31,7 +31,10 @@ func _merchant_input_event(_camera: Node, event: InputEvent, _position: Vector3,
 
 static func open_buy_panel():
 	if ! _MERCHANT: return
-	BuyPanel.I.slide_in()
+	
+	var buy_panel = DB.I.scenes.buy_panel_scene.instantiate()
+	HUD.I.on_popup_open(buy_panel)
+	
 	var camera_position = CameraRig.CameraSettings.new()
 	camera_position.locked_to = _MERCHANT
 	CameraRig.I.set_camera_angle_override(camera_position)

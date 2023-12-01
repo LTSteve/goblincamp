@@ -1,7 +1,7 @@
 class_name Offer
 
-var viewport_texture_1: ViewportTexture
-var viewport_texture_2: ViewportTexture
+var model_scene_1: PackedScene
+var model_scene_2: PackedScene
 
 var unit_type_1: UnitSpawner.UnitType
 var type_1_count: int

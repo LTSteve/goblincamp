@@ -5,9 +5,6 @@ class_name GoblinCardPanel
 var card_scene: PackedScene
 @export var card_container: Container
 
-@export var first_modifier_night: int = 5
-@export var modifier_interval: int = 10
-
 @export_group("Observables")
 @export var day_number_resource: Observable
 
@@ -30,7 +27,7 @@ func _get_todo_before_day() -> TodoListItem:
 
 func try_open(todo_list:TodoList):
 	var day = day_number_resource.value + 1
-	if day < first_modifier_night || ((day - first_modifier_night) % modifier_interval) != 0: 
+	if day < GoblinCardManager.I.first_modifier_night || ((day - GoblinCardManager.I.first_modifier_night) % GoblinCardManager.I.modifier_interval) != 0: 
 		todo_list.mark_step_done()
 		return
 	_card_resource = ModifierManager.get_next_enemy_card()

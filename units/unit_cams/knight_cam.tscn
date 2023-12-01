@@ -1,6 +1,5 @@
-[gd_scene load_steps=48 format=3 uid="uid://cfbnbc7yyfs1f"]
+[gd_scene load_steps=47 format=3 uid="uid://cfbnbc7yyfs1f"]
 
-[ext_resource type="Environment" uid="uid://b8hhv81bda8f4" path="res://units/unit_cams/unit_cam_env.tres" id="1_0eo3w"]
 [ext_resource type="PackedScene" uid="uid://ccbj6hhusyqky" path="res://models/knight/knight_weapon.glb" id="2_270c3"]
 [ext_resource type="Script" path="res://util/AnimationTreeExpressionExtension.gd" id="4_46gq8"]
 [ext_resource type="PackedScene" uid="uid://bjni3yp3c1c0c" path="res://models/knight/knight.glb" id="4_fybv2"]
@@ -668,14 +667,7 @@ states/idle_combat/position = Vector2(526, 100)
 transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_1k68o"), "idle_combat", "Attack", SubResource("AnimationNodeStateMachineTransition_7y4qh"), "Attack", "idle_combat", SubResource("AnimationNodeStateMachineTransition_fabty"), "idle", "Draw", SubResource("AnimationNodeStateMachineTransition_rfrvc"), "Draw", "idle_combat", SubResource("AnimationNodeStateMachineTransition_820cq"), "Stow", "idle", SubResource("AnimationNodeStateMachineTransition_vpp05"), "idle_combat", "Stow", SubResource("AnimationNodeStateMachineTransition_0ginc")]
 graph_offset = Vector2(58, -23)
 
-[node name="KnightCam" type="Camera3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 500, 0)
-cull_mask = 1047554
-environment = ExtResource("1_0eo3w")
-projection = 1
-size = 2.7
-near = 1.0
-far = 10.0
+[node name="KnightCam" type="Node3D"]
 
 [node name="Knight" type="Node3D" parent="."]
 transform = Transform3D(-0.932292, 0, 0.361706, 0, 1, 0, -0.361706, 0, -0.932292, 0, -1, -6)

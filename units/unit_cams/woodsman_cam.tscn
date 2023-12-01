@@ -1,6 +1,5 @@
-[gd_scene load_steps=51 format=3 uid="uid://crl8047c1ire1"]
+[gd_scene load_steps=50 format=3 uid="uid://crl8047c1ire1"]
 
-[ext_resource type="Environment" uid="uid://b8hhv81bda8f4" path="res://units/unit_cams/unit_cam_env.tres" id="1_8r3g7"]
 [ext_resource type="PackedScene" uid="uid://bxdgmne7agdj2" path="res://models/woodsman/woodsman_weapon_ranged.glb" id="2_5m0rr"]
 [ext_resource type="PackedScene" uid="uid://c5vxjgrcperkw" path="res://models/woodsman/woodsman_projectile.glb" id="3_jhd84"]
 [ext_resource type="PackedScene" uid="uid://7ompo5s8qd6p" path="res://models/woodsman/woodsman.glb" id="4_2k4mq"]
@@ -602,14 +601,7 @@ states/idle_combat/position = Vector2(526, 100)
 transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_1k68o"), "idle_combat", "Attack", SubResource("AnimationNodeStateMachineTransition_7y4qh"), "Attack", "idle_combat", SubResource("AnimationNodeStateMachineTransition_fabty"), "idle", "Draw", SubResource("AnimationNodeStateMachineTransition_rfrvc"), "Draw", "idle_combat", SubResource("AnimationNodeStateMachineTransition_820cq"), "Stow", "idle", SubResource("AnimationNodeStateMachineTransition_vpp05"), "idle_combat", "Stow", SubResource("AnimationNodeStateMachineTransition_0ginc")]
 graph_offset = Vector2(58, -23)
 
-[node name="WoodsmanCam" type="Camera3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.2382, 500, 0)
-cull_mask = 524290
-environment = ExtResource("1_8r3g7")
-projection = 1
-size = 2.7
-near = 1.0
-far = 10.0
+[node name="WoodsmanCam" type="Node3D"]
 
 [node name="Woodsman" type="Node3D" parent="."]
 transform = Transform3D(-0.965926, 0, -0.258819, 0, 1, 0, 0.258819, 0, -0.965926, 0, -1, -6)

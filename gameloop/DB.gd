@@ -65,7 +65,20 @@ var _scene_paths = {
 	tree2_mesh= "res://models/trees/tree_2_Cube_001.res",
 	tree3_mesh= "res://models/trees/tree_3_Cube_002.res",
 	tree4_mesh= "res://models/trees/tree_4_Cube_003.res",
-	pick_project_scene= "res://controls/popups/pick_project.tscn"
+	building_project_panel_scene= "res://controls/popups/building_project_panel.tscn",
+	buy_panel_scene= "res://controls/popups/buy_panel.tscn",
+	game_over_panel_scene= "res://controls/popups/game_over_panel.tscn",
+	goblin_card_panel_scene= "res://controls/popups/goblin_card_panel.tscn",
+	pick_project_scene= "res://controls/popups/pick_project.tscn",
+	ritual_panel_scene= "res://controls/popups/ritual_panel.tscn",
+	knight_unit_cam= "res://units/unit_cams/knight_cam.tscn",
+	witch_unit_cam= "res://units/unit_cams/witch_cam.tscn",
+	woodsman_unit_cam= "res://units/unit_cams/woodsman_cam.tscn",
+	bearkin_unit_cam= "res://units/unit_cams/bearkin_cam.tscn",
+	blacksmith_cam= "res://buildings/building_cams/blacksmith_cam.tscn",
+	leatherworker_cam= "res://buildings/building_cams/leatherworker_cam.tscn",
+	enchanter_cam= "res://buildings/building_cams/enchanter_cam.tscn",
+	tavern_cam= "res://buildings/building_cams/tavern_cam.tscn",
 }
 
 var scenes = {}

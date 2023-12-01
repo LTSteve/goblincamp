@@ -37,7 +37,7 @@ func _on_day_changed(is_d, _was_d):
 	_spawn_wave(day_number.value)
 
 func get_spawn_power(day):
-	var cycle = ((day - GoblinCardPanel.I.first_modifier_night) % GoblinCardPanel.I.modifier_interval) if day > GoblinCardPanel.I.first_modifier_night else 0
+	var cycle = ((day - GoblinCardManager.I.first_modifier_night) % GoblinCardManager.I.modifier_interval) if day > GoblinCardManager.I.first_modifier_night else 0
 	cycle = (cycle / 2.0) as int
 	var linear_component = 1 + day
 	return clampi(linear_component+cycle, 2, enemy_power_limit) + flat_enemy_power_increase

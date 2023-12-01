@@ -1,17 +1,13 @@
-extends TweenSlide
+extends UIPopup
 
 class_name BuyPanel
 
-static var I: BuyPanel
-
 @onready var container:Container = $"BuyPanel/MarginContainer/Offers/ScrollContainer/MarginContainer/FlowContainer"
 @onready var scroll_container: ScrollContainer = $"BuyPanel/MarginContainer/Offers/ScrollContainer"
+@onready var ear_exchange_panel: EarExchangePanel = $"EarExchangePanel"
 
 @export var available_unit_types: Array[UnitSpawner.UnitType]
 @export var available_building_types: Array[UnitSpawner.BuildingType]
-
-@export var unit_viewports: Array[SubViewport]
-@export var building_viewports: Array[SubViewport]
 
 @export var unit_costs: Array[int]
 @export var building_costs: Array[int]
@@ -20,32 +16,42 @@ static var I: BuyPanel
 @export var bulk_discount: float = 0.01
 
 @export_group("Observable")
-@export var is_day_resource: ObservableResource
 @export var day_number_resource: ObservableResource
 @export var players_resource: ObservableResource
 @export var buildings_resource: ObservableResource
 @export var has_made_purchase_resource: ObservableResource
+@export var ear_exchange_rate_resource: ObservableResource
+
+var unit_cam_scenes: Array[PackedScene] = []
+var building_cam_scenes: Array[PackedScene] = []
 
 var _current_offers: Array[Offer] = []
 
 func _ready():
-	I = self
-	super._ready()
-	is_day_resource.value_changed.connect(_on_day_changed)
+	unit_cam_scenes = [
+		DB.I.scenes.knight_unit_cam,
+		DB.I.scenes.witch_unit_cam,
+		DB.I.scenes.woodsman_unit_cam,
+		DB.I.scenes.bearkin_unit_cam,
+	]
+	
+	building_cam_scenes = [
+		DB.I.scenes.blacksmith_cam,
+		DB.I.scenes.leatherworker_cam,
+		DB.I.scenes.enchanter_cam,
+		DB.I.scenes.tavern_cam,
+	]
 
-func slide_in():
+func open():
+	super.open()
 	if _current_offers.is_empty():
 		_setup_offers()
+	ear_exchange_panel.visible = day_number_resource.value > 0
 	scroll_container.scroll_vertical = 0
-	super.slide_in()
 
-func slide_out():
+func close():
+	super.close()
 	CameraRig.I.unset_camera_angle_override()
-	super.slide_out()
-
-func _on_day_changed(is_day, _was_day):
-	if !is_day: return
-	_setup_offers()
 
 func _setup_offers():
 	_create_offers(5, day_number_resource.value, players_resource.value.size(), buildings_resource.value.size(), MoneyManager.I.get_resource(MoneyManager.MoneyType.Gold), MoneyManager.I.get_resource(MoneyManager.MoneyType.Ear))
@@ -60,7 +66,7 @@ func _create_offers(number_to_offer:int, day: int, player_count: int, building_c
 	var building_split_number: int = (number_to_offer / 2) if can_buy_buildings else number_to_offer
 	
 	var current_bulk_discount: float = bulk_discount if player_count < (day * 6) else (bulk_discount / 2)
-	var ear_exchange_rate = EarExchangePanel.I.get_average_ear_exchange_rate()
+	var ear_exchange_rate = ear_exchange_rate_resource.value
 	var value = player_money + player_ears * ear_exchange_rate
 	value = (value * 0.05) if value > 1000 else 0
 	
@@ -95,18 +101,18 @@ func _create_offers(number_to_offer:int, day: int, player_count: int, building_c
 		
 		var offer = Offer.new()
 		offer.unit_type_1 = available_unit_types[indexes[0]]
-		offer.viewport_texture_1 = unit_viewports[indexes[0]].get_texture()
+		offer.model_scene_1 = unit_cam_scenes[indexes[0]]
 		offer.type_1_count = randi_range(low_unit_offer, high_unit_offer)
 		
 		if number > building_split_number:
 			indexes[1] = range(available_building_types.size()).pick_random()
 			offer.type_2_is_building = true
 			offer.building_type_2 = available_building_types[indexes[1]]
-			offer.viewport_texture_2 = building_viewports[indexes[1]].get_texture()
+			offer.model_scene_2 = building_cam_scenes[indexes[1]]
 			offer.type_2_count = 1
 		else:
 			offer.unit_type_2 = available_unit_types[indexes[1]]
-			offer.viewport_texture_2 = unit_viewports[indexes[1]].get_texture()
+			offer.model_scene_2 = unit_cam_scenes[indexes[1]]
 			offer.type_2_count = randi_range(low_unit_offer, high_unit_offer)
 		
 		var base_price = unit_costs[indexes[0]] * offer.type_1_count + (building_costs[indexes[1]] if offer.type_2_is_building else unit_costs[indexes[1]]) * offer.type_2_count
@@ -146,11 +152,7 @@ func _on_purchase_button_pressed(offer:Offer, offer_display:OfferDisplay):
 			pick_project_modal.generate_building_cards(offer.building_type_2)
 			HUD.I.on_popup_open(pick_project_modal)
 			
-			slide_out()
+			close()
 		else:
 			for _i in offer.type_2_count:
 				UnitSpawner.I.spawn_friendly(offer.unit_type_2)
-
-func _on_gui_input(event:InputEvent):
-	if event is InputEventMouseButton && event.pressed && event.button_index == MOUSE_BUTTON_LEFT:
-		slide_out()

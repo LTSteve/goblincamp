@@ -1,0 +1,116 @@
+[gd_scene load_steps=5 format=3 uid="uid://dudy0a2j1iyap"]
+
+[ext_resource type="Script" path="res://controls/PausePanel.gd" id="1_acbni"]
+[ext_resource type="Texture2D" uid="uid://cxquwwj5pp616" path="res://icons/camp_panel.png" id="2_4vmgk"]
+[ext_resource type="PackedScene" uid="uid://cfr8mya77iod3" path="res://controls/settings_menu.tscn" id="3_7u5mh"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ss5py"]
+texture = ExtResource("2_4vmgk")
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+region_rect = Rect2(50, 50, 1000, 1000)
+
+[node name="PausePanel" type="Panel"]
+process_mode = 3
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_acbni")
+
+[node name="PauseMenu" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -200.0
+offset_top = -275.0
+offset_right = 200.0
+offset_bottom = 125.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_ss5py")
+
+[node name="MarginContainer" type="MarginContainer" parent="PauseMenu"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PauseMenu/MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="PauseMenu/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "PAUSE"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="PauseMenu/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 60
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 60
+theme_override_constants/margin_bottom = 20
+
+[node name="Button" type="Button" parent="PauseMenu/MarginContainer/VBoxContainer/MarginContainer"]
+layout_mode = 2
+mouse_default_cursor_shape = 2
+theme_override_font_sizes/font_size = 28
+text = "CONTINUE"
+
+[node name="MarginContainer3" type="MarginContainer" parent="PauseMenu/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 60
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 60
+theme_override_constants/margin_bottom = 20
+
+[node name="Button" type="Button" parent="PauseMenu/MarginContainer/VBoxContainer/MarginContainer3"]
+layout_mode = 2
+mouse_default_cursor_shape = 2
+theme_override_font_sizes/font_size = 28
+text = "SETTINGS"
+
+[node name="MarginContainer2" type="MarginContainer" parent="PauseMenu/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 60
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 60
+theme_override_constants/margin_bottom = 20
+
+[node name="Button" type="Button" parent="PauseMenu/MarginContainer/VBoxContainer/MarginContainer2"]
+layout_mode = 2
+mouse_default_cursor_shape = 2
+theme_override_font_sizes/font_size = 28
+text = "QUIT"
+
+[node name="SettingsMenu" parent="." node_paths=PackedStringArray("category_option") instance=ExtResource("3_7u5mh")]
+visible = false
+layout_mode = 2
+anchors_preset = 0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 376.0
+offset_top = 55.0
+offset_right = 776.0
+offset_bottom = 593.0
+category_option = NodePath("")
+
+[connection signal="gui_input" from="." to="." method="_on_gui_input"]
+[connection signal="pressed" from="PauseMenu/MarginContainer/VBoxContainer/MarginContainer/Button" to="." method="close"]
+[connection signal="pressed" from="PauseMenu/MarginContainer/VBoxContainer/MarginContainer3/Button" to="SettingsMenu" method="open"]
+[connection signal="pressed" from="PauseMenu/MarginContainer/VBoxContainer/MarginContainer2/Button" to="." method="quit"]

@@ -20,7 +20,6 @@ model_scene = ExtResource("2_w8kh8")
 own_world_3d = true
 transparent_bg = true
 handle_input_locally = false
-screen_space_aa = 1
 
 [node name="3DTextureCam" type="Camera3D" parent="SubViewport"]
 cull_mask = 1047554

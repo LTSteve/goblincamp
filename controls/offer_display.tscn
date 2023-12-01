@@ -1,7 +1,14 @@
-[gd_scene load_steps=3 format=3 uid="uid://bqpy6pm1w8w7c"]
+[gd_scene load_steps=6 format=3 uid="uid://bqpy6pm1w8w7c"]
 
 [ext_resource type="Script" path="res://controls/OfferDisplay.gd" id="1_nrvtn"]
 [ext_resource type="FontFile" uid="uid://d1jvqnhuvekma" path="res://theme/YoungSerif-Regular.ttf" id="1_xnid5"]
+[ext_resource type="PackedScene" uid="uid://baemiseha5yiw" path="res://controls/3d_texture_rect.tscn" id="3_pc6p5"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_yseh3"]
+viewport_path = NodePath("SubViewport")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_fp33p"]
+viewport_path = NodePath("SubViewport")
 
 [node name="OfferDisplay" type="Panel"]
 custom_minimum_size = Vector2(250, 250)
@@ -26,12 +33,17 @@ horizontal_alignment = 1
 layout_mode = 2
 size_flags_horizontal = 4
 
-[node name="TextureRect" type="TextureRect" parent="VBoxContainer/HBoxContainer"]
+[node name="3DTextureRect" parent="VBoxContainer/HBoxContainer" instance=ExtResource("3_pc6p5")]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 size_flags_horizontal = 4
+texture = SubResource("ViewportTexture_yseh3")
 expand_mode = 2
 stretch_mode = 6
+model_rotation = Vector3(0, 0, 0)
+model_scale = Vector3(1, 1, 1)
+model_offset = Vector3(0, 1, 0)
+model_scene = null
 
 [node name="Label" type="Label" parent="VBoxContainer/HBoxContainer"]
 custom_minimum_size = Vector2(80, 80)
@@ -55,12 +67,17 @@ vertical_alignment = 1
 layout_mode = 2
 size_flags_horizontal = 4
 
-[node name="TextureRect" type="TextureRect" parent="VBoxContainer/HBoxContainer2"]
+[node name="3DTextureRect" parent="VBoxContainer/HBoxContainer2" instance=ExtResource("3_pc6p5")]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 size_flags_horizontal = 4
+texture = SubResource("ViewportTexture_fp33p")
 expand_mode = 2
 stretch_mode = 6
+model_rotation = Vector3(0, 0, 0)
+model_scale = Vector3(1, 1, 1)
+model_offset = Vector3(0, 1, 0)
+model_scene = null
 
 [node name="Label" type="Label" parent="VBoxContainer/HBoxContainer2"]
 custom_minimum_size = Vector2(80, 80)

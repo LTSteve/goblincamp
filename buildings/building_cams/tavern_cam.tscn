@@ -1,0 +1,15 @@
+[gd_scene load_steps=2 format=3 uid="uid://dndnauyewmjrj"]
+
+[ext_resource type="PackedScene" uid="uid://b3gtkfcan4upj" path="res://models/buildings/tavern.glb" id="2_ms08o"]
+
+[node name="TavernCam" type="Node3D"]
+
+[node name="Enchanter" type="Node3D" parent="."]
+transform = Transform3D(0.109557, -0.000935401, 0.102452, 0.0375, 0.139952, -0.0388229, -0.0953468, 0.0539684, 0.102452, 0, -0.5, -7)
+
+[node name="tavern" parent="Enchanter" instance=ExtResource("2_ms08o")]
+
+[node name="Cube_001" parent="Enchanter/tavern" index="0"]
+layers = 3
+
+[editable path="Enchanter/tavern"]

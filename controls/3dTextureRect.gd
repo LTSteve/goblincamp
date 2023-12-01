@@ -28,6 +28,10 @@ func _ready():
 		else:
 			child.queue_free()
 	
+	if model_scene:
+		initialize()
+
+func initialize():
 	cam.projection = projection
 	
 	sub_viewport.size = viewport_pixels

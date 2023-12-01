@@ -1,0 +1,210 @@
+[gd_scene load_steps=15 format=3 uid="uid://dotmvt7y5ukjn"]
+
+[ext_resource type="Script" path="res://controls/BuyPanel.gd" id="1_fvaik"]
+[ext_resource type="Resource" uid="uid://di0r47nymtihe" path="res://observables/day_number.tres" id="3_s0658"]
+[ext_resource type="Resource" uid="uid://2ff00a5yi2ro" path="res://observables/players.tres" id="4_pef4a"]
+[ext_resource type="Resource" uid="uid://bweje1wvoj7fh" path="res://observables/buildings.tres" id="5_m236b"]
+[ext_resource type="Resource" uid="uid://62e11cmrkcqr" path="res://observables/has_made_purchase.tres" id="6_5x22j"]
+[ext_resource type="Texture2D" uid="uid://cxquwwj5pp616" path="res://icons/camp_panel.png" id="7_it5ta"]
+[ext_resource type="Texture2D" uid="uid://dtei7gs5achfg" path="res://icons/camp_inset_panel.png" id="8_u7nmo"]
+[ext_resource type="Script" path="res://controls/EarExchangePanel.gd" id="9_luiy1"]
+[ext_resource type="Resource" uid="uid://cg4otlie7epve" path="res://observables/ear_exchange_rate.tres" id="10_2r8mv"]
+[ext_resource type="FontFile" uid="uid://d1jvqnhuvekma" path="res://theme/YoungSerif-Regular.ttf" id="10_crxeh"]
+[ext_resource type="Texture2D" uid="uid://27s4o8hjiwcc" path="res://icons/metal-disc.png" id="11_8pbji"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_syduq"]
+texture = ExtResource("7_it5ta")
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+region_rect = Rect2(40, 40, 800, 800)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_p6tca"]
+texture = ExtResource("8_u7nmo")
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_erfik"]
+texture = ExtResource("8_u7nmo")
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+region_rect = Rect2(50, 50, 500, 500)
+
+[node name="BuyPanel" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_fvaik")
+available_unit_types = Array[int]([0, 1, 2, 3])
+available_building_types = Array[int]([0, 1, 2, 3])
+unit_costs = Array[int]([200, 180, 210, 220])
+building_costs = Array[int]([280, 280, 280, 280])
+day_number_resource = ExtResource("3_s0658")
+players_resource = ExtResource("4_pef4a")
+buildings_resource = ExtResource("5_m236b")
+has_made_purchase_resource = ExtResource("6_5x22j")
+ear_exchange_rate_resource = ExtResource("10_2r8mv")
+
+[node name="BuyPanel" type="Panel" parent="."]
+clip_contents = true
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -675.0
+offset_top = -300.0
+offset_right = -75.0
+offset_bottom = 300.0
+grow_horizontal = 0
+grow_vertical = 2
+mouse_force_pass_scroll_events = false
+theme_override_styles/panel = SubResource("StyleBoxTexture_syduq")
+
+[node name="Label" type="Label" parent="BuyPanel"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 28.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 30
+text = "OFFERS"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="BuyPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 55
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 15
+
+[node name="Offers" type="Panel" parent="BuyPanel/MarginContainer"]
+clip_contents = true
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_p6tca")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="BuyPanel/MarginContainer/Offers"]
+custom_minimum_size = Vector2(125, 125)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+horizontal_scroll_mode = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="BuyPanel/MarginContainer/Offers/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 10
+
+[node name="FlowContainer" type="HFlowContainer" parent="BuyPanel/MarginContainer/Offers/ScrollContainer/MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_constants/h_separation = 15
+theme_override_constants/v_separation = 10
+
+[node name="EarExchangePanel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 20.0
+offset_top = -75.0
+offset_right = 300.0
+offset_bottom = 75.0
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_erfik")
+script = ExtResource("9_luiy1")
+ear_exchange_rate_resource = ExtResource("10_2r8mv")
+
+[node name="MarginContainer" type="MarginContainer" parent="EarExchangePanel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="HBoxContainer" type="HBoxContainer" parent="EarExchangePanel/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/separation = 12
+
+[node name="Button" type="Button" parent="EarExchangePanel/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 4
+mouse_default_cursor_shape = 2
+text = "SELL 1"
+
+[node name="Button2" type="Button" parent="EarExchangePanel/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 4
+mouse_default_cursor_shape = 2
+text = "SELL 10"
+
+[node name="MarginContainer2" type="MarginContainer" parent="EarExchangePanel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 5
+
+[node name="HBoxContainer" type="HBoxContainer" parent="EarExchangePanel/MarginContainer2"]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="Label3" type="Label" parent="EarExchangePanel/MarginContainer2/HBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("10_crxeh")
+theme_override_font_sizes/font_size = 25
+text = "1"
+
+[node name="TextureRect" type="TextureRect" parent="EarExchangePanel/MarginContainer2/HBoxContainer"]
+layout_mode = 2
+expand_mode = 3
+
+[node name="Label" type="Label" parent="EarExchangePanel/MarginContainer2/HBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("10_crxeh")
+theme_override_font_sizes/font_size = 25
+text = " > "
+
+[node name="Label2" type="Label" parent="EarExchangePanel/MarginContainer2/HBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("10_crxeh")
+theme_override_font_sizes/font_size = 25
+text = "200"
+
+[node name="TextureRect2" type="TextureRect" parent="EarExchangePanel/MarginContainer2/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("11_8pbji")
+expand_mode = 3
+
+[connection signal="gui_input" from="." to="." method="_on_gui_input"]
+[connection signal="pressed" from="EarExchangePanel/MarginContainer/HBoxContainer/Button" to="EarExchangePanel" method="on_sell" binds= [1]]
+[connection signal="pressed" from="EarExchangePanel/MarginContainer/HBoxContainer/Button2" to="EarExchangePanel" method="on_sell" binds= [10]]

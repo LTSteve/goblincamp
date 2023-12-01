@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="ObservableResource" load_steps=2 format=3 uid="uid://cg4otlie7epve"]
+
+[ext_resource type="Script" path="res://util/observable/ObservableResource.gd" id="1_8ro33"]
+
+[resource]
+resource_name = "ear_exchange_rate"
+script = ExtResource("1_8ro33")
+default_value_ptr = [200]

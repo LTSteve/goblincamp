@@ -1,0 +1,108 @@
+[gd_scene load_steps=5 format=3 uid="uid://camewxei0ee56"]
+
+[ext_resource type="Script" path="res://controls/BuildingProjectPanel.gd" id="1_6j0l2"]
+[ext_resource type="Texture2D" uid="uid://cxquwwj5pp616" path="res://icons/camp_panel.png" id="2_lmxdj"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ykfi3"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_hkeb6"]
+texture = ExtResource("2_lmxdj")
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+region_rect = Rect2(0, 50, 600, 600)
+modulate_color = Color(0.215686, 0.0745098, 0, 1)
+
+[node name="BuildingProjectPanelBlocker" type="Panel" node_paths=PackedStringArray("title", "card_container")]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_ykfi3")
+script = ExtResource("1_6j0l2")
+title = NodePath("")
+card_container = NodePath("")
+
+[node name="BuildingProjectPanel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -400.0
+offset_top = -230.0
+offset_right = 400.0
+offset_bottom = 230.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_hkeb6")
+
+[node name="MarginContainer3" type="MarginContainer" parent="BuildingProjectPanel"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 60.0
+grow_horizontal = 2
+theme_override_constants/margin_left = 30
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 30
+theme_override_constants/margin_bottom = 10
+
+[node name="Label" type="Label" parent="BuildingProjectPanel/MarginContainer3"]
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_font_sizes/font_size = 26
+text = "BLACKSMITH"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="BuildingProjectPanel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 30
+theme_override_constants/margin_top = 60
+theme_override_constants/margin_right = 30
+theme_override_constants/margin_bottom = 80
+
+[node name="HBoxContainer" type="HBoxContainer" parent="BuildingProjectPanel/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+alignment = 1
+
+[node name="MarginContainer2" type="MarginContainer" parent="BuildingProjectPanel"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -45.0
+grow_horizontal = 2
+grow_vertical = 0
+pivot_offset = Vector2(0, 10)
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="HBoxContainer" type="HBoxContainer" parent="BuildingProjectPanel/MarginContainer2"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+theme_override_constants/separation = 10
+alignment = 1
+
+[node name="CloseButton" type="Button" parent="BuildingProjectPanel/MarginContainer2/HBoxContainer"]
+custom_minimum_size = Vector2(120, 0)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+theme_override_font_sizes/font_size = 24
+text = "CLOSE"
+clip_text = true
+
+[connection signal="gui_input" from="." to="." method="_on_gui_input"]
+[connection signal="pressed" from="BuildingProjectPanel/MarginContainer2/HBoxContainer/CloseButton" to="." method="close"]
