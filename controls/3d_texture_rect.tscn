@@ -4,12 +4,12 @@
 [ext_resource type="Script" path="res://controls/3dTextureRect.gd" id="1_t861l"]
 [ext_resource type="PackedScene" uid="uid://bjni3yp3c1c0c" path="res://models/knight/knight.glb" id="2_w8kh8"]
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_eai1a"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_15h2i"]
 viewport_path = NodePath("SubViewport")
 
 [node name="3DTextureRect" type="TextureRect"]
 custom_minimum_size = Vector2(25, 25)
-texture = SubResource("ViewportTexture_eai1a")
+texture = SubResource("ViewportTexture_15h2i")
 expand_mode = 5
 script = ExtResource("1_t861l")
 model_rotation = Vector3(0, -90, 0)

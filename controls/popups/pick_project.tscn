@@ -1,9 +1,12 @@
-[gd_scene load_steps=5 format=3 uid="uid://27jmv87jb7qx"]
+[gd_scene load_steps=6 format=3 uid="uid://27jmv87jb7qx"]
 
 [ext_resource type="Script" path="res://controls/PickProjectModel.gd" id="1_106yj"]
 [ext_resource type="PackedScene" uid="uid://baemiseha5yiw" path="res://controls/3d_texture_rect.tscn" id="2_w6vvu"]
 [ext_resource type="PackedScene" uid="uid://bxuks2nqox5rb" path="res://controls/cards/card_container.tscn" id="3_sq8g5"]
 [ext_resource type="FontFile" uid="uid://q8or8vsxpn3x" path="res://theme/Anton-Regular.ttf" id="4_7gamq"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_hglni"]
+viewport_path = NodePath("SubViewport")
 
 [node name="PickProject" type="Control"]
 layout_mode = 3
@@ -44,6 +47,7 @@ layout_mode = 2
 size_flags_horizontal = 4
 mouse_filter = 0
 mouse_default_cursor_shape = 2
+texture = SubResource("ViewportTexture_hglni")
 expand_mode = 3
 model_scale = Vector3(0.38, 0.38, 0.38)
 model_offset = Vector3(0, 1, 0)

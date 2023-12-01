@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://0grbgsy4o0bp"]
+[gd_scene load_steps=16 format=3 uid="uid://0grbgsy4o0bp"]
 
 [ext_resource type="Script" path="res://controls/cards/CardDisplay.gd" id="1_w1dks"]
 [ext_resource type="Resource" uid="uid://bx7huosi7j2ja" path="res://controls/cards/card_defaults.tres" id="2_tyvj3"]
@@ -19,19 +19,17 @@ shader = ExtResource("4_hvmpi")
 material = SubResource("ShaderMaterial_4sj7h")
 size = Vector2(10, 10)
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_fnkml"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_i3yiu"]
 viewport_path = NodePath("SubViewport")
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_hywhr"]
-viewport_path = NodePath("SubViewport")
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0tpla"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8y8tt"]
 resource_local_to_scene = true
 transparency = 1
 shading_mode = 0
-albedo_texture = SubResource("ViewportTexture_hywhr")
 
 [sub_resource type="QuadMesh" id="QuadMesh_dio2s"]
+resource_local_to_scene = true
+material = SubResource("StandardMaterial3D_8y8tt")
 size = Vector2(2.5, 3.5)
 
 [node name="CardDisplay" type="Node3D" node_paths=PackedStringArray("card_title", "card_description")]
@@ -92,7 +90,7 @@ theme_override_constants/margin_bottom = 15
 
 [node name="3DTextureRect" parent="SubViewport/Theme/VBoxContainer/MarginContainer2" instance=ExtResource("7_74geb")]
 layout_mode = 2
-texture = SubResource("ViewportTexture_fnkml")
+texture = SubResource("ViewportTexture_i3yiu")
 viewport_pixels = Vector2i(768, 768)
 model_scene = ExtResource("8_fde04")
 
@@ -130,8 +128,11 @@ autowrap_mode = 2
 transform = Transform3D(-8.74228e-08, 0, 2, 0, 2, 0, -2, 0, -8.74228e-08, 0.111957, 0, 0)
 layers = 2
 sorting_offset = 10.0
-material_override = SubResource("StandardMaterial3D_0tpla")
 mesh = SubResource("QuadMesh_dio2s")
+
+[node name="MaterialOverrideComponent" type="Node" parent="MeshInstance3D2" node_paths=PackedStringArray("mesh_instance")]
+script = ExtResource("10_c3i1t")
+mesh_instance = NodePath("..")
 
 [node name="MaterialOverrideComponent" type="Node" parent="." node_paths=PackedStringArray("mesh_instance")]
 script = ExtResource("10_c3i1t")
