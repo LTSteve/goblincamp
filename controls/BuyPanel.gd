@@ -42,16 +42,16 @@ func _ready():
 		DB.I.scenes.tavern_cam,
 	]
 
-func open():
-	super.open()
+func open(todo_list:TodoList):
 	if _current_offers.is_empty():
 		_setup_offers()
 	ear_exchange_panel.visible = day_number_resource.value > 0
 	scroll_container.scroll_vertical = 0
+	super.open(todo_list)
 
-func close():
-	super.close()
+func close(todo_list:TodoList):
 	CameraRig.I.unset_camera_angle_override()
+	super.close(todo_list)
 
 func _setup_offers():
 	_create_offers(5, day_number_resource.value, players_resource.value.size(), buildings_resource.value.size(), MoneyManager.I.get_resource(MoneyManager.MoneyType.Gold), MoneyManager.I.get_resource(MoneyManager.MoneyType.Ear))
@@ -150,9 +150,8 @@ func _on_purchase_button_pressed(offer:Offer, offer_display:OfferDisplay):
 			
 			var pick_project_modal: PickProjectModel = DB.I.scenes.pick_project_scene.instantiate()
 			pick_project_modal.generate_building_cards(offer.building_type_2)
+			pick_project_modal.on_building_card_selected.connect(UnitSpawner.I.spawn_building)
 			HUD.I.on_popup_open(pick_project_modal)
-			
-			close()
 		else:
 			for _i in offer.type_2_count:
 				UnitSpawner.I.spawn_friendly(offer.unit_type_2)

@@ -17,6 +17,9 @@ class_name CardDisplay
 var show_next_rank: bool = false
 
 func _ready():
+	if card_resource: initialize()
+
+func initialize():
 	if ! card_resource: return
 	
 	material_override.set_color(card_defaults.rarity_colors[card_resource.rarity])

@@ -1,9 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://camewxei0ee56"]
+[gd_scene load_steps=6 format=3 uid="uid://camewxei0ee56"]
 
 [ext_resource type="Script" path="res://controls/BuildingProjectPanel.gd" id="1_6j0l2"]
 [ext_resource type="Texture2D" uid="uid://cxquwwj5pp616" path="res://icons/camp_panel.png" id="2_lmxdj"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ykfi3"]
+[ext_resource type="PackedScene" uid="uid://baemiseha5yiw" path="res://controls/3d_texture_rect.tscn" id="3_y2x65"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_hkeb6"]
 texture = ExtResource("2_lmxdj")
@@ -12,17 +11,18 @@ axis_stretch_vertical = 1
 region_rect = Rect2(0, 50, 600, 600)
 modulate_color = Color(0.215686, 0.0745098, 0, 1)
 
-[node name="BuildingProjectPanelBlocker" type="Panel" node_paths=PackedStringArray("title", "card_container")]
-visible = false
+[sub_resource type="ViewportTexture" id="ViewportTexture_3mu0i"]
+viewport_path = NodePath("SubViewport")
+
+[node name="BuildingProjectPanel" type="Control"]
+layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxEmpty_ykfi3")
+mouse_filter = 2
 script = ExtResource("1_6j0l2")
-title = NodePath("")
-card_container = NodePath("")
 
 [node name="BuildingProjectPanel" type="Panel" parent="."]
 layout_mode = 1
@@ -31,9 +31,9 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -400.0
+offset_left = -225.0
 offset_top = -230.0
-offset_right = 400.0
+offset_right = 225.0
 offset_bottom = 230.0
 grow_horizontal = 2
 grow_vertical = 2
@@ -60,20 +60,22 @@ vertical_alignment = 1
 
 [node name="MarginContainer" type="MarginContainer" parent="BuildingProjectPanel"]
 layout_mode = 1
-anchors_preset = -1
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/margin_left = 30
-theme_override_constants/margin_top = 60
-theme_override_constants/margin_right = 30
-theme_override_constants/margin_bottom = 80
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 55
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 55
 
-[node name="HBoxContainer" type="HBoxContainer" parent="BuildingProjectPanel/MarginContainer"]
+[node name="3DTextureRect" parent="BuildingProjectPanel/MarginContainer" instance=ExtResource("3_y2x65")]
 layout_mode = 2
-size_flags_horizontal = 4
-alignment = 1
+texture = SubResource("ViewportTexture_3mu0i")
+expand_mode = 3
+model_scale = Vector3(0.33, 0.33, 0.33)
+model_offset = Vector3(0, 1, 0)
 
 [node name="MarginContainer2" type="MarginContainer" parent="BuildingProjectPanel"]
 layout_mode = 1
@@ -104,5 +106,10 @@ theme_override_font_sizes/font_size = 24
 text = "CLOSE"
 clip_text = true
 
-[connection signal="gui_input" from="." to="." method="_on_gui_input"]
+[node name="PickNewProjectButton" type="Button" parent="BuildingProjectPanel/MarginContainer2/HBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = " CHANGE PROJECT "
+
 [connection signal="pressed" from="BuildingProjectPanel/MarginContainer2/HBoxContainer/CloseButton" to="." method="close"]
+[connection signal="pressed" from="BuildingProjectPanel/MarginContainer2/HBoxContainer/PickNewProjectButton" to="." method="change_project"]

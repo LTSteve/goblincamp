@@ -2,14 +2,13 @@ extends UIPopup
 
 @onready var settings_menu: SettingsMenu = $SettingsMenu
 
-func open():
-	super.open()
+func open(todo_list: TodoList):
 	get_tree().paused = true
+	super.open(todo_list)
 
-func close():
-	settings_menu.close()
+func close(todo_list: TodoList):
 	get_tree().paused = false
-	super.close()
+	super.close(todo_list)
 
 func quit():
 	SceneManager.load_main_menu(get_tree())

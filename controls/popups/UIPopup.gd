@@ -4,12 +4,15 @@ class_name UIPopup
 
 signal popup_close()
 
-func open():
-	visible = true
+func open(todo_list:TodoList):
+	todo_list.mark_step_done()
 
-func close():
-	visible = false
-	popup_close.emit()
+func finish_open():
+	pass
 
-func click_out():
-	close()
+func close(todo_list:TodoList):
+	todo_list.mark_step_done()
+	queue_free()
+
+func click_out() -> bool:
+	return true

@@ -36,18 +36,9 @@ func generate_ritual_cards(ritual: Ritual):
 	_ritual = ritual
 	_cards = ModifierManager.generate_ritual_card_choices(_ritual.type, _ritual.size)
 
-func open():
-	super.open()
-
-func close():
-	for child in card_container.get_children():
-		child.queue_free()
-	
-	super.close()
-
 #ignore click-outs
 func click_out():
-	pass
+	return false
 
 func _on_card_selected(resource:CardResource):
 	if _ritual:
@@ -56,7 +47,7 @@ func _on_card_selected(resource:CardResource):
 	else:
 		on_building_card_selected.emit(_building_type, resource, _cards)
 	
-	close()
+	popup_close.emit()
 
 func on_choose_card():
 	var selected_card = card_container.get_active_card()

@@ -8,7 +8,7 @@ static var I: HUD
 @onready var click_blocker: Panel = $"ClickBlocker"
 @onready var popup_holder: Control = $"../PopupHolder"
 
-var _tween: Tween
+var _tween_modulate: Tween
 var _current_popup: UIPopup
 
 func _ready():
@@ -19,37 +19,54 @@ func on_pause():
 	on_popup_open(pause_popup)
 
 func on_popup_open(popup:UIPopup):
+	var todo_tasks = []
+	
+	_hide_hud()
+	
+	if is_instance_valid(_current_popup):
+		todo_tasks.append(TodoListItem.new(_current_popup.close))
+	else:
+		todo_tasks.append(TodoListItem.new(_fade_in_click_blocker))
+	
+	_current_popup = popup
+	_current_popup.popup_close.connect(on_popup_close)
+	popup_holder.add_child(_current_popup)
+	
+	todo_tasks.append(TodoListItem.new(_current_popup.open))
+	
+	TodoList.new(todo_tasks,true).on_done(_current_popup.finish_open)
+
+#only called when the popup is simply being closed (popup replacements handled above)
+func on_popup_close():
+	var todo = [TodoListItem.new(_current_popup.close), TodoListItem.new(_fade_out_click_blocker)]
+	TodoList.new(todo, true).on_done(_show_hud)
+
+func _hide_hud():
 	hide_on_popup.visible = false
 	click_blocker.visible = true
-	_set_up_tween()
-	_tween.tween_property(click_blocker, "modulate", Color(Color.WHITE, 1), 0.2)
-	_current_popup = popup
-	popup_holder.add_child(_current_popup)
-	_current_popup.open()
-	_current_popup.popup_close.connect(on_popup_close)
-
-func on_popup_close():
-	_set_up_tween()
-	_tween.tween_property(click_blocker, "modulate", Color(Color.WHITE, 0), 0.2)
-	if !_tween.finished.is_connected(_show_hud):
-		_tween.finished.connect(_show_hud)
 
 func _show_hud():
-	_tween = null
 	hide_on_popup.visible = true
 	click_blocker.visible = false
-	if _current_popup:
-		_current_popup.queue_free()
-		_current_popup = null
 
 func _set_up_tween():
-	if _tween:
-		_tween.stop()
-		_tween = null
-	_tween = create_tween()
-	_tween.set_ease(Tween.EASE_IN_OUT)
+	if _tween_modulate:
+		_tween_modulate.stop()
+		_tween_modulate = null
+	_tween_modulate = create_tween()
+	_tween_modulate.set_ease(Tween.EASE_IN_OUT)
+
+func _fade_out_click_blocker(todo_list:TodoList):
+	_set_up_tween()
+	_tween_modulate.tween_property(click_blocker, "modulate", Color(Color.WHITE, 0), 0.2)
+	_tween_modulate.finished.connect(todo_list.mark_step_done)
+
+func _fade_in_click_blocker(todo_list:TodoList):
+	_set_up_tween()
+	_tween_modulate.tween_property(click_blocker, "modulate", Color(Color.WHITE, 1), 0.2)
+	_tween_modulate.finished.connect(todo_list.mark_step_done)
 
 # for click-outs
 func _on_click_blocker_gui_input(event):
 	if event is InputEventMouseButton && event.pressed && event.button_index == MOUSE_BUTTON_LEFT:
-		_current_popup.click_out()
+		if _current_popup.click_out(): on_popup_close()

@@ -36,6 +36,7 @@ func initialize():
 	
 	sub_viewport.size = viewport_pixels
 	
+	if model: model.queue_free()
 	model = model_scene.instantiate() as Node3D
 	
 	model.position = model_offset
