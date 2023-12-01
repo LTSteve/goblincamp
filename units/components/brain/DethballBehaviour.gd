@@ -32,8 +32,8 @@ func _create_aoe_override(_base_value: AreaOfEffect, current_value: AreaOfEffect
 	current_value.callback = _on_hit_landed.bind(ctx.weapon)
 	current_value.global_position = Math.v2_to_v3(Math.v3_to_v2(ctx.weapon.channeled_effect_spawn_point.global_position), 0.75)
 	ctx.active_velocity_component = current_value.find_child("VelocityComponent") as VelocityComponent
-	ctx.active_velocity_component.get_max_speed.add_override(["double_speed"], func(_base_value:float, current_value:float): 
-		return (current_value * 2.0) if ctx.double_speed else current_value
+	ctx.active_velocity_component.get_max_speed.add_override(["double_speed"], func(_bv:float, c_v:float): 
+		return (c_v * 2.0) if ctx.double_speed else c_v
 	, 0, true)
 	ctx.active_aoe = current_value
 	return current_value

@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://b8phufwvydfos"]
+[gd_scene load_steps=11 format=3 uid="uid://b8phufwvydfos"]
 
 [ext_resource type="PackedScene" uid="uid://brhc1aba5usew" path="res://units/unit.tscn" id="1_g4nk8"]
 [ext_resource type="Resource" uid="uid://2ff00a5yi2ro" path="res://observables/players.tres" id="2_5gllm"]
@@ -8,9 +8,14 @@
 [ext_resource type="Resource" uid="uid://du4glkse3tqoh" path="res://units/components/brain/repulse_behaviour.tres" id="4_e1jap"]
 [ext_resource type="Resource" uid="uid://cpbw516utgbfj" path="res://units/components/brain/ear_hunt_behaviour.tres" id="5_2u5e5"]
 [ext_resource type="Resource" uid="uid://6a2euiflosoa" path="res://units/components/brain/wander_behaviour.tres" id="5_a72gt"]
+[ext_resource type="AnimationLibrary" uid="uid://d1ig1ey1id2pn" path="res://units/eyes/eye_animation_lib.tres" id="5_anp7g"]
+[ext_resource type="AnimationLibrary" uid="uid://vp0rby4wlj5r" path="res://units/eyes/blink_animation_lib.tres" id="6_no5xe"]
 
 [node name="Witch" groups=["Witch"] instance=ExtResource("1_g4nk8")]
 unit_list_resource = ExtResource("2_5gllm")
+
+[node name="Model" parent="." index="1"]
+transform = Transform3D(-2.30258e-08, 0, 0.526768, 0, 0.526768, 0, -0.526768, 0, -2.30258e-08, 0, 0, 0)
 
 [node name="Staff" parent="Model/WeaponHolder" index="0" instance=ExtResource("2_p6m06")]
 
@@ -47,6 +52,16 @@ transform = Transform3D(0.602939, -0.779567, -0.169524, 0.750468, 0.626318, -0.2
 [node name="EyeComponent" parent="Model/ModelHolder" index="2"]
 transform = Transform3D(0.422111, 0.124186, -8.7207e-10, -0.124186, 0.422111, -5.72584e-09, -7.79456e-10, 5.73918e-09, 0.44, 0.746055, 2.12985, 3.40012e-08)
 
+[node name="AnimationTree_Look" parent="Model/ModelHolder/EyeComponent" index="1"]
+libraries = {
+"": ExtResource("5_anp7g")
+}
+
+[node name="AnimationTree_Blink" parent="Model/ModelHolder/EyeComponent" index="3"]
+libraries = {
+"": ExtResource("6_no5xe")
+}
+
 [node name="HealthComponent" parent="." index="3"]
 max_health = 2400.0
 
@@ -57,7 +72,7 @@ acceleration = 3.0
 [node name="ArmorComponent" parent="." index="8" groups=["Unarmored", "Witch"]]
 
 [node name="MaterialOverrideComponent" parent="." index="10" node_paths=PackedStringArray("mesh_instance")]
-mesh_instance = NodePath("../Model/ModelHolder/witch/witch2")
+mesh_instance = NodePath("../Model/ModelHolder/witch/witch")
 
 [node name="BrainComponent" parent="." index="11"]
 behaviours = Array[Resource("res://units/components/brain/Behaviour.gd")]([ExtResource("4_e1jap"), ExtResource("4_4f1ng"), ExtResource("5_2u5e5"), ExtResource("5_a72gt")])

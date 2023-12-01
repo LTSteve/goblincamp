@@ -68,11 +68,11 @@ static func get_settings(name:String):
 
 static func save_setting(setting:SettingResource):
 	_initialize()
-	var category = Global.find_by_func(settings_categories, func(category): return category.settings.has(setting))
+	var category = Global.find_by_func(settings_categories, func(cat): return cat.settings.has(setting))
 	config.set_value(SETTINGS + "_" + category.name, setting.name, setting.current_value)
 	config.save(cfg_file)
 
 static func get_setting(category_name:String, setting_name:String):
 	_initialize()
-	var category = Global.find_by_func(settings_categories, func(category): return category.name == category_name)
+	var category = Global.find_by_func(settings_categories, func(cat): return cat.name == category_name)
 	return Global.find_by_func(category.settings, func(val): return val.name == setting_name)

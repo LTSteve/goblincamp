@@ -16,7 +16,7 @@ nodes/TimeScale/position = Vector2(92, 166)
 "nodes/TimeScale 2/node" = SubResource("AnimationNodeTimeScale_kx3sd")
 "nodes/TimeScale 2/position" = Vector2(260, 160)
 nodes/output/position = Vector2(540, 180)
-node_connections = [&"output", 0, &"TimeScale 2", &"TimeScale", 0, &"Animation", &"TimeScale 2", 0, &"TimeScale"]
+node_connections = [&"TimeScale", 0, &"Animation", &"TimeScale 2", 0, &"TimeScale", &"output", 0, &"TimeScale 2"]
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_770bn"]
 animation = &"attack_2"
@@ -34,7 +34,7 @@ nodes/TimeScale/position = Vector2(359, 208)
 "nodes/TimeScale 2/node" = SubResource("AnimationNodeTimeScale_qbpnv")
 "nodes/TimeScale 2/position" = Vector2(500, 200)
 nodes/output/position = Vector2(820, 200)
-node_connections = [&"output", 0, &"TimeScale 2", &"TimeScale", 0, &"Animation", &"TimeScale 2", 0, &"TimeScale"]
+node_connections = [&"TimeScale", 0, &"Animation", &"TimeScale 2", 0, &"TimeScale", &"output", 0, &"TimeScale 2"]
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_yosft"]
 animation = &"attack"
@@ -52,7 +52,7 @@ nodes/TimeScale/position = Vector2(111, 169)
 "nodes/TimeScale 2/node" = SubResource("AnimationNodeTimeScale_3y4b3")
 "nodes/TimeScale 2/position" = Vector2(260, 160)
 nodes/output/position = Vector2(420, 160)
-node_connections = [&"output", 0, &"TimeScale 2", &"TimeScale", 0, &"Animation", &"TimeScale 2", 0, &"TimeScale"]
+node_connections = [&"TimeScale", 0, &"Animation", &"TimeScale 2", 0, &"TimeScale", &"output", 0, &"TimeScale 2"]
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_xvsti"]
 priority = 3
@@ -100,7 +100,7 @@ nodes/Animation/node = SubResource("AnimationNodeAnimation_d5u0t")
 nodes/Animation/position = Vector2(-60, 160)
 nodes/TimeScale/node = SubResource("AnimationNodeTimeScale_lsesi")
 nodes/TimeScale/position = Vector2(120, 160)
-node_connections = [&"output", 0, &"TimeScale", &"TimeScale", 0, &"Animation"]
+node_connections = [&"TimeScale", 0, &"Animation", &"output", 0, &"TimeScale"]
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ldpxu"]
 animation = &"stow"
@@ -113,7 +113,7 @@ nodes/Animation/position = Vector2(60, 160)
 nodes/TimeScale/node = SubResource("AnimationNodeTimeScale_sdpfm")
 nodes/TimeScale/position = Vector2(212, 183)
 nodes/output/position = Vector2(360, 180)
-node_connections = [&"output", 0, &"TimeScale", &"TimeScale", 0, &"Animation"]
+node_connections = [&"TimeScale", 0, &"Animation", &"output", 0, &"TimeScale"]
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_276bp"]
 animation = &"idle"

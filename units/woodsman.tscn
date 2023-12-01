@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://dd122wrl6vlgu"]
+[gd_scene load_steps=13 format=3 uid="uid://dd122wrl6vlgu"]
 
 [ext_resource type="PackedScene" uid="uid://brhc1aba5usew" path="res://units/unit.tscn" id="1_e4j34"]
 [ext_resource type="PackedScene" uid="uid://7ompo5s8qd6p" path="res://models/woodsman/woodsman.glb" id="2_72bjw"]
@@ -10,9 +10,14 @@
 [ext_resource type="Resource" uid="uid://dciy1jkbehvwj" path="res://units/components/brain/bow_and_dagger_behaviour.tres" id="6_q8fw5"]
 [ext_resource type="Resource" uid="uid://cpbw516utgbfj" path="res://units/components/brain/ear_hunt_behaviour.tres" id="7_bq1gp"]
 [ext_resource type="Resource" uid="uid://6a2euiflosoa" path="res://units/components/brain/wander_behaviour.tres" id="7_cpbkr"]
+[ext_resource type="AnimationLibrary" uid="uid://d1ig1ey1id2pn" path="res://units/eyes/eye_animation_lib.tres" id="7_myyan"]
+[ext_resource type="AnimationLibrary" uid="uid://vp0rby4wlj5r" path="res://units/eyes/blink_animation_lib.tres" id="8_v2kh5"]
 
 [node name="Woodsman" groups=["Woodsman"] instance=ExtResource("1_e4j34")]
 unit_list_resource = ExtResource("2_pncfk")
+
+[node name="Model" parent="." index="1"]
+transform = Transform3D(-2.30258e-08, 0, 0.526768, 0, 0.526768, 0, -0.526768, 0, -2.30258e-08, 0, 0, 0)
 
 [node name="BowAndDagger" type="Node3D" parent="Model/WeaponHolder" index="0" node_paths=PackedStringArray("bow", "daggers")]
 script = ExtResource("2_gqrex")
@@ -52,6 +57,16 @@ transform = Transform3D(0.707106, -0.612372, 0.353553, 0.707106, 0.612372, -0.35
 [node name="EyeComponent" parent="Model/ModelHolder" index="2"]
 transform = Transform3D(0.5, 0, 8.88178e-15, 0, 0.5, 0, -8.88178e-15, 0, 0.5, 0.831685, 2.10456, 3.6354e-08)
 
+[node name="AnimationTree_Look" parent="Model/ModelHolder/EyeComponent" index="1"]
+libraries = {
+"": ExtResource("7_myyan")
+}
+
+[node name="AnimationTree_Blink" parent="Model/ModelHolder/EyeComponent" index="3"]
+libraries = {
+"": ExtResource("8_v2kh5")
+}
+
 [node name="HealthComponent" parent="." index="3"]
 max_health = 2740.0
 
@@ -62,7 +77,7 @@ acceleration = 3.5
 [node name="ArmorComponent" parent="." index="8" groups=["Unarmored", "Woodsman"]]
 
 [node name="MaterialOverrideComponent" parent="." index="10" node_paths=PackedStringArray("mesh_instance")]
-mesh_instance = NodePath("../Model/ModelHolder/woodsman/woodsman2")
+mesh_instance = NodePath("../Model/ModelHolder/woodsman/woodsman")
 
 [node name="BrainComponent" parent="." index="11"]
 behaviours = Array[Resource("res://units/components/brain/Behaviour.gd")]([ExtResource("6_drbmq"), ExtResource("6_q8fw5"), ExtResource("7_bq1gp"), ExtResource("7_cpbkr")])

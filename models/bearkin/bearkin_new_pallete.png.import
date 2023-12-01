@@ -3,21 +3,20 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://b4smy51pcbg36"
-path.s3tc="res://.godot/imported/bearkin_new_pallete.png-eebaa4a87cbffc4b0120a7291f6d024e.s3tc.ctex"
+path="res://.godot/imported/bearkin_new_pallete.png-eebaa4a87cbffc4b0120a7291f6d024e.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
-"vram_texture": true
+"vram_texture": false
 }
 generator_parameters={}
 
 [deps]
 
 source_file="res://models/bearkin/bearkin_new_pallete.png"
-dest_files=["res://.godot/imported/bearkin_new_pallete.png-eebaa4a87cbffc4b0120a7291f6d024e.s3tc.ctex"]
+dest_files=["res://.godot/imported/bearkin_new_pallete.png-eebaa4a87cbffc4b0120a7291f6d024e.ctex"]
 
 [params]
 
-compress/mode=2
+compress/mode=0
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1

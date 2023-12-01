@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://c80w07885m8u1"]
+[gd_scene load_steps=14 format=3 uid="uid://c80w07885m8u1"]
 
 [ext_resource type="PackedScene" uid="uid://brhc1aba5usew" path="res://units/unit.tscn" id="1_gd25m"]
 [ext_resource type="Resource" uid="uid://bp1makqi1hcne" path="res://observables/npcs.tres" id="2_0y0qc"]
@@ -6,6 +6,8 @@
 [ext_resource type="PackedScene" uid="uid://w325ppy4jbsf" path="res://models/wizard/wizard.glb" id="2_pxwt3"]
 [ext_resource type="PackedScene" uid="uid://bndi4qjvqo1vy" path="res://units/components/npc_icon_component.tscn" id="4_ywfm2"]
 [ext_resource type="Texture2D" uid="uid://buo7y26wjm6fx" path="res://icons/dust-cloud.png" id="5_54wux"]
+[ext_resource type="AnimationLibrary" uid="uid://d1ig1ey1id2pn" path="res://units/eyes/eye_animation_lib.tres" id="5_lay1m"]
+[ext_resource type="AnimationLibrary" uid="uid://vp0rby4wlj5r" path="res://units/eyes/blink_animation_lib.tres" id="6_83dig"]
 [ext_resource type="Resource" uid="uid://du4glkse3tqoh" path="res://units/components/brain/repulse_behaviour.tres" id="6_ghxdd"]
 [ext_resource type="Resource" uid="uid://ccndi511ewfdy" path="res://units/components/brain/wizard_behaviour.tres" id="7_byps2"]
 [ext_resource type="Resource" uid="uid://6a2euiflosoa" path="res://units/components/brain/wander_behaviour.tres" id="7_ujjig"]
@@ -31,6 +33,16 @@ visible = false
 [node name="EyeComponent" parent="Model/ModelHolder" index="2"]
 transform = Transform3D(0.7, 0, 2.84217e-14, 0, 0.7, 0, -2.84217e-14, 0, 0.7, 0.707398, 2.1503, 3.09212e-08)
 
+[node name="AnimationTree_Look" parent="Model/ModelHolder/EyeComponent" index="1"]
+libraries = {
+"": ExtResource("5_lay1m")
+}
+
+[node name="AnimationTree_Blink" parent="Model/ModelHolder/EyeComponent" index="3"]
+libraries = {
+"": ExtResource("6_83dig")
+}
+
 [node name="NpcIconComponent" parent="Model" index="5" instance=ExtResource("4_ywfm2")]
 
 [node name="Sprite3D" parent="Model/NpcIconComponent" index="0"]
@@ -38,7 +50,7 @@ modulate = Color(0.945098, 0.623529, 1, 1)
 texture = ExtResource("5_54wux")
 
 [node name="MaterialOverrideComponent" parent="." index="10" node_paths=PackedStringArray("mesh_instance")]
-mesh_instance = NodePath("../Model/ModelHolder/wizard/wizard2")
+mesh_instance = NodePath("../Model/ModelHolder/wizard/wizard")
 
 [node name="BrainComponent" parent="." index="11"]
 behaviours = Array[Resource("res://units/components/brain/Behaviour.gd")]([ExtResource("6_ghxdd"), ExtResource("7_byps2"), ExtResource("7_ujjig")])

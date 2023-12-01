@@ -3,21 +3,20 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dqss8ookc676c"
-path.s3tc="res://.godot/imported/witch_new_pallete.png-71757e9e0d73a4bafecfd0513565714f.s3tc.ctex"
+path="res://.godot/imported/witch_new_pallete.png-71757e9e0d73a4bafecfd0513565714f.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
-"vram_texture": true
+"vram_texture": false
 }
 generator_parameters={}
 
 [deps]
 
 source_file="res://models/witch/witch_new_pallete.png"
-dest_files=["res://.godot/imported/witch_new_pallete.png-71757e9e0d73a4bafecfd0513565714f.s3tc.ctex"]
+dest_files=["res://.godot/imported/witch_new_pallete.png-71757e9e0d73a4bafecfd0513565714f.ctex"]
 
 [params]
 
-compress/mode=2
+compress/mode=0
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1

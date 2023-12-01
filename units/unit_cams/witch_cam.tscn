@@ -22,7 +22,7 @@ nodes/TimeScale/position = Vector2(92, 166)
 "nodes/TimeScale 2/node" = SubResource("AnimationNodeTimeScale_5bcns")
 "nodes/TimeScale 2/position" = Vector2(260, 160)
 nodes/output/position = Vector2(540, 180)
-node_connections = [&"output", 0, &"TimeScale 2", &"TimeScale", 0, &"Animation", &"TimeScale 2", 0, &"TimeScale"]
+node_connections = [&"TimeScale", 0, &"Animation", &"TimeScale 2", 0, &"TimeScale", &"output", 0, &"TimeScale 2"]
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_f6pky"]
 animation = &"attack_2"
@@ -40,7 +40,7 @@ nodes/TimeScale/position = Vector2(359, 208)
 "nodes/TimeScale 2/node" = SubResource("AnimationNodeTimeScale_suv6a")
 "nodes/TimeScale 2/position" = Vector2(500, 200)
 nodes/output/position = Vector2(820, 200)
-node_connections = [&"output", 0, &"TimeScale 2", &"TimeScale", 0, &"Animation", &"TimeScale 2", 0, &"TimeScale"]
+node_connections = [&"TimeScale", 0, &"Animation", &"TimeScale 2", 0, &"TimeScale", &"output", 0, &"TimeScale 2"]
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_vnrom"]
 animation = &"attack"
@@ -58,7 +58,7 @@ nodes/TimeScale/position = Vector2(111, 169)
 "nodes/TimeScale 2/node" = SubResource("AnimationNodeTimeScale_x5dwh")
 "nodes/TimeScale 2/position" = Vector2(260, 160)
 nodes/output/position = Vector2(420, 160)
-node_connections = [&"output", 0, &"TimeScale 2", &"TimeScale", 0, &"Animation", &"TimeScale 2", 0, &"TimeScale"]
+node_connections = [&"TimeScale", 0, &"Animation", &"TimeScale 2", 0, &"TimeScale", &"output", 0, &"TimeScale 2"]
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_xvsti"]
 priority = 3
@@ -106,7 +106,7 @@ nodes/Animation/node = SubResource("AnimationNodeAnimation_jlo8x")
 nodes/Animation/position = Vector2(-60, 160)
 nodes/TimeScale/node = SubResource("AnimationNodeTimeScale_0c4wx")
 nodes/TimeScale/position = Vector2(120, 160)
-node_connections = [&"output", 0, &"TimeScale", &"TimeScale", 0, &"Animation"]
+node_connections = [&"TimeScale", 0, &"Animation", &"output", 0, &"TimeScale"]
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_lqi71"]
 animation = &"stow"
@@ -119,7 +119,7 @@ nodes/Animation/position = Vector2(60, 160)
 nodes/TimeScale/node = SubResource("AnimationNodeTimeScale_0blbf")
 nodes/TimeScale/position = Vector2(212, 183)
 nodes/output/position = Vector2(360, 180)
-node_connections = [&"output", 0, &"TimeScale", &"TimeScale", 0, &"Animation"]
+node_connections = [&"TimeScale", 0, &"Animation", &"output", 0, &"TimeScale"]
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_0yqys"]
 animation = &"idle"
@@ -188,13 +188,15 @@ transform = Transform3D(-2.30258e-08, 0, 0.526768, 0, 0.526768, 0, -0.526768, 0,
 [node name="witch_weapon" parent="Witch/Staff/ModelHolder" instance=ExtResource("2_p21br")]
 transform = Transform3D(0.991325, 0.0125548, 0.130793, -0.131394, 0.0947242, 0.98679, -3.87428e-07, -0.995421, 0.0955525, 0.664789, 1.13067, 1.02012)
 
-[node name="witch_weapon2" parent="Witch/Staff/ModelHolder/witch_weapon" index="0"]
+[node name="witch_weapon" parent="Witch/Staff/ModelHolder/witch_weapon" index="0"]
 layers = 2
 
 [node name="AnimationTreeExpressionExtension" type="AnimationTree" parent="Witch/Staff" groups=["Staff"]]
+libraries = {
+"": ExtResource("5_uiis5")
+}
 tree_root = SubResource("AnimationNodeStateMachine_chma2")
 anim_player = NodePath("../AnimationPlayer")
-active = true
 parameters/conditions/in_combat = false
 parameters/conditions/not_in_combat = false
 parameters/Attack/conditions/attack_loops = false
@@ -217,7 +219,7 @@ libraries = {
 [node name="witch" parent="Witch" instance=ExtResource("10_wdjyo")]
 transform = Transform3D(-2.30258e-08, 0, 0.526768, 0, 0.526768, 0, -0.526768, 0, -2.30258e-08, 0, 0, 0)
 
-[node name="witch2" parent="Witch/witch" index="0"]
+[node name="witch" parent="Witch/witch" index="0"]
 layers = 2
 
 [editable path="Witch/Staff/ModelHolder/witch_weapon"]

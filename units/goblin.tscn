@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://b3ypqcoyg2qs"]
+[gd_scene load_steps=9 format=3 uid="uid://b3ypqcoyg2qs"]
 
 [ext_resource type="PackedScene" uid="uid://brhc1aba5usew" path="res://units/unit.tscn" id="1_tog43"]
 [ext_resource type="Resource" uid="uid://b1pkis5babvwj" path="res://observables/enemies.tres" id="2_ie27n"]
@@ -6,6 +6,8 @@
 [ext_resource type="PackedScene" uid="uid://dnedsjutd8p51" path="res://units/weapons/melee/claw.tscn" id="2_t4l2k"]
 [ext_resource type="Resource" uid="uid://du4glkse3tqoh" path="res://units/components/brain/repulse_behaviour.tres" id="4_8th67"]
 [ext_resource type="Resource" uid="uid://cao1bytnssy28" path="res://units/components/brain/melee_behaviour.tres" id="4_uet6l"]
+[ext_resource type="AnimationLibrary" uid="uid://d1ig1ey1id2pn" path="res://units/eyes/eye_animation_lib.tres" id="5_lisbc"]
+[ext_resource type="AnimationLibrary" uid="uid://vp0rby4wlj5r" path="res://units/eyes/blink_animation_lib.tres" id="6_tl2ng"]
 
 [node name="Goblin" groups=["Goblin"] instance=ExtResource("1_tog43")]
 collision_layer = 2
@@ -30,6 +32,16 @@ transform = Transform3D(1, 0, -7.10543e-15, 0, 1, 0, 7.10543e-15, 0, 1, 0, 0, 0)
 [node name="EyeComponent" parent="Model/ModelHolder" index="2"]
 transform = Transform3D(0.9, 0, 1.27898e-14, 0, 0.9, 0, -1.27898e-14, 0, 0.9, 0.55109, 2.37117, 2.40888e-08)
 
+[node name="AnimationTree_Look" parent="Model/ModelHolder/EyeComponent" index="1"]
+libraries = {
+"": ExtResource("5_lisbc")
+}
+
+[node name="AnimationTree_Blink" parent="Model/ModelHolder/EyeComponent" index="3"]
+libraries = {
+"": ExtResource("6_tl2ng")
+}
+
 [node name="HealthComponent" parent="." index="3"]
 max_health = 1980.0
 
@@ -40,7 +52,7 @@ acceleration = 4.0
 [node name="ArmorComponent" parent="." index="8" groups=["Goblin", "Unarmored"]]
 
 [node name="MaterialOverrideComponent" parent="." index="10" node_paths=PackedStringArray("mesh_instance")]
-mesh_instance = NodePath("../Model/ModelHolder/goblin/goblin2")
+mesh_instance = NodePath("../Model/ModelHolder/goblin/goblin")
 
 [node name="BrainComponent" parent="." index="11"]
 behaviours = Array[Resource("res://units/components/brain/Behaviour.gd")]([ExtResource("4_8th67"), ExtResource("4_uet6l")])

@@ -1,11 +1,13 @@
-[gd_scene load_steps=10 format=3 uid="uid://b6u655unubog0"]
+[gd_scene load_steps=12 format=3 uid="uid://b6u655unubog0"]
 
 [ext_resource type="PackedScene" uid="uid://brhc1aba5usew" path="res://units/unit.tscn" id="1_quqov"]
 [ext_resource type="Resource" uid="uid://2ff00a5yi2ro" path="res://observables/players.tres" id="2_6dvn7"]
 [ext_resource type="PackedScene" uid="uid://ja83ratbnxbs" path="res://models/bearkin/bearkin.glb" id="2_ahweh"]
 [ext_resource type="PackedScene" uid="uid://b3hknvfjysar6" path="res://units/weapons/melee/bear_claw.tscn" id="2_cene2"]
 [ext_resource type="Resource" uid="uid://du4glkse3tqoh" path="res://units/components/brain/repulse_behaviour.tres" id="4_y7ncd"]
+[ext_resource type="AnimationLibrary" uid="uid://d1ig1ey1id2pn" path="res://units/eyes/eye_animation_lib.tres" id="5_2dem1"]
 [ext_resource type="Resource" uid="uid://cao1bytnssy28" path="res://units/components/brain/melee_behaviour.tres" id="5_pfokl"]
+[ext_resource type="AnimationLibrary" uid="uid://vp0rby4wlj5r" path="res://units/eyes/blink_animation_lib.tres" id="6_2h0w5"]
 [ext_resource type="Resource" uid="uid://cpbw516utgbfj" path="res://units/components/brain/ear_hunt_behaviour.tres" id="6_q3vgh"]
 [ext_resource type="Resource" uid="uid://6a2euiflosoa" path="res://units/components/brain/wander_behaviour.tres" id="7_imd88"]
 
@@ -19,6 +21,9 @@ unit_list_resource = ExtResource("2_6dvn7")
 
 [node name="CollisionShape3D" parent="." index="0"]
 shape = SubResource("CapsuleShape3D_4qwu5")
+
+[node name="Model" parent="." index="1"]
+transform = Transform3D(-2.30258e-08, 0, 0.526768, 0, 0.526768, 0, -0.526768, 0, -2.30258e-08, 0, 0, 0)
 
 [node name="DamageNumberComponent" parent="Model" index="0"]
 transform = Transform3D(1, 8.48637e-08, 3.55271e-14, -8.48637e-08, 1, -2.66454e-15, -3.19744e-14, 3.37334e-16, 1, 4.52606e-07, 5.99579, 1.30397e-14)
@@ -67,6 +72,16 @@ transform = Transform3D(1.625, 0, 0, 0, 1.625, 0, 0, 0, 1.625, 0, 0, 0)
 [node name="EyeComponent" parent="Model/ModelHolder" index="2"]
 transform = Transform3D(1.3, 0, 0, 0, 1.3, 0, 0, 0, 1.3, 1.30971, 3.53528, 5.72494e-08)
 
+[node name="AnimationTree_Look" parent="Model/ModelHolder/EyeComponent" index="1"]
+libraries = {
+"": ExtResource("5_2dem1")
+}
+
+[node name="AnimationTree_Blink" parent="Model/ModelHolder/EyeComponent" index="3"]
+libraries = {
+"": ExtResource("6_2h0w5")
+}
+
 [node name="HealthComponent" parent="." index="3"]
 max_health = 4600.0
 
@@ -78,7 +93,7 @@ pushback_scale = 0.8
 [node name="ArmorComponent" parent="." index="8" groups=["Bearkin", "Unarmored"]]
 
 [node name="MaterialOverrideComponent" parent="." index="10" node_paths=PackedStringArray("mesh_instance")]
-mesh_instance = NodePath("../Model/ModelHolder/bearkin/bearkin2")
+mesh_instance = NodePath("../Model/ModelHolder/bearkin/bearkin")
 
 [node name="BrainComponent" parent="." index="11"]
 behaviours = Array[Resource("res://units/components/brain/Behaviour.gd")]([ExtResource("4_y7ncd"), ExtResource("5_pfokl"), ExtResource("6_q3vgh"), ExtResource("7_imd88")])
