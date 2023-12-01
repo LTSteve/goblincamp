@@ -21,19 +21,19 @@ gradient = SubResource("Gradient_28dl4")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_lge6m"]
 particle_flag_rotate_y = true
+angle_min = 45.0
+angle_max = 45.0
 direction = Vector3(0, 0, 1)
 spread = 180.0
-gravity = Vector3(0, 0, 0)
 initial_velocity_min = 1.0
 initial_velocity_max = 1.0
 angular_velocity_min = -720.0
 angular_velocity_max = 720.0
+gravity = Vector3(0, 0, 0)
 radial_accel_min = -1.0
 radial_accel_max = 1.0
 tangential_accel_min = 1.0
 tangential_accel_max = 5.0
-angle_min = 45.0
-angle_max = 45.0
 color_ramp = SubResource("GradientTexture1D_5yxw6")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_x8k7n"]
@@ -52,8 +52,8 @@ script = ExtResource("1_3kikx")
 hit_spot = NodePath("HeightComponent/witch_projectile/HitSpot")
 lifespan = 2.6
 sfx = Array[AudioStream]([ExtResource("3_5dklg"), ExtResource("4_3aj3u")])
-model = NodePath("")
-particles = NodePath("")
+model = NodePath("HeightComponent/witch_projectile")
+particles = NodePath("HeightComponent/GPUParticles3D")
 projectiles_resource = ExtResource("4_re2ui")
 
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="."]
