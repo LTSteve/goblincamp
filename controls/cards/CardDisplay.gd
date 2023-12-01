@@ -30,5 +30,4 @@ func _ready():
 
 func _assign_ui_texture():
 	var ui_material = ui_material_override.get_material()
-	
 	ui_material.albedo_texture = ui_viewport.get_texture()

@@ -47,4 +47,4 @@ func _set_up_tween():
 # for click-outs
 func _on_click_blocker_gui_input(event):
 	if event is InputEventMouseButton && event.pressed && event.button_index == MOUSE_BUTTON_LEFT:
-		_current_popup.close()
+		_current_popup.click_out()

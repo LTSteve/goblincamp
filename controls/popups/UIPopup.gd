@@ -10,3 +10,6 @@ func open():
 func close():
 	visible = false
 	popup_close.emit()
+
+func click_out():
+	close()

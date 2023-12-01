@@ -3,7 +3,7 @@ class_name UniqueMetaId
 static var dictionary:Dictionary = {}
 
 static func create(context:Array):
-	var id:String = ""
+	var id:StringName = ""
 	for obj in context:
 		id += obj if obj is String else str(obj.get_instance_id())
 	return id

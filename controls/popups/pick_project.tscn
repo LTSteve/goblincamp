@@ -1,12 +1,26 @@
-[gd_scene load_steps=6 format=3 uid="uid://27jmv87jb7qx"]
+[gd_scene load_steps=11 format=3 uid="uid://27jmv87jb7qx"]
 
 [ext_resource type="Script" path="res://controls/PickProjectModel.gd" id="1_106yj"]
+[ext_resource type="Script" path="res://controls/decorations/Trasition.gd" id="2_gmxjs"]
 [ext_resource type="PackedScene" uid="uid://baemiseha5yiw" path="res://controls/3d_texture_rect.tscn" id="2_w6vvu"]
+[ext_resource type="Script" path="res://controls/decorations/TransitionPropertyV2.gd" id="3_e77yu"]
 [ext_resource type="PackedScene" uid="uid://bxuks2nqox5rb" path="res://controls/cards/card_container.tscn" id="3_sq8g5"]
 [ext_resource type="FontFile" uid="uid://q8or8vsxpn3x" path="res://theme/Anton-Regular.ttf" id="4_7gamq"]
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_hglni"]
+[sub_resource type="Resource" id="Resource_6c03a"]
+script = ExtResource("3_e77yu")
+value = Vector2(1000, 0)
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_2cim4"]
 viewport_path = NodePath("SubViewport")
+
+[sub_resource type="Resource" id="Resource_ucwfs"]
+script = ExtResource("3_e77yu")
+value = Vector2(0, 0)
+
+[sub_resource type="Resource" id="Resource_agahp"]
+script = ExtResource("3_e77yu")
+value = Vector2(0, 698)
 
 [node name="PickProject" type="Control"]
 layout_mode = 3
@@ -32,6 +46,14 @@ text = "PICK A PROJECT"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="Trasition" type="Node" parent="MarginContainer"]
+script = ExtResource("2_gmxjs")
+property_to_transition = "position"
+transition_time = 1.0
+transition_property_start = SubResource("Resource_6c03a")
+end_at_current_value = true
+transition_type = 6
+
 [node name="MarginContainer2" type="MarginContainer" parent="."]
 layout_mode = 1
 anchors_preset = 15
@@ -47,7 +69,7 @@ layout_mode = 2
 size_flags_horizontal = 4
 mouse_filter = 0
 mouse_default_cursor_shape = 2
-texture = SubResource("ViewportTexture_hglni")
+texture = SubResource("ViewportTexture_2cim4")
 expand_mode = 3
 model_scale = Vector3(0.38, 0.38, 0.38)
 model_offset = Vector3(0, 1, 0)
@@ -85,6 +107,15 @@ theme_override_font_sizes/font_size = 60
 text = ">"
 vertical_alignment = 1
 
+[node name="Transition" type="Node" parent="MarginContainer2"]
+script = ExtResource("2_gmxjs")
+property_to_transition = "scale"
+transition_time = 0.5
+delay_time = 1.0
+transition_property_start = SubResource("Resource_ucwfs")
+end_at_current_value = true
+transition_type = 9
+
 [node name="CenterContainer" type="CenterContainer" parent="."]
 layout_mode = 1
 anchors_preset = 12
@@ -101,6 +132,14 @@ mouse_default_cursor_shape = 2
 theme_override_fonts/font = ExtResource("4_7gamq")
 theme_override_font_sizes/font_size = 30
 text = "   CHOOSE CARD   "
+
+[node name="Transition" type="Node" parent="CenterContainer"]
+script = ExtResource("2_gmxjs")
+property_to_transition = "position"
+transition_time = 1.0
+delay_time = 0.5
+transition_property_start = SubResource("Resource_agahp")
+end_at_current_value = true
 
 [connection signal="gui_input" from="MarginContainer2/3DTextureRect" to="." method="_on_card_holder_gui_input"]
 [connection signal="pressed" from="CenterContainer/Button" to="." method="on_choose_card"]
