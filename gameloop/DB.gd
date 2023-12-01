@@ -69,6 +69,7 @@ var _scene_paths = {
 	buy_panel_scene= "res://controls/popups/buy_panel.tscn",
 	game_over_panel_scene= "res://controls/popups/game_over_panel.tscn",
 	goblin_card_panel_scene= "res://controls/popups/goblin_card_panel.tscn",
+	pause_panel_scene= "res://controls/popups/pause_panel.tscn",
 	pick_project_scene= "res://controls/popups/pick_project.tscn",
 	ritual_panel_scene= "res://controls/popups/ritual_panel.tscn",
 	knight_unit_cam= "res://units/unit_cams/knight_cam.tscn",

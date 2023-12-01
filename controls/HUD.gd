@@ -14,11 +14,15 @@ var _current_popup: UIPopup
 func _ready():
 	I = self
 
+func on_pause():
+	var pause_popup = DB.I.scenes.pause_panel_scene.instantiate()
+	on_popup_open(pause_popup)
+
 func on_popup_open(popup:UIPopup):
 	hide_on_popup.visible = false
 	click_blocker.visible = true
 	_set_up_tween()
-	_tween.tween_property(click_blocker, "modulate", Color.WHITE, 0.2)
+	_tween.tween_property(click_blocker, "modulate", Color(Color.WHITE, 1), 0.2)
 	_current_popup = popup
 	popup_holder.add_child(_current_popup)
 	_current_popup.open()
@@ -31,6 +35,7 @@ func on_popup_close():
 		_tween.finished.connect(_show_hud)
 
 func _show_hud():
+	_tween = null
 	hide_on_popup.visible = true
 	click_blocker.visible = false
 	if _current_popup:

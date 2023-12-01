@@ -10,14 +10,15 @@ axis_stretch_horizontal = 1
 axis_stretch_vertical = 1
 region_rect = Rect2(50, 50, 1000, 1000)
 
-[node name="PausePanel" type="Panel"]
+[node name="PausePanel" type="Control"]
 process_mode = 3
-visible = false
+layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 script = ExtResource("1_acbni")
 
 [node name="PauseMenu" type="Panel" parent="."]
@@ -96,7 +97,7 @@ mouse_default_cursor_shape = 2
 theme_override_font_sizes/font_size = 28
 text = "QUIT"
 
-[node name="SettingsMenu" parent="." node_paths=PackedStringArray("category_option") instance=ExtResource("3_7u5mh")]
+[node name="SettingsMenu" parent="." instance=ExtResource("3_7u5mh")]
 visible = false
 layout_mode = 2
 anchors_preset = 0
@@ -108,9 +109,7 @@ offset_left = 376.0
 offset_top = 55.0
 offset_right = 776.0
 offset_bottom = 593.0
-category_option = NodePath("")
 
-[connection signal="gui_input" from="." to="." method="_on_gui_input"]
 [connection signal="pressed" from="PauseMenu/MarginContainer/VBoxContainer/MarginContainer/Button" to="." method="close"]
 [connection signal="pressed" from="PauseMenu/MarginContainer/VBoxContainer/MarginContainer3/Button" to="SettingsMenu" method="open"]
 [connection signal="pressed" from="PauseMenu/MarginContainer/VBoxContainer/MarginContainer2/Button" to="." method="quit"]
