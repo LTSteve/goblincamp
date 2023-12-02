@@ -1,8 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://jvbxwkcjmkma"]
 
 [ext_resource type="Script" path="res://controls/GoblinCardPanel.gd" id="1_7vkul"]
-[ext_resource type="Resource" uid="uid://di0r47nymtihe" path="res://observables/day_number.tres" id="2_5eybl"]
-[ext_resource type="Resource" uid="uid://s8yac1y7ty7q" path="res://observables/todo_before_day.tres" id="3_bpixj"]
+[ext_resource type="PackedScene" uid="uid://baemiseha5yiw" path="res://controls/3d_texture_rect.tscn" id="3_ond6w"]
 [ext_resource type="Texture2D" uid="uid://cxquwwj5pp616" path="res://icons/camp_panel.png" id="4_o2eyj"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_u2q0v"]
@@ -11,19 +10,17 @@ axis_stretch_horizontal = 1
 axis_stretch_vertical = 1
 region_rect = Rect2(500, 60, 500, 500)
 
-[node name="GoblinCardPanelBlocker" type="Panel" node_paths=PackedStringArray("card_container")]
-visible = false
+[sub_resource type="ViewportTexture" id="ViewportTexture_4dsn3"]
+viewport_path = NodePath("SubViewport")
+
+[node name="GoblinCardPanelBlocker" type="Control"]
+layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_7vkul")
-card_container = NodePath("")
-first_modifier_night = 3
-modifier_interval = 5
-day_number_resource = ExtResource("2_5eybl")
-todo_before_day_resource = ExtResource("3_bpixj")
 
 [node name="GoblinCardPanel" type="Panel" parent="."]
 layout_mode = 1
@@ -60,10 +57,17 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/margin_left = 27
-theme_override_constants/margin_top = 60
-theme_override_constants/margin_right = 27
-theme_override_constants/margin_bottom = 60
+theme_override_constants/margin_left = 60
+theme_override_constants/margin_top = 120
+theme_override_constants/margin_right = 60
+theme_override_constants/margin_bottom = 120
+
+[node name="3DTextureRect" parent="GoblinCardPanel/MarginContainer" instance=ExtResource("3_ond6w")]
+layout_mode = 2
+texture = SubResource("ViewportTexture_4dsn3")
+model_scale = Vector3(0.33, 0.33, 0.33)
+model_offset = Vector3(0, 1, 0)
+viewport_pixels = Vector2i(256, 512)
 
 [node name="MarginContainer2" type="MarginContainer" parent="GoblinCardPanel"]
 layout_mode = 1
@@ -86,4 +90,4 @@ theme_override_font_sizes/font_size = 24
 text = "PREPARE FOR DOOM"
 
 [connection signal="gui_input" from="." to="." method="_on_gui_input"]
-[connection signal="pressed" from="GoblinCardPanel/MarginContainer2/Button" to="." method="close"]
+[connection signal="pressed" from="GoblinCardPanel/MarginContainer2/Button" to="." method="on_close_clicked"]

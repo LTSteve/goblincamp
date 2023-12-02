@@ -49,3 +49,5 @@ one_shot = true
 explosiveness = 0.39
 process_material = SubResource("ParticleProcessMaterial_itsoa")
 draw_pass_1 = SubResource("SphereMesh_iuvcn")
+
+[connection signal="timeout" from="Timer" to="." method="queue_free"]

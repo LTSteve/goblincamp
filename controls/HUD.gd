@@ -69,4 +69,4 @@ func _fade_in_click_blocker(todo_list:TodoList):
 # for click-outs
 func _on_click_blocker_gui_input(event):
 	if event is InputEventMouseButton && event.pressed && event.button_index == MOUSE_BUTTON_LEFT:
-		if _current_popup.click_out(): on_popup_close()
+		if _current_popup.click_out(): _current_popup.popup_close.emit()

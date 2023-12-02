@@ -20,10 +20,10 @@ func set_data(card:CardResource, building:Building):
 	_building = building
 
 func open(todo_list: TodoList):
-	
 	title.text = _building.get_groups()[0].to_upper()
 	
 	_set_up_card_view()
+	
 	super.open(todo_list)
 
 func _set_up_card_view():

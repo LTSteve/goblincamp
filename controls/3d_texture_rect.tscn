@@ -27,7 +27,7 @@ environment = ExtResource("1_t03b1")
 projection = 1
 size = 2.7
 near = 1.0
-far = 10.0
+far = 15.0
 
 [node name="Model" type="Node3D" parent="SubViewport/3DTextureCam"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.73885e-07, -1, -2.02198)
