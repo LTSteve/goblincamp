@@ -17,6 +17,8 @@ static var I: GameManager
 @export_group("Observables")
 @export var day_number: ObservableResource
 @export var is_day: ObservableResource
+@export_category("Signal Buses")
+@export var game_over_resource: SignalBus
 
 var unit_ratios = {
 	UnitSpawner.UnitType.Goblin: 0.5,

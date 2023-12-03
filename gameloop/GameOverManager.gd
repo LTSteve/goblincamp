@@ -20,4 +20,6 @@ func game_over():
 	Wait.timer(2, self, func():
 		if players_resource.value.size() == 0 && enemies_resource.value.size() != 0:
 			game_over_resource.on_signal.emit()
+			var game_over_panel = DB.I.scenes.game_over_panel_scene.instantiate() as GameOverPanel
+			HUD.I.on_popup_open(game_over_panel)
 	)
