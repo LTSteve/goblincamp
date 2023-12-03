@@ -25,8 +25,8 @@ func on_popup_open(popup:UIPopup):
 	
 	if is_instance_valid(_current_popup):
 		todo_tasks.append(TodoListItem.new(_current_popup.close))
-	else:
-		todo_tasks.append(TodoListItem.new(_fade_in_click_blocker))
+	
+	todo_tasks.append(TodoListItem.new(_fade_in_click_blocker if popup.click_blocker() else _fade_out_click_blocker))
 	
 	_current_popup = popup
 	_current_popup.popup_close.connect(on_popup_close)

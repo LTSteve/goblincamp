@@ -33,6 +33,7 @@ material = SubResource("StandardMaterial3D_8y8tt")
 size = Vector2(2.5, 3.5)
 
 [node name="CardDisplay" type="Node3D" node_paths=PackedStringArray("card_title", "card_description")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
 script = ExtResource("1_w1dks")
 card_defaults = ExtResource("2_tyvj3")
 card_title = NodePath("SubViewport/Theme/VBoxContainer/MarginContainer/Label")

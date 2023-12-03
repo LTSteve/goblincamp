@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://dvgfkovckchyd"]
+[gd_scene load_steps=5 format=3 uid="uid://dvgfkovckchyd"]
 
 [ext_resource type="Script" path="res://controls/CameraRig.gd" id="1_rylmo"]
 [ext_resource type="Resource" uid="uid://migalyov78re" path="res://controls/settings_types/Visuals/1fov.tres" id="2_c6mc7"]
 [ext_resource type="Script" path="res://units/components/VelocityComponent.gd" id="2_yobrm"]
+[ext_resource type="PackedScene" uid="uid://bxuks2nqox5rb" path="res://controls/cards/card_container.tscn" id="3_s25dq"]
 
 [node name="CameraRig" type="Node3D"]
 script = ExtResource("1_rylmo")
@@ -25,6 +26,10 @@ fov = 106.162
 
 [node name="AudioListener3D" type="AudioListener3D" parent="CameraRotation/CameraAngle/CameraDistance/Camera3D"]
 current = true
+
+[node name="card_container" parent="CameraRotation/CameraAngle/CameraDistance/Camera3D" instance=ExtResource("3_s25dq")]
+transform = Transform3D(-1.09278e-08, 0, -0.25, 0, 0.25, 0, 0.25, 0, -1.09278e-08, 0, 0, -1)
+visible = false
 
 [node name="VelocityComponent" type="Node" parent="."]
 script = ExtResource("2_yobrm")

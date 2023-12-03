@@ -17,6 +17,10 @@ func _ready():
 	for i in cards.size():
 		cards[i].position = _get_position_of_card(i)
 
+func initialize():
+	_selected_index = 0
+	tween_into_position()
+
 func tween_into_position():
 	var cards = get_children()
 	
@@ -37,6 +41,10 @@ func tween_into_position():
 		tween.set_ease(Tween.EASE_IN_OUT)
 		tween.tween_property(card, "position", _get_position_of_card(i), 0.2)
 		UniqueMetaId.store(key, tween)
+	
+	var active_card := get_active_card()
+	if active_card.hidden:
+		active_card.flip()
 
 func _get_position_of_card(index: int) -> Vector3:
 	var actual_index = index - _selected_index
@@ -51,6 +59,10 @@ func _get_position_of_card(index: int) -> Vector3:
 func shift_to(index):
 	_selected_index = index
 	tween_into_position()
+
+func clear():
+	for card:CardDisplay in get_children():
+		card.queue_free()
 
 func get_active_card() -> CardDisplay:
 	return get_children()[_selected_index]

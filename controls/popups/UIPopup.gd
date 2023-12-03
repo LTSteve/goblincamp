@@ -16,3 +16,6 @@ func close(todo_list:TodoList):
 
 func click_out() -> bool:
 	return true
+
+func click_blocker() -> bool:
+	return true

@@ -28,6 +28,8 @@ static var I:CameraRig
 
 @onready var velocity_component: VelocityComponent = $"VelocityComponent"
 
+@onready var card_container: CardContainer = $"CameraRotation/CameraAngle/CameraDistance/Camera3D/card_container"
+
 var rotation_value: float:
 	get:
 		return rotation_value
