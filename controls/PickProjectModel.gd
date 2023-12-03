@@ -3,6 +3,7 @@ extends UIPopup
 class_name PickProjectModel
 
 @onready var card_holder_texture_rect: TextureRect3D = $"MarginContainer2/3DTextureRect"
+@onready var pick_text: Label = $"MarginContainer/Label"
 
 var card_scene: PackedScene
 var card_container: CardContainer
@@ -30,11 +31,13 @@ func _assign_card_container():
 func generate_building_cards(building_type:UnitSpawner.BuildingType):
 	_building_type = building_type
 	_cards = ModifierManager.generate_card_choices(building_type)
+	pick_text.text = "PICK A PROJECT"
 
 #called when initializing the pick product modal
 func generate_ritual_cards(ritual: Ritual):
 	_ritual = ritual
 	_cards = ModifierManager.generate_ritual_card_choices(_ritual.type, _ritual.size)
+	pick_text.text = "PICK A RITUAL"
 
 #ignore click-outs
 func click_out():
