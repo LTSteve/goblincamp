@@ -43,4 +43,4 @@ func _on_day_changed(is_day, _was_day):
 	
 	_current_phase_change = clampf(_current_phase_change + randf_range(-phase_change_rate, phase_change_rate), min_phase_speed, max_phase_speed)
 	
-	ear_exchange_rate_resource.value = min_exchange_rate + exchange_rate_range * Math.unit_sin(_current_phase) + randi_range(0, random_component)
+	ear_exchange_rate_resource.value = (min_exchange_rate + exchange_rate_range * Math.unit_sin(_current_phase) + randi_range(0, random_component)) as int

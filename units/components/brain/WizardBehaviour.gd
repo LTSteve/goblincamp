@@ -32,7 +32,10 @@ func _on_day_changed(is_day, _was_day, unit):
 
 static func open_buy_panel():
 	if ! _WIZARD: return
-	RitualPanel.I.slide_in()
+	
+	var ritual_panel = DB.I.scenes.ritual_panel_scene.instantiate() as RitualPanel
+	HUD.I.on_popup_open(ritual_panel)
+	
 	var camera_position = CameraRig.CameraSettings.new()
 	camera_position.locked_to = _WIZARD
 	CameraRig.I.set_camera_angle_override(camera_position)

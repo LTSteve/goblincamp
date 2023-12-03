@@ -1,39 +1,29 @@
-extends TweenSlide
+extends UIPopup
 
 class_name RitualPanel
-
-static var I: RitualPanel
 
 @onready var container:Container = $"RitualPanel/MarginContainer/Offers/ScrollContainer/MarginContainer/VBoxContainer"
 @onready var scroll_container: ScrollContainer = $"RitualPanel/MarginContainer/Offers/ScrollContainer"
 
 @export var resource_textures: Array[Texture2D] = []
 
+@export_group("Observables")
 @export var day_number: ObservableResource
 
 var _current_rituals: Array[Ritual] = []
 
 var _one_free_epic: bool = true
 
-func _ready():
-	I = self
-	super._ready()
-	day_number.value_changed.connect(_on_day_number_changed)
-
-func slide_in():
+func open(todo_list:TodoList):
 	if _current_rituals.is_empty():
-		_create_rituals(0)
+		_create_rituals(day_number.value)
 		_create_ritual_display()
 	scroll_container.scroll_vertical = 0
-	super.slide_in()
+	super.open(todo_list)
 
-func slide_out():
+func close(todo_list:TodoList):
 	CameraRig.I.unset_camera_angle_override()
-	super.slide_out()
-
-func _on_day_number_changed(day: int, _last_day):
-	_create_rituals(day)
-	_create_ritual_display()
+	super.close(todo_list)
 
 func _create_rituals(day: int):
 	_current_rituals = []
@@ -98,7 +88,3 @@ func _on_purchase_button_pressed(ritual:Ritual, ritual_display:RitualDisplay):
 		
 		if ritual.type == Ritual.Type.Epic:
 			_one_free_epic = false
-
-func _on_gui_input(event:InputEvent):
-	if event is InputEventMouseButton && event.pressed && event.button_index == MOUSE_BUTTON_LEFT:
-		slide_out()

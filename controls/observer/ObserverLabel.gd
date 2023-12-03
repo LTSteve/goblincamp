@@ -9,7 +9,6 @@ var _template: String
 
 func _ready():
 	observable_resource.ready()
-	
 	_template = template_string if template_string.contains("%") else template_string + "%s"
 	_set_label()
 	observable_resource.value_changed.connect(_on_value_changed)
@@ -19,3 +18,6 @@ func _on_value_changed(_v,_ov):
 
 func _set_label():
 	text = _template % observable_resource.get_value()
+
+func _exit_tree():
+	observable_resource.value_changed.disconnect(_on_value_changed)

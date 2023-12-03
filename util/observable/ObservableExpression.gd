@@ -11,12 +11,14 @@ enum Operator {AND, OR, ADD, SUB, EQ}
 var _value
 
 func ready():
+	if _is_ready: return
 	observable_1.ready()
 	observable_2.ready()
 	
 	_value = _calc()
 	observable_1.value_changed.connect(_value_changed)
 	observable_2.value_changed.connect(_value_changed)
+	super.ready()
 
 func get_value():
 	return _value

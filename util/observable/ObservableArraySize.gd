@@ -7,8 +7,10 @@ class_name ObservableArraySize
 var _value
 
 func ready():
+	if _is_ready: return
 	_value = _calc()
 	sub_observable.value_changed.connect(_value_changed)
+	super.ready()
 
 func get_value():
 	return _value

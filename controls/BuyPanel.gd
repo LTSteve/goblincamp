@@ -4,7 +4,6 @@ class_name BuyPanel
 
 @onready var container:Container = $"BuyPanel/MarginContainer/Offers/ScrollContainer/MarginContainer/FlowContainer"
 @onready var scroll_container: ScrollContainer = $"BuyPanel/MarginContainer/Offers/ScrollContainer"
-@onready var ear_exchange_panel: EarExchangePanel = $"EarExchangePanel"
 
 @export var available_unit_types: Array[UnitSpawner.UnitType]
 @export var available_building_types: Array[UnitSpawner.BuildingType]
@@ -45,7 +44,6 @@ func _ready():
 func open(todo_list:TodoList):
 	if _current_offers.is_empty():
 		_setup_offers()
-	ear_exchange_panel.visible = day_number_resource.value > 0
 	scroll_container.scroll_vertical = 0
 	super.open(todo_list)
 
