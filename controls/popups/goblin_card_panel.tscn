@@ -1,8 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://jvbxwkcjmkma"]
+[gd_scene load_steps=10 format=3 uid="uid://jvbxwkcjmkma"]
 
 [ext_resource type="Script" path="res://controls/GoblinCardPanel.gd" id="1_7vkul"]
 [ext_resource type="PackedScene" uid="uid://baemiseha5yiw" path="res://controls/3d_texture_rect.tscn" id="3_ond6w"]
+[ext_resource type="Script" path="res://controls/decorations/Trasition.gd" id="4_ggij1"]
 [ext_resource type="Texture2D" uid="uid://cxquwwj5pp616" path="res://icons/camp_panel.png" id="4_o2eyj"]
+[ext_resource type="Script" path="res://controls/decorations/TransitionPropertyV2.gd" id="5_xua3a"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_u2q0v"]
 texture = ExtResource("4_o2eyj")
@@ -12,6 +14,14 @@ region_rect = Rect2(500, 60, 500, 500)
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_4dsn3"]
 viewport_path = NodePath("SubViewport")
+
+[sub_resource type="Resource" id="Resource_omv2r"]
+script = ExtResource("5_xua3a")
+value = Vector2(0, 0)
+
+[sub_resource type="Resource" id="Resource_p5mj2"]
+script = ExtResource("5_xua3a")
+value = Vector2(0, 0)
 
 [node name="GoblinCardPanelBlocker" type="Control"]
 layout_mode = 3
@@ -35,6 +45,7 @@ offset_right = 175.0
 offset_bottom = 262.5
 grow_horizontal = 2
 grow_vertical = 2
+pivot_offset = Vector2(175, 260)
 theme_override_styles/panel = SubResource("StyleBoxTexture_u2q0v")
 
 [node name="Label" type="Label" parent="GoblinCardPanel"]
@@ -88,6 +99,22 @@ layout_mode = 2
 mouse_default_cursor_shape = 2
 theme_override_font_sizes/font_size = 24
 text = "PREPARE FOR DOOM"
+
+[node name="Transition" type="Node" parent="GoblinCardPanel"]
+script = ExtResource("4_ggij1")
+property_to_transition = "scale"
+transition_property_start = SubResource("Resource_omv2r")
+end_at_current_value = true
+transition_type = 11
+
+[node name="Transitionout" type="Node" parent="GoblinCardPanel"]
+script = ExtResource("4_ggij1")
+transition_on_ready = false
+transition_on_close = true
+property_to_transition = "scale"
+transition_time = 0.15
+start_at_current_value = true
+transition_property_end = SubResource("Resource_p5mj2")
 
 [connection signal="gui_input" from="." to="." method="_on_gui_input"]
 [connection signal="pressed" from="GoblinCardPanel/MarginContainer2/Button" to="." method="on_close_clicked"]

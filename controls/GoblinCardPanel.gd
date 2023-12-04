@@ -18,6 +18,7 @@ func open(todo_list:TodoList):
 	
 	var card_display = card_view.model as CardDisplay
 	card_display.card_resource = _card_resource
+	card_display.no_flip = true
 	card_display.initialize() 
 	
 	todo_list.mark_step_done()
