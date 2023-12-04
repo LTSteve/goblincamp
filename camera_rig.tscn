@@ -28,8 +28,7 @@ fov = 106.162
 current = true
 
 [node name="card_container" parent="CameraRotation/CameraAngle/CameraDistance/Camera3D" instance=ExtResource("3_s25dq")]
-transform = Transform3D(-1.09278e-08, 0, -0.25, 0, 0.25, 0, 0.25, 0, -1.09278e-08, 0, 0, -1)
-visible = false
+transform = Transform3D(7.45058e-09, 0, -0.25, -7.45058e-09, 0.25, -7.45058e-09, 0.25, -7.45058e-09, 0, 0, 0, -1)
 
 [node name="VelocityComponent" type="Node" parent="."]
 script = ExtResource("2_yobrm")

@@ -28,7 +28,6 @@ func _assign_card_container():
 		new_card.show_next_rank = true
 		new_card.hidden = !!_ritual
 		card_container.add_child(new_card)
-	card_container.visible = true
 	card_container.initialize()
 
 #called when initializing the pick product modal
@@ -53,7 +52,6 @@ func click_blocker():
 
 func _on_card_selected(resource:CardResource):
 	card_container.clear()
-	card_container.visible = false
 	
 	if _ritual:
 		_ritual = null

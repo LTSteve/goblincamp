@@ -1,8 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://camewxei0ee56"]
+[gd_scene load_steps=10 format=3 uid="uid://camewxei0ee56"]
 
 [ext_resource type="Script" path="res://controls/BuildingProjectPanel.gd" id="1_6j0l2"]
 [ext_resource type="Texture2D" uid="uid://cxquwwj5pp616" path="res://icons/camp_panel.png" id="2_lmxdj"]
 [ext_resource type="PackedScene" uid="uid://baemiseha5yiw" path="res://controls/3d_texture_rect.tscn" id="3_y2x65"]
+[ext_resource type="Script" path="res://controls/decorations/Trasition.gd" id="4_g46hf"]
+[ext_resource type="Script" path="res://controls/decorations/TransitionPropertyV2.gd" id="5_c8vj5"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_hkeb6"]
 texture = ExtResource("2_lmxdj")
@@ -13,6 +15,14 @@ modulate_color = Color(0.215686, 0.0745098, 0, 1)
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_3mu0i"]
 viewport_path = NodePath("SubViewport")
+
+[sub_resource type="Resource" id="Resource_6vs2u"]
+script = ExtResource("5_c8vj5")
+value = Vector2(0, 0)
+
+[sub_resource type="Resource" id="Resource_qvmtv"]
+script = ExtResource("5_c8vj5")
+value = Vector2(0, 0)
 
 [node name="BuildingProjectPanel" type="Control"]
 layout_mode = 3
@@ -37,6 +47,7 @@ offset_right = 225.0
 offset_bottom = 230.0
 grow_horizontal = 2
 grow_vertical = 2
+pivot_offset = Vector2(225, 230)
 theme_override_styles/panel = SubResource("StyleBoxTexture_hkeb6")
 
 [node name="MarginContainer3" type="MarginContainer" parent="BuildingProjectPanel"]
@@ -110,6 +121,22 @@ clip_text = true
 layout_mode = 2
 theme_override_font_sizes/font_size = 24
 text = " CHANGE PROJECT "
+
+[node name="Transition" type="Node" parent="BuildingProjectPanel"]
+script = ExtResource("4_g46hf")
+property_to_transition = "scale"
+transition_property_start = SubResource("Resource_6vs2u")
+end_at_current_value = true
+transition_type = 11
+
+[node name="Transitionout" type="Node" parent="BuildingProjectPanel"]
+script = ExtResource("4_g46hf")
+transition_on_ready = false
+transition_on_close = true
+property_to_transition = "scale"
+transition_time = 0.15
+start_at_current_value = true
+transition_property_end = SubResource("Resource_qvmtv")
 
 [connection signal="pressed" from="BuildingProjectPanel/MarginContainer2/HBoxContainer/CloseButton" to="." method="close"]
 [connection signal="pressed" from="BuildingProjectPanel/MarginContainer2/HBoxContainer/PickNewProjectButton" to="." method="change_project"]

@@ -4,6 +4,9 @@ extends Node3D
 
 class_name CardContainer
 
+@onready var trans_in: Transition = $"TransitionIn"
+@onready var trans_out: Transition = $"TransitionOut"
+
 @export var re_render: bool:
 	set(_value):
 		re_render = false
@@ -11,21 +14,23 @@ class_name CardContainer
 
 var _selected_index = 0
 
-func _ready():
+var _cards: Array[CardDisplay] = []
+
+func initialize():
 	var cards = get_children()
 	
 	for i in cards.size():
+		if !(cards[i] is CardDisplay): continue
 		cards[i].position = _get_position_of_card(i)
-
-func initialize():
+		_cards.append(cards[i])
+	
 	_selected_index = 0
+	trans_in.start_transition()
 	tween_into_position()
 
 func tween_into_position():
-	var cards = get_children()
-	
-	for i in cards.size():
-		var card = cards[i] as Node3D
+	for i in _cards.size():
+		var card := _cards[i]
 		
 		if Engine.is_editor_hint():
 			card.position = _get_position_of_card(i)
@@ -57,18 +62,22 @@ func _get_position_of_card(index: int) -> Vector3:
 	return Vector3(-y, 0, -x)
 
 func shift_to(index):
-	_selected_index = index
+	_selected_index = clampi(index, 0, _cards.size() - 1)
 	tween_into_position()
 
 func clear():
-	for card:CardDisplay in get_children():
-		card.queue_free()
+	trans_out.on_finished.connect(func():
+		for card:CardDisplay in _cards:
+			card.queue_free()
+		_cards = []
+	)
+	trans_out.start_transition()
 
 func get_active_card() -> CardDisplay:
-	return get_children()[_selected_index]
+	return _cards[_selected_index]
 
 func shift_left():
-	shift_to(clampi(_selected_index - 1, 0, get_child_count() - 1))
+	shift_to(_selected_index - 1)
 
 func shift_right():
-	shift_to(clampi(_selected_index + 1, 0, get_child_count() - 1))
+	shift_to(_selected_index + 1)

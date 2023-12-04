@@ -32,6 +32,7 @@ func _set_up_card_view():
 	
 	var card_display = card_view.model as CardDisplay
 	card_display.card_resource = _selected_card
+	card_display.no_flip = true
 	card_display.initialize() 
 
 func change_project():

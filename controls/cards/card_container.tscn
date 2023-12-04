@@ -1,6 +1,35 @@
-[gd_scene load_steps=2 format=3 uid="uid://bxuks2nqox5rb"]
+[gd_scene load_steps=6 format=3 uid="uid://bxuks2nqox5rb"]
 
 [ext_resource type="Script" path="res://controls/cards/CardContainer.gd" id="1_u0hbe"]
+[ext_resource type="Script" path="res://controls/decorations/Trasition.gd" id="2_dliui"]
+[ext_resource type="Script" path="res://controls/decorations/TransitionPropertyV3.gd" id="3_y1d7m"]
+
+[sub_resource type="Resource" id="Resource_fjluw"]
+script = ExtResource("3_y1d7m")
+value = Vector3(-1, 0, 0)
+
+[sub_resource type="Resource" id="Resource_0etl2"]
+script = ExtResource("3_y1d7m")
+value = Vector3(1, 0, 0)
 
 [node name="card_container" type="Node3D"]
 script = ExtResource("1_u0hbe")
+
+[node name="TransitionIn" type="Node" parent="."]
+script = ExtResource("2_dliui")
+transition_on_ready = false
+property_to_transition = "position"
+transition_time = 0.3
+add_start_to_current_value = true
+transition_property_start = SubResource("Resource_fjluw")
+end_at_current_value = true
+transition_type = 11
+
+[node name="TransitionOut" type="Node" parent="."]
+script = ExtResource("2_dliui")
+transition_on_ready = false
+property_to_transition = "position"
+transition_time = 0.25
+start_at_current_value = true
+add_end_to_current_value = true
+transition_property_end = SubResource("Resource_0etl2")

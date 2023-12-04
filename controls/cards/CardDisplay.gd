@@ -15,6 +15,7 @@ class_name CardDisplay
 @onready var ui_viewport: SubViewport = $"SubViewport"
 
 var hidden := true
+var no_flip := false
 
 var show_next_rank: bool = false
 
@@ -26,8 +27,9 @@ func _ready():
 func initialize(flipped:=true):
 	if ! card_resource: return
 	
-	hidden = flipped
-	rotation_degrees = Vector3(0, 180 if hidden else 0, 0)
+	if !no_flip:
+		hidden = flipped
+		rotation_degrees = Vector3(0, 180 if hidden else 0, 0)
 	
 	material_override.set_color(card_defaults.rarity_colors[card_resource.rarity])
 	card_title.text = card_resource.title
@@ -39,6 +41,7 @@ func initialize(flipped:=true):
 	call_deferred("_assign_ui_texture")
 
 func flip():
+	if no_flip: return
 	_set_up_tween()
 	if hidden:
 		hidden = false
