@@ -1,4 +1,4 @@
-[gd_scene load_steps=93 format=3 uid="uid://c4d1d2j1uy0kb"]
+[gd_scene load_steps=96 format=3 uid="uid://c4d1d2j1uy0kb"]
 
 [ext_resource type="PackedScene" uid="uid://b43v6jawtpn5j" path="res://ground.tscn" id="2_oaunj"]
 [ext_resource type="PackedScene" uid="uid://o2t0d4q03eun" path="res://buildings/campfire.tscn" id="3_8yp2w"]
@@ -58,6 +58,8 @@
 [ext_resource type="Resource" uid="uid://b7j7pydhgi04a" path="res://observables/ears.tres" id="39_nxtvq"]
 [ext_resource type="Resource" uid="uid://chjqk6fsemnv0" path="res://observables/current_buy_offers.tres" id="39_o0pmk"]
 [ext_resource type="Resource" uid="uid://cg4otlie7epve" path="res://observables/ear_exchange_rate.tres" id="39_r0p7c"]
+[ext_resource type="Script" path="res://gameloop/RitualOffersManager.gd" id="40_x0ur6"]
+[ext_resource type="Texture2D" uid="uid://27s4o8hjiwcc" path="res://icons/metal-disc.png" id="41_vr80p"]
 [ext_resource type="Script" path="res://controls/OpenRitualButton.gd" id="43_iuu51"]
 [ext_resource type="Resource" uid="uid://ck8fu2mxpide7" path="res://card_modifiers/enemy/imps.tres" id="43_r68uk"]
 [ext_resource type="Resource" uid="uid://bhembmr1dldgp" path="res://card_modifiers/enemy/ogres.tres" id="44_ehkmr"]
@@ -68,6 +70,7 @@
 [ext_resource type="Texture2D" uid="uid://dindi5t5ovbrl" path="res://icons/shattered-sword.png" id="45_cr470"]
 [ext_resource type="CameraAttributesPractical" uid="uid://c0b6x7w2dcuek" path="res://world_camera_attributes.tres" id="45_e0oxs"]
 [ext_resource type="Script" path="res://gameloop/GoblinCardManager.gd" id="45_eqvio"]
+[ext_resource type="Resource" uid="uid://fd1rkfphtop7" path="res://observables/ritual_offers.tres" id="46_6x6cd"]
 [ext_resource type="Script" path="res://util/observable/ObservableNot.gd" id="46_wur1y"]
 [ext_resource type="Script" path="res://controls/observer/HideOnTrue.gd" id="50_g0nvj"]
 [ext_resource type="Resource" uid="uid://62e11cmrkcqr" path="res://observables/has_made_purchase.tres" id="51_cavng"]
@@ -303,6 +306,12 @@ players_resource = ExtResource("15_v2387")
 buildings_resource = ExtResource("36_umt5r")
 ear_exchange_rate_resource = ExtResource("39_r0p7c")
 current_buy_offers_resource = ExtResource("39_o0pmk")
+
+[node name="RitualOffersManager" type="Node" parent="."]
+script = ExtResource("40_x0ur6")
+resource_textures = Array[Texture2D]([ExtResource("41_vr80p"), ExtResource("32_0irpp"), ExtResource("33_xr783"), ExtResource("34_55230"), ExtResource("37_8efqf")])
+day_number = ExtResource("31_kheu1")
+ritual_offers_resource = ExtResource("46_6x6cd")
 
 [node name="TouchAndMouseInput" type="Node" parent="."]
 script = ExtResource("15_vdeym")

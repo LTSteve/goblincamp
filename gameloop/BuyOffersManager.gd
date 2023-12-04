@@ -1,5 +1,7 @@
 extends Node
 
+class_name BuyOffersManager
+
 @export var available_unit_types: Array[UnitSpawner.UnitType]
 @export var available_building_types: Array[UnitSpawner.BuildingType]
 

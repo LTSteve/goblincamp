@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="ObservableResource" load_steps=2 format=3 uid="uid://fd1rkfphtop7"]
+
+[ext_resource type="Script" path="res://util/observable/ObservableResource.gd" id="1_uafka"]
+
+[resource]
+resource_name = "ritual_offers"
+script = ExtResource("1_uafka")
+default_value_ptr = [[]]

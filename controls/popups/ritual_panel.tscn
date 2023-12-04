@@ -1,12 +1,7 @@
-[gd_scene load_steps=18 format=3 uid="uid://hvnnpmof7mtm"]
+[gd_scene load_steps=13 format=3 uid="uid://hvnnpmof7mtm"]
 
 [ext_resource type="Script" path="res://controls/RitualPanel.gd" id="1_iv2ok"]
-[ext_resource type="Texture2D" uid="uid://27s4o8hjiwcc" path="res://icons/metal-disc.png" id="2_ikrup"]
-[ext_resource type="Texture2D" uid="uid://cjfiilff2vlaq" path="res://icons/elf-ear.png" id="3_6ek3p"]
-[ext_resource type="Texture2D" uid="uid://cncu166pto4xa" path="res://icons/animal-hide.png" id="4_xhxyu"]
-[ext_resource type="Texture2D" uid="uid://btq5ebrsh1yhm" path="res://icons/metal-bar.png" id="5_a7q1o"]
-[ext_resource type="Texture2D" uid="uid://buo7y26wjm6fx" path="res://icons/dust-cloud.png" id="6_idq7l"]
-[ext_resource type="Resource" uid="uid://di0r47nymtihe" path="res://observables/day_number.tres" id="7_68j8l"]
+[ext_resource type="Resource" uid="uid://fd1rkfphtop7" path="res://observables/ritual_offers.tres" id="2_qse4j"]
 [ext_resource type="Texture2D" uid="uid://cxquwwj5pp616" path="res://icons/camp_panel.png" id="8_pdllt"]
 [ext_resource type="Texture2D" uid="uid://dtei7gs5achfg" path="res://icons/camp_inset_panel.png" id="9_poxca"]
 [ext_resource type="Script" path="res://controls/decorations/Trasition.gd" id="10_fi6mf"]
@@ -48,8 +43,7 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 script = ExtResource("1_iv2ok")
-resource_textures = Array[Texture2D]([ExtResource("2_ikrup"), ExtResource("3_6ek3p"), ExtResource("4_xhxyu"), ExtResource("5_a7q1o"), ExtResource("6_idq7l")])
-day_number = ExtResource("7_68j8l")
+ritual_offers_resource = ExtResource("2_qse4j")
 
 [node name="RitualPanel" type="Panel" parent="."]
 clip_contents = true

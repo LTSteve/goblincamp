@@ -10,8 +10,14 @@ var ritual:Ritual
 
 func _ready():
 	var resource_cost_scene = DB.I.scenes.resource_cost_scene
+	
+	if !ritual.available:
+		disable()
+		return
+	
 	for child in resource_cost_container.get_children():
 		child.queue_free()
+	
 	for i in ritual.resources.size():
 		var resource_texture = ritual.resource_textures[i]
 		var price = ritual.prices[i]

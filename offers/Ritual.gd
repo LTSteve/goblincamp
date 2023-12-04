@@ -10,6 +10,8 @@ var resource_textures: Array[Texture2D] = []
 var type: Type
 var size: Size
 
+var available: bool = true
+
 func _init(t:Type, s:Size = Size.Normal):
 	type = t
 	size = s
