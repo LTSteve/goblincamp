@@ -1,9 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://dibb285cysdon"]
+[gd_scene load_steps=11 format=3 uid="uid://dibb285cysdon"]
 
 [ext_resource type="Script" path="res://controls/GameOverPanel.gd" id="1_b8m4p"]
 [ext_resource type="Texture2D" uid="uid://cxquwwj5pp616" path="res://icons/camp_panel.png" id="3_mxxgi"]
 [ext_resource type="Texture2D" uid="uid://dtei7gs5achfg" path="res://icons/camp_inset_panel.png" id="4_1xw7m"]
 [ext_resource type="FontFile" uid="uid://d1jvqnhuvekma" path="res://theme/YoungSerif-Regular.ttf" id="5_3ib3m"]
+[ext_resource type="Script" path="res://controls/decorations/Trasition.gd" id="5_htr4x"]
+[ext_resource type="Script" path="res://controls/decorations/TransitionPropertyV2.gd" id="6_6vte4"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ypy66"]
 texture = ExtResource("3_mxxgi")
@@ -17,6 +19,14 @@ axis_stretch_horizontal = 1
 axis_stretch_vertical = 1
 region_rect = Rect2(40, 40, 500, 500)
 modulate_color = Color(0.819608, 0.819608, 0.819608, 1)
+
+[sub_resource type="Resource" id="Resource_rnh1v"]
+script = ExtResource("6_6vte4")
+value = Vector2(0, 0)
+
+[sub_resource type="Resource" id="Resource_u6ra4"]
+script = ExtResource("6_6vte4")
+value = Vector2(0, 0)
 
 [node name="GameOverPanel" type="Control"]
 process_mode = 3
@@ -42,6 +52,7 @@ offset_right = 275.0
 offset_bottom = 225.0
 grow_horizontal = 2
 grow_vertical = 2
+pivot_offset = Vector2(275, 225)
 theme_override_styles/panel = SubResource("StyleBoxTexture_ypy66")
 
 [node name="MarginContainer" type="MarginContainer" parent="Panel"]
@@ -125,6 +136,22 @@ mouse_default_cursor_shape = 2
 theme_override_fonts/font = ExtResource("5_3ib3m")
 theme_override_font_sizes/font_size = 25
 text = "Try Again"
+
+[node name="Transition" type="Node" parent="Panel"]
+script = ExtResource("5_htr4x")
+property_to_transition = "scale"
+transition_property_start = SubResource("Resource_rnh1v")
+end_at_current_value = true
+transition_type = 11
+
+[node name="Transitionout" type="Node" parent="Panel"]
+script = ExtResource("5_htr4x")
+transition_on_ready = false
+transition_on_close = true
+property_to_transition = "scale"
+transition_time = 0.15
+start_at_current_value = true
+transition_property_end = SubResource("Resource_u6ra4")
 
 [connection signal="pressed" from="Panel/HBoxContainer/Button" to="." method="main_menu"]
 [connection signal="pressed" from="Panel/HBoxContainer/Button2" to="." method="try_again"]
