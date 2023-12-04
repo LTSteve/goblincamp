@@ -7,10 +7,8 @@ class_name GoblinCardPanel
 var card_scene: PackedScene
 var _card_resource: CardResource
 
-func _ready():
-	card_scene = DB.I.scenes.card_display_scene
-
 func open(todo_list:TodoList):
+	card_scene = DB.I.scenes.card_display_scene
 	_card_resource = ModifierManager.get_next_enemy_card()
 	
 	card_view.model_scene = DB.I.scenes.card_display_scene
