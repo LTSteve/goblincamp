@@ -59,12 +59,12 @@ func _set_up_tween():
 func _fade_out_click_blocker(todo_list:TodoList):
 	_set_up_tween()
 	_tween_modulate.tween_property(click_blocker, "modulate", Color(Color.WHITE, 0), 0.2)
-	_tween_modulate.finished.connect(todo_list.mark_step_done)
+	_tween_modulate.finished.connect(func(): todo_list.mark_step_done())
 
 func _fade_in_click_blocker(todo_list:TodoList):
 	_set_up_tween()
 	_tween_modulate.tween_property(click_blocker, "modulate", Color(Color.WHITE, 1), 0.2)
-	_tween_modulate.finished.connect(todo_list.mark_step_done)
+	_tween_modulate.finished.connect(func(): todo_list.mark_step_done())
 
 # for click-outs
 func _on_click_blocker_gui_input(event):

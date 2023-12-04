@@ -11,7 +11,6 @@ var _done: bool = false
 signal done()
 
 func _init(tasks:Array, async: bool = false):
-	done.connect(func(): _done = true, CONNECT_ONE_SHOT)
 	_async = async
 	if async:
 		_remaining_steps = tasks.size()
@@ -27,17 +26,21 @@ func mark_step_done():
 	if _async:
 		_remaining_steps -= 1
 		if _remaining_steps == 0:
-			done.emit()
+			_mark_done()
 	else:
 		var task = _tasks.pop()
 		if task: task.execute(self)
-		else: done.emit()
+		else: _mark_done()
+
+func _mark_done():
+	done.emit()
+	_done = true
 
 func finish_step_after_signal(signl: Signal):
-	signl.connect(func(): mark_step_done(), CONNECT_ONE_SHOT)
+	signl.connect(func(): mark_step_done())
 
 func on_done(callback: Callable):
 	if _done:
 		callback.call()
 	else:
-		done.connect(callback, CONNECT_ONE_SHOT)
+		done.connect(callback)

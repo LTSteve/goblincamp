@@ -12,3 +12,6 @@ func close(todo_list: TodoList):
 
 func quit():
 	SceneManager.load_main_menu(get_tree())
+
+func continue_pressed():
+	popup_close.emit()

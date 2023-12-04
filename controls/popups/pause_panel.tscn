@@ -1,14 +1,24 @@
-[gd_scene load_steps=5 format=3 uid="uid://dudy0a2j1iyap"]
+[gd_scene load_steps=9 format=3 uid="uid://dudy0a2j1iyap"]
 
 [ext_resource type="Script" path="res://controls/PausePanel.gd" id="1_acbni"]
 [ext_resource type="Texture2D" uid="uid://cxquwwj5pp616" path="res://icons/camp_panel.png" id="2_4vmgk"]
 [ext_resource type="PackedScene" uid="uid://cfr8mya77iod3" path="res://controls/settings_menu.tscn" id="3_7u5mh"]
+[ext_resource type="Script" path="res://controls/decorations/Trasition.gd" id="3_vy88i"]
+[ext_resource type="Script" path="res://controls/decorations/TransitionPropertyV2.gd" id="4_7fpmh"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ss5py"]
 texture = ExtResource("2_4vmgk")
 axis_stretch_horizontal = 1
 axis_stretch_vertical = 1
 region_rect = Rect2(50, 50, 1000, 1000)
+
+[sub_resource type="Resource" id="Resource_eeit4"]
+script = ExtResource("4_7fpmh")
+value = Vector2(0, 0)
+
+[sub_resource type="Resource" id="Resource_mnq2a"]
+script = ExtResource("4_7fpmh")
+value = Vector2(0, 0)
 
 [node name="PausePanel" type="Control"]
 process_mode = 3
@@ -34,6 +44,7 @@ offset_right = 200.0
 offset_bottom = 125.0
 grow_horizontal = 2
 grow_vertical = 2
+pivot_offset = Vector2(200, 200)
 theme_override_styles/panel = SubResource("StyleBoxTexture_ss5py")
 
 [node name="MarginContainer" type="MarginContainer" parent="PauseMenu"]
@@ -97,6 +108,21 @@ mouse_default_cursor_shape = 2
 theme_override_font_sizes/font_size = 28
 text = "QUIT"
 
+[node name="Transition" type="Node" parent="PauseMenu"]
+script = ExtResource("3_vy88i")
+property_to_transition = "scale"
+transition_property_start = SubResource("Resource_eeit4")
+end_at_current_value = true
+transition_type = 11
+
+[node name="TransitionOut" type="Node" parent="PauseMenu"]
+script = ExtResource("3_vy88i")
+transition_on_ready = false
+transition_on_close = true
+property_to_transition = "scale"
+start_at_current_value = true
+transition_property_end = SubResource("Resource_mnq2a")
+
 [node name="SettingsMenu" parent="." instance=ExtResource("3_7u5mh")]
 visible = false
 layout_mode = 2
@@ -110,6 +136,6 @@ offset_top = 55.0
 offset_right = 776.0
 offset_bottom = 593.0
 
-[connection signal="pressed" from="PauseMenu/MarginContainer/VBoxContainer/MarginContainer/Button" to="." method="close"]
+[connection signal="pressed" from="PauseMenu/MarginContainer/VBoxContainer/MarginContainer/Button" to="." method="continue_pressed"]
 [connection signal="pressed" from="PauseMenu/MarginContainer/VBoxContainer/MarginContainer3/Button" to="SettingsMenu" method="open"]
 [connection signal="pressed" from="PauseMenu/MarginContainer/VBoxContainer/MarginContainer2/Button" to="." method="quit"]
