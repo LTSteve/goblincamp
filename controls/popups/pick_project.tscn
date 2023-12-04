@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://27jmv87jb7qx"]
+[gd_scene load_steps=11 format=3 uid="uid://27jmv87jb7qx"]
 
 [ext_resource type="Script" path="res://controls/PickProjectModel.gd" id="1_106yj"]
 [ext_resource type="Script" path="res://controls/decorations/Trasition.gd" id="2_gmxjs"]
@@ -9,11 +9,23 @@
 script = ExtResource("3_e77yu")
 value = Vector2(1000, 0)
 
+[sub_resource type="Resource" id="Resource_7c7od"]
+script = ExtResource("3_e77yu")
+value = Vector2(1000, 0)
+
 [sub_resource type="Resource" id="Resource_ucwfs"]
 script = ExtResource("3_e77yu")
 value = Vector2(0, 0)
 
+[sub_resource type="Resource" id="Resource_satdi"]
+script = ExtResource("3_e77yu")
+value = Vector2(0, 0)
+
 [sub_resource type="Resource" id="Resource_agahp"]
+script = ExtResource("3_e77yu")
+value = Vector2(0, 698)
+
+[sub_resource type="Resource" id="Resource_1rba1"]
 script = ExtResource("3_e77yu")
 value = Vector2(0, 698)
 
@@ -44,10 +56,19 @@ vertical_alignment = 1
 [node name="Trasition" type="Node" parent="MarginContainer"]
 script = ExtResource("2_gmxjs")
 property_to_transition = "position"
-transition_time = 1.0
+add_start_to_current_value = true
 transition_property_start = SubResource("Resource_6c03a")
 end_at_current_value = true
 transition_type = 6
+
+[node name="Trasitionout" type="Node" parent="MarginContainer"]
+script = ExtResource("2_gmxjs")
+transition_on_ready = false
+transition_on_close = true
+property_to_transition = "position"
+start_at_current_value = true
+add_end_to_current_value = true
+transition_property_end = SubResource("Resource_7c7od")
 
 [node name="MarginContainer2" type="MarginContainer" parent="."]
 layout_mode = 1
@@ -56,6 +77,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+pivot_offset = Vector2(576, 324)
 theme_override_constants/margin_top = 120
 theme_override_constants/margin_bottom = 100
 
@@ -98,10 +120,18 @@ vertical_alignment = 1
 [node name="Transition" type="Node" parent="MarginContainer2"]
 script = ExtResource("2_gmxjs")
 property_to_transition = "scale"
-transition_time = 0.5
-delay_time = 1.0
 transition_property_start = SubResource("Resource_ucwfs")
 end_at_current_value = true
+transition_type = 11
+
+[node name="Transitionout" type="Node" parent="MarginContainer2"]
+script = ExtResource("2_gmxjs")
+transition_on_ready = false
+transition_on_close = true
+property_to_transition = "scale"
+transition_time = 0.15
+start_at_current_value = true
+transition_property_end = SubResource("Resource_satdi")
 transition_type = 9
 
 [node name="CenterContainer" type="CenterContainer" parent="."]
@@ -124,10 +154,19 @@ text = "   CHOOSE CARD   "
 [node name="Transition" type="Node" parent="CenterContainer"]
 script = ExtResource("2_gmxjs")
 property_to_transition = "position"
-transition_time = 1.0
-delay_time = 0.5
+add_start_to_current_value = true
 transition_property_start = SubResource("Resource_agahp")
 end_at_current_value = true
+transition_type = 11
+
+[node name="Transitionout" type="Node" parent="CenterContainer"]
+script = ExtResource("2_gmxjs")
+transition_on_ready = false
+transition_on_close = true
+property_to_transition = "position"
+start_at_current_value = true
+add_end_to_current_value = true
+transition_property_end = SubResource("Resource_1rba1")
 
 [connection signal="gui_input" from="MarginContainer2/CardSelectRect" to="." method="_on_card_holder_gui_input"]
 [connection signal="pressed" from="CenterContainer/Button" to="." method="on_choose_card"]

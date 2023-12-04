@@ -31,7 +31,11 @@ axis_stretch_vertical = 1
 
 [sub_resource type="Resource" id="Resource_be582"]
 script = ExtResource("17_lwcmx")
-value = Vector2(477, 1000)
+value = Vector2(0, 1000)
+
+[sub_resource type="Resource" id="Resource_g0jdk"]
+script = ExtResource("17_lwcmx")
+value = Vector2(0, 1000)
 
 [sub_resource type="Resource" id="Resource_k36po"]
 script = ExtResource("17_lwcmx")
@@ -40,10 +44,6 @@ value = Vector2(0, 0)
 [sub_resource type="Resource" id="Resource_0031v"]
 script = ExtResource("17_lwcmx")
 value = Vector2(0, 0)
-
-[sub_resource type="Resource" id="Resource_g0jdk"]
-script = ExtResource("17_lwcmx")
-value = Vector2(477, 1000)
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_erfik"]
 texture = ExtResource("8_u7nmo")
@@ -163,8 +163,19 @@ theme_override_constants/v_separation = 10
 script = ExtResource("16_dv41d")
 property_to_transition = "position"
 transition_time = 0.25
+add_start_to_current_value = true
 transition_property_start = SubResource("Resource_be582")
 end_at_current_value = true
+
+[node name="Transitionout" type="Node" parent="BuyPanel"]
+script = ExtResource("16_dv41d")
+transition_on_ready = false
+transition_on_close = true
+property_to_transition = "position"
+transition_time = 0.15
+start_at_current_value = true
+add_end_to_current_value = true
+transition_property_end = SubResource("Resource_g0jdk")
 
 [node name="Transition2" type="Node" parent="BuyPanel"]
 script = ExtResource("16_dv41d")
@@ -182,15 +193,6 @@ transition_time = 0.05
 delay_time = 0.1
 start_at_current_value = true
 transition_property_end = SubResource("Resource_0031v")
-
-[node name="Transitionout" type="Node" parent="BuyPanel"]
-script = ExtResource("16_dv41d")
-transition_on_ready = false
-transition_on_close = true
-property_to_transition = "position"
-transition_time = 0.15
-start_at_current_value = true
-transition_property_end = SubResource("Resource_g0jdk")
 
 [node name="EarExchangePanel" type="Panel" parent="."]
 layout_mode = 1

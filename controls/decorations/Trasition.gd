@@ -10,8 +10,11 @@ class_name Transition
 @export var delay_time: float = 0
 
 @export var start_at_current_value: bool = false
+@export var add_start_to_current_value: bool = false
 @export var transition_property_start: TransitionProperty
+
 @export var end_at_current_value: bool = false
+@export var add_end_to_current_value: bool = false
 @export var transition_property_end: TransitionProperty
 
 @export var ease_type: Tween.EaseType = Tween.EASE_IN_OUT
@@ -31,6 +34,18 @@ func _ready():
 	var current_value = _parent.get(property_to_transition)
 	_trans_start = transition_property_start.get_value() if !start_at_current_value else current_value
 	_trans_end = transition_property_end.get_value() if !end_at_current_value else current_value
+	
+	#special handling for scale
+	if property_to_transition == "scale" && _parent is Control:
+		if !start_at_current_value:
+			_trans_start.x *= _parent.size.x
+			_trans_start.y *= _parent.size.y
+		if !end_at_current_value:
+			_trans_end.x *= _parent.size.x
+			_trans_end.y *= _parent.size.y
+	
+	if add_start_to_current_value: _trans_start += current_value
+	if add_end_to_current_value: _trans_end += current_value
 	
 	if transition_on_ready: call_deferred("start_transition")
 
