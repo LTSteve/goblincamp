@@ -20,3 +20,4 @@ group_filters = Array[String](["Martial"])
 include_enemies = false
 include_players = true
 icon_texture = ExtResource("3_djs46")
+unlocked = true

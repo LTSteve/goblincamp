@@ -1,10 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://b3ypqcoyg2qs"]
+[gd_scene load_steps=10 format=3 uid="uid://b3ypqcoyg2qs"]
 
 [ext_resource type="PackedScene" uid="uid://brhc1aba5usew" path="res://units/unit.tscn" id="1_tog43"]
 [ext_resource type="Resource" uid="uid://b1pkis5babvwj" path="res://observables/enemies.tres" id="2_ie27n"]
 [ext_resource type="PackedScene" uid="uid://cw68w0g0xv1j6" path="res://models/goblin/goblin.glb" id="2_k8e14"]
 [ext_resource type="PackedScene" uid="uid://dnedsjutd8p51" path="res://units/weapons/melee/claw.tscn" id="2_t4l2k"]
 [ext_resource type="Resource" uid="uid://du4glkse3tqoh" path="res://units/components/brain/repulse_behaviour.tres" id="4_8th67"]
+[ext_resource type="AnimationLibrary" uid="uid://bb8t7gmtrd5lt" path="res://units/weapons/melee/claw_animations.res" id="4_76lwo"]
 [ext_resource type="Resource" uid="uid://cao1bytnssy28" path="res://units/components/brain/melee_behaviour.tres" id="4_uet6l"]
 [ext_resource type="AnimationLibrary" uid="uid://d1ig1ey1id2pn" path="res://units/eyes/eye_animation_lib.tres" id="5_lisbc"]
 [ext_resource type="AnimationLibrary" uid="uid://vp0rby4wlj5r" path="res://units/eyes/blink_animation_lib.tres" id="6_tl2ng"]
@@ -25,6 +26,17 @@ is_ally = false
 enabled = true
 
 [node name="Claw" parent="Model/WeaponHolder" index="0" instance=ExtResource("2_t4l2k")]
+
+[node name="goblin_weapon_l" parent="Model/WeaponHolder/Claw/ModelHolder/claws" index="0"]
+transform = Transform3D(-0.183914, -0.98294, -2.22686e-06, -0.8634, 0.161546, 0.477955, -0.469802, 0.0879048, -0.878383, -1.1, -0.1, 5.05119e-15)
+
+[node name="goblin_weapon_r" parent="Model/WeaponHolder/Claw/ModelHolder/claws" index="1"]
+transform = Transform3D(0.183953, 0.982934, -4.16111e-11, -0.863394, 0.161581, -0.477955, -0.469799, 0.0879212, 0.878383, 1.1, -0.1, -5.05119e-15)
+
+[node name="AnimationTreeExpressionExtension" parent="Model/WeaponHolder/Claw" index="1"]
+libraries = {
+"": ExtResource("4_76lwo")
+}
 
 [node name="goblin" parent="Model/ModelHolder" index="0" instance=ExtResource("2_k8e14")]
 transform = Transform3D(1, 0, -7.10543e-15, 0, 1, 0, 7.10543e-15, 0, 1, 0, 0, 0)
@@ -57,6 +69,7 @@ mesh_instance = NodePath("../Model/ModelHolder/goblin/goblin")
 [node name="BrainComponent" parent="." index="11"]
 behaviours = Array[Resource("res://units/components/brain/Behaviour.gd")]([ExtResource("4_8th67"), ExtResource("4_uet6l")])
 
+[editable path="Model/WeaponHolder/Claw"]
 [editable path="Model/ModelHolder/goblin"]
 [editable path="Model/ModelHolder/RankComponent"]
 [editable path="Model/ModelHolder/RankComponent/rank_star"]

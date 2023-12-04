@@ -20,3 +20,4 @@ group_filters = Array[String](["Bow"])
 include_enemies = false
 include_players = true
 icon_texture = ExtResource("3_ur2dy")
+unlocked = true

@@ -20,3 +20,4 @@ group_filters = Array[String](["Magic"])
 include_enemies = false
 include_players = true
 icon_texture = ExtResource("3_orj38")
+unlocked = true

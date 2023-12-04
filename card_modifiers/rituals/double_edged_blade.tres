@@ -20,3 +20,4 @@ group_filters = Array[String](["Sword"])
 include_enemies = false
 include_players = true
 icon_texture = ExtResource("3_85gu6")
+unlocked = true

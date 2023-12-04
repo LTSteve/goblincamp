@@ -24,3 +24,4 @@ enum CardRarity {Normal,Rare,UltraRare}
 @export var include_enemies: bool
 @export var include_players: bool
 @export var icon_texture: Texture2D
+@export var unlocked: bool = false

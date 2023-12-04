@@ -7,14 +7,14 @@ static var I: RitualOffersManager
 @export var resource_textures: Array[Texture2D] = []
 
 @export_group("Observables")
-@export var day_number: ObservableResource
+@export var day_number_resource: ObservableResource
 @export var ritual_offers_resource: ObservableResource
 
 var one_free_epic: bool = true
 
 func _ready():
 	I = self
-	day_number.value_changed.connect(_day_number_changed)
+	day_number_resource.value_changed.connect(_day_number_changed)
 	call_deferred("_day_number_changed", 0, 0)
 
 func _day_number_changed(day_number,_old):

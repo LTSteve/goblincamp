@@ -18,3 +18,4 @@ group_filters = Array[String]([])
 include_enemies = false
 include_players = true
 icon_texture = ExtResource("2_opkvm")
+unlocked = true
