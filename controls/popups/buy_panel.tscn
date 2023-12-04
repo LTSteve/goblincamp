@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://dotmvt7y5ukjn"]
+[gd_scene load_steps=29 format=3 uid="uid://dotmvt7y5ukjn"]
 
 [ext_resource type="Script" path="res://controls/BuyPanel.gd" id="1_fvaik"]
 [ext_resource type="Resource" uid="uid://di0r47nymtihe" path="res://observables/day_number.tres" id="3_s0658"]
@@ -15,6 +15,8 @@
 [ext_resource type="Script" path="res://controls/observer/HideOnTrue.gd" id="13_hvjm3"]
 [ext_resource type="Script" path="res://util/observable/ObservableConstNumber.gd" id="14_kslfj"]
 [ext_resource type="Script" path="res://util/observable/ObservableExpression.gd" id="15_fxw6q"]
+[ext_resource type="Script" path="res://controls/decorations/Trasition.gd" id="16_dv41d"]
+[ext_resource type="Script" path="res://controls/decorations/TransitionPropertyV2.gd" id="17_lwcmx"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_syduq"]
 texture = ExtResource("7_it5ta")
@@ -26,6 +28,22 @@ region_rect = Rect2(40, 40, 800, 800)
 texture = ExtResource("8_u7nmo")
 axis_stretch_horizontal = 1
 axis_stretch_vertical = 1
+
+[sub_resource type="Resource" id="Resource_be582"]
+script = ExtResource("17_lwcmx")
+value = Vector2(477, 1000)
+
+[sub_resource type="Resource" id="Resource_k36po"]
+script = ExtResource("17_lwcmx")
+value = Vector2(0, 0)
+
+[sub_resource type="Resource" id="Resource_0031v"]
+script = ExtResource("17_lwcmx")
+value = Vector2(0, 0)
+
+[sub_resource type="Resource" id="Resource_g0jdk"]
+script = ExtResource("17_lwcmx")
+value = Vector2(477, 1000)
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_erfik"]
 texture = ExtResource("8_u7nmo")
@@ -42,6 +60,14 @@ script = ExtResource("15_fxw6q")
 observable_1 = ExtResource("3_s0658")
 operator = 4
 observable_2 = SubResource("Resource_flj87")
+
+[sub_resource type="Resource" id="Resource_qqmdt"]
+script = ExtResource("17_lwcmx")
+value = Vector2(0, 0)
+
+[sub_resource type="Resource" id="Resource_5mq6i"]
+script = ExtResource("17_lwcmx")
+value = Vector2(0, 0)
 
 [node name="BuyPanel" type="Control"]
 layout_mode = 3
@@ -76,6 +102,7 @@ offset_right = -75.0
 offset_bottom = 300.0
 grow_horizontal = 0
 grow_vertical = 2
+pivot_offset = Vector2(300, 300)
 mouse_force_pass_scroll_events = false
 theme_override_styles/panel = SubResource("StyleBoxTexture_syduq")
 
@@ -131,6 +158,39 @@ layout_mode = 2
 size_flags_vertical = 0
 theme_override_constants/h_separation = 15
 theme_override_constants/v_separation = 10
+
+[node name="Transition" type="Node" parent="BuyPanel"]
+script = ExtResource("16_dv41d")
+property_to_transition = "position"
+transition_time = 0.25
+transition_property_start = SubResource("Resource_be582")
+end_at_current_value = true
+
+[node name="Transition2" type="Node" parent="BuyPanel"]
+script = ExtResource("16_dv41d")
+property_to_transition = "scale"
+transition_time = 0.15
+transition_property_start = SubResource("Resource_k36po")
+end_at_current_value = true
+
+[node name="Transition2out" type="Node" parent="BuyPanel"]
+script = ExtResource("16_dv41d")
+transition_on_ready = false
+transition_on_close = true
+property_to_transition = "scale"
+transition_time = 0.05
+delay_time = 0.1
+start_at_current_value = true
+transition_property_end = SubResource("Resource_0031v")
+
+[node name="Transitionout" type="Node" parent="BuyPanel"]
+script = ExtResource("16_dv41d")
+transition_on_ready = false
+transition_on_close = true
+property_to_transition = "position"
+transition_time = 0.15
+start_at_current_value = true
+transition_property_end = SubResource("Resource_g0jdk")
 
 [node name="EarExchangePanel" type="Panel" parent="."]
 layout_mode = 1
@@ -225,6 +285,23 @@ expand_mode = 3
 script = ExtResource("13_hvjm3")
 this = NodePath("..")
 observable_pattern = SubResource("Resource_0vp80")
+
+[node name="Transition" type="Node" parent="EarExchangePanel"]
+script = ExtResource("16_dv41d")
+property_to_transition = "scale"
+transition_time = 0.1
+delay_time = 0.2
+transition_property_start = SubResource("Resource_qqmdt")
+end_at_current_value = true
+transition_type = 11
+
+[node name="TransitionOut" type="Node" parent="EarExchangePanel"]
+script = ExtResource("16_dv41d")
+transition_on_ready = false
+transition_on_close = true
+property_to_transition = "scale"
+start_at_current_value = true
+transition_property_end = SubResource("Resource_5mq6i")
 
 [connection signal="gui_input" from="." to="." method="_on_gui_input"]
 [connection signal="pressed" from="EarExchangePanel/MarginContainer/HBoxContainer/Button" to="EarExchangePanel" method="on_sell" binds= [1]]
