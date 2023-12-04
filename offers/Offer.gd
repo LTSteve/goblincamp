@@ -15,6 +15,8 @@ var price: int
 
 var name: String
 
+var available: bool = true
+
 const DESCRIPTIONS: Array[String] = [
 	"",
 	"Fuzzy",

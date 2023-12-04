@@ -1,9 +1,8 @@
-[gd_scene load_steps=29 format=3 uid="uid://dotmvt7y5ukjn"]
+[gd_scene load_steps=28 format=3 uid="uid://dotmvt7y5ukjn"]
 
 [ext_resource type="Script" path="res://controls/BuyPanel.gd" id="1_fvaik"]
+[ext_resource type="Resource" uid="uid://chjqk6fsemnv0" path="res://observables/current_buy_offers.tres" id="2_p85ud"]
 [ext_resource type="Resource" uid="uid://di0r47nymtihe" path="res://observables/day_number.tres" id="3_s0658"]
-[ext_resource type="Resource" uid="uid://2ff00a5yi2ro" path="res://observables/players.tres" id="4_pef4a"]
-[ext_resource type="Resource" uid="uid://bweje1wvoj7fh" path="res://observables/buildings.tres" id="5_m236b"]
 [ext_resource type="Resource" uid="uid://62e11cmrkcqr" path="res://observables/has_made_purchase.tres" id="6_5x22j"]
 [ext_resource type="Texture2D" uid="uid://cxquwwj5pp616" path="res://icons/camp_panel.png" id="7_it5ta"]
 [ext_resource type="Texture2D" uid="uid://dtei7gs5achfg" path="res://icons/camp_inset_panel.png" id="8_u7nmo"]
@@ -78,15 +77,8 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 script = ExtResource("1_fvaik")
-available_unit_types = Array[int]([0, 1, 2, 3])
-available_building_types = Array[int]([0, 1, 2, 3])
-unit_costs = Array[int]([200, 180, 210, 220])
-building_costs = Array[int]([280, 280, 280, 280])
-day_number_resource = ExtResource("3_s0658")
-players_resource = ExtResource("4_pef4a")
-buildings_resource = ExtResource("5_m236b")
+current_buy_offers_resource = ExtResource("2_p85ud")
 has_made_purchase_resource = ExtResource("6_5x22j")
-ear_exchange_rate_resource = ExtResource("10_2r8mv")
 
 [node name="BuyPanel" type="Panel" parent="."]
 clip_contents = true

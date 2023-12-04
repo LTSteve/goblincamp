@@ -23,6 +23,8 @@ func _ready():
 	price_button.text = "%d g" % offer.price
 	
 	name_label.text = offer.name
+	
+	if !offer.available: disable()
 
 func _initialize_texture_rects():
 	texture_rect_1.model_scene = offer.model_scene_1
