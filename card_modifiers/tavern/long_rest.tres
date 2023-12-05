@@ -1,8 +1,9 @@
-[gd_resource type="Resource" script_class="CardResource" load_steps=5 format=3 uid="uid://b8xqobpwwuosd"]
+[gd_resource type="Resource" script_class="CardResource" load_steps=6 format=3 uid="uid://b8xqobpwwuosd"]
 
 [ext_resource type="Script" path="res://card_modifiers/tavern/long_rest.gd" id="1_ftw8l"]
 [ext_resource type="Script" path="res://card_modifiers/CardResource.gd" id="1_l2p7c"]
 [ext_resource type="JSON" path="res://card_modifiers/tavern/long_rest.json" id="2_ws4o8"]
+[ext_resource type="PackedScene" uid="uid://djx7iuvr038yr" path="res://models/icon_scenes/long_rest.glb" id="3_iis2x"]
 [ext_resource type="Texture2D" uid="uid://cciwgpifecp3r" path="res://icons/bed.png" id="3_qconc"]
 
 [resource]
@@ -20,4 +21,5 @@ group_filters = Array[String]([])
 include_enemies = false
 include_players = true
 icon_texture = ExtResource("3_qconc")
+icon_model = ExtResource("3_iis2x")
 unlocked = true

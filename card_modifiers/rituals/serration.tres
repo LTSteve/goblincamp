@@ -1,9 +1,10 @@
-[gd_resource type="Resource" script_class="CardResource" load_steps=5 format=3 uid="uid://cx0ntdg35avw"]
+[gd_resource type="Resource" script_class="CardResource" load_steps=6 format=3 uid="uid://cx0ntdg35avw"]
 
 [ext_resource type="Script" path="res://card_modifiers/CardResource.gd" id="1_82kv4"]
 [ext_resource type="Script" path="res://card_modifiers/rituals/serration.gd" id="1_rdg3k"]
 [ext_resource type="JSON" path="res://card_modifiers/rituals/serration.json" id="2_fe8jx"]
 [ext_resource type="Texture2D" uid="uid://bmw6curp4ibid" path="res://icons/shard-sword.png" id="3_c1t30"]
+[ext_resource type="PackedScene" uid="uid://du714cnlayiwi" path="res://models/icon_scenes/serration.glb" id="3_s5hiv"]
 
 [resource]
 script = ExtResource("1_82kv4")
@@ -20,4 +21,5 @@ group_filters = Array[String](["Martial", "Natural"])
 include_enemies = false
 include_players = true
 icon_texture = ExtResource("3_c1t30")
+icon_model = ExtResource("3_s5hiv")
 unlocked = true

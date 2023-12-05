@@ -4,7 +4,7 @@ class_name Building
 
 @export var building_type: UnitSpawner.BuildingType
 
-@export var project_sprite: Sprite3D
+#@export var project_sprite: Sprite3D
 
 @export_group("Observables")
 @export var buildings_resource: ObservableResource
@@ -31,7 +31,7 @@ func select_card(card:CardResource):
 		ModifierManager.un_apply_modifier(_held_modifier)
 	_held_modifier = ModifierManager.apply_modifier(card)
 	card_resource = card
-	project_sprite.texture = card_resource.icon_texture
+	#project_sprite.texture = card_resource.icon_texture
 
 #used when a new project is selected in the building project popup. Have to pass extra params cuz i'm wild
 func new_project_selected(_building_type:UnitSpawner.BuildingType, chosen_card:CardResource, _all_cards:Array[CardResource]):

@@ -92,6 +92,8 @@ theme_override_constants/margin_bottom = 15
 [node name="3DTextureRect" parent="SubViewport/Theme/VBoxContainer/MarginContainer2" instance=ExtResource("7_74geb")]
 layout_mode = 2
 texture = SubResource("ViewportTexture_i3yiu")
+model_rotation = Vector3(10, -45, -10)
+model_offset = Vector3(0, 1, 0)
 viewport_pixels = Vector2i(768, 768)
 model_scene = ExtResource("8_fde04")
 

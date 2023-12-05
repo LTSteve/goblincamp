@@ -1,7 +1,8 @@
-[gd_resource type="Resource" script_class="CardResource" load_steps=5 format=3 uid="uid://dcdk0ew660ctg"]
+[gd_resource type="Resource" script_class="CardResource" load_steps=6 format=3 uid="uid://dcdk0ew660ctg"]
 
 [ext_resource type="Script" path="res://card_modifiers/leatherworker/hides.gd" id="1_yuuqt"]
 [ext_resource type="JSON" path="res://card_modifiers/leatherworker/hides.json" id="2_j0gvi"]
+[ext_resource type="PackedScene" uid="uid://btjo12a5ona" path="res://models/icon_scenes/hides.glb" id="3_7tb7q"]
 [ext_resource type="Texture2D" uid="uid://cncu166pto4xa" path="res://icons/animal-hide.png" id="3_epjdq"]
 [ext_resource type="Script" path="res://card_modifiers/CardResource.gd" id="4_lrmcu"]
 
@@ -20,4 +21,5 @@ group_filters = Array[String]([])
 include_enemies = false
 include_players = false
 icon_texture = ExtResource("3_epjdq")
+icon_model = ExtResource("3_7tb7q")
 unlocked = true

@@ -1,9 +1,10 @@
-[gd_resource type="Resource" script_class="CardResource" load_steps=5 format=3 uid="uid://dxsu00jn07xfx"]
+[gd_resource type="Resource" script_class="CardResource" load_steps=6 format=3 uid="uid://dxsu00jn07xfx"]
 
 [ext_resource type="Script" path="res://card_modifiers/CardResource.gd" id="1_o0nio"]
 [ext_resource type="Script" path="res://card_modifiers/blacksmith/thick_plate.gd" id="1_t8sm2"]
 [ext_resource type="JSON" path="res://card_modifiers/blacksmith/thick_plate.json" id="2_82led"]
 [ext_resource type="Texture2D" uid="uid://8ffiv2xiwmvm" path="res://icons/leather-vest.png" id="3_3hf65"]
+[ext_resource type="PackedScene" path="res://models/icon_scenes/thick_leather.glb" id="3_krtrh"]
 
 [resource]
 script = ExtResource("1_o0nio")
@@ -20,4 +21,5 @@ group_filters = Array[String](["Unarmored"])
 include_enemies = false
 include_players = true
 icon_texture = ExtResource("3_3hf65")
+icon_model = ExtResource("3_krtrh")
 unlocked = true

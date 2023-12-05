@@ -1,9 +1,10 @@
-[gd_resource type="Resource" script_class="CardResource" load_steps=5 format=3 uid="uid://c67vt8o3oofhn"]
+[gd_resource type="Resource" script_class="CardResource" load_steps=6 format=3 uid="uid://c67vt8o3oofhn"]
 
 [ext_resource type="Script" path="res://card_modifiers/CardResource.gd" id="1_7a66o"]
 [ext_resource type="Script" path="res://card_modifiers/enemy/potency.gd" id="1_lhocd"]
 [ext_resource type="JSON" path="res://card_modifiers/enemy/potency.json" id="2_i3udy"]
 [ext_resource type="Texture2D" uid="uid://jkkrispggrae" path="res://icons/imp-laugh.png" id="3_kx7bk"]
+[ext_resource type="PackedScene" uid="uid://di48j8kwxi5nu" path="res://models/ogre/ogre_weapon.glb" id="3_vyww8"]
 
 [resource]
 script = ExtResource("1_7a66o")
@@ -20,3 +21,5 @@ group_filters = Array[String]([])
 include_enemies = true
 include_players = false
 icon_texture = ExtResource("3_kx7bk")
+icon_model = ExtResource("3_vyww8")
+unlocked = true

@@ -14,6 +14,8 @@ class_name CardDisplay
 @onready var ui_material_override: MaterialOverrideComponent = $"MeshInstance3D2/MaterialOverrideComponent"
 @onready var ui_viewport: SubViewport = $"SubViewport"
 
+@onready var texture_rect_3d: TextureRect3D = $"SubViewport/Theme/VBoxContainer/MarginContainer2/3DTextureRect"
+
 var hidden := true
 var no_flip := false
 
@@ -37,6 +39,9 @@ func initialize(flipped:=true):
 	var current_rank = current_modifier.current_rank
 	var text = card_resource.descriptions[min(card_resource.descriptions.size() - 1, current_rank)]
 	card_description.text = ExpressionsParser.parse(text, { "current_rank": current_rank + (1 if show_next_rank else 0)}, current_modifier.params)
+	
+	texture_rect_3d.model_scene = card_resource.icon_model
+	texture_rect_3d.initialize()
 	
 	call_deferred("_assign_ui_texture")
 

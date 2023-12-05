@@ -1,8 +1,9 @@
-[gd_resource type="Resource" script_class="CardResource" load_steps=5 format=3 uid="uid://b70jj0ebw20ed"]
+[gd_resource type="Resource" script_class="CardResource" load_steps=6 format=3 uid="uid://b70jj0ebw20ed"]
 
 [ext_resource type="Script" path="res://card_modifiers/rituals/cold_steel.gd" id="1_n4j6p"]
 [ext_resource type="Script" path="res://card_modifiers/CardResource.gd" id="1_qujhv"]
 [ext_resource type="JSON" path="res://card_modifiers/rituals/cold_steel.json" id="2_p43nd"]
+[ext_resource type="PackedScene" uid="uid://umjr07le6nf6" path="res://models/icon_scenes/cold_steel.glb" id="3_dgjmc"]
 [ext_resource type="Texture2D" uid="uid://dhu6580frip2r" path="res://icons/thermometer-cold.png" id="3_djs46"]
 
 [resource]
@@ -20,4 +21,5 @@ group_filters = Array[String](["Martial"])
 include_enemies = false
 include_players = true
 icon_texture = ExtResource("3_djs46")
+icon_model = ExtResource("3_dgjmc")
 unlocked = true

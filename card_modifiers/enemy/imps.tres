@@ -1,8 +1,9 @@
-[gd_resource type="Resource" script_class="CardResource" load_steps=4 format=3 uid="uid://ck8fu2mxpide7"]
+[gd_resource type="Resource" script_class="CardResource" load_steps=5 format=3 uid="uid://ck8fu2mxpide7"]
 
 [ext_resource type="Script" path="res://card_modifiers/enemy/imps.gd" id="1_ack74"]
 [ext_resource type="Script" path="res://card_modifiers/CardResource.gd" id="1_xlros"]
 [ext_resource type="Texture2D" uid="uid://dangon53ogu1i" path="res://icons/imp.png" id="2_6hbim"]
+[ext_resource type="PackedScene" uid="uid://citvivc546i87" path="res://models/imp/imp.glb" id="2_ssjcr"]
 
 [resource]
 script = ExtResource("1_xlros")
@@ -18,3 +19,5 @@ group_filters = Array[String]([])
 include_enemies = false
 include_players = false
 icon_texture = ExtResource("2_6hbim")
+icon_model = ExtResource("2_ssjcr")
+unlocked = true

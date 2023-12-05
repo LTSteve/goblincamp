@@ -1,7 +1,8 @@
-[gd_resource type="Resource" script_class="CardResource" load_steps=4 format=3 uid="uid://ktqacwdtqnra"]
+[gd_resource type="Resource" script_class="CardResource" load_steps=5 format=3 uid="uid://ktqacwdtqnra"]
 
 [ext_resource type="Script" path="res://card_modifiers/CardResource.gd" id="1_1g0p5"]
 [ext_resource type="Script" path="res://card_modifiers/rituals/mutant_arm.gd" id="1_vwl68"]
+[ext_resource type="PackedScene" uid="uid://c0edide8tjtfp" path="res://models/icon_scenes/mutant_arm.glb" id="2_aienc"]
 [ext_resource type="Texture2D" uid="uid://cr30fls10y7tg" path="res://icons/arm.png" id="2_opkvm"]
 
 [resource]
@@ -18,4 +19,5 @@ group_filters = Array[String]([])
 include_enemies = false
 include_players = true
 icon_texture = ExtResource("2_opkvm")
+icon_model = ExtResource("2_aienc")
 unlocked = true
