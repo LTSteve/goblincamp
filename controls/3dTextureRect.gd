@@ -6,6 +6,9 @@ class_name TextureRect3D
 @onready var cam: Camera3D = $"SubViewport/3DTextureCam"
 @onready var model_holder: Node3D = $"SubViewport/3DTextureCam/Model"
 
+@onready var light_1: DirectionalLight3D = $"SubViewport/3DTextureCam/DirectionalLight3D"
+@onready var light_2: DirectionalLight3D = $"SubViewport/3DTextureCam/DirectionalLight3D2"
+
 @export var model_rotation: Vector3
 @export var model_scale: Vector3
 @export var model_offset: Vector3

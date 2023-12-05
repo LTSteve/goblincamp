@@ -40,8 +40,9 @@ func initialize(flipped:=true):
 	var text = card_resource.descriptions[min(card_resource.descriptions.size() - 1, current_rank)]
 	card_description.text = ExpressionsParser.parse(text, { "current_rank": current_rank + (1 if show_next_rank else 0)}, current_modifier.params)
 	
-	texture_rect_3d.model_scene = card_resource.icon_model
-	texture_rect_3d.initialize()
+	if card_resource.icon_model:
+		texture_rect_3d.model_scene = card_resource.icon_model
+		texture_rect_3d.initialize()
 	
 	call_deferred("_assign_ui_texture")
 

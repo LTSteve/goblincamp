@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://card_modifiers/CardResource.gd" id="1_cthss"]
 [ext_resource type="Script" path="res://card_modifiers/enchanter/magic_damage.gd" id="1_pf7d7"]
 [ext_resource type="JSON" path="res://card_modifiers/enchanter/magic_damage.json" id="2_q32gi"]
-[ext_resource type="Texture2D" uid="uid://bbcfoond23o8o" path="res://icons/fire.png" id="3_orj38"]
+[ext_resource type="PackedScene" uid="uid://bj58egq5yabjd" path="res://models/icon_scenes/taste_for_blood.glb" id="3_lfuxo"]
 
 [resource]
 script = ExtResource("1_cthss")
@@ -19,5 +19,5 @@ apply_to = Array[String](["Weapon"])
 group_filters = Array[String](["Magic"])
 include_enemies = false
 include_players = true
-icon_texture = ExtResource("3_orj38")
+icon_model = ExtResource("3_lfuxo")
 unlocked = true
