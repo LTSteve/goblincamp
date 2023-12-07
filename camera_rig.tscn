@@ -23,12 +23,13 @@ process_mode = 3
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
 current = true
 fov = 106.162
+near = 0.001
 
 [node name="AudioListener3D" type="AudioListener3D" parent="CameraRotation/CameraAngle/CameraDistance/Camera3D"]
 current = true
 
 [node name="card_container" parent="CameraRotation/CameraAngle/CameraDistance/Camera3D" instance=ExtResource("3_s25dq")]
-transform = Transform3D(7.45058e-09, 0, -0.25, -7.45058e-09, 0.25, -7.45058e-09, 0.25, -7.45058e-09, 0, 0, 0, -1)
+transform = Transform3D(3.7749e-08, 2.01318e-15, -0.5, -1.49012e-08, 0.5, 8.88178e-16, 0.5, 1.49012e-08, 3.7749e-08, 0, 0, -2)
 
 [node name="VelocityComponent" type="Node" parent="."]
 script = ExtResource("2_yobrm")

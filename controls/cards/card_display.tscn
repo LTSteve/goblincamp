@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://0grbgsy4o0bp"]
+[gd_scene load_steps=17 format=3 uid="uid://0grbgsy4o0bp"]
 
 [ext_resource type="Script" path="res://controls/cards/CardDisplay.gd" id="1_w1dks"]
 [ext_resource type="Resource" uid="uid://bx7huosi7j2ja" path="res://controls/cards/card_defaults.tres" id="2_tyvj3"]
@@ -32,49 +32,55 @@ resource_local_to_scene = true
 material = SubResource("StandardMaterial3D_8y8tt")
 size = Vector2(2.5, 3.5)
 
+[sub_resource type="SphereShape3D" id="SphereShape3D_pxdd1"]
+radius = 3.0
+
 [node name="CardDisplay" type="Node3D" node_paths=PackedStringArray("card_title", "card_description")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
 script = ExtResource("1_w1dks")
 card_defaults = ExtResource("2_tyvj3")
-card_title = NodePath("SubViewport/Theme/VBoxContainer/MarginContainer/Label")
-card_description = NodePath("SubViewport/Theme/VBoxContainer/MarginContainer3/Panel/MarginContainer/Label")
+card_title = NodePath("card_facer/SubViewport/Theme/VBoxContainer/MarginContainer/Label")
+card_description = NodePath("card_facer/SubViewport/Theme/VBoxContainer/MarginContainer3/Panel/MarginContainer/Label")
 
-[node name="card" parent="." instance=ExtResource("3_l3h7b")]
+[node name="card_facer" type="Node3D" parent="."]
 
-[node name="Cube" parent="card" index="0"]
+[node name="card" parent="card_facer" instance=ExtResource("3_l3h7b")]
+
+[node name="Cube" parent="card_facer/card" index="0"]
 layers = 2
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="card_facer"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0.110833, 0.632051, 0)
 layers = 2
 mesh = SubResource("QuadMesh_rnkrh")
+skeleton = NodePath("../..")
 
-[node name="SubViewport" type="SubViewport" parent="."]
+[node name="SubViewport" type="SubViewport" parent="card_facer"]
 own_world_3d = true
 transparent_bg = true
 handle_input_locally = false
 size = Vector2i(500, 700)
 
-[node name="Theme" type="Control" parent="SubViewport"]
+[node name="Theme" type="Control" parent="card_facer/SubViewport"]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 theme = ExtResource("5_kpnk4")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="SubViewport/Theme"]
+[node name="VBoxContainer" type="VBoxContainer" parent="card_facer/SubViewport/Theme"]
 layout_mode = 0
 offset_right = 500.0
 offset_bottom = 700.0
 
-[node name="MarginContainer" type="MarginContainer" parent="SubViewport/Theme/VBoxContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="card_facer/SubViewport/Theme/VBoxContainer"]
 layout_mode = 2
 theme_override_constants/margin_left = 20
 theme_override_constants/margin_top = 20
 theme_override_constants/margin_right = 20
 theme_override_constants/margin_bottom = 10
 
-[node name="Label" type="Label" parent="SubViewport/Theme/VBoxContainer/MarginContainer"]
+[node name="Label" type="Label" parent="card_facer/SubViewport/Theme/VBoxContainer/MarginContainer"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("6_6tqea")
 theme_override_font_sizes/font_size = 40
@@ -82,14 +88,14 @@ text = "CARD NAME"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="MarginContainer2" type="MarginContainer" parent="SubViewport/Theme/VBoxContainer"]
+[node name="MarginContainer2" type="MarginContainer" parent="card_facer/SubViewport/Theme/VBoxContainer"]
 layout_mode = 2
 theme_override_constants/margin_left = 60
 theme_override_constants/margin_top = 15
 theme_override_constants/margin_right = 60
 theme_override_constants/margin_bottom = 15
 
-[node name="3DTextureRect" parent="SubViewport/Theme/VBoxContainer/MarginContainer2" instance=ExtResource("7_74geb")]
+[node name="3DTextureRect" parent="card_facer/SubViewport/Theme/VBoxContainer/MarginContainer2" instance=ExtResource("7_74geb")]
 layout_mode = 2
 texture = SubResource("ViewportTexture_i3yiu")
 model_rotation = Vector3(10, -45, -10)
@@ -97,7 +103,7 @@ model_offset = Vector3(0, 1, 0)
 viewport_pixels = Vector2i(768, 768)
 model_scene = ExtResource("8_fde04")
 
-[node name="MarginContainer3" type="MarginContainer" parent="SubViewport/Theme/VBoxContainer"]
+[node name="MarginContainer3" type="MarginContainer" parent="card_facer/SubViewport/Theme/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/margin_left = 55
@@ -105,10 +111,10 @@ theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 55
 theme_override_constants/margin_bottom = 20
 
-[node name="Panel" type="Panel" parent="SubViewport/Theme/VBoxContainer/MarginContainer3"]
+[node name="Panel" type="Panel" parent="card_facer/SubViewport/Theme/VBoxContainer/MarginContainer3"]
 layout_mode = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="SubViewport/Theme/VBoxContainer/MarginContainer3/Panel"]
+[node name="MarginContainer" type="MarginContainer" parent="card_facer/SubViewport/Theme/VBoxContainer/MarginContainer3/Panel"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -120,25 +126,35 @@ theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="Label" type="Label" parent="SubViewport/Theme/VBoxContainer/MarginContainer3/Panel/MarginContainer"]
+[node name="Label" type="Label" parent="card_facer/SubViewport/Theme/VBoxContainer/MarginContainer3/Panel/MarginContainer"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("9_ruhxr")
 theme_override_font_sizes/font_size = 23
 text = "Does something, I'm sure of itDoes something, I'm sure of itDoes something, I'm sure of it"
 autowrap_mode = 2
 
-[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="card_facer"]
 transform = Transform3D(-8.74228e-08, 0, 2, 0, 2, 0, -2, 0, -8.74228e-08, 0.111957, 0, 0)
 layers = 2
 sorting_offset = 10.0
 mesh = SubResource("QuadMesh_dio2s")
+skeleton = NodePath("../..")
 
-[node name="MaterialOverrideComponent" type="Node" parent="MeshInstance3D2" node_paths=PackedStringArray("mesh_instance")]
+[node name="MaterialOverrideComponent" type="Node" parent="card_facer/MeshInstance3D2" node_paths=PackedStringArray("mesh_instance")]
 script = ExtResource("10_c3i1t")
 mesh_instance = NodePath("..")
 
-[node name="MaterialOverrideComponent" type="Node" parent="." node_paths=PackedStringArray("mesh_instance")]
+[node name="MaterialOverrideComponent" type="Node" parent="card_facer" node_paths=PackedStringArray("mesh_instance")]
 script = ExtResource("10_c3i1t")
 mesh_instance = NodePath("../card/Cube")
 
-[editable path="card"]
+[node name="Area3D" type="Area3D" parent="card_facer"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="card_facer/Area3D"]
+shape = SubResource("SphereShape3D_pxdd1")
+
+[connection signal="input_event" from="card_facer/Area3D" to="." method="_mouse_input_event"]
+[connection signal="mouse_entered" from="card_facer/Area3D" to="." method="_mouse_hover_entered"]
+[connection signal="mouse_exited" from="card_facer/Area3D" to="." method="_mouse_hover_exited"]
+
+[editable path="card_facer/card"]
