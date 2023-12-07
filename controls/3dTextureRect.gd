@@ -4,10 +4,10 @@ class_name TextureRect3D
 
 @onready var sub_viewport: SubViewport = $"SubViewport"
 @onready var cam: Camera3D = $"SubViewport/3DTextureCam"
-@onready var model_holder: Node3D = $"SubViewport/3DTextureCam/Model"
+@onready var model_holder: Node3D = $"SubViewport/Model"
 
-@onready var light_1: DirectionalLight3D = $"SubViewport/3DTextureCam/DirectionalLight3D"
-@onready var light_2: DirectionalLight3D = $"SubViewport/3DTextureCam/DirectionalLight3D2"
+@onready var light_1: DirectionalLight3D = $"SubViewport/DirectionalLight3D"
+@onready var light_2: DirectionalLight3D = $"SubViewport/DirectionalLight3D2"
 
 @export var model_rotation: Vector3
 @export var model_scale: Vector3
@@ -24,7 +24,10 @@ var cam_surface_normal_observable: ObservableResource
 
 const model_layer:int = 2
 
+var _rotation_tweenifier: Tweenifier
+
 func _ready():
+	_rotation_tweenifier = Tweenifier.new(cam, "rotation", 0.75)
 	for child in model_holder.get_children():
 		if Engine.is_editor_hint():
 			child.free()
@@ -50,3 +53,6 @@ func initialize():
 	
 	for mesh_instance in model.find_children("", "MeshInstance3D"):
 		mesh_instance.set_layer_mask_value(model_layer, true)
+
+func set_view_rotation(rot_q:Quaternion):
+	_rotation_tweenifier.tween(-rot_q.get_euler())

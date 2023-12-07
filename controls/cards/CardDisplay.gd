@@ -30,7 +30,7 @@ var _main_cam: Camera3D
 
 func _ready():
 	_flip_tween = Tweenifier.new(self, "rotation_degrees", 0.2)
-	_look_at_tween = Tweenifier.new(card_model, "rotation", 0.1)
+	_look_at_tween = Tweenifier.new(card_model, "rotation", 0.25)
 	if card_resource: initialize(hidden)
 	_main_cam = CameraRig.I.camera
 
@@ -85,10 +85,6 @@ func _tween_to_direction(dir: Vector3):
 		rot_q = Quaternion(a.x,a.y,a.z, 1 + forward.dot(dir))
 		rot_q = rot_q.normalized()
 	
+	texture_rect_3d.set_view_rotation(rot_q)
 	var rot_e := rot_q.get_euler()
-	
-	print("look at")
-	print(forward)
-	print(rot_e)
-	
 	_look_at_tween.tween(rot_e)

@@ -21,6 +21,21 @@ own_world_3d = true
 transparent_bg = true
 handle_input_locally = false
 
+[node name="Model" type="Node3D" parent="SubViewport"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.73885e-07, -1, -2.02198)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="SubViewport"]
+transform = Transform3D(0.958945, -0.283378, -0.0109993, 0.146592, 0.462116, 0.87462, -0.242765, -0.840325, 0.484685, 0, 132.475, 0)
+layers = 31
+light_color = Color(0.960784, 1, 1, 1)
+
+[node name="DirectionalLight3D2" type="DirectionalLight3D" parent="SubViewport"]
+transform = Transform3D(-0.923423, -0.283378, 0.258817, -0.367965, 0.462116, -0.806877, 0.109048, -0.840325, -0.531002, 0, 132.475, 0)
+layers = 31
+light_color = Color(1, 1, 0.960784, 1)
+light_energy = 0.2
+sky_mode = 1
+
 [node name="3DTextureCam" type="Camera3D" parent="SubViewport"]
 cull_mask = 1047554
 environment = ExtResource("1_t03b1")
@@ -28,18 +43,3 @@ projection = 1
 size = 2.7
 near = 1.0
 far = 15.0
-
-[node name="Model" type="Node3D" parent="SubViewport/3DTextureCam"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.73885e-07, -1, -2.02198)
-
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="SubViewport/3DTextureCam"]
-transform = Transform3D(0.958946, -0.283378, -0.010999, 0.146592, 0.462116, 0.87462, -0.242765, -0.840325, 0.484685, 0, 132.475, 0)
-layers = 31
-light_color = Color(0.960784, 1, 1, 1)
-
-[node name="DirectionalLight3D2" type="DirectionalLight3D" parent="SubViewport/3DTextureCam"]
-transform = Transform3D(-0.923423, -0.283378, 0.258818, -0.367965, 0.462116, -0.806877, 0.109048, -0.840325, -0.531002, 0, 132.475, 0)
-layers = 31
-light_color = Color(1, 1, 0.960784, 1)
-light_energy = 0.2
-sky_mode = 1
