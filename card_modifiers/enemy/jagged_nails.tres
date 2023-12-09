@@ -1,10 +1,8 @@
-[gd_resource type="Resource" script_class="CardResource" load_steps=6 format=3 uid="uid://m8wjohjlbuwc"]
+[gd_resource type="Resource" script_class="CardResource" load_steps=4 format=3 uid="uid://m8wjohjlbuwc"]
 
 [ext_resource type="Script" path="res://card_modifiers/CardResource.gd" id="1_fhg7p"]
 [ext_resource type="Script" path="res://card_modifiers/enemy/jagged_nails.gd" id="1_lcbya"]
 [ext_resource type="JSON" path="res://card_modifiers/enemy/jagged_nails.json" id="2_ty8qx"]
-[ext_resource type="PackedScene" uid="uid://edpi0vppt0da" path="res://models/imp/imp_weapon.glb" id="3_8uglk"]
-[ext_resource type="Texture2D" uid="uid://dj3ir46jp38ix" path="res://icons/ivory-tusks.png" id="3_gysbw"]
 
 [resource]
 script = ExtResource("1_fhg7p")
@@ -20,6 +18,4 @@ apply_to = Array[String](["Weapon"])
 group_filters = Array[String](["Natural"])
 include_enemies = true
 include_players = false
-icon_texture = ExtResource("3_gysbw")
-icon_model = ExtResource("3_8uglk")
-unlocked = true
+unlocked = false

@@ -1,10 +1,8 @@
-[gd_resource type="Resource" script_class="CardResource" load_steps=6 format=3 uid="uid://dp0kx3dwvqxrm"]
+[gd_resource type="Resource" script_class="CardResource" load_steps=4 format=3 uid="uid://dp0kx3dwvqxrm"]
 
 [ext_resource type="Script" path="res://card_modifiers/enemy/teeming.gd" id="1_m1sfn"]
 [ext_resource type="Script" path="res://card_modifiers/CardResource.gd" id="1_tkbip"]
 [ext_resource type="JSON" path="res://card_modifiers/enemy/teeming.json" id="2_hpl5m"]
-[ext_resource type="Texture2D" uid="uid://52aexp420q7" path="res://icons/meeple-group.png" id="3_cc6og"]
-[ext_resource type="PackedScene" uid="uid://c1eb57u02e5nw" path="res://models/icon_scenes/ingots.glb" id="3_n68dl"]
 
 [resource]
 script = ExtResource("1_tkbip")
@@ -20,6 +18,4 @@ apply_to = Array[String]([])
 group_filters = Array[String]([])
 include_enemies = false
 include_players = false
-icon_texture = ExtResource("3_cc6og")
-icon_model = ExtResource("3_n68dl")
-unlocked = true
+unlocked = false

@@ -1,10 +1,8 @@
-[gd_resource type="Resource" script_class="CardResource" load_steps=6 format=3 uid="uid://cpqw23pl807kd"]
+[gd_resource type="Resource" script_class="CardResource" load_steps=4 format=3 uid="uid://cpqw23pl807kd"]
 
 [ext_resource type="Script" path="res://card_modifiers/CardResource.gd" id="1_0m3vl"]
 [ext_resource type="Script" path="res://card_modifiers/enemy/sleep_powder.gd" id="1_rvwrg"]
 [ext_resource type="JSON" path="res://card_modifiers/enemy/sleep_powder.json" id="2_fpcdp"]
-[ext_resource type="Texture2D" uid="uid://b4pm8wt2ruygx" path="res://icons/night-sleep.png" id="3_3ywur"]
-[ext_resource type="PackedScene" uid="uid://djx7iuvr038yr" path="res://models/icon_scenes/long_rest.glb" id="3_evuxh"]
 
 [resource]
 script = ExtResource("1_0m3vl")
@@ -20,6 +18,4 @@ apply_to = Array[String]([])
 group_filters = Array[String]([])
 include_enemies = false
 include_players = false
-icon_texture = ExtResource("3_3ywur")
-icon_model = ExtResource("3_evuxh")
-unlocked = true
+unlocked = false

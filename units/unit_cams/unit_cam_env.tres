@@ -3,4 +3,6 @@
 [resource]
 background_mode = 1
 background_color = Color(1, 1, 1, 0)
-fog_light_energy = 13.15
+ambient_light_source = 2
+ambient_light_color = Color(1, 1, 1, 1)
+ambient_light_energy = 0.8

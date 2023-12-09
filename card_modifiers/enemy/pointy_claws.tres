@@ -1,10 +1,8 @@
-[gd_resource type="Resource" script_class="CardResource" load_steps=6 format=3 uid="uid://7wx84gj18vxg"]
+[gd_resource type="Resource" script_class="CardResource" load_steps=4 format=3 uid="uid://7wx84gj18vxg"]
 
 [ext_resource type="Script" path="res://card_modifiers/CardResource.gd" id="1_nm82h"]
 [ext_resource type="Script" path="res://card_modifiers/enemy/pointy_claws.gd" id="1_o3uck"]
 [ext_resource type="JSON" path="res://card_modifiers/enemy/pointy_claws.json" id="2_n7ama"]
-[ext_resource type="Texture2D" uid="uid://d2f2l1kdkulff" path="res://icons/barbed-nails.png" id="3_at5l5"]
-[ext_resource type="PackedScene" uid="uid://bs3qwtfkptsc7" path="res://models/goblin/goblin_weapon.glb" id="3_mgwjb"]
 
 [resource]
 script = ExtResource("1_nm82h")
@@ -20,6 +18,4 @@ apply_to = Array[String](["Weapon"])
 group_filters = Array[String](["Natural"])
 include_enemies = true
 include_players = false
-icon_texture = ExtResource("3_at5l5")
-icon_model = ExtResource("3_mgwjb")
-unlocked = true
+unlocked = false

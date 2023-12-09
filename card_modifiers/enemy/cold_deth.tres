@@ -1,10 +1,8 @@
-[gd_resource type="Resource" script_class="CardResource" load_steps=6 format=3 uid="uid://bqxe2jciso4wt"]
+[gd_resource type="Resource" script_class="CardResource" load_steps=4 format=3 uid="uid://bqxe2jciso4wt"]
 
 [ext_resource type="Script" path="res://card_modifiers/CardResource.gd" id="1_n4do6"]
 [ext_resource type="Script" path="res://card_modifiers/enemy/cold_deth.gd" id="1_vc2ic"]
 [ext_resource type="JSON" path="res://card_modifiers/enemy/cold_deth.json" id="2_j731x"]
-[ext_resource type="Texture2D" uid="uid://bxpxlr67ma0el" path="res://icons/frozen-ring.png" id="3_osijp"]
-[ext_resource type="PackedScene" uid="uid://cx6nlib0memhr" path="res://models/goblin_priest/goblin_priest.glb" id="3_q7o4p"]
 
 [resource]
 script = ExtResource("1_n4do6")
@@ -20,6 +18,4 @@ apply_to = Array[String](["ChannelingWeapon"])
 group_filters = Array[String](["GoblinRod"])
 include_enemies = true
 include_players = false
-icon_texture = ExtResource("3_osijp")
-icon_model = ExtResource("3_q7o4p")
 unlocked = true

@@ -88,6 +88,7 @@ void sky() {
 
 }
 "
+graph_offset = Vector2(-133.407, -126.703)
 mode = 3
 flags/use_half_res_pass = false
 flags/use_quarter_res_pass = false
@@ -105,7 +106,7 @@ nodes/sky/6/position = Vector2(140, 520)
 nodes/sky/7/node = SubResource("VisualShaderNodeFloatFunc_o3eo4")
 nodes/sky/7/position = Vector2(469.408, 456.791)
 nodes/sky/8/node = SubResource("VisualShaderNodeVectorOp_bns58")
-nodes/sky/8/position = Vector2(220, 260)
+nodes/sky/8/position = Vector2(700, 260)
 nodes/sky/9/node = SubResource("VisualShaderNodeVectorOp_esxcr")
 nodes/sky/9/position = Vector2(380, 40)
 nodes/sky/12/node = SubResource("VisualShaderNodeMultiplyAdd_nl0l8")
