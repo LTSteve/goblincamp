@@ -8,6 +8,8 @@ class_name CardDisplay
 @export var card_title: Label
 @export var card_description: Label
 
+@onready var particles: GPUParticles3D = $"GPUParticles3D"
+
 @onready var material_override: MaterialOverrideComponent = $"card_facer/MaterialOverrideComponent"
 
 #have to do this to avoid errors
@@ -59,6 +61,7 @@ func flip():
 	if hidden:
 		hidden = false
 		_flip_tween.tween(Vector3(0,0,0))
+		_flip_tween.done.connect(func(): particles.emitting = true)
 	else:
 		hidden = true
 		_flip_tween.tween(Vector3(0,180,0))
