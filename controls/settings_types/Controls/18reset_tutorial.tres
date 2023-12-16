@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="SettingResource" load_steps=2 format=3 uid="uid://c2x7cr0bnnopm"]
+
+[ext_resource type="Script" path="res://controls/settings/SettingResource.gd" id="1_icjbm"]
+
+[resource]
+script = ExtResource("1_icjbm")
+name = "RESET TUTORIAL"
+setting_type = 2
+default_setting_value_toggle = false
+default_setting_value_slide = 1.0
+update_on_close = false

@@ -1,0 +1,164 @@
+[gd_scene load_steps=18 format=3 uid="uid://du0b2ltacisf5"]
+
+[ext_resource type="Script" path="res://controls/DialoguePanel.gd" id="1_8y6gw"]
+[ext_resource type="Texture2D" uid="uid://cxquwwj5pp616" path="res://icons/camp_panel.png" id="2_k4tve"]
+[ext_resource type="Script" path="res://controls/decorations/Trasition.gd" id="3_qwuby"]
+[ext_resource type="Script" path="res://controls/decorations/TransitionPropertyV2.gd" id="4_8wfv6"]
+[ext_resource type="PackedScene" uid="uid://baemiseha5yiw" path="res://controls/3d_texture_rect.tscn" id="5_5nejo"]
+[ext_resource type="Texture2D" uid="uid://dtei7gs5achfg" path="res://icons/camp_inset_panel.png" id="7_okpiq"]
+[ext_resource type="Script" path="res://util/Typewriter.gd" id="8_65pmb"]
+[ext_resource type="FontFile" uid="uid://d1jvqnhuvekma" path="res://theme/YoungSerif-Regular.ttf" id="8_j33fl"]
+[ext_resource type="Resource" uid="uid://bqku5pvluuhoe" path="res://controls/settings_types/Controls/17type_pace.tres" id="9_kc6eu"]
+[ext_resource type="FontFile" uid="uid://q8or8vsxpn3x" path="res://theme/Anton-Regular.ttf" id="9_xvqfb"]
+[ext_resource type="Resource" uid="uid://ducfjk1buamd" path="res://sfx/sfx_resource.tres" id="10_64et8"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_1dgl1"]
+texture = ExtResource("2_k4tve")
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+region_rect = Rect2(50, 50, 600, 600)
+
+[sub_resource type="Resource" id="Resource_fb7hb"]
+script = ExtResource("4_8wfv6")
+value = Vector2(0, 160)
+
+[sub_resource type="Resource" id="Resource_xcx67"]
+script = ExtResource("4_8wfv6")
+value = Vector2(0, 160)
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_qsfir"]
+viewport_path = NodePath("SubViewport")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_s161r"]
+texture = ExtResource("7_okpiq")
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+region_rect = Rect2(50, 50, 550, 550)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2iuqa"]
+bg_color = Color(0, 0, 0, 0.509804)
+
+[node name="DialoguePanel" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_default_cursor_shape = 2
+script = ExtResource("1_8y6gw")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -275.0
+offset_top = -160.0
+offset_right = 275.0
+grow_horizontal = 2
+grow_vertical = 0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_1dgl1")
+
+[node name="TransitionIn" type="Node" parent="Panel"]
+script = ExtResource("3_qwuby")
+property_to_transition = "position"
+add_start_to_current_value = true
+transition_property_start = SubResource("Resource_fb7hb")
+end_at_current_value = true
+
+[node name="TransitionOut" type="Node" parent="Panel"]
+script = ExtResource("3_qwuby")
+transition_on_ready = false
+transition_on_close = true
+property_to_transition = "position"
+start_at_current_value = true
+add_end_to_current_value = true
+transition_property_end = SubResource("Resource_xcx67")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="3DTextureRect_left" parent="Panel/HBoxContainer" instance=ExtResource("5_5nejo")]
+visible = false
+layout_mode = 2
+texture = SubResource("ViewportTexture_qsfir")
+expand_mode = 3
+model_scale = Vector3(0.75, 0.75, 0.75)
+model_offset = Vector3(0, -0.5, 0)
+
+[node name="MarginContainer" type="MarginContainer" parent="Panel/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 15
+
+[node name="Panel" type="Panel" parent="Panel/HBoxContainer/MarginContainer"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_s161r")
+
+[node name="MarginContainer" type="MarginContainer" parent="Panel/HBoxContainer/MarginContainer/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 10
+
+[node name="Label" type="Label" parent="Panel/HBoxContainer/MarginContainer/Panel/MarginContainer"]
+layout_mode = 2
+theme_override_constants/line_spacing = 8
+theme_override_fonts/font = ExtResource("8_j33fl")
+text = "Hello buddy, Hello buddy, Hello buddy, Hello buddy, Hello buddy, Hello buddy, Hello buddy, Hello buddy, Hello buddy, Hello buddy, Hello buddy, Hello buddy, Hello buddy, "
+autowrap_mode = 2
+max_lines_visible = 3
+
+[node name="TypeWriter" type="Node" parent="Panel/HBoxContainer/MarginContainer/Panel/MarginContainer/Label" node_paths=PackedStringArray("audio_stream_player")]
+script = ExtResource("8_65pmb")
+pace_setting = ExtResource("9_kc6eu")
+audio_stream_player = NodePath("AudioStreamPlayer")
+sfx_resource = ExtResource("10_64et8")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Panel/HBoxContainer/MarginContainer/Panel/MarginContainer/Label/TypeWriter"]
+
+[node name="3DTextureRect_right" parent="Panel/HBoxContainer" instance=ExtResource("5_5nejo")]
+visible = false
+layout_mode = 2
+texture = SubResource("ViewportTexture_qsfir")
+expand_mode = 3
+model_scale = Vector3(0.75, 0.75, 0.75)
+model_offset = Vector3(0, -0.5, 0)
+
+[node name="CenterContainer" type="CenterContainer" parent="Panel"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -30.0
+offset_bottom = -5.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="Label" type="Label" parent="Panel/CenterContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("9_xvqfb")
+theme_override_styles/normal = SubResource("StyleBoxFlat_2iuqa")
+text = " Steve "
+
+[connection signal="gui_input" from="." to="." method="_on_gui_input"]

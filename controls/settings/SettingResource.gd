@@ -2,7 +2,7 @@ extends Resource
 
 class_name SettingResource
 
-enum TYPE {SLIDE,TOGGLE}
+enum TYPE {SLIDE,TOGGLE,ACTION}
 
 @export var name: String
 @export var icon_off: Texture
@@ -20,15 +20,17 @@ var current_value:
 		if !value_has_been_set:
 			if setting_type == TYPE.SLIDE:
 				return default_setting_value_slide
-			else:
+			elif setting_type == TYPE.TOGGLE:
 				return default_setting_value_toggle
+			else:
+				return false
 		else:
 			return current_value
 	set(value):
 		if current_value != value || !value_has_been_set:
 			value_has_been_set = true
-			current_value = value
-			on_change.emit(current_value)
+			current_value = value if setting_type != TYPE.ACTION else false
+			on_change.emit(value)
 
 var default_setting:
 	get:
@@ -37,4 +39,6 @@ var default_setting:
 				return default_setting_value_slide
 			TYPE.TOGGLE:
 				return default_setting_value_toggle
+			TYPE.ACTION:
+				return false
 		return default_setting_value_slide

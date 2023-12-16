@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://133jo6pb7hxg"]
+[gd_scene load_steps=25 format=3 uid="uid://133jo6pb7hxg"]
 
 [ext_resource type="PackedScene" uid="uid://b43v6jawtpn5j" path="res://ground.tscn" id="1_4khsr"]
 [ext_resource type="Script" path="res://gameloop/TreeSpawner.gd" id="2_0sl38"]
@@ -12,7 +12,9 @@
 [ext_resource type="Script" path="res://controls/MainMenu.gd" id="11_n1vs6"]
 [ext_resource type="Environment" uid="uid://dewoeykm6c8my" path="res://world_environment.tres" id="11_ofhcg"]
 [ext_resource type="PackedScene" uid="uid://cfr8mya77iod3" path="res://controls/settings_menu.tscn" id="12_12y0v"]
+[ext_resource type="Script" path="res://gameloop/TutorialResetManager.gd" id="12_u55cj"]
 [ext_resource type="CameraAttributesPractical" uid="uid://c0b6x7w2dcuek" path="res://world_camera_attributes.tres" id="12_vvwwe"]
+[ext_resource type="Resource" uid="uid://c2x7cr0bnnopm" path="res://controls/settings_types/Controls/18reset_tutorial.tres" id="13_egda6"]
 [ext_resource type="Script" path="res://units/components/HeightComponent.gd" id="15_7fmkp"]
 [ext_resource type="FontFile" uid="uid://uv8oidl5wkap" path="res://theme/FingerPaint-Regular.ttf" id="17_3ugf7"]
 [ext_resource type="PackedScene" uid="uid://ces0wcq1nythe" path="res://models/signpost/signpost.glb" id="17_nb3do"]
@@ -62,6 +64,10 @@ scatter_min = 0.05
 scatter_setting = ExtResource("5_dss63")
 rock_material = ExtResource("10_5rxve")
 grass_material = ExtResource("11_5bo0y")
+
+[node name="TutorialResetManager" type="Node" parent="."]
+script = ExtResource("12_u55cj")
+tutorial_reset_setting = ExtResource("13_egda6")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.958946, -0.283378, -0.010999, 0.146592, 0.462116, 0.87462, -0.242765, -0.840325, 0.484685, 0, 132.475, 0)

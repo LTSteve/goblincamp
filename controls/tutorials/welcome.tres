@@ -1,0 +1,29 @@
+[gd_resource type="Resource" script_class="TutorialResource" load_steps=7 format=3 uid="uid://c5kbd0204cr1t"]
+
+[ext_resource type="Script" path="res://controls/TutorialResource.gd" id="1_p8noh"]
+[ext_resource type="Script" path="res://controls/TutorialDialogue.gd" id="2_bpsdn"]
+[ext_resource type="PackedScene" uid="uid://cyplod3i2l3l3" path="res://models/npc/merchant.glb" id="3_pjg0g"]
+
+[sub_resource type="Resource" id="Resource_1xxk7"]
+script = ExtResource("2_bpsdn")
+speaker_name = ""
+dialogue = "Welcome to Goblin Camp! (Click to proceed)"
+portrait_right = false
+
+[sub_resource type="Resource" id="Resource_8pcd2"]
+script = ExtResource("2_bpsdn")
+speaker_name = ""
+dialogue = "Use WASD or click and drag to move the camera."
+portrait_right = false
+
+[sub_resource type="Resource" id="Resource_iomq8"]
+script = ExtResource("2_bpsdn")
+portrait_scene = ExtResource("3_pjg0g")
+speaker_name = "Merchant Dave"
+dialogue = "Come talk to me when you're ready to get started."
+portrait_right = true
+
+[resource]
+script = ExtResource("1_p8noh")
+name = &"WELCOME"
+tutorial_dialogues = Array[ExtResource("2_bpsdn")]([SubResource("Resource_1xxk7"), SubResource("Resource_8pcd2"), SubResource("Resource_iomq8")])

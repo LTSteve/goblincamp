@@ -1,10 +1,18 @@
-[gd_resource type="Resource" script_class="SFXResource" load_steps=5 format=3 uid="uid://ducfjk1buamd"]
+[gd_resource type="Resource" script_class="SFXResource" load_steps=11 format=3 uid="uid://ducfjk1buamd"]
 
 [ext_resource type="Script" path="res://sfx/SFXResource.gd" id="1_h6lw3"]
 [ext_resource type="AudioStream" uid="uid://dirqesucffj7j" path="res://sfx/money_1.wav" id="1_nct5t"]
 [ext_resource type="AudioStream" uid="uid://bndcfsdujqiey" path="res://sfx/money_2.wav" id="2_vkwjr"]
 [ext_resource type="AudioStream" uid="uid://drcyqwgg0m4xr" path="res://sfx/money_3.wav" id="3_b8gsx"]
+[ext_resource type="AudioStream" uid="uid://cjv3kem61dxc6" path="res://sfx/write1.wav" id="5_akuyv"]
+[ext_resource type="AudioStream" uid="uid://c2pj4jewqkq5h" path="res://sfx/write2.wav" id="6_fk7ul"]
+[ext_resource type="AudioStream" uid="uid://bmxcu81ykfi06" path="res://sfx/write3.wav" id="7_2nxnh"]
+[ext_resource type="AudioStream" uid="uid://d0jrgcldwum3k" path="res://sfx/write4.wav" id="8_17oq5"]
+[ext_resource type="AudioStream" uid="uid://cvqtnixq0a5yi" path="res://sfx/write5.wav" id="9_vdoel"]
+[ext_resource type="AudioStream" uid="uid://djvw6fdkk5tno" path="res://sfx/write6.wav" id="10_m5831"]
 
 [resource]
 script = ExtResource("1_h6lw3")
 bounty_sounds = Array[AudioStream]([ExtResource("1_nct5t"), ExtResource("2_vkwjr"), ExtResource("3_b8gsx")])
+fireball_hit_sounds = Array[AudioStream]([])
+typewriter_sounds = Array[AudioStream]([ExtResource("5_akuyv"), ExtResource("6_fk7ul"), ExtResource("7_2nxnh"), ExtResource("8_17oq5"), ExtResource("9_vdoel"), ExtResource("10_m5831")])

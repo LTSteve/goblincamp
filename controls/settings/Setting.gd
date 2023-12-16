@@ -7,7 +7,8 @@ class_name Setting
 @export var setting: SettingResource
 
 func _ready():
-	label.text = setting.name
+	if label:
+		label.text = setting.name
 
 func on_close():
 	if setting.update_on_close:

@@ -5,6 +5,7 @@ class_name DB
 static var I: DB
 
 var _observables_folder = "res://observables"
+var _tutorials_folder = "res://controls/tutorials"
 
 var _resource_folders = {
 	blacksmith_deck = "res://card_modifiers/blacksmith",
@@ -60,6 +61,7 @@ var _scene_paths = {
 	damage_label_scene= "res://units/components/damagelabel/damage_label.tscn",
 	slide_setting_scene= "res://controls/settings/slide_setting.tscn",
 	toggle_setting_scene= "res://controls/settings/toggle_setting.tscn",
+	action_setting_scene= "res://controls/settings/action_setting.tscn",
 	scatter_multimesh_scene= "res://ground_generation/scatter_multimesh.tscn",
 	tree1_mesh= "res://models/trees/tree_1_Icosphere_003.res",
 	tree2_mesh= "res://models/trees/tree_2_Cube_001.res",
@@ -80,6 +82,7 @@ var _scene_paths = {
 	leatherworker_cam= "res://buildings/building_cams/leatherworker_cam.tscn",
 	enchanter_cam= "res://buildings/building_cams/enchanter_cam.tscn",
 	tavern_cam= "res://buildings/building_cams/tavern_cam.tscn",
+	dialogue_panel_scene= "res://controls/dialogue_panel.tscn"
 }
 
 var scenes = {}
@@ -87,6 +90,7 @@ var scenes = {}
 var resource_groups = {}
 
 var observables = {}
+var tutorials = {}
 
 #really shouldn't be doing UI and loading stuff in the same class but w/e
 @export var loading_bar: LoadingBar
@@ -113,6 +117,10 @@ func _post_init():
 	for path in observables_paths:
 		loading_bar.set_load(path, "preloading resources")
 	
+	var tutorials_paths = _get_resource_paths(_tutorials_folder)
+	for path in tutorials_paths:
+		loading_bar.set_load(path, "preloading resources")
+	
 	loading_bar.on_loaded.connect(_loading_finished)
 
 func _loading_finished(loaded:Array[Resource]):
@@ -133,6 +141,11 @@ func _loading_finished(loaded:Array[Resource]):
 		# something like Initializable.is_applied(obj), Initialize.assert_applied(self), etc
 		if res.has_method("initialize"): res.initialize()
 		observables[res.resource_name] = res
+	
+	var tutorials_paths = _get_resource_paths(_tutorials_folder)
+	for path in tutorials_paths:
+		var res = Global.find_by_func(loaded, func(ld:Resource): return ld.resource_path == path)
+		tutorials[StringName(res.name)] = res
 	
 	SceneManager.load_main_scene(get_tree(), loaded)
 	
