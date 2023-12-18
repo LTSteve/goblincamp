@@ -1,0 +1,23 @@
+[gd_resource type="Resource" script_class="TutorialResource" load_steps=6 format=3 uid="uid://buirb68fw78bu"]
+
+[ext_resource type="Script" path="res://controls/TutorialResource.gd" id="1_ulfyx"]
+[ext_resource type="PackedScene" uid="uid://bjni3yp3c1c0c" path="res://models/knight/knight.glb" id="2_lpt7l"]
+[ext_resource type="Script" path="res://controls/TutorialDialogue.gd" id="3_qnijv"]
+
+[sub_resource type="Resource" id="Resource_4n7fj"]
+script = ExtResource("3_qnijv")
+portrait_scene = ExtResource("2_lpt7l")
+speaker_name = "Knight"
+dialogue = "Advisor! These goblin ears are quite valuable to some. We'll proceed to collect as many as we can."
+portrait_right = true
+
+[sub_resource type="Resource" id="Resource_wqg2g"]
+script = ExtResource("3_qnijv")
+speaker_name = ""
+dialogue = "You can sell Goblin Ears to Merchant Dave, keep an eye on the price as it shifts over time!"
+portrait_right = false
+
+[resource]
+script = ExtResource("1_ulfyx")
+name = &"EARS"
+tutorial_dialogues = Array[ExtResource("3_qnijv")]([SubResource("Resource_4n7fj"), SubResource("Resource_wqg2g")])

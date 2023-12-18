@@ -7,12 +7,14 @@ const TUTORIAL: StringName = "TUTORIAL"
 
 const WELCOME: StringName = "WELCOME"
 const MERCHANT: StringName = "MERCHANT"
+const EARS: StringName = "EARS"
 
 var cfg_file:ConfigFile
 
 var clear_tutorial_setting: SettingResource
 
 @export_group("Observables")
+@export var ear_count_resource: ObservableResource
 @export_group("Inverse Signal Buses")
 @export var todo_before_merchant_resource: InverseSignalBus
 
@@ -20,6 +22,10 @@ func _ready():
 	cfg_file = ConfigFile.new()
 	if cfg_file.load(cfg_file_name) == ERR_FILE_CANT_OPEN:
 		printerr("Couldn't open tutorial cfg!")
+	
+	ear_count_resource.value_changed.connect(func(_old_value,_new_value): 
+		if !has_been_tutorialized(EARS): open_tutorial(EARS)
+		, CONNECT_ONE_SHOT)
 	
 	todo_before_merchant_resource.bind(_get_open_tutorial_as_todo.bind(MERCHANT))
 	
