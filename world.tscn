@@ -342,6 +342,7 @@ projectiles_resource = ExtResource("18_n7hhs")
 [node name="TutorialManager" type="Node" parent="."]
 script = ExtResource("54_b53m4")
 ear_count_resource = ExtResource("19_5wmw2")
+is_day_resource = ExtResource("16_jren3")
 todo_before_merchant_resource = ExtResource("55_nk71j")
 todo_before_goblin_power_resource = ExtResource("56_26muw")
 

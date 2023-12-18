@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://dotmvt7y5ukjn"]
+[gd_scene load_steps=29 format=3 uid="uid://dotmvt7y5ukjn"]
 
 [ext_resource type="Script" path="res://controls/BuyPanel.gd" id="1_fvaik"]
 [ext_resource type="Resource" uid="uid://chjqk6fsemnv0" path="res://observables/current_buy_offers.tres" id="2_p85ud"]
@@ -9,6 +9,7 @@
 [ext_resource type="Script" path="res://controls/EarExchangePanel.gd" id="9_luiy1"]
 [ext_resource type="Resource" uid="uid://cg4otlie7epve" path="res://observables/ear_exchange_rate.tres" id="10_2r8mv"]
 [ext_resource type="FontFile" uid="uid://d1jvqnhuvekma" path="res://theme/YoungSerif-Regular.ttf" id="10_crxeh"]
+[ext_resource type="Texture2D" uid="uid://cjfiilff2vlaq" path="res://icons/elf-ear.png" id="11_3nw8t"]
 [ext_resource type="Script" path="res://controls/observer/ObserverLabel.gd" id="11_5l804"]
 [ext_resource type="Texture2D" uid="uid://27s4o8hjiwcc" path="res://icons/metal-disc.png" id="11_8pbji"]
 [ext_resource type="Script" path="res://controls/observer/HideOnTrue.gd" id="13_hvjm3"]
@@ -254,6 +255,7 @@ text = "1"
 
 [node name="TextureRect" type="TextureRect" parent="EarExchangePanel/MarginContainer2/HBoxContainer"]
 layout_mode = 2
+texture = ExtResource("11_3nw8t")
 expand_mode = 3
 
 [node name="Label" type="Label" parent="EarExchangePanel/MarginContainer2/HBoxContainer"]

@@ -9,6 +9,7 @@ const WELCOME: StringName = "WELCOME"
 const MERCHANT: StringName = "MERCHANT"
 const EARS: StringName = "EARS"
 const ENEMIES_GROW: StringName = "ENEMIES_GROW"
+const WIZARD: StringName = "WIZARD"
 
 var cfg_file:ConfigFile
 
@@ -16,6 +17,7 @@ var clear_tutorial_setting: SettingResource
 
 @export_group("Observables")
 @export var ear_count_resource: ObservableResource
+@export var is_day_resource: ObservableResource
 @export_group("Inverse Signal Buses")
 @export var todo_before_merchant_resource: InverseSignalBus
 @export var todo_before_goblin_power_resource: InverseSignalBus
@@ -25,7 +27,11 @@ func _ready():
 	if cfg_file.load(cfg_file_name) == ERR_FILE_CANT_OPEN:
 		printerr("Couldn't open tutorial cfg!")
 	
-	ear_count_resource.value_changed.connect(func(_old_value,_new_value): 
+	is_day_resource.value_changed.connect(func(new_value, _old_value):
+		if new_value && WizardBehaviour.is_wizard_active() && !has_been_tutorialized(WIZARD): open_tutorial(WIZARD)
+		)
+	
+	ear_count_resource.value_changed.connect(func(_new_value, _old_value): 
 		if !has_been_tutorialized(EARS): open_tutorial(EARS)
 		, CONNECT_ONE_SHOT)
 	

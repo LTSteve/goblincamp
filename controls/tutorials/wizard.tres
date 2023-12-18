@@ -1,0 +1,38 @@
+[gd_resource type="Resource" script_class="TutorialResource" load_steps=8 format=3 uid="uid://b1oy17o60rnne"]
+
+[ext_resource type="Script" path="res://controls/TutorialResource.gd" id="1_umbal"]
+[ext_resource type="PackedScene" uid="uid://w325ppy4jbsf" path="res://models/wizard/wizard.glb" id="2_oteql"]
+[ext_resource type="Script" path="res://controls/TutorialDialogue.gd" id="3_4hqf7"]
+
+[sub_resource type="Resource" id="Resource_tc1bq"]
+script = ExtResource("3_4hqf7")
+portrait_scene = ExtResource("2_oteql")
+speaker_name = "Wonderous (tm)"
+dialogue = "Hallooo. I'm the Wizard of this forest!"
+portrait_right = false
+
+[sub_resource type="Resource" id="Resource_de8jl"]
+script = ExtResource("3_4hqf7")
+portrait_scene = ExtResource("2_oteql")
+speaker_name = "Wonderous (tm)"
+dialogue = "The Goblins sure are rowdy in these parts aren't they?"
+portrait_right = false
+
+[sub_resource type="Resource" id="Resource_dmrkf"]
+script = ExtResource("3_4hqf7")
+portrait_scene = ExtResource("2_oteql")
+speaker_name = "Wonderous (tm)"
+dialogue = "For the price of a few trinkets, I can perform rituals to help protect your camp!"
+portrait_right = false
+
+[sub_resource type="Resource" id="Resource_nx6e6"]
+script = ExtResource("3_4hqf7")
+portrait_scene = ExtResource("2_oteql")
+speaker_name = "Wonderous (tm)"
+dialogue = "Come speak to me soon for a special introductory offer friend!"
+portrait_right = false
+
+[resource]
+script = ExtResource("1_umbal")
+name = &"WIZARD"
+tutorial_dialogues = Array[ExtResource("3_4hqf7")]([SubResource("Resource_tc1bq"), SubResource("Resource_de8jl"), SubResource("Resource_dmrkf"), SubResource("Resource_nx6e6")])
