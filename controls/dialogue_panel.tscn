@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://du0b2ltacisf5"]
+[gd_scene load_steps=19 format=3 uid="uid://du0b2ltacisf5"]
 
 [ext_resource type="Script" path="res://controls/DialoguePanel.gd" id="1_8y6gw"]
 [ext_resource type="Texture2D" uid="uid://cxquwwj5pp616" path="res://icons/camp_panel.png" id="2_k4tve"]
@@ -34,6 +34,9 @@ texture = ExtResource("7_okpiq")
 axis_stretch_horizontal = 1
 axis_stretch_vertical = 1
 region_rect = Rect2(50, 50, 550, 550)
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_omego"]
+viewport_path = NodePath("SubViewport")
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2iuqa"]
 bg_color = Color(0, 0, 0, 0.509804)
@@ -139,7 +142,7 @@ sfx_resource = ExtResource("10_64et8")
 [node name="3DTextureRect_right" parent="Panel/HBoxContainer" instance=ExtResource("5_5nejo")]
 visible = false
 layout_mode = 2
-texture = SubResource("ViewportTexture_qsfir")
+texture = SubResource("ViewportTexture_omego")
 expand_mode = 3
 model_scale = Vector3(0.75, 0.75, 0.75)
 model_offset = Vector3(0, -0.5, 0)

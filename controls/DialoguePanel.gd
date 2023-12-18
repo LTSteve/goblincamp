@@ -26,7 +26,7 @@ func _set_current_tutorial(step:int):
 			texture_rect_right.visible = false
 			texture_rect_left.visible = true
 			texture_rect_left.model_scene = _current_tutorial.portrait_scene
-			texture_rect_right.initialize()
+			texture_rect_left.initialize()
 	else:
 			texture_rect_right.visible = false
 			texture_rect_left.visible = false

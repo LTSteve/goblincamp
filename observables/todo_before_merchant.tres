@@ -1,0 +1,7 @@
+[gd_resource type="Resource" script_class="InverseSignalBus" load_steps=2 format=3 uid="uid://bjtc86ljwwg67"]
+
+[ext_resource type="Script" path="res://util/observable/InverseSignalBus.gd" id="1_uv6y2"]
+
+[resource]
+resource_name = "todo_before_merchant"
+script = ExtResource("1_uv6y2")

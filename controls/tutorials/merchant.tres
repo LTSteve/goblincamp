@@ -1,0 +1,57 @@
+[gd_resource type="Resource" script_class="TutorialResource" load_steps=11 format=3 uid="uid://blgmyco3hddiv"]
+
+[ext_resource type="Script" path="res://controls/TutorialResource.gd" id="1_pwsl4"]
+[ext_resource type="Script" path="res://controls/TutorialDialogue.gd" id="2_gta0o"]
+[ext_resource type="PackedScene" uid="uid://cyplod3i2l3l3" path="res://models/npc/merchant.glb" id="3_ootmc"]
+
+[sub_resource type="Resource" id="Resource_1xxk7"]
+script = ExtResource("2_gta0o")
+portrait_scene = ExtResource("3_ootmc")
+speaker_name = "Merchant Dave"
+dialogue = "Ah, you must be Randalf's advisor. The King told me you were coming here with ..."
+portrait_right = false
+
+[sub_resource type="Resource" id="Resource_yv1x3"]
+script = ExtResource("2_gta0o")
+portrait_scene = ExtResource("3_ootmc")
+speaker_name = "Merchant Dave"
+dialogue = "... a substantial portion of his son's allowance."
+portrait_right = false
+
+[sub_resource type="Resource" id="Resource_dnr6q"]
+script = ExtResource("2_gta0o")
+portrait_scene = ExtResource("3_ootmc")
+speaker_name = "Merchant Dave"
+dialogue = "These are treacherous lands!"
+portrait_right = false
+
+[sub_resource type="Resource" id="Resource_vn8sm"]
+script = ExtResource("2_gta0o")
+portrait_scene = ExtResource("3_ootmc")
+speaker_name = "Merchant Dave"
+dialogue = "You'll need to hire mercenaries in order to make this place safe for our little lord."
+portrait_right = false
+
+[sub_resource type="Resource" id="Resource_w3jmq"]
+script = ExtResource("2_gta0o")
+portrait_scene = ExtResource("3_ootmc")
+speaker_name = "Merchant Dave"
+dialogue = "I am also in contact with a few builders. It'll take a day or so to get them out here though."
+portrait_right = false
+
+[sub_resource type="Resource" id="Resource_a2a5b"]
+script = ExtResource("2_gta0o")
+speaker_name = ""
+dialogue = "Click to purchase a mercenary band to hire. You can click outside the window to close it."
+portrait_right = false
+
+[sub_resource type="Resource" id="Resource_tc1bq"]
+script = ExtResource("2_gta0o")
+speaker_name = ""
+dialogue = "After you are done, click the \"Next Night\" button at the top of the screen to allow time to pass."
+portrait_right = false
+
+[resource]
+script = ExtResource("1_pwsl4")
+name = &"MERCHANT"
+tutorial_dialogues = Array[ExtResource("2_gta0o")]([SubResource("Resource_1xxk7"), SubResource("Resource_yv1x3"), SubResource("Resource_dnr6q"), SubResource("Resource_vn8sm"), SubResource("Resource_w3jmq"), SubResource("Resource_a2a5b"), SubResource("Resource_tc1bq")])
