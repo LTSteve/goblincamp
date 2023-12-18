@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="TutorialResource" load_steps=4 format=3 uid="uid://qb33xl228qm8"]
+
+[ext_resource type="Script" path="res://controls/TutorialResource.gd" id="1_hy53y"]
+[ext_resource type="Script" path="res://controls/TutorialDialogue.gd" id="2_k0ovx"]
+
+[sub_resource type="Resource" id="Resource_ue3mc"]
+script = ExtResource("2_k0ovx")
+speaker_name = ""
+dialogue = "Every few days, enemies grow in strength"
+portrait_right = false
+
+[resource]
+script = ExtResource("1_hy53y")
+name = &"ENEMIES_GROW"
+tutorial_dialogues = Array[ExtResource("2_k0ovx")]([SubResource("Resource_ue3mc")])

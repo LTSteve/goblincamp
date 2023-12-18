@@ -1,0 +1,7 @@
+[gd_resource type="Resource" script_class="InverseSignalBus" load_steps=2 format=3 uid="uid://cwo2d4y8wt8yr"]
+
+[ext_resource type="Script" path="res://util/observable/InverseSignalBus.gd" id="1_r4orq"]
+
+[resource]
+resource_name = "todo_before_goblin_power"
+script = ExtResource("1_r4orq")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=100 format=3 uid="uid://c4d1d2j1uy0kb"]
+[gd_scene load_steps=101 format=3 uid="uid://c4d1d2j1uy0kb"]
 
 [ext_resource type="PackedScene" uid="uid://b43v6jawtpn5j" path="res://ground.tscn" id="2_oaunj"]
 [ext_resource type="PackedScene" uid="uid://o2t0d4q03eun" path="res://buildings/campfire.tscn" id="3_8yp2w"]
@@ -80,6 +80,7 @@
 [ext_resource type="Resource" uid="uid://bjtc86ljwwg67" path="res://observables/todo_before_merchant.tres" id="55_nk71j"]
 [ext_resource type="Script" path="res://controls/observer/BindToSignalBus.gd" id="55_o62dn"]
 [ext_resource type="Script" path="res://gameloop/TutorialResetManager.gd" id="55_toolw"]
+[ext_resource type="Resource" uid="uid://cwo2d4y8wt8yr" path="res://observables/todo_before_goblin_power.tres" id="56_26muw"]
 [ext_resource type="Resource" uid="uid://delmi3k8kq53b" path="res://observables/on_next_day_pressed.tres" id="56_s2ct8"]
 [ext_resource type="Resource" uid="uid://c2x7cr0bnnopm" path="res://controls/settings_types/Controls/18reset_tutorial.tres" id="56_tga2a"]
 [ext_resource type="Script" path="res://controls/observer/ObserverLabel.gd" id="58_h3lpd"]
@@ -342,6 +343,7 @@ projectiles_resource = ExtResource("18_n7hhs")
 script = ExtResource("54_b53m4")
 ear_count_resource = ExtResource("19_5wmw2")
 todo_before_merchant_resource = ExtResource("55_nk71j")
+todo_before_goblin_power_resource = ExtResource("56_26muw")
 
 [node name="TutorialResetManager" type="Node" parent="."]
 script = ExtResource("55_toolw")
@@ -351,6 +353,7 @@ tutorial_reset_setting = ExtResource("56_tga2a")
 script = ExtResource("45_eqvio")
 day_number_resource = ExtResource("31_kheu1")
 todo_before_day_resource = ExtResource("26_7g4ox")
+todo_before_goblin_power_resource = ExtResource("56_26muw")
 
 [node name="CardModifiers" type="Node" parent="."]
 script = ExtResource("13_mywmv")

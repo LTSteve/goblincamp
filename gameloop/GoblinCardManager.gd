@@ -12,6 +12,7 @@ static var I: GoblinCardManager
 
 @export_group("Inverse Signal Buses")
 @export var todo_before_day_resource: InverseSignalBus
+@export var todo_before_goblin_power_resource: InverseSignalBus
 
 var _todo_list: TodoList
 
@@ -30,8 +31,12 @@ func try_open(todo_list:TodoList):
 	
 	_todo_list = todo_list
 	
-	var goblin_panel = DB.I.scenes.goblin_card_panel_scene.instantiate() as GoblinCardPanel
-	goblin_panel.popup_close.connect(func(): 
-		_todo_list.mark_step_done()
-		_todo_list = null)
-	HUD.I.on_popup_open(goblin_panel)
+	var tutorial_todo = todo_before_goblin_power_resource.inverse_signal()
+	var _tutorial_todo = TodoList.new(tutorial_todo)
+	_tutorial_todo.on_done(func():
+		var goblin_panel = DB.I.scenes.goblin_card_panel_scene.instantiate() as GoblinCardPanel
+		goblin_panel.popup_close.connect(func(): 
+			_todo_list.mark_step_done()
+			_todo_list = null)
+		HUD.I.on_popup_open(goblin_panel)
+		)

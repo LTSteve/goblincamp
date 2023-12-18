@@ -8,6 +8,7 @@ const TUTORIAL: StringName = "TUTORIAL"
 const WELCOME: StringName = "WELCOME"
 const MERCHANT: StringName = "MERCHANT"
 const EARS: StringName = "EARS"
+const ENEMIES_GROW: StringName = "ENEMIES_GROW"
 
 var cfg_file:ConfigFile
 
@@ -17,6 +18,7 @@ var clear_tutorial_setting: SettingResource
 @export var ear_count_resource: ObservableResource
 @export_group("Inverse Signal Buses")
 @export var todo_before_merchant_resource: InverseSignalBus
+@export var todo_before_goblin_power_resource: InverseSignalBus
 
 func _ready():
 	cfg_file = ConfigFile.new()
@@ -28,6 +30,8 @@ func _ready():
 		, CONNECT_ONE_SHOT)
 	
 	todo_before_merchant_resource.bind(_get_open_tutorial_as_todo.bind(MERCHANT))
+	
+	todo_before_goblin_power_resource.bind(_get_open_tutorial_as_todo.bind(ENEMIES_GROW))
 	
 	if !has_been_tutorialized(WELCOME):
 		call_deferred("open_tutorial", WELCOME)
