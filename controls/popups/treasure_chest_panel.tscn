@@ -1,0 +1,266 @@
+[gd_scene load_steps=25 format=3 uid="uid://bv2lfch1xaa4e"]
+
+[ext_resource type="Script" path="res://controls/TreasureChestPanel.gd" id="1_tpo10"]
+[ext_resource type="Texture2D" uid="uid://cxquwwj5pp616" path="res://icons/camp_panel.png" id="2_dmg4c"]
+[ext_resource type="Texture2D" uid="uid://dtei7gs5achfg" path="res://icons/camp_inset_panel.png" id="2_j7d75"]
+[ext_resource type="FontFile" uid="uid://q8or8vsxpn3x" path="res://theme/Anton-Regular.ttf" id="3_yi8b0"]
+[ext_resource type="Script" path="res://controls/decorations/Trasition.gd" id="4_hn4kw"]
+[ext_resource type="Script" path="res://controls/decorations/TransitionPropertyV2.gd" id="5_g61fu"]
+[ext_resource type="PackedScene" uid="uid://baemiseha5yiw" path="res://controls/3d_texture_rect.tscn" id="5_rx0h0"]
+[ext_resource type="PackedScene" uid="uid://c8wlmr730utaf" path="res://models/icon_scenes/gold.glb" id="6_a30ns"]
+[ext_resource type="PackedScene" uid="uid://cv6yvjh1p5113" path="res://models/goblin_ear.glb" id="7_2aawg"]
+[ext_resource type="FontFile" uid="uid://d1jvqnhuvekma" path="res://theme/YoungSerif-Regular.ttf" id="7_ik1g3"]
+[ext_resource type="PackedScene" uid="uid://btjo12a5ona" path="res://models/icon_scenes/hides.glb" id="8_aeudc"]
+[ext_resource type="Script" path="res://controls/observer/ObserverLabel.gd" id="8_uymy0"]
+[ext_resource type="PackedScene" uid="uid://c1eb57u02e5nw" path="res://models/icon_scenes/ingots.glb" id="9_ko3ru"]
+[ext_resource type="Resource" uid="uid://d1my30jr6p5if" path="res://observables/gold_count.tres" id="9_rcl62"]
+[ext_resource type="PackedScene" uid="uid://clqj2ybpp3kkw" path="res://models/icon_scenes/magic_damage.glb" id="10_nbqyn"]
+[ext_resource type="Resource" uid="uid://ct00chxk6p8ed" path="res://observables/ear_count.tres" id="11_awjol"]
+[ext_resource type="Resource" uid="uid://cyuwv3davo8mt" path="res://observables/hide_count.tres" id="13_haqh2"]
+[ext_resource type="Resource" uid="uid://m17vduv78mi5" path="res://observables/ingot_count.tres" id="15_p8ybq"]
+[ext_resource type="Resource" uid="uid://bdvhx2k14fsic" path="res://observables/dust_count.tres" id="17_5uuhn"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_1qt7n"]
+texture = ExtResource("2_dmg4c")
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+region_rect = Rect2(50, 50, 800, 800)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_jpc1o"]
+texture = ExtResource("2_j7d75")
+region_rect = Rect2(15, 15, 500, 500)
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_28mu5"]
+viewport_path = NodePath("SubViewport")
+
+[sub_resource type="Resource" id="Resource_5gx3y"]
+script = ExtResource("5_g61fu")
+value = Vector2(0, 0)
+
+[sub_resource type="Resource" id="Resource_atqu6"]
+script = ExtResource("5_g61fu")
+value = Vector2(0, 0)
+
+[node name="TreasureChestPanel" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_tpo10")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -275.0
+offset_top = -300.0
+offset_right = 275.0
+offset_bottom = 300.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(275, 300)
+theme_override_styles/panel = SubResource("StyleBoxTexture_1qt7n")
+
+[node name="MarginContainer" type="MarginContainer" parent="Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 15
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_yi8b0")
+theme_override_font_sizes/font_size = 35
+text = "TREASURE"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Panel" type="Panel" parent="Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 25.0
+offset_top = 70.0
+offset_right = -25.0
+offset_bottom = -30.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_jpc1o")
+
+[node name="MarginContainer" type="MarginContainer" parent="Panel/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 15
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/Panel/MarginContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel/Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="3DTextureRect" parent="Panel/Panel/MarginContainer/VBoxContainer/HBoxContainer" instance=ExtResource("5_rx0h0")]
+layout_mode = 2
+texture = SubResource("ViewportTexture_28mu5")
+expand_mode = 3
+model_rotation = Vector3(0, 45, 0)
+model_scale = Vector3(0.9, 0.9, 0.9)
+model_offset = Vector3(0, 1, 0)
+model_scene = ExtResource("6_a30ns")
+
+[node name="Label" type="Label" parent="Panel/Panel/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("7_ik1g3")
+theme_override_font_sizes/font_size = 60
+text = "6969g"
+script = ExtResource("8_uymy0")
+template_string = "%sg"
+observable_resource = ExtResource("9_rcl62")
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="Panel/Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="3DTextureRect" parent="Panel/Panel/MarginContainer/VBoxContainer/HBoxContainer2" instance=ExtResource("5_rx0h0")]
+layout_mode = 2
+texture = SubResource("ViewportTexture_28mu5")
+expand_mode = 3
+model_rotation = Vector3(0, 240, 0)
+model_scale = Vector3(4, 4, 4)
+model_offset = Vector3(0, 1, 0)
+model_scene = ExtResource("7_2aawg")
+
+[node name="Label" type="Label" parent="Panel/Panel/MarginContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("7_ik1g3")
+theme_override_font_sizes/font_size = 60
+text = "1"
+script = ExtResource("8_uymy0")
+observable_resource = ExtResource("11_awjol")
+
+[node name="Label2" type="Label" parent="Panel/Panel/MarginContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("7_ik1g3")
+theme_override_font_sizes/font_size = 60
+text = "Ears"
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="Panel/Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="3DTextureRect" parent="Panel/Panel/MarginContainer/VBoxContainer/HBoxContainer3" instance=ExtResource("5_rx0h0")]
+layout_mode = 2
+texture = SubResource("ViewportTexture_28mu5")
+expand_mode = 3
+model_rotation = Vector3(20, -45, -20)
+model_scale = Vector3(1, 1, 1)
+model_offset = Vector3(0, 1, -0.2)
+model_scene = ExtResource("8_aeudc")
+
+[node name="Label" type="Label" parent="Panel/Panel/MarginContainer/VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("7_ik1g3")
+theme_override_font_sizes/font_size = 60
+text = "1"
+script = ExtResource("8_uymy0")
+observable_resource = ExtResource("13_haqh2")
+
+[node name="Label2" type="Label" parent="Panel/Panel/MarginContainer/VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("7_ik1g3")
+theme_override_font_sizes/font_size = 60
+text = "Hides"
+
+[node name="HBoxContainer4" type="HBoxContainer" parent="Panel/Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="3DTextureRect" parent="Panel/Panel/MarginContainer/VBoxContainer/HBoxContainer4" instance=ExtResource("5_rx0h0")]
+layout_mode = 2
+texture = SubResource("ViewportTexture_28mu5")
+expand_mode = 3
+model_rotation = Vector3(30, 45, 30)
+model_scale = Vector3(0.9, 0.9, 0.9)
+model_offset = Vector3(0, 1, 0)
+model_scene = ExtResource("9_ko3ru")
+
+[node name="Label" type="Label" parent="Panel/Panel/MarginContainer/VBoxContainer/HBoxContainer4"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("7_ik1g3")
+theme_override_font_sizes/font_size = 60
+text = "1"
+script = ExtResource("8_uymy0")
+observable_resource = ExtResource("15_p8ybq")
+
+[node name="Label2" type="Label" parent="Panel/Panel/MarginContainer/VBoxContainer/HBoxContainer4"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("7_ik1g3")
+theme_override_font_sizes/font_size = 60
+text = "Ingots"
+
+[node name="HBoxContainer5" type="HBoxContainer" parent="Panel/Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="3DTextureRect" parent="Panel/Panel/MarginContainer/VBoxContainer/HBoxContainer5" instance=ExtResource("5_rx0h0")]
+layout_mode = 2
+texture = SubResource("ViewportTexture_28mu5")
+expand_mode = 3
+model_rotation = Vector3(0, 0, 0)
+model_scale = Vector3(0.9, 0.9, 0.9)
+model_offset = Vector3(0, 1, 0)
+model_scene = ExtResource("10_nbqyn")
+
+[node name="Label" type="Label" parent="Panel/Panel/MarginContainer/VBoxContainer/HBoxContainer5"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("7_ik1g3")
+theme_override_font_sizes/font_size = 60
+text = "1"
+script = ExtResource("8_uymy0")
+observable_resource = ExtResource("17_5uuhn")
+
+[node name="Label2" type="Label" parent="Panel/Panel/MarginContainer/VBoxContainer/HBoxContainer5"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("7_ik1g3")
+theme_override_font_sizes/font_size = 60
+text = "Magic Dust"
+
+[node name="Transition" type="Node" parent="Panel"]
+script = ExtResource("4_hn4kw")
+property_to_transition = "scale"
+transition_time = 0.18
+transition_property_start = SubResource("Resource_5gx3y")
+end_at_current_value = true
+transition_type = 9
+
+[node name="Transition2" type="Node" parent="Panel"]
+script = ExtResource("4_hn4kw")
+transition_on_ready = false
+transition_on_close = true
+property_to_transition = "scale"
+transition_time = 0.15
+start_at_current_value = true
+transition_property_end = SubResource("Resource_atqu6")

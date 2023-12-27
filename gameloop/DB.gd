@@ -82,7 +82,8 @@ var _scene_paths = {
 	leatherworker_cam= "res://buildings/building_cams/leatherworker_cam.tscn",
 	enchanter_cam= "res://buildings/building_cams/enchanter_cam.tscn",
 	tavern_cam= "res://buildings/building_cams/tavern_cam.tscn",
-	dialogue_panel_scene= "res://controls/dialogue_panel.tscn"
+	dialogue_panel_scene= "res://controls/dialogue_panel.tscn",
+	treasure_chest_panel_scene= "res://controls/popups/treasure_chest_panel.tscn"
 }
 
 var scenes = {}

@@ -1,0 +1,7 @@
+[gd_resource type="Resource" script_class="SignalBus" load_steps=2 format=3 uid="uid://by738w6rmb8q4"]
+
+[ext_resource type="Script" path="res://util/observable/SignalBus.gd" id="1_8b4c4"]
+
+[resource]
+resource_name = "on_treasure_chest_clicked"
+script = ExtResource("1_8b4c4")

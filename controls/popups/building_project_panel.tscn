@@ -1,7 +1,8 @@
-[gd_scene load_steps=10 format=3 uid="uid://camewxei0ee56"]
+[gd_scene load_steps=11 format=3 uid="uid://camewxei0ee56"]
 
 [ext_resource type="Script" path="res://controls/BuildingProjectPanel.gd" id="1_6j0l2"]
 [ext_resource type="Texture2D" uid="uid://cxquwwj5pp616" path="res://icons/camp_panel.png" id="2_lmxdj"]
+[ext_resource type="FontFile" uid="uid://q8or8vsxpn3x" path="res://theme/Anton-Regular.ttf" id="3_i6te4"]
 [ext_resource type="PackedScene" uid="uid://baemiseha5yiw" path="res://controls/3d_texture_rect.tscn" id="3_y2x65"]
 [ext_resource type="Script" path="res://controls/decorations/Trasition.gd" id="4_g46hf"]
 [ext_resource type="Script" path="res://controls/decorations/TransitionPropertyV2.gd" id="5_c8vj5"]
@@ -64,6 +65,7 @@ theme_override_constants/margin_bottom = 10
 [node name="Label" type="Label" parent="BuildingProjectPanel/MarginContainer3"]
 layout_mode = 2
 size_flags_vertical = 1
+theme_override_fonts/font = ExtResource("3_i6te4")
 theme_override_font_sizes/font_size = 26
 text = "BLACKSMITH"
 horizontal_alignment = 1
@@ -113,12 +115,14 @@ alignment = 1
 custom_minimum_size = Vector2(120, 0)
 layout_mode = 2
 mouse_default_cursor_shape = 2
+theme_override_fonts/font = ExtResource("3_i6te4")
 theme_override_font_sizes/font_size = 24
 text = "CLOSE"
 clip_text = true
 
 [node name="PickNewProjectButton" type="Button" parent="BuildingProjectPanel/MarginContainer2/HBoxContainer"]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("3_i6te4")
 theme_override_font_sizes/font_size = 24
 text = " CHANGE PROJECT "
 
