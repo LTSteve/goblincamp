@@ -5,8 +5,6 @@ class_name GoblinEar
 const SPAWN_TIME: float = 0.3
 const ARC_TIME: float = 0.5
 const ARC_HEIGHT: float = 2
-const HALF: float = 0.5
-const A: float = 2.828
 
 @onready var model: Node3D = $"goblin_ear"
 @onready var rotation_component: RotationComponent = $"RotationComponent"
@@ -18,33 +16,53 @@ var claimed: bool = false
 
 var _arc_progress: float = 0.0
 
-var _arc_start: Vector3
+var _spawn_arc: Arc
+var _collect_arc: Arc
 
 func _process(delta):
-	var arc_end = landing_point.global_position
+	rotation_component.turn_by_rot_dir(true, delta)
+	rotation_component.apply_rotation(model)
+	
+	if _collect_arc:
+		_process_collect_arc(delta)
+		return
+	_process_spawn_arc(delta)
+
+func _process_collect_arc(_delta):
 	if _arc_progress >= 1.0:
-		model.global_position = arc_end
-		rotation_component.turn_by_rot_dir(true, delta)
-		rotation_component.apply_rotation(model)
+		model.global_position = _collect_arc.get_arc_location(1.0)
+		
+		MoneyManager.I.add_money(1, MoneyManager.MoneyType.Ear)
+		ears_resource.value = ears_resource.value.filter(func(ear): return ear != self)
+		queue_free()
+		return
+	
+	model.global_position = _collect_arc.get_arc_location(_arc_progress)
+
+func _process_spawn_arc(_delta):
+	_spawn_arc.set_arc_end(landing_point.global_position)
+	
+	if _arc_progress >= 1.0:
+		model.global_position = _spawn_arc.get_arc_location(1.0)
 		monitoring = true
 		return
 	
-	var ground_position = lerp(_arc_start, arc_end, _arc_progress)
-	var x = (_arc_progress - HALF) * A
-	var height = -HALF * x * x + 1
-	
-	model.global_position = ground_position + Vector3.UP * height * ARC_HEIGHT
+	model.global_position = _spawn_arc.get_arc_location(_arc_progress)
 
 func _on_area_entered(area):
 	if !(area is Unit): return
 	
-	MoneyManager.I.add_money(1, MoneyManager.MoneyType.Ear)
-	ears_resource.value = ears_resource.value.filter(func(ear): return ear != self)
-	queue_free()
+	_arc_progress = 0.0
+	_collect_arc = Arc.new(model.global_position, TreasureChest.LOCATION, TreasureChest.ARC_HEIGHT)
+	var arc_tween = create_tween()
+	arc_tween.tween_property(self, "_arc_progress", 1.0, TreasureChest.ARC_TIME)
+	
+	set_process(true)
 
 func start_spawning(pos:Vector3):
-	_arc_start = pos
-	model.global_position = _arc_start
+	_spawn_arc = Arc.new(pos, landing_point.global_position, ARC_HEIGHT)
+	
+	model.global_position = pos
 	model.visible = true
 	model.scale = Vector3.ZERO
 	

@@ -41,6 +41,9 @@ func _ready():
 func _day_number_changed(day_number,_old):
 	_create_offers(5, day_number, players_resource.value.size(), buildings_resource.value.size(), MoneyManager.I.get_resource(MoneyManager.MoneyType.Gold), MoneyManager.I.get_resource(MoneyManager.MoneyType.Ear))
 
+static func get_player_resource_value(player_money: int, player_ears: int, current_ear_exchange_rate: float):
+	return player_money + player_ears * current_ear_exchange_rate
+
 func _create_offers(number_to_offer:int, day: int, player_count: int, building_count: int, player_money: int, player_ears: int):
 	var can_buy_buildings = day > 0
 	
@@ -48,9 +51,8 @@ func _create_offers(number_to_offer:int, day: int, player_count: int, building_c
 	var building_split_number: int = (number_to_offer / 2) if can_buy_buildings else number_to_offer
 	
 	var current_bulk_discount: float = bulk_discount if player_count < (day * 6) else (bulk_discount / 2)
-	var ear_exchange_rate = ear_exchange_rate_resource.value
-	var value = player_money + player_ears * ear_exchange_rate
-	value = (value * 0.05) if value > 1000 else 0
+	var value = BuyOffersManager.get_player_resource_value(player_money, player_ears, ear_exchange_rate_resource.value)
+	value = (value * 0.05) if value > 1000 else 0.0
 	
 	var target_spawn_power = GameManager.I.get_spawn_power(day+1)
 	

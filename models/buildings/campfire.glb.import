@@ -33,7 +33,7 @@ _subresources={
 "materials": {
 "Material": {
 "use_external/enabled": true,
-"use_external/path": "res://models/building_material.tres"
+"use_external/path": "res://models/small_building_material.tres"
 }
 }
 }

@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://bv2lfch1xaa4e"]
+[gd_scene load_steps=29 format=3 uid="uid://bv2lfch1xaa4e"]
 
 [ext_resource type="Script" path="res://controls/TreasureChestPanel.gd" id="1_tpo10"]
 [ext_resource type="Texture2D" uid="uid://cxquwwj5pp616" path="res://icons/camp_panel.png" id="2_dmg4c"]
@@ -31,6 +31,18 @@ texture = ExtResource("2_j7d75")
 region_rect = Rect2(15, 15, 500, 500)
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_28mu5"]
+viewport_path = NodePath("SubViewport")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_ieeoe"]
+viewport_path = NodePath("SubViewport")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_hbbx8"]
+viewport_path = NodePath("SubViewport")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_seh0y"]
+viewport_path = NodePath("SubViewport")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_arjle"]
 viewport_path = NodePath("SubViewport")
 
 [sub_resource type="Resource" id="Resource_5gx3y"]
@@ -146,7 +158,7 @@ alignment = 1
 
 [node name="3DTextureRect" parent="Panel/Panel/MarginContainer/VBoxContainer/HBoxContainer2" instance=ExtResource("5_rx0h0")]
 layout_mode = 2
-texture = SubResource("ViewportTexture_28mu5")
+texture = SubResource("ViewportTexture_ieeoe")
 expand_mode = 3
 model_rotation = Vector3(0, 240, 0)
 model_scale = Vector3(4, 4, 4)
@@ -173,7 +185,7 @@ alignment = 1
 
 [node name="3DTextureRect" parent="Panel/Panel/MarginContainer/VBoxContainer/HBoxContainer3" instance=ExtResource("5_rx0h0")]
 layout_mode = 2
-texture = SubResource("ViewportTexture_28mu5")
+texture = SubResource("ViewportTexture_hbbx8")
 expand_mode = 3
 model_rotation = Vector3(20, -45, -20)
 model_scale = Vector3(1, 1, 1)
@@ -200,7 +212,7 @@ alignment = 1
 
 [node name="3DTextureRect" parent="Panel/Panel/MarginContainer/VBoxContainer/HBoxContainer4" instance=ExtResource("5_rx0h0")]
 layout_mode = 2
-texture = SubResource("ViewportTexture_28mu5")
+texture = SubResource("ViewportTexture_seh0y")
 expand_mode = 3
 model_rotation = Vector3(30, 45, 30)
 model_scale = Vector3(0.9, 0.9, 0.9)
@@ -227,7 +239,7 @@ alignment = 1
 
 [node name="3DTextureRect" parent="Panel/Panel/MarginContainer/VBoxContainer/HBoxContainer5" instance=ExtResource("5_rx0h0")]
 layout_mode = 2
-texture = SubResource("ViewportTexture_28mu5")
+texture = SubResource("ViewportTexture_arjle")
 expand_mode = 3
 model_rotation = Vector3(0, 0, 0)
 model_scale = Vector3(0.9, 0.9, 0.9)

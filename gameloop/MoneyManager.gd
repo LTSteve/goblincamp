@@ -6,6 +6,8 @@ static var I:MoneyManager
 
 enum MoneyType {Gold=0,Ear,Hide,Iron,Dust}
 
+signal on_money_changed(type:MoneyType, count:int, previous_count: int)
+
 @export var debug: bool
 
 @export var resource_counts: Array[ObservableResource] = []
@@ -41,7 +43,9 @@ func add_money(amount: int, type: MoneyType = MoneyType.Gold):
 	_change_amount(amount, type)
 
 func _change_amount(amount: int, type: MoneyType):
+	var previous_amount = resource_counts[type].value
 	resource_counts[type].value += amount
+	on_money_changed.emit(type, resource_counts[type].value, previous_amount)
 
 func get_resource(type: MoneyType):
 	return resource_counts[type].value
