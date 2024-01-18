@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://bq8m8udsnmoau"]
+[gd_scene load_steps=10 format=3 uid="uid://bq8m8udsnmoau"]
 
 [ext_resource type="PackedScene" uid="uid://dnkem6mlvyast" path="res://models/buildings/leatherworker.glb" id="1_8lss5"]
 [ext_resource type="Script" path="res://buildings/Building.gd" id="1_d12im"]
@@ -6,6 +6,7 @@
 [ext_resource type="Resource" uid="uid://bweje1wvoj7fh" path="res://observables/buildings.tres" id="2_4g23p"]
 [ext_resource type="PackedScene" uid="uid://hyooxaspre1o" path="res://fx/fire.tscn" id="3_4jk3l"]
 [ext_resource type="Resource" uid="uid://bq4aic53umc5k" path="res://observables/is_day.tres" id="3_gx2xo"]
+[ext_resource type="Script" path="res://util/Turntable.gd" id="7_vo85y"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_4kbs0"]
 size = Vector3(5, 20, 5)
@@ -13,11 +14,11 @@ size = Vector3(5, 20, 5)
 [sub_resource type="SphereShape3D" id="SphereShape3D_ol15f"]
 radius = 8.0
 
-[node name="Leatherworker" type="Node3D" node_paths=PackedStringArray("project_sprite") groups=["Leatherworker"]]
+[node name="Leatherworker" type="Node3D" node_paths=PackedStringArray("project_model_container") groups=["Leatherworker"]]
 transform = Transform3D(0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, 0, 0, 0)
 script = ExtResource("1_d12im")
 building_type = 1
-project_sprite = NodePath("leatherworker/Sprite3D")
+project_model_container = NodePath("leatherworker/ModelContainer")
 buildings_resource = ExtResource("2_4g23p")
 is_day_resource = ExtResource("3_gx2xo")
 
@@ -28,12 +29,11 @@ once = true
 [node name="Fire" parent="leatherworker" instance=ExtResource("3_4jk3l")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.216403, 0, -1.3487)
 
-[node name="Sprite3D" type="Sprite3D" parent="leatherworker"]
+[node name="ModelContainer" type="Node3D" parent="leatherworker"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10, 0)
-pixel_size = 0.0004
-billboard = 1
-double_sided = false
-fixed_size = true
+
+[node name="Turntable" type="Node" parent="leatherworker/ModelContainer"]
+script = ExtResource("7_vo85y")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="."]
 collision_layer = 4
@@ -53,3 +53,5 @@ shape = SubResource("SphereShape3D_ol15f")
 
 [connection signal="tree_exiting" from="." to="." method="_on_tree_exiting"]
 [connection signal="input_event" from="ClickArea" to="." method="_on_click_area_input_event"]
+[connection signal="mouse_entered" from="ClickArea" to="." method="_on_click_area_mouse_enter"]
+[connection signal="mouse_exited" from="ClickArea" to="." method="_on_click_area_mouse_exit"]

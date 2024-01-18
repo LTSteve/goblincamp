@@ -8,15 +8,25 @@ class_name TreasureChest
 @export_category("Signal Buses")
 @export var on_treasure_chest_clicked_resource: SignalBus
 
+@onready var treasure_height_component: HeightComponent = $"Model"
+
 static var LOCATION: Vector3 = Vector3.ZERO
 const ARC_HEIGHT: float = 4.0
 const ARC_TIME: float = 1
 
-func _ready():
-	LOCATION = global_position
-	call_deferred("_attatch_to_on_money_changed")
+var _base_scale: Vector3
+var _scale_tweenifier: Tweenifier
 
-func _attatch_to_on_money_changed():
+func _ready():
+	_base_scale = scale
+	_scale_tweenifier = Tweenifier.new(self, "scale", 0.3, Tween.EaseType.EASE_OUT, Tween.TransitionType.TRANS_SPRING)
+	treasure_height_component.after_first_height_set.connect(_set_location)
+	call_deferred("_attach_to_on_money_changed")
+
+func _set_location():
+	LOCATION = treasure_height_component.global_position
+
+func _attach_to_on_money_changed():
 	MoneyManager.I.on_money_changed.connect(_on_money_changed)
 
 func _exit_tree():
@@ -24,10 +34,8 @@ func _exit_tree():
 
 func _on_money_changed(_type:MoneyManager.MoneyType, value:int, previous_value:int):
 	if value > previous_value:
-		var previous_scale = scale
-		scale = previous_scale * 1.15
-		var tweenifier = Tweenifier.new(self, "scale", 0.3, Tween.EaseType.EASE_OUT, Tween.TransitionType.TRANS_SPRING)
-		tweenifier.tween(previous_scale)
+		scale = _base_scale * 1.15
+		_scale_tweenifier.tween(_base_scale)
 	
 	var player_wealth = BuyOffersManager.get_player_resource_value(
 		MoneyManager.I.get_resource(MoneyManager.MoneyType.Gold)

@@ -38,7 +38,8 @@ static func get_modifier_by_resource(card_resource: CardResource, generate_defau
 	var dummy_card_modifier = { 
 		"current_rank": 0, 
 		"card_resource": card_resource, 
-		"params": card_resource.card_script_params.data if card_resource.card_script_params else {}
+		"params": card_resource.card_script_params.data if card_resource.card_script_params else {},
+		"associated_buildings": []
 	}
 	return dummy_card_modifier
 
@@ -47,7 +48,7 @@ static func apply_unit_modifiers(unit:Unit):
 		if !(modifier is CardModifier): continue
 		(modifier as CardModifier).apply_to_unit(unit)
 
-static func apply_modifier(resource:CardResource) -> CardModifier:
+static func apply_modifier(resource:CardResource, building: Building = null) -> CardModifier:
 	var current_modifier = get_modifier_by_resource(resource, false)
 	if !current_modifier:
 		var instance = Node.new()
@@ -55,6 +56,8 @@ static func apply_modifier(resource:CardResource) -> CardModifier:
 		current_modifier = (instance as CardModifier)
 		current_modifier.card_resource = resource
 		_I.add_child(current_modifier)
+	if building:
+		current_modifier.associated_buildings.append(building)
 	current_modifier.rank_up()
 	return current_modifier
 
@@ -65,7 +68,10 @@ static func un_apply_card(card: CardResource):
 			un_apply_modifier(child)
 			return
 
-static func un_apply_modifier(modifier:CardModifier):
+static func un_apply_modifier(modifier:CardModifier, building: Building = null):
+	if building:
+		#remove building
+		modifier.associated_buildings = modifier.associated_buildings.filter(func(b:Building): return b == building)
 	modifier.derank()
 
 static func get_next_enemy_card() -> CardResource:

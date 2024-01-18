@@ -7,6 +7,6 @@ func _on_day(is_day:bool, _was_day):
 	if !is_day: return
 	if current_rank <= 0: return
 	
-	if !MoneyManager.I.try_spend(current_rank * params.cost_per_rank, MoneyManager.MoneyType.Gold): return
-	
-	MoneyManager.I.add_money(current_rank, MoneyManager.MoneyType.Iron)
+	for building in associated_buildings:
+		if !MoneyManager.I.try_spend(params.cost_per_rank, MoneyManager.MoneyType.Gold): return
+		building.send_resource(1, MoneyManager.MoneyType.Iron)

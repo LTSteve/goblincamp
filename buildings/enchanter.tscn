@@ -1,10 +1,11 @@
-[gd_scene load_steps=13 format=3 uid="uid://c41e8jd2dpobk"]
+[gd_scene load_steps=14 format=3 uid="uid://c41e8jd2dpobk"]
 
 [ext_resource type="Script" path="res://buildings/Building.gd" id="1_55b0b"]
 [ext_resource type="PackedScene" uid="uid://cvh4b4xoetdyu" path="res://models/buildings/enchanter.glb" id="1_v05e1"]
 [ext_resource type="Script" path="res://units/components/HeightComponent.gd" id="2_6ludl"]
 [ext_resource type="Resource" uid="uid://bweje1wvoj7fh" path="res://observables/buildings.tres" id="2_okha0"]
 [ext_resource type="Resource" uid="uid://bq4aic53umc5k" path="res://observables/is_day.tres" id="3_r6g5u"]
+[ext_resource type="Script" path="res://util/Turntable.gd" id="6_qad5m"]
 
 [sub_resource type="Curve" id="Curve_81h6e"]
 _data = [Vector2(0, 0.0842105), 0.0, 0.0, 0, 0, Vector2(0.31003, 0.631579), 0.0, 0.0, 0, 0, Vector2(0.680851, 0.421053), 0.0, 0.0, 0, 0, Vector2(0.869301, 0.915789), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
@@ -15,18 +16,18 @@ curve = SubResource("Curve_81h6e")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_myj6j"]
 lifetime_randomness = 0.1
+particle_flag_rotate_y = true
 emission_shape = 1
 emission_sphere_radius = 2.0
-particle_flag_rotate_y = true
-gravity = Vector3(0, 0.1, 0)
+angle_min = -32.7
+angle_max = 57.3
 angular_velocity_min = -57.27
 angular_velocity_max = 74.89
+gravity = Vector3(0, 0.1, 0)
 linear_accel_min = -4.54
 linear_accel_max = 0.01
 tangential_accel_min = -1.13
 tangential_accel_max = 1.14
-angle_min = -32.7
-angle_max = 57.3
 scale_min = 0.4
 scale_curve = SubResource("CurveTexture_f18rs")
 color = Color(0.513726, 0.45098, 1, 0.423529)
@@ -48,11 +49,11 @@ size = Vector3(5.5, 20, 9.5)
 [sub_resource type="SphereShape3D" id="SphereShape3D_w5r46"]
 radius = 9.0
 
-[node name="Enchanter" type="Node3D" node_paths=PackedStringArray("project_sprite") groups=["Enchanter"]]
+[node name="Enchanter" type="Node3D" node_paths=PackedStringArray("project_model_container") groups=["Enchanter"]]
 transform = Transform3D(0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, 0, 0, 0)
 script = ExtResource("1_55b0b")
 building_type = 2
-project_sprite = NodePath("enchanter/Sprite3D")
+project_model_container = NodePath("enchanter/ModelContainer")
 buildings_resource = ExtResource("2_okha0")
 is_day_resource = ExtResource("3_r6g5u")
 
@@ -68,12 +69,11 @@ visibility_aabb = AABB(-0.829833, -2.28608, -0.989849, 1.65967, 4.57216, 1.9797)
 process_material = SubResource("ParticleProcessMaterial_myj6j")
 draw_pass_1 = SubResource("BoxMesh_53kn8")
 
-[node name="Sprite3D" type="Sprite3D" parent="enchanter"]
+[node name="ModelContainer" type="Node3D" parent="enchanter"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10, 0)
-pixel_size = 0.0004
-billboard = 1
-double_sided = false
-fixed_size = true
+
+[node name="Turntable" type="Node" parent="enchanter/ModelContainer"]
+script = ExtResource("6_qad5m")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="."]
 collision_layer = 4
@@ -93,3 +93,5 @@ shape = SubResource("SphereShape3D_w5r46")
 
 [connection signal="tree_exiting" from="." to="." method="_on_tree_exiting"]
 [connection signal="input_event" from="ClickArea" to="." method="_on_click_area_input_event"]
+[connection signal="mouse_entered" from="ClickArea" to="." method="_on_click_area_mouse_enter"]
+[connection signal="mouse_exited" from="ClickArea" to="." method="_on_click_area_mouse_exit"]

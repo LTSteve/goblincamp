@@ -1,10 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://byt5xpjdxieuo"]
+[gd_scene load_steps=9 format=3 uid="uid://byt5xpjdxieuo"]
 
 [ext_resource type="Script" path="res://buildings/Building.gd" id="1_11aeh"]
 [ext_resource type="Resource" uid="uid://bweje1wvoj7fh" path="res://observables/buildings.tres" id="2_8ax0i"]
 [ext_resource type="PackedScene" uid="uid://b3gtkfcan4upj" path="res://models/buildings/tavern.glb" id="2_108ml"]
 [ext_resource type="Resource" uid="uid://bq4aic53umc5k" path="res://observables/is_day.tres" id="3_h0q4c"]
 [ext_resource type="Script" path="res://units/components/HeightComponent.gd" id="3_qjovx"]
+[ext_resource type="Script" path="res://util/Turntable.gd" id="6_yg431"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_4kbs0"]
 size = Vector3(13.5, 20, 13.5)
@@ -12,11 +13,11 @@ size = Vector3(13.5, 20, 13.5)
 [sub_resource type="SphereShape3D" id="SphereShape3D_17v1k"]
 radius = 9.0
 
-[node name="Tavern" type="Node3D" node_paths=PackedStringArray("project_sprite") groups=["Blacksmith"]]
+[node name="Tavern" type="Node3D" node_paths=PackedStringArray("project_model_container") groups=["Blacksmith"]]
 transform = Transform3D(0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, 0, 0, 0)
 script = ExtResource("1_11aeh")
 building_type = 3
-project_sprite = NodePath("tavern/Sprite3D")
+project_model_container = NodePath("tavern/ModelContainer")
 buildings_resource = ExtResource("2_8ax0i")
 is_day_resource = ExtResource("3_h0q4c")
 
@@ -24,12 +25,11 @@ is_day_resource = ExtResource("3_h0q4c")
 script = ExtResource("3_qjovx")
 once = true
 
-[node name="Sprite3D" type="Sprite3D" parent="tavern"]
+[node name="ModelContainer" type="Node3D" parent="tavern"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10, 0)
-pixel_size = 0.0004
-billboard = 1
-double_sided = false
-fixed_size = true
+
+[node name="Turntable" type="Node" parent="tavern/ModelContainer"]
+script = ExtResource("6_yg431")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="."]
 collision_layer = 4
@@ -48,3 +48,5 @@ shape = SubResource("SphereShape3D_17v1k")
 
 [connection signal="tree_exiting" from="." to="." method="_on_tree_exiting"]
 [connection signal="input_event" from="ClickArea" to="." method="_on_click_area_input_event"]
+[connection signal="mouse_entered" from="ClickArea" to="." method="_on_click_area_mouse_enter"]
+[connection signal="mouse_exited" from="ClickArea" to="." method="_on_click_area_mouse_exit"]

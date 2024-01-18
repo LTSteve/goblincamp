@@ -3,6 +3,7 @@ extends Node
 class_name CardModifier
 
 @export var card_resource: CardResource
+@export var associated_buildings: Array[Building] = []
 @export var current_rank: int = 0
 
 var params
