@@ -103,8 +103,8 @@ func _ready():
 func _on_request_attack(_target:Unit, _me:Unit):
 	pass #override me
 
-func _on_request_attack_rewind():
-	animation_tree.activate_trigger("rewind", animation_delay)
+func _on_request_attack_rewind(rewind: bool):
+	animation_tree.set_attack_rewind(rewind)
 
 func _set_pushback_scale(value: float):
 	_current_pushback_scale = value
@@ -114,14 +114,12 @@ func _set_damage_scale(value: float):
 
 func _on_enter_combat():
 	Global.execute_later(func(): 
-		animation_tree.set("parameters/conditions/in_combat", true)
-		animation_tree.set("parameters/conditions/not_in_combat", false)
+		animation_tree.set_in_combat(true)
 		, self, animation_delay)
 
 func _on_exit_combat():
 	Global.execute_later(func(): 
-		animation_tree.set("parameters/conditions/in_combat", false)
-		animation_tree.set("parameters/conditions/not_in_combat", true)
+		animation_tree.set_in_combat(false)
 		, self, animation_delay)
 
 func _on_begin_channeling():
@@ -132,10 +130,15 @@ func _on_end_channeling():
 	animation_tree.activate_trigger("end_channel", animation_delay)
 
 func _try_to_attack(target:Unit, me:Unit) -> bool:
+	if (animation_tree.get("parameters/playback").get_current_node() != "idle_combat") :
+		return false
+	
 	#in range and ready to fire?
-	if(disabled
-	|| (target.global_position - me.global_position).length() > weapon_range
-	|| (animation_tree.get("parameters/playback").get_current_node() != "idle_combat")) : return false
+	if disabled || ((target.global_position - me.global_position).length() > weapon_range) : 
+		_on_request_attack_rewind(true)
+		return false
+	
+	_on_request_attack_rewind(false)
 	
 	#trigger animation
 	animation_tree.activate_trigger("attack", animation_delay)

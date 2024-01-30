@@ -30,6 +30,13 @@ transform = Transform3D(-0.0105946, 0.787503, 0.285754, -0.72305, 0.135735, -0.4
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.01644e-08, 0, -1.3764)
 
 [node name="AnimationTreeExpressionExtension" parent="." index="1" groups=["ImpClaw", "Natural"]]
+libraries = {
+"": ExtResource("4_fr8jc")
+}
+parameters/ScaledAttack/StateMachine/conditions/attack_loops = false
+parameters/ScaledAttack/StateMachine/conditions/use_attack_2 = false
+parameters/ScaledAttack/TimeScale/scale = 1.0
+parameters/ScaledAttack/TimeScaleThrottled/scale = 1.0
 
 [node name="AnimationPlayer" parent="." index="2" groups=["ImpClaw"]]
 libraries = {

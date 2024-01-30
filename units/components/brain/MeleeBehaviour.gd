@@ -41,6 +41,7 @@ func assign_target(delta, brain:BrainComponent, ctx):
 	var had_no_target = !is_instance_valid(brain.target)
 	if had_no_target:
 		brain.target = null
+	
 	var old_target = brain.target if !had_no_target else null
 	
 	var all_targets = players_resource.value if brain.unit.is_enemy else enemies_resource.value
@@ -68,7 +69,6 @@ func assign_target(delta, brain:BrainComponent, ctx):
 			ctx.targeting_cd = targeting_cooldown
 	
 	if !is_instance_valid(brain.target):
-		#brain.request_attack_rewind.emit()
 		brain.exit_combat.emit()
 		return
 	
@@ -78,10 +78,12 @@ func assign_target(delta, brain:BrainComponent, ctx):
 		brain.enter_combat.emit()
 
 func process(_delta, brain:BrainComponent, ctx):
-	if ctx.thinking > 0: return true
-	
 	if !is_instance_valid(brain.target) || !ctx.weapon:
+		brain.request_attack_rewind.emit(true)
+		ctx.thinking = 0
 		return false
+	
+	if ctx.thinking > 0: return true
 	
 	brain.request_attack.emit(brain.target,brain.unit)
 	

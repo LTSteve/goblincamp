@@ -32,6 +32,13 @@ transform = Transform3D(0.965927, -1.23345e-07, 0.258816, -0.258816, -9.36912e-0
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.58258, 0, -1.566e-07)
 
 [node name="AnimationTreeExpressionExtension" parent="." index="1" groups=["Hammer", "Martial"]]
+libraries = {
+"": ExtResource("3_m3pu0")
+}
+parameters/ScaledAttack/StateMachine/conditions/attack_loops = false
+parameters/ScaledAttack/StateMachine/conditions/use_attack_2 = false
+parameters/ScaledAttack/TimeScale/scale = 1.0
+parameters/ScaledAttack/TimeScaleThrottled/scale = 1.0
 
 [node name="AnimationPlayer" parent="." index="2"]
 libraries = {

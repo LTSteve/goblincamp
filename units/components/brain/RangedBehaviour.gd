@@ -24,11 +24,11 @@ func assign_target(_delta, brain:BrainComponent, _weapon):
 		brain.enter_combat.emit()
 	
 	if !brain.target:
-		#brain.request_attack_rewind.emit()
 		brain.exit_combat.emit()
 
 func process(_delta, brain:BrainComponent, weapon):
 	if !brain.target || !weapon:
+		brain.request_attack_rewind.emit(true)
 		return false
 	
 	var target_separation = brain.target.global_position - brain.unit.global_position

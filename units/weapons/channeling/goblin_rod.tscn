@@ -17,9 +17,16 @@ hit_stun = 0.2
 scales_with_day = true
 
 [node name="goblin_priest_weapon" parent="ModelHolder" index="0" instance=ExtResource("2_ox5wd")]
-transform = Transform3D(-0.121727, 0.21052, -0.96998, 0.00552865, 0.977374, 0.211432, 0.992547, 0.0203742, -0.120137, 0.393938, 0.679101, -0.684486)
+transform = Transform3D(-0.124192, 0.390827, -0.912046, 1.72169e-08, 0.91916, 0.393877, 0.992257, 0.0489163, -0.114153, 0.393938, 0.679101, -0.684486)
 
 [node name="AnimationTreeExpressionExtension" parent="." index="1" groups=["GoblinRod", "Magic"]]
+libraries = {
+"": ExtResource("2_ubbef")
+}
+parameters/ScaledAttack/StateMachine/conditions/attack_loops = false
+parameters/ScaledAttack/StateMachine/conditions/use_attack_2 = false
+parameters/ScaledAttack/TimeScale/scale = 1.0
+parameters/ScaledAttack/TimeScaleThrottled/scale = 1.0
 
 [node name="AnimationPlayer" parent="." index="2"]
 libraries = {

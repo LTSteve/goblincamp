@@ -10,6 +10,11 @@ channeled_effect_scene = null
 [node name="wizard_weapon" parent="ModelHolder" index="0" instance=ExtResource("2_dipm4")]
 transform = Transform3D(0.808749, -0.29503, -0.508804, 0.435954, 0.8814, 0.181872, 0.394803, -0.368904, 0.841452, 0.386455, -0.491841, -0.755578)
 
+[node name="AnimationTreeExpressionExtension" parent="." index="1"]
+libraries = {
+"": ExtResource("3_kru36")
+}
+
 [node name="AnimationPlayer" parent="." index="2"]
 libraries = {
 "": ExtResource("3_kru36")
