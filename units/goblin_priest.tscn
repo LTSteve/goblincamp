@@ -1,12 +1,10 @@
-[gd_scene load_steps=10 format=3 uid="uid://brja51ts4kkm1"]
+[gd_scene load_steps=8 format=3 uid="uid://brja51ts4kkm1"]
 
 [ext_resource type="PackedScene" uid="uid://brhc1aba5usew" path="res://units/unit.tscn" id="1_o6a4c"]
 [ext_resource type="Resource" uid="uid://b1pkis5babvwj" path="res://observables/enemies.tres" id="2_eftny"]
 [ext_resource type="PackedScene" uid="uid://cfg0rjlguiigk" path="res://units/weapons/channeling/goblin_rod.tscn" id="2_k4knw"]
 [ext_resource type="PackedScene" uid="uid://cx6nlib0memhr" path="res://models/goblin_priest/goblin_priest.glb" id="2_q1y50"]
 [ext_resource type="Resource" uid="uid://bojkc8g5upa4c" path="res://units/components/brain/priest_repulse_behaviour.tres" id="4_uvtix"]
-[ext_resource type="AnimationLibrary" uid="uid://d1ig1ey1id2pn" path="res://units/eyes/eye_animation_lib.tres" id="5_karxo"]
-[ext_resource type="AnimationLibrary" uid="uid://vp0rby4wlj5r" path="res://units/eyes/blink_animation_lib.tres" id="6_1j0wg"]
 [ext_resource type="Resource" uid="uid://gn36ryd3nnjj" path="res://units/components/brain/dethball_behaviour.tres" id="6_1yhhw"]
 [ext_resource type="Resource" uid="uid://6a2euiflosoa" path="res://units/components/brain/wander_behaviour.tres" id="7_e6qiv"]
 
@@ -15,9 +13,6 @@ collision_layer = 2
 ranged_targeting_radius = 1.4
 is_enemy = true
 unit_list_resource = ExtResource("2_eftny")
-
-[node name="Model" parent="." index="1"]
-transform = Transform3D(-2.30258e-08, 0, 0.526768, 0, 0.526768, 0, -0.526768, 0, -2.30258e-08, 0, 0, 0)
 
 [node name="DamageNumberComponent" parent="Model" index="0"]
 is_ally = false
@@ -31,17 +26,10 @@ worth_varience = 0
 [node name="goblin_priest" parent="Model/ModelHolder" index="1" instance=ExtResource("2_q1y50")]
 
 [node name="EyeComponent" parent="Model/ModelHolder" index="2"]
-transform = Transform3D(1, 0, 1.06581e-14, 0, 1, 0, -1.06581e-14, 0, 1, 0.54892, 2.35469, 2.39939e-08)
+transform = Transform3D(0.9, 0, 1.27898e-14, 0, 0.9, 0, -1.27898e-14, 0, 0.9, 0.608508, 2.42967, 2.65986e-08)
 
-[node name="AnimationTree_Look" parent="Model/ModelHolder/EyeComponent" index="1"]
-libraries = {
-"": ExtResource("5_karxo")
-}
-
-[node name="AnimationTree_Blink" parent="Model/ModelHolder/EyeComponent" index="3"]
-libraries = {
-"": ExtResource("6_1j0wg")
-}
+[node name="Eyes" parent="Model/ModelHolder/EyeComponent" index="0"]
+transform = Transform3D(1, 0, 1.77636e-14, 0, 1, 0, -1.77636e-14, 0, 1, 0, 0, 0)
 
 [node name="HealthComponent" parent="." index="3"]
 max_health = 800.0
@@ -67,3 +55,4 @@ transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 1, 0)
 [editable path="Model/ModelHolder/RankComponent/rank_star3"]
 [editable path="Model/ModelHolder/RankComponent/rank_star4"]
 [editable path="Model/ModelHolder/goblin_priest"]
+[editable path="Model/ModelHolder/EyeComponent/Eyes/eyes"]

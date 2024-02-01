@@ -9,9 +9,9 @@
 [ext_resource type="PackedScene" uid="uid://bac8aofl217ri" path="res://units/components/damagelabel/damage_number_component.tscn" id="7_rfitb"]
 [ext_resource type="Script" path="res://units/eyes/EyeComponent.gd" id="8_0r4f4"]
 [ext_resource type="Script" path="res://units/components/HealthComponent.gd" id="8_vakd5"]
-[ext_resource type="BoxMesh" uid="uid://bs1j88cpdamcq" path="res://units/eyes/eye_mesh.tres" id="8_vf1p3"]
 [ext_resource type="Script" path="res://units/components/VelocityComponent.gd" id="9_a1g10"]
 [ext_resource type="AnimationNodeStateMachine" uid="uid://beu30pn2tj6dj" path="res://units/eyes/eye_animation_state_machine.tres" id="9_stike"]
+[ext_resource type="PackedScene" uid="uid://bqnp3j3j3ee3j" path="res://models/eyes/eyes.glb" id="10_2hyj0"]
 [ext_resource type="AnimationLibrary" uid="uid://d1ig1ey1id2pn" path="res://units/eyes/eye_animation_lib.tres" id="10_aqhqn"]
 [ext_resource type="Script" path="res://units/components/RotationComponent.gd" id="11_t1h5w"]
 [ext_resource type="AnimationLibrary" uid="uid://vp0rby4wlj5r" path="res://units/eyes/blink_animation_lib.tres" id="11_uo48n"]
@@ -272,71 +272,17 @@ script = ExtResource("8_0r4f4")
 
 [node name="Eyes" type="Node3D" parent="Model/ModelHolder/EyeComponent"]
 
-[node name="RightEye" type="Node3D" parent="Model/ModelHolder/EyeComponent/Eyes"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.25)
+[node name="eyes" parent="Model/ModelHolder/EyeComponent/Eyes" instance=ExtResource("10_2hyj0")]
 
-[node name="UpperBrow" type="MeshInstance3D" parent="Model/ModelHolder/EyeComponent/Eyes/RightEye"]
-transform = Transform3D(0, 0, 0, 0, 0, 0, 0, 0, 0, 0.0234672, 0.265347, -2.98023e-08)
-mesh = ExtResource("8_vf1p3")
-skeleton = NodePath("../../..")
-
-[node name="SleepEye" type="MeshInstance3D" parent="Model/ModelHolder/EyeComponent/Eyes/RightEye"]
-transform = Transform3D(0.8, -3.55271e-15, 1.55294e-22, 0, -3.49691e-08, -0.8, 3.55271e-15, 0.8, -3.49691e-08, 0, 0, 0)
-visible = false
-mesh = ExtResource("8_vf1p3")
-skeleton = NodePath("../../..")
-
-[node name="Eye" type="MeshInstance3D" parent="Model/ModelHolder/EyeComponent/Eyes/RightEye"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2.98023e-08)
-mesh = ExtResource("8_vf1p3")
-skeleton = NodePath("../../..")
-
-[node name="PainEye" type="Node3D" parent="Model/ModelHolder/EyeComponent/Eyes/RightEye"]
-visible = false
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Model/ModelHolder/EyeComponent/Eyes/RightEye/PainEye"]
-transform = Transform3D(0.6, 3.51373e-09, -1.31134e-08, -1.31134e-08, 0.3, -0.519615, 3.51373e-09, 0.519615, 0.3, 0, 0.108735, 0)
-mesh = ExtResource("8_vf1p3")
-
-[node name="MeshInstance3D2" type="MeshInstance3D" parent="Model/ModelHolder/EyeComponent/Eyes/RightEye/PainEye"]
-transform = Transform3D(0.6, 1.1973e-08, 4.50122e-08, 4.50122e-08, -0.298102, -0.520706, 1.1973e-08, 0.520706, -0.298102, 0, -0.111035, 0)
-mesh = ExtResource("8_vf1p3")
-
-[node name="LeftEye" type="Node3D" parent="Model/ModelHolder/EyeComponent/Eyes"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.25)
-
-[node name="UpperBrow" type="MeshInstance3D" parent="Model/ModelHolder/EyeComponent/Eyes/LeftEye"]
-transform = Transform3D(0, 0, 0, 0, 0, 0, 0, 0, 0, 0.0234672, 0.265347, -2.98023e-08)
-mesh = ExtResource("8_vf1p3")
-skeleton = NodePath("../../..")
-
-[node name="SleepEye" type="MeshInstance3D" parent="Model/ModelHolder/EyeComponent/Eyes/LeftEye"]
-transform = Transform3D(0.8, -3.55271e-15, 1.55294e-22, 0, -3.49691e-08, -0.8, 3.55271e-15, 0.8, -3.49691e-08, 0, 0, 0)
-visible = false
-mesh = ExtResource("8_vf1p3")
-skeleton = NodePath("../../..")
-
-[node name="Eye" type="MeshInstance3D" parent="Model/ModelHolder/EyeComponent/Eyes/LeftEye"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2.98023e-08)
-mesh = ExtResource("8_vf1p3")
-skeleton = NodePath("../../..")
-
-[node name="PainEye" type="Node3D" parent="Model/ModelHolder/EyeComponent/Eyes/LeftEye"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, -1, 0, 0, 0)
-visible = false
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Model/ModelHolder/EyeComponent/Eyes/LeftEye/PainEye"]
-transform = Transform3D(0.6, 3.51373e-09, -1.31134e-08, -1.31134e-08, 0.3, -0.519615, 3.51373e-09, 0.519615, 0.3, 0, 0.108735, 0)
-mesh = ExtResource("8_vf1p3")
-
-[node name="MeshInstance3D2" type="MeshInstance3D" parent="Model/ModelHolder/EyeComponent/Eyes/LeftEye/PainEye"]
-transform = Transform3D(0.6, 1.1973e-08, 4.50122e-08, 4.50122e-08, -0.298102, -0.520706, 1.1973e-08, 0.520706, -0.298102, 0, -0.111035, 0)
-mesh = ExtResource("8_vf1p3")
+[node name="Plane" parent="Model/ModelHolder/EyeComponent/Eyes/eyes" index="0"]
+blend_shapes/Closed = 1.0
 
 [node name="AnimationTree_Look" type="AnimationTree" parent="Model/ModelHolder/EyeComponent"]
+libraries = {
+"": ExtResource("10_aqhqn")
+}
 tree_root = ExtResource("9_stike")
 anim_player = NodePath("../AnimationPlayer_Look")
-active = true
 
 [node name="AnimationPlayer_Look" type="AnimationPlayer" parent="Model/ModelHolder/EyeComponent"]
 libraries = {
@@ -344,11 +290,12 @@ libraries = {
 }
 
 [node name="AnimationTree_Blink" type="AnimationTree" parent="Model/ModelHolder/EyeComponent"]
+libraries = {
+"": ExtResource("11_uo48n")
+}
 tree_root = SubResource("AnimationNodeStateMachine_3fww7")
 anim_player = NodePath("../AnimationPlayer_Blink")
-active = true
 script = ExtResource("11_w2jh1")
-can_rewind = true
 
 [node name="AnimationPlayer_Blink" type="AnimationPlayer" parent="Model/ModelHolder/EyeComponent"]
 libraries = {
@@ -446,3 +393,4 @@ script = ExtResource("19_jo36r")
 [editable path="Model/ModelHolder/RankComponent/rank_star2"]
 [editable path="Model/ModelHolder/RankComponent/rank_star3"]
 [editable path="Model/ModelHolder/RankComponent/rank_star4"]
+[editable path="Model/ModelHolder/EyeComponent/Eyes/eyes"]
