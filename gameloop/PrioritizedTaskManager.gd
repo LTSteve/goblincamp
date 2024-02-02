@@ -4,6 +4,8 @@ class_name PrioritizedTaskManager
 
 static var _I: PrioritizedTaskManager
 
+static var had_early_exit: bool = false
+
 static var _high_priority: LinkedList = LinkedList.new()
 static var _medium_priority: LinkedList = LinkedList.new()
 static var _low_priority: LinkedList = LinkedList.new()
@@ -59,8 +61,11 @@ func _process(_delta):
 	#	print("processed prioritized tasks for: ", total_time, "ms")
 
 func _run_through_tasks_until(task_list:LinkedList, time):
+	had_early_exit = false
 	while true:
-		if Time.get_ticks_msec() >= time: return
+		if Time.get_ticks_msec() >= time:
+			had_early_exit = true
+			return
 		for i in tasks_per_check:
 			var task = task_list.pop()
 			if task == null: return

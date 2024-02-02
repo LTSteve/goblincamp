@@ -18,6 +18,7 @@ var _resource_folders = {
 }
 
 var _scene_paths = {
+	corpse_scene = "res://fx/corpse.tscn",
 	aoe_scene = "res://fx/generic_aoe.tscn",
 	explosion_scene = "res://fx/explosion.tscn",
 	deth_ball_scene = "res://fx/deth_ball.tscn",

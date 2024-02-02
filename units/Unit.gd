@@ -14,6 +14,8 @@ var cardinal_claims: Array[bool] = [false, false, false, false, false, false, fa
 @onready var collision_shape: CollisionShape3D = $CollisionShape3D
 @onready var pathfinder_component: PathfinderComponent = $PathfinderComponent
 
+@onready var model: Node3D = $Model
+
 @export var ranged_targeting_radius: float = 1
 @export var stun_scale: float = 1
 
@@ -22,8 +24,11 @@ var cardinal_claims: Array[bool] = [false, false, false, false, false, false, fa
 
 @export var is_npc: bool = false
 
+@export var corpse_model: PackedScene
+
 @export var unit_list_resource: ObservableResource
 @export var is_day_resource: ObservableResource
+
 
 signal on_recieved_hit(weapon_hit:Weapon.Hit)
 signal on_state_changed(state_states: Array[State])
@@ -59,12 +64,26 @@ func set_movement_target(movement_target: Vector3, speed_scale: float = 1.0):
 			, self)
 
 func _on_died():
+	# remove from active units
 	unit_list_resource.value = unit_list_resource.value.filter(func(unit): return unit != self)
 	
+	# give kill value to killer
 	if is_instance_valid(_last_hit_by) && is_instance_valid(_last_hit_by.unit):
 		_last_hit_by.unit.on_get_kill.emit(kill_value)
+	
+	# resolve effects
 	for effect in _active_effects:
 		effect.on_remove()
+	
+	# spawn corpse
+	var corpse_scene: PackedScene = DB.I.scenes.corpse_scene
+	var corpse := (corpse_scene.instantiate() as CorpseEffect)
+	corpse.model_prefab = corpse_model
+	corpse.death_rotation = model.global_rotation
+	corpse.death_location = model.global_position
+	corpse.death_scale = model.scale
+	$"/root/World".add_child(corpse)
+	
 	queue_free()
 
 func _process(delta):

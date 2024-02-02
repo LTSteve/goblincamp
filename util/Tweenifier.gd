@@ -19,9 +19,10 @@ func _init(me:Node, property: String, slide_time: float
 	_ease_type = ease_type
 	_trans_type = trans_type
 
-func tween(value):
+func tween(value) -> Tweenifier:
 	_tween = _reset_tween()
 	_tween.tween_property(_me, _property, value, _slide_time)
+	return self
 
 func _reset_tween() -> Tween:
 	if _tween:

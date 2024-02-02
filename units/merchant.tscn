@@ -8,9 +8,27 @@
 [ext_resource type="Resource" uid="uid://c5lj8afn8ogvv" path="res://units/components/brain/mercant_behaviour.tres" id="4_762ss"]
 [ext_resource type="Resource" uid="uid://6a2euiflosoa" path="res://units/components/brain/wander_behaviour.tres" id="4_cc0aj"]
 [ext_resource type="Script" path="res://units/components/HeightComponent.gd" id="6_8g4b0"]
-[ext_resource type="AnimationLibrary" uid="uid://d1ig1ey1id2pn" path="res://units/eyes/eye_animation_lib.tres" id="6_c6xwp"]
+[ext_resource type="Material" uid="uid://vjdnyqs235ys" path="res://models/base_material.tres" id="6_cumqb"]
 [ext_resource type="Resource" uid="uid://du4glkse3tqoh" path="res://units/components/brain/repulse_behaviour.tres" id="6_ngoe1"]
-[ext_resource type="AnimationLibrary" uid="uid://vp0rby4wlj5r" path="res://units/eyes/blink_animation_lib.tres" id="7_cdgqn"]
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_7aele"]
+resource_name = "eyes_Plane"
+_blend_shape_names = PackedStringArray("Closed", "Oof")
+_surfaces = [{
+"aabb": AABB(-0.276794, -2.98399e-08, -0.376199, 0.553599, 1.00702e-05, 0.752398),
+"attribute_data": PackedByteArray(7, 0, 152, 61, 8, 0, 144, 61, 7, 0, 152, 61, 8, 0, 144, 61, 7, 0, 152, 61, 8, 0, 144, 61, 7, 0, 152, 61, 8, 0, 144, 61, 7, 0, 152, 61, 8, 0, 144, 61, 7, 0, 152, 61, 8, 0, 144, 61, 7, 0, 152, 61, 8, 0, 144, 61, 7, 0, 152, 61, 8, 0, 144, 61),
+"blend_shapes": PackedByteArray(168, 181, 130, 61, 202, 179, 245, 50, 32, 88, 36, 189, 168, 181, 130, 61, 202, 179, 245, 50, 35, 157, 192, 190, 168, 181, 130, 189, 200, 179, 245, 178, 35, 157, 192, 190, 168, 181, 130, 189, 200, 179, 245, 178, 32, 88, 36, 189, 164, 181, 130, 61, 242, 108, 189, 51, 35, 157, 192, 62, 164, 181, 130, 61, 242, 108, 189, 51, 36, 88, 36, 61, 168, 181, 130, 189, 26, 38, 5, 51, 36, 88, 36, 61, 168, 181, 130, 189, 26, 38, 5, 51, 35, 157, 192, 62, 255, 127, 254, 255, 255, 255, 255, 191, 255, 127, 254, 255, 255, 255, 255, 191, 255, 127, 254, 255, 255, 255, 255, 191, 255, 127, 254, 255, 255, 255, 255, 191, 255, 127, 254, 255, 255, 255, 255, 191, 255, 127, 254, 255, 255, 255, 255, 191, 255, 127, 254, 255, 255, 255, 255, 191, 255, 127, 254, 255, 255, 255, 255, 191, 176, 23, 188, 189, 200, 83, 45, 51, 196, 91, 107, 189, 192, 229, 46, 61, 94, 179, 1, 51, 143, 187, 148, 190, 136, 87, 66, 189, 78, 41, 0, 179, 86, 97, 175, 190, 40, 91, 58, 190, 202, 17, 169, 178, 251, 68, 224, 189, 184, 229, 46, 61, 175, 217, 192, 51, 143, 187, 148, 62, 176, 23, 188, 189, 227, 169, 214, 51, 200, 91, 107, 61, 40, 91, 58, 190, 27, 119, 43, 51, 254, 68, 224, 61, 136, 87, 66, 189, 100, 173, 255, 50, 86, 97, 175, 62, 255, 127, 254, 255, 255, 255, 255, 191, 255, 127, 254, 255, 255, 255, 255, 191, 255, 127, 254, 255, 255, 255, 255, 191, 255, 127, 254, 255, 255, 255, 255, 191, 255, 127, 254, 255, 255, 255, 255, 63, 255, 127, 254, 255, 255, 255, 255, 63, 255, 127, 254, 255, 255, 255, 255, 63, 255, 127, 254, 255, 255, 255, 255, 63),
+"format": 34359742487,
+"index_count": 12,
+"index_data": PackedByteArray(0, 0, 2, 0, 1, 0, 0, 0, 3, 0, 2, 0, 4, 0, 6, 0, 5, 0, 4, 0, 7, 0, 6, 0),
+"material": ExtResource("6_cumqb"),
+"name": "Material",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 8,
+"vertex_data": PackedByteArray(1, 184, 141, 62, 215, 43, 87, 50, 43, 234, 7, 190, 1, 184, 141, 62, 215, 43, 87, 50, 184, 215, 136, 190, 1, 184, 141, 190, 215, 43, 87, 178, 184, 215, 136, 190, 1, 184, 141, 190, 215, 43, 87, 178, 43, 234, 7, 190, 0, 184, 141, 62, 123, 229, 154, 51, 184, 215, 136, 62, 0, 184, 141, 62, 123, 229, 154, 51, 42, 234, 7, 62, 2, 184, 141, 190, 10, 53, 74, 51, 42, 234, 7, 62, 2, 184, 141, 190, 10, 53, 74, 51, 184, 215, 136, 62, 255, 127, 255, 255, 255, 255, 255, 191, 255, 127, 255, 255, 255, 255, 255, 191, 255, 127, 255, 255, 255, 255, 255, 191, 255, 127, 255, 255, 255, 255, 255, 191, 255, 127, 255, 255, 255, 255, 255, 191, 255, 127, 255, 255, 255, 255, 255, 191, 255, 127, 255, 255, 255, 255, 255, 191, 255, 127, 255, 255, 255, 255, 255, 191)
+}]
+blend_shape_mode = 0
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_8g8w7"]
 radius = 2.8
@@ -18,6 +36,7 @@ radius = 2.8
 [node name="Merchant" groups=["Merchant"] instance=ExtResource("1_a2d7n")]
 collision_layer = 3
 is_npc = true
+corpse_model = ExtResource("2_ngx6n")
 unit_list_resource = ExtResource("2_3wwgv")
 
 [node name="Model" parent="." index="1"]
@@ -38,15 +57,11 @@ transform = Transform3D(1, 0, 1.77636e-14, 0, 1, 0, -1.77636e-14, 0, 1, 0, 3.636
 [node name="EyeComponent" parent="Model/ModelHolder" index="2"]
 transform = Transform3D(0.6, 0, 2.13163e-14, 0, 0.6, 0, -2.13163e-14, 0, 0.6, 0.509101, 1.99769, 2.22533e-08)
 
-[node name="AnimationTree_Look" parent="Model/ModelHolder/EyeComponent" index="1"]
-libraries = {
-"": ExtResource("6_c6xwp")
-}
-
-[node name="AnimationTree_Blink" parent="Model/ModelHolder/EyeComponent" index="3"]
-libraries = {
-"": ExtResource("7_cdgqn")
-}
+[node name="Plane" parent="Model/ModelHolder/EyeComponent/Eyes/eyes" index="0"]
+transform = Transform3D(5.96046e-08, 1, 0, -1, 5.96046e-08, 0, 0, 0, 1, 0, 0, 0)
+mesh = SubResource("ArrayMesh_7aele")
+skeleton = NodePath("")
+blend_shapes/Oof = 0.0
 
 [node name="MaterialOverrideComponent" parent="." index="10" node_paths=PackedStringArray("mesh_instance")]
 mesh_instance = NodePath("../Model/ModelHolder/merchant/merchant")

@@ -8,10 +8,29 @@
 [ext_resource type="Resource" uid="uid://du4glkse3tqoh" path="res://units/components/brain/repulse_behaviour.tres" id="4_e1jap"]
 [ext_resource type="Resource" uid="uid://cpbw516utgbfj" path="res://units/components/brain/ear_hunt_behaviour.tres" id="5_2u5e5"]
 [ext_resource type="Resource" uid="uid://6a2euiflosoa" path="res://units/components/brain/wander_behaviour.tres" id="5_a72gt"]
-[ext_resource type="AnimationLibrary" uid="uid://d1ig1ey1id2pn" path="res://units/eyes/eye_animation_lib.tres" id="5_anp7g"]
-[ext_resource type="AnimationLibrary" uid="uid://vp0rby4wlj5r" path="res://units/eyes/blink_animation_lib.tres" id="6_no5xe"]
+[ext_resource type="Material" uid="uid://vjdnyqs235ys" path="res://models/base_material.tres" id="5_eykx1"]
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_7aele"]
+resource_name = "eyes_Plane"
+_blend_shape_names = PackedStringArray("Closed", "Oof")
+_surfaces = [{
+"aabb": AABB(-0.276794, -2.98399e-08, -0.376199, 0.553599, 1.00702e-05, 0.752398),
+"attribute_data": PackedByteArray(7, 0, 152, 61, 8, 0, 144, 61, 7, 0, 152, 61, 8, 0, 144, 61, 7, 0, 152, 61, 8, 0, 144, 61, 7, 0, 152, 61, 8, 0, 144, 61, 7, 0, 152, 61, 8, 0, 144, 61, 7, 0, 152, 61, 8, 0, 144, 61, 7, 0, 152, 61, 8, 0, 144, 61, 7, 0, 152, 61, 8, 0, 144, 61),
+"blend_shapes": PackedByteArray(168, 181, 130, 61, 202, 179, 245, 50, 32, 88, 36, 189, 168, 181, 130, 61, 202, 179, 245, 50, 35, 157, 192, 190, 168, 181, 130, 189, 200, 179, 245, 178, 35, 157, 192, 190, 168, 181, 130, 189, 200, 179, 245, 178, 32, 88, 36, 189, 164, 181, 130, 61, 242, 108, 189, 51, 35, 157, 192, 62, 164, 181, 130, 61, 242, 108, 189, 51, 36, 88, 36, 61, 168, 181, 130, 189, 26, 38, 5, 51, 36, 88, 36, 61, 168, 181, 130, 189, 26, 38, 5, 51, 35, 157, 192, 62, 255, 127, 254, 255, 255, 255, 255, 191, 255, 127, 254, 255, 255, 255, 255, 191, 255, 127, 254, 255, 255, 255, 255, 191, 255, 127, 254, 255, 255, 255, 255, 191, 255, 127, 254, 255, 255, 255, 255, 191, 255, 127, 254, 255, 255, 255, 255, 191, 255, 127, 254, 255, 255, 255, 255, 191, 255, 127, 254, 255, 255, 255, 255, 191, 176, 23, 188, 189, 200, 83, 45, 51, 196, 91, 107, 189, 192, 229, 46, 61, 94, 179, 1, 51, 143, 187, 148, 190, 136, 87, 66, 189, 78, 41, 0, 179, 86, 97, 175, 190, 40, 91, 58, 190, 202, 17, 169, 178, 251, 68, 224, 189, 184, 229, 46, 61, 175, 217, 192, 51, 143, 187, 148, 62, 176, 23, 188, 189, 227, 169, 214, 51, 200, 91, 107, 61, 40, 91, 58, 190, 27, 119, 43, 51, 254, 68, 224, 61, 136, 87, 66, 189, 100, 173, 255, 50, 86, 97, 175, 62, 255, 127, 254, 255, 255, 255, 255, 191, 255, 127, 254, 255, 255, 255, 255, 191, 255, 127, 254, 255, 255, 255, 255, 191, 255, 127, 254, 255, 255, 255, 255, 191, 255, 127, 254, 255, 255, 255, 255, 63, 255, 127, 254, 255, 255, 255, 255, 63, 255, 127, 254, 255, 255, 255, 255, 63, 255, 127, 254, 255, 255, 255, 255, 63),
+"format": 34359742487,
+"index_count": 12,
+"index_data": PackedByteArray(0, 0, 2, 0, 1, 0, 0, 0, 3, 0, 2, 0, 4, 0, 6, 0, 5, 0, 4, 0, 7, 0, 6, 0),
+"material": ExtResource("5_eykx1"),
+"name": "Material",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 8,
+"vertex_data": PackedByteArray(1, 184, 141, 62, 215, 43, 87, 50, 43, 234, 7, 190, 1, 184, 141, 62, 215, 43, 87, 50, 184, 215, 136, 190, 1, 184, 141, 190, 215, 43, 87, 178, 184, 215, 136, 190, 1, 184, 141, 190, 215, 43, 87, 178, 43, 234, 7, 190, 0, 184, 141, 62, 123, 229, 154, 51, 184, 215, 136, 62, 0, 184, 141, 62, 123, 229, 154, 51, 42, 234, 7, 62, 2, 184, 141, 190, 10, 53, 74, 51, 42, 234, 7, 62, 2, 184, 141, 190, 10, 53, 74, 51, 184, 215, 136, 62, 255, 127, 255, 255, 255, 255, 255, 191, 255, 127, 255, 255, 255, 255, 255, 191, 255, 127, 255, 255, 255, 255, 255, 191, 255, 127, 255, 255, 255, 255, 255, 191, 255, 127, 255, 255, 255, 255, 255, 191, 255, 127, 255, 255, 255, 255, 255, 191, 255, 127, 255, 255, 255, 255, 255, 191, 255, 127, 255, 255, 255, 255, 255, 191)
+}]
+blend_shape_mode = 0
 
 [node name="Witch" groups=["Witch"] instance=ExtResource("1_g4nk8")]
+corpse_model = ExtResource("2_kevcb")
 unit_list_resource = ExtResource("2_5gllm")
 
 [node name="Model" parent="." index="1"]
@@ -52,15 +71,11 @@ transform = Transform3D(0.602939, -0.779567, -0.169524, 0.750468, 0.626318, -0.2
 [node name="EyeComponent" parent="Model/ModelHolder" index="2"]
 transform = Transform3D(0.422111, 0.124186, -8.7207e-10, -0.124186, 0.422111, -5.72584e-09, -7.79456e-10, 5.73918e-09, 0.44, 0.746055, 2.12985, 3.40012e-08)
 
-[node name="AnimationTree_Look" parent="Model/ModelHolder/EyeComponent" index="1"]
-libraries = {
-"": ExtResource("5_anp7g")
-}
-
-[node name="AnimationTree_Blink" parent="Model/ModelHolder/EyeComponent" index="3"]
-libraries = {
-"": ExtResource("6_no5xe")
-}
+[node name="Plane" parent="Model/ModelHolder/EyeComponent/Eyes/eyes" index="0"]
+transform = Transform3D(5.96046e-08, 1, 0, -1, 5.96046e-08, 0, 0, 0, 1, 0, 0, 0)
+mesh = SubResource("ArrayMesh_7aele")
+skeleton = NodePath("")
+blend_shapes/Oof = 0.0
 
 [node name="HealthComponent" parent="." index="3"]
 max_health = 2400.0

@@ -1,0 +1,12 @@
+[gd_scene load_steps=2 format=3 uid="uid://bqqhk7ydcb5t3"]
+
+[ext_resource type="Script" path="res://fx/CorpseEffect.gd" id="1_3a5i0"]
+
+[node name="Corpse" type="Node3D"]
+script = ExtResource("1_3a5i0")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 15.0
+one_shot = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_end"]

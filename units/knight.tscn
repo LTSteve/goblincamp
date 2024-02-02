@@ -10,6 +10,7 @@
 [ext_resource type="Resource" uid="uid://cpbw516utgbfj" path="res://units/components/brain/ear_hunt_behaviour.tres" id="5_kexcl"]
 
 [node name="Knight" groups=["Knight"] instance=ExtResource("1_d7e8e")]
+corpse_model = ExtResource("2_71j88")
 unit_list_resource = ExtResource("2_w1opt")
 
 [node name="Model" parent="." index="1"]
