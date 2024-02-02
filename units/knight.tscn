@@ -12,6 +12,9 @@
 [node name="Knight" groups=["Knight"] instance=ExtResource("1_d7e8e")]
 unit_list_resource = ExtResource("2_w1opt")
 
+[node name="Model" parent="." index="1"]
+transform = Transform3D(-2.30258e-08, 0, 0.526768, 0, 0.526768, 0, -0.526768, 0, -2.30258e-08, 0, 0, 0)
+
 [node name="Sword" parent="Model/WeaponHolder" index="0" instance=ExtResource("2_wode8")]
 
 [node name="Sword2" parent="Model/WeaponHolder" index="1" instance=ExtResource("2_wode8")]
