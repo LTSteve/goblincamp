@@ -1,9 +1,8 @@
-[gd_resource type="Resource" script_class="CardResource" load_steps=6 format=3 uid="uid://b1n6bh5g01utt"]
+[gd_resource type="Resource" script_class="CardResource" load_steps=5 format=3 uid="uid://b1n6bh5g01utt"]
 
 [ext_resource type="Script" path="res://card_modifiers/CardResource.gd" id="1_2uopx"]
 [ext_resource type="Script" path="res://card_modifiers/rituals/double_edged_blade.gd" id="1_ng1ld"]
 [ext_resource type="JSON" path="res://card_modifiers/rituals/double_edged_blade.json" id="2_0hcih"]
-[ext_resource type="Texture2D" uid="uid://uyh6po0yt611" path="res://icons/back-forth.png" id="3_85gu6"]
 [ext_resource type="PackedScene" uid="uid://5wsbg1fkyfn7" path="res://models/icon_scenes/double_edged_blade.glb" id="3_j5in6"]
 
 [resource]
@@ -16,10 +15,9 @@ rarity = 2
 max_rank = 1
 card_script = ExtResource("1_ng1ld")
 card_script_params = ExtResource("2_0hcih")
-apply_to = Array[String](["AnimationTree"])
+apply_to = Array[String](["AnimationTreeExpressionExtension"])
 group_filters = Array[String](["Sword"])
 include_enemies = false
 include_players = true
-icon_texture = ExtResource("3_85gu6")
 icon_model = ExtResource("3_j5in6")
 unlocked = true

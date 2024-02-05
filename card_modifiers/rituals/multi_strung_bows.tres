@@ -1,10 +1,9 @@
-[gd_resource type="Resource" script_class="CardResource" load_steps=6 format=3 uid="uid://c7xij2r03plfj"]
+[gd_resource type="Resource" script_class="CardResource" load_steps=5 format=3 uid="uid://c7xij2r03plfj"]
 
 [ext_resource type="Script" path="res://card_modifiers/rituals/multi_strung_bows.gd" id="1_0nb8d"]
 [ext_resource type="Script" path="res://card_modifiers/CardResource.gd" id="1_mid0l"]
 [ext_resource type="JSON" path="res://card_modifiers/rituals/multi_strung_bows.json" id="2_vf7y0"]
 [ext_resource type="PackedScene" uid="uid://cuq70jv05x2ta" path="res://models/icon_scenes/multistrung_bows.glb" id="3_fr1bg"]
-[ext_resource type="Texture2D" uid="uid://kda7ydftg8st" path="res://icons/vines.png" id="3_ur2dy"]
 
 [resource]
 script = ExtResource("1_mid0l")
@@ -16,10 +15,9 @@ rarity = 2
 max_rank = 3
 card_script = ExtResource("1_0nb8d")
 card_script_params = ExtResource("2_vf7y0")
-apply_to = Array[String](["AnimationTree", "RangedWeapon"])
+apply_to = Array[String](["AnimationTreeExpressionExtension", "RangedWeapon"])
 group_filters = Array[String](["Bow"])
 include_enemies = false
 include_players = true
-icon_texture = ExtResource("3_ur2dy")
 icon_model = ExtResource("3_fr1bg")
 unlocked = true
