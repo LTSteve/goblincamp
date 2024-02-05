@@ -30,7 +30,6 @@ blend_shape_mode = 0
 
 [node name="GoblinPriest" groups=["GoblinPriest"] instance=ExtResource("1_o6a4c")]
 collision_layer = 2
-ranged_targeting_radius = 1.4
 is_enemy = true
 corpse_model = ExtResource("2_q1y50")
 unit_list_resource = ExtResource("2_eftny")
@@ -58,11 +57,9 @@ transform = Transform3D(1, 0, 1.77636e-14, 0, 1, 0, -1.77636e-14, 0, 1, 0, 0, 0)
 [node name="Plane" parent="Model/ModelHolder/EyeComponent/Eyes/eyes" index="0"]
 transform = Transform3D(5.96046e-08, 1, 0, -1, 5.96046e-08, 0, 0, 0, 1, 0, 0, 0)
 mesh = SubResource("ArrayMesh_7aele")
-skeleton = NodePath("")
-blend_shapes/Oof = 0.0
 
 [node name="HealthComponent" parent="." index="3"]
-max_health = 800.0
+max_health = 640.0
 
 [node name="VelocityComponent" parent="." index="4"]
 max_speed = 2.2
@@ -85,3 +82,4 @@ transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 1, 0)
 [editable path="Model/ModelHolder/RankComponent/rank_star3"]
 [editable path="Model/ModelHolder/RankComponent/rank_star4"]
 [editable path="Model/ModelHolder/goblin_priest"]
+[editable path="Model/ModelHolder/EyeComponent/Eyes/eyes"]

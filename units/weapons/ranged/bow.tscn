@@ -49,6 +49,7 @@ libraries = {
 "": ExtResource("4_k170w")
 }
 parameters/ScaledAttack/StateMachine/conditions/attack_loops = false
+parameters/ScaledAttack/StateMachine/conditions/unattack = false
 parameters/ScaledAttack/StateMachine/conditions/use_attack_2 = false
 parameters/ScaledAttack/TimeScale/scale = 1.0
 parameters/ScaledAttack/TimeScaleThrottled/scale = 1.0

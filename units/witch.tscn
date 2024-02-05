@@ -74,11 +74,9 @@ transform = Transform3D(0.422111, 0.124186, -8.7207e-10, -0.124186, 0.422111, -5
 [node name="Plane" parent="Model/ModelHolder/EyeComponent/Eyes/eyes" index="0"]
 transform = Transform3D(5.96046e-08, 1, 0, -1, 5.96046e-08, 0, 0, 0, 1, 0, 0, 0)
 mesh = SubResource("ArrayMesh_7aele")
-skeleton = NodePath("")
-blend_shapes/Oof = 0.0
 
 [node name="HealthComponent" parent="." index="3"]
-max_health = 2400.0
+max_health = 2160.0
 
 [node name="VelocityComponent" parent="." index="4"]
 max_speed = 3.25
@@ -98,3 +96,4 @@ behaviours = Array[Resource("res://units/components/brain/Behaviour.gd")]([ExtRe
 [editable path="Model/ModelHolder/RankComponent/rank_star2"]
 [editable path="Model/ModelHolder/RankComponent/rank_star3"]
 [editable path="Model/ModelHolder/RankComponent/rank_star4"]
+[editable path="Model/ModelHolder/EyeComponent/Eyes/eyes"]

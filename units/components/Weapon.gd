@@ -130,11 +130,11 @@ func _on_end_channeling():
 	animation_tree.activate_trigger("end_channel", animation_delay)
 
 func _try_to_attack(target:Unit, me:Unit) -> bool:
-	if (animation_tree.get("parameters/playback").get_current_node() != "idle_combat") :
+	if (animation_tree.get("parameters/playback").get_current_node() != "idle_combat") || disabled :
 		return false
 	
 	#in range and ready to fire?
-	if disabled || ((target.global_position - me.global_position).length() > weapon_range) : 
+	if ((target.global_position - me.global_position).length() > weapon_range) : 
 		_on_request_attack_rewind(true)
 		return false
 	

@@ -37,7 +37,7 @@ visible = true
 visible = false
 
 [node name="HealthComponent" parent="." index="3"]
-max_health = 4600.0
+max_health = 4140.0
 
 [node name="VelocityComponent" parent="." index="4"]
 max_speed = 5.5
