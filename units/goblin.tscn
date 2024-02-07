@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://dnedsjutd8p51" path="res://units/weapons/melee/claw.tscn" id="2_t4l2k"]
 [ext_resource type="Resource" uid="uid://du4glkse3tqoh" path="res://units/components/brain/repulse_behaviour.tres" id="4_8th67"]
 [ext_resource type="Resource" uid="uid://cao1bytnssy28" path="res://units/components/brain/melee_behaviour.tres" id="4_uet6l"]
-[ext_resource type="Material" uid="uid://vjdnyqs235ys" path="res://models/base_material.tres" id="5_kaugy"]
+[ext_resource type="Material" uid="uid://cev8pybhmuic0" path="res://models/eye_material.tres" id="5_3tptl"]
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_7aele"]
 resource_name = "eyes_Plane"
@@ -18,7 +18,7 @@ _surfaces = [{
 "format": 34359742487,
 "index_count": 12,
 "index_data": PackedByteArray(0, 0, 2, 0, 1, 0, 0, 0, 3, 0, 2, 0, 4, 0, 6, 0, 5, 0, 4, 0, 7, 0, 6, 0),
-"material": ExtResource("5_kaugy"),
+"material": ExtResource("5_3tptl"),
 "name": "Material",
 "primitive": 3,
 "uv_scale": Vector4(0, 0, 0, 0),
@@ -63,8 +63,13 @@ transform = Transform3D(1, 0, -7.10543e-15, 0, 1, 0, 7.10543e-15, 0, 1, 0, 0, 0)
 transform = Transform3D(0.9, 0, 1.77636e-14, 0, 0.9, 0, -1.77636e-14, 0, 0.9, 0.619143, 2.51642, 2.70635e-08)
 
 [node name="Plane" parent="Model/ModelHolder/EyeComponent/Eyes/eyes" index="0"]
-transform = Transform3D(5.96046e-08, 1, 0, -1, 5.96046e-08, 0, 0, 0, 1, 0, 0, 0)
+transform = Transform3D(5.96046e-08, 1, 0, -1, 5.96046e-08, 0, 0, 0, 1, 0, 0.150053, 0.021939)
+cast_shadow = 0
+visibility_range_end = 25.0
+visibility_range_fade_mode = 1
 mesh = SubResource("ArrayMesh_7aele")
+skeleton = NodePath("")
+blend_shapes/Oof = 0.0
 
 [node name="HealthComponent" parent="." index="3"]
 max_health = 1584.0
@@ -88,4 +93,3 @@ behaviours = Array[Resource("res://units/components/brain/Behaviour.gd")]([ExtRe
 [editable path="Model/ModelHolder/RankComponent/rank_star2"]
 [editable path="Model/ModelHolder/RankComponent/rank_star3"]
 [editable path="Model/ModelHolder/RankComponent/rank_star4"]
-[editable path="Model/ModelHolder/EyeComponent/Eyes/eyes"]

@@ -8,7 +8,7 @@
 [ext_resource type="Resource" uid="uid://du4glkse3tqoh" path="res://units/components/brain/repulse_behaviour.tres" id="4_e1jap"]
 [ext_resource type="Resource" uid="uid://cpbw516utgbfj" path="res://units/components/brain/ear_hunt_behaviour.tres" id="5_2u5e5"]
 [ext_resource type="Resource" uid="uid://6a2euiflosoa" path="res://units/components/brain/wander_behaviour.tres" id="5_a72gt"]
-[ext_resource type="Material" uid="uid://vjdnyqs235ys" path="res://models/base_material.tres" id="5_eykx1"]
+[ext_resource type="Material" uid="uid://cev8pybhmuic0" path="res://models/eye_material.tres" id="5_c53qw"]
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_7aele"]
 resource_name = "eyes_Plane"
@@ -20,7 +20,7 @@ _surfaces = [{
 "format": 34359742487,
 "index_count": 12,
 "index_data": PackedByteArray(0, 0, 2, 0, 1, 0, 0, 0, 3, 0, 2, 0, 4, 0, 6, 0, 5, 0, 4, 0, 7, 0, 6, 0),
-"material": ExtResource("5_eykx1"),
+"material": ExtResource("5_c53qw"),
 "name": "Material",
 "primitive": 3,
 "uv_scale": Vector4(0, 0, 0, 0),

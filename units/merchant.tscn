@@ -8,8 +8,8 @@
 [ext_resource type="Resource" uid="uid://c5lj8afn8ogvv" path="res://units/components/brain/mercant_behaviour.tres" id="4_762ss"]
 [ext_resource type="Resource" uid="uid://6a2euiflosoa" path="res://units/components/brain/wander_behaviour.tres" id="4_cc0aj"]
 [ext_resource type="Script" path="res://units/components/HeightComponent.gd" id="6_8g4b0"]
-[ext_resource type="Material" uid="uid://vjdnyqs235ys" path="res://models/base_material.tres" id="6_cumqb"]
 [ext_resource type="Resource" uid="uid://du4glkse3tqoh" path="res://units/components/brain/repulse_behaviour.tres" id="6_ngoe1"]
+[ext_resource type="Material" uid="uid://cev8pybhmuic0" path="res://models/eye_material.tres" id="6_s7svh"]
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_7aele"]
 resource_name = "eyes_Plane"
@@ -21,7 +21,7 @@ _surfaces = [{
 "format": 34359742487,
 "index_count": 12,
 "index_data": PackedByteArray(0, 0, 2, 0, 1, 0, 0, 0, 3, 0, 2, 0, 4, 0, 6, 0, 5, 0, 4, 0, 7, 0, 6, 0),
-"material": ExtResource("6_cumqb"),
+"material": ExtResource("6_s7svh"),
 "name": "Material",
 "primitive": 3,
 "uv_scale": Vector4(0, 0, 0, 0),
@@ -60,8 +60,6 @@ transform = Transform3D(0.6, 0, 2.13163e-14, 0, 0.6, 0, -2.13163e-14, 0, 0.6, 0.
 [node name="Plane" parent="Model/ModelHolder/EyeComponent/Eyes/eyes" index="0"]
 transform = Transform3D(5.96046e-08, 1, 0, -1, 5.96046e-08, 0, 0, 0, 1, 0, 0, 0)
 mesh = SubResource("ArrayMesh_7aele")
-skeleton = NodePath("")
-blend_shapes/Oof = 0.0
 
 [node name="MaterialOverrideComponent" parent="." index="10" node_paths=PackedStringArray("mesh_instance")]
 mesh_instance = NodePath("../Model/ModelHolder/merchant/merchant")
@@ -87,3 +85,4 @@ shape = SubResource("SphereShape3D_8g8w7")
 [editable path="Model/ModelHolder/RankComponent/rank_star3"]
 [editable path="Model/ModelHolder/RankComponent/rank_star4"]
 [editable path="Model/ModelHolder/merchant"]
+[editable path="Model/ModelHolder/EyeComponent/Eyes/eyes"]

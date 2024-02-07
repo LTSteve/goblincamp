@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://cfg0rjlguiigk" path="res://units/weapons/channeling/goblin_rod.tscn" id="2_k4knw"]
 [ext_resource type="PackedScene" uid="uid://cx6nlib0memhr" path="res://models/goblin_priest/goblin_priest.glb" id="2_q1y50"]
 [ext_resource type="Resource" uid="uid://bojkc8g5upa4c" path="res://units/components/brain/priest_repulse_behaviour.tres" id="4_uvtix"]
-[ext_resource type="Material" uid="uid://vjdnyqs235ys" path="res://models/base_material.tres" id="5_mkmv5"]
+[ext_resource type="Material" uid="uid://cev8pybhmuic0" path="res://models/eye_material.tres" id="5_kk7wy"]
 [ext_resource type="Resource" uid="uid://gn36ryd3nnjj" path="res://units/components/brain/dethball_behaviour.tres" id="6_1yhhw"]
 [ext_resource type="Resource" uid="uid://6a2euiflosoa" path="res://units/components/brain/wander_behaviour.tres" id="7_e6qiv"]
 
@@ -19,7 +19,7 @@ _surfaces = [{
 "format": 34359742487,
 "index_count": 12,
 "index_data": PackedByteArray(0, 0, 2, 0, 1, 0, 0, 0, 3, 0, 2, 0, 4, 0, 6, 0, 5, 0, 4, 0, 7, 0, 6, 0),
-"material": ExtResource("5_mkmv5"),
+"material": ExtResource("5_kk7wy"),
 "name": "Material",
 "primitive": 3,
 "uv_scale": Vector4(0, 0, 0, 0),
@@ -56,7 +56,12 @@ transform = Transform3D(1, 0, 1.77636e-14, 0, 1, 0, -1.77636e-14, 0, 1, 0, 0, 0)
 
 [node name="Plane" parent="Model/ModelHolder/EyeComponent/Eyes/eyes" index="0"]
 transform = Transform3D(5.96046e-08, 1, 0, -1, 5.96046e-08, 0, 0, 0, 1, 0, 0, 0)
+cast_shadow = 0
+visibility_range_end = 25.0
+visibility_range_fade_mode = 1
 mesh = SubResource("ArrayMesh_7aele")
+skeleton = NodePath("")
+blend_shapes/Oof = 0.0
 
 [node name="HealthComponent" parent="." index="3"]
 max_health = 640.0
@@ -82,4 +87,3 @@ transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 1, 0)
 [editable path="Model/ModelHolder/RankComponent/rank_star3"]
 [editable path="Model/ModelHolder/RankComponent/rank_star4"]
 [editable path="Model/ModelHolder/goblin_priest"]
-[editable path="Model/ModelHolder/EyeComponent/Eyes/eyes"]

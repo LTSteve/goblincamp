@@ -7,7 +7,7 @@
 [ext_resource type="Resource" uid="uid://cao1bytnssy28" path="res://units/components/brain/melee_behaviour.tres" id="4_feahh"]
 [ext_resource type="Resource" uid="uid://du4glkse3tqoh" path="res://units/components/brain/repulse_behaviour.tres" id="4_rhb1v"]
 [ext_resource type="Resource" uid="uid://6a2euiflosoa" path="res://units/components/brain/wander_behaviour.tres" id="5_7of1k"]
-[ext_resource type="Material" uid="uid://vjdnyqs235ys" path="res://models/base_material.tres" id="5_15a4j"]
+[ext_resource type="Material" uid="uid://cev8pybhmuic0" path="res://models/eye_material.tres" id="5_qsdtn"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_e0yvo"]
 radius = 1.6
@@ -23,7 +23,7 @@ _surfaces = [{
 "format": 34359742487,
 "index_count": 12,
 "index_data": PackedByteArray(0, 0, 2, 0, 1, 0, 0, 0, 3, 0, 2, 0, 4, 0, 6, 0, 5, 0, 4, 0, 7, 0, 6, 0),
-"material": ExtResource("5_15a4j"),
+"material": ExtResource("5_qsdtn"),
 "name": "Material",
 "primitive": 3,
 "uv_scale": Vector4(0, 0, 0, 0),
