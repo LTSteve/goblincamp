@@ -18,6 +18,25 @@ static func claim_nearest_unclaimed_ear(position, ears):
 	if nearest: nearest.claimed = true
 	return nearest
 
+static var _building_closest_to_center: Building = null
+
+static func get_building_closest_to_center(buildings: Array) -> Building:
+	if is_instance_valid(_building_closest_to_center): 
+		return _building_closest_to_center
+		
+	var position = Vector3.ZERO
+	var nearest:Building = null
+	var nearest_len_2 = INF
+	for building in buildings:
+		if !is_instance_valid(building): continue
+		var len2 = (building.global_position - position).length_squared()
+		if(len2 < nearest_len_2):
+			nearest = building
+			nearest_len_2 = len2
+	
+	_building_closest_to_center = nearest
+	return _building_closest_to_center
+
 static func nearest_unit(units: Array, position):
 	if(!units || units.size() == 0):
 		return null
