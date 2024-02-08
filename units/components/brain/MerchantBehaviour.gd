@@ -42,9 +42,6 @@ func _on_day_changed(is_day, _was_day, unit, ctx: MerchantBehaviourContext):
 	ctx.targetFleeLocation = nearest_building.global_position
 	ctx.isFleeing = true
 
-func assign_target(_delta, _brain:BrainComponent, _behaviour_data):
-	pass
-
 func process(_delta, brain:BrainComponent, ctx: MerchantBehaviourContext):
 	if !ctx.isFleeing: return false
 	

@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://c80w07885m8u1"]
+[gd_scene load_steps=19 format=3 uid="uid://c80w07885m8u1"]
 
 [ext_resource type="PackedScene" uid="uid://brhc1aba5usew" path="res://units/unit.tscn" id="1_gd25m"]
 [ext_resource type="Resource" uid="uid://bp1makqi1hcne" path="res://observables/npcs.tres" id="2_0y0qc"]
@@ -11,6 +11,32 @@
 [ext_resource type="Resource" uid="uid://ccndi511ewfdy" path="res://units/components/brain/wizard_behaviour.tres" id="7_byps2"]
 [ext_resource type="Resource" uid="uid://6a2euiflosoa" path="res://units/components/brain/wander_behaviour.tres" id="7_ujjig"]
 [ext_resource type="Script" path="res://units/components/HeightComponent.gd" id="9_icy0l"]
+
+[sub_resource type="Curve" id="Curve_y0ee3"]
+_data = [Vector2(0.0116959, 0), 0.0, 4.54049, 0, 0, Vector2(0.549708, 0.836009), 0.0, 0.0, 0, 0, Vector2(0.885965, 0.426032), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_rt37u"]
+curve = SubResource("Curve_y0ee3")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ggps2"]
+particle_flag_rotate_y = true
+emission_shape = 1
+emission_sphere_radius = 2.05
+angle_min = -45.0
+angle_max = 45.0
+gravity = Vector3(0, 0, 0)
+scale_curve = SubResource("CurveTexture_rt37u")
+color = Color(0.0352941, 0.0705882, 0.117647, 0.533333)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_sfksw"]
+transparency = 1
+shading_mode = 0
+albedo_color = Color(0.0196078, 0.0470588, 0.12549, 0.45098)
+
+[sub_resource type="BoxMesh" id="BoxMesh_7lmui"]
+material = SubResource("StandardMaterial3D_sfksw")
+size = Vector3(0.5, 0.5, 0.5)
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_7aele"]
 resource_name = "eyes_Plane"
@@ -39,7 +65,21 @@ is_npc = true
 corpse_model = ExtResource("2_pxwt3")
 unit_list_resource = ExtResource("2_0y0qc")
 
-[node name="Model" parent="." index="1"]
+[node name="PoofParticles" type="GPUParticles3D" parent="." index="1"]
+process_mode = 3
+transform = Transform3D(-2.30258e-08, 0, 0.526768, 0, 0.526768, 0, -0.526768, 0, -2.30258e-08, 0, 0.901545, 0)
+cast_shadow = 0
+emitting = false
+amount = 64
+lifetime = 0.75
+one_shot = true
+explosiveness = 0.66
+visibility_aabb = AABB(-2, -1.5, -2, 4, 4, 4)
+process_material = SubResource("ParticleProcessMaterial_ggps2")
+draw_pass_1 = SubResource("BoxMesh_7lmui")
+script = ExtResource("9_icy0l")
+
+[node name="Model" parent="." index="2"]
 transform = Transform3D(-2.30258e-08, 0, 0.526768, 0, 0.526768, 0, -0.526768, 0, -2.30258e-08, 0, 0, 0)
 
 [node name="HealthbarComponent" parent="Model" index="2"]
@@ -62,13 +102,13 @@ mesh = SubResource("ArrayMesh_7aele")
 modulate = Color(0.945098, 0.623529, 1, 1)
 texture = ExtResource("5_54wux")
 
-[node name="MaterialOverrideComponent" parent="." index="10" node_paths=PackedStringArray("mesh_instance")]
+[node name="MaterialOverrideComponent" parent="." index="11" node_paths=PackedStringArray("mesh_instance")]
 mesh_instance = NodePath("../Model/ModelHolder/wizard/wizard")
 
-[node name="BrainComponent" parent="." index="11"]
+[node name="BrainComponent" parent="." index="12"]
 behaviours = Array[Resource("res://units/components/brain/Behaviour.gd")]([ExtResource("6_ghxdd"), ExtResource("7_byps2"), ExtResource("7_ujjig")])
 
-[node name="FleeRange" parent="." index="13"]
+[node name="FleeRange" parent="." index="14"]
 collision_layer = 8192
 monitoring = false
 monitorable = true

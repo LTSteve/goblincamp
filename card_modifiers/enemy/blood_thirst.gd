@@ -51,7 +51,7 @@ func _un_apply(_unit,unit:Unit):
 func _on_get_kill(_value: float, killer:Unit):
 	if !is_instance_valid(killer): return
 	# do sphere cast for nearby enemy units
-	var nearby_units:Array[Unit] = Global.get_all_units_near_position(DB.I.observables.enemies.value, killer.global_position, params.range)
+	var nearby_units:Array = Global.get_all_units_near_position(DB.I.observables.enemies.value, killer.global_position, params.range)
 	# apply an effect to all of them
 	for unit in nearby_units:
 		var effect = BloodThirstEffect.new(unit, params, current_rank)
