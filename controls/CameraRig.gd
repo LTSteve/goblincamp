@@ -57,6 +57,7 @@ var distance_input: float
 var _angle_override:CameraSettings
 
 class CameraSettings:
+	var locked_to_offset: Vector2 = Vector2.ZERO
 	var locked_to: Unit
 	var lock_strength: float = 0
 
@@ -74,7 +75,7 @@ func _fov_change(new_fov):
 func _process(delta):
 	if _angle_override != null:
 		velocity_component.set_velocity(Vector2.ZERO)
-		var pos = Vector2(_angle_override.locked_to.global_position.x, _angle_override.locked_to.global_position.z)
+		var pos := Vector2(_angle_override.locked_to.global_position.x, _angle_override.locked_to.global_position.z) + _angle_override.locked_to_offset
 		global_position = lerp(global_position, Math.v2_to_v3(pos, Ground.sample_height(pos.x, pos.y)), _angle_override.lock_strength)
 	
 	if auto_drive:
@@ -94,7 +95,7 @@ func _process(delta):
 		distance_input = _combine_actions("camera_zoom", "camera_dezoom")
 	
 	#movement
-	var desired_movement = left_right_input * Vector3.LEFT + forward_back_input * Vector3.FORWARD
+	var desired_movement := left_right_input * Vector3.LEFT + forward_back_input * Vector3.FORWARD
 	
 	velocity_component.accelerate_to_velocity(Math.v3_to_v2(desired_movement), delta)
 	translate(camera_rotation.quaternion * Math.v2_to_v3(velocity_component.apply_delta(delta), global_position.y))
@@ -124,3 +125,9 @@ func set_camera_angle_override(cam_settings:CameraSettings):
 
 func unset_camera_angle_override():
 	_angle_override = null
+
+func calculate_vendor_offset() -> Vector2:
+	#take camera main position, add camera distance length to this position, in the direction right of the camera facing
+	var cam_right := camera.global_basis.x
+	
+	return Math.v3_to_v2(cam_right * distance_value * 0.7)

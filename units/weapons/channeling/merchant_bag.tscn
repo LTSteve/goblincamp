@@ -14,7 +14,8 @@ transform = Transform3D(-6.81846e-11, 4.41735e-08, 1, 0.989313, 0.145807, -6.373
 libraries = {
 "": ExtResource("3_de17b")
 }
-parameters/ScaledAttack/StateMachine/conditions/attack_loops = false
+parameters/ScaledAttack/StateMachine/conditions/attack_loops = true
+parameters/ScaledAttack/StateMachine/conditions/unattack = false
 parameters/ScaledAttack/StateMachine/conditions/use_attack_2 = false
 parameters/ScaledAttack/TimeScale/scale = 1.0
 parameters/ScaledAttack/TimeScaleThrottled/scale = 1.0

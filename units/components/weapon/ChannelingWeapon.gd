@@ -10,12 +10,13 @@ var _active_channeled_effect: Node
 var create_channeled_scene = CallableStack.new(_create_channeled_scene)
 
 func _on_begin_channeling():
-	if channeled_effect_scene == null || _active_channeled_effect: return
+	if _active_channeled_effect: return
 	
 	super._on_begin_channeling()
 	
 	#spawn channeling effect
-	_active_channeled_effect = create_channeled_scene.execute()
+	if channeled_effect_scene != null:
+		_active_channeled_effect = create_channeled_scene.execute()
 
 func _create_channeled_scene():
 	var effect = channeled_effect_scene.instantiate()

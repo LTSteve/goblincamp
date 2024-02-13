@@ -14,6 +14,11 @@ transform = Transform3D(0.808749, -0.29503, -0.508804, 0.435954, 0.8814, 0.18187
 libraries = {
 "": ExtResource("3_kru36")
 }
+parameters/ScaledAttack/StateMachine/conditions/attack_loops = true
+parameters/ScaledAttack/StateMachine/conditions/unattack = false
+parameters/ScaledAttack/StateMachine/conditions/use_attack_2 = false
+parameters/ScaledAttack/TimeScale/scale = 1.0
+parameters/ScaledAttack/TimeScaleThrottled/scale = 1.0
 
 [node name="AnimationPlayer" parent="." index="2"]
 libraries = {

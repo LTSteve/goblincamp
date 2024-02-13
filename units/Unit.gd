@@ -41,6 +41,9 @@ var _active_effects: Array[Effect] = []
 var _last_hit_by
 var _facing_direction = Vector2.ZERO
 
+var _override_facing_direction: Vector2
+var _has_override_facing_direction: bool = false
+
 var _set_movement_target_task: PrioritizedTaskManager.PrioritizedTask
 
 func _ready():
@@ -94,8 +97,12 @@ func _process(delta):
 		effect.update(delta)
 
 func do_move(delta):
-	var movement_direction = pathfinder_component.get_next_direction() if _stunned <= 0 else Vector2.ZERO
-	_facing_direction = movement_direction if movement_direction != Vector2.ZERO else _facing_direction
+	var movement_direction := pathfinder_component.get_next_direction() if _stunned <= 0 else Vector2.ZERO
+	
+	if _has_override_facing_direction:
+		_facing_direction = _override_facing_direction
+	else:
+		_facing_direction = movement_direction if movement_direction != Vector2.ZERO else _facing_direction
 	
 	velocity_component.accelerate_in_direction(movement_direction, delta)
 	rotation_component.turn(_facing_direction, self, delta)
@@ -168,3 +175,10 @@ func claim_unit(claimer_position: Vector3):
 
 func un_claim_unit(cardinal: Math.Cardinal):
 	cardinal_claims[cardinal] = false
+
+func override_facing_direction(dir: Vector2):
+	_override_facing_direction = dir
+	_has_override_facing_direction = true
+
+func clear_override_facing_direction():
+	_has_override_facing_direction = false

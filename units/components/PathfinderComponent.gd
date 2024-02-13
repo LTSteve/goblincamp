@@ -29,7 +29,7 @@ func find_new_path(movement_target:Vector3):
 		_next_path_location = movement_target
 	_nav_finished = false
 
-func get_next_direction():
+func get_next_direction() -> Vector2:
 	_nav_finished = _nav_finished || _movement_target.distance_squared_to(global_position) < _at_location_dist_2
 	if _nav_finished: return Vector2.ZERO
 	if _next_path_location.distance_squared_to(global_position) < _at_location_dist_2:
