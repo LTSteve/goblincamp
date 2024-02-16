@@ -10,6 +10,9 @@ channeled_effect_scene = null
 [node name="wizard_weapon" parent="ModelHolder" index="0" instance=ExtResource("2_dipm4")]
 transform = Transform3D(0.808749, -0.29503, -0.508804, 0.435954, 0.8814, 0.181872, 0.394803, -0.368904, 0.841452, 0.386455, -0.491841, -0.755578)
 
+[node name="Cube" parent="ModelHolder/wizard_weapon" index="0"]
+transform = Transform3D(0.999765, 0.00320261, 0.0214496, -0.00327565, 0.999989, 0.00337073, -0.0214386, -0.0034402, 0.999764, 0.000190884, -0.00336587, 0.00941539)
+
 [node name="AnimationTreeExpressionExtension" parent="." index="1"]
 libraries = {
 "": ExtResource("3_kru36")
@@ -24,3 +27,5 @@ parameters/ScaledAttack/TimeScaleThrottled/scale = 1.0
 libraries = {
 "": ExtResource("3_kru36")
 }
+
+[editable path="ModelHolder/wizard_weapon"]

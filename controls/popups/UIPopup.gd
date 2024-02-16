@@ -4,6 +4,8 @@ class_name UIPopup
 
 signal popup_close()
 
+signal popup_done()
+
 var close_transitions: Array[Transition] = []
 var open_transitions: Array[Transition] = []
 
@@ -27,6 +29,8 @@ func finish_close():
 	pass
 
 func close(todo_list:TodoList):
+	popup_done.emit()
+	
 	if close_transitions.size() == 0:
 		_wrap_up(todo_list)
 		return

@@ -101,7 +101,7 @@ static func open_buy_panel():
 		var buy_panel = DB.I.scenes.buy_panel_scene.instantiate()
 		HUD.I.on_popup_open(buy_panel)
 		
-		buy_panel.popup_close.connect(func():
+		buy_panel.popup_done.connect(func():
 			# on buy panel close, stop channeling and exit 'in combat' mode
 			brain.end_channeling.emit()
 			brain.exit_combat.emit()
