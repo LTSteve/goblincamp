@@ -16,3 +16,8 @@ mono_crash.*.json
 
 # Export
 export/
+
+# Big Files
+*.wav
+*.mp3
+*.aac

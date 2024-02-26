@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://133jo6pb7hxg"]
+[gd_scene load_steps=30 format=3 uid="uid://133jo6pb7hxg"]
 
 [ext_resource type="PackedScene" uid="uid://b43v6jawtpn5j" path="res://ground.tscn" id="1_4khsr"]
 [ext_resource type="Script" path="res://gameloop/TreeSpawner.gd" id="2_0sl38"]
@@ -23,6 +23,11 @@
 [ext_resource type="PackedScene" uid="uid://cyplod3i2l3l3" path="res://models/npc/merchant.glb" id="19_h4800"]
 [ext_resource type="Script" path="res://controls/ClickableArea.gd" id="19_se6cr"]
 [ext_resource type="PackedScene" uid="uid://w325ppy4jbsf" path="res://models/wizard/wizard.glb" id="20_fuf74"]
+[ext_resource type="AudioStream" uid="uid://bbvjf0pqcvv1w" path="res://music/GoblinCamp_OOC.wav" id="24_aqyqh"]
+[ext_resource type="Script" path="res://gameloop/MusicManager.gd" id="24_jvc6f"]
+[ext_resource type="Resource" uid="uid://cj1voma1xa4b7" path="res://controls/settings_types/Audio/2music.tres" id="25_cbjpc"]
+[ext_resource type="AudioStream" uid="uid://0yrcif6s6rtf" path="res://music/GoblinCamp_IC.wav" id="25_t7607"]
+[ext_resource type="Resource" uid="uid://bq4aic53umc5k" path="res://observables/is_day.tres" id="26_yjurl"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_pij3f"]
 radius = 2.0
@@ -189,6 +194,22 @@ billboard = 2
 text = "EXIT"
 font = ExtResource("18_8vm2m")
 font_size = 64
+
+[node name="MusicManager" type="Node" parent="."]
+process_mode = 3
+script = ExtResource("24_jvc6f")
+music_volume_setting = ExtResource("25_cbjpc")
+is_day_resource = ExtResource("26_yjurl")
+
+[node name="BackgroundMusic" type="AudioStreamPlayer" parent="MusicManager"]
+stream = ExtResource("24_aqyqh")
+volume_db = -80.0
+autoplay = true
+
+[node name="BackgroundMusicCombat" type="AudioStreamPlayer" parent="MusicManager"]
+stream = ExtResource("25_t7607")
+volume_db = -80.0
+autoplay = true
 
 [connection signal="clicked" from="Menu/Play" to="." method="on_play"]
 [connection signal="input_event" from="Menu/Play" to="Menu/Play" method="_on_input_event"]

@@ -18,7 +18,7 @@ static func load_main_menu(tree:SceneTree):
 
 static func _remove_node(node:Node):
 	for child in node.get_children():
-		if is_instance_valid(child):
+		if is_instance_valid(child) && (!child.has_meta("do_not_destroy_on_load") || !child.get_meta("do_not_destroy_on_load")):
 			child.queue_free()
 
 static func _remove_root(tree:SceneTree):
