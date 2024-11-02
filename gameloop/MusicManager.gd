@@ -24,7 +24,7 @@ func _ready():
 		set_meta("do_not_destroy_on_load", true)
 		call_deferred("_do_reparent_root")
 		_fade_in()
-		is_day_resource.value_changed.connect(_on_day_changed)
+		is_day_resource.connections_reset.connect(_on_is_day_connections_reset)
 	else:
 		queue_free()
 
@@ -44,6 +44,9 @@ func _set_in_combat(in_combat: bool):
 
 func _on_day_changed(is_d,_o):
 	_set_in_combat(!is_d)
+
+func _on_is_day_connections_reset():
+	is_day_resource.value_changed.connect(_on_day_changed)
 
 func _process(_delta):
 	var volume_full = _volume_setting_to_db(music_volume_setting.current_value)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://brja51ts4kkm1"]
+[gd_scene load_steps=11 format=4 uid="uid://brja51ts4kkm1"]
 
 [ext_resource type="PackedScene" uid="uid://brhc1aba5usew" path="res://units/unit.tscn" id="1_o6a4c"]
 [ext_resource type="Resource" uid="uid://b1pkis5babvwj" path="res://observables/enemies.tres" id="2_eftny"]
@@ -7,6 +7,7 @@
 [ext_resource type="Resource" uid="uid://bojkc8g5upa4c" path="res://units/components/brain/priest_repulse_behaviour.tres" id="4_uvtix"]
 [ext_resource type="Material" uid="uid://cev8pybhmuic0" path="res://models/eye_material.tres" id="5_kk7wy"]
 [ext_resource type="Resource" uid="uid://gn36ryd3nnjj" path="res://units/components/brain/dethball_behaviour.tres" id="6_1yhhw"]
+[ext_resource type="Script" path="res://units/components/brain/Behaviour.gd" id="6_14pm3"]
 [ext_resource type="Resource" uid="uid://6a2euiflosoa" path="res://units/components/brain/wander_behaviour.tres" id="7_e6qiv"]
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_7aele"]
@@ -14,17 +15,17 @@ resource_name = "eyes_Plane"
 _blend_shape_names = PackedStringArray("Closed", "Oof")
 _surfaces = [{
 "aabb": AABB(-0.276794, -2.98399e-08, -0.376199, 0.553599, 1.00702e-05, 0.752398),
-"attribute_data": PackedByteArray(7, 0, 152, 61, 8, 0, 144, 61, 7, 0, 152, 61, 8, 0, 144, 61, 7, 0, 152, 61, 8, 0, 144, 61, 7, 0, 152, 61, 8, 0, 144, 61, 7, 0, 152, 61, 8, 0, 144, 61, 7, 0, 152, 61, 8, 0, 144, 61, 7, 0, 152, 61, 8, 0, 144, 61, 7, 0, 152, 61, 8, 0, 144, 61),
-"blend_shapes": PackedByteArray(168, 181, 130, 61, 202, 179, 245, 50, 32, 88, 36, 189, 168, 181, 130, 61, 202, 179, 245, 50, 35, 157, 192, 190, 168, 181, 130, 189, 200, 179, 245, 178, 35, 157, 192, 190, 168, 181, 130, 189, 200, 179, 245, 178, 32, 88, 36, 189, 164, 181, 130, 61, 242, 108, 189, 51, 35, 157, 192, 62, 164, 181, 130, 61, 242, 108, 189, 51, 36, 88, 36, 61, 168, 181, 130, 189, 26, 38, 5, 51, 36, 88, 36, 61, 168, 181, 130, 189, 26, 38, 5, 51, 35, 157, 192, 62, 255, 127, 254, 255, 255, 255, 255, 191, 255, 127, 254, 255, 255, 255, 255, 191, 255, 127, 254, 255, 255, 255, 255, 191, 255, 127, 254, 255, 255, 255, 255, 191, 255, 127, 254, 255, 255, 255, 255, 191, 255, 127, 254, 255, 255, 255, 255, 191, 255, 127, 254, 255, 255, 255, 255, 191, 255, 127, 254, 255, 255, 255, 255, 191, 176, 23, 188, 189, 200, 83, 45, 51, 196, 91, 107, 189, 192, 229, 46, 61, 94, 179, 1, 51, 143, 187, 148, 190, 136, 87, 66, 189, 78, 41, 0, 179, 86, 97, 175, 190, 40, 91, 58, 190, 202, 17, 169, 178, 251, 68, 224, 189, 184, 229, 46, 61, 175, 217, 192, 51, 143, 187, 148, 62, 176, 23, 188, 189, 227, 169, 214, 51, 200, 91, 107, 61, 40, 91, 58, 190, 27, 119, 43, 51, 254, 68, 224, 61, 136, 87, 66, 189, 100, 173, 255, 50, 86, 97, 175, 62, 255, 127, 254, 255, 255, 255, 255, 191, 255, 127, 254, 255, 255, 255, 255, 191, 255, 127, 254, 255, 255, 255, 255, 191, 255, 127, 254, 255, 255, 255, 255, 191, 255, 127, 254, 255, 255, 255, 255, 63, 255, 127, 254, 255, 255, 255, 255, 63, 255, 127, 254, 255, 255, 255, 255, 63, 255, 127, 254, 255, 255, 255, 255, 63),
+"attribute_data": PackedByteArray("BwCYPQgAkD0HAJg9CACQPQcAmD0IAJA9BwCYPQgAkD0HAJg9CACQPQcAmD0IAJA9BwCYPQgAkD0HAJg9CACQPQ=="),
+"blend_shapes": PackedByteArray("qLWCPcqz9TIgWCS9qLWCPcqz9TIjncC+qLWCvciz9bIjncC+qLWCvciz9bIgWCS9pLWCPfJsvTMjncA+pLWCPfJsvTMkWCQ9qLWCvRomBTMkWCQ9qLWCvRomBTMjncA+/3/+/////7//f/7/////v/9//v////+//3/+/////7//f/7/////v/9//v////+//3/+/////7//f/7/////v7AXvL3IUy0zxFtrvcDlLj1eswEzj7uUvohXQr1OKQCzVmGvvihbOr7KEamy+0TgvbjlLj2v2cAzj7uUPrAXvL3jqdYzyFtrPShbOr4bdysz/kTgPYhXQr1krf8yVmGvPv9//v////+//3/+/////7//f/7/////v/9//v////+//3/+/////z//f/7/////P/9//v////8//3/+/////z8="),
 "format": 34359742487,
 "index_count": 12,
-"index_data": PackedByteArray(0, 0, 2, 0, 1, 0, 0, 0, 3, 0, 2, 0, 4, 0, 6, 0, 5, 0, 4, 0, 7, 0, 6, 0),
+"index_data": PackedByteArray("AAACAAEAAAADAAIABAAGAAUABAAHAAYA"),
 "material": ExtResource("5_kk7wy"),
 "name": "Material",
 "primitive": 3,
 "uv_scale": Vector4(0, 0, 0, 0),
 "vertex_count": 8,
-"vertex_data": PackedByteArray(1, 184, 141, 62, 215, 43, 87, 50, 43, 234, 7, 190, 1, 184, 141, 62, 215, 43, 87, 50, 184, 215, 136, 190, 1, 184, 141, 190, 215, 43, 87, 178, 184, 215, 136, 190, 1, 184, 141, 190, 215, 43, 87, 178, 43, 234, 7, 190, 0, 184, 141, 62, 123, 229, 154, 51, 184, 215, 136, 62, 0, 184, 141, 62, 123, 229, 154, 51, 42, 234, 7, 62, 2, 184, 141, 190, 10, 53, 74, 51, 42, 234, 7, 62, 2, 184, 141, 190, 10, 53, 74, 51, 184, 215, 136, 62, 255, 127, 255, 255, 255, 255, 255, 191, 255, 127, 255, 255, 255, 255, 255, 191, 255, 127, 255, 255, 255, 255, 255, 191, 255, 127, 255, 255, 255, 255, 255, 191, 255, 127, 255, 255, 255, 255, 255, 191, 255, 127, 255, 255, 255, 255, 255, 191, 255, 127, 255, 255, 255, 255, 255, 191, 255, 127, 255, 255, 255, 255, 255, 191)
+"vertex_data": PackedByteArray("AbiNPtcrVzIr6ge+AbiNPtcrVzK414i+AbiNvtcrV7K414i+AbiNvtcrV7Ir6ge+ALiNPnvlmjO414g+ALiNPnvlmjMq6gc+AriNvgo1SjMq6gc+AriNvgo1SjO414g+/3///////7//f///////v/9///////+//3///////7//f///////v/9///////+//3///////7//f///////vw==")
 }]
 blend_shape_mode = 0
 
@@ -71,7 +72,7 @@ acceleration = 2.0
 mesh_instance = NodePath("../Model/ModelHolder/goblin_priest/Goblin_priest")
 
 [node name="BrainComponent" parent="." index="11"]
-behaviours = Array[Resource("res://units/components/brain/Behaviour.gd")]([ExtResource("4_uvtix"), ExtResource("6_1yhhw"), ExtResource("7_e6qiv")])
+behaviours = Array[ExtResource("6_14pm3")]([ExtResource("4_uvtix"), ExtResource("6_1yhhw"), ExtResource("7_e6qiv")])
 
 [node name="CollisionShape3D" parent="FleeRange" index="0"]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 1, 0)

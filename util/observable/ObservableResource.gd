@@ -2,6 +2,8 @@ extends Observable
 
 class_name ObservableResource
 
+signal connections_reset()
+
 @export var default_value_ptr: Array
 
 var _value
@@ -22,3 +24,4 @@ func initialize():
 	_value = default_value_ptr[0]
 	for connection in value_changed.get_connections():
 		value_changed.disconnect(connection.callable)
+	connections_reset.emit()

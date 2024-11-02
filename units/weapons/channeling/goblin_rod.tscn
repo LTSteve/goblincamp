@@ -20,9 +20,6 @@ scales_with_day = true
 transform = Transform3D(-0.124192, 0.390827, -0.912046, 1.72169e-08, 0.91916, 0.393877, 0.992257, 0.0489163, -0.114153, 0.393938, 0.679101, -0.684486)
 
 [node name="AnimationTreeExpressionExtension" parent="." index="1" groups=["GoblinRod", "Magic"]]
-libraries = {
-"": ExtResource("2_ubbef")
-}
 parameters/ScaledAttack/StateMachine/conditions/attack_loops = true
 parameters/ScaledAttack/StateMachine/conditions/unattack = false
 parameters/ScaledAttack/StateMachine/conditions/use_attack_2 = false

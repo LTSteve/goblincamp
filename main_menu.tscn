@@ -202,12 +202,12 @@ music_volume_setting = ExtResource("25_cbjpc")
 is_day_resource = ExtResource("26_yjurl")
 
 [node name="BackgroundMusic" type="AudioStreamPlayer" parent="MusicManager"]
-stream = ExtResource("24_aqyqh")
+stream = ExtResource("25_t7607")
 volume_db = -80.0
 autoplay = true
 
 [node name="BackgroundMusicCombat" type="AudioStreamPlayer" parent="MusicManager"]
-stream = ExtResource("25_t7607")
+stream = ExtResource("24_aqyqh")
 volume_db = -80.0
 autoplay = true
 

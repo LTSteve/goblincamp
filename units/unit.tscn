@@ -278,9 +278,6 @@ script = ExtResource("8_0r4f4")
 blend_shapes/Closed = 1.0
 
 [node name="AnimationTree_Look" type="AnimationTree" parent="Model/ModelHolder/EyeComponent"]
-libraries = {
-"": ExtResource("10_aqhqn")
-}
 tree_root = ExtResource("9_stike")
 anim_player = NodePath("../AnimationPlayer_Look")
 
@@ -290,9 +287,6 @@ libraries = {
 }
 
 [node name="AnimationTree_Blink" type="AnimationTree" parent="Model/ModelHolder/EyeComponent"]
-libraries = {
-"": ExtResource("11_uo48n")
-}
 tree_root = SubResource("AnimationNodeStateMachine_3fww7")
 anim_player = NodePath("../AnimationPlayer_Blink")
 script = ExtResource("11_w2jh1")

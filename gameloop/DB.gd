@@ -106,6 +106,8 @@ func _ready():
 func _post_init():
 	loading_bar.set_load(SceneManager.main_scene)
 	
+	loading_bar.set_load("res://units/unit.tscn", "loading unit");
+	
 	for scene_name in _scene_paths.keys():
 		loading_bar.set_load(_scene_paths[scene_name], "preloading resources")
 	
